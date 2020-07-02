@@ -1,0 +1,4 @@
+C:\Users\Jake\Documents\My Games\Terraria\ModLoader\Mod Sources\Eternal\obj\Debug\net45\Eternal.csprojAssemblyReference.cache
+C:\Users\Jake\Documents\My Games\Terraria\ModLoader\Mod Sources\Eternal\obj\Debug\net45\Eternal.csproj.CoreCompileInputs.cache
+C:\Users\Jake\Documents\My Games\Terraria\ModLoader\Mod Sources\Eternal\obj\Debug\net45\Eternal.AssemblyInfoInputs.cache
+C:\Users\Jake\Documents\My Games\Terraria\ModLoader\Mod Sources\Eternal\obj\Debug\net45\Eternal.AssemblyInfo.cs

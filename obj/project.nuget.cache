@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "0I0RvQqdV43yX427N1bmxbwUvg0iJuE3e0brE3OzIUUX6wlUcBGC5rK0H5GWAI2kEcJWcyI8ye1urrBnybv2Cg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Jake\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\Eternal\\Eternal.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Jake\\.nuget\\packages\\tmodloader.codeassist\\0.1.1\\tmodloader.codeassist.0.1.1.nupkg.sha512"
+  ],
+  "logs": []
+}
