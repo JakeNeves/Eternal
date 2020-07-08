@@ -94,11 +94,17 @@ namespace Eternal
                 {
                     int X = WorldGen.genRand.Next(1, Main.maxTilesX - 300);
                     int Y = WorldGen.genRand.Next((int)WorldGen.worldSurface - 200, Main.maxTilesY - 200);
-                    int TileType = mod.TileType("Dunestone");
+                    int TileType = mod.TileType("Dunesand");
 
                     WorldGen.TileRunner(X, Y, 350, WorldGen.genRand.Next(100, 300), TileType, false, 0f, 0f, true, true);
                 }
             }));
         }
+	
+	public override void TileCountsAvailable(int[] tileCounts)
+	{
+		thunderduneBiome = tileCounts[TileType<Dunesand>()];
+	}
+	
     }
 }
