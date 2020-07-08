@@ -32,9 +32,9 @@ namespace Eternal.NPCs.Boss
             npc.boss = true;
             npc.noGravity = true;
             npc.noTileCollide = true;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/UnfatefulStrike");
+            npc.HitSound = mod.GetLegacySoundSlot(SoundType.NPCHit, "Sounds/NPCHit/CarmaniteScouterHit");
+            npc.DeathSound = mod.GetLegacySoundSlot(SoundType.NPCHit, "Sounds/NPCHit/CarmaniteScouterDeath");
+            music = MusicID.Boss5;
             bossBag = mod.ItemType("CarmaniteScouterBag");
         }
 
