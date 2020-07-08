@@ -20,5 +20,11 @@ namespace Eternal
 			item.SetDefaults(ItemType<CreatorsMessage>());
 			items.Add(item);
 		}
+		
+		public override void UpdateBiomes()
+		{
+			ZoneThunderduneBiome = (EternalWorld.thunderduneBiome > 0);
+		}
+		
 	}
 }
