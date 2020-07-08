@@ -3,6 +3,7 @@ using Terraria.ModLoader;
 using Terraria.DataStructures;
 using static Terraria.ModLoader.ModContent;
 using Terraria;
+using Eternal.Tiles;
 
 namespace Eternal.Items
 {
@@ -27,7 +28,7 @@ namespace Eternal.Items
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.AddTile(TileType<AncientForge>());
             recipe.AddIngredient(ItemType<SydaniteBar>());
             recipe.AddIngredient(ItemType<ThunderiteBar>());
             recipe.AddIngredient(ItemType<ScoriumBar>());

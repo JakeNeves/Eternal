@@ -1,5 +1,4 @@
-﻿using System;
-using Eternal.Tiles;
+﻿using Eternal.Tiles;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -27,21 +26,6 @@ namespace Eternal.Items.Placeable
             item.consumable = true;
             item.createTile = mod.TileType("DivineMetalBar"); 
             item.maxStack = 999;
-        }
-
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.AddIngredient(ItemID.SoulofLight);
-            recipe.AddIngredient(ItemID.SoulofNight);
-            recipe.AddIngredient(ItemID.SoulofFlight);
-            recipe.AddIngredient(ItemID.SoulofMight);
-            recipe.AddIngredient(ItemID.SoulofSight);
-            recipe.AddIngredient(ItemID.SoulofFright);
-            recipe.AddIngredient(ItemType<SoulofTwilight>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
         }
     }
 }
