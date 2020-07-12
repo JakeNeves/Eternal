@@ -22,8 +22,9 @@ namespace Eternal.NPCs
 			npc.DeathSound = SoundID.NPCDeath1;
 			npc.value = 25f;
 			npc.rarity = 3;
-			aiType = NPCID.GreenSlime;
-			animationType = NPCID.GreenSlime;
+			aiType = NPCID.Icelime;
+			animationType = NPCID.IceSlime;
+			Main.npcFrameCount[npc.type] = 2;
 		}
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
