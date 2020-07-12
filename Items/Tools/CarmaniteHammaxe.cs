@@ -5,25 +5,27 @@ using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Items.Tools
 {
-    class TritalodiumPickaxe : ModItem
+    class CarmaniteHammaxe : ModItem
     {
+
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'Don't use this to skip pre-hardmode'");
+            Tooltip.SetDefault("'Bloody chop-chop...'");
         }
 
         public override void SetDefaults()
         {
-            item.damage = 24;
+            item.damage = 8;
             item.melee = true;
-            item.width = 42;
-            item.height = 44;
-            item.useTime = 20;
-            item.useAnimation = 20;
-            item.pick = 115;
+            item.width = 60;
+            item.height = 60;
+            item.useTime = 10;
+            item.useAnimation = 15;
+            item.axe = 10;
+            item.hammer = 20; 
             item.useStyle = ItemUseStyleID.SwingThrow;
-            item.knockBack = 5;
-            item.value = Item.sellPrice(silver: 25);
+            item.knockBack = 2;
+            item.value = Item.buyPrice(gold: 1, silver: 10);
             item.rare = ItemRarityID.Green;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
@@ -32,10 +34,11 @@ namespace Eternal.Items.Tools
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddTile(TileID.Anvils);
-            recipe.AddIngredient(ItemType<TritalodiumBar>(), 25);
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.AddIngredient(ItemType<Carmanite>(), 80);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
+
     }
 }

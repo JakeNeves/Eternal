@@ -1,17 +1,16 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Eternal.Items;
 using static Terraria.ModLoader.ModContent;
 using Eternal.Tiles;
 
 namespace Eternal.Items.Tools
 {
-    class EverfrostPickaxe : ModItem
+    class ScorchingPickaxe : ModItem
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Freezes Enimies on Hit");
+            Tooltip.SetDefault("Burns Enimies on Hit");
         }
 
         public override void SetDefaults()
@@ -33,14 +32,14 @@ namespace Eternal.Items.Tools
 
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
         {
-            target.AddBuff(BuffID.Frozen, 120);
+            target.AddBuff(BuffID.OnFire, 120);
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddTile(TileType<AncientForge>());
-            recipe.AddIngredient(ItemType<SydaniteBar>(), 30);
+            recipe.AddIngredient(ItemType<ScoriumBar>(), 30);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

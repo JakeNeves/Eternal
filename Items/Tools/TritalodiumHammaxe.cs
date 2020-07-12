@@ -5,8 +5,9 @@ using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Items.Tools
 {
-    class TritalodiumPickaxe : ModItem
+    class TritalodiumHammaxe : ModItem
     {
+
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("'Don't use this to skip pre-hardmode'");
@@ -20,7 +21,8 @@ namespace Eternal.Items.Tools
             item.height = 44;
             item.useTime = 20;
             item.useAnimation = 20;
-            item.pick = 115;
+            item.hammer = 60;
+            item.axe = 30;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.knockBack = 5;
             item.value = Item.sellPrice(silver: 25);
@@ -33,9 +35,10 @@ namespace Eternal.Items.Tools
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddTile(TileID.Anvils);
-            recipe.AddIngredient(ItemType<TritalodiumBar>(), 25);
+            recipe.AddIngredient(ItemType<TritalodiumBar>(), 20);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
+
     }
 }
