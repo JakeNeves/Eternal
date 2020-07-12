@@ -8,7 +8,7 @@ namespace Eternal.NPCs
     {
 		public override void SetStaticDefaults()
 		{
-			Main.npcFrameCount[npc.type] = 2;
+			//Main.npcFrameCount[npc.type] = DungeonSlime;
 		}
 
 		public override void SetDefaults()
@@ -22,8 +22,9 @@ namespace Eternal.NPCs
 			npc.DeathSound = SoundID.NPCDeath1;
 			npc.value = 25f;
 			npc.rarity = 3;
-			aiType = NPCID.GreenSlime;
-			animationType = NPCID.GreenSlime;
+			aiType = NPCID.DungeonSlime;
+			animationType = NPCID.DungeonSlime;
+			Main.npcFrameCount[npc.type] = 2;
 		}
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
