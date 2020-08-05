@@ -1,4 +1,6 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using System.Collections.Generic;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -19,6 +21,11 @@ namespace Eternal.Items
             item.rare = ItemRarityID.Red;
             item.value = Item.sellPrice(platinum: 10);
             item.maxStack = 99;
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            tooltips[0].overrideColor = new Color(5, 35, 215);
         }
 
     }
