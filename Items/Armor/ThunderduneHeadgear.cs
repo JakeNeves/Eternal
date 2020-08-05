@@ -16,7 +16,7 @@ namespace Eternal.Items.Armor
             item.width = 20;
             item.height = 24;
             item.value = Item.buyPrice(gold: 75, platinum: 5);
-            item.rare = 8;
+            item.rare = ItemRarityID.Orange;
             item.defense = 20;
         }
 

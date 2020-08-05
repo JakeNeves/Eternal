@@ -11,7 +11,7 @@ namespace Eternal.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Grants immunity to a majority of debuffs \nA mere fragment of The Cosmic Tyriant, JakeTEM. It was given to him as a gift from the cosmic gods \n'It was an honor serving my empire, which no longer exsists, but however... I have transcended the cosmis plain and reveived the power of Avaritia...' \nThis divine artifact was proven to make the tyriant a god in any way, shape or form... \n'We had a fair battle between you and I...' \nMaybe Jake knows about this artifact, but we may never know, once in for all...");
+            Tooltip.SetDefault("Grants immunity to a majority of debuffs \nA mere fragment of The Cosmic Champion, JakeTEM. It was given to him as a gift from the cosmic gods \n'It was an honor serving my empire, which no longer exsists, but however... I have transcended the cosmis plain and reveived the power of Avaritia...' \nThis divine artifact was proven to make the champion a god in any way, shape or form... \n'We had a fair battle between you and I...' \nMaybe Jake knows about this artifact, but we may never know, once in for all...");
 
             Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(5, 14));
         }
