@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Eternal.Items.Accessories;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -12,28 +13,40 @@ namespace Eternal.Items.Weapons
         public override void SetStaticDefaults()
         {
             //This is a post-Moon Lord Weapon
-            DisplayName.SetDefault("Pescalis [WIP]");
-            Tooltip.SetDefault("Fires multiple things (Using Vanilla Projectiles for now...) \n[c/008060:Ancient Artifact] \nThis blade was once weilded by a cosmic champion, until he met his fate with Astrum Deus, a powerful god who killed the champion in one attack! \nHowever, the campion's soul quickly reincarnate with it's brittle body and the champion eventually found a way to cheat death, but the stategy remains unknown...");
+            Tooltip.SetDefault("[c/008060:Ancient Artifact]\nThis blade was once weilded by a cosmic champion, until he met his fate with doom,something had killed the champion in one attack! \nHowever, the campion's soul quickly reincarnate with it's brittle body and the champion eventually found a way to cheat death, but the strategy remains unknown...");
         }
 
         public override void SetDefaults()
         {
             //Things here may change...
-            item.width = 32;
-            item.height = 32;
-            item.damage = 1024;
+            item.width = 76;
+            item.height = 76;
+            item.damage = 11000;
             item.knockBack = 92;
             item.value = Item.buyPrice(platinum: 1, gold: 3);
             item.useTime = 15;
             item.useAnimation = 15;
-            item.UseSound = SoundID.Item44;
-            item.useStyle = 1;
-            item.rare = 10;
+            item.UseSound = SoundID.Item1;
+            item.useStyle = ItemUseStyleID.SwingThrow;
+            item.rare = 
+            item.rare = ItemRarityID.Red;
             item.autoReuse = true;
             item.melee = true;
-            item.shoot = ProjectileID.StarWrath;
-            item.shoot = ProjectileID.Starfury;
-            item.shoot = ProjectileID.LightDisc;
         }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            tooltips[0].overrideColor = new Color(130, 230, 0);
+        }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemType<DormantHeroSword>());
+            recipe.AddIngredient(ItemType<AncientPendant>());
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
+
     }
 }

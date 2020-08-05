@@ -23,6 +23,7 @@ namespace Eternal.Items.Weapons.Expert
             item.expert = true;
             item.ranged = true;
             item.noMelee = true;
+            item.shootSpeed = 5.5f;
             item.shoot = ProjectileType<BloodtoothProjectile>();
             item.consumable = false;
             item.autoReuse = true;
@@ -30,6 +31,7 @@ namespace Eternal.Items.Weapons.Expert
             item.useTime = 15;
             item.useAnimation = 15;
             item.useStyle = ItemUseStyleID.SwingThrow;
+            item.UseSound = SoundID.Item1;
         }
     }
 }

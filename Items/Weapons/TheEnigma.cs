@@ -6,26 +6,28 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace Eternal.Items.Weapons
 {
-    class Permafrost : ModItem
+    class TheEnigma : ModItem
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'Let me cool you off!'");
+            Tooltip.SetDefault("Someone Thought It looked like an Elemental Unleashed Weapon\n'Purium Yoyo Purium Yoyo'");
         }
 
         public override void SetDefaults()
         {
             item.useStyle = ItemUseStyleID.HoldingOut;
-            item.width = 34;
-            item.height = 30;
+            item.width = 20;
+            item.height = 16;
             item.useAnimation = 25;
             item.useTime = 25;
-            item.shootSpeed = 60f;
-            item.knockBack = 20f;
-            item.damage = 1024;
+            item.shootSpeed = 30f;
+            item.knockBack = 5.5f;
+            item.damage = 4000;
             item.rare = ItemRarityID.Red;
 
             item.melee = true;
@@ -34,8 +36,13 @@ namespace Eternal.Items.Weapons
             item.noUseGraphic = true;
 
             item.UseSound = SoundID.Item1;
-            item.value = Item.sellPrice(gold: 10);
-            item.shoot = ProjectileType<PermafrostProjectile>();
+            item.value = Item.sellPrice(platinum: 9);
+            item.shoot = ProjectileType<TheEnigmaProjectile>();
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            tooltips[0].overrideColor = new Color(5, 35, 215);
         }
 
         private static readonly int[] unwantedPrefixes = new int[] { PrefixID.Terrible, PrefixID.Dull, PrefixID.Annoying, PrefixID.Broken, PrefixID.Damaged, PrefixID.Shoddy };
@@ -47,22 +54,6 @@ namespace Eternal.Items.Weapons
                 return false;
             }
             return true;
-        }
-
-        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
-        {
-            target.AddBuff(BuffID.Chilled, 120);
-            target.AddBuff(BuffID.Frostburn, 120);
-            target.AddBuff(BuffID.Frozen, 120);
-        }
-
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddTile(TileType<AncientForge>());
-            recipe.AddIngredient(ItemType<SydaniteBar>(), 20);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
         }
     }
 }

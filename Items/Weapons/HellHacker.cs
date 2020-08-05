@@ -20,14 +20,14 @@ namespace Eternal.Items.Weapons
             item.melee = true;
             item.width = 86;
             item.height = 78;
-            item.useTime = 25;
-            item.useAnimation = 25;
+            item.useTime = 75;
+            item.useAnimation = 75;
             item.noUseGraphic = true;
             item.useStyle = ItemUseStyleID.SwingThrow;
-            item.knockBack = 25;
+            item.knockBack = 10;
             item.value = Item.buyPrice(gold: 30, silver: 95);
             item.rare = ItemRarityID.Red;
-            item.shootSpeed = 5f;
+            item.shootSpeed = 9.9f;
             item.shoot = ProjectileType<HellHackerProjectile>();
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
@@ -51,8 +51,8 @@ namespace Eternal.Items.Weapons
             else
             {
                 item.channel = false;
-                item.useTime = 25;
-                item.useAnimation = 25;
+                item.useTime = 75;
+                item.useAnimation = 75;
                 item.shoot = ProjectileType<HellHackerProjectile>();
                 item.UseSound = SoundID.Item1;
             }

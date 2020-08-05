@@ -8,7 +8,7 @@ namespace Eternal.Items.Weapons
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("One-Hit Obliterator");
-            Tooltip.SetDefault("[c/FF0000:Cheat Item] \nA single hit from this divine bulky-looking weapon sha'll perish no matter what...\nNo fellow terrarian sha'll weild this weapon in regards to it's power");
+            Tooltip.SetDefault("[c/FF0000:Cheat Item]\nA single hit from this divine bulky-looking weapon sha'll perish no matter what...\nNo fellow terrarian sha'll weild this weapon in regards to it's power");
         }
 
         public override void SetDefaults()
@@ -22,7 +22,7 @@ namespace Eternal.Items.Weapons
             item.useStyle = 1;
             item.knockBack = 0;
             item.value = 0;
-            item.rare = -12;
+            item.rare = ItemRarityID.Expert;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
         }

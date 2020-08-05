@@ -9,24 +9,24 @@ using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Items.Weapons
 {
-    class Permafrost : ModItem
+    class Pyroyo : ModItem
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'Let me cool you off!'");
+            Tooltip.SetDefault("Burns Enemies to the ground\n'The Underworld's finest...'");
         }
 
         public override void SetDefaults()
         {
             item.useStyle = ItemUseStyleID.HoldingOut;
-            item.width = 34;
-            item.height = 30;
+            item.width = 30;
+            item.height = 26;
             item.useAnimation = 25;
             item.useTime = 25;
-            item.shootSpeed = 60f;
-            item.knockBack = 20f;
-            item.damage = 1024;
-            item.rare = ItemRarityID.Red;
+            item.shootSpeed = 30f;
+            item.knockBack = 9f;
+            item.damage = 95;
+            item.rare = ItemRarityID.Pink;
 
             item.melee = true;
             item.channel = true;
@@ -34,8 +34,8 @@ namespace Eternal.Items.Weapons
             item.noUseGraphic = true;
 
             item.UseSound = SoundID.Item1;
-            item.value = Item.sellPrice(gold: 10);
-            item.shoot = ProjectileType<PermafrostProjectile>();
+            item.value = Item.sellPrice(silver: 10);
+            item.shoot = ProjectileType<PyroyoProjectile>();
         }
 
         private static readonly int[] unwantedPrefixes = new int[] { PrefixID.Terrible, PrefixID.Dull, PrefixID.Annoying, PrefixID.Broken, PrefixID.Damaged, PrefixID.Shoddy };
@@ -51,18 +51,7 @@ namespace Eternal.Items.Weapons
 
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
         {
-            target.AddBuff(BuffID.Chilled, 120);
-            target.AddBuff(BuffID.Frostburn, 120);
-            target.AddBuff(BuffID.Frozen, 120);
-        }
-
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddTile(TileType<AncientForge>());
-            recipe.AddIngredient(ItemType<SydaniteBar>(), 20);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            target.AddBuff(BuffID.OnFire, 60);
         }
     }
 }

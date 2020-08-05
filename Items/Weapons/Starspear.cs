@@ -1,4 +1,5 @@
 ﻿using Eternal.Projectiles;
+using Eternal.Tiles;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,7 +12,7 @@ namespace Eternal.Items.Weapons
 
 		public override void SetStaticDefaults()
 		{
-			Tooltip.SetDefault("An example spear");
+			Tooltip.SetDefault("A Starsharp Spear");
 		}
 
 		public override void SetDefaults()
@@ -34,6 +35,16 @@ namespace Eternal.Items.Weapons
 
 			item.UseSound = SoundID.Item1;
 			item.shoot = ProjectileType<StarspearProjectile>();
+		}
+
+		public override void AddRecipes()
+		{
+			ModRecipe recipe = new ModRecipe(mod);
+			recipe.AddTile(TileType<Starforge>());
+			recipe.AddIngredient(ItemType<InterstellarSingularity>(), 5);
+			recipe.AddIngredient(ItemType<StarmetalBar>(), 4);
+			recipe.SetResult(this);
+			recipe.AddRecipe();
 		}
 
 		public override bool CanUseItem(Player player)

@@ -1,4 +1,5 @@
 ﻿using Eternal.Projectiles;
+using Eternal.Tiles;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,7 +11,7 @@ namespace Eternal.Items.Weapons
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("<right> to fire a Siiva Spark\n'Pierce the rift, and all of it's glory' \n[c/008060:Ancient Artifact] \nSomething about this rift blade seems to be some sort of rift prevention artifact and rift seal...\nI was guessing that it was a sword that sealed any rift.");
+            Tooltip.SetDefault("Fires a Siiva Spark\n<right> to swing normally\n'Pierce the rift, and all of it's glory' \n[c/008060:Ancient Artifact] \nSomething about this rift blade seems to be some sort of rift prevention artifact and rift seal...\nI was guessing that it was a sword that sealed any rift.");
         }
 
         public override void SetDefaults()
@@ -25,6 +26,7 @@ namespace Eternal.Items.Weapons
             item.UseSound = SoundID.Item1;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.rare = ItemRarityID.Red;
+            item.shoot = ProjectileType<SiivaSpark>();
             item.autoReuse = true;
             item.melee = true;
         }
@@ -38,24 +40,19 @@ namespace Eternal.Items.Weapons
         {
             if (player.altFunctionUse == 2)
             {
-                Item.staff[item.type] = true;
-                item.noMelee = true;
-                item.channel = true;
-                item.UseSound = mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Custom/RiftBlade");
-                item.useStyle = ItemUseStyleID.HoldingOut;
-                item.shoot = ProjectileType<SiivaSpark>();
-                item.shootSpeed = 5f;
+                
+                //item.UseSound = mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Custom/RiftBlade");
+                item.useStyle = ItemUseStyleID.SwingThrow;
+                item.shoot = ProjectileID.None;
+                item.shootSpeed = 0f;
                 item.autoReuse = false;
             }
             else
             {
                 Item.staff[item.type] = false;
-                item.noMelee = false;
-                item.channel = false;
-                item.UseSound = SoundID.Item1;
                 item.useStyle = ItemUseStyleID.SwingThrow;
-                item.shoot = ProjectileID.None;
-                item.shootSpeed = 0f;
+                item.shoot = ProjectileType<SiivaSpark>();
+                item.shootSpeed = 5.5f;
                 item.autoReuse = true;
             }
             return base.CanUseItem(player);
@@ -64,7 +61,7 @@ namespace Eternal.Items.Weapons
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.AddTile(TileType<AncientForge>());
             recipe.AddIngredient(ItemType<SiivaniteAlloy>(), 20);
             recipe.SetResult(this);
             recipe.AddRecipe();

@@ -1,4 +1,6 @@
 ﻿using Eternal.Tiles;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -30,6 +32,11 @@ namespace Eternal.Items.Tools
             item.rare = ItemRarityID.Red;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            tooltips[0].overrideColor = new Color(5, 35, 215);
         }
 
         public override void AddRecipes()

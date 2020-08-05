@@ -17,7 +17,7 @@ namespace Eternal.Items.Weapons
         public override void SetDefaults()
         {
             item.damage = 275;
-            item.melee = true;
+            item.ranged = true;
             item.width = 186;
             item.height = 186;
             item.useTime = 25;
@@ -31,6 +31,16 @@ namespace Eternal.Items.Weapons
             item.shoot = ProjectileType<JumboStarProjectile>();
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
+        }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddTile(TileType<Starforge>());
+            recipe.AddIngredient(ItemType<Astragel>(), 15);
+            recipe.AddIngredient(ItemType<StarmetalBar>(), 40);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
 
     }

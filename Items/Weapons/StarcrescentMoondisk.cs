@@ -4,6 +4,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace Eternal.Items.Weapons
 {
@@ -27,6 +29,11 @@ namespace Eternal.Items.Weapons
             item.shoot = ProjectileType<StarcrescentMoondiskProjectile>();
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            tooltips[0].overrideColor = new Color(5, 35, 215);
         }
 
         public override bool CanUseItem(Player player)
