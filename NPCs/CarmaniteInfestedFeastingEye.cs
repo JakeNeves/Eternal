@@ -34,5 +34,10 @@ namespace Eternal.NPCs
             return SpawnCondition.OverworldNightMonster.Chance * 0.5f;
         }
 
+        public override bool CheckConditions(int left, int right, int top, int bottom)
+        {
+            return Main.hardMode;
+        }
+
     }
 }

@@ -45,12 +45,6 @@ namespace Eternal.NPCs.Boss
         {
             if (npc.life <= 0)
             {
-                for (int k = 0; k < 60; k++)
-                {
-                    Dust.NewDust(npc.Center, npc.width, npc.height, 6, 2.5f * hitDirection, -2.5f, 0, default(Color), 0.7f);
-                    Dust.NewDust(npc.Center, npc.width, npc.height, 6, 2.5f * hitDirection, -2.5f, 0, default(Color), 0.7f);
-                    Dust.NewDust(npc.Center, npc.width, npc.height, 6, 2.5f * hitDirection, -2.5f, 0, default(Color), 0.7f);
-                }
                 Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/CarmaniteScouterEye"), 1f);
                 Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/CarmaniteScouterParasite"), 1f);
                 Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/CarmaniteScouterChunk"), 1f);

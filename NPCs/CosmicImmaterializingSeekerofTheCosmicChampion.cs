@@ -12,7 +12,7 @@ namespace Eternal.NPCs
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cosmin Immaterializing Seeker of The Cosmic Champion");
+            DisplayName.SetDefault("Cosmic Immaterializing Seeker of The Cosmic Champion");
             Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.DemonEye];
         }
 
@@ -33,12 +33,21 @@ namespace Eternal.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return SpawnCondition.OverworldNight.Chance * 0.5f;
+            return SpawnCondition.OverworldNightMonster.Chance * 0.5f;
         }
 
         public override bool CheckConditions(int left, int right, int top, int bottom)
         {
-            return NPC.downedMoonlord && Main.hardMode;
+            return Main.hardMode;
+        }
+
+        public override void NPCLoot()
+        {
+            if (Main.rand.Next(5) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<InterstellarSingularity>(), Main.rand.Next(5, 20));
+            }
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<StarmetalBar>(), Main.rand.Next(10, 75));
         }
 
     }

@@ -8,12 +8,13 @@ namespace Eternal.NPCs
     {
 		public override void SetStaticDefaults()
 		{
-			//Main.npcFrameCount[npc.type] = DungeonSlime;
+			//Main.npcFrameCount[npc.type] = 2;
 		}
 
 		public override void SetDefaults()
 		{
 			npc.width = 43;
+			npc.damage = 3;
 			npc.height = 31;
 			npc.aiStyle = 1;
 			npc.defense = 50;

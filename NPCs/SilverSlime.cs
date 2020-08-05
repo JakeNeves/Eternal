@@ -8,12 +8,13 @@ namespace Eternal.NPCs
     {
         public override void SetStaticDefaults()
 		{
-			Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.IceSlime];
+			//Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.IceSlime];
 		}
 
 		public override void SetDefaults()
 		{
 			npc.width = 32;
+			npc.damage = 3;
 			npc.height = 23;
 			npc.aiStyle = 1; 
 			npc.defense = 50;
@@ -22,7 +23,7 @@ namespace Eternal.NPCs
 			npc.DeathSound = SoundID.NPCDeath1;
 			npc.value = 25f;
 			npc.rarity = 3;
-			aiType = NPCID.Icelime;
+			aiType = NPCID.IceSlime;
 			animationType = NPCID.IceSlime;
 			Main.npcFrameCount[npc.type] = 2;
 		}
