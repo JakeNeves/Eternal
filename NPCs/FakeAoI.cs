@@ -11,18 +11,18 @@ namespace Eternal.NPCs
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Fake Ark of Imparus");
+            DisplayName.SetDefault("Fake Ark of Imperious");
         }
 
         public override void SetDefaults()
         {
-            npc.width = 110;
-            npc.height = 110;
+            npc.width = 48;
+            npc.height = 160;
             npc.aiStyle = -1;
             npc.defense = 99;
             npc.lifeMax = 990000;
-            npc.HitSound = SoundID.NPCHit2;
-            npc.DeathSound = SoundID.Item4;
+            npc.HitSound = SoundID.NPCHit4;
+            npc.DeathSound = SoundID.NPCDeath3;
             npc.noGravity = true;
             npc.noTileCollide = true;
             npc.knockBackResist = 99.9f;

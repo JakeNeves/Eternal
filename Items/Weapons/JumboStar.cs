@@ -12,7 +12,7 @@ namespace Eternal.Items.Weapons
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Throws an oversized four-point star");
+            Tooltip.SetDefault("[c/FCA5033:Throwing Item]\nThrows an oversized four-point star");
         }
         public override void SetDefaults()
         {

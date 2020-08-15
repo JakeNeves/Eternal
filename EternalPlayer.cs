@@ -13,18 +13,25 @@ namespace Eternal
 {
     class EternalPlayer : ModPlayer
     {
+		public bool ZoneThunderduneBiome = false;
+		public bool ZoneCommet = false;
+
 		public override void SetupStartInventory(IList<Item> items, bool mediumcoreDeath)
 		{
 			Item item = new Item();
 			item.SetDefaults(ItemType<AncientPendant>());
 			item.SetDefaults(ItemType<CreatorsMessage>());
+			if (Main.expertMode)
+            {
+				item.SetDefaults(ItemType<BloodLocket>());
+			}
 			items.Add(item);
 		}
-		
-		public override void UpdateBiomes()
-		{
-			ZoneThunderduneBiome = (EternalWorld.thunderduneBiome > 0);
-		}
-		
-	}
+
+        public override void UpdateBiomes()
+        {
+			ZoneThunderduneBiome = EternalWorld.thunderduneBiome > 100;
+			ZoneCommet = EternalWorld.commet > 20;
+        }
+    }
 }

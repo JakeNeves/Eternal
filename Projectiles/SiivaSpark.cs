@@ -39,6 +39,8 @@ namespace Eternal.Projectiles
 			return true;
 		}
 
+		
+
 		public override bool OnTileCollide(Vector2 oldVelocity)
 		{
 			projectile.penetrate--;

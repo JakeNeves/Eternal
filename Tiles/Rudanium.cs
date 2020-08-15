@@ -21,7 +21,7 @@ namespace Eternal.Tiles
 			name.SetDefault("Rudanium");
 			AddMapEntry(new Color(50, 0, 0), name);
 			minPick = 150;
-			soundType = 21;
+			soundType = SoundID.Tink;
 			soundStyle = 1;
 			mineResist = 5f;
 		}

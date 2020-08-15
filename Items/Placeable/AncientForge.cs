@@ -31,23 +31,30 @@ namespace Eternal.Items.Placeable
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.AddIngredient(ItemID.WorkBench);
-            recipe.AddIngredient(ItemID.Furnace);
-            recipe.AddIngredient(ItemID.Bottle);
-            recipe.AddIngredient(ItemID.AlchemyTable);
-            recipe.AddIngredient(ItemID.Sawmill);
+            recipe.AddIngredient(ItemType<CometiteBar>(), 10);
+            recipe.AddIngredient(ItemType<StarmetalBar>(), 200);
+            recipe.AddIngredient(ItemType<Astragel>(), 30);
+            recipe.AddIngredient(ItemType<Rudanium>(), 15);
+            recipe.AddIngredient(ItemType<SignalumBar>(), 20);
+            recipe.AddIngredient(ItemType<InterstellarSingularity>(), 15);
+            recipe.AddIngredient(ItemType<Starforge>());
             recipe.AddIngredient(ItemID.LunarCraftingStation);
-            recipe.AddIngredient(ItemID.TinkerersWorkshop);
-            recipe.AddIngredient(ItemType<SoulofTwilight>(), 3);
-            recipe.AddIngredient(ItemType<TritalodiumBar>(), 5);
-            recipe.AddIngredient(ItemType<SignalumBar>(), 5);
-            recipe.AddIngredient(ItemType<Rudanium>(), 10);
-            recipe.AddIngredient(ItemType<AncientCrystalineScrap>(), 10);
-            recipe.AddIngredient(ItemType<AncientDust>(), 10);
-            recipe.AddIngredient(ItemType<Carmanite>(), 5);
+            recipe.AddIngredient(ItemID.AdamantiteForge);
             recipe.SetResult(this);
             recipe.AddRecipe();
+
+            ModRecipe altrecipe = new ModRecipe(mod);
+            altrecipe.AddIngredient(ItemType<CometiteBar>(), 10);
+            altrecipe.AddIngredient(ItemType<StarmetalBar>(), 200);
+            altrecipe.AddIngredient(ItemType<Astragel>(), 30);
+            altrecipe.AddIngredient(ItemType<Rudanium>(), 15);
+            altrecipe.AddIngredient(ItemType<SignalumBar>(), 20);
+            altrecipe.AddIngredient(ItemType<InterstellarSingularity>(), 15);
+            altrecipe.AddIngredient(ItemType<Starforge>());
+            altrecipe.AddIngredient(ItemID.LunarCraftingStation);
+            altrecipe.AddIngredient(ItemID.TitaniumForge);
+            altrecipe.SetResult(this);
+            altrecipe.AddRecipe();
         } 
     }
 }

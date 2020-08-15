@@ -24,7 +24,18 @@ namespace Eternal.Projectiles
 
         }
 
-		public override void AI()
+        private const float maxTicks = 45f;
+
+        public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
+        {
+            if (targetHitbox.Width > 47 && targetHitbox.Height > 35)
+            {
+                targetHitbox.Inflate(-targetHitbox.Width / 47, -targetHitbox.Height / 35);
+            }
+            return projHitbox.Intersects(targetHitbox);
+        }
+
+        public override void AI()
         {
             if (projectile.owner == Main.myPlayer && projectile.timeLeft <= 3)
             {
@@ -34,6 +45,21 @@ namespace Eternal.Projectiles
                 projectile.width = 20;
                 projectile.height = 24;
                 projectile.Center = projectile.position;
+            }
+
+            if (projectile.ai[0] == 0f)
+            {
+                projectile.ai[1] += 1f;
+                if (projectile.ai[1] >= maxTicks)
+                {
+                    float velXmult = 0.98f;
+                    float velYmult = 0.35f;
+                    projectile.ai[1] = maxTicks;
+                    projectile.velocity.X = projectile.velocity.X * velXmult;
+                    projectile.velocity.Y = projectile.velocity.Y + velYmult;
+                }
+
+                projectile.rotation = projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);
             }
         }
 
@@ -54,6 +80,14 @@ namespace Eternal.Projectiles
             }
             return false;
 
+        }
+
+        public override void Kill(int timeLeft)
+        {
+            Vector2 usePos = projectile.position;
+            Vector2 rotVector = (projectile.rotation - MathHelper.ToRadians(90f)).ToRotationVector2();
+            Main.PlaySound(SoundID.NPCHit, (int)projectile.position.X, (int)projectile.position.Y, 1, 1f, 0f);
+            Gore.NewGore(projectile.Center, projectile.velocity, mod.GetGoreSlot("Gores/Bloodtooth"), 1f);
         }
 
     }

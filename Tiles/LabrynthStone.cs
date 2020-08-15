@@ -1,29 +1,25 @@
-﻿using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
-namespace Eternal.Items.Placeable
+namespace Eternal.Tiles
 {
-    class LabrynthStone : ModItem
+    class LabrynthStone : ModTile
     {
-        public override void SetStaticDefaults()
-        {
-            Tooltip.SetDefault("Mined with a Lunar Pickaxe or Higher...");
-        }
-
-        public override void SetDefaults()
-        {
-            item.width = 16;
-            item.height = 16;
-            item.maxStack = 999;
-            item.useTurn = true;
-            item.autoReuse = true;
-            item.useAnimation = 15;
-            item.rare = ItemRarityID.Green;
-            item.useTime = 10;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.consumable = true;
-            item.createTile = TileType<Tiles.LabrynthStone>();
-        }
-    }
+		public override void SetDefaults()
+		{
+			Main.tileSolid[Type] = true;
+			Main.tileMergeDirt[Type] = false;
+			Main.tileBlockLight[Type] = true;
+			Main.tileLighted[Type] = false;
+			drop = ItemType<Items.Placeable.LabrynthStone>();
+			AddMapEntry(new Color(0, 50, 5));
+			minPick = 225;
+			soundType = SoundID.Tink;
+			soundStyle = 1;
+			mineResist = 5f;
+		}
+	}
 }

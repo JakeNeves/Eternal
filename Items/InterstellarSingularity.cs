@@ -16,7 +16,7 @@ namespace Eternal.Items
         {
             item.width = 14;
             item.height = 20;
-            item.rare = ItemRarityID.Red;
+            item.rare = ItemRarityID.Purple;
             item.value = Item.sellPrice(platinum: 1);
             item.maxStack = 99;
         }

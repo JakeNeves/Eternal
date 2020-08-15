@@ -14,8 +14,8 @@ namespace Eternal.Items
 
         public override void SetDefaults()
         {
-            item.width = 32;
-            item.height = 32;
+            item.width = 20;
+            item.height = 28;
             item.rare = ItemRarityID.Green;
             item.value = Item.sellPrice(silver: 1);
             item.maxStack = 999;

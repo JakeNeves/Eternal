@@ -36,7 +36,7 @@ namespace Eternal.NPCs
 
         public override bool CheckConditions(int left, int right, int top, int bottom)
         {
-            return Main.hardMode;
+            return Main.hardMode = true;
         }
 
     }

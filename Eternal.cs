@@ -31,7 +31,13 @@ namespace Eternal
 				priority = MusicPriority.BiomeLow;
             }
 
-        }
+			if (Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneCommet)
+			{
+				music = GetSoundSlot(SoundType.Music, "Sounds/Music/ShatteredStar");
+				priority = MusicPriority.BiomeLow;
+			}
+
+		}
 
 	}
 }

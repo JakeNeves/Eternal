@@ -15,7 +15,7 @@ namespace Eternal.Items
         {
             Tooltip.SetDefault("Cosmic energy pulses from this mere fragment of celestial creatures.");
 
-            Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(1, 16));
+            Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(3, 16));
         }
 
         public override void SetDefaults()

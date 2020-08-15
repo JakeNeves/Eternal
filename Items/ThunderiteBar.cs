@@ -22,5 +22,14 @@ namespace Eternal.Items
             item.value = Item.sellPrice(gold: 5, silver: 90);
             item.maxStack = 99;
         }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddTile(TileType<Tiles.AncientForge>());
+            recipe.AddIngredient(ItemType<Placeable.ThunderiteOre>());
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
     }
 }

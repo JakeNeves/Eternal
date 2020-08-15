@@ -4,6 +4,8 @@ using Terraria.ID;
 using Eternal.Items.Summon;
 using static Terraria.ModLoader.ModContent;
 using Eternal.Items;
+using Eternal.Tiles;
+using System.Linq;
 
 namespace Eternal.NPCs
 {
@@ -31,15 +33,28 @@ namespace Eternal.NPCs
             animationType = NPCID.DemonEye;
         }
 
+        private static int[] SpawnTiles = { };
+
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
+            Player player = spawnInfo.player;
+            if (!(player.ZoneTowerSolar || player.ZoneTowerVortex || player.ZoneTowerNebula || player.ZoneTowerStardust) && ((!Main.pumpkinMoon && !Main.snowMoon) || spawnInfo.spawnTileY > Main.worldSurface || Main.dayTime) && (!Main.eclipse || spawnInfo.spawnTileY > Main.worldSurface || !Main.dayTime) && (SpawnCondition.GoblinArmy.Chance == 0))
+            {
+                int[] TileArray2 = { ModContent.TileType<CometiteOre>(), TileID.Grass, TileID.Dirt, TileID.Stone, TileID.Sand, TileID.SnowBlock, TileID.IceBlock };
+                return TileArray2.Contains(Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY].type) && NPC.downedMoonlord && player.ZoneOverworldHeight ? 2.09f : 0f;
+            }
             return SpawnCondition.OverworldNightMonster.Chance * 0.5f;
         }
 
+        /*public override float CanSpawn(NPCSpawnInfo spawnInfo)
+        {
+            return Main.tile[(spawnInfo.spawnTileX), (spawnInfo.spawnTileY)].type == TileType<CometiteOre>() ? 100f : 0f;
+        } 
+
         public override bool CheckConditions(int left, int right, int top, int bottom)
         {
-            return Main.hardMode;
-        }
+            return NPC.downedMoonlord = true;
+        }*/
 
         public override void NPCLoot()
         {

@@ -31,10 +31,10 @@ namespace Eternal.Items
         public override void OpenBossBag(Player player)
         {
             player.QuickSpawnItem(ItemType<Bloodtooth>());
-            player.QuickSpawnItem(ItemType<TritalodiumBar>(), 30);
-            player.QuickSpawnItem(ItemType<Carmanite>(), 25);
+            player.QuickSpawnItem(ItemType<TritalodiumBar>(), Main.rand.Next(10, 30));
+            player.QuickSpawnItem(ItemType<Carmanite>(), Main.rand.Next(5, 25));
         }
 
-        public override int BossBagNPC => NPCType<NPCs.Boss.CarmaniteScouter>();
+        public override int BossBagNPC => NPCType<NPCs.Boss.CarmaniteScouter.CarmaniteScouter>();
     }
 }

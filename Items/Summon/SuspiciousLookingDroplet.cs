@@ -28,7 +28,7 @@ namespace Eternal.Items.Summon
 
         public override bool UseItem(Player player)
         {
-            NPC.SpawnOnPlayer(player.whoAmI, NPCType<CarmaniteScouter>());
+            NPC.SpawnOnPlayer(player.whoAmI, NPCType<NPCs.Boss.CarmaniteScouter.CarmaniteScouter>());
             Main.PlaySound(SoundID.Roar, player.position, 0);
             return true;
         }

@@ -52,6 +52,6 @@ namespace Eternal.Items
             player.QuickSpawnItem(ItemType<ScorchedMetal>(), Main.rand.Next(25, 75));
         }
 
-        public override int BossBagNPC => NPCType<NPCs.Boss.Dunekeeper>();
+        public override int BossBagNPC => NPCType<NPCs.Boss.Incinerius.Incinerius>();
     }
 }

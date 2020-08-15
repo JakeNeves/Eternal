@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
+
 namespace Eternal.Projectiles.Enemy
 {
     class CarmaniteParasite : ModProjectile
@@ -69,7 +70,9 @@ namespace Eternal.Projectiles.Enemy
             Main.PlaySound(SoundID.NPCHit, (int)projectile.position.X, (int)projectile.position.Y, 1, 1f, 0f);
             Vector2 usePos = projectile.position;
             Vector2 rotVector = (projectile.rotation - MathHelper.ToRadians(90f)).ToRotationVector2();
-
+            Gore.NewGore(projectile.Center, projectile.velocity, mod.GetGoreSlot("Gores/CarmaniteScouterParasite"), 1f);
+            Gore.NewGore(projectile.Center, projectile.velocity, mod.GetGoreSlot("Gores/CarmaniteScouterChunk"), 1f);
+            Gore.NewGore(projectile.Center, projectile.velocity, mod.GetGoreSlot("Gores/CarmaniteScouterChunk"), 1f);
         }
     }
 }

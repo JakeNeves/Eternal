@@ -21,9 +21,11 @@ namespace Eternal
     {
         public static bool hellMode = false;
 
-		public static bool downedCarmaniteScouter = false;
+        #region DownedBosses
+        public static bool downedCarmaniteScouter = false;
+        #endregion
 
-		public override void Initialize()
+        public override void Initialize()
 		{
 			downedCarmaniteScouter = false;
 		}
@@ -52,7 +54,9 @@ namespace Eternal
             if (loadVersion == 0)
             {
                 BitsByte flags = reader.ReadByte();
+                #region DownedBossFlags
                 downedCarmaniteScouter = flags[0];
+                #endregion
             }
         }
 
@@ -66,7 +70,9 @@ namespace Eternal
         public override void NetReceive(BinaryReader reader)
         {
             BitsByte flags = reader.ReadByte();
+            #region DownedBossFlags
             downedCarmaniteScouter = flags[0];
+            #endregion
         }
 
 
@@ -85,6 +91,8 @@ namespace Eternal
 		}
 
         public static int thunderduneBiome = 0;
+        public static int commet = 0;
+
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
         {
             int genIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Shinies"));
@@ -114,6 +122,7 @@ namespace Eternal
         public override void TileCountsAvailable(int[] tileCounts)
         {
             thunderduneBiome = tileCounts[TileType<Dunesand>()] + tileCounts[TileType<Dunestone>()];
+            commet = tileCounts[TileType<CometiteOre>()];
         }
 
         //Dune Temple

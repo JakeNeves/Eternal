@@ -1,4 +1,4 @@
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
@@ -21,6 +21,15 @@ namespace Eternal.Items
             item.rare = ItemRarityID.Red;
             item.value = Item.sellPrice(gold: 5, silver: 90);
             item.maxStack = 99;
+        }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddTile(TileType<Tiles.AncientForge>());
+            recipe.AddIngredient(ItemType<Placeable.SydaniteOre>());
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }

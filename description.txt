@@ -1,28 +1,23 @@
 [c/1EC9E3:Eternal] - By [c/008CFF:Jake][c/0204CFF:TEM]!
 
-beta 1.0.1
+1.0.4
 
----LOOKING FOR SPRITE ARTISTS AND PROGRAMMERS---
+---LOOKING FOR SPRITERS AND PROGRAMMERS---
 
 Applications can be found here under "#applications" https://discord.gg/GJYKRBt
 
 Eternal is a mod that loads your game with much content
-possible, including a new difficulty (NYI - Coming soon, I think...)!
+possible, including a new difficulty (WIP)!
 From what we expect, if you're going to use this mod, I recommend you either install HERO's or
 Cheat Sheet as this mod is not finished yet...
 
 - DEVELOPERS -
 JakeTEM - Creator/Lead Developer
 ??? - Composer
-??? - Composer
+Jaer Hend/Jerrhead - Resprites/Redsesign
 ??? - Graphics and/or Spritework
-??? - Graphics and/or Spritework
-??? - Graphics and/or Spritework
-??? - Graphics and/or Spritework
-??? - Programmer
-??? - Programmer
-??? - Programmer
-??? - Programmer
+Nakroxis/Atisheno - Programmer
 
 - SHOUTOUTS FOR DEDICATED CONTENT -
+Jaer Hend - Something About a Big Axe
 JakeTEM - Prismatic Fractal

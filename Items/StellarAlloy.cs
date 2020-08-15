@@ -4,6 +4,8 @@ using Terraria.ModLoader;
 using Terraria.DataStructures;
 using static Terraria.ModLoader.ModContent;
 using Terraria;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace Eternal.Items
 {
@@ -23,6 +25,11 @@ namespace Eternal.Items
             item.value = Item.buyPrice(platinum: 15);
             item.rare = ItemRarityID.Red;
             item.maxStack = 99;
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            tooltips[0].overrideColor = new Color(5, 35, 215);
         }
 
         public override void AddRecipes()

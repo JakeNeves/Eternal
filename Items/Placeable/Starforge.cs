@@ -9,7 +9,6 @@ namespace Eternal.Items.Placeable
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Starforge (W.I.P)");
             Tooltip.SetDefault("Allows you to craft Starmetal Items");
         }
 
@@ -33,12 +32,23 @@ namespace Eternal.Items.Placeable
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddTile(TileID.CrystalBall);
+            recipe.AddIngredient(ItemID.MythrilAnvil);
             recipe.AddIngredient(ItemID.Lens, 10);
             recipe.AddIngredient(ItemID.SoulofLight, 30);
             recipe.AddIngredient(ItemID.LunarBar, 5);
             recipe.AddIngredient(ItemID.FallenStar, 3);
             recipe.SetResult(this);
             recipe.AddRecipe();
+
+            ModRecipe altrecipe = new ModRecipe(mod);
+            altrecipe.AddTile(TileID.CrystalBall);
+            altrecipe.AddIngredient(ItemID.OrichalcumAnvil);
+            altrecipe.AddIngredient(ItemID.Lens, 10);
+            altrecipe.AddIngredient(ItemID.SoulofLight, 30);
+            altrecipe.AddIngredient(ItemID.LunarBar, 5);
+            altrecipe.AddIngredient(ItemID.FallenStar, 3);
+            altrecipe.SetResult(this);
+            altrecipe.AddRecipe();
         } 
     }
 }

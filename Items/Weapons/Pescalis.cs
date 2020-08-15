@@ -1,5 +1,6 @@
 ﻿using Eternal.Items.Accessories;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -19,8 +20,8 @@ namespace Eternal.Items.Weapons
         public override void SetDefaults()
         {
             //Things here may change...
-            item.width = 76;
-            item.height = 76;
+            item.width = 62;
+            item.height = 62;
             item.damage = 11000;
             item.knockBack = 92;
             item.value = Item.buyPrice(platinum: 1, gold: 3);
@@ -36,7 +37,7 @@ namespace Eternal.Items.Weapons
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips[0].overrideColor = new Color(130, 230, 0);
+            tooltips[0].overrideColor = new Color(115, 230, 0);
         }
 
         public override void AddRecipes()

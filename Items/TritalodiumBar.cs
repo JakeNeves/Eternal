@@ -10,7 +10,7 @@ namespace Eternal.Items
     {
         public override void SetDefaults()
         {
-            item.width = 24;
+            item.width = 30;
             item.height = 24;
             item.value = Item.sellPrice(silver: 40, copper: 90);
             item.rare = 2;

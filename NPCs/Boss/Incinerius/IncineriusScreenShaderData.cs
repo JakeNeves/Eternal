@@ -37,9 +37,8 @@ namespace Eternal.NPCs.Boss.Incinerius
         {
             UpdateIncineriusIndex();
             if (incineriusIndex != -1)
-            {
                 UseTargetPosition(Main.npc[incineriusIndex].Center);
-            }
+
             base.Apply();
         }
 
