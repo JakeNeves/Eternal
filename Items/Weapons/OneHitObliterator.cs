@@ -1,4 +1,7 @@
-﻿using Terraria.ID;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Eternal.Items.Weapons
@@ -14,17 +17,23 @@ namespace Eternal.Items.Weapons
         public override void SetDefaults()
         {
             item.damage = 9999999;
-            item.melee = true;
+            //item.melee = true;
             item.width = 48;
             item.height = 48;
             item.useTime = 20;
             item.useAnimation = 20;
-            item.useStyle = 1;
+            item.useStyle = ItemUseStyleID.SwingThrow;
             item.knockBack = 0;
             item.value = 0;
             item.rare = ItemRarityID.Expert;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
+        }
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            int dmg = tooltips.FindIndex(x => x.Name == "Damage");
+            tooltips.RemoveAt(dmg);
+            tooltips.Insert(dmg, new TooltipLine(mod, "Damage", "A Ton of Heckin' Damage"));
         }
     }
 }

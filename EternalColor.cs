@@ -14,7 +14,7 @@ namespace Eternal
         public static readonly Color Hell = new Color(180, 5, Main.DiscoR); // Hell Mode Content
 
         public static readonly Color DarkBlue = new Color(5, 35, 215); // Endgame Content
-        public static readonly Color Teal = new Color(5, 250, 200); // Post-True Incinerius Content
+        public static readonly Color Teal = new Color(5, Main.DiscoG, 200); // Post-True Incinerius Content
         public static readonly Color DarkLime = new Color(115, 230, 0); // Post-Apparition Content
     }
 }

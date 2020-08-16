@@ -37,7 +37,7 @@ namespace Eternal.Items.Weapons
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips[0].overrideColor = new Color(115, 230, 0);
+            tooltips[0].overrideColor = new Color(115, Main.DiscoG, 0);
         }
 
         public override void AddRecipes()

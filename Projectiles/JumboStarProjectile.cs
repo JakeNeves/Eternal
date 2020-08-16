@@ -69,7 +69,10 @@ namespace Eternal.Projectiles
             Main.PlaySound(SoundID.Shatter, (int)projectile.position.X, (int)projectile.position.Y, 1, 1f, 0f);
             Vector2 usePos = projectile.position;
             Vector2 rotVector = (projectile.rotation - MathHelper.ToRadians(90f)).ToRotationVector2();
-
+            Gore.NewGore(projectile.Center, projectile.velocity, mod.GetGoreSlot("Gores/JumboShard"), 1f);
+            Gore.NewGore(projectile.Center, projectile.velocity, mod.GetGoreSlot("Gores/JumboShard"), 1f);
+            Gore.NewGore(projectile.Center, projectile.velocity, mod.GetGoreSlot("Gores/JumboShard"), 1f);
+            Gore.NewGore(projectile.Center, projectile.velocity, mod.GetGoreSlot("Gores/JumboShard"), 1f);
         }
     }
 }
