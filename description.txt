@@ -2,9 +2,8 @@
 
 1.0.4
 
----LOOKING FOR SPRITERS AND PROGRAMMERS---
-
-Applications can be found here under "#applications" https://discord.gg/GJYKRBt
+My Discord Server (Feel free to join)
+https://discord.gg/GJYKRBt
 
 Eternal is a mod that loads your game with much content
 possible, including a new difficulty (WIP)!
@@ -20,4 +19,4 @@ Nakroxis/Atisheno - Programmer
 
 - SHOUTOUTS FOR DEDICATED CONTENT -
 Jaer Hend - Something About a Big Axe
-JakeTEM - Prismatic Fractal
+JakeTEM - Prismatic Fractal, Exosiiva Gladius Blade

@@ -11,8 +11,7 @@ namespace Eternal.NPCs.Boss.Dunekeeper
     public class DunekeeperHandL : ModNPC
     {
         private Player player;
-        int Speed = 10;
-        int Acceleration = 5;
+        private float speed;
 
         public override void SetStaticDefaults()
         {
@@ -32,49 +31,41 @@ namespace Eternal.NPCs.Boss.Dunekeeper
             npc.noTileCollide = true;
             npc.lavaImmune = true;
             npc.knockBackResist = 0f;
+            npc.boss = true;
             npc.aiStyle = -1;
         }
 
         public override void AI()
         {
-            Move();
+            Move(new Vector2(-100, 0));
             Target();
             RotateNPCToTarget();
+            DespawnHandler();
         }
 
-        private void Move()
+        private void Move(Vector2 offset)
         {
-            Vector2 StartPosition = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height * 0.5f);
-            float DirectionX = Main.player[npc.target].position.X + Main.player[npc.target].width / 2 - StartPosition.X;
-            float DirectionY = Main.player[npc.target].position.Y + (Main.player[npc.target].height / 2) - 120 - StartPosition.Y;
-            float Length = (float)Math.Sqrt(DirectionX * DirectionX + DirectionY * DirectionY);
-            float Num = Speed / Length;
-            DirectionX = DirectionX * Num;
-            DirectionY = DirectionY * Num;
-            if (npc.velocity.X < DirectionX)
+            speed = 9.25f;
+            Vector2 moveTo = player.Center + offset;
+            Vector2 move = moveTo - npc.Center;
+            float magnitude = Magnitude(move);
+            if (magnitude > speed)
             {
-                npc.velocity.X = npc.velocity.X + Acceleration;
-                if (npc.velocity.X < 0 && DirectionX > 0)
-                    npc.velocity.X = npc.velocity.X + Acceleration;
+                move *= speed / magnitude;
             }
-            else if (npc.velocity.X > DirectionX)
+            float turnResistance = 0f;
+            move = (npc.velocity * turnResistance + move) / (turnResistance + 1f);
+            magnitude = Magnitude(move);
+            if (magnitude > speed)
             {
-                npc.velocity.X = npc.velocity.X - Acceleration;
-                if (npc.velocity.X > 0 && DirectionX < 0)
-                    npc.velocity.X = npc.velocity.X - Acceleration;
+                move *= speed / magnitude;
             }
-            if (npc.velocity.Y < DirectionY)
-            {
-                npc.velocity.Y = npc.velocity.Y + Acceleration;
-                if (npc.velocity.Y < 0 && DirectionY > 0)
-                    npc.velocity.Y = npc.velocity.Y + Acceleration;
-            }
-            else if (npc.velocity.Y > DirectionY)
-            {
-                npc.velocity.Y = npc.velocity.Y - Acceleration;
-                if (npc.velocity.Y > 0 && DirectionY < 0)
-                    npc.velocity.Y = npc.velocity.Y - Acceleration;
-            }
+            npc.velocity = move;
+        }
+
+        private float Magnitude(Vector2 mag)
+        {
+            return (float)Math.Sqrt(mag.X * mag.X + mag.Y * mag.Y);
         }
 
         private void RotateNPCToTarget()
@@ -88,6 +79,24 @@ namespace Eternal.NPCs.Boss.Dunekeeper
         private void Target()
         {
             player = Main.player[npc.target];
+        }
+
+        private void DespawnHandler()
+        {
+            if (!player.active || player.dead)
+            {
+                npc.TargetClosest(false);
+                player = Main.player[npc.target];
+                if (!player.active || player.dead)
+                {
+                    npc.velocity = new Vector2(0f, -10f);
+                    if (npc.timeLeft > 10)
+                    {
+                        npc.timeLeft = 10;
+                    }
+                    return;
+                }
+            }
         }
 
     }

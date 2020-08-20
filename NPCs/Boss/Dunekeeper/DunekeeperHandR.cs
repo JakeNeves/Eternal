@@ -31,26 +31,21 @@ namespace Eternal.NPCs.Boss.Dunekeeper
             npc.noTileCollide = true;
             npc.lavaImmune = true;
             npc.knockBackResist = 0f;
+            npc.boss = true;
             npc.aiStyle = -1;
         }
 
         public override void AI()
         {
-            Move(new Vector2(0, -100));
+            DespawnHandler();
+            Move(new Vector2(-100, 0));
             Target();
             RotateNPCToTarget();
         }
 
         private void Move(Vector2 offset)
         {
-            if (EternalWorld.hellMode)
-            {
-                speed = 10.5f;
-            }
-            else
-            {
-                speed = 9.25f;
-            }
+            speed = 9.25f;
             Vector2 moveTo = player.Center + offset;
             Vector2 move = moveTo - npc.Center;
             float magnitude = Magnitude(move);
@@ -66,7 +61,11 @@ namespace Eternal.NPCs.Boss.Dunekeeper
                 move *= speed / magnitude;
             }
             npc.velocity = move;
+        }
 
+        private float Magnitude(Vector2 mag)
+        {
+            return (float)Math.Sqrt(mag.X * mag.X + mag.Y * mag.Y);
         }
 
         private void RotateNPCToTarget()
@@ -82,9 +81,22 @@ namespace Eternal.NPCs.Boss.Dunekeeper
             player = Main.player[npc.target];
         }
 
-        private float Magnitude(Vector2 mag)
+        private void DespawnHandler()
         {
-            return (float)Math.Sqrt(mag.X * mag.X + mag.Y * mag.Y);
+            if (!player.active || player.dead)
+            {
+                npc.TargetClosest(false);
+                player = Main.player[npc.target];
+                if (!player.active || player.dead)
+                {
+                    npc.velocity = new Vector2(0f, -10f);
+                    if (npc.timeLeft > 10)
+                    {
+                        npc.timeLeft = 10;
+                    }
+                    return;
+                }
+            }
         }
 
     }

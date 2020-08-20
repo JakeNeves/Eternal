@@ -1,5 +1,5 @@
 displayName = [c/1EC9C3:Eternal]
 author = JakeTEM, Jaer Hend, and Nakroxis
 version = 1.0.4
-hideCode = false
+hideCode = true
 includeSource = true

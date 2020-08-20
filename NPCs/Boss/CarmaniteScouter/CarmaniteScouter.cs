@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Terraria.ID;
 using static Terraria.ModLoader.ModContent;
 using Eternal.Items;
+using Eternal.Items.BossBags;
 using Eternal.Items.Accessories.Hell;
 
 namespace Eternal.NPCs.Boss.CarmaniteScouter

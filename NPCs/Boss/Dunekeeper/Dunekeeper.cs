@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Terraria.ID;
 using static Terraria.ModLoader.ModContent;
 using Eternal.Items;
+using Eternal.Items.BossBags;
 
 namespace Eternal.NPCs.Boss.Dunekeeper
 {
@@ -114,7 +115,7 @@ namespace Eternal.NPCs.Boss.Dunekeeper
 
             if (Timer >= 0)
             {
-                Move(new Vector2(-100, 0));
+                Move(new Vector2(0, 0));
             }
             if (Timer == 25 && EternalWorld.hellMode)
             {

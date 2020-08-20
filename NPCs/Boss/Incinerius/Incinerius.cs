@@ -5,6 +5,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
+using Eternal.Items.BossBags;
+using Eternal.Items;
+using Eternal.Items.Accessories.Hell;
 
 namespace Eternal.NPCs.Boss.Incinerius
 {
@@ -49,6 +52,7 @@ namespace Eternal.NPCs.Boss.Incinerius
             npc.noTileCollide = true;
             npc.HitSound = SoundID.NPCHit3;
             npc.DeathSound = SoundID.NPCDeath42;
+            bossBag = ItemType<IncineriusBag>();
         }
 
         /* public Vector2 bossCenter
@@ -92,6 +96,40 @@ namespace Eternal.NPCs.Boss.Incinerius
                 
                 Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/IncineriusHead"), 1f);
                 Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/IncineriusBody"), 1f);
+            }
+        }
+
+        private Player player;
+
+        public override void NPCLoot()
+        {
+            if (EternalWorld.hellMode)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<ProtectiveFlame>());
+            }
+
+            if (Main.expertMode)
+            {
+                npc.DropBossBags();
+            }
+            else
+            {
+                if (Main.rand.Next(1) == 0)
+                {
+                    player.QuickSpawnItem(ItemType<Items.Weapons.SmotheringInferno>());
+                }
+
+                if (Main.rand.Next(2) == 0)
+                {
+                    player.QuickSpawnItem(ItemType<Items.Weapons.Incinerator>());
+                }
+
+                if (Main.rand.Next(3) == 0)
+                {
+                    player.QuickSpawnItem(ItemType<Items.Weapons.Pyroyo>());
+                }
+
+                player.QuickSpawnItem(ItemType<ScorchedMetal>(), Main.rand.Next(10, 90));
             }
         }
 
