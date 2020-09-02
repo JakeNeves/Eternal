@@ -4,10 +4,11 @@ using Terraria;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using Eternal.Items.Armor;
+using Eternal.Items.Accessories.Expert;
 
 namespace Eternal.Items.BossBags
 {
-    class IncineriusBag : ModItem
+    public class IncineriusBag : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -47,7 +48,7 @@ namespace Eternal.Items.BossBags
                 player.QuickSpawnItem(ItemType<Incinerator>());
             }
 
-            player.QuickSpawnItem(ItemType<PrimordialBolt>());
+            player.QuickSpawnItem(ItemType<FlameInfusedJewel>());
 
             player.QuickSpawnItem(ItemType<ScorchedMetal>(), Main.rand.Next(25, 75));
         }

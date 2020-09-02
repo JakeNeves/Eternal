@@ -1,22 +1,21 @@
 [c/1EC9E3:Eternal] - By [c/008CFF:Jake][c/0204CFF:TEM]!
 
-1.0.4
+1.0.4/1.0.4.1
 
-My Discord Server (Feel free to join)
+If you want to help with the mod and/or access early builds/release candidates, feel free to join the Discord Server
 https://discord.gg/GJYKRBt
+The server is primarly known as "Jake's Lounge"
 
 Eternal is a mod that loads your game with much content
 possible, including a new difficulty (WIP)!
-From what we expect, if you're going to use this mod, I recommend you either install HERO's or
-Cheat Sheet as this mod is not finished yet...
+From what we expect, this mod is not fully finished yet so there is no harm in cheating in anything from the mod via HERO's and/or Cheat Sheet...
 
-- DEVELOPERS -
-JakeTEM - Creator/Lead Developer
-??? - Composer
-Jaer Hend/Jerrhead - Resprites/Redsesign
-??? - Graphics and/or Spritework
-Nakroxis/Atisheno - Programmer
+It currently adds
+two pre-hardmode bosses
+two out of the ten hardmode bosses
+and one out of the twenty post-moon lord bosses (there is actually another boss, part of the twenty post-moon lord bosses but it's a WIP as of right now, however you can summon it through HERO's or Cheat Sheet)
 
-- SHOUTOUTS FOR DEDICATED CONTENT -
-Jaer Hend - Something About a Big Axe
-JakeTEM - Prismatic Fractal, Exosiiva Gladius Blade
+---Lounge Members (Discord Server Members/Developers)---
+JakeTEM - Creator/Programmer
+Jaer Hend/Jerrhead - Sprites/Redesigns
+Nakroxis - Programmer

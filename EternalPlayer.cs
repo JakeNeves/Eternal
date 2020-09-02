@@ -11,8 +11,10 @@ using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 namespace Eternal
 {
-    class EternalPlayer : ModPlayer
+    public class EternalPlayer : ModPlayer
     {
+		public bool incineriusPet = false;
+
 		public bool ZoneThunderduneBiome = false;
 		public bool ZoneCommet = false;
 

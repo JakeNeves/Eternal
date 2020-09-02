@@ -1,5 +1,6 @@
 displayName = [c/1EC9C3:Eternal]
-author = JakeTEM, Jaer Hend, and Nakroxis
-version = 1.0.4
-hideCode = true
+author = JakeTEM and The Lounge Members
+version = 1.0.4.1
+hideCode = false
 includeSource = true
+homepage = https://github.com/JakeNeves/Eternal/wiki

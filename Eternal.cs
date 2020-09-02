@@ -5,7 +5,9 @@ namespace Eternal
 {
 	public class Eternal : Mod
 	{
-		public Eternal()
+        internal static Mod instance;
+
+        public Eternal()
 		{
 
 			Properties = new ModProperties()

@@ -7,6 +7,8 @@ using static Terraria.ModLoader.ModContent;
 using Eternal.Items;
 using Eternal.Items.BossBags;
 using Eternal.Items.Accessories.Hell;
+using Eternal.Tiles;
+using Eternal.Items.Tools;
 
 namespace Eternal.NPCs.Boss.CarmaniteScouter
 {
@@ -130,12 +132,6 @@ namespace Eternal.NPCs.Boss.CarmaniteScouter
             {
                 Timer = 0;
             }
-
-            /*npc.ai[1] -= 1f;
-            if(npc.ai[1] <= 0f)
-            {
-                Shoot();
-            }*/
         }
 
         void SpawnScouterEye()
@@ -179,17 +175,6 @@ namespace Eternal.NPCs.Boss.CarmaniteScouter
             }
             npc.velocity = move;
         }
-
-        /* public override void FindFrame(int frameHeight)
-         {
-             npc.frameCounter += 1;
-             npc.frameCounter %= 20;
-             int frame = (int)(npc.frameCounter / 1.0);
-             if (frame >= Main.npcFrameCount[npc.type]) frame = 0;
-             npc.frame.Y = frame * frameHeight;
-
-             RotateNPCToTarget();
-         }*/
 
         public override void FindFrame(int frameHeight)
         {
@@ -250,12 +235,22 @@ namespace Eternal.NPCs.Boss.CarmaniteScouter
             {
                 if (Main.rand.Next(3) == 0)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("TritalodiumBar"), 30);
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<TritalodiumBar>(), Main.rand.Next(15, 30));
                 }
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Carmanite"), 25);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<Carmanite>(), Main.rand.Next(15, 30));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<CarmanitePickaxe>());
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<CarmaniteHammaxe>());
             }
 
-            EternalWorld.downedCarmaniteScouter = true;
+            if (!EternalWorld.downedCarmaniteScouter)
+            {
+                Main.NewText("The ground has been smothered with mysterious energy...", 215, 215, 0);
+                for (int k = 0; k < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 6E-05); k++)
+                {
+                    WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next((int)(Main.maxTilesY * .3f), (int)(Main.maxTilesY * .65f)), WorldGen.genRand.Next(5, 20), WorldGen.genRand.Next(9, 20), TileType<TritalodiumOre>(), false, 0f, 0f, false, true);
+                }
+                EternalWorld.downedCarmaniteScouter = true;
+            }
         }
 
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)

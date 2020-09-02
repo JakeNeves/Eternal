@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Eternal.Dusts;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -13,10 +14,14 @@ namespace Eternal.Tiles
 		{
 			TileID.Sets.Ore[Type] = true;
 			Main.tileSpelunker[Type] = true;
+			Main.tileValue[Type] = 500;
+			Main.tileShine2[Type] = true;
+			Main.tileShine[Type] = 800;
 			Main.tileSolid[Type] = true;
 			Main.tileMergeDirt[Type] = false;
 			Main.tileBlockLight[Type] = true;
-			Main.tileLighted[Type] = false;
+			Main.tileLighted[Type] = true;
+			dustType = DustType<Starmetal>();
 			drop = ItemType<Items.Placeable.CometiteOre>();
 			ModTranslation name = CreateMapEntryName();
 			name.SetDefault("Cometite");
@@ -25,6 +30,12 @@ namespace Eternal.Tiles
 			soundType = SoundID.Tink;
 			soundStyle = 1;
 			mineResist = 5f;
+		}
+
+		public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) {
+			r = 1.25f;
+			g = 0.75f;
+			b = 1.5f;
 		}
 
 	}

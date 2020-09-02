@@ -14,14 +14,14 @@ namespace Eternal.Items.Weapons
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Fires Multiple Exosiiva Swords\n'It's a Literal Bullet Hell'\n[c/FF0000:Warning] - May cause frame drops at the cost of multiple projectiles existing off-screen...\nHowever the frames will go back to normal eventually.\n[c/FC036B:Dedicated Content]\nDedicated to [c/038CFC:JakeTEM]");
+            Tooltip.SetDefault("Fires Multiple Exosiiva Swords\n'It's a Literal Bullet Hell'\n[c/FF0000:Warning] - May cause frame drops at the cost of multiple projectiles existing off-screen...\nHowever the frames will go back to normal eventually.\n[c/FC036B:Developer Item]\nDedicated to [c/038CFC:JakeTEM]");
         }
 
         public override void SetDefaults()
         {
             item.width = 104;
             item.height = 110;
-            item.damage = 4200;
+            item.damage = 20000;
             item.melee = true;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.knockBack = 10;

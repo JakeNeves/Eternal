@@ -12,9 +12,13 @@ namespace Eternal.Items.Weapons
     class StarcrescentMoondisk : ModItem
     {
 
+        public override void SetStaticDefaults() {
+             Tooltip.SetDefault("Fires multiple moondisks\n'Who thought that a disk boomerang can be used sixteen times at one!'");
+        }
+
         public override void SetDefaults()
         {
-            item.damage = 2000;
+            item.damage = 20000;
             item.melee = true;
             item.width = 54;
             item.height = 54;
@@ -47,6 +51,25 @@ namespace Eternal.Items.Weapons
             }
             return true;
 
+        }
+
+       public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        {
+            int numberProjectiles = 16;
+            for (int j = 0; j < numberProjectiles; j++)
+            {
+                Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(15));
+                Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, type, damage, knockBack, player.whoAmI);
+            }
+            int spread = 9;
+            float spreadMult = 0.75f;
+            for (int i = 0; i < 3; i++)
+            {
+                float vX = speedX + (float)Main.rand.Next(-spread, spread + 1) * spreadMult;
+                float vY = speedY + (float)Main.rand.Next(-spread, spread + 1) * spreadMult;
+                Projectile.NewProjectile(position.X, position.Y, vX, vY, type, damage, knockBack, Main.myPlayer);
+            }
+            return false;
         }
 
     }

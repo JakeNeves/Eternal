@@ -13,8 +13,6 @@ using Eternal.Tiles;
 using System;
 using System.IO;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-using Mono.Cecil.Cil;
 
 namespace Eternal
 {
@@ -28,7 +26,17 @@ namespace Eternal
 
         #region DownedBosses
         public static bool downedCarmaniteScouter = false;
+        public static bool downedDunekeeper = false;
+        public static bool downedIncinerius = false;
+        public static bool downedSubzeroElemental = false;
         #endregion
+
+        public override void TileCountsAvailable(int[] tileCounts)
+        {
+            DuneTiles = tileCounts[TileType<Dunestone>()] + tileCounts[TileType<Dunestone>()];
+            thunderduneBiome = DuneTiles;
+            commet = tileCounts[TileType<CometiteOre>()];
+        }
 
         public override void Initialize()
 		{
@@ -39,8 +47,11 @@ namespace Eternal
 		{
 			var downed = new List<string>();
 			if (downedCarmaniteScouter) downed.Add("eternal");
+            if (downedDunekeeper) downed.Add("eternal");
+            if (downedIncinerius) downed.Add("eternal");
+            if (downedSubzeroElemental) downed.Add("eternal");
 
-			return new TagCompound
+            return new TagCompound
 			{
 				{"downed", downed }
 			};
@@ -51,6 +62,9 @@ namespace Eternal
         {
             var downed = tag.GetList<string>("downed");
             downedCarmaniteScouter = downed.Contains("eternal");
+            downedDunekeeper = downed.Contains("eternal");
+            downedIncinerius = downed.Contains("eternal");
+            downedSubzeroElemental = downed.Contains("eternal");
         }
 
         public override void LoadLegacy(BinaryReader reader)
@@ -61,6 +75,9 @@ namespace Eternal
                 BitsByte flags = reader.ReadByte();
                 #region DownedBossFlags
                 downedCarmaniteScouter = flags[0];
+                downedDunekeeper = flags[0];
+                downedIncinerius = flags[0];
+                downedSubzeroElemental = flags[0];
                 #endregion
             }
         }
@@ -69,6 +86,9 @@ namespace Eternal
         {
             BitsByte flags = new BitsByte();
             flags[0] = downedCarmaniteScouter;
+            flags[0] = downedDunekeeper;
+            flags[0] = downedIncinerius;
+            flags[0] = downedSubzeroElemental;
             writer.Write(flags);
         }
 
@@ -77,10 +97,13 @@ namespace Eternal
             BitsByte flags = reader.ReadByte();
             #region DownedBossFlags
             downedCarmaniteScouter = flags[0];
+            downedDunekeeper = flags[0];
+            downedIncinerius = flags[0];
+            downedSubzeroElemental = flags[0];
             #endregion
         }
 
-        //ripped this from tremor, credit to whoever wrote this...
+        //ripped this from tremor, credit to whoever wrote this originally...
         public static void DropComet()
         {
             bool flag = true;
@@ -169,7 +192,7 @@ namespace Eternal
             }
         }
 
-        //also ripped this from tremor, credit to whoever wrote this...
+        //also ripped this from tremor, credit to whoever wrote this originally...
         public static bool Comet(int i, int j)
         {
             if (i < 50 || i > Main.maxTilesX - 50)
@@ -333,92 +356,7 @@ namespace Eternal
         private void GenDune(GenerationProgress progress)
         {
             progress.Message = "Generating Thunderdune...";
-            DuneBiome:
-            int startPositionX = WorldGen.genRand.Next(0, Main.maxTilesX - 2);
-            int startPositionY = (int)Main.worldSurface;
-            int size = 0;
-            if (Main.maxTilesX == 4200 && Main.maxTilesY == 1200)
-            {
-                size = 105;
-            }
-            if (Main.maxTilesX == 6300 && Main.maxTilesY == 1800)
-            {
-                size = 198;
-            }
-            if (Main.maxTilesX == 8400 && Main.maxTilesY == 2400)
-            {
-                size = 270;
-            }
-            if (Main.tile[startPositionX, startPositionY].type == TileID.Sand)
-            {
-                var startX = startPositionX;
-                var startY = startPositionY;
-                startX = startX - 100;
-                startY = startY - 100;
-                startY++;
-                for (int x = startX - size; x <= startX + size; x++)
-                {
-                    for (int y = startY - size; startY <= startY + size; y++)
-                    {
-                        if (Vector2.Distance(new Vector2(startX, startY), new Vector2(x, y)) <= size)
-                        {
-                            if (Main.tile[x, y].wall == 40 || Main.tile[x, y].wall == 71)
-                            {
-                                Main.tile[x, y].wall = (ushort)mod.WallType("DunestoneWall");
-                                Main.tile[x, y].wall = (ushort)mod.WallType("DunesandWall");
-                            }
-                            if (Main.tile[x, y].type == 23 || Main.tile[x, y].type == 147 || Main.tile[x, y].type == 161 || Main.tile[x, y].type == 25 || Main.tile[x, y].type == 163 || Main.tile[x, y].type == 164 || Main.tile[x, y].type == 200 || Main.tile[x, y].type == 0 || Main.tile[x, y].type == 2 || Main.tile[x, y].type == TileID.Stone || Main.tile[x, y].type == TileID.Sand)
-                            {
-                                Main.tile[x, y].type = (ushort)mod.TileType("Dunestone");
-                                Main.tile[x, y].type = (ushort)mod.TileType("Dunesand");
-                            }
-                            if (Main.tile[x, y].type == 6 || Main.tile[x, y].type == 7 || Main.tile[x, y].type == 8 || Main.tile[x, y].type == 9 || Main.tile[x, y].type == 221 || Main.tile[x, y].type == 222 || Main.tile[x, y].type == 223 || Main.tile[x, y].type == 204 || Main.tile[x, y].type == 166 || Main.tile[x, y].type == 167 || Main.tile[x, y].type == 168 || Main.tile[x, y].type == 169 || Main.tile[x, y].type == 221 || Main.tile[x, y].type == 107 || Main.tile[x, y].type == 108 || Main.tile[x, y].type == 22 || Main.tile[x, y].type == 111 || Main.tile[x, y].type == 123 || Main.tile[x, y].type == 224 || Main.tile[x, y].type == 40 || Main.tile[x, y].type == 59)
-                            {
-                                Main.tile[x, y].type = (ushort)mod.TileType("ThunderiteOre");
-                            }
-                        }
-                    }
-                }
-                for (int k = 0; k < 1000; k++)
-                {
-                    int positionX = WorldGen.genRand.Next(0, Main.maxTilesX);
-                    int positionY = WorldGen.genRand.Next(0, Main.maxTilesY);
-                    if (Main.tile[positionX, positionY].type == mod.TileType("Dunestone"))
-                    {
-                        WorldGen.TileRunner(positionX, positionY, WorldGen.genRand.Next(2, 8), WorldGen.genRand.Next(2, 8), (ushort)mod.TileType("ThunderiteOre"), false, 0f, 0f, false, true);
-                    }
-                }
-                for (int k = 0; k < Main.maxTilesX; k++)
-                {
-                    for (int i = 0; i < Main.maxTilesY; i++)
-                    {
-                        if (Main.tile[k, i].type == mod.TileType("Dunestone"))
-                        {
-                            if (Main.tile[k + 1, i].active() && Main.tile[k, i - 1].active() && Main.tile[k - 1, i].active() && Main.tile[k, i + 1].active())
-                            {
-                            }
-                            else
-                            {
-                                Main.tile[k, i].type = (ushort)mod.TileType("Dunesand");
-                            }
-                        }
-                    }
-                }
 
-                while (!Main.tile[startX, startY].active() && startY < Main.worldSurface)
-                {
-                    startY++;
-                }
-                for (int k = 0; k < 16; k++)
-                {
-                    for (int l = 0; l < 10; l++)
-                    {
-                        WorldGen.KillTile(startX - k, startY - l, false, false, true);
-                    }
-                }
-            }
-            else
-                goto DuneBiome;
         }
 
         private void EternalOres(GenerationProgress progress)
@@ -430,7 +368,6 @@ namespace Eternal
 				int x = WorldGen.genRand.Next(0, Main.maxTilesX);
 				int y = WorldGen.genRand.Next((int)WorldGen.worldSurfaceLow, Main.maxTilesY);
 				WorldGen.TileRunner(x, y, WorldGen.genRand.Next(3, 6), WorldGen.genRand.Next(2, 6), TileType<Rudanium>());
-                WorldGen.TileRunner(x, y, WorldGen.genRand.Next(3, 6), WorldGen.genRand.Next(3, 9), TileType<TritalodiumOre>());
 
             }
 		}
@@ -447,13 +384,6 @@ namespace Eternal
             }
 
             tasks.Insert(shiniesIndex + 4, new PassLegacy("Generating Thunderdune...", GenDune));
-        }
-
-        public override void TileCountsAvailable(int[] tileCounts)
-        {
-            DuneTiles = tileCounts[TileType<Dunestone>()] + tileCounts[TileType<Dunestone>()];
-            thunderduneBiome = DuneTiles;
-            commet = tileCounts[TileType<CometiteOre>()];
         }
 
         //Dune Temple

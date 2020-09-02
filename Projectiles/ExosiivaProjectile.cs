@@ -14,7 +14,7 @@ namespace Eternal.Projectiles
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Exosiiva Gladus Blade");
-            ProjectileID.Sets.TrailCacheLength[projectile.type] = 50;
+            ProjectileID.Sets.TrailCacheLength[projectile.type] = 15;
             ProjectileID.Sets.TrailingMode[projectile.type] = 0;
         }
 
@@ -33,7 +33,7 @@ namespace Eternal.Projectiles
             projectile.ignoreWater = true;
             projectile.tileCollide = false;
             projectile.extraUpdates = 1;
-            aiType = ProjectileID.PossessedHatchet;
+            aiType = ProjectileID.Bullet; //ProjectileID.PossessedHatchet;
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
@@ -43,7 +43,7 @@ namespace Eternal.Projectiles
             {
                 Vector2 drawPos = projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, projectile.gfxOffY);
                 Color color = projectile.GetAlpha(lightColor) * ((float)(projectile.oldPos.Length - k) / (float)projectile.oldPos.Length);
-                spriteBatch.Draw(Main.projectileTexture[projectile.type], drawPos, null, Color.White, projectile.rotation, drawOrigin, projectile.scale, SpriteEffects.None, 0f);
+                spriteBatch.Draw(Main.projectileTexture[projectile.type], drawPos, null, color, projectile.rotation, drawOrigin, projectile.scale, SpriteEffects.None, 0f);
             }
             return true;
         }

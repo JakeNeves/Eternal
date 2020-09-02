@@ -24,7 +24,7 @@ namespace Eternal.Items.Accessories
             item.value = Item.buyPrice(gold: 15, silver: 75);
             item.rare = 8;
             item.accessory = true;
-            item.defense = 50;
+            item.defense = 15;
             item.lifeRegen = 20;
         }
 

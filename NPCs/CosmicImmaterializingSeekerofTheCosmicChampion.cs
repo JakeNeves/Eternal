@@ -1,36 +1,39 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
-using Eternal.Items.Summon;
 using static Terraria.ModLoader.ModContent;
 using Eternal.Items;
 using Eternal.Tiles;
 using System.Linq;
+using Eternal.Items.Weapons;
 
 namespace Eternal.NPCs
 {
     class CosmicImmaterializingSeekerofTheCosmicChampion : ModNPC
     {
 
+        private Player player;
+        private float speed;
+
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cosmic Immaterializing Seeker of The Cosmic Champion");
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.DemonEye];
+            DisplayName.SetDefault("Antheminous Anathema");
+            Main.npcFrameCount[npc.type] = 2;
         }
 
         public override void SetDefaults()
         {
-            npc.width = 18;
-            npc.height = 24;
-            npc.damage = 2;
-            npc.defense = 2;
-            npc.lifeMax = 2000;
-            npc.HitSound = SoundID.NPCHit3;
-            npc.DeathSound = SoundID.Item79;
+            npc.width = 31;
+            npc.height = 47;
+            npc.damage = 100;
+            npc.defense = 50;
+            npc.lifeMax = 11000;
+            npc.HitSound = SoundID.NPCHit4;
+            npc.DeathSound = SoundID.NPCHit3;
+            npc.noGravity = true;
+            npc.lavaImmune = true;
             npc.value = 50f;
-            npc.aiStyle = NPCID.DemonEye;
-            aiType = NPCID.DemonEye;
-            animationType = NPCID.DemonEye;
+            npc.aiStyle = 5;
         }
 
         private static int[] SpawnTiles = { };
@@ -45,24 +48,32 @@ namespace Eternal.NPCs
             }
             return SpawnCondition.OverworldNightMonster.Chance * 0.5f;
         }
-
-        /*public override float CanSpawn(NPCSpawnInfo spawnInfo)
+        public override void AI()
         {
-            return Main.tile[(spawnInfo.spawnTileX), (spawnInfo.spawnTileY)].type == TileType<CometiteOre>() ? 100f : 0f;
-        } 
-
-        public override bool CheckConditions(int left, int right, int top, int bottom)
-        {
-            return NPC.downedMoonlord = true;
-        }*/
+            Lighting.AddLight(npc.position, 0.75f, 0f, 0.75f);
+            npc.spriteDirection = npc.direction;
+        }
 
         public override void NPCLoot()
         {
+            if (Main.rand.Next(3) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<CosmicSwiftShot>());
+            }
             if (Main.rand.Next(5) == 0)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<InterstellarSingularity>(), Main.rand.Next(5, 20));
             }
             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<StarmetalBar>(), Main.rand.Next(10, 75));
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<GalaxianPlating>(), Main.rand.Next(3, 12));
+        }
+
+        public override void FindFrame(int frameHeight)
+        {
+            npc.frameCounter += 0.15f;
+            npc.frameCounter %= Main.npcFrameCount[npc.type];
+            int Frame = (int)npc.frameCounter;
+            npc.frame.Y = Frame * frameHeight;
         }
 
     }

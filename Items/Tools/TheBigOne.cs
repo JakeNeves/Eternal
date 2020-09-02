@@ -13,7 +13,7 @@ namespace Eternal.Items.Tools
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Jaer Hend's Mighty Forest Felling Mega Axe of Eternity");
-            Tooltip.SetDefault("A Very Big Axe\n'Sprited by Jaer Hend'\nName Inspired from Triactics' True Panidinian Mage-Hammer of Might\n[c/FC036B:Dedicated Content]\nDedicated to [c/038CFC:Jaer Hend/Jerrhead]");
+            Tooltip.SetDefault("A Very Big Axe\n'Sprited by Jaer Hend'\nName Inspired from Triactics' True Panidinian Mage-Hammer of Might\n[c/FC036B:Developer Item]\nDedicated to [c/038CFC:Jaer Hend/Jerrhead]");
         }
 
         public override void SetDefaults()

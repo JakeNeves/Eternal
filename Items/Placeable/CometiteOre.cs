@@ -9,7 +9,7 @@ namespace Eternal.Items.Placeable
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'Pure starpower radiates from this cluster'");
+            Tooltip.SetDefault("A shard of cosmic debris\n'Pure starpower radiates from this cluster'");
         }
 
         public override void SetDefaults()
