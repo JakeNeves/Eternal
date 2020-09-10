@@ -27,7 +27,13 @@ namespace Eternal.Items.Accessories.Hell
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips[0].overrideColor = new Color(180, 5, Main.DiscoR);
+            foreach (TooltipLine line2 in tooltips)
+            {
+                if (line2.mod == "Terraria" && line2.Name == "ItemName")
+                {
+                    line2.overrideColor = EternalColor.Hell;
+                }
+            }
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

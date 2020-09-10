@@ -6,7 +6,9 @@ using static Terraria.ModLoader.ModContent;
 using Eternal.Items.BossBags;
 using Eternal.Items;
 using Eternal.Items.Accessories.Hell;
-using Eternal.Items.Weapons;
+using Eternal.Items.Weapons.Melee;
+using Eternal.Items.Weapons.Ranged;
+using Eternal.Items.Weapons.Summon;
 
 namespace Eternal.NPCs.Boss.SubzeroElemental
 {
@@ -124,10 +126,10 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
                 }
                 if (AttackTimer == 175)
                 {
-                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, -30, 0, ProjectileID.FrostBlastHostile, 5, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, 30, 0, ProjectileID.FrostBlastHostile, 5, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, 0, 30, ProjectileID.FrostBlastHostile, 5, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, 0, -30, ProjectileID.FrostBlastHostile, 5, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, -90, -45, ProjectileID.FrostBlastHostile, 5, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, 90, -45, ProjectileID.FrostBlastHostile, 5, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, -90, 45, ProjectileID.FrostBlastHostile, 5, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, 90, 45, ProjectileID.FrostBlastHostile, 5, 0, Main.myPlayer, 0f, 0f);
                 }
                 if (AttackTimer == 250)
                 {
@@ -185,6 +187,11 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
                 if (Main.rand.Next(2) == 0)
                 {
                     player.QuickSpawnItem(ItemType<FrostGladiator>());
+                }
+
+                if (Main.rand.Next(3) == 0)
+                {
+                    player.QuickSpawnItem(ItemType<FrostyImmaterializer>());
                 }
             }
 

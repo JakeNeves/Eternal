@@ -5,7 +5,7 @@ using static Terraria.ModLoader.ModContent;
 using Eternal.Items;
 using Eternal.Tiles;
 using System.Linq;
-using Eternal.Items.Weapons;
+using Eternal.Items.Weapons.Ranged;
 
 namespace Eternal.NPCs
 {

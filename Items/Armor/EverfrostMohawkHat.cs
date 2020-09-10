@@ -9,6 +9,11 @@ namespace Eternal.Items.Armor
     class EverfrostMohawkHat : ModItem
     {
 
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Everfrost Mage Knight's Mask and Hat");
+        }
+
         public override void SetDefaults()
         {
             item.width = 30;

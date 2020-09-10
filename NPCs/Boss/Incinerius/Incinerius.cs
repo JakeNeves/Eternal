@@ -7,6 +7,8 @@ using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using Eternal.Items.BossBags;
 using Eternal.Items;
+using Eternal.Items.Weapons.Melee;
+using Eternal.Items.Weapons.Magic;
 using Eternal.Items.Accessories.Hell;
 
 namespace Eternal.NPCs.Boss.Incinerius
@@ -116,17 +118,17 @@ namespace Eternal.NPCs.Boss.Incinerius
             {
                 if (Main.rand.Next(1) == 0)
                 {
-                    player.QuickSpawnItem(ItemType<Items.Weapons.SmotheringInferno>());
+                    player.QuickSpawnItem(ItemType<SmotheringInferno>());
                 }
 
                 if (Main.rand.Next(2) == 0)
                 {
-                    player.QuickSpawnItem(ItemType<Items.Weapons.Incinerator>());
+                    player.QuickSpawnItem(ItemType<Incinerator>());
                 }
 
                 if (Main.rand.Next(3) == 0)
                 {
-                    player.QuickSpawnItem(ItemType<Items.Weapons.Pyroyo>());
+                    player.QuickSpawnItem(ItemType<Pyroyo>());
                 }
 
                 player.QuickSpawnItem(ItemType<ScorchedMetal>(), Main.rand.Next(10, 90));

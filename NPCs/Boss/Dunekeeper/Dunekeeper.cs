@@ -5,6 +5,8 @@ using Microsoft.Xna.Framework;
 using Terraria.ID;
 using static Terraria.ModLoader.ModContent;
 using Eternal.Items;
+using Eternal.Items.Weapons.Melee;
+using Eternal.Items.Weapons.Ranged;
 using Eternal.Items.BossBags;
 
 namespace Eternal.NPCs.Boss.Dunekeeper
@@ -61,12 +63,12 @@ namespace Eternal.NPCs.Boss.Dunekeeper
             {
                 if (Main.rand.Next(1) == 0)
                 {
-                    player.QuickSpawnItem(ItemType<Items.Weapons.Wasteland>());
+                    player.QuickSpawnItem(ItemType<Wasteland>());
                 }
 
                 if (Main.rand.Next(2) == 0)
                 {
-                    player.QuickSpawnItem(ItemType<Items.Weapons.StormBeholder>());
+                    player.QuickSpawnItem(ItemType<StormBeholder>());
                 }
 
                 if (Main.rand.Next(3) == 0)

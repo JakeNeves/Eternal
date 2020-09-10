@@ -33,6 +33,11 @@ namespace Eternal.Projectiles
             aiType = ProjectileID.Bullet;
         }
 
+	public override void AI()
+        	{
+            		Lighting.AddLight(projectile.position, 0.75f, 0f, 0.75f);
+        	}
+
 		public override bool OnTileCollide(Vector2 oldVelocity)
 		{
 			projectile.penetrate--;

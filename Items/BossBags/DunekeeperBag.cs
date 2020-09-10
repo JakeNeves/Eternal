@@ -1,4 +1,5 @@
-﻿using Eternal.Items.Weapons;
+﻿using Eternal.Items.Weapons.Melee;
+using Eternal.Items.Weapons.Ranged;
 using Eternal.Items.Weapons.Expert;
 using Terraria;
 using Terraria.ModLoader;

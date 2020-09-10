@@ -13,7 +13,22 @@ namespace Eternal
 {
     public class EternalPlayer : ModPlayer
     {
-		public bool incineriusPet = false;
+        #region DamageClasses
+        public float alchemeyDamage = 1f;
+        public float radiantDamage = 1f;
+        #endregion
+
+        public override void ResetEffects()
+        {
+            alchemeyDamage = 1f;
+            radiantDamage = 1f;
+        }
+
+        #region Minions
+        public bool cEnergy = false;
+        #endregion
+
+        public bool incineriusPet = false;
 
 		public bool ZoneThunderduneBiome = false;
 		public bool ZoneCommet = false;

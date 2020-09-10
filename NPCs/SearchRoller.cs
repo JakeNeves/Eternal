@@ -1,5 +1,5 @@
 ﻿using Eternal.Items;
-using Eternal.Items.Weapons;
+using Eternal.Items.Weapons.Melee;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

@@ -1,5 +1,6 @@
-﻿using Eternal.Items.Weapons;
-using Eternal.Items.Weapons.Expert;
+﻿using Eternal.Items.Weapons.Melee;
+using Eternal.Items.Weapons.Ranged;
+using Eternal.Items.Weapons.Summon;
 using Terraria;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
@@ -41,6 +42,11 @@ namespace Eternal.Items.BossBags
             if (Main.rand.Next(2) == 0)
             {
                 player.QuickSpawnItem(ItemType<FrostGladiator>());
+            }
+
+            if (Main.rand.Next(3) == 0)
+            {
+                player.QuickSpawnItem(ItemType<FrostyImmaterializer>());
             }
         }
 
