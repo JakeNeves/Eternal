@@ -15,9 +15,10 @@ namespace Eternal.Items.Accessories
         {
             Tooltip.SetDefault("Counts as Wings" + 
                                "\nAllows flight and slow fall" + 
-                               "\nAllows the wearer to run at Ludicerdious Speeds!" + 
+                               "\nAllows the wearer to run at Ludicrous Speeds!" + 
                                "\nProvides Mobility on ice" + 
                                "\nLava Waders Effects" +
+                               "\nTemporary Immunity to lava" +
                                "\nMaster Ninja Gear Effects" +
                                "\n'A good alternative to the Hell Wheel, I susposed...'");
         }
@@ -89,7 +90,7 @@ namespace Eternal.Items.Accessories
             }
             #endregion
 
-            player.accRunSpeed = 20f;
+            player.accRunSpeed = 9.8f;
             player.spikedBoots = 2;
             player.rocketBoots = 3;
             player.wingTimeMax = 250;
@@ -98,7 +99,8 @@ namespace Eternal.Items.Accessories
             player.iceSkate = true;
             player.waterWalk = true;
             player.fireWalk = true;
-            player.lavaImmune = true;
+            player.lavaMax += 840;
+            //player.lavaImmune = true;
             player.noFallDmg = true;
             player.blackBelt = true;
         }

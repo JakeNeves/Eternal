@@ -15,7 +15,7 @@ namespace Eternal.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Fires three yoyos at once\n'The perfect balance within all the elementals of the trio!'");
+            Tooltip.SetDefault("Fires three yoyos at once\n'The perfect balance within all the elementals of the trio!'\n[c/FF0000:Warning] - This could cause frame drops and possible lag, use carefully!");
         }
 
         public override void SetDefaults()

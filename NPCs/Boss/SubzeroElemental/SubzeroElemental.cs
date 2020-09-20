@@ -9,6 +9,7 @@ using Eternal.Items.Accessories.Hell;
 using Eternal.Items.Weapons.Melee;
 using Eternal.Items.Weapons.Ranged;
 using Eternal.Items.Weapons.Summon;
+using Eternal.Projectiles.Enemy;
 
 namespace Eternal.NPCs.Boss.SubzeroElemental
 {
@@ -36,7 +37,7 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
             npc.damage = 50;
             npc.defense = 75;
             npc.boss = true;
-            npc.HitSound = SoundID.NPCHit4;
+            npc.HitSound = null; //SoundID.NPCHit4;
             npc.DeathSound = SoundID.NPCDeath3;
             npc.aiStyle = -1;
             npc.buffImmune[BuffID.Frostburn] = true;
@@ -74,6 +75,10 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
                 Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/SubzeroElementalLeftHand"), 1f);
                 Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/SubzeroElementalRightArm"), 1f);
                 Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/SubzeroElementalRightHand"), 1f);
+            } else
+            {
+                Main.PlaySound(SoundID.Tink, (int)npc.position.X, (int)npc.position.Y, 1, 1f, 0f);
+                Dust.NewDust(new Vector2(npc.position.X, npc.position.Y), npc.width, npc.height, DustID.Ice);
             }
         }
 
@@ -119,17 +124,17 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
             {
                 if(AttackTimer == 100)
                 {
-                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, -90, 0, ProjectileID.FrostBlastHostile, 5, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, 90, 0, ProjectileID.FrostBlastHostile, 5, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, 0, 90, ProjectileID.FrostBlastHostile, 5, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, 0, -90, ProjectileID.FrostBlastHostile, 5, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 15, npc.position.Y + 20, -90, 0, ProjectileType<FridgedSpike>(), 5, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 15, npc.position.Y + 20, 90, 0, ProjectileType<FridgedSpike>(), 5, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 15, npc.position.Y + 20, 0, 90, ProjectileType<FridgedSpike>(), 5, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 15, npc.position.Y + 20, 0, -90, ProjectileType<FridgedSpike>(), 5, 0, Main.myPlayer, 0f, 0f);
                 }
                 if (AttackTimer == 175)
                 {
-                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, -90, -45, ProjectileID.FrostBlastHostile, 5, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, 90, -45, ProjectileID.FrostBlastHostile, 5, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, -90, 45, ProjectileID.FrostBlastHostile, 5, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, 90, 45, ProjectileID.FrostBlastHostile, 5, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 15, npc.position.Y + 20, -90, -30, ProjectileType<FridgedSpike>(), 5, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 15, npc.position.Y + 20, 90, -30, ProjectileType<FridgedSpike>(), 5, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 15, npc.position.Y + 20, -90, 30, ProjectileType<FridgedSpike>(), 5, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 15, npc.position.Y + 20, 90, 30, ProjectileType<FridgedSpike>(), 5, 0, Main.myPlayer, 0f, 0f);
                 }
                 if (AttackTimer == 250)
                 {
@@ -151,10 +156,15 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
                 }
                 if(AttackTimer == 150)
                 {
-                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, -30, 0, ProjectileID.FrostBlastHostile, 5, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, 30, 0, ProjectileID.FrostBlastHostile, 5, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, 0, 30, ProjectileID.FrostBlastHostile, 5, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, 0, -30, ProjectileID.FrostBlastHostile, 5, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, -30, 0, ProjectileType<FridgedSpike>(), 5, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, 30, 0, ProjectileType<FridgedSpike>(), 5, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, 0, 30, ProjectileType<FridgedSpike>(), 5, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, 0, -30, ProjectileType<FridgedSpike>(), 5, 0, Main.myPlayer, 0f, 0f);
+
+                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, -30, -90, ProjectileType<FridgedSpike>(), 5, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, 30, -90, ProjectileType<FridgedSpike>(), 5, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, -30, 90, ProjectileType<FridgedSpike>(), 5, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, 30, 90, ProjectileType<FridgedSpike>(), 5, 0, Main.myPlayer, 0f, 0f);
                 }
                 if(AttackTimer == 200)
                 {

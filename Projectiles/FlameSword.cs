@@ -29,7 +29,7 @@ namespace Eternal.Projectiles
             projectile.timeLeft = 600;
             projectile.alpha = 255;
             projectile.light = 1.0f;
-            projectile.melee = true;
+            projectile.magic = true;
             projectile.ignoreWater = true;
             projectile.tileCollide = true;
             projectile.extraUpdates = 1;

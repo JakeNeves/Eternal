@@ -3,11 +3,14 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Projectiles
 {
-    class TheTrinityProjectile : ModProjectile
+    public class TheTrinityProjectile : ModProjectile
     {
+        public bool yoyosSpawned = false;
+
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.YoyosLifeTimeMultiplier[projectile.type] = -1f;
@@ -17,7 +20,7 @@ namespace Eternal.Projectiles
 
         public override void SetDefaults()
         {
-            projectile.extraUpdates = 0;
+            projectile.extraUpdates = 1;
             projectile.width = 10;
             projectile.height = 10;
             projectile.aiStyle = 99;
@@ -26,6 +29,24 @@ namespace Eternal.Projectiles
             projectile.melee = true;
             projectile.scale = 1f;
             
+        }
+
+        public override void AI()
+        {
+            if(!yoyosSpawned)
+            {
+                int maxYoyos = 3;
+                for (int i = 0; i < maxYoyos; i++)
+                {
+                    float radians = 360f / (float)maxYoyos * i * (float)(MathHelper.Pi / 180);
+                    Projectile yoyoFire = Projectile.NewProjectileDirect(projectile.Center, Vector2.Zero, ProjectileType<FlameBall>(), projectile.damage, projectile.knockBack, projectile.owner, 3, radians);
+                    yoyoFire.localAI[0] = projectile.whoAmI;
+                    Projectile yoyoIce = Projectile.NewProjectileDirect(projectile.Center, Vector2.Zero, ProjectileID.BallofFrost, projectile.damage, projectile.knockBack, projectile.owner, 3, radians);
+                    yoyoIce.localAI[0] = projectile.whoAmI;
+                    Projectile yoyoThunder = Projectile.NewProjectileDirect(projectile.Center, Vector2.Zero, ProjectileID.Electrosphere, projectile.damage, projectile.knockBack, projectile.owner, 3, radians);
+                    yoyoThunder.localAI[0] = projectile.whoAmI;
+                }
+            }
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)

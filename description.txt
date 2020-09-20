@@ -1,6 +1,6 @@
 [c/1EC9E3:Eternal] - By [c/008CFF:Jake][c/0204CFF:TEM]!
 
-1.0.4/1.0.4.1
+1.0.4 (Now Supports Boss Checklist)
 
 If you want to help with the mod and/or access early builds/release candidates, feel free to join the Discord Server
 https://discord.gg/GJYKRBt

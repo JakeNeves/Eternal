@@ -41,6 +41,7 @@ namespace Eternal.NPCs.Boss.Dunekeeper
             npc.HitSound = SoundID.NPCHit3;
             npc.DeathSound = SoundID.NPCDeath3;
             bossBag = ItemType<DunekeeperBag>();
+            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/DunesWrath");
         }
 
         public override void HitEffect(int hitDirection, double damage)
@@ -109,6 +110,23 @@ namespace Eternal.NPCs.Boss.Dunekeeper
 
         public override void AI()
         {
+            if (NPC.AnyNPCs(NPCType<DunekeeperHandL>()))
+            {
+                npc.dontTakeDamage = true;
+            }
+            if (!NPC.AnyNPCs(NPCType<DunekeeperHandL>()))
+            {
+                npc.dontTakeDamage = false;
+            }
+            if (NPC.AnyNPCs(NPCType<DunekeeperHandR>()))
+            {
+                npc.dontTakeDamage = true;
+            }
+            if (!NPC.AnyNPCs(NPCType<DunekeeperHandR>()))
+            {
+                npc.dontTakeDamage = false;
+            }
+
             if (npc.life < npc.lifeMax / 2)
             {
                 Phase = 1;
@@ -144,7 +162,49 @@ namespace Eternal.NPCs.Boss.Dunekeeper
                 npc.rotation += npc.velocity.X * 0.25f;
             }
 
-            if (Phase == 0)
+            switch(Phase)
+            {
+                case 0:
+                    if (++AttackTimer >= 225)
+                    {
+                        for (int i = 0; i < Main.rand.Next(5, 15); i++)
+                        {
+                            DunekeeperLasers();
+                            if (EternalWorld.hellMode)
+                            {
+                                DunekeeperDiagonalLasers();
+                            }
+                        }
+                    }
+                    if (++AttackTimer >= 230)
+                    {
+                        for (int i = 0; i < Main.rand.Next(5, 15); i++)
+                        {
+                            DunekeeperDiagonalLasers();
+                            if (EternalWorld.hellMode)
+                            {
+                                DunekeeperLasers();
+                            }
+                        }
+
+                        AttackTimer = 0;
+                    }
+                    break;
+                case 1:
+                    if (++AttackTimer >= 225)
+                    {
+                        for (int i = 0; i < Main.rand.Next(5, 15); i++)
+                        {
+                            DunekeeperLasers();
+                            DunekeeperDiagonalLasers();
+                        }
+
+                        AttackTimer = 0;
+                    }
+                    break;
+            }
+
+           /* if (Phase == 0)
             {
                 if (++AttackTimer >= 225)
                 {
@@ -171,7 +231,7 @@ namespace Eternal.NPCs.Boss.Dunekeeper
                     AttackTimer = 0;
                 }
             }
-            else if (Phase == 1)
+            else if (Phase == 0)
             {
                 if (++AttackTimer >= 225)
                 {
@@ -183,7 +243,7 @@ namespace Eternal.NPCs.Boss.Dunekeeper
 
                     AttackTimer = 0;
                 }
-            }
+            } */
 
         }
     }

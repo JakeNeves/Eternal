@@ -18,7 +18,7 @@ namespace Eternal.NPCs.Boss.Incinerius
     {
         public override void SetStaticDefaults()
         {
-            Main.npcFrameCount[npc.type] = 6;
+            //Main.npcFrameCount[npc.type] = 6;
         }
 
         #region Fundementals
@@ -36,8 +36,8 @@ namespace Eternal.NPCs.Boss.Incinerius
 
         public override void SetDefaults()
         {
-            npc.width = 55;
-            npc.height = 61;
+            npc.width = 46;
+            npc.height = 50;
             npc.boss = true;
             music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/FieryBattler");
             npc.aiStyle = -1;
@@ -57,11 +57,11 @@ namespace Eternal.NPCs.Boss.Incinerius
             bossBag = ItemType<IncineriusBag>();
         }
 
-        /* public Vector2 bossCenter
+        public Vector2 bossCenter
         {
             get { return npc.Center; }
             set { npc.position = value - new Vector2(npc.width / 2, npc.height / 2); }
-        } */
+        }
 
         public override void BossLoot(ref string name, ref int potionType)
         {
@@ -137,11 +137,13 @@ namespace Eternal.NPCs.Boss.Incinerius
 
         public override void AI()
         {
-            if(NPC.AnyNPCs(NPCType<ScorchSlime>()))
+            npc.spriteDirection = npc.direction;
+
+            if (NPC.AnyNPCs(NPCType<RollingFire>()))
             {
                 npc.dontTakeDamage = true;
             }
-            if (!NPC.AnyNPCs(NPCType<ScorchSlime>()))
+            if (!NPC.AnyNPCs(NPCType<RollingFire>()))
             {
                 npc.dontTakeDamage = false;
             }
@@ -199,33 +201,22 @@ namespace Eternal.NPCs.Boss.Incinerius
             }
             if(Timer == 700)
             {
-                for (int i = 0; i < 50; i++)
-                {
-                    int dust = Dust.NewDust(npc.position, npc.width, npc.height, 6);
-                    Main.dust[dust].scale = 1.5f;
-                    Main.dust[dust].noGravity = true;
-                    Main.dust[dust].velocity *= 0f;
-                    Main.dust[dust].velocity *= 0f;
-                }
-                SpawnScorchSlimes();
+                IncineriusShot();
+                SpawnRollingFire();
             }
             if(Timer == 900)
             {
-                SpawnScorchSlimes();
-                SpawnScorchSlimes();
+                SpawnRollingFire();
             }
             if(Timer == 1000)
             {
-                if(EternalWorld.hellMode)
-                {
-                    IncineriusHellModeShot();
-                }
+                IncineriusShot();
 
                 Timer = 0;
             }
         }
 
-        void IncineriusHellModeShot()
+        void IncineriusShot()
         {
             Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, -ShootDirection, 0, ShootType, ShootDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
             Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, ShootDirection, 0, ShootType, ShootDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
@@ -233,9 +224,17 @@ namespace Eternal.NPCs.Boss.Incinerius
             Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, 0, -ShootDirection, ShootType, ShootDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
         }
 
-        void SpawnScorchSlimes()
+        void SpawnRollingFire()
         {
-            NPC.NewNPC((int)npc.Center.X - 20, (int)npc.Center.Y, NPCType<ScorchSlime>());
+            for (int i = 0; i < 50; i++)
+            {
+                int dust = Dust.NewDust(npc.position, npc.width, npc.height, 6);
+                Main.dust[dust].scale = 1.5f;
+                Main.dust[dust].noGravity = true;
+                Main.dust[dust].velocity *= 0f;
+                Main.dust[dust].velocity *= 0f;
+            }
+            NPC.NewNPC((int)npc.Center.X - 20, (int)npc.Center.Y, NPCType<RollingFire>());
         }
 
         public override void FindFrame(int frameHeight)

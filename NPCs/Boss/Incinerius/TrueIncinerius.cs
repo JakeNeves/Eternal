@@ -12,19 +12,19 @@ namespace Eternal.NPCs.Boss.Incinerius
 
         private float vel = 5.5f;
         int Timer;
-        const float Speed = 5;
+        const float Speed = 15;
         const float Acceleration = 1;
 
         public override void SetStaticDefaults()
         {
-            Main.npcFrameCount[npc.type] = 6;
+            //Main.npcFrameCount[npc.type] = 6;
         }
 
         public override void SetDefaults()
         {
             npc.lifeMax = 920000;
-            npc.width = 59;
-            npc.height = 61;
+            npc.width = 69;
+            npc.height = 58;
             npc.damage = 25;
             npc.defense = 75;
             npc.boss = true;
@@ -152,12 +152,12 @@ namespace Eternal.NPCs.Boss.Incinerius
             return null;
         }
 
-        public override void FindFrame(int frameHeight)
+        /*public override void FindFrame(int frameHeight)
         {
             npc.frameCounter += 0.15f;
             npc.frameCounter %= Main.npcFrameCount[npc.type];
             int Frame = (int)npc.frameCounter;
             npc.frame.Y = Frame * frameHeight;
-        }
+        }*/
     }
 }

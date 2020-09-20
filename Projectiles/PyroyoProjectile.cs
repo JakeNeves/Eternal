@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Projectiles
 {
@@ -24,6 +25,11 @@ namespace Eternal.Projectiles
             projectile.melee = true;
             projectile.scale = 1f;
         }
+
+        /*public override void AI()
+        {
+            Projectile.NewProjectile(projectile.position.X + 20, projectile.position.Y + 20, projectile.direction, 0, ProjectileType<FlameBall>(), 30, 0f, Main.myPlayer, 0f, 0f);
+        }*/
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
