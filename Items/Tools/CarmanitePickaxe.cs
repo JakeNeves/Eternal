@@ -2,6 +2,8 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
+using Microsoft.Xna.Framework;
+using Terraria.Graphics.Shaders;
 
 namespace Eternal.Items.Tools
 {
@@ -28,6 +30,14 @@ namespace Eternal.Items.Tools
             item.rare = ItemRarityID.Green;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
+        }
+
+        public override void MeleeEffects(Player player, Rectangle hitbox)
+        {
+            Dust dust;
+            Vector2 position = Main.LocalPlayer.Center;
+            dust = Main.dust[Dust.NewDust(position, 42, 42, 203, 0f, 0f, 0, new Color(220, 8, 4), 1f)];
+            dust.shader = GameShaders.Armor.GetSecondaryShader(59, Main.LocalPlayer);
         }
 
         public override void AddRecipes()

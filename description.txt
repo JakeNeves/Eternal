@@ -1,6 +1,6 @@
 [c/1EC9E3:Eternal] - By [c/008CFF:Jake][c/0204CFF:TEM]!
 
-1.0.4 (Now Supports Boss Checklist)
+1.0.4 - Major Overhaul Update
 
 If you want to help with the mod and/or access early builds/release candidates, feel free to join the Discord Server
 https://discord.gg/GJYKRBt
@@ -11,11 +11,7 @@ possible, including a new difficulty (WIP)!
 From what we expect, this mod is not fully finished yet so there is no harm in cheating in anything from the mod via HERO's and/or Cheat Sheet...
 
 It currently adds
-two pre-hardmode bosses
-two out of the ten hardmode bosses
+Two pre-hardmode bosses
+Two out of the ten hardmode bosses
 and one out of the twenty post-moon lord bosses (there is actually another boss, part of the twenty post-moon lord bosses but it's a WIP as of right now, however you can summon it through HERO's or Cheat Sheet)
 
----Lounge Members (Discord Server Members/Developers)---
-JakeTEM - Creator/Programmer
-Jaer Hend/Jerrhead - Sprites/Redesigns
-Nakroxis - Programmer

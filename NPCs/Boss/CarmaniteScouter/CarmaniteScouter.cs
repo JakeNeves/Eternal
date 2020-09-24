@@ -29,11 +29,11 @@ namespace Eternal.NPCs.Boss.CarmaniteScouter
         {
             npc.aiStyle = -1;
             npc.lifeMax = 6000;
-            npc.damage = 5;
-            npc.defense = 5;
+            npc.damage = 15;
+            npc.defense = 10;
             npc.knockBackResist = 0f;
-            npc.width = 133;
-            npc.height = 102;
+            npc.width = 113;
+            npc.height = 99;
             npc.value = Item.buyPrice(gold: 30);
             npc.lavaImmune = true;
             npc.boss = true;
@@ -77,14 +77,14 @@ namespace Eternal.NPCs.Boss.CarmaniteScouter
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             npc.lifeMax = 9000; //(int)(npc.lifeMax + 30f * bossLifeScale);
-            npc.damage = (int)(npc.damage + 1.5f);
-            npc.defense = (int)(npc.defense + numPlayers);
+            npc.damage = 16;
+            npc.defense = 14;
 
             if(EternalWorld.hellMode)
             {
                 npc.lifeMax = 10000; //(int)(npc.lifeMax + 30f * bossLifeScale);
-                npc.damage = (int)(npc.damage + 2.5f);
-                npc.defense = (int)(npc.defense + numPlayers);
+                npc.damage = 20; //(int)(npc.damage + 2.5f);
+                //npc.defense = (int)(npc.defense + numPlayers);
             }
         }
 
@@ -247,7 +247,7 @@ namespace Eternal.NPCs.Boss.CarmaniteScouter
                 Main.NewText("The ground has been smothered with mysterious energy...", 215, 215, 0);
                 for (int k = 0; k < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 6E-05); k++)
                 {
-                    WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next((int)(Main.maxTilesY * .3f), (int)(Main.maxTilesY * .65f)), WorldGen.genRand.Next(5, 20), WorldGen.genRand.Next(9, 20), TileType<TritalodiumOre>(), false, 0f, 0f, false, true);
+                    WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next((int)(Main.maxTilesY * .3f), (int)(Main.maxTilesY * .65f)), WorldGen.genRand.Next(2, 8), WorldGen.genRand.Next(4, 6), TileType<TritalodiumOre>(), false, 0f, 0f, false, true);
                 }
                 EternalWorld.downedCarmaniteScouter = true;
             }

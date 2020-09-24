@@ -1,6 +1,6 @@
 displayName = [c/1EC9C3:Eternal]
-author = JakeTEM and The Lounge Members
-version = 1.0.4.1
+author = JakeTEM
+version = 1.0.4
 hideCode = false
 includeSource = true
 homepage = https://discord.gg/GJYKRBt

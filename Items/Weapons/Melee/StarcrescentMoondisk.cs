@@ -1,4 +1,4 @@
-﻿using Eternal.Projectiles;
+﻿using Eternal.Projectiles.Weapons.Melee;
 using Eternal.Tiles;
 using Terraria;
 using Terraria.ID;
@@ -13,7 +13,7 @@ namespace Eternal.Items.Weapons.Melee
     {
 
         public override void SetStaticDefaults() {
-             Tooltip.SetDefault("Fires multiple moondisks\n'Who thought that a disk boomerang can be used sixteen times at one!'");
+             Tooltip.SetDefault("Fires a moondisk\n'Could've gone for the Crescent Moon, but okay...'");
         }
 
         public override void SetDefaults()
@@ -53,7 +53,7 @@ namespace Eternal.Items.Weapons.Melee
 
         }
 
-       public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+       /*public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             int numberProjectiles = 16;
             for (int j = 0; j < numberProjectiles; j++)
@@ -70,7 +70,7 @@ namespace Eternal.Items.Weapons.Melee
                 Projectile.NewProjectile(position.X, position.Y, vX, vY, type, damage, knockBack, Main.myPlayer);
             }
             return false;
-        }
+        }*/
 
     }
 }

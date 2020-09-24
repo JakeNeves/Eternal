@@ -13,10 +13,12 @@ using Eternal.Tiles;
 using System;
 using System.IO;
 using System.Collections.Generic;
+using Steamworks;
+using Eternal.NPCs;
 
 namespace Eternal
 {
-    class EternalWorld : ModWorld
+    public class EternalWorld : ModWorld
     {
         #region BiomeTiles
         public static int DuneTiles;
@@ -41,30 +43,42 @@ namespace Eternal
         public override void Initialize()
 		{
 			downedCarmaniteScouter = false;
-		}
+            downedDunekeeper = false;
+            downedIncinerius = false;
+            downedSubzeroElemental = false;
+
+            hellMode = false;
+        }
 
 		public override TagCompound Save()
 		{
 			var downed = new List<string>();
+            var difficulty = new List<string>();
 			if (downedCarmaniteScouter) downed.Add("eternal");
             if (downedDunekeeper) downed.Add("eternal");
             if (downedIncinerius) downed.Add("eternal");
             if (downedSubzeroElemental) downed.Add("eternal");
 
+            if (hellMode) difficulty.Add("eternal");
+
             return new TagCompound
 			{
-				{"downed", downed }
-			};
+				{"downed", downed },
+                {"difficulty", difficulty }
+            };
 
 		}
 
         public override void Load(TagCompound tag)
         {
             var downed = tag.GetList<string>("downed");
+            var difficulty = tag.GetList<string>("difficulty");
             downedCarmaniteScouter = downed.Contains("eternal");
             downedDunekeeper = downed.Contains("eternal");
             downedIncinerius = downed.Contains("eternal");
             downedSubzeroElemental = downed.Contains("eternal");
+
+            hellMode = difficulty.Contains("eternal");
         }
 
         public override void LoadLegacy(BinaryReader reader)
@@ -85,29 +99,42 @@ namespace Eternal
         public override void NetSend(BinaryWriter writer)
         {
             BitsByte flags = new BitsByte();
+            BitsByte difficultyFlag = new BitsByte();
             flags[0] = downedCarmaniteScouter;
-            flags[0] = downedDunekeeper;
-            flags[0] = downedIncinerius;
-            flags[0] = downedSubzeroElemental;
+            flags[1] = downedDunekeeper;
+            flags[2] = downedIncinerius;
+            flags[3] = downedSubzeroElemental;
+
+            difficultyFlag[0] = hellMode;
+
+            writer.Write(difficultyFlag);
             writer.Write(flags);
         }
 
         public override void NetReceive(BinaryReader reader)
         {
             BitsByte flags = reader.ReadByte();
+            BitsByte difficultyFlag = new BitsByte();
             #region DownedBossFlags
             downedCarmaniteScouter = flags[0];
             downedDunekeeper = flags[0];
             downedIncinerius = flags[0];
             downedSubzeroElemental = flags[0];
             #endregion
+
+            difficultyFlag[0] = hellMode;
+        }
+
+        public override void PostUpdate()
+        {
+            EternalGlobalNPC.hellModeDifficulty = hellMode;
         }
 
         //ripped this from tremor, credit to whoever wrote this originally...
         public static void DropComet()
         {
             bool flag = true;
-            if (Main.netMode == 1)
+            if (Main.netMode == NetmodeID.MultiplayerClient)
             {
                 return;
             }
@@ -472,6 +499,8 @@ namespace Eternal
             {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
             {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
         };
+
+        
 
         public bool PlaceDuneTemple(int i, int j)
         {

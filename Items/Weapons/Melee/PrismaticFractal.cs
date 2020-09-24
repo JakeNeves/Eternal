@@ -1,4 +1,4 @@
-﻿using Eternal.Projectiles;
+﻿using Eternal.Projectiles.Weapons.Melee;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

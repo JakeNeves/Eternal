@@ -32,7 +32,7 @@ namespace Eternal
             {
                 Item item = player.armor[i];
 
-                if (item.type == ItemType<DivineBarrierPlus>())
+                if (item.type == ItemType<CosmicStarstryderTreads>())
                     dashAccessoryEquipped = true;
                 else if (item.type == ItemID.EoCShield || item.type == ItemID.MasterNinjaGear || item.type == ItemID.Tabi)
                     return;

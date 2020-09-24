@@ -1,4 +1,4 @@
-﻿using Eternal.Projectiles;
+﻿using Eternal.Projectiles.Weapons.Magic;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;

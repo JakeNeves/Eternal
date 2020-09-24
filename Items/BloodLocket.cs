@@ -4,25 +4,25 @@ using Terraria.ModLoader;
 
 namespace Eternal.Items
 {
-    class BloodLocket : ModItem
+    public class BloodLocket : ModItem
     {
 
         public override void SetStaticDefaults()
         {
+            DisplayName.SetDefault("Death Charm");
             Tooltip.SetDefault("Activates Hell Mode" +
                 "\nCan be toggled on and off" +
                 "\nCan only be used in Expert only" +
-                "\nGives Eternal Mod Bosses Increaced Health, Defense, and Damage" +
-                "\nSome Eternal Mod Bosses will have diffrent attack patterns" +
+                "\nGives Bosses Increaced Health, Defense, and Damage" +
+                "\nSome Bosses will have diffrent and unique attack patterns" +
                 "\nBosses will drop unique items, accesories, and weapons exclusive to this difficulty" +
-                "\nMakes some Mini-Bosses EXTREME (NYI)" +
-                "\n'Enjoy your pain and suffering, kid...'");
+                "\n'You're playing with chaos'");
         }
 
         public override void SetDefaults()
         {
-            item.width = 24;
-            item.height = 38;
+            item.width = 28;
+            item.height = 30;
             item.useStyle = ItemUseStyleID.HoldingUp;
             item.useAnimation = 15;
             item.useTime = 15;
@@ -37,13 +37,13 @@ namespace Eternal.Items
             {
                 Main.PlaySound(SoundID.ForceRoar, player.position, 0);
                 EternalWorld.hellMode = true;
-                Main.NewText("Hell Mode is Active, enjoy the fun!", 215, 0, 215);
+                Main.NewText("Hell Mode is Active, enjoy the fun!", 210, 0, 220);
             }
             else if (EternalWorld.hellMode == true)
             {
                 Main.PlaySound(SoundID.ForceRoar, player.position, 0);
                 EternalWorld.hellMode = false;
-                Main.NewText("Hell Mode is no longer Active, not enough fun for you!", 215, 0, 215);
+                Main.NewText("Hell Mode is no longer Active, not enough fun for you!", 210, 0, 220);
             }
 
             return Main.expertMode;

@@ -77,18 +77,18 @@ namespace Eternal.NPCs.Boss.Dunekeeper
                     player.QuickSpawnItem(ItemType<Items.Armor.ThunderduneHeadgear>());
                 }
 
-                player.QuickSpawnItem(ItemType<AncientDust>(), Main.rand.Next(25, 75));
+                player.QuickSpawnItem(ItemType<DuneCore>(), Main.rand.Next(25, 75));
             }
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = 1200; //(int)(npc.lifeMax + 5f * bossLifeScale);
+            npc.lifeMax = 12000; //(int)(npc.lifeMax + 5f * bossLifeScale);
             npc.damage = (int)(npc.damage + 1f);
             npc.defense = (int)(npc.defense + numPlayers);
             if (EternalWorld.hellMode)
             {
-                npc.lifeMax = 12000;
+                npc.lifeMax = 24000;
             }
         }
 

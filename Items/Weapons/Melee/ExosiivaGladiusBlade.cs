@@ -1,4 +1,4 @@
-﻿using Eternal.Projectiles;
+﻿using Eternal.Projectiles.Weapons.Melee;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;

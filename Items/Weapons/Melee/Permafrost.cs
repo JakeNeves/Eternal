@@ -1,5 +1,5 @@
 ﻿using Eternal.Items;
-using Eternal.Projectiles;
+using Eternal.Projectiles.Weapons.Melee;
 using Eternal.Tiles;
 using System;
 using Terraria;

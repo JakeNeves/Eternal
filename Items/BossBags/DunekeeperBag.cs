@@ -50,7 +50,7 @@ namespace Eternal.Items.BossBags
 
             player.QuickSpawnItem(ItemType<PrimordialBolt>());
 
-            player.QuickSpawnItem(ItemType<AncientDust>(), Main.rand.Next(25, 75));
+            player.QuickSpawnItem(ItemType<DuneCore>(), Main.rand.Next(25, 75));
         }
 
         public override int BossBagNPC => NPCType<NPCs.Boss.Dunekeeper.Dunekeeper>();

@@ -17,6 +17,7 @@ namespace Eternal.Items.Weapons.Melee
         public override void SetDefaults()
         {
             item.width = 48;
+            item.melee = true;
             item.height = 48;
             item.damage = 75;
             item.useTime = 15;

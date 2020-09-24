@@ -11,18 +11,19 @@ namespace Eternal.Projectiles.Enemy
     {
         public override void SetStaticDefaults()
         {
-            Main.projFrames[projectile.type] = 2;
+            //Main.projFrames[projectile.type] = 2;
         }
 
         public override void SetDefaults()
         {
-            projectile.width = 47;
-            projectile.height = 35;
+            projectile.width = 25;
+            projectile.height = 39;
             projectile.hostile = true;
             projectile.friendly = false;
             projectile.melee = true;
             projectile.ignoreWater = true;
             projectile.penetrate = 3;
+            Main.projFrames[projectile.type] = 2;
         }
 
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)

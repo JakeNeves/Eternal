@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Eternal.Dusts
 {
-    class Starmetal : ModDust
+    public class Starmetal : ModDust
     {
 
 		public override void OnSpawn(Dust dust)
@@ -29,8 +29,8 @@ namespace Eternal.Dusts
 			return false;
 		}
 
-		public override Color? GetAlpha(Dust dust, Color lightColor)
-			=> new Color(50, 5, 50);
+		//public override Color? GetAlpha(Dust dust, Color lightColor)
+		//	=> new Color(50, 5, 50);
         
 
     }
