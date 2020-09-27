@@ -11,7 +11,7 @@ namespace Eternal.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("A really interesting looking shortsword\n<right> to swing normally");
+            Tooltip.SetDefault("A really interesting looking shortsword\n<right> for True Melee");
         }
 
         public override void SetDefaults()

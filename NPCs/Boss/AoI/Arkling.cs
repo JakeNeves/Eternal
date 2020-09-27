@@ -11,13 +11,10 @@ namespace Eternal.NPCs.Boss.AoI
 {
     public class Arkling : ModNPC
     {
-        const float Speed = 10;
-        const float Acceleration = 5;
-        private Player player;
-
+        
         public override void SetDefaults()
         {
-            npc.lifeMax = 3200;
+            npc.lifeMax = 400;
             npc.width = 28;
             npc.height = 62;
             npc.damage = 10;
@@ -28,11 +25,12 @@ namespace Eternal.NPCs.Boss.AoI
             npc.noGravity = true;
             npc.lavaImmune = true;
             npc.noTileCollide = true;
-            npc.aiStyle = -1;
+            npc.aiStyle = 5;
         }
 
         public override void AI()
         {
+            npc.spriteDirection = npc.direction;
         }
 
     }

@@ -19,7 +19,7 @@ namespace Eternal.Projectiles
             projectile.width = 186;
             projectile.height = 186;
             projectile.friendly = true;
-            projectile.melee = true;
+            projectile.ranged = true;
             projectile.ignoreWater = true;
             projectile.penetrate = 3;
         }

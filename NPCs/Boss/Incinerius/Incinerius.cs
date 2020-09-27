@@ -18,26 +18,24 @@ namespace Eternal.NPCs.Boss.Incinerius
     {
         public override void SetStaticDefaults()
         {
-            //Main.npcFrameCount[npc.type] = 6;
+            Main.npcFrameCount[npc.type] = 4;
         }
 
         #region Fundementals
         const int ShootType = ProjectileID.ImpFireball;
         const int ShootDamage = 9;
         const float ShootKnockback = 0f;
-        const int ShootCount = 3;
-        const int ShootSpeed = 5;
         const int ShootDirection = 5;
 
-        const float Speed = 3f;
-        const float Acceleration = 0.5f;
+        const float Speed = 6f;
+        const float Acceleration = 2f;
         int Timer;
         #endregion
 
         public override void SetDefaults()
         {
-            npc.width = 46;
-            npc.height = 50;
+            npc.width = 99;
+            npc.height = 119;
             npc.boss = true;
             music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/FieryBattler");
             npc.aiStyle = -1;
@@ -52,7 +50,7 @@ namespace Eternal.NPCs.Boss.Incinerius
             npc.knockBackResist = 0f;
             npc.noGravity = true;
             npc.noTileCollide = true;
-            npc.HitSound = SoundID.NPCHit3;
+            npc.HitSound = null;
             npc.DeathSound = SoundID.NPCDeath42;
             bossBag = ItemType<IncineriusBag>();
         }
@@ -85,6 +83,7 @@ namespace Eternal.NPCs.Boss.Incinerius
 
         public override void HitEffect(int hitDirection, double damage)
         {
+            Main.PlaySound(SoundID.Tink, npc.position);
             if (npc.life <= 0)
             {
                 Main.NewText("Ack...", 215, 95, 0);
@@ -138,6 +137,8 @@ namespace Eternal.NPCs.Boss.Incinerius
         public override void AI()
         {
             npc.spriteDirection = npc.direction;
+
+            Lighting.AddLight(npc.position, 0.215f, 0.95f, 0f);
 
             if (NPC.AnyNPCs(NPCType<RollingFire>()))
             {
@@ -251,7 +252,7 @@ namespace Eternal.NPCs.Boss.Incinerius
             return null;
         }
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        /*public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
             Texture2D drawTexture = Main.npcTexture[npc.type];
             Vector2 origin = new Vector2((drawTexture.Width / 2) * 0.5F, (drawTexture.Height / Main.npcFrameCount[npc.type]) * 0.5F);
@@ -264,6 +265,6 @@ namespace Eternal.NPCs.Boss.Incinerius
             spriteBatch.Draw(drawTexture, drawPos, npc.frame, Color.Orange, npc.rotation, origin, npc.scale, effects, 0);
 
             return false;
-        }
+        }*/
     }
 }

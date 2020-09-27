@@ -18,8 +18,8 @@ namespace Eternal.Items.Weapons
         {
             item.damage = 9999999;
             //item.melee = true;
-            item.width = 48;
-            item.height = 48;
+            item.width = 78;
+            item.height = 78;
             item.useTime = 20;
             item.useAnimation = 20;
             item.useStyle = ItemUseStyleID.SwingThrow;

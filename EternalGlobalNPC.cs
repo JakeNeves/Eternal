@@ -7,7 +7,34 @@ namespace Eternal.NPCs
 {
     public class EternalGlobalNPC : GlobalNPC
     {
+        public override bool InstancePerEntity => true;
+
         public static bool hellModeDifficulty = EternalWorld.hellMode;
+
+        #region Defbuffs
+        public bool doomFire;
+        #endregion
+        
+        public override void ResetEffects(NPC npc)
+        {
+            doomFire = false;
+        }
+
+        public override void UpdateLifeRegen(NPC npc, ref int damage)
+        {
+            if (doomFire)
+            {
+                if (npc.lifeRegen > 0)
+                {
+                    npc.lifeRegen = 0;
+                }
+                npc.lifeRegen -= 20;
+                if (damage < 2)
+                {
+                    damage = 2;
+                }
+            }
+        }
 
         #region Hell Mode Vanilla Bosses
         public override void ScaleExpertStats(NPC npc, int numPlayers, float bossLifeScale)

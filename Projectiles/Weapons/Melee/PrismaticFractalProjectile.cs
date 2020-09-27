@@ -30,9 +30,21 @@ namespace Eternal.Projectiles.Weapons.Melee
             projectile.light = 1.0f;
             projectile.melee = true;
             projectile.ignoreWater = true;
-            projectile.tileCollide = false;
+            projectile.tileCollide = true;
             projectile.extraUpdates = 1;
             aiType = ProjectileID.Bullet;
+        }
+
+        public override void Kill(int timeLeft)
+        {
+            for (int k = 0; k < 5; k++)
+            {
+                Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, DustID.PurpleCrystalShard, projectile.oldVelocity.X * 0.5f, projectile.oldVelocity.Y * 0.5f);
+                Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, DustID.BlueCrystalShard, projectile.oldVelocity.X * 0.5f, projectile.oldVelocity.Y * 0.5f);
+                Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, DustID.PinkCrystalShard, projectile.oldVelocity.X * 0.5f, projectile.oldVelocity.Y * 0.5f);
+            }
+            Collision.HitTiles(projectile.position + projectile.velocity, projectile.velocity, projectile.width, projectile.height);
+            Main.PlaySound(SoundID.Tink, projectile.position);
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)

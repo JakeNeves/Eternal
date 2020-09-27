@@ -58,6 +58,12 @@ namespace Eternal
 				priority = MusicPriority.BiomeLow;
 			}
 
+			if (Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneLabrynth)
+			{
+				music = GetSoundSlot(SoundType.Music, "Sounds/Music/MazesAndLivingSwords");
+				priority = MusicPriority.BiomeLow;
+			}
+
 		}
 
         public override void PostSetupContent()

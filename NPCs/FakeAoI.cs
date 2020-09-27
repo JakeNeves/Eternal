@@ -7,7 +7,7 @@ using System;
 
 namespace Eternal.NPCs
 {
-    class FakeAoI : ModNPC
+    public class FakeAoI : ModNPC
     {
         public override void SetStaticDefaults()
         {
@@ -19,19 +19,18 @@ namespace Eternal.NPCs
             npc.width = 48;
             npc.height = 160;
             npc.aiStyle = -1;
-            npc.defense = 99;
+            npc.defense = 10;
             npc.lifeMax = 990000;
             npc.HitSound = SoundID.NPCHit4;
             npc.DeathSound = SoundID.NPCDeath3;
             npc.noGravity = true;
             npc.noTileCollide = true;
-            npc.knockBackResist = 99.9f;
+            npc.knockBackResist = -1f;
             npc.damage = 100;
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            //The Fake Ark of Imparus is currently under testing right now...
             return 0f;
         }
 
@@ -44,7 +43,7 @@ namespace Eternal.NPCs
             }
             if (npc.ai[1] != 3f && npc.ai[1] != 2f)
             {
-                Main.PlaySound(SoundID.Roar, (int)npc.position.X, (int)npc.position.Y, 0, 1f, 0f);
+                //Main.PlaySound(SoundID.Roar, (int)npc.position.X, (int)npc.position.Y, 0, 1f, 0f);
                 npc.ai[1] = 2f;
             }
             if (Main.player[npc.target].dead || Math.Abs(npc.position.X - Main.player[npc.target].position.X) > 2000f || Math.Abs(npc.position.Y - Main.player[npc.target].position.Y) > 2000f)

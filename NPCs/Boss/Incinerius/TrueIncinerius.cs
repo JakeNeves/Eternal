@@ -9,22 +9,20 @@ namespace Eternal.NPCs.Boss.Incinerius
     [AutoloadBossHead]
     public class TrueIncinerius : ModNPC
     {
-
-        private float vel = 5.5f;
         int Timer;
-        const float Speed = 15;
-        const float Acceleration = 1;
+        const float Speed = 14;
+        const float Acceleration = 4;
 
         public override void SetStaticDefaults()
         {
-            //Main.npcFrameCount[npc.type] = 6;
+            Main.npcFrameCount[npc.type] = 4;
         }
 
         public override void SetDefaults()
         {
             npc.lifeMax = 920000;
-            npc.width = 69;
-            npc.height = 58;
+            npc.width = 127;
+            npc.height = 123;
             npc.damage = 25;
             npc.defense = 75;
             npc.boss = true;
@@ -37,9 +35,14 @@ namespace Eternal.NPCs.Boss.Incinerius
             npc.buffImmune[BuffID.Electrified] = true;
             npc.knockBackResist = 0f;
             npc.noGravity = true;
-            npc.HitSound = SoundID.NPCHit4;
+            npc.HitSound = null;
             npc.DeathSound = SoundID.NPCDeath42;
             npc.aiStyle = -1;
+        }
+
+        public override void OnHitPlayer(Player player, int damage, bool crit)
+        {
+            player.AddBuff(mod.BuffType("DoomFire"), 180, false);
         }
 
         /* Vector2 VelocityFPTP(Vector2 pos1, Vector2 pos2, float speed)
@@ -47,6 +50,19 @@ namespace Eternal.NPCs.Boss.Incinerius
             Vector2 move = pos2 - pos1;
             return move * (speed / (float)Math.Sqrt(move.X * move.X + move.Y * move.Y));
         } */
+
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            Main.PlaySound(SoundID.Tink, npc.position);
+            if (npc.life <= 0)
+            {
+                Main.NewText("Argh!", 215, 95, 0);
+
+                Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/TrueIncineriusHead"), 1f);
+                Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/TrueIncineriusTrident"), 1f);
+                Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/IncineriusBody"), 1f);
+            }
+        }
 
         public override void BossLoot(ref string name, ref int potionType)
         {

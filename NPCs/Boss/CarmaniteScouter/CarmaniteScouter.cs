@@ -9,6 +9,7 @@ using Eternal.Items.BossBags;
 using Eternal.Items.Accessories.Hell;
 using Eternal.Tiles;
 using Eternal.Items.Tools;
+using Eternal.Projectiles.Enemy;
 
 namespace Eternal.NPCs.Boss.CarmaniteScouter
 {
@@ -141,7 +142,7 @@ namespace Eternal.NPCs.Boss.CarmaniteScouter
 
         private void Shoot()
         {
-            int type = mod.ProjectileType("CarmaniteParasite");
+            int type = ProjectileType<CarmaniteParasite>();
             Vector2 velocity = player.Center - npc.Center;
             float magnitude = Magnitude(velocity);
             if (magnitude > 0)

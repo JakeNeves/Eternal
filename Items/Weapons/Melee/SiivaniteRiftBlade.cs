@@ -11,7 +11,7 @@ namespace Eternal.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Fires a Siiva Spark\n<right> to swing normally\n'Pierce the rift, and all of it's glory' \n[c/008060:Ancient Artifact] \nSomething about this rift blade seems to be some sort of rift prevention artifact and rift seal...\nI was guessing that it was a sword that sealed any rift.");
+            Tooltip.SetDefault("Fires a Siiva Spark\n<right> for True Melee\n'Pierce the rift, and all of it's glory' \n[c/008060:Ancient Artifact] \nSomething about this rift blade seems to be some sort of rift prevention artifact and rift seal...\nI was guessing that it was a sword that sealed any rift.");
         }
 
         public override void SetDefaults()

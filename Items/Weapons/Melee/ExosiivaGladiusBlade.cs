@@ -50,16 +50,24 @@ namespace Eternal.Items.Weapons.Melee
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips[0].overrideColor = new Color(5, 35, 215);
+            foreach (TooltipLine line2 in tooltips)
+            {
+                if (line2.mod == "Terraria" && line2.Name == "ItemName")
+                {
+                    line2.overrideColor = EternalColor.DarkBlue;
+                }
+            }
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            int numberProjectiles = 3;
+            int numberProjectiles = Main.rand.Next(2, 12);
             for (int j = 0; j < numberProjectiles; j++)
             {
                 Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(15));
                 Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, type, damage, knockBack, player.whoAmI);
+                Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, ProjectileType<SiivaSpark>(), damage, knockBack, player.whoAmI);
+                Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, ProjectileType<PrismaticFractalProjectile>(), damage, knockBack, player.whoAmI);
                 Main.PlaySound(SoundID.Item8, Main.myPlayer);
             }
             int spread = 10;
