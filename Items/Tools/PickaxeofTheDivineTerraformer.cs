@@ -14,6 +14,7 @@ namespace Eternal.Items.Tools
 
         public override void SetDefaults()
         {
+            item.tileBoost = 32;
             item.damage = 200;
             item.melee = true;
             item.width = 60;

@@ -9,6 +9,8 @@ using Eternal.Projectiles.Enemy;
 using Eternal.Items.Weapons.Ranged;
 using Eternal.Items.Ammo;
 using Eternal.Items.BossBags;
+using Eternal.Items;
+using Eternal.Items.Weapons.Melee;
 
 namespace Eternal.NPCs.Boss.AoI
 {
@@ -39,7 +41,7 @@ namespace Eternal.NPCs.Boss.AoI
             npc.HitSound = SoundID.NPCHit4;
             npc.DeathSound = SoundID.NPCDeath3;
             npc.boss = true;
-            music = MusicID.Boss3;
+            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/BladeofBrutality");
             npc.defense = 70;
             npc.damage = 62;
             npc.lavaImmune = true;
@@ -105,6 +107,8 @@ namespace Eternal.NPCs.Boss.AoI
             player = Main.player[npc.target];
 
             Move(new Vector2(0f, 0f));
+
+            DespawnHandler();
 
             RotateNPCToTarget();
 
@@ -197,9 +201,37 @@ namespace Eternal.NPCs.Boss.AoI
                 if (Main.rand.Next(1) == 0)
                 {
                     player.QuickSpawnItem(ItemType<Arkbow>());
+                    player.QuickSpawnItem(ItemType<ArkArrow>(), Main.rand.Next(30, 90));
                 }
 
-                player.QuickSpawnItem(ItemType<ArkArrow>(), Main.rand.Next(30, 90));
+                if (Main.rand.Next(2) == 0)
+                {
+                    player.QuickSpawnItem(ItemType<DormantHeroSword>());
+                }
+
+                if (Main.rand.Next(2) == 0)
+                {
+                    player.QuickSpawnItem(ItemType<TheImperiousCohort>());
+                }
+
+            }
+        }
+
+        private void DespawnHandler()
+        {
+            if (!player.active || player.dead)
+            {
+                npc.TargetClosest(false);
+                player = Main.player[npc.target];
+                if (!player.active || player.dead)
+                {
+                    npc.velocity = new Vector2(0f, -10f);
+                    if (npc.timeLeft > 10)
+                    {
+                        npc.timeLeft = 10;
+                    }
+                    return;
+                }
             }
         }
 

@@ -67,7 +67,6 @@ namespace Eternal.Items.Weapons.Melee
                 Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(15));
                 Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, type, damage, knockBack, player.whoAmI);
                 Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, ProjectileType<SiivaSpark>(), damage, knockBack, player.whoAmI);
-                Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, ProjectileType<PrismaticFractalProjectile>(), damage, knockBack, player.whoAmI);
                 Main.PlaySound(SoundID.Item8, Main.myPlayer);
             }
             int spread = 10;

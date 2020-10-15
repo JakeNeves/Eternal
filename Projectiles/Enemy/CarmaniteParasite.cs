@@ -11,7 +11,7 @@ namespace Eternal.Projectiles.Enemy
     {
         public override void SetStaticDefaults()
         {
-            //Main.projFrames[projectile.type] = 2;
+            Main.projFrames[projectile.type] = 2;
         }
 
         public override void SetDefaults()

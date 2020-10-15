@@ -90,19 +90,11 @@ namespace Eternal.Items.Accessories
             }
             #endregion
 
-            player.accRunSpeed = 9.8f;
-            player.spikedBoots = 2;
-            player.rocketBoots = 3;
-            player.wingTimeMax = 250;
-            player.maxRunSpeed = 20;
-
+            player.accRunSpeed = 8.8f;
+            player.moveSpeed += 0.12f;
             player.iceSkate = true;
-            player.waterWalk = true;
-            player.fireWalk = true;
-            player.lavaMax += 840;
-            //player.lavaImmune = true;
+            player.jumpBoost = true;
             player.noFallDmg = true;
-            player.blackBelt = true;
         }
 
         public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising, ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)

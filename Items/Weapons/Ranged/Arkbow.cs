@@ -22,6 +22,7 @@ namespace Eternal.Items.Weapons.Ranged
             item.noMelee = true;
             item.ranged = true;
             item.useTime = 5;
+            item.knockBack = 6f;
             item.useAnimation = 5;
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.UseSound = SoundID.Item5;

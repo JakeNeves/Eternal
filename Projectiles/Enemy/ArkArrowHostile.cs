@@ -12,6 +12,7 @@ namespace Eternal.Projectiles.Enemy
 
         public override void SetStaticDefaults()
         {
+            DisplayName.SetDefault("Ark Arrow");
             ProjectileID.Sets.TrailCacheLength[projectile.type] = 8;
             ProjectileID.Sets.TrailingMode[projectile.type] = 0;
         }

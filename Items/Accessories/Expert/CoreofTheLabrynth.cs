@@ -13,7 +13,8 @@ namespace Eternal.Items.Accessories.Expert
     {
         public override void SetStaticDefaults()
         {
-            Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(2, 4));
+            DisplayName.SetDefault("Core of the Labrynth");
+            Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(6, 4));
         }
 
         public override void SetDefaults()

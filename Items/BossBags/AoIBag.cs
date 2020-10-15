@@ -43,6 +43,11 @@ namespace Eternal.Items.BossBags
             {
                 player.QuickSpawnItem(ItemType<TheImperiousCohort>());
             }
+
+            if (Main.rand.Next(3) == 0)
+            {
+                player.QuickSpawnItem(ItemType<DormantHeroSword>());
+            }
         }
 
         public override int BossBagNPC => NPCType<NPCs.Boss.AoI.ArkofImperious>();

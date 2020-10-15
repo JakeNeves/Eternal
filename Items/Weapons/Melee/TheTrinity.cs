@@ -21,8 +21,8 @@ namespace Eternal.Items.Weapons.Melee
         public override void SetDefaults()
         {
             item.useStyle = ItemUseStyleID.HoldingOut;
-            item.width = 20;
-            item.height = 16;
+            item.width = 32;
+            item.height = 28;
             item.useAnimation = 25;
             item.useTime = 25;
             item.shootSpeed = 30f;

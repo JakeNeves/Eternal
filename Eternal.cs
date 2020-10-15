@@ -28,9 +28,13 @@ namespace Eternal
 
 		}
 
-		public override void Load()
+        public override void Load()
         {
-			if (Main.netMode != NetmodeID.Server)
+			#region Music Boxes
+			AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/DunesWrath"), ItemType("DunekeeperMusicBox"), TileType("DunekeeperMusicBox"));
+            #endregion
+
+            if (Main.netMode != NetmodeID.Server)
             {
 				#region sky things
 				Filters.Scene["Eternal:TrueIncinerius"] = new Filter(new TrueIncineriusScreenShaderData("FilterMiniTower").UseColor(175f, 75f, 255f).UseOpacity(0.75f), EffectPriority.VeryHigh);

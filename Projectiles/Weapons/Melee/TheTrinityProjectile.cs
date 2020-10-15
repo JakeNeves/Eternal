@@ -9,7 +9,7 @@ namespace Eternal.Projectiles.Weapons.Melee
 {
     public class TheTrinityProjectile : ModProjectile
     {
-        public bool yoyosSpawned = false;
+        //public bool yoyosSpawned = false;
 
         public override void SetStaticDefaults()
         {
@@ -21,8 +21,8 @@ namespace Eternal.Projectiles.Weapons.Melee
         public override void SetDefaults()
         {
             projectile.extraUpdates = 1;
-            projectile.width = 10;
-            projectile.height = 10;
+            projectile.width = 20;
+            projectile.height = 20;
             projectile.aiStyle = 99;
             projectile.friendly = true;
             projectile.penetrate = -1;
@@ -31,7 +31,7 @@ namespace Eternal.Projectiles.Weapons.Melee
             
         }
 
-        public override void AI()
+        /*public override void AI()
         {
             if(!yoyosSpawned)
             {
@@ -47,7 +47,7 @@ namespace Eternal.Projectiles.Weapons.Melee
                     yoyoThunder.localAI[0] = projectile.whoAmI;
                 }
             }
-        }
+        }*/
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {

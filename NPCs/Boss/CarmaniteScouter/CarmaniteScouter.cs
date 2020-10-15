@@ -8,7 +8,7 @@ using Eternal.Items;
 using Eternal.Items.BossBags;
 using Eternal.Items.Accessories.Hell;
 using Eternal.Tiles;
-using Eternal.Items.Tools;
+using Eternal.Items.Weapons.Melee;
 using Eternal.Projectiles.Enemy;
 
 namespace Eternal.NPCs.Boss.CarmaniteScouter
@@ -234,13 +234,23 @@ namespace Eternal.NPCs.Boss.CarmaniteScouter
             }
             else
             {
+                if (Main.rand.Next(1) == 0)
+                {
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<CarmaniteBane>());
+                }
+                if (Main.rand.Next(2) == 0)
+                {
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<CarmanitePurgatory>());
+                }
                 if (Main.rand.Next(3) == 0)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<TritalodiumBar>(), Main.rand.Next(15, 30));
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<CarmaniteRipperClaws>());
+                }
+                if (Main.rand.Next(4) == 0)
+                {
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<BruteCleavage>());
                 }
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<Carmanite>(), Main.rand.Next(15, 30));
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<CarmanitePickaxe>());
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<CarmaniteHammaxe>());
             }
 
             if (!EternalWorld.downedCarmaniteScouter)

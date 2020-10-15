@@ -21,8 +21,8 @@ namespace Eternal.Items.Weapons.Melee
 		{
 			item.damage = 2400;
 			item.useStyle = ItemUseStyleID.HoldingOut;
-			item.useAnimation = 27;
-			item.useTime = 12;
+			item.useAnimation = 12;
+			item.useTime = 24;
 			item.shootSpeed = 4.5f;
 			item.knockBack = 65f;
 			item.width = 69;

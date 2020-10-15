@@ -11,7 +11,7 @@ namespace Eternal.Dusts
 		{
 			dust.velocity.Y = Main.rand.Next(-8, 4) * 0.1f;
 			dust.velocity.X *= 0.2f;
-			dust.scale *= 0.4f;
+			dust.scale *= 1.4f;
 		}
 
         public override bool MidUpdate(Dust dust)
@@ -27,7 +27,7 @@ namespace Eternal.Dusts
                 return false;
             }
 
-            float strength = dust.scale * 1.4f;
+            float strength = dust.scale * 1.2f;
             if (strength > 1f)
             {
                 strength = 1f;

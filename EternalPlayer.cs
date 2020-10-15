@@ -14,13 +14,13 @@ namespace Eternal
     public class EternalPlayer : ModPlayer
     {
         #region DamageClasses
-        public float alchemeyDamage = 1f;
+        public float evocationDamage = 1f;
         public float radiantDamage = 1f;
         #endregion
 
         public override void ResetEffects()
         {
-            alchemeyDamage = 1f;
+            evocationDamage = 1f;
             radiantDamage = 1f;
         }
 

@@ -19,7 +19,7 @@ namespace Eternal.Items.Weapons.Expert
             item.width = 28;
             item.height = 30;
             item.damage = 25;
-            item.knockBack = 0;
+            item.knockBack = 2;
             item.value = Item.buyPrice(silver: 3);
             item.useTime = 10;
             item.useAnimation = 10;
