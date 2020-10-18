@@ -37,7 +37,7 @@ namespace Eternal
             if (Main.netMode != NetmodeID.Server)
             {
 				#region sky things
-				Filters.Scene["Eternal:TrueIncinerius"] = new Filter(new TrueIncineriusScreenShaderData("FilterMiniTower").UseColor(175f, 75f, 255f).UseOpacity(0.75f), EffectPriority.VeryHigh);
+				Filters.Scene["Eternal:TrueIncinerius"] = new Filter(new TrueIncineriusScreenShaderData("FilterMiniTower").UseColor(0.175f, 0.75f, 0.255f).UseOpacity(0.75f), EffectPriority.VeryHigh);
 				SkyManager.Instance["Eternal:TrueIncinerius"] = new TrueIncineriusSky();
                 #endregion
             }

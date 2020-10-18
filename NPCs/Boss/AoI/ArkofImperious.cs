@@ -11,6 +11,7 @@ using Eternal.Items.Ammo;
 using Eternal.Items.BossBags;
 using Eternal.Items;
 using Eternal.Items.Weapons.Melee;
+using Eternal.NPCs.Labrynth;
 
 namespace Eternal.NPCs.Boss.AoI
 {
@@ -35,8 +36,8 @@ namespace Eternal.NPCs.Boss.AoI
         public override void SetDefaults()
         {
             npc.aiStyle = -1;
-            npc.width = 60;
-            npc.height = 184;
+            npc.width = 68;
+            npc.height = 230;
             npc.lifeMax = 1200000;
             npc.HitSound = SoundID.NPCHit4;
             npc.DeathSound = SoundID.NPCDeath3;

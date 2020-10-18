@@ -1,4 +1,5 @@
-﻿using Eternal.Projectiles.Weapons.Melee;
+﻿using Microsoft.Xna.Framework;
+using Eternal.Projectiles.Weapons.Melee;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -14,8 +15,8 @@ namespace Eternal.Items.Weapons.Melee
 
         public override void SetDefaults()
         {
-            item.width = 44;
-            item.height = 44;
+            item.width = 38;
+            item.height = 38;
             item.shootSpeed = 12f;
             item.damage = 120;
             item.knockBack = 10.5f;
@@ -28,6 +29,7 @@ namespace Eternal.Items.Weapons.Melee
             item.autoReuse = true;
             item.value = Item.sellPrice(gold: 1, silver: 30);
             item.shoot = mod.ProjectileType("PrismaticFractalProjectile");
+            item.color = new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB);
         }
 
         public override void AddRecipes()

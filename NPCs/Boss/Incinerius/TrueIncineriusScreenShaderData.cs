@@ -17,7 +17,7 @@ namespace Eternal.NPCs.Boss.Incinerius
 
         private void UpdateTrueIncineriusIndex()
         {
-            int TrueIncineriusType = ModLoader.GetMod("Eternal").NPCType("Incinerius");
+            int TrueIncineriusType = ModLoader.GetMod("Eternal").NPCType("TrueIncinerius");
             if (TrueIncineriusIndex >= 0 && Main.npc[TrueIncineriusIndex].active && Main.npc[TrueIncineriusIndex].type == TrueIncineriusType)
             {
                 return;

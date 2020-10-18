@@ -18,7 +18,7 @@ namespace Eternal.Projectiles.Enemy
             projectile.friendly = false;
             projectile.melee = true;
             projectile.ignoreWater = true;
-            projectile.penetrate = -1;
+            projectile.penetrate = 1;
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
@@ -36,7 +36,7 @@ namespace Eternal.Projectiles.Enemy
             return projHitbox.Intersects(targetHitbox);
         }
 
-        private const float maxTicks = 15f;
+        private const float maxTicks = 80f;
         private const int alphaReducation = 25;
 
         public override void AI()

@@ -10,6 +10,7 @@ using Eternal.Items.Weapons.Melee;
 using Eternal.Items.Weapons.Ranged;
 using Eternal.Items.Weapons.Summon;
 using Eternal.Projectiles.Enemy;
+using System;
 
 namespace Eternal.NPCs.Boss.SubzeroElemental
 {
@@ -21,7 +22,7 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
         private Player player;
         int AttackTimer = 0;
         int Phase = 0;
-        int Speed = 0;
+        float speed;
         #endregion
 
         public override void SetStaticDefaults()
@@ -31,7 +32,7 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
 
         public override void SetDefaults()
         {
-            npc.width = 59;
+            npc.width = 67;
             npc.height = 71;
             npc.lifeMax = 46000;
             npc.damage = 50;
@@ -70,11 +71,14 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
                 Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/SubzeroElementalHead1"), 1f);
                 Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/SubzeroElementalHead2"), 1f);
                 Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/SubzeroElementalBody"), 1f);
-                Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/SubzeroElementalCrystal"), 1f);
                 Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/SubzeroElementalLeftArm"), 1f);
                 Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/SubzeroElementalLeftHand"), 1f);
                 Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/SubzeroElementalRightArm"), 1f);
                 Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/SubzeroElementalRightHand"), 1f);
+                Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/SubzeroElementalRightHorn1"), 1f);
+                Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/SubzeroElementalRightHorn2"), 1f);
+                Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/SubzeroElementalRightSpike1"), 1f);
+                Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/SubzeroElementalRightSpike2"), 1f);
             } else
             {
                 Main.PlaySound(SoundID.Tink, (int)npc.position.X, (int)npc.position.Y, 1, 1f, 0f);
@@ -82,94 +86,120 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
             }
         }
 
+        public override void OnHitPlayer(Player player, int damage, bool crit)
+        {
+            player.AddBuff(BuffID.Chilled, 180, false);
+            if (EternalWorld.hellMode)
+            {
+                player.AddBuff(BuffID.Weak, 180, false);
+            }
+        }
+
+        private void Shoot()
+        {
+            int type = ProjectileType<FridgedSpike>();
+            Vector2 velocity = player.Center - npc.Center;
+            float magnitude = Magnitude(velocity);
+            if (magnitude > 0)
+            {
+                velocity *= 8f / magnitude;
+            }
+            else
+            {
+                velocity = new Vector2(0f, 10f);
+            }
+            Projectile.NewProjectile(npc.Center, velocity, type, npc.damage, 2f);
+        }
+
         public override void AI()
         {
+            Lighting.AddLight(npc.position, 0.232f, 0.196f, 0.84f);
+
+            player = Main.player[npc.target];
+
+            Move(new Vector2(0f, 0f));
+
+            DespawnHandler();
 
             if (npc.life < npc.lifeMax / 2)
             {
                 Phase = 1;
             }
-            
-            npc.spriteDirection = npc.direction;
-
-            Speed = 5;
 
             AttackTimer++;
 
-            Player player = Main.player[npc.target];
-            npc.TargetClosest(true);
+            switch(AttackTimer)
+            {
+                case 110:
+                    Shoot();
+                    break;
+                case 120:
+                    NPC.NewNPC((int)npc.Center.X - 20, (int)npc.Center.Y, NPCID.IceElemental);
+                    if (EternalWorld.hellMode)
+                    {
+                        NPC.NewNPC((int)npc.Center.X - 20, (int)npc.Center.Y, NPCID.SpikedIceSlime);
+                    } else
+                    {
+                        NPC.NewNPC((int)npc.Center.X - 20, (int)npc.Center.Y, NPCID.IceSlime);
+                    }
+                    break;
+                case 150:
+                    Shoot();
+                    break;
+                case 200:
+                    AttackTimer = 0;
+                    break;
+            }
 
-            npc.spriteDirection = npc.direction;
+        }
 
-            Vector2 moveTo = player.Center - npc.Center;
-            moveTo.Normalize();
-            moveTo = moveTo * Speed;
+        private float Magnitude(Vector2 mag)
+        {
+            return (float)Math.Sqrt(mag.X * mag.X + mag.Y * mag.Y);
+        }
 
-            npc.velocity = moveTo;
+        private void Move(Vector2 offset)
+        {
+            if (Phase == 1)
+            {
+                speed = 10f;
+            }
+            else
+            {
+                speed = 8f;
+            }
+            Vector2 moveTo = player.Center + offset;
+            Vector2 move = moveTo - npc.Center;
+            float magnitude = Magnitude(move);
+            if (magnitude > speed)
+            {
+                move *= speed / magnitude;
+            }
+            float turnResistance = 2f;
+            move = (npc.velocity * turnResistance + move) / (turnResistance + 2f);
+            magnitude = Magnitude(move);
+            npc.spriteDirection = npc.direction = npc.Center.X < player.Center.X ? -1 : 1;
+            if (magnitude > speed)
+            {
+                move *= speed / magnitude;
+            }
+            npc.velocity = move;
+        }
 
-            //Despawn Handler
+        private void DespawnHandler()
+        {
             if (!player.active || player.dead)
             {
                 npc.TargetClosest(false);
-                npc.direction = 1;
-                npc.velocity.Y = npc.velocity.Y - 0.1f;
-                if (npc.timeLeft > 10)
+                player = Main.player[npc.target];
+                if (!player.active || player.dead)
                 {
-                    npc.timeLeft = 10;
+                    npc.velocity = new Vector2(0f, -10f);
+                    if (npc.timeLeft > 10)
+                    {
+                        npc.timeLeft = 10;
+                    }
                     return;
-                }
-            }
-
-            if (Phase == 0)
-            {
-                if(AttackTimer == 100)
-                {
-                    Projectile.NewProjectile(npc.position.X + 15, npc.position.Y + 20, -90, 0, ProjectileType<FridgedSpike>(), 5, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 15, npc.position.Y + 20, 90, 0, ProjectileType<FridgedSpike>(), 5, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 15, npc.position.Y + 20, 0, 90, ProjectileType<FridgedSpike>(), 5, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 15, npc.position.Y + 20, 0, -90, ProjectileType<FridgedSpike>(), 5, 0, Main.myPlayer, 0f, 0f);
-                }
-                if (AttackTimer == 175)
-                {
-                    Projectile.NewProjectile(npc.position.X + 15, npc.position.Y + 20, -90, -30, ProjectileType<FridgedSpike>(), 5, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 15, npc.position.Y + 20, 90, -30, ProjectileType<FridgedSpike>(), 5, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 15, npc.position.Y + 20, -90, 30, ProjectileType<FridgedSpike>(), 5, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 15, npc.position.Y + 20, 90, 30, ProjectileType<FridgedSpike>(), 5, 0, Main.myPlayer, 0f, 0f);
-                }
-                if (AttackTimer == 250)
-                {
-                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, -90, 0, ProjectileID.CultistBossIceMist, 5, 0, Main.myPlayer, 0f, 0f);
-                }
-                if(AttackTimer == 325)
-                {
-                    AttackTimer = 0;
-                }
-            }
-            else if(Phase == 1 || EternalWorld.hellMode)
-            {
-                Speed = 15;
-                if(AttackTimer == 125)
-                {
-                    NPC.NewNPC((int)npc.Center.X - 20, (int)npc.Center.Y, NPCID.IceElemental);
-                    NPC.NewNPC((int)npc.Center.X - 20, (int)npc.Center.Y, NPCID.IceElemental);
-                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, -90, 0, ProjectileID.CultistBossIceMist, 5, 0, Main.myPlayer, 0f, 0f);
-                }
-                if(AttackTimer == 150)
-                {
-                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, -30, 0, ProjectileType<FridgedSpike>(), 5, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, 30, 0, ProjectileType<FridgedSpike>(), 5, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, 0, 30, ProjectileType<FridgedSpike>(), 5, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, 0, -30, ProjectileType<FridgedSpike>(), 5, 0, Main.myPlayer, 0f, 0f);
-
-                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, -30, -90, ProjectileType<FridgedSpike>(), 5, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, 30, -90, ProjectileType<FridgedSpike>(), 5, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, -30, 90, ProjectileType<FridgedSpike>(), 5, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, 30, 90, ProjectileType<FridgedSpike>(), 5, 0, Main.myPlayer, 0f, 0f);
-                }
-                if(AttackTimer == 200)
-                {
-                    Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, -90, 0, ProjectileID.CultistBossIceMist, 5, 0, Main.myPlayer, 0f, 0f);
-                    AttackTimer = 0;
                 }
             }
         }
