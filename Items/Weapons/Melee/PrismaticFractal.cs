@@ -29,7 +29,6 @@ namespace Eternal.Items.Weapons.Melee
             item.autoReuse = true;
             item.value = Item.sellPrice(gold: 1, silver: 30);
             item.shoot = mod.ProjectileType("PrismaticFractalProjectile");
-            item.color = new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB);
         }
 
         public override void AddRecipes()
