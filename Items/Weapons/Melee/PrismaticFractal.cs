@@ -15,8 +15,8 @@ namespace Eternal.Items.Weapons.Melee
 
         public override void SetDefaults()
         {
-            item.width = 38;
-            item.height = 38;
+            item.width = 44;
+            item.height = 44;
             item.shootSpeed = 12f;
             item.damage = 120;
             item.knockBack = 10.5f;
