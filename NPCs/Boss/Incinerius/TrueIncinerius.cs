@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Graphics.Effects;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -78,6 +79,10 @@ namespace Eternal.NPCs.Boss.Incinerius
 
         public override void AI()
         {
+
+            //if (!SkyManager.Instance["Eternal:TrueIncinerius"].IsActive())
+            //    SkyManager.Instance.Activate("Eternal:TrueIncinerius");
+
             npc.TargetClosest(true);
             npc.spriteDirection = npc.direction;
             Player player = Main.player[npc.target];

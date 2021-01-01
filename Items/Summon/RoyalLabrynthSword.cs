@@ -1,4 +1,5 @@
 ﻿using Eternal.NPCs.Boss.AoI;
+using Eternal.Tiles;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -39,6 +40,17 @@ namespace Eternal.Items.Summon
         public override bool CanUseItem(Player player)
         {
             return Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneLabrynth && !NPC.AnyNPCs(NPCType<ArkofImperious>());
+        }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddTile(TileType<Starforge>());
+            recipe.AddIngredient(ItemType<BrokenLabrynthSword>());
+            recipe.AddIngredient(ItemType<Astragel>(), 10);
+            recipe.AddIngredient(ItemType<CometiteBar>(), 6);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
 
         public override bool UseItem(Player player)

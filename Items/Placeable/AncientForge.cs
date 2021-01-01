@@ -9,7 +9,7 @@ namespace Eternal.Items.Placeable
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Allows you to craft ANYTHING you want.");
+            Tooltip.SetDefault("Used to craft hyper-teir items");
         }
 
         public override void SetDefaults()
@@ -24,7 +24,7 @@ namespace Eternal.Items.Placeable
             item.rare = ItemRarityID.Red;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.consumable = true;
-            item.value = Item.buyPrice(gold: 20);
+            item.value = Item.buyPrice(platinum: 10, gold: 30);
             item.createTile = TileType<Tiles.AncientForge>();
         }
 
@@ -34,8 +34,6 @@ namespace Eternal.Items.Placeable
             recipe.AddIngredient(ItemType<CometiteBar>(), 10);
             recipe.AddIngredient(ItemType<StarmetalBar>(), 200);
             recipe.AddIngredient(ItemType<Astragel>(), 30);
-            recipe.AddIngredient(ItemType<Rudanium>(), 15);
-            recipe.AddIngredient(ItemType<SignalumBar>(), 20);
             recipe.AddIngredient(ItemType<InterstellarSingularity>(), 15);
             recipe.AddIngredient(ItemType<Starforge>());
             recipe.AddIngredient(ItemID.LunarCraftingStation);
@@ -47,8 +45,6 @@ namespace Eternal.Items.Placeable
             altrecipe.AddIngredient(ItemType<CometiteBar>(), 10);
             altrecipe.AddIngredient(ItemType<StarmetalBar>(), 200);
             altrecipe.AddIngredient(ItemType<Astragel>(), 30);
-            altrecipe.AddIngredient(ItemType<Rudanium>(), 15);
-            altrecipe.AddIngredient(ItemType<SignalumBar>(), 20);
             altrecipe.AddIngredient(ItemType<InterstellarSingularity>(), 15);
             altrecipe.AddIngredient(ItemType<Starforge>());
             altrecipe.AddIngredient(ItemID.LunarCraftingStation);

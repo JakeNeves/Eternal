@@ -48,6 +48,8 @@ namespace Eternal.Items.BossBags
             {
                 player.QuickSpawnItem(ItemType<FrostyImmaterializer>());
             }
+
+            player.QuickSpawnItem(ItemType<FrostKingsCore>());
         }
 
         public override int BossBagNPC => NPCType<NPCs.Boss.SubzeroElemental.SubzeroElemental>();

@@ -34,9 +34,11 @@ namespace Eternal.Items.Summon
 
         public override bool UseItem(Player player)
         {
-            NPC.SpawnOnPlayer(player.whoAmI, NPCType<Dunekeeper>());
-            NPC.NewNPC((int)player.Center.X - 82, (int)player.Center.Y, NPCType<DunekeeperHandL>());
-            NPC.NewNPC((int)player.Center.X - 52, (int)player.Center.Y, NPCType<DunekeeperHandR>());
+            //NPC.SpawnOnPlayer(player.whoAmI, NPCType<Dunekeeper>());
+            Main.NewText("Dunekeeper has awoken!", 175, 75, 255);
+            NPC.NewNPC((int)player.Center.X, (int)player.Center.Y - 100, NPCType<Dunekeeper>());
+            NPC.NewNPC((int)player.Center.X, (int)player.Center.Y - 100, NPCType<DunekeeperHandL>());
+            NPC.NewNPC((int)player.Center.X, (int)player.Center.Y - 100, NPCType<DunekeeperHandR>());
             Main.PlaySound(SoundID.Roar, player.position, 0);
             return true;
         }

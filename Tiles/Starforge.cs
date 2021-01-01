@@ -5,6 +5,7 @@ using Terraria.ID;
 using Terraria.ObjectData;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
+using Eternal.Dusts;
 
 namespace Eternal.Tiles
 {
@@ -17,6 +18,7 @@ namespace Eternal.Tiles
             Main.tileNoAttach[Type] = true;
             Main.tileTable[Type] = true;
             Main.tileLavaDeath[Type] = false;
+            dustType = DustType<Starmetal>();
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
             TileObjectData.addTile(Type);
             ModTranslation name = CreateMapEntryName();

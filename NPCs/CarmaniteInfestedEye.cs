@@ -23,7 +23,7 @@ namespace Eternal.NPCs
             npc.defense = 2;
             npc.lifeMax = 15;
             npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
+            npc.DeathSound = SoundID.NPCDeath12;
             npc.value = 50f;
             npc.aiStyle = 2;
             aiType = NPCID.DemonEye;

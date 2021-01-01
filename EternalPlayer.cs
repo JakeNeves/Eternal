@@ -1,5 +1,6 @@
 ﻿using Eternal.Items;
 using Eternal.Items.Accessories;
+using Eternal.Items.BossBags;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,9 +61,7 @@ namespace Eternal
         public override void SetupStartInventory(IList<Item> items, bool mediumcoreDeath)
 		{
 			Item item = new Item();
-			item.SetDefaults(ItemType<AncientPendant>());
-			item.SetDefaults(ItemType<CreatorsMessage>());
-            item.SetDefaults(ItemType<BloodLocket>());
+			item.SetDefaults(ItemType<StartingBag>());
             items.Add(item);
 		}
 

@@ -3,6 +3,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Eternal.Items.Accessories;
 using static Terraria.ModLoader.ModContent;
+using Eternal.Items.Accessories.Expert;
 
 namespace Eternal
 {
@@ -32,7 +33,7 @@ namespace Eternal
             {
                 Item item = player.armor[i];
 
-                if (item.type == ItemType<CosmicStarstryderTreads>())
+                if (item.type == ItemType<CosmicStarstryderTreads>() || item.type == ItemType<FrostKingsCore>())
                     dashAccessoryEquipped = true;
                 else if (item.type == ItemID.EoCShield || item.type == ItemID.MasterNinjaGear || item.type == ItemID.Tabi)
                     return;

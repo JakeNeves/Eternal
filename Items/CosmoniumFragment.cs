@@ -9,22 +9,33 @@ using Terraria;
 
 namespace Eternal.Items
 {
-    class CosmoniumFragment : ModItem
+    public class CosmoniumFragment : ModItem
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Cosmic energy pulses from this mere fragment of celestial creatures.");
+            Tooltip.SetDefault("'A shard of the emperor's promise'");
 
-            Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(3, 16));
+            Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(6, 4));
         }
 
         public override void SetDefaults()
         {
-            item.width = 26;
-            item.height = 26;
+            item.width = 34;
+            item.height = 34;
             item.value = Item.buyPrice(platinum: 1, gold: 25, silver: 50);
-            item.rare = -12;
+            item.rare = 10;
             item.maxStack = 999;
         }
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            foreach (TooltipLine line2 in tooltips)
+            {
+                if (line2.mod == "Terraria" && line2.Name == "ItemName")
+                {
+                    line2.overrideColor = EternalColor.DarkBlue;
+                }
+            }
+        }
+
     }
 }

@@ -6,6 +6,8 @@ using Terraria.ID;
 using System;
 using System.Linq;
 using Eternal.Tiles;
+using Eternal.Items;
+using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.NPCs.Labrynth
 {
@@ -18,17 +20,17 @@ namespace Eternal.NPCs.Labrynth
 
         public override void SetDefaults()
         {
-            npc.width = 48;
-            npc.height = 160;
+            npc.width = 60;
+            npc.height = 180;
             npc.aiStyle = -1;
             npc.defense = 10;
-            npc.lifeMax = 990000;
+            npc.lifeMax = 18000;
             npc.HitSound = SoundID.NPCHit4;
             npc.DeathSound = SoundID.NPCDeath3;
             npc.noGravity = true;
             npc.noTileCollide = true;
             npc.knockBackResist = -1f;
-            npc.damage = 100;
+            npc.damage = 118;
         }
 
         public override void AI()
@@ -75,6 +77,14 @@ namespace Eternal.NPCs.Labrynth
                 {
                     npc.timeLeft = 50;
                 }
+            }
+        }
+
+        public override void NPCLoot()
+        {
+            if (Main.rand.Next(2) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<BrokenLabrynthSword>());
             }
         }
 

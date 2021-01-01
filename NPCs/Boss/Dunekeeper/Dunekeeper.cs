@@ -8,6 +8,7 @@ using Eternal.Items;
 using Eternal.Items.Weapons.Melee;
 using Eternal.Items.Weapons.Ranged;
 using Eternal.Items.BossBags;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Eternal.NPCs.Boss.Dunekeeper
 {
@@ -246,5 +247,9 @@ namespace Eternal.NPCs.Boss.Dunekeeper
             } */
 
         }
+
+        public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
+            => GlowMaskUtils.DrawNPCGlowMask(spriteBatch, npc, mod.GetTexture("NPCs/Boss/Dunekeeper/Dunekeeper_Glow"));
+
     }
 }

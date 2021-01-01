@@ -5,6 +5,8 @@ using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Eternal.Tiles;
 using System.Linq;
+using Eternal.Items;
+using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.NPCs.Labrynth
 {
@@ -59,7 +61,7 @@ namespace Eternal.NPCs.Labrynth
 
         private void Move(Vector2 offset)
         {
-            speed = 10f;
+            speed = 8f;
             Vector2 moveTo = player.Center + offset;
             Vector2 move = moveTo - npc.Center;
             float magnitude = Magnitude(move);
@@ -75,6 +77,14 @@ namespace Eternal.NPCs.Labrynth
                 move *= speed / magnitude;
             }
             npc.velocity = move;
+        }
+
+        public override void NPCLoot()
+        {
+            if (Main.rand.Next(4, 8) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<BrokenLabrynthSword>());
+            }
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

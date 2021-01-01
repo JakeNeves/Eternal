@@ -12,9 +12,9 @@ namespace Eternal.Items.Summon
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("Extinction" +
-                                "\nSummons the Champion of the cosmos" +
-                                "\nThe tablet has been sealed by the champion himself..." +
-                                "\n'The only way to break the seal, is to slay his mechanical dragon...'");
+                                "\nUnleashes the Emperor of the cosmos" +
+                                "\n[N.Y.I]" +
+                                "\n'A presence gazes upon your world...'");
         }
 
         public override void SetDefaults()
@@ -30,7 +30,7 @@ namespace Eternal.Items.Summon
         public override bool UseItem(Player player)
         {
             Main.NewText("Proove that you can challenge me first...", 0, 95, 215);
-            player.KillMe(PlayerDeathReason.ByCustomReason(player.name + " was consumed by the jaws of a god eater"), 10000, 1, false);
+            player.KillMe(PlayerDeathReason.ByCustomReason(player.name + " disinigrated into stardust"), 10000, 1, false);
             Main.PlaySound(SoundID.Roar, player.position, 0);
             return true;
         }

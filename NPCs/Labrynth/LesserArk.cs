@@ -59,7 +59,7 @@ namespace Eternal.NPCs.Labrynth
 
         private void Move(Vector2 offset)
         {
-            speed = 10f;
+            speed = 2f;
             Vector2 moveTo = player.Center + offset;
             Vector2 move = moveTo - npc.Center;
             float magnitude = Magnitude(move);

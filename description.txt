@@ -1,8 +1,8 @@
 [c/1EC9E3:Eternal] - By [c/008CFF:Jake][c/0204CFF:TEM]!
 
-1.0.4.3
+1.0.5  - [c/009933:1.0.5 (The Uber Hyperkill Update)]
 
-Feel free to join my Discord Server if you want
+Feel free to join my Discord Server and help out with the mod if you want
 https://discord.gg/GJYKRBt
 
 Eternal is a mod that loads your game with much content
@@ -11,7 +11,7 @@ From what we expect, this mod is not fully finished yet so there is no harm in c
 
 It currently adds
 Two pre-hardmode bosses
-Two out of the ten hardmode bosses
+Three out of the ten hardmode bosses
 and two out of the twenty post-moon lord bosses
 
 [c/00B359:---Credits---]
@@ -22,6 +22,10 @@ Jaer Hend / Jerrhead - Some Resprites
 Nakroxis / Atisheno - A Timy Bit of Code
 
 [c/00b359:---Changelog---]
+
+1.0.5
+Added Empraynia
+Updated Boss Checklist Compatibility
 
 1.0.4.3
 Quick Fix with the Prismatic Fractal

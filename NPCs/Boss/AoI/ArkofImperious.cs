@@ -168,7 +168,7 @@ namespace Eternal.NPCs.Boss.AoI
         {
             if (Phase == 1)
             {
-                speed = 18f;
+                speed = 14f;
             }
             else
             {
