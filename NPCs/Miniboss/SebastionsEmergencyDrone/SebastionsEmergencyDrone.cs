@@ -19,7 +19,7 @@ namespace Eternal.NPCs.Miniboss.SebastionsEmergencyDrone
         {
             npc.width = 29;
             npc.height = 33;
-            npc.lifeMax = 56000;
+            npc.lifeMax = 5600;
             npc.defense = 10;
             npc.damage = 12;
             npc.aiStyle = 62;
@@ -28,6 +28,7 @@ namespace Eternal.NPCs.Miniboss.SebastionsEmergencyDrone
             npc.DeathSound = SoundID.NPCDeath3;
             aiType = NPCID.ElfCopter;
             npc.boss = true;
+            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/MinorAttack");
         }
 
         public override void BossLoot(ref string name, ref int potionType)

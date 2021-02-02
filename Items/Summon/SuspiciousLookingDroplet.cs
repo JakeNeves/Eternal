@@ -6,18 +6,17 @@ using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Items.Summon
 {
-    class SuspiciousLookingDroplet : ModItem
+    public class SuspiciousLookingDroplet : ModItem
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Summons a Carmanite Scouter, The blood-feasting abomination");
-            ItemID.Sets.SortingPriorityBossSpawns[item.type] = 13;
+            Tooltip.SetDefault("Summons the Carmanite Scouter, The blood-feasting abomination");
         }
 
         public override void SetDefaults()
         {
-            item.width = 36;
-            item.height = 56;
+            item.width = 18;
+            item.height = 30;
             item.maxStack = 99;
             item.rare = ItemRarityID.Green;
             item.useAnimation = 45;
@@ -36,20 +35,10 @@ namespace Eternal.Items.Summon
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddTile(TileID.Bottles);
-            recipe.AddIngredient(ItemID.VilePowder, 5);
-            recipe.AddIngredient(ItemID.RottenChunk);
-            recipe.AddIngredient(ItemID.VileMushroom);
+            recipe.AddTile(TileID.DemonAltar);
+            recipe.AddIngredient(ItemType<Carmanite>(), 10);
             recipe.SetResult(this);
             recipe.AddRecipe();
-
-            ModRecipe recipealt = new ModRecipe(mod);
-            recipealt.AddTile(TileID.Bottles);
-            recipealt.AddIngredient(ItemID.ViciousPowder, 5);
-            recipealt.AddIngredient(ItemID.Vertebrae);
-            recipealt.AddIngredient(ItemID.ViciousMushroom);
-            recipealt.SetResult(this);
-            recipealt.AddRecipe();
         }
     }
 }

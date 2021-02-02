@@ -39,7 +39,7 @@ namespace Eternal.Projectiles.Minions
 
         public override void AI()
         {
-            Lighting.AddLight(projectile.position, 60f, 46f, 54f);
+            Lighting.AddLight(projectile.position, 0.60f, 0.46f, 0.54f);
             projectile.rotation += projectile.velocity.X * 0.01f;
             bool projType = projectile.type == ProjectileType<CryonicEnergy>();
             Player player = Main.player[projectile.owner];

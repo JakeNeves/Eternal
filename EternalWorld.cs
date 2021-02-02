@@ -25,9 +25,9 @@ namespace Eternal
         public static int LabrynthTiles;
         #endregion
 
-        //
-        // Summary:
-        //     Just Like Master Mode, but with a little twist
+        /// <summary>
+        ///     Just Like a Master Mode+ or an Expert Mode++
+        /// </summary>
         public static bool hellMode = false;
 
         #region DownedBosses

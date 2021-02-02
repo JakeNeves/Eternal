@@ -22,7 +22,7 @@ namespace Eternal.NPCs.Miniboss.HopperMiniboss
             npc.aiStyle = 1;
             npc.defense = 16;
             npc.knockBackResist = -1;
-            npc.lifeMax = 32000;
+            npc.lifeMax = 1000;
             npc.damage = 10;
             npc.HitSound = SoundID.NPCHit4;
             npc.DeathSound = SoundID.NPCDeath3;
@@ -30,12 +30,12 @@ namespace Eternal.NPCs.Miniboss.HopperMiniboss
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = 64000;
+            npc.lifeMax = 2000;
             npc.damage = 12;
             
             if (EternalWorld.hellMode)
             {
-                npc.lifeMax = 12800;
+                npc.lifeMax = 3000;
                 npc.damage = 14;
                 npc.defense = 20;
             }

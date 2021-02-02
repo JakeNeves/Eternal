@@ -60,7 +60,7 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
             npc.defense = (int)(npc.defense + numPlayers);
             if (EternalWorld.hellMode)
             {
-                npc.lifeMax = 12250;
+                npc.lifeMax = 122400;
             }
         }
 
@@ -126,6 +126,15 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
                 Phase = 1;
             }
 
+            if (!player.ZoneSnow)
+            {
+                npc.dontTakeDamage = true;
+            }
+            else
+            {
+                npc.dontTakeDamage = false;
+            }
+
             AttackTimer++;
 
             switch(AttackTimer)
@@ -160,13 +169,17 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
 
         private void Move(Vector2 offset)
         {
-            if (Phase == 1)
+            if (!player.ZoneSnow)
             {
-                speed = 10f;
+                speed = 24f;
+            }
+            else if (Phase == 1)
+            {
+                speed = 12f;
             }
             else
             {
-                speed = 8f;
+                speed = 10f;
             }
             Vector2 moveTo = player.Center + offset;
             Vector2 move = moveTo - npc.Center;

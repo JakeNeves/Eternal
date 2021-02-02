@@ -10,7 +10,7 @@ namespace Eternal.Items
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'A durable plating, perfect for forging starmetal utilities...'");
+            Tooltip.SetDefault("'Durable plating from cosmic entities'");
             //Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(3, 30));
             ItemID.Sets.ItemIconPulse[item.type] = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
@@ -18,8 +18,8 @@ namespace Eternal.Items
 
         public override void SetDefaults()
         {
-            item.width = 24;
-            item.height = 24;
+            item.width = 30;
+            item.height = 34;
             item.rare = ItemRarityID.Red;
             item.value = Item.sellPrice(gold: 5, silver: 90);
             item.maxStack = 99;

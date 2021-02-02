@@ -38,7 +38,7 @@ namespace Eternal.Items.Accessories.Hell
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.meleeDamage += 5f;
+            player.meleeDamage += 0.5f;
         }
     }
 }

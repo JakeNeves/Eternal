@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Eternal.Items.Tools
 {
-    class Starpickaxe : ModItem
+    public class Starpickaxe : ModItem
     {
 
         public override void SetDefaults()
@@ -20,10 +20,10 @@ namespace Eternal.Items.Tools
             item.height = 64;
             item.useTime = 10;
             item.useAnimation = 15;
-            item.pick = 250;
+            item.pick = 240;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.knockBack = 12;
-            item.value = Item.buyPrice(gold: 30, silver: 75);
+            item.value = Item.sellPrice(gold: 10, silver: 78);
             item.rare = ItemRarityID.Red;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;

@@ -2,6 +2,8 @@
 using Terraria.ModLoader;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
+using Eternal.Items;
+using static Terraria.ModLoader.ModContent;
 using System;
 
 namespace Eternal.NPCs.Miniboss.HopperMiniboss
@@ -30,11 +32,22 @@ namespace Eternal.NPCs.Miniboss.HopperMiniboss
             npc.lifeMax = 16000;
             npc.damage = 18;
             npc.boss = true;
-            music = MusicID.Boss5;
+            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/MinorAttack");
             npc.HitSound = SoundID.NPCHit4;
             npc.DeathSound = SoundID.NPCDeath3;
             npc.noTileCollide = true;
             npc.noGravity = true;
+        }
+
+        public override void BossLoot(ref string name, ref int potionType)
+        {
+            potionType = ItemID.GreaterHealingPotion;
+        }
+
+        public override void NPCLoot()
+        {
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<DroxCore>());
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<DroxPlate>(), Main.rand.Next(2, 8));
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)

@@ -3,7 +3,7 @@
 1.0.5  - [c/009933:1.0.5 (The Uber Hyperkill Update)]
 
 Feel free to join my Discord Server and help out with the mod if you want
-https://discord.gg/GJYKRBt
+https://discord.gg/HUJ8KUSAjC
 
 Eternal is a mod that loads your game with much content
 possible, including a new difficulty (WIP)!
@@ -16,42 +16,15 @@ and two out of the twenty post-moon lord bosses
 
 [c/00B359:---Credits---]
 
-JakeTEM - Mostly Everything
-vvr4th - Resprites
-Jaer Hend / Jerrhead - Some Resprites
-Nakroxis / Atisheno - A Timy Bit of Code
+JakeTEM - Mod Owner
+ViVi - Sprite Artist
+Jaer Hend - Sprite Artist
 
 [c/00b359:---Changelog---]
 
 1.0.5
+Replaced the Cometite Bar with the Cometite Crystal
 Added Empraynia
 Updated Boss Checklist Compatibility
-
-1.0.4.3
-Quick Fix with the Prismatic Fractal
-
-1.0.4.2
-Resprites, Enimey and Boss Loot Tables, Post-Moon Lord Enemies now spawn in respected biomes.
-(Cosmic Enemies - Comet Biome, Fake AoI - Labrynth)
-
-1.0.4.1
-Fully Implemented the Ark of Imperious (Loot is being worked on...)
-Overhauled Some Sprites
-
-1.0.4
-Overhauled Tons of Sprites
-Added True Incinerius (Post-Moon Lord)
-Added a whole bunch of new stuff to play around with
-
-1.0.3
-Optimizations and Changes (forgot what changed...)
-
-1.0.2
-Changes (forgot what changed...)
-
-1.0.1
-Changes (forgot what changed...)
-
-1.0.0
-Initial Release
+Subzero Elemental new Enrages when you leave the Snow Biome
 

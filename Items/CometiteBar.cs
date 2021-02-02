@@ -10,20 +10,21 @@ using System.Collections.Generic;
 
 namespace Eternal.Items
 {
-    class CometiteBar : ModItem
+    public class CometiteBar : ModItem
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("The Material of The Cosmos\n'Not to be confused with Cosmolite Bar'");
+            DisplayName.SetDefault("Cometite Crystal");
+            Tooltip.SetDefault("'A shard of pure starpower'");
 
-            Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(5, 6));
+            Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(5, 10));
         }
 
         public override void SetDefaults()
         {
-            item.width = 30;
-            item.height = 24;
-            item.value = Item.buyPrice(gold: 50);
+            item.width = 16;
+            item.height = 22;
+            item.value = Item.sellPrice(gold: 5);
             item.rare = ItemRarityID.Red;
             item.maxStack = 99;
         }
