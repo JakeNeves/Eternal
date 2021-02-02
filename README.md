@@ -2,4 +2,4 @@
 
 -----------------------
 
-How did you even get here?
+For updates, read change.log
