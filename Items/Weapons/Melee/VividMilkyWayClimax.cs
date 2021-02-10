@@ -11,16 +11,16 @@ namespace Eternal.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("A really interesting looking shortsword\n<right> to swing normally");
+            Tooltip.SetDefault("<right> to swing normally\n'The Blade of what appears to be sharp cosmic crystal-like material'");
         }
 
         public override void SetDefaults()
         {
-            item.width = 88;
-            item.height = 90;
+            item.width = 82;
+            item.height = 82;
             item.damage = 975;
             item.knockBack = 30;
-            item.value = Item.buyPrice(platinum: 1);
+            item.value = Item.sellPrice(gold: 30);
             item.useTime = 10;
             item.useAnimation = 10;
             item.UseSound = SoundID.Item1;

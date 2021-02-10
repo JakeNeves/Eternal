@@ -3,15 +3,18 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Projectiles.Weapons.Melee
 {
-    class StarcrescentMoondiskProjectile : ModProjectile
+    public class StarcrescentMoondiskProjectile : ModProjectile
     {
+        int timer;
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Starcrescent Moondisk");
-            ProjectileID.Sets.TrailCacheLength[projectile.type] = 5;
+            ProjectileID.Sets.TrailCacheLength[projectile.type] = 10;
             ProjectileID.Sets.TrailingMode[projectile.type] = 0;
         }
 
@@ -23,10 +26,26 @@ namespace Eternal.Projectiles.Weapons.Melee
             projectile.friendly = true;
             projectile.melee= true;
             projectile.penetrate = 3;
-            projectile.timeLeft = 500;
+            projectile.timeLeft = 600;
             projectile.light = 1.0f;
             projectile.extraUpdates = 1;
             projectile.tileCollide = false;
+        }
+
+        public override void AI()
+        {
+            timer++;
+            switch (timer)
+            {
+                case 10:
+                    Projectile.NewProjectile(projectile.position.X + 20, projectile.position.Y + 20, projectile.direction, 0, ProjectileType<StarcrescentProjectile>(), 30, 0f, Main.myPlayer, 0f, 0f);
+                    break;
+                case 40:
+                    timer = 0;
+                    break;
+            }
+
+            Lighting.AddLight(projectile.position, 0.191f, 0.23f, 0.23f);
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)

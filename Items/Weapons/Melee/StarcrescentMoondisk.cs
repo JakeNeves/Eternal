@@ -13,7 +13,7 @@ namespace Eternal.Items.Weapons.Melee
     {
 
         public override void SetStaticDefaults() {
-             Tooltip.SetDefault("Fires a moondisk\n'Could've gone for the Crescent Moon, but okay...'");
+             Tooltip.SetDefault("Leaves a trail of Starcrescent Shards");
         }
 
         public override void SetDefaults()
