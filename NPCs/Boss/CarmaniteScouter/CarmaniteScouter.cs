@@ -111,7 +111,7 @@ namespace Eternal.NPCs.Boss.CarmaniteScouter
 
             if (Timer >= 0)
             {
-                Move(new Vector2(0, -100f));
+                Move(new Vector2(0, 0f));
             }
             if (Timer == 100)
             {
@@ -159,7 +159,14 @@ namespace Eternal.NPCs.Boss.CarmaniteScouter
 
         private void Move(Vector2 offset)
         {
-            speed = 5f;
+            if (Main.dayTime)
+            {
+                speed = 20f;
+            }
+            else
+            {
+                speed = 8f;
+            }
             Vector2 moveTo = player.Center + offset;
             Vector2 move = moveTo - npc.Center;
             float magnitude = Magnitude(move);
@@ -209,7 +216,7 @@ namespace Eternal.NPCs.Boss.CarmaniteScouter
             {
                 npc.TargetClosest(false);
                 player = Main.player[npc.target];
-                if (!player.active || player.dead || Main.dayTime)
+                if (!player.active || player.dead)
                 {
                     npc.velocity = new Vector2(0f, -10f);
                     if (npc.timeLeft > 10)

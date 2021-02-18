@@ -9,7 +9,7 @@ namespace Eternal.Projectiles.Weapons.Melee
 {
     public class StarcrescentMoondiskProjectile : ModProjectile
     {
-        int timer;
+        //int timer;
 
         public override void SetStaticDefaults()
         {
@@ -32,20 +32,12 @@ namespace Eternal.Projectiles.Weapons.Melee
             projectile.tileCollide = false;
         }
 
-        public override void AI()
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            timer++;
-            switch (timer)
+            for (int k = 0; k < 5; k++)
             {
-                case 10:
-                    Projectile.NewProjectile(projectile.position.X + 20, projectile.position.Y + 20, projectile.direction, 0, ProjectileType<StarcrescentProjectile>(), 30, 0f, Main.myPlayer, 0f, 0f);
-                    break;
-                case 40:
-                    timer = 0;
-                    break;
+                Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, DustID.Electric, projectile.oldVelocity.X * 0.5f, projectile.oldVelocity.Y * 0.5f);
             }
-
-            Lighting.AddLight(projectile.position, 0.191f, 0.23f, 0.23f);
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)

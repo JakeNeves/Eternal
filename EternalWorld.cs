@@ -23,6 +23,7 @@ namespace Eternal
         #region BiomeTiles
         public static int DuneTiles;
         public static int LabrynthTiles;
+        public static int BeneathTiles;
         #endregion
 
         /// <summary>
@@ -44,6 +45,8 @@ namespace Eternal
             thunderduneBiome = DuneTiles;
             commet = tileCounts[TileType<CometiteOre>()];
             labrynth = LabrynthTiles;
+            BeneathTiles = tileCounts[TileType<Grimstone>()];
+            theBeneath = BeneathTiles;
         }
 
         public override void Initialize()
@@ -408,6 +411,7 @@ namespace Eternal
         public static int thunderduneBiome = 0;
         public static int commet = 0;
         public static int labrynth = 0;
+        public static int theBeneath = 0;
 
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
         {

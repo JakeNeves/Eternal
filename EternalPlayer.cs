@@ -14,16 +14,6 @@ namespace Eternal
 {
     public class EternalPlayer : ModPlayer
     {
-        #region DamageClasses
-        public float evocationDamage = 1f;
-        public float radiantDamage = 1f;
-        #endregion
-
-        public override void ResetEffects()
-        {
-            evocationDamage = 1f;
-            radiantDamage = 1f;
-        }
 
         #region Defbuffs
         public bool ominousPresence = false;
@@ -39,6 +29,15 @@ namespace Eternal
         public bool ZoneLabrynth = false;
 		public bool ZoneThunderduneBiome = false;
 		public bool ZoneCommet = false;
+        public bool ZoneBeneath = false;
+
+        public override void PostUpdate()
+        {
+            if (ZoneBeneath)
+            {
+                player.AddBuff(BuffID.Obstructed, 1);
+            }
+        }
 
         public override void UpdateDead()
         {
@@ -70,6 +69,7 @@ namespace Eternal
 			ZoneThunderduneBiome = EternalWorld.thunderduneBiome > 100;
 			ZoneCommet = EternalWorld.commet > 20;
             ZoneLabrynth = EternalWorld.labrynth > 50;
+            ZoneBeneath = EternalWorld.theBeneath > 50;
         }
     }
 }

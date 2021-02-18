@@ -18,11 +18,10 @@ namespace Eternal.NPCs.Boss.Dunekeeper
         private Player player;
 
         #region Fundimentals
-        bool Spin = false;
-        int SpeedValue = 0;
-        int Phase = 0;
-        int SpinTimer = 0;
-        int AttackTimer = 0;
+        bool overhead;
+        float speed;
+        int attackTimer;
+        int Phase;
         #endregion
 
         public override void SetDefaults()
@@ -39,6 +38,7 @@ namespace Eternal.NPCs.Boss.Dunekeeper
             npc.boss = true;
             npc.noGravity = true;
             npc.noTileCollide = true;
+            npc.buffImmune[BuffID.Electrified] = true;
             npc.HitSound = SoundID.NPCHit3;
             npc.DeathSound = SoundID.NPCDeath3;
             bossBag = ItemType<DunekeeperBag>();
@@ -57,6 +57,15 @@ namespace Eternal.NPCs.Boss.Dunekeeper
 
         public override void NPCLoot()
         {
+            Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, 0, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, 0, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 0, 8, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 0, -8, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, -8, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, -8, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, 8, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, 8, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
+
             if (Main.expertMode)
             {
                 npc.DropBossBags();
@@ -82,9 +91,12 @@ namespace Eternal.NPCs.Boss.Dunekeeper
             }
         }
 
+        public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
+            => GlowMaskUtils.DrawNPCGlowMask(spriteBatch, npc, mod.GetTexture("NPCs/Boss/Dunekeeper/Dunekeeper_Glow"));
+
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = 12000; //(int)(npc.lifeMax + 5f * bossLifeScale);
+            npc.lifeMax = 12000;
             npc.damage = (int)(npc.damage + 1f);
             npc.defense = (int)(npc.defense + numPlayers);
             if (EternalWorld.hellMode)
@@ -93,37 +105,84 @@ namespace Eternal.NPCs.Boss.Dunekeeper
             }
         }
 
-        void DunekeeperLasers()
+        private void Move(Vector2 offset)
         {
-            Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, -90, 0, ProjectileID.DesertDjinnCurse, 5, 0, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, 90, 0, ProjectileID.DesertDjinnCurse, 5, 0, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, 0, 90, ProjectileID.DesertDjinnCurse, 5, 0, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, 0, -90, ProjectileID.DesertDjinnCurse, 5, 0, Main.myPlayer, 0f, 0f);
+            if(Phase == 1)
+            {
+                speed = 4.4f;
+            }
+            else if (!player.ZoneDesert)
+            {
+                speed = 6f;
+            }
+            else {
+                speed = 4f;
+            }
+            Vector2 moveTo = player.Center + offset;
+            Vector2 move = moveTo - npc.Center;
+            float magnitude = Magnitude(move);
+            if (magnitude > speed)
+            {
+                move *= speed / magnitude;
+            }
+            float turnResistance = 5f;
+            move = (npc.velocity * turnResistance + move) / (turnResistance + 1f);
+            magnitude = Magnitude(move);
+            if (magnitude > speed)
+            {
+                move *= speed / magnitude;
+            }
+            npc.velocity = move;
         }
 
-        void DunekeeperDiagonalLasers()
+        private void DespawnHandler()
         {
-            Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, -45, 0, ProjectileID.DesertDjinnCurse, 5, 0, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, 45, 0, ProjectileID.DesertDjinnCurse, 5, 0, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, 0, 45, ProjectileID.DesertDjinnCurse, 5, 0, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, 0, -45, ProjectileID.DesertDjinnCurse, 5, 0, Main.myPlayer, 0f, 0f);
+            if (!player.active || player.dead)
+            {
+                npc.TargetClosest(false);
+                player = Main.player[npc.target];
+                if (!player.active || player.dead)
+                {
+                    npc.velocity = new Vector2(0f, -10f);
+                    if (npc.timeLeft > 10)
+                    {
+                        npc.timeLeft = 10;
+                    }
+                    return;
+                }
+            }
+        }
+
+        private float Magnitude(Vector2 mag)
+        {
+            return (float)Math.Sqrt(mag.X * mag.X + mag.Y * mag.Y);
+        }
+
+        private void Shoot(Player player)
+        {
+            int type = ProjectileID.MartianTurretBolt;
+            Vector2 velocity = player.Center - npc.Center;
+            float magnitude = Magnitude(velocity);
+            if (magnitude > 0)
+            {
+                velocity *= 5f / magnitude;
+            }
+            else
+            {
+                velocity = new Vector2(0f, 5f);
+            }
+            Projectile.NewProjectile(npc.Center, velocity, type, npc.damage, 2f);
+            npc.ai[1] = 25f;
         }
 
         public override void AI()
         {
-            if (NPC.AnyNPCs(NPCType<DunekeeperHandL>()))
+            attackTimer++;
+            if (NPC.AnyNPCs(NPCType<DunekeeperHandL>()) || NPC.AnyNPCs(NPCType<DunekeeperHandR>()) || !player.ZoneDesert)
             {
                 npc.dontTakeDamage = true;
             }
-            if (!NPC.AnyNPCs(NPCType<DunekeeperHandL>()))
-            {
-                npc.dontTakeDamage = false;
-            }
-            if (NPC.AnyNPCs(NPCType<DunekeeperHandR>()))
-            {
-                npc.dontTakeDamage = true;
-            }
-            if (!NPC.AnyNPCs(NPCType<DunekeeperHandR>()))
+            else
             {
                 npc.dontTakeDamage = false;
             }
@@ -133,123 +192,58 @@ namespace Eternal.NPCs.Boss.Dunekeeper
                 Phase = 1;
             }
 
-            npc.TargetClosest(true);
+            if (Phase == 1)
+            {
+                switch(attackTimer)
+                {
+                    case 100:
+                        Shoot(player);
+                        break;
+                    case 200:
+                        Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, 0, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, 0, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 0, 8, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 0, -8, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
+                        break;
+                    case 300:
+                        attackTimer = 0;
+                        break;
+                }
+            }
+            else
+            {
+                switch(attackTimer)
+                {
+                    case 100:
+                        Shoot(player);
+                        break;
+                    case 200:
+                        Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, -8, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, -8, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, 8, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, 8, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
+                        break;
+                    case 300:
+                        attackTimer = 0;
+                        break;
+                }
+            }
+
+            #region movement
+            player = Main.player[npc.target];
+
+            Move(new Vector2(0f, 0f));
+
+            DespawnHandler();
+
             npc.spriteDirection = npc.direction;
-
-            Player player = Main.player[npc.target];
-
-            SpeedValue = Spin ? 3 : 4;
-
-            Vector2 moveTo = player.Center - npc.Center;
-            moveTo.Normalize();
-            moveTo = moveTo * SpeedValue;
-
-            npc.velocity = moveTo;
-
-            if (++SpinTimer % 180 == 0)
-            {
-                if (Spin)
-                {
-                    Spin = true;
-                }
-                else
-                {
-                    Spin = false;
-                }
-            }
-
-            if(Spin)
-            {
-                npc.rotation += npc.velocity.X * 0.25f;
-            }
-
-            switch(Phase)
-            {
-                case 0:
-                    if (++AttackTimer >= 225)
-                    {
-                        for (int i = 0; i < Main.rand.Next(5, 15); i++)
-                        {
-                            DunekeeperLasers();
-                            if (EternalWorld.hellMode)
-                            {
-                                DunekeeperDiagonalLasers();
-                            }
-                        }
-                    }
-                    if (++AttackTimer >= 230)
-                    {
-                        for (int i = 0; i < Main.rand.Next(5, 15); i++)
-                        {
-                            DunekeeperDiagonalLasers();
-                            if (EternalWorld.hellMode)
-                            {
-                                DunekeeperLasers();
-                            }
-                        }
-
-                        AttackTimer = 0;
-                    }
-                    break;
-                case 1:
-                    if (++AttackTimer >= 225)
-                    {
-                        for (int i = 0; i < Main.rand.Next(5, 15); i++)
-                        {
-                            DunekeeperLasers();
-                            DunekeeperDiagonalLasers();
-                        }
-
-                        AttackTimer = 0;
-                    }
-                    break;
-            }
-
-           /* if (Phase == 0)
-            {
-                if (++AttackTimer >= 225)
-                {
-                    for (int i = 0; i < Main.rand.Next(5, 15); i++)
-                    {
-                        DunekeeperLasers();
-                        if (EternalWorld.hellMode)
-                        {
-                            DunekeeperDiagonalLasers();
-                        }
-                    }
-                }
-                if (++AttackTimer >= 230)
-                {
-                    for (int i = 0; i < Main.rand.Next(5, 15); i++)
-                    {
-                        DunekeeperDiagonalLasers();
-                        if (EternalWorld.hellMode)
-                        {
-                            DunekeeperLasers();
-                        }
-                    }
-
-                    AttackTimer = 0;
-                }
-            }
-            else if (Phase == 0)
-            {
-                if (++AttackTimer >= 225)
-                {
-                    for (int i = 0; i < Main.rand.Next(5, 15); i++)
-                    {
-                        DunekeeperLasers();
-                        DunekeeperDiagonalLasers();
-                    }
-
-                    AttackTimer = 0;
-                }
-            } */
+            #endregion
 
         }
 
-        public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
-            => GlowMaskUtils.DrawNPCGlowMask(spriteBatch, npc, mod.GetTexture("NPCs/Boss/Dunekeeper/Dunekeeper_Glow"));
-
     }
+
+        
+
 }
+

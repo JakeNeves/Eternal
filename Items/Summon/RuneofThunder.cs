@@ -14,7 +14,6 @@ namespace Eternal.Items.Summon
         {
             DisplayName.SetDefault("Rune of Thunder");
             Tooltip.SetDefault("Summons the Dunekeeper, the Desert thundergen\n'The Spirits of the Dunes Awake'");
-            ItemID.Sets.SortingPriorityBossSpawns[item.type] = 14;
         }
 
         public override void SetDefaults()
@@ -36,7 +35,7 @@ namespace Eternal.Items.Summon
         {
             //NPC.SpawnOnPlayer(player.whoAmI, NPCType<Dunekeeper>());
             Main.NewText("Dunekeeper has awoken!", 175, 75, 255);
-            NPC.NewNPC((int)player.Center.X, (int)player.Center.Y - 100, NPCType<Dunekeeper>());
+            NPC.NewNPC((int)player.Center.X, (int)player.Center.Y - 300, NPCType<Dunekeeper>());
             NPC.NewNPC((int)player.Center.X, (int)player.Center.Y - 100, NPCType<DunekeeperHandL>());
             NPC.NewNPC((int)player.Center.X, (int)player.Center.Y - 100, NPCType<DunekeeperHandR>());
             Main.PlaySound(SoundID.Roar, player.position, 0);

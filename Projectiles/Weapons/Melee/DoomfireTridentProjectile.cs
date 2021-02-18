@@ -33,9 +33,9 @@ namespace Eternal.Projectiles.Weapons.Melee
 		}
 
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
-        		{
-            			target.AddBuff(mod.BuffType("DoomFire"), 120);
-        		}
+        {
+            target.AddBuff(mod.BuffType("DoomFire"), 120);
+        }
 
 		public float movementFactor
 		{
