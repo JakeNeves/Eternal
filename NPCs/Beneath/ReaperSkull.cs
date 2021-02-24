@@ -17,6 +17,7 @@ namespace Eternal.NPCs.Beneath
 
         public override void SetStaticDefaults()
         {
+            DisplayName.SetDefault("Possessed Stone Skull");
             Main.npcFrameCount[npc.type] = 4;
         }
 
@@ -48,8 +49,16 @@ namespace Eternal.NPCs.Beneath
 
         public override void HitEffect(int hitDirection, double damage)
         {
-                Main.PlaySound(SoundID.Tink, (int)npc.position.X, (int)npc.position.Y, 1, 1f, 0f);
+            if (npc.life <= 0)
+            {
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/ReaperSkullHead"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/ReaperSkullJaw"), 1f);
+            }
+            
+            for (int k = 0; k < damage / npc.lifeMax * 50; k++)
                 Dust.NewDust(new Vector2(npc.position.X, npc.position.Y), npc.width, npc.height, DustID.Stone);
+
+            Main.PlaySound(SoundID.Tink, (int)npc.position.X, (int)npc.position.Y, 1, 1f, 0f);
         }
 
         public override void AI()
@@ -72,7 +81,7 @@ namespace Eternal.NPCs.Beneath
 
         private void Move(Vector2 offset)
         {
-            speed = 6.8f;
+            speed = 6f;
             Vector2 moveTo = player.Center + offset;
             Vector2 move = moveTo - npc.Center;
             float magnitude = Magnitude(move);
@@ -103,7 +112,7 @@ namespace Eternal.NPCs.Beneath
             Player player = spawnInfo.player;
             if (!(player.ZoneTowerSolar || player.ZoneTowerVortex || player.ZoneTowerNebula || player.ZoneTowerStardust) && ((!Main.pumpkinMoon && !Main.snowMoon) || spawnInfo.spawnTileY > Main.worldSurface || Main.dayTime) && (!Main.eclipse || spawnInfo.spawnTileY > Main.worldSurface || !Main.dayTime) && (SpawnCondition.GoblinArmy.Chance == 0))
             {
-                int[] TileArray2 = { ModContent.TileType<Grimstone>(), TileID.Grass, TileID.Dirt, TileID.Stone,};
+                int[] TileArray2 = { ModContent.TileType<Grimstone>(), TileID.Dirt, TileID.Stone };
                 return TileArray2.Contains(Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY].type) && Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneBeneath && NPC.downedBoss1 ? 2.09f : 0f;
             }
             return SpawnCondition.OverworldNightMonster.Chance * 0.5f;

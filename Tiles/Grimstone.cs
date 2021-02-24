@@ -14,6 +14,7 @@ namespace Eternal.Tiles
 			Main.tileMergeDirt[Type] = false;
 			Main.tileBlockLight[Type] = true;
 			Main.tileLighted[Type] = false;
+			dustType = DustID.Stone;
 			drop = ItemType<Items.Placeable.Grimstone>();
 			AddMapEntry(new Color(40, 40, 40));
 			minPick = 50;

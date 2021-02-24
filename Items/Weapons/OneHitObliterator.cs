@@ -6,20 +6,21 @@ using Terraria.ModLoader;
 
 namespace Eternal.Items.Weapons
 {
-    class OneHitObliterator : ModItem
+    public class OneHitObliterator : ModItem
     {
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("One-Hit Obliterator");
-            Tooltip.SetDefault("[c/FF0000:Cheat Item]\nA single hit from this divine bulky-looking weapon sha'll perish no matter what...\nNo fellow terrarian sha'll weild this weapon in regards to it's power");
+            Tooltip.SetDefault("[c/FF0000:Cheat Item]" + 
+                "\nCan manipulate anything in a single swing" +
+                "\nItems will not drop from enemies when killed");
         }
 
         public override void SetDefaults()
         {
-            item.damage = 9999999;
-            //item.melee = true;
-            item.width = 78;
-            item.height = 78;
+            item.damage = 1;
+            item.width = 32;
+            item.height = 32;
             item.useTime = 20;
             item.useAnimation = 20;
             item.useStyle = ItemUseStyleID.SwingThrow;
@@ -29,11 +30,17 @@ namespace Eternal.Items.Weapons
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
         }
+
+        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        {
+            target.life = 0;
+        }
+
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             int dmg = tooltips.FindIndex(x => x.Name == "Damage");
             tooltips.RemoveAt(dmg);
-            tooltips.Insert(dmg, new TooltipLine(mod, "Damage", "A Ton of Heckin' Damage"));
+            tooltips.Insert(dmg, new TooltipLine(mod, "Damage", "Infinite Damage"));
         }
     }
 }

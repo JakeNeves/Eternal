@@ -36,6 +36,43 @@ namespace Eternal.NPCs
             }
         }
 
+        public override void NPCLoot(NPC npc)
+        {
+            switch(npc.type)
+            {
+                case NPCID.EyeofCthulhu:
+                    if (!NPC.downedBoss1)
+                    {
+                        Main.NewText("A faint screech can be heard from deep below...", 224, 28, 7);
+                    }
+                    break;
+                case NPCID.Skeleton:
+                    if (!NPC.downedBoss3)
+                    {
+                        Main.NewText("The dark caves beneath the world go silent...", 224, 28, 7);
+                    }
+                    break;
+                case NPCID.Plantera:
+                    if (!NPC.downedPlantBoss)
+                    {
+                        Main.NewText("A cold gust of wind blows from the tundra...", 7, 28, 224);
+                    }
+                    break;
+                case NPCID.MoonLordCore:
+                    if (!NPC.downedMoonlord)
+                    {
+                        Main.NewText("A comet has landed and struck the world!", 0, 215, 215);
+                        EternalWorld.DropComet();
+                    }
+                    if (NPC.downedMoonlord)
+                    {
+                        Main.NewText("A comet has landed and struck the world!", 0, 215, 215);
+                        EternalWorld.DropComet();
+                    }
+                    break;
+            }
+        }
+
         #region Hell Mode Vanilla Bosses
         public override void ScaleExpertStats(NPC npc, int numPlayers, float bossLifeScale)
         {

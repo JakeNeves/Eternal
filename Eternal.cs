@@ -85,8 +85,8 @@ namespace Eternal
 
 			if (Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneBeneath)
 			{
-				music = MusicID.Eerie; //Temporary Placeholder Music, will be updated once music specific to the biome is made
-				//music = GetSoundSlot(SoundType.Music, "Sounds/Music/MazesAndLivingSwords");
+				//music = MusicID.Eerie;
+				music = GetSoundSlot(SoundType.Music, "Sounds/Music/DeepDark");
 				priority = MusicPriority.BiomeLow;
 			}
 

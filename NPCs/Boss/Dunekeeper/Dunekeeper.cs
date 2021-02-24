@@ -178,7 +178,7 @@ namespace Eternal.NPCs.Boss.Dunekeeper
         public override void AI()
         {
             attackTimer++;
-            if (NPC.AnyNPCs(NPCType<DunekeeperHandL>()) || NPC.AnyNPCs(NPCType<DunekeeperHandR>()) || !player.ZoneDesert)
+            if (NPC.AnyNPCs(NPCType<DunekeeperHandL>()) || NPC.AnyNPCs(NPCType<DunekeeperHandR>()))
             {
                 npc.dontTakeDamage = true;
             }
