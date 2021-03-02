@@ -21,7 +21,7 @@ namespace Eternal.Tiles
 			name.SetDefault("Tritalodium");
 			AddMapEntry(new Color(0, 25, 50), name);
 			minPick = 55;
-			soundType = 21;
+			soundType = SoundID.Tink;
 			soundStyle = 1;
 			mineResist = 5f;
 		}

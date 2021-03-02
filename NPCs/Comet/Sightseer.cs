@@ -12,9 +12,6 @@ namespace Eternal.NPCs.Comet
     class Sightseer : ModNPC
     {
 
-        private Player player;
-        private float speed;
-
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[npc.type] = 1;

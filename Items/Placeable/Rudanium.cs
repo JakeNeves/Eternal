@@ -20,9 +20,9 @@ namespace Eternal.Items.Placeable
             item.useTurn = true;
             item.autoReuse = true;
             item.useAnimation = 15;
-            item.rare = 10;
+            item.rare = ItemRarityID.Green;
             item.useTime = 10;
-            item.useStyle = 1;
+            item.useStyle = ItemUseStyleID.SwingThrow;
             item.consumable = true;
             item.createTile = TileType<Tiles.Rudanium>();
         }

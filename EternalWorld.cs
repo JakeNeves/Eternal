@@ -1,25 +1,37 @@
 ﻿using Terraria;
-using Terraria.DataStructures;
-using Terraria.GameContent.Generation;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.World.Generation;
 using static Terraria.ModLoader.ModContent;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using Eternal.Tiles;
 using System;
 using System.IO;
 using System.Collections.Generic;
-using Steamworks;
 using Eternal.NPCs;
+using Terraria.GameContent.Generation;
+using Eternal.World;
 
 namespace Eternal
 {
     public class EternalWorld : ModWorld
     {
+        #region WorldGenTesting
+        //public static bool JustPressed(Keys key)
+        //{
+        //    return Main.keyState.IsKeyDown(key) && !Main.oldKeyState.IsKeyDown(key);
+        //}
+
+        //private void TestMethod(int x, int y)
+        //{
+        //    Dust.QuickBox(new Vector2(x, y) * 16, new Vector2(x + 1, y + 1) * 16, 2, Color.YellowGreen, null);
+        //
+        //    WorldGen.TileRunner(x - 1, y, WorldGen.genRand.Next(3, 8), WorldGen.genRand.Next(2, 8), TileID.Stone);
+        //}
+        #endregion
+
         #region BiomeTiles
         public static int DuneTiles;
         public static int LabrynthTiles;
@@ -137,6 +149,9 @@ namespace Eternal
         public override void PostUpdate()
         {
             EternalGlobalNPC.hellModeDifficulty = hellMode;
+
+            //if (JustPressed(Keys.D1))
+            //    TestMethod((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16);
         }
 
         //ripped this from tremor, credit to whoever wrote this originally...
@@ -389,13 +404,54 @@ namespace Eternal
             return true;
         }
 
-        private void GenDune(GenerationProgress progress)
+        public void GenBeneath(GenerationProgress progress)
         {
-            progress.Message = "Generating Thunderdune...";
+            progress.Message = "Making Grim Caves...";
 
+            WorldGen.TileRunner(32, 32, WorldGen.genRand.Next(90, 200), 40, TileType<Grimstone>(), true, WorldGen.genRand.Next(9, 20), WorldGen.genRand.Next(-2, 2));
+            WorldGen.TileRunner(32, 32, WorldGen.genRand.Next(90, 200), 40, TileType<Grimstone>(), true, WorldGen.genRand.Next(-20, -9), WorldGen.genRand.Next(-2, 2));
         }
 
-        private void EternalOres(GenerationProgress progress)
+        public void GenBastion()
+        {
+            bool generated = false;
+            while (!generated)
+            {
+                int renainentX = Main.rand.Next(100, Main.maxTilesX - 400);
+                int renainentY = Main.rand.Next((int)Main.worldSurface, Main.maxTilesY - 100);
+                Tile tile = Main.tile[renainentX, renainentY];
+                List<Point> location = new List<Point>();
+                Point[] containers = location.ToArray();
+                if(!tile.active() || tile.type != TileID.Dirt)
+                {
+                    continue;
+                }
+                StructureLoader.GetStructure("Bastion").PlaceForce(renainentX, renainentY, out containers);
+
+                generated = true;
+            }
+        }
+
+        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
+        {
+            int shiniesIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Shinies"));
+            if (shiniesIndex == -1)
+            {
+                return;
+            }
+
+            int LivingTreesIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Living Trees"));
+            if (LivingTreesIndex != -1)
+            {
+                tasks.Insert(LivingTreesIndex + 1, new PassLegacy("Post Terrain", delegate (GenerationProgress progress)
+                {
+                    progress.Message = "Creating Bastion";
+                    GenBastion();
+                }));
+            }
+        }
+
+        public void EternalOres(GenerationProgress progress)
         {
             progress.Message = "Generating Eternalism";
 
@@ -412,151 +468,5 @@ namespace Eternal
         public static int commet = 0;
         public static int labrynth = 0;
         public static int theBeneath = 0;
-
-        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
-        {
-            int shiniesIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Shinies"));
-            if (shiniesIndex == -1)
-            {
-                return;
-            }
-
-            tasks.Insert(shiniesIndex + 4, new PassLegacy("Generating Thunderdune...", GenDune));
-        }
-
-        //Dune Temple
-        private void MakeDuneTemple()
-        {
-            float widthScale = Main.maxTilesX / 42000f;
-            int numberToGenerate = WorldGen.genRand.Next(1, (int)(2f / widthScale));
-            for (int k = 0; k < numberToGenerate; k++)
-            {
-                bool success = false;
-                int attempts = 0;
-                while (!success)
-                {
-                    attempts++;
-                    if (attempts > 1000)
-                    {
-                        success = true;
-                        continue;
-                    }
-                    int i = WorldGen.genRand.Next(300, Main.maxTilesX - 300);
-                    if (i <= Main.maxTilesX / 2 - 50 || i >= Main.maxTilesX / 2 + 50)
-                    {
-                        int j = 0;
-                        while (!Main.tile[i, j].active() && (double)j < EternalWorld.thunderduneBiome)
-                        {
-                            j++;
-                        }
-                        if (Main.tile[i, j].type == TileType<Dunesand>() || Main.tile[i, j].type == TileType<Dunestone>())
-                        {
-                            j--;
-                            if (j > 150)
-                            {
-                                bool placementOK = true;
-                                for (int l = i - 4; l < i + 4; l++)
-                                {
-                                    for (int m = j - 6; m < j + 20; m++)
-                                    {
-                                        if (Main.tile[l, m].active())
-                                        {
-                                            int type = (int)Main.tile[l, m].type;
-                                            if (type == TileID.BlueDungeonBrick || type == TileID.GreenDungeonBrick || type == TileID.PinkDungeonBrick || type == TileID.Cloud || type == TileID.RainCloud)
-                                            {
-                                                placementOK = false;
-                                            }
-                                        }
-                                    }
-                                }
-                                if (placementOK)
-                                {
-                                    success = PlaceDuneTemple(i, j);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        private readonly int[,] _duneTempleShape =
-        {
-            {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-            {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-            {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-            {1,1,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0},
-            {1,1,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0},
-            {1,1,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0},
-            {1,1,1,0,0,0,0,0,0,0,1,1,1,2,2,2,1,1,1},
-            {1,1,1,0,0,0,0,0,0,0,1,1,1,0,0,0,1,1,1},
-            {1,1,1,0,0,0,0,0,0,0,1,1,1,0,0,0,1,1,1},
-            {1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1},
-            {1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1},
-            {1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1},
-            {1,1,1,1,1,1,1,2,2,2,1,1,1,1,1,1,1,1,1},
-            {1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1},
-            {1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1},
-            {1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1},
-            {1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1},
-            {1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1},
-            {1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1},
-            {1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1},
-            {1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1},
-            {1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1},
-            {1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1},
-            {1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1},
-            {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-            {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-            {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-        };
-
-        
-
-        public bool PlaceDuneTemple(int i, int j)
-        {
-            if (!WorldGen.SolidTile(i, j + 1))
-            {
-                return false;
-            }
-
-            if(Main.tile[i, j].active())
-            {
-                return false;
-            }
-            if (j < 150)
-            {
-                return false;
-            }
-
-            for (int y = 0; y < _duneTempleShape.GetLength(0); y++)
-            {
-                for (int x = 0; x < _duneTempleShape.GetLength(1); x++)
-                {
-                    int k = i - 3 + x;
-                    int l = j - 6 + y;
-                    if(WorldGen.InWorld(k, l, 30))
-                    {
-                        Tile tile = Framing.GetTileSafely(k, 1);
-                        switch (_duneTempleShape[y, x])
-                        {
-                            case 1:
-                                tile.type = (ushort)TileType<Dunestone>();
-                                tile.active(true);
-                            break;
-
-                            case 2:
-                                tile.type = TileID.TeamBlockYellowPlatform;
-                                tile.active(true);
-                            break;
-                        }
-
-                    }
-                }
-            }
-
-            return true;
-        }
-
     }
 }

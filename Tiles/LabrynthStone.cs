@@ -6,7 +6,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Tiles
 {
-    class LabrynthStone : ModTile
+    public class LabrynthStone : ModTile
     {
 		public override void SetDefaults()
 		{
@@ -14,12 +14,13 @@ namespace Eternal.Tiles
 			Main.tileMergeDirt[Type] = false;
 			Main.tileBlockLight[Type] = true;
 			Main.tileLighted[Type] = false;
+			dustType = DustID.Stone;
 			drop = ItemType<Items.Placeable.LabrynthStone>();
-			AddMapEntry(new Color(0, 50, 5));
+			AddMapEntry(new Color(21, 26, 35));
 			minPick = 225;
 			soundType = SoundID.Tink;
 			soundStyle = 1;
-			mineResist = 5f;
+			mineResist = 1.2f;
 		}
 	}
 }

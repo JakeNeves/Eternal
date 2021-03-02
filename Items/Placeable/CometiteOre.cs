@@ -19,7 +19,7 @@ namespace Eternal.Items.Placeable
             item.value = Item.sellPrice(gold: 50);
             item.rare = ItemRarityID.Red;
             item.useAnimation = 15;
-            item.useStyle = 1;
+            item.useStyle = ItemUseStyleID.SwingThrow;
             item.useTime = 10;
             item.useTurn = true;
             item.autoReuse = true;

@@ -4,11 +4,13 @@ using Terraria.ID;
 
 namespace Eternal.Items.Placeable
 {
-    class LabrynthStone : ModItem
+    public class LabrynthStone : ModItem
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Mined with a Lunar Pickaxe or Higher...");
+            DisplayName.SetDefault("Bastion Stone");
+            Tooltip.SetDefault("Mined with a Lunar Pickaxe or Higher..." + 
+                "\n'Those were the days...'");
         }
 
         public override void SetDefaults()
@@ -19,7 +21,7 @@ namespace Eternal.Items.Placeable
             item.useTurn = true;
             item.autoReuse = true;
             item.useAnimation = 15;
-            item.rare = ItemRarityID.Green;
+            item.rare = ItemRarityID.White;
             item.useTime = 10;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.consumable = true;
