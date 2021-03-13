@@ -1,6 +1,6 @@
 [c/1EC9E3:Eternal] - By [c/008CFF:Jake][c/0204CFF:TEM]!
 
-1.0.5  - [c/009933:1.0.5 (The Uber Hyperkill Update)]
+1.0.5  - [c/009933:The Structures Update]
 
 Feel free to join my Discord Server and help out with the mod if you want
 https://discord.gg/HUJ8KUSAjC
@@ -21,6 +21,12 @@ ViVi - Sprite Artist
 Jaer Hend - Sprite Artist
 
 [c/00b359:---Changelog---]
+
+1.0.5.2
+Added a new Ark Shrine (Originally was going to be The Bastion)
+
+1.0.5.1
+Fixed an issue with world gen.
 
 1.0.5
 Replaced the Cometite Bar with the Cometite Crystal

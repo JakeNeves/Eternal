@@ -199,21 +199,21 @@ namespace Eternal.NPCs.Boss.AoI
             }
             else
             {
-                if (Main.rand.Next(1) == 0)
-                {
+               if (Main.rand.Next(1) == 0)
+               {
                     player.QuickSpawnItem(ItemType<Arkbow>());
                     player.QuickSpawnItem(ItemType<ArkArrow>(), Main.rand.Next(30, 90));
-                }
+               }
 
-                if (Main.rand.Next(2) == 0)
-                {
+               if (Main.rand.Next(2) == 0)
+               {
                     player.QuickSpawnItem(ItemType<DormantHeroSword>());
-                }
+               }
 
-                if (Main.rand.Next(2) == 0)
-                {
+               if (Main.rand.Next(2) == 0)
+               {
                     player.QuickSpawnItem(ItemType<TheImperiousCohort>());
-                }
+               }
 
             }
         }

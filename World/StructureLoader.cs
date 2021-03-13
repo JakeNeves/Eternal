@@ -22,7 +22,7 @@ namespace Eternal.World
 			_structures["Bastion"] = new Structure(mod, "Bastion");
         }
 
-		public static Structure GetStructure(string name) => _structures[name];
+		//public static Structure GetStructure(string name) => _structures[name];
 
 		public static void Unload()
 		{

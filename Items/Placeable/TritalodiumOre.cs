@@ -12,9 +12,9 @@ namespace Eternal.Items.Placeable
             item.width = 16;
             item.height = 16;
             item.value = Item.sellPrice(silver: 30, copper: 75);
-            item.rare = 2;
+            item.rare = ItemRarityID.Green;
             item.useAnimation = 15;
-            item.useStyle = 1;
+            item.useStyle = ItemUseStyleID.SwingThrow;
             item.useTime = 10;
             item.useTurn = true;
             item.autoReuse = true;

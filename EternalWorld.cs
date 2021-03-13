@@ -412,23 +412,58 @@ namespace Eternal
             WorldGen.TileRunner(32, 32, WorldGen.genRand.Next(90, 200), 40, TileType<Grimstone>(), true, WorldGen.genRand.Next(-20, -9), WorldGen.genRand.Next(-2, 2));
         }
 
-        public void GenBastion()
+        public void createShrine()
         {
-            bool generated = false;
-            while (!generated)
+            float widthScale = Main.maxTilesX / 4200f;
+            int numberToGenerate = WorldGen.genRand.Next(1, (int)(2f * widthScale));
+            for (int k = 0; k < numberToGenerate; k++)
             {
-                int renainentX = Main.rand.Next(100, Main.maxTilesX - 400);
-                int renainentY = Main.rand.Next((int)Main.worldSurface, Main.maxTilesY - 100);
-                Tile tile = Main.tile[renainentX, renainentY];
-                List<Point> location = new List<Point>();
-                Point[] containers = location.ToArray();
-                if(!tile.active() || tile.type != TileID.Dirt)
+                bool success = false;
+                int attempts = 0;
+                while (!success)
                 {
-                    continue;
+                    attempts++;
+                    if (attempts > 1000)
+                    {
+                        success = true;
+                        continue;
+                    }
+                    int i = WorldGen.genRand.Next(300, Main.maxTilesX - 300);
+                    if (i <= Main.maxTilesX / 2 - 50 || i >= Main.maxTilesX / 2 + 50)
+                    {
+                        int j = 0;
+                        while (!Main.tile[i, j].active() && (double)j < Main.worldSurface)
+                        {
+                            j++;
+                        }
+                        if (Main.tile[i, j].type == TileID.Dirt)
+                        {
+                            j--;
+                            if (j > 150)
+                            {
+                                bool placementOK = true;
+                                for (int l = i - 4; l < i + 4; l++)
+                                {
+                                    for (int m = j - 6; m < j + 20; m++)
+                                    {
+                                        if (Main.tile[l, m].active())
+                                        {
+                                            int type = (int)Main.tile[l, m].type;
+                                            if (type == TileID.BlueDungeonBrick || type == TileID.GreenDungeonBrick || type == TileID.PinkDungeonBrick || type == TileID.Cloud || type == TileID.RainCloud)
+                                            {
+                                                placementOK = false;
+                                            }
+                                        }
+                                    }
+                                }
+                                if (placementOK)
+                                {
+                                    success = PlaceShrine(i, j);
+                                }
+                            }
+                        }
+                    }
                 }
-                StructureLoader.GetStructure("Bastion").PlaceForce(renainentX, renainentY, out containers);
-
-                generated = true;
             }
         }
 
@@ -437,6 +472,8 @@ namespace Eternal
             int shiniesIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Shinies"));
             if (shiniesIndex == -1)
             {
+                tasks.Insert(shiniesIndex + 1, new PassLegacy("Generating Eternak Ores", EternalOres));
+
                 return;
             }
 
@@ -445,15 +482,95 @@ namespace Eternal
             {
                 tasks.Insert(LivingTreesIndex + 1, new PassLegacy("Post Terrain", delegate (GenerationProgress progress)
                 {
-                    progress.Message = "Creating Bastion";
-                    GenBastion();
+                    progress.Message = "Burrying Shrine";
+                    createShrine();
                 }));
             }
         }
 
+        #region Ark Shrine
+        private readonly int[,] _shrineShape =
+        {
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+            {0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0 },
+            {0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0 },
+            {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
+        };
+
+        private readonly int[,] _shrineShapeWall =
+        {
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,1,1,1,1,1,0,0,0,1,1,1,1,1,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+        };
+        #endregion
+
+        public bool PlaceShrine(int i, int j)
+        {
+            if (!WorldGen.SolidTile(i, j + 1))
+            {
+                return false;
+            }
+            if (Main.tile[i, j].active())
+            {
+                return false;
+            }
+            if (j < 150)
+            {
+                return false;
+            }
+
+            for (int y = 0; y < _shrineShape.GetLength(0); y++)
+            {
+                for (int x = 0; x < _shrineShape.GetLength(1); x++)
+                {
+                    int k = i - 3 + x;
+                    int l = j - 6 + y;
+                    if (WorldGen.InWorld(k, l, 30))
+                    {
+                        Tile tile = Framing.GetTileSafely(k, l);
+                        switch (_shrineShape[y, x])
+                        {
+                            case 1:
+                                tile.type = (ushort)TileType<LabrynthStone>();
+                                break;
+                        }
+                        switch (_shrineShapeWall[y, x])
+                        {
+                            case 1:
+                                tile.wall = (ushort)WallType<Walls.LabrynthStoneWall>();
+                                break;
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+
         public void EternalOres(GenerationProgress progress)
         {
-            progress.Message = "Generating Eternalism";
+            progress.Message = "Generating Eternal Ores";
 
 			for (int k = 0; k < (int)((Main.maxTilesX * Main.maxTilesY) * 6E-05); k++)
 			{

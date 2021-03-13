@@ -8,7 +8,7 @@ namespace Eternal.Items.Placeable
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Bastion Stone");
+            DisplayName.SetDefault("Shrine Stone");
             Tooltip.SetDefault("Mined with a Lunar Pickaxe or Higher..." + 
                 "\n'Those were the days...'");
         }
@@ -26,6 +26,15 @@ namespace Eternal.Items.Placeable
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.consumable = true;
             item.createTile = TileType<Tiles.LabrynthStone>();
+        }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.AddIngredient(ItemType<LabrynthStoneWall>(), 4);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }
