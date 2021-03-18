@@ -4,8 +4,6 @@ using Eternal.Items.Weapons.Expert;
 using Terraria;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using Eternal.Items.Armor;
-using Eternal.Items.Accessories.Expert;
 
 namespace Eternal.Items.BossBags
 {

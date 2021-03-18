@@ -1,4 +1,4 @@
-﻿using Eternal.Projectiles;
+﻿using Eternal.Projectiles.Weapons.Expert;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

@@ -8,7 +8,7 @@ using Eternal.Items.Armor;
 
 namespace Eternal.Items.BossBags
 {
-    class DunekeeperBag : ModItem
+    public class DunekeeperBag : ModItem
     {
         public override void SetStaticDefaults()
         {
