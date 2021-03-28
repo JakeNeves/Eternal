@@ -1,8 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Eternal.Dusts;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Projectiles.Weapons.Ranged
 {
@@ -24,7 +26,7 @@ namespace Eternal.Projectiles.Weapons.Ranged
             projectile.hostile = false;
             projectile.ranged = true;
             projectile.penetrate = 5;
-            projectile.timeLeft = 600;
+            projectile.timeLeft = 300;
             projectile.alpha = 255;
             projectile.light = 1;
             projectile.ignoreWater = true;
@@ -35,11 +37,17 @@ namespace Eternal.Projectiles.Weapons.Ranged
 
 			public override void AI()
         	{
-            		Lighting.AddLight(projectile.position, 0.75f, 0f, 0.75f);
-        	}
+            	Lighting.AddLight(projectile.position, 1.98f, 0.49f, 2.47f);
+
+			for (int k = 0; k < 5; k++)
+			{
+				Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, DustID.Shadowflame, projectile.oldVelocity.X * 0.5f, projectile.oldVelocity.Y * 0.5f);
+			}
+		}
 
 		public override bool OnTileCollide(Vector2 oldVelocity)
 		{
+
 			projectile.penetrate--;
 			if (projectile.penetrate <= 0)
 			{
@@ -75,6 +83,11 @@ namespace Eternal.Projectiles.Weapons.Ranged
 
 		public override void Kill(int timeLeft)
 		{
+			for (int k = 0; k < 5; k++)
+			{
+				Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, DustType<Starmetal>(), projectile.oldVelocity.X * 0.5f, projectile.oldVelocity.Y * 0.5f);
+			}
+
 			Collision.HitTiles(projectile.position + projectile.velocity, projectile.velocity, projectile.width, projectile.height);
 			Main.PlaySound(SoundID.Item10, projectile.position);
 		}

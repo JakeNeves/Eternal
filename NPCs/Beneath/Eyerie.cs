@@ -32,7 +32,7 @@ namespace Eternal.NPCs.Beneath
             npc.value = Item.buyPrice(silver: 2);
             npc.lavaImmune = true;
             npc.noGravity = true;
-            npc.HitSound = null;
+            npc.HitSound = mod.GetLegacySoundSlot(SoundType.NPCHit, "Sounds/NPCHit/GrimstoneHit");
             npc.DeathSound = SoundID.NPCDeath1;
         }
 
@@ -47,7 +47,7 @@ namespace Eternal.NPCs.Beneath
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            Main.PlaySound(SoundID.Tink, (int)npc.position.X, (int)npc.position.Y, 1, 1f, 0f);
+            //Main.PlaySound(SoundID.Tink, (int)npc.position.X, (int)npc.position.Y, 1, 1f, 0f);
 
             for (int k = 0; k < damage / npc.lifeMax * 50; k++)
                 Dust.NewDust(new Vector2(npc.position.X, npc.position.Y), npc.width, npc.height, DustID.Stone);

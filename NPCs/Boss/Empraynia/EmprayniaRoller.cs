@@ -11,6 +11,8 @@ namespace Eternal.NPCs.Boss.Empraynia
     public class EmprayniaRoller : ModNPC
     {
 
+        bool expert;
+
         private Player player;
         private float speed;
 
@@ -28,20 +30,27 @@ namespace Eternal.NPCs.Boss.Empraynia
             npc.knockBackResist = 0f;
             npc.width = 48;
             npc.height = 48;
-            npc.value = Item.buyPrice(gold: 30);
+            npc.value = Item.buyPrice(copper: 30);
             npc.lavaImmune = true;
             npc.noGravity = true;
             npc.noTileCollide = true;
-            npc.HitSound = SoundID.NPCHit4;
+            npc.HitSound = mod.GetLegacySoundSlot(SoundType.NPCHit, "Sounds/NPCHit/GrimstoneHit"); //SoundID.NPCHit4;
             npc.DeathSound = SoundID.NPCDeath3;
         }
 
         public override void AI()
         {
+
+            Lighting.AddLight(npc.position, 0.8f, 0.4f, 0.8f);
             Target();
             Move(new Vector2(0, 0));
-            RotateNPCToTarget();
             npc.rotation += npc.velocity.X * 0.1f;
+        }
+
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            for (int k = 0; k < damage / npc.lifeMax * 50; k++)
+                Dust.NewDust(npc.position, npc.width, npc.height, 27, 2.5f * hitDirection, -2.5f, 0, default, 1.7f);
         }
 
         private void Target()
@@ -50,17 +59,21 @@ namespace Eternal.NPCs.Boss.Empraynia
             player = Main.player[npc.target];
         }
 
+        public override void NPCLoot()
+        {
+            Main.PlayTrackedSound(SoundID.DD2_EtherianPortalSpawnEnemy, npc.Center);
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                Vector2 direction = Main.player[npc.target].Center - npc.Center;
+                direction.Normalize();
+                int damage = expert ? 15 : 19;
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X * 14f, direction.Y * 14f, ProjectileID.DD2DrakinShot, damage, 1, Main.myPlayer, 0, 0);
+            }
+        }
+
         private float Magnitude(Vector2 mag)
         {
             return (float)Math.Sqrt(mag.X * mag.X + mag.Y * mag.Y);
-        }
-
-        private void RotateNPCToTarget()
-        {
-            if (player == null) return;
-            Vector2 direction = npc.Center - player.Center;
-            float rotation = (float)Math.Atan2(direction.Y, direction.X);
-            npc.rotation = rotation + ((float)Math.PI * 0.5f);
         }
 
         private void Move(Vector2 offset)

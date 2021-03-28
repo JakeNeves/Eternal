@@ -1,6 +1,6 @@
 [c/1EC9E3:Eternal] - By [c/008CFF:Jake][c/0204CFF:TEM]!
 
-1.0.5  - [c/009933:The Structures Update]
+1.0.5.3  - [c/009933:Minor Content Update]
 
 Feel free to join my Discord Server and help out with the mod if you want
 https://discord.gg/HUJ8KUSAjC
@@ -19,8 +19,14 @@ and two out of the twenty post-moon lord bosses
 JakeTEM - Mod Owner
 ViVi - Sprite Artist
 Jaer Hend - Sprite Artist
+kes/birb7 - Sprite Artist
 
 [c/00b359:---Changelog---]
+
+1.0.5.3
+Added a new music box for The Beneath
+Updated Enpraynia's AI
+Updated The Death Charm
 
 1.0.5.2
 Added a new Ark Shrine (Originally was going to be The Bastion)

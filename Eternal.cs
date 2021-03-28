@@ -44,7 +44,9 @@ namespace Eternal
         {
 			#region Music Boxes
 			AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/MazesAndLivingSwords"), ItemType("LabrynthMusicBox"), TileType("LabrynthMusicBox"));
+			AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/DeepDark"), ItemType("BeneathMusicBox"), TileType("BeneathMusicBox"));
 
+			AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/BladeofBrutality"), ItemType("AoIMusicBox"), TileType("AoIMusicBox"));
 			AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/DunesWrath"), ItemType("DunekeeperMusicBox"), TileType("DunekeeperMusicBox"));
 			AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/FieryBattler"), ItemType("IncineriusMusicBox"), TileType("IncineriusMusicBox"));
 			#endregion

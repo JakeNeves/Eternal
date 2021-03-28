@@ -5,6 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using Eternal.Tiles;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
 namespace Eternal.Items.Weapons.Melee

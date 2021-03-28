@@ -31,23 +31,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Jake\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\jaken\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Jake\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\Eternal\\Eternal.csproj",
+      "projectUniqueName": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\Eternal\\Eternal.csproj",
       "projectName": "Eternal",
-      "projectPath": "C:\\Users\\Jake\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\Eternal\\Eternal.csproj",
-      "packagesPath": "C:\\Users\\Jake\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Jake\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\Eternal\\obj\\",
+      "projectPath": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\Eternal\\Eternal.csproj",
+      "packagesPath": "C:\\Users\\jaken\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\Eternal\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Jake\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\jaken\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -78,7 +74,7 @@
             "version": "[0.1.*, )"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }
