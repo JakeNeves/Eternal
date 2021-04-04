@@ -38,9 +38,18 @@ namespace Eternal.NPCs.Boss.Empraynia
             npc.DeathSound = SoundID.NPCDeath3;
         }
 
+        public override bool PreAI()
+        {
+            for (int k = 0; k < 5; k++)
+            {
+                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, DustID.Shadowflame, npc.oldVelocity.X * 0.5f, npc.oldVelocity.Y * 0.5f);
+            }
+
+            return true;
+        }
+
         public override void AI()
         {
-
             Lighting.AddLight(npc.position, 0.8f, 0.4f, 0.8f);
             Target();
             Move(new Vector2(0, 0));

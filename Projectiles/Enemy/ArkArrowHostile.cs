@@ -26,6 +26,7 @@ namespace Eternal.Projectiles.Enemy
             projectile.ranged = true;
             projectile.ignoreWater = true;
             projectile.penetrate = 3;
+            projectile.timeLeft = 300;
         }
 
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)

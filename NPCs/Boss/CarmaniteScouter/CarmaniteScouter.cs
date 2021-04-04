@@ -64,8 +64,8 @@ namespace Eternal.NPCs.Boss.CarmaniteScouter
 
                 for (int k = 0; k < damage / npc.lifeMax * 20.0; k++)
                 {
-                    Dust.NewDust(npc.Center, npc.width, npc.height, 226, hitDirection, -2f, 0, default(Color), 0.7f);
-                    Dust.NewDust(npc.Center, npc.width, npc.height, 27, hitDirection, -1f, 0, default(Color), 0.7f);
+                    Dust.NewDust(npc.Center, npc.width, npc.height, DustID.Blood, hitDirection, -2f, 0, default(Color), 0.7f);
+                    Dust.NewDust(npc.Center, npc.width, npc.height, DustID.Blood, hitDirection, -1f, 0, default(Color), 0.7f);
                 }
             }
         }

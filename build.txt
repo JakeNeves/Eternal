@@ -1,6 +1,6 @@
 displayName = [c/1EC9C3:Eternal]
 author = JakeTEM
-version = 1.0.5.3
+version = 1.0.5.4
 homepage = https://discord.gg/HUJ8KUSAjC
 includeSource = true
 includePDB = true

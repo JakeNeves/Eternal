@@ -1,9 +1,9 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using static Terraria.ModLoader.ModContent;
+using Eternal.Tiles;
 
 namespace Eternal.Items.Accessories
 {
@@ -15,12 +15,12 @@ namespace Eternal.Items.Accessories
         {
             Tooltip.SetDefault("Counts as Wings" + 
                                "\nAllows flight and slow fall" + 
-                               "\nAllows the wearer to run at Ludicrous Speeds!" + 
+                               "\nAllows the wearer to run at Ludicrous Speed!" + 
                                "\nProvides Mobility on ice" + 
                                "\nLava Waders Effects" +
                                "\nTemporary Immunity to lava" +
                                "\nMaster Ninja Gear Effects" +
-                               "\n'A good alternative to the Hell Wheel, I susposed...'");
+                               "\n'The fastest man in the west'");
         }
 
         public override void SetDefaults()
@@ -60,7 +60,7 @@ namespace Eternal.Items.Accessories
             EternalDashPlayer modDashPlayer = player.GetModPlayer<EternalDashPlayer>();
 
             #region Dash Effect
-            if (!modDashPlayer.DashActive)
+            /*if (!modDashPlayer.DashActive)
                 return;
 
             player.eocDash = modDashPlayer.DashTimer;
@@ -87,29 +87,38 @@ namespace Eternal.Items.Accessories
                 modDashPlayer.DashDelay = EternalDashPlayer.MAX_DASH_DELAY;
                 modDashPlayer.DashTimer = EternalDashPlayer.MAX_DASH_TIMER;
                 modDashPlayer.DashActive = false;
-            }
+            }*/
             #endregion
 
-            player.accRunSpeed = 8.8f;
+            player.accRunSpeed = 8.25f;
+            player.rocketBoots = 3;
             player.moveSpeed += 0.12f;
             player.iceSkate = true;
             player.jumpBoost = true;
             player.noFallDmg = true;
+            player.waterWalk = true;
+            player.fireWalk = true;
+            player.lavaImmune = true;
+            player.dash = 1;
+            player.blackBelt = true;
+            player.spikedBoots = 1;
+            player.spikedBoots = 2;
+            player.wingTimeMax = 300;
         }
 
         public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising, ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)
         {
-            ascentWhenFalling = 0.70f;
-            ascentWhenRising = 0.18f;
-            maxCanAscendMultiplier = 1f;
-            maxAscentMultiplier = 4f;
-            constantAscend = 0.140f;
+            ascentWhenFalling = 0.85f;
+            ascentWhenRising = 0.16f;
+            maxCanAscendMultiplier = 1.2f;
+            maxAscentMultiplier = 4.2f;
+            constantAscend = 0.135f;
         }
 
         public override void HorizontalWingSpeeds(Player player, ref float speed, ref float acceleration)
         {
-            speed = 14f;
-            acceleration *= 4f;
+            speed = 18.5f;
+            acceleration *= 4.6f;
         }
 
         public override void ModifyTooltips(List<TooltipLine> list)
@@ -123,5 +132,18 @@ namespace Eternal.Items.Accessories
             }
         }
 
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddTile(TileType<Starforge>());
+            recipe.AddIngredient(ItemType<CometiteBar>(), 20);
+            recipe.AddIngredient(ItemType<StarmetalBar>(), 40);
+            recipe.AddIngredient(ItemID.FrostsparkBoots);
+            recipe.AddIngredient(ItemID.LavaWaders);
+            recipe.AddIngredient(ItemID.MasterNinjaGear);
+            recipe.AddIngredient(ItemID.LunarBar, 6);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
     }
 }

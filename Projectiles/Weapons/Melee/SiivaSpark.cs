@@ -21,7 +21,7 @@ namespace Eternal.Projectiles.Weapons.Melee
 			projectile.melee = true;
 			projectile.penetrate = 3;
 			projectile.light = 1.0f;
-			projectile.timeLeft = 600;
+			projectile.timeLeft = 300;
 			projectile.ignoreWater = true;
 			projectile.extraUpdates = 1;
 		}

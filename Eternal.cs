@@ -1,4 +1,3 @@
-using Eternal.NPCs.Boss.Incinerius;
 using Terraria.Graphics.Effects;
 using Terraria;
 using Terraria.ID;
@@ -7,7 +6,6 @@ using System;
 using Eternal.Items.Summon;
 using System.Collections.Generic;
 using Eternal.Items;
-using Eternal.Items.Tools;
 using Eternal.Items.Weapons.Ranged;
 using Eternal.Items.MusicBox;
 using Eternal.Items.Armor;
@@ -15,6 +13,7 @@ using Eternal.Items.BossBags;
 using Eternal.Items.Weapons.Melee;
 using Eternal.Items.Weapons.Magic;
 using Eternal.Items.Weapons.Summon;
+using Eternal.NPCs.Boss.Empraynia;
 
 namespace Eternal
 {
@@ -54,11 +53,11 @@ namespace Eternal
 			if (Main.netMode != NetmodeID.Server)
             {
 				#region sky things
-				//Filters.Scene["Eternal:TrueIncinerius"] = new Filter(new TrueIncineriusScreenShaderData("FilterMiniTower").UseColor(0.175f, 0.75f, 0.255f).UseOpacity(0.75f), EffectPriority.VeryHigh);
-				//SkyManager.Instance["Eternal:TrueIncinerius"] = new TrueIncineriusSky();
-                #endregion
-            }
-        }
+				Filters.Scene["Eternal:Empraynia"] = new Filter(new EmprayniaScreenShaderData("FilterMiniTower").UseColor(0.229f, 0.84f, 0.255f).UseOpacity(0.6f), EffectPriority.VeryHigh);
+				SkyManager.Instance["Eternal:Empraynia"] = new EmprayniaSky();
+				#endregion
+			}
+		}
 		
 		public override void UpdateMusic(ref int music, ref MusicPriority priority)
         {

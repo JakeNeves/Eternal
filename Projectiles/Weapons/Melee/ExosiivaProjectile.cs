@@ -26,7 +26,7 @@ namespace Eternal.Projectiles.Weapons.Melee
             projectile.friendly = true;
             projectile.hostile = false;
             projectile.penetrate = 10;
-            projectile.timeLeft = 1200;
+            projectile.timeLeft = 900;
             projectile.alpha = 255;
             projectile.light = 1.0f;
             projectile.melee = true;

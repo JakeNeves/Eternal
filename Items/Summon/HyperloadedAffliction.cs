@@ -28,6 +28,7 @@ namespace Eternal.Items.Summon
 
         public override bool CanUseItem(Player player)
         {
+            Main.NewText("The sky is shifting...", 220, 0, 210);
             return !NPC.AnyNPCs(NPCType<Empraynia>());
         }
 

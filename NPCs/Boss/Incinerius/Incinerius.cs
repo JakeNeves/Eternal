@@ -63,7 +63,14 @@ namespace Eternal.NPCs.Boss.Incinerius
 
         public override void BossLoot(ref string name, ref int potionType)
         {
-            potionType = ItemID.GreaterHealingPotion;
+            if (!NPC.downedMoonlord)
+            {
+                potionType = ItemID.GreaterHealingPotion;
+            }
+            else
+            {
+                potionType = ItemID.None;
+            }
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -86,9 +93,11 @@ namespace Eternal.NPCs.Boss.Incinerius
             Main.PlaySound(SoundID.Tink, npc.position);
             if (npc.life <= 0)
             {
-                Main.NewText("Ack...", 215, 95, 0);
-
-                if(NPC.downedMoonlord)
+                if (!NPC.downedMoonlord)
+                {
+                    Main.NewText("Ack...", 215, 95, 0);
+                }
+                else if(NPC.downedMoonlord)
                 {
                     Main.NewText("I am not done yet...", 215, 95, 0);
                     Main.NewText("Incinerius reveals his true form!", 175, 75, 255);
@@ -104,33 +113,36 @@ namespace Eternal.NPCs.Boss.Incinerius
 
         public override void NPCLoot()
         {
-            if (EternalWorld.hellMode)
+            if (!NPC.downedMoonlord)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<ProtectiveFlame>());
-            }
-
-            if (Main.expertMode)
-            {
-                npc.DropBossBags();
-            }
-            else
-            {
-                if (Main.rand.Next(1) == 0)
+                if (EternalWorld.hellMode)
                 {
-                    player.QuickSpawnItem(ItemType<SmotheringInferno>());
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<ProtectiveFlame>());
                 }
 
-                if (Main.rand.Next(2) == 0)
+                if (Main.expertMode)
                 {
-                    player.QuickSpawnItem(ItemType<Incinerator>());
+                    npc.DropBossBags();
                 }
-
-                if (Main.rand.Next(3) == 0)
+                else
                 {
-                    player.QuickSpawnItem(ItemType<Pyroyo>());
-                }
+                    if (Main.rand.Next(1) == 0)
+                    {
+                        player.QuickSpawnItem(ItemType<SmotheringInferno>());
+                    }
 
-                player.QuickSpawnItem(ItemType<ScorchedMetal>(), Main.rand.Next(10, 90));
+                    if (Main.rand.Next(2) == 0)
+                    {
+                        player.QuickSpawnItem(ItemType<Incinerator>());
+                    }
+
+                    if (Main.rand.Next(3) == 0)
+                    {
+                        player.QuickSpawnItem(ItemType<Pyroyo>());
+                    }
+
+                    player.QuickSpawnItem(ItemType<ScorchedMetal>(), Main.rand.Next(10, 90));
+                }
             }
         }
 

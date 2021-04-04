@@ -4,14 +4,12 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
 using static Terraria.ModLoader.ModContent;
-using Microsoft.Xna.Framework.Graphics;
 using Eternal.Projectiles.Enemy;
 using Eternal.Items.Weapons.Ranged;
 using Eternal.Items.Ammo;
 using Eternal.Items.BossBags;
 using Eternal.Items;
 using Eternal.Items.Weapons.Melee;
-using Eternal.NPCs.Labrynth;
 
 namespace Eternal.NPCs.Boss.AoI
 {
@@ -60,23 +58,6 @@ namespace Eternal.NPCs.Boss.AoI
             bossBag = ItemType<AoIBag>();
         }
 
-        private void Shoot()
-        {
-            int type = ProjectileType<ArkArrowHostile>();
-            Vector2 velocity = player.Center - npc.Center;
-            float magnitude = Magnitude(velocity);
-            if (magnitude > 0)
-            {
-                velocity *= 5f / magnitude;
-            }
-            else
-            {
-                velocity = new Vector2(0f, 5f);
-            }
-            Projectile.NewProjectile(npc.Center, velocity, type, npc.damage, 2f);
-            npc.ai[1] = 25f;
-        }
-
         public override void OnHitPlayer(Player player, int damage, bool crit)
         {
             player.AddBuff(BuffID.Bleeding, 180, false);
@@ -105,63 +86,85 @@ namespace Eternal.NPCs.Boss.AoI
 
         public override void AI()
         {
+            Vector2 vector2 = new Vector2(npc.position.X + (float)npc.width * 0.5f, npc.position.Y + (float)npc.height * 0.5f);
+            float xDir = Main.player[npc.target].position.X + (float)(Main.player[npc.target].width / 2) - vector2.X;
+            float yDir = (float)(Main.player[npc.target].position.Y + (Main.player[npc.target].height / 2) - 120) - vector2.Y;
+            float length = (float)Math.Sqrt(xDir * xDir + yDir * yDir);
+
             player = Main.player[npc.target];
 
             Move(new Vector2(0f, 0f));
 
             DespawnHandler();
 
-            RotateNPCToTarget();
-
             if (npc.life < npc.lifeMax / 2)
             {
                 Phase = 1;
             }
 
-            AttackTimer++;
+            #region close up attack
+            float currentXDist = Math.Abs(npc.Center.X - player.Center.X);
+            if (npc.Center.X < player.Center.X && npc.ai[2] < 0)
+                npc.ai[2] = 0;
+            if (npc.Center.X > player.Center.X && npc.ai[2] > 0)
+                npc.ai[2] = 0;
 
-            switch(AttackTimer)
+            float yDist = player.position.Y - (npc.position.Y + npc.height);
+            if (yDist < 0)
+                npc.velocity.Y = npc.velocity.Y - 0.2F;
+            if (yDist > 150)
+                npc.velocity.Y = npc.velocity.Y + 0.2F;
+            npc.velocity.Y = MathHelper.Clamp(npc.velocity.Y, -6, 6);
+            if (EternalWorld.hellMode)
             {
-                case 100:
-                    Shoot();
-                    break;
-                case 250:
-                    Shoot();
-                    if (Main.expertMode)
-                    {
-                        SpawnArks();
-                    }
-                    if (EternalWorld.hellMode)
-                    {
-                        SpawnHellModeArks();
-                    }
-                    break;
-                case 300:
-                    Shoot();
-                    break;
-                case 450:
-                    AttackTimer = 0;
-                    if (Main.expertMode)
-                    {
-                        SpawnArks();
-                    }
-                    if (EternalWorld.hellMode)
-                    {
-                        SpawnHellModeArks();
-                    }
-                    break;
+                npc.rotation = npc.velocity.X * 0.06f;
+            }
+            else
+            {
+                npc.rotation = npc.velocity.X * 0.03f;
             }
 
-        }
+            if ((currentXDist < 500 || EternalWorld.hellMode) && npc.position.Y < player.position.Y)
+            {
+                ++npc.ai[3];
+                int cooldown = 15;
+                if (npc.life < npc.lifeMax * 0.75)
+                    cooldown = 154;
+                if (npc.life < npc.lifeMax * 0.5)
+                    cooldown = 13;
+                if (npc.life < npc.lifeMax * 0.25)
+                    cooldown = 12;
+                cooldown++;
+                if (npc.ai[3] > cooldown)
+                    npc.ai[3] = -cooldown;
 
-        private void SpawnArks()
-        {
-            NPC.NewNPC((int)npc.Center.X - 20, (int)npc.Center.Y, NPCType<Arkling>());
-        }
+                if (npc.ai[3] == 0 && Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    Vector2 position = npc.Center;
+                    position.X += npc.velocity.X * 7;
 
-        private void SpawnHellModeArks()
-        {
-            NPC.NewNPC((int)npc.Center.X - 20, (int)npc.Center.Y, NPCType<FakeAoI>());
+                    float speedX = player.Center.X - npc.Center.X;
+                    float speedY = player.Center.Y - npc.Center.Y;
+                    float num12 = speed / length;
+                    speedX = speedX * num12;
+                    speedY = speedY * num12;
+                    Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ProjectileType<ArkArrowHostile>(), 28, 0, Main.myPlayer);
+                }
+            }
+            #endregion
+
+            AttackTimer++;
+
+            if ((AttackTimer == 100 || AttackTimer == 150 || AttackTimer == 175))
+            {
+                NPC.NewNPC((int)npc.Center.X - 20, (int)npc.Center.Y, NPCType<Arkling>());
+            }
+            else if ((AttackTimer == 200 || AttackTimer == 250 || AttackTimer == 275))
+            {
+                NPC.NewNPC((int)npc.Center.X - 20, (int)npc.Center.Y, NPCType<Arkling>());
+                AttackTimer = 0;
+            }
+
         }
 
         private void Move(Vector2 offset)
@@ -174,6 +177,7 @@ namespace Eternal.NPCs.Boss.AoI
             {
                 speed = 10f;
             }
+            npc.rotation = npc.velocity.X * 0.06f;
             Vector2 moveTo = player.Center + offset;
             Vector2 move = moveTo - npc.Center;
             float magnitude = Magnitude(move);
@@ -234,14 +238,6 @@ namespace Eternal.NPCs.Boss.AoI
                     return;
                 }
             }
-        }
-
-        private void RotateNPCToTarget()
-        {
-            if (player == null) return;
-            Vector2 direction = npc.Center - player.Center;
-            float rotation = (float)Math.Atan2(direction.Y, direction.X);
-            npc.rotation = rotation + ((float)Math.PI * 0.5f);
         }
 
         private float Magnitude(Vector2 mag)

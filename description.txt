@@ -12,7 +12,7 @@ From what we expect, this mod is not fully finished yet so there is no harm in c
 It currently adds
 Two pre-hardmode bosses
 Three out of the ten hardmode bosses
-and two out of the twenty post-moon lord bosses
+and three out of the twenty post-moon lord bosses
 
 [c/00B359:---Credits---]
 
@@ -22,6 +22,12 @@ Jaer Hend - Sprite Artist
 kes/birb7 - Sprite Artist
 
 [c/00b359:---Changelog---]
+
+1.0.5.4
+Updated Enpraynia's AI (Again)
+Updated Grimstone Bricks
+Reworked Cosmic Starstryder Treads
+Added Cosmic Apparition
 
 1.0.5.3
 Added a new music box for The Beneath

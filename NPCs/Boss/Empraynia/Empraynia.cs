@@ -4,6 +4,8 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using Terraria.Graphics.Effects;
+using Eternal.NPCs.Boss.CosmicApparition;
 
 namespace Eternal.NPCs.Boss.Empraynia
 {
@@ -18,9 +20,15 @@ namespace Eternal.NPCs.Boss.Empraynia
 
         public override void SetStaticDefaults()
         {
-            Main.npcFrameCount[npc.type] = 4;
             NPCID.Sets.TrailCacheLength[npc.type] = 8;
             NPCID.Sets.TrailingMode[npc.type] = 0;
+            Main.npcFrameCount[npc.type] = 4;
+        }
+
+        public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
+        {
+            scale = 1.5f;
+            return null;
         }
 
         public override void SetDefaults()
@@ -133,23 +141,74 @@ namespace Eternal.NPCs.Boss.Empraynia
                 }
                 #endregion
 
-
-                if (npc.ai[1] % 50 == 0)
+                if (!NPC.AnyNPCs(ModContent.NPCType<EmprayniaRoller>()))
                 {
-                    Vector2 dir = Main.player[npc.target].Center - npc.Center;
-                    dir += new Vector2(Main.rand.Next(-40, 41), Main.rand.Next(-40, 41));
-                    dir.Normalize();
-                    dir *= 12;
-                    int newNPC = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<EmprayniaRoller>(), npc.whoAmI);
-                    Main.npc[newNPC].velocity = dir;
+                    if (Main.expertMode || npc.life <= 9000)
+                        NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<EmprayniaRoller>(), 0, 2, 1, 0, npc.whoAmI, npc.target);
                 }
 
+                #region close up attack
+                float currentXDist = Math.Abs(npc.Center.X - player.Center.X);
+                if (npc.Center.X < player.Center.X && npc.ai[2] < 0)
+                    npc.ai[2] = 0;
+                if (npc.Center.X > player.Center.X && npc.ai[2] > 0)
+                    npc.ai[2] = 0;
+
+                float yDist = player.position.Y - (npc.position.Y + npc.height);
+                if (yDist < 0)
+                    npc.velocity.Y = npc.velocity.Y - 0.2F;
+                if (yDist > 150)
+                    npc.velocity.Y = npc.velocity.Y + 0.2F;
+                npc.velocity.Y = MathHelper.Clamp(npc.velocity.Y, -6, 6);
+                if (EternalWorld.hellMode)
+                {
+                    npc.rotation = npc.velocity.X * 0.06f;
+                }
+                else
+                {
+                    npc.rotation = npc.velocity.X * 0.03f;
+                }
+
+                if ((currentXDist < 500 || EternalWorld.hellMode) && npc.position.Y < player.position.Y)
+                {
+                    ++npc.ai[3];
+                    int cooldown = 15;
+                    if (npc.life < npc.lifeMax * 0.75)
+                        cooldown = 154;
+                    if (npc.life < npc.lifeMax * 0.5)
+                        cooldown = 13;
+                    if (npc.life < npc.lifeMax * 0.25)
+                        cooldown = 12;
+                    cooldown++;
+                    if (npc.ai[3] > cooldown)
+                        npc.ai[3] = -cooldown;
+
+                    if (npc.ai[3] == 0 && Main.netMode != NetmodeID.MultiplayerClient)
+                    {
+                        Vector2 position = npc.Center;
+                        position.X += npc.velocity.X * 7;
+
+                        float speedX = player.Center.X - npc.Center.X;
+                        float speedY = player.Center.Y - npc.Center.Y;
+                        float num12 = speed / length;
+                        speedX = speedX * num12;
+                        speedY = speedY * num12;
+                        Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ProjectileID.Shadowflames, 28, 0, Main.myPlayer);
+                    }
+                }
+                #endregion
+
             }
-                return true;
+            return true;
         }
 
         public override void AI()
         {
+
+            if (!SkyManager.Instance["Eternal:Empraynia"].IsActive())
+            {
+                SkyManager.Instance.Activate("Eternal:Empraynia");
+            }
 
             npc.netUpdate = true;
             npc.TargetClosest(true);
@@ -255,6 +314,16 @@ namespace Eternal.NPCs.Boss.Empraynia
             Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, -8, ProjectileID.DD2DarkMageBolt, 6, 0, Main.myPlayer, 0f, 0f);
             Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, 8, ProjectileID.DD2DarkMageBolt, 6, 0, Main.myPlayer, 0f, 0f);
             Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, 8, ProjectileID.DD2DarkMageBolt, 6, 0, Main.myPlayer, 0f, 0f);
+
+            if(!NPC.downedMoonlord)
+            {
+                Main.NewText("The sky resumes back to it's tranquil state...", 220, 0, 210);
+                SkyManager.Instance.Deactivate("Eternal:Empraynia");
+            }
+            else if(NPC.downedMoonlord)
+            {
+                NPC.NewNPC((int)npc.Center.X - 20, (int)npc.Center.Y, ModContent.NPCType<SoulCrystal>());
+            }
 
             if (Main.expertMode)
             {

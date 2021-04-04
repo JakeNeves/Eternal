@@ -29,6 +29,7 @@ namespace Eternal.Items.Weapons.Ranged
             item.shoot = AmmoID.Bullet;
             item.useAmmo = AmmoID.Bullet;
             item.rare = ItemRarityID.Red;
+            item.knockBack = 1.2f;
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
