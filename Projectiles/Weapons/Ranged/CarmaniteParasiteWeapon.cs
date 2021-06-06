@@ -21,7 +21,7 @@ namespace Eternal.Projectiles.Weapons.Ranged
             projectile.height = 39;
             projectile.hostile = false;
             projectile.friendly = true;
-            projectile.melee = true;
+            projectile.ranged = true;
             projectile.ignoreWater = true;
             projectile.penetrate = 3;
             Main.projFrames[projectile.type] = 2;

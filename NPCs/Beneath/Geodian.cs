@@ -2,10 +2,10 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using static Terraria.ModLoader.ModContent;
 using Eternal.Tiles;
 using System.Linq;
 using System;
+using Eternal.Items.Materials;
 
 namespace Eternal.NPCs.Beneath
 {
@@ -35,6 +35,14 @@ namespace Eternal.NPCs.Beneath
             npc.aiStyle = -1;
             npc.HitSound = SoundID.NPCHit41;
             npc.DeathSound = SoundID.NPCDeath44;
+        }
+
+        public override void NPCLoot()
+        {
+            if (Main.rand.Next(8, 12) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<DepthsDebris>());
+            }
         }
 
         public override void HitEffect(int hitDirection, double damage)

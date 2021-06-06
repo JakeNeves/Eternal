@@ -1,4 +1,5 @@
-﻿using Eternal.Items.Placeable;
+﻿using Eternal.Items.Materials;
+using Eternal.Items.Placeable;
 using Eternal.NPCs.Boss.Dunekeeper;
 using Terraria;
 using Terraria.ID;
@@ -33,11 +34,7 @@ namespace Eternal.Items.Summon
 
         public override bool UseItem(Player player)
         {
-            //NPC.SpawnOnPlayer(player.whoAmI, NPCType<Dunekeeper>());
-            Main.NewText("Dunekeeper has awoken!", 175, 75, 255);
-            NPC.NewNPC((int)player.Center.X, (int)player.Center.Y - 300, NPCType<Dunekeeper>());
-            NPC.NewNPC((int)player.Center.X, (int)player.Center.Y - 100, NPCType<DunekeeperHandL>());
-            NPC.NewNPC((int)player.Center.X, (int)player.Center.Y - 100, NPCType<DunekeeperHandR>());
+            NPC.SpawnOnPlayer(player.whoAmI, NPCType<Dunekeeper>());
             Main.PlaySound(SoundID.Roar, player.position, 0);
             return true;
         }

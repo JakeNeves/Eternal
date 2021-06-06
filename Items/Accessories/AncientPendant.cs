@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Eternal.Items.Materials;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
@@ -25,7 +26,7 @@ namespace Eternal.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.meleeDamage += 0.3f;
+            player.meleeDamage += 0.03f;
 
             //player.buffImmune[BuffID.Cursed] = true;
         }

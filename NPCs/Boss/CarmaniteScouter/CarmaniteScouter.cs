@@ -10,6 +10,8 @@ using Eternal.Items.Accessories.Hell;
 using Eternal.Tiles;
 using Eternal.Items.Weapons.Melee;
 using Eternal.Projectiles.Enemy;
+using Eternal.Items.Materials;
+using Eternal.Projectiles.Boss;
 
 namespace Eternal.NPCs.Boss.CarmaniteScouter
 {
@@ -23,7 +25,7 @@ namespace Eternal.NPCs.Boss.CarmaniteScouter
 
         public override void SetStaticDefaults()
         {
-            Main.npcFrameCount[npc.type] = 2;
+            Main.npcFrameCount[npc.type] = 4;
         }
 
         public override void SetDefaults()
@@ -33,8 +35,8 @@ namespace Eternal.NPCs.Boss.CarmaniteScouter
             npc.damage = 15;
             npc.defense = 10;
             npc.knockBackResist = 0f;
-            npc.width = 113;
-            npc.height = 99;
+            npc.width = 132;
+            npc.height = 120;
             npc.value = Item.buyPrice(gold: 30);
             npc.lavaImmune = true;
             npc.boss = true;
@@ -51,6 +53,8 @@ namespace Eternal.NPCs.Boss.CarmaniteScouter
             if (npc.life <= 0)
             {
                 Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/CarmaniteScouterEye"), 1f);
+                Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/CarmaniteScouterEye"), 1f);
+                Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/CarmaniteScouterParasite"), 1f);
                 Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/CarmaniteScouterParasite"), 1f);
                 Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/CarmaniteScouterChunk"), 1f);
                 Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/CarmaniteScouterChunk"), 1f);
@@ -117,7 +121,7 @@ namespace Eternal.NPCs.Boss.CarmaniteScouter
             {
                 SpawnScouterEye();
             }
-            if (Timer == 200)
+            if (Timer == 200 || Timer == 225 || Timer == 250 || Timer == 275)
             {
                 Shoot();
             }
@@ -125,7 +129,7 @@ namespace Eternal.NPCs.Boss.CarmaniteScouter
             {
                 SpawnScouterEye();
             }
-            if (Timer == 400)
+            if (Timer == 400 || Timer == 425 || Timer == 450 || Timer == 475)
             {
                 Shoot();
             }
@@ -137,7 +141,11 @@ namespace Eternal.NPCs.Boss.CarmaniteScouter
 
         void SpawnScouterEye()
         {
-            NPC.NewNPC((int)npc.Center.X - 20, (int)npc.Center.Y, NPCType<ScouterEye>());
+            //Main.PlaySound(new LegacySoundStyle(4, 13), Main.myPlayer);
+            if (!NPC.AnyNPCs(NPCType<ScouterEye>()))
+            {
+                NPC.NewNPC((int)npc.Center.X - 0, (int)npc.Center.Y, NPCType<ScouterEye>());
+            }
         }
 
         private void Shoot()
@@ -163,9 +171,13 @@ namespace Eternal.NPCs.Boss.CarmaniteScouter
             {
                 speed = 20f;
             }
-            else
+            else if (Timer == 130 || Timer == 230 || Timer == 330 || Timer == 430)
             {
                 speed = 8f;
+            }
+            else
+            {
+                speed = 4f;
             }
             Vector2 moveTo = player.Center + offset;
             Vector2 move = moveTo - npc.Center;

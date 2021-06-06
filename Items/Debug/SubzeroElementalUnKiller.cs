@@ -25,13 +25,14 @@ namespace Eternal.Items.Debug
 
         public override bool CanUseItem(Player player)
         {
-            if (EternalWorld.downedCarmaniteScouter)
+            if (EternalWorld.downedSubzeroElemental)
             {
                 item.useStyle = ItemUseStyleID.HoldingUp;
                 item.UseSound = SoundID.Item4;
                 item.useAnimation = 15;
                 item.useTime = 15;
                 EternalWorld.downedSubzeroElemental = false;
+                EternalWorld.downedSubzeroElementalP2 = false;
                 Main.NewText("Effects have been undone, kill the Subzero Elemental again to redo the effect...", 0, 215, 215);
             }
             return base.CanUseItem(player);

@@ -173,6 +173,33 @@ namespace Eternal.NPCs.Boss.Incinerius
             return null;
         }
 
+        public override void NPCLoot()
+        {
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                int num1 = (int)(npc.position.X + (npc.width / 2)) / 16;
+                int num2 = (int)(npc.position.Y + (npc.height / 2)) / 16;
+                int num5 = npc.width / 2 / 16 + 1;
+                for (int index2 = num1 - num5; index2 <= num1 + num5; ++index2)
+                {
+                    for (int index3 = num2 - num5; index3 <= num2 + num5; ++index3)
+                    {
+                        if ((index2 == num1 - num5 || index2 == num1 + num5 || (index3 == num2 - num5 || index3 == num2 + num5)) && !Main.tile[index2, index3].active())
+                        {
+                            Main.tile[index2, index3].type = (ushort)ModContent.TileType<Tiles.ScorchedBrick>();
+                            Main.tile[index2, index3].active(true);
+                        }
+                        Main.tile[index2, index3].lava(false);
+                        Main.tile[index2, index3].liquid = 0;
+                        if (Main.netMode == NetmodeID.Server)
+                            NetMessage.SendTileSquare(-1, index2, index3, 1);
+                        else
+                            WorldGen.SquareTileFrame(index2, index3, true);
+                    }
+                }
+            }
+        }
+
         /*public override void FindFrame(int frameHeight)
         {
             npc.frameCounter += 0.15f;

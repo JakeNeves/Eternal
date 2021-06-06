@@ -1,4 +1,5 @@
 ﻿using Eternal.Items;
+using Eternal.Items.Materials;
 using Eternal.Projectiles.Weapons.Melee;
 using Eternal.Tiles;
 using System;
@@ -9,7 +10,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Items.Weapons.Melee
 {
-    class Permafrost : ModItem
+    public class Permafrost : ModItem
     {
         public override void SetStaticDefaults()
         {

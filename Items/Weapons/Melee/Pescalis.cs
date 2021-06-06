@@ -1,4 +1,5 @@
 ﻿using Eternal.Items.Accessories;
+using Eternal.Items.Materials;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -9,7 +10,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Items.Weapons.Melee
 {
-    class Pescalis : ModItem
+    public class Pescalis : ModItem
     {
         public override void SetStaticDefaults()
         {

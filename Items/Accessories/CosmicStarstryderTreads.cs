@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using System.Collections.Generic;
 using static Terraria.ModLoader.ModContent;
 using Eternal.Tiles;
+using Eternal.Items.Materials;
 
 namespace Eternal.Items.Accessories
 {
@@ -20,7 +21,7 @@ namespace Eternal.Items.Accessories
                                "\nLava Waders Effects" +
                                "\nTemporary Immunity to lava" +
                                "\nMaster Ninja Gear Effects" +
-                               "\n'The fastest man in the west'");
+                               "\n'Ascendance'");
         }
 
         public override void SetDefaults()
@@ -41,6 +42,10 @@ namespace Eternal.Items.Accessories
                 {
                     if (slot != i && 
                         (player.armor[i].type == ItemID.HermesBoots ||
+                        player.armor[i].type == ItemID.RocketBoots ||
+                        player.armor[i].type == ItemID.FlurryBoots ||
+                        player.armor[i].type == ItemID.SailfishBoots ||
+                        //player.armor[i].type == ItemID.DuneriderBoots ||
                         player.armor[i].type == ItemID.SpectreBoots ||
                         player.armor[i].type == ItemID.LightningBoots ||
                         player.armor[i].type == ItemID.FrostsparkBoots
@@ -90,9 +95,9 @@ namespace Eternal.Items.Accessories
             }*/
             #endregion
 
-            player.accRunSpeed = 8.25f;
-            player.rocketBoots = 3;
-            player.moveSpeed += 0.12f;
+            player.accRunSpeed = 8.5f;
+            player.rocketBoots = 4;
+            player.moveSpeed += 0.24f;
             player.iceSkate = true;
             player.jumpBoost = true;
             player.noFallDmg = true;
@@ -108,11 +113,11 @@ namespace Eternal.Items.Accessories
 
         public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising, ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)
         {
-            ascentWhenFalling = 0.85f;
-            ascentWhenRising = 0.16f;
-            maxCanAscendMultiplier = 1.2f;
+            ascentWhenFalling = 0.32f;
+            ascentWhenRising = 0.32f;
+            maxCanAscendMultiplier = 2.2f;
             maxAscentMultiplier = 4.2f;
-            constantAscend = 0.135f;
+            constantAscend = 0.136f;
         }
 
         public override void HorizontalWingSpeeds(Player player, ref float speed, ref float acceleration)

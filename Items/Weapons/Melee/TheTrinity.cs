@@ -8,6 +8,8 @@ using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using Eternal.Items.Materials;
+using Terraria.DataStructures;
 
 namespace Eternal.Items.Weapons.Melee
 {
@@ -15,14 +17,16 @@ namespace Eternal.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Fires three yoyos at once\n'The perfect balance within all the elementals of the trio!'\n[c/FF0000:Warning] - This could cause frame drops and possible lag, use carefully!");
+            Tooltip.SetDefault("Fires three yoyos at once" +
+                "\n'The perfect balance within all the elementals of the trio!'" +
+                "\n[c/FF0000:Warning] - This could cause frame drops and possible lag, use carefully!");
         }
 
         public override void SetDefaults()
         {
             item.useStyle = ItemUseStyleID.HoldingOut;
-            item.width = 32;
-            item.height = 28;
+            item.width = 20;
+            item.height = 54;
             item.useAnimation = 25;
             item.useTime = 25;
             item.shootSpeed = 30f;
@@ -37,7 +41,7 @@ namespace Eternal.Items.Weapons.Melee
 
             item.UseSound = SoundID.Item1;
             item.value = Item.sellPrice(platinum: 9);
-            item.shoot = ProjectileType<TheTrinityProjectile>();
+            item.shoot = ProjectileType<TheTrinityBaseProjectile>();
         }
 
         public override void AddRecipes()
@@ -58,7 +62,7 @@ namespace Eternal.Items.Weapons.Melee
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips[0].overrideColor = new Color(Main.DiscoR, 30, Main.DiscoB);
+            tooltips[0].overrideColor = new Color(Main.DiscoR, 255, 0);
         }
 
         private static readonly int[] unwantedPrefixes = new int[] { PrefixID.Terrible, PrefixID.Dull, PrefixID.Annoying, PrefixID.Broken, PrefixID.Damaged, PrefixID.Shoddy };
@@ -71,25 +75,5 @@ namespace Eternal.Items.Weapons.Melee
             }
             return true;
         }
-
-       public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
-        {
-            int numberProjectiles = 3;
-            for (int j = 0; j < numberProjectiles; j++)
-            {
-                Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(15));
-                Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, type, damage, knockBack, player.whoAmI);
-            }
-            int spread = 5;
-            float spreadMult = 0.5f;
-            for (int i = 0; i < 3; i++)
-            {
-                float vX = speedX + (float)Main.rand.Next(-spread, spread + 1) * spreadMult;
-                float vY = speedY + (float)Main.rand.Next(-spread, spread + 1) * spreadMult;
-                Projectile.NewProjectile(position.X, position.Y, vX, vY, type, damage, knockBack, Main.myPlayer);
-            }
-            return false;
-        }
-
     }
 }

@@ -5,6 +5,7 @@ using static Terraria.ModLoader.ModContent;
 using Eternal.Items;
 using Microsoft.Xna.Framework;
 using System;
+using Eternal.Items.Materials;
 
 namespace Eternal.NPCs.DroxEvent
 {

@@ -6,6 +6,7 @@ using Terraria.ID;
 using System.Linq;
 using Microsoft.Xna.Framework.Graphics;
 using Eternal.Tiles;
+using Eternal.Items.Materials;
 
 namespace Eternal.NPCs.Beneath
 {
@@ -99,13 +100,13 @@ namespace Eternal.NPCs.Beneath
             npc.velocity = move;
         }
 
-        /*public override void NPCLoot()
+        public override void NPCLoot()
         {
             if (Main.rand.Next(4, 8) == 0)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<BrokenLabrynthSword>());
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<DepthsDebris>());
             }
-        }*/
+        }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {

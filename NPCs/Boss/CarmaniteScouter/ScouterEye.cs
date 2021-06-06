@@ -17,11 +17,11 @@ namespace Eternal.NPCs.Boss.CarmaniteScouter
 
         public override void SetDefaults()
         {
-            npc.width = 36;
-            npc.height = 22;
-            npc.damage = 2;
+            npc.width = 34;
+            npc.height = 20;
+            npc.damage = 6;
             npc.defense = 2;
-            npc.lifeMax = 10;
+            npc.lifeMax = 80;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
             npc.noTileCollide = true;

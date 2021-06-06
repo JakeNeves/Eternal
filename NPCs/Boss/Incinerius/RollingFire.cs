@@ -17,13 +17,13 @@ namespace Eternal.NPCs.Boss.Incinerius
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Flame Wheel Cutter");
+            DisplayName.SetDefault("Incineration Stone");
         }
 
         public override void SetDefaults()
         {
-            npc.width = 31;
-            npc.height = 47;
+            npc.width = 58;
+            npc.height = 58;
             npc.damage = 100;
             npc.lifeMax = 200;
             npc.HitSound = SoundID.NPCHit3;

@@ -1,4 +1,5 @@
-﻿using Eternal.Projectiles;
+﻿using Eternal.Items.Materials;
+using Eternal.Projectiles.Weapons.Throwing;
 using Eternal.Tiles;
 using Terraria;
 using Terraria.ID;
@@ -7,7 +8,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Items.Weapons.Throwing
 {
-    class JumboStar : ModItem
+    public class JumboStar : ModItem
     {
 
         public override void SetStaticDefaults()

@@ -6,6 +6,7 @@ using Eternal.Items;
 using Eternal.Tiles;
 using System.Linq;
 using Eternal.Items.Weapons.Ranged;
+using Eternal.Items.Materials;
 
 namespace Eternal.NPCs.Comet
 {
@@ -25,7 +26,6 @@ namespace Eternal.NPCs.Comet
             npc.width = 37;
             npc.height = 31;
             npc.aiStyle = 22;
-            //animationType = 82;
             npc.noGravity = true;
             npc.noTileCollide = true;
             aiType = NPCID.Wraith;
@@ -39,6 +39,11 @@ namespace Eternal.NPCs.Comet
         {
             Lighting.AddLight(npc.position, 0.75f, 0f, 0.75f);
             npc.spriteDirection = npc.direction;
+
+            if (EternalWorld.downedCosmicApparition)
+            {
+                npc.lifeMax = 64000;
+            }
         }
 
         public override void NPCLoot()
@@ -47,12 +52,15 @@ namespace Eternal.NPCs.Comet
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<NovaNexus>());
             }
-            if (Main.rand.Next(5) == 0)
+            if (EternalWorld.downedCosmicApparition)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<InterstellarSingularity>(), Main.rand.Next(5, 20));
+                if (Main.rand.Next(5) == 0)
+                {
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<InterstellarSingularity>(), Main.rand.Next(5, 20));
+                }
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<StarmetalBar>(), Main.rand.Next(10, 75));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<GalaxianPlating>(), Main.rand.Next(3, 12));
             }
-            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<StarmetalBar>(), Main.rand.Next(10, 75));
-            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<GalaxianPlating>(), Main.rand.Next(3, 12));
         }
 
         public override void HitEffect(int hitDirection, double damage)

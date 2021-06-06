@@ -4,11 +4,12 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
 using static Terraria.ModLoader.ModContent;
-using Eternal.Items;
 using Eternal.Items.Weapons.Melee;
 using Eternal.Items.Weapons.Ranged;
 using Eternal.Items.BossBags;
 using Microsoft.Xna.Framework.Graphics;
+using Eternal.Items.Armor;
+using Eternal.Projectiles.Boss;
 
 namespace Eternal.NPCs.Boss.Dunekeeper
 {
@@ -18,11 +19,19 @@ namespace Eternal.NPCs.Boss.Dunekeeper
         private Player player;
 
         #region Fundimentals
-        bool overhead;
-        float speed;
         int attackTimer;
         int Phase;
+        int Timer;
+        int frameNum;
+
+        const float Speed = 14f;
+        const float Acceleration = 0.2f;
         #endregion
+
+        public override void SetStaticDefaults()
+        {
+            Main.npcFrameCount[npc.type] = 2;
+        }
 
         public override void SetDefaults()
         {
@@ -31,8 +40,8 @@ namespace Eternal.NPCs.Boss.Dunekeeper
             npc.damage = 5;
             npc.defense = 15;
             npc.knockBackResist = 0f;
-            npc.width = 58;
-            npc.height = 58;
+            npc.width = 46;
+            npc.height = 46;
             npc.value = Item.buyPrice(gold: 30);
             npc.lavaImmune = true;
             npc.boss = true;
@@ -52,6 +61,13 @@ namespace Eternal.NPCs.Boss.Dunekeeper
                 Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/DunekeeperEye"), 1f);
                 Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/DunekeeperLeftHalf"), 1f);
                 Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/DunekeeperRightHalf"), 1f);
+            }
+            else
+            {
+                for (int k = 0; k < 5; k++)
+                {
+                    Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, DustID.Tungsten, npc.oldVelocity.X * 0.5f, npc.oldVelocity.Y * 0.5f);
+                }
             }
         }
 
@@ -74,20 +90,16 @@ namespace Eternal.NPCs.Boss.Dunekeeper
             {
                 if (Main.rand.Next(1) == 0)
                 {
-                    player.QuickSpawnItem(ItemType<Wasteland>());
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<ThunderduneHeadgear>());
                 }
-
                 if (Main.rand.Next(2) == 0)
                 {
-                    player.QuickSpawnItem(ItemType<StormBeholder>());
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<Wasteland>());
                 }
-
                 if (Main.rand.Next(3) == 0)
                 {
-                    player.QuickSpawnItem(ItemType<Items.Armor.ThunderduneHeadgear>());
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<StormBeholder>());
                 }
-
-                player.QuickSpawnItem(ItemType<DuneCore>(), Main.rand.Next(25, 75));
             }
         }
 
@@ -105,141 +117,219 @@ namespace Eternal.NPCs.Boss.Dunekeeper
             }
         }
 
-        private void Move(Vector2 offset)
+        public override bool PreAI()
         {
-            if(Phase == 1)
-            {
-                speed = 4.4f;
-            }
-            else if (!player.ZoneDesert)
-            {
-                speed = 6f;
-            }
-            else {
-                speed = 4f;
-            }
-            Vector2 moveTo = player.Center + offset;
-            Vector2 move = moveTo - npc.Center;
-            float magnitude = Magnitude(move);
-            if (magnitude > speed)
-            {
-                move *= speed / magnitude;
-            }
-            float turnResistance = 5f;
-            move = (npc.velocity * turnResistance + move) / (turnResistance + 1f);
-            magnitude = Magnitude(move);
-            if (magnitude > speed)
-            {
-                move *= speed / magnitude;
-            }
-            npc.velocity = move;
-        }
-
-        private void DespawnHandler()
-        {
-            if (!player.active || player.dead)
+            npc.TargetClosest(true);
+            npc.spriteDirection = npc.direction;
+            Player player = Main.player[npc.target];
+            if (player.dead || !player.active)
             {
                 npc.TargetClosest(false);
-                player = Main.player[npc.target];
-                if (!player.active || player.dead)
-                {
-                    npc.velocity = new Vector2(0f, -10f);
-                    if (npc.timeLeft > 10)
-                    {
-                        npc.timeLeft = 10;
-                    }
-                    return;
-                }
-            }
-        }
-
-        private float Magnitude(Vector2 mag)
-        {
-            return (float)Math.Sqrt(mag.X * mag.X + mag.Y * mag.Y);
-        }
-
-        private void Shoot(Player player)
-        {
-            int type = ProjectileID.MartianTurretBolt;
-            Vector2 velocity = player.Center - npc.Center;
-            float magnitude = Magnitude(velocity);
-            if (magnitude > 0)
-            {
-                velocity *= 5f / magnitude;
-            }
-            else
-            {
-                velocity = new Vector2(0f, 5f);
-            }
-            Projectile.NewProjectile(npc.Center, velocity, type, npc.damage, 2f);
-            npc.ai[1] = 25f;
-        }
-
-        public override void AI()
-        {
-            attackTimer++;
-            if (NPC.AnyNPCs(NPCType<DunekeeperHandL>()) || NPC.AnyNPCs(NPCType<DunekeeperHandR>()))
-            {
-                npc.dontTakeDamage = true;
-            }
-            else
-            {
-                npc.dontTakeDamage = false;
-            }
-
-            if (npc.life < npc.lifeMax / 2)
-            {
-                Phase = 1;
+                npc.active = false;
             }
 
             if (Phase == 1)
             {
-                switch(attackTimer)
+                Timer++;
+                if (Timer >= 0)
                 {
-                    case 100:
-                        Shoot(player);
-                        break;
-                    case 200:
-                        Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, 0, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
-                        Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, 0, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
-                        Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 0, 8, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
-                        Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 0, -8, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
-                        break;
-                    case 300:
-                        attackTimer = 0;
-                        break;
+                    Vector2 StartPosition = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height * 0.5f);
+                    float DirectionX = Main.player[npc.target].position.X + Main.player[npc.target].width / 2 - StartPosition.X;
+                    float DirectionY = Main.player[npc.target].position.Y + (Main.player[npc.target].height / 2) - 120 - StartPosition.Y;
+                    float Length = (float)Math.Sqrt(DirectionX * DirectionX + DirectionY * DirectionY);
+                    float Num = Speed / Length;
+                    DirectionX = DirectionX * Num;
+                    DirectionY = DirectionY * Num;
+                    if (npc.velocity.X < DirectionX)
+                    {
+                        npc.velocity.X = npc.velocity.X + Acceleration;
+                        if (npc.velocity.X < 0 && DirectionX > 0)
+                            npc.velocity.X = npc.velocity.X + Acceleration;
+                    }
+                    else if (npc.velocity.X > DirectionX)
+                    {
+                        npc.velocity.X = npc.velocity.X - Acceleration;
+                        if (npc.velocity.X > 0 && DirectionX < 0)
+                            npc.velocity.X = npc.velocity.X - Acceleration;
+                    }
+                    if (npc.velocity.Y < DirectionY)
+                    {
+                        npc.velocity.Y = npc.velocity.Y + Acceleration;
+                        if (npc.velocity.Y < 0 && DirectionY > 0)
+                            npc.velocity.Y = npc.velocity.Y + Acceleration;
+                    }
+                    else if (npc.velocity.Y > DirectionY)
+                    {
+                        npc.velocity.Y = npc.velocity.Y - Acceleration;
+                        if (npc.velocity.Y > 0 && DirectionY < 0)
+                            npc.velocity.Y = npc.velocity.Y - Acceleration;
+                    }
+                    if (Main.rand.Next(36) == 1)
+                    {
+                        Vector2 StartPosition2 = new Vector2(npc.position.X + (npc.width * 0.5f), npc.position.Y + (npc.height / 2));
+                        float BossRotation = (float)Math.Atan2(StartPosition2.Y - (Main.player[npc.target].position.Y + (Main.player[npc.target].height * 0f)), StartPosition2.X - (Main.player[npc.target].position.X + (Main.player[npc.target].width * 0.5f)));
+                        npc.velocity.X = (float)(Math.Cos(BossRotation) * 9) * -1;
+                        npc.velocity.Y = (float)(Math.Sin(BossRotation) * 9) * -1;
+                        npc.netUpdate = true;
+                    }
+                }
+            }
+            else {
+                float speed;
+                if (EternalWorld.hellMode)
+                {
+                    speed = 10f;
+                }
+                else
+                {
+                    speed = 8f;
+                }
+                float acceleration = 0.10f;
+                Vector2 vector2 = new Vector2(npc.position.X + (float)npc.width * 0.5f, npc.position.Y + (float)npc.height * 0.5f);
+                float xDir = Main.player[npc.target].position.X + (float)(Main.player[npc.target].width / 2) - vector2.X;
+                float yDir = (float)(Main.player[npc.target].position.Y + (Main.player[npc.target].height / 2) - 120) - vector2.Y;
+                float length = (float)Math.Sqrt(xDir * xDir + yDir * yDir);
+                if (length > 400 && Main.expertMode)
+                {
+                    ++speed;
+                    acceleration += 0.05F;
+                    if (length > 600)
+                    {
+                        ++speed;
+                        acceleration += 0.05F;
+                        if (length > 800)
+                        {
+                            ++speed;
+                            acceleration += 0.05F;
+                        }
+                    }
+                }
+                float num10 = speed / length;
+                xDir = xDir * num10;
+                yDir = yDir * num10;
+                if (npc.velocity.X < xDir)
+                {
+                    npc.velocity.X = npc.velocity.X + acceleration;
+                    if (npc.velocity.X < 0 && xDir > 0)
+                        npc.velocity.X = npc.velocity.X + acceleration;
+                }
+                else if (npc.velocity.X > xDir)
+                {
+                    npc.velocity.X = npc.velocity.X - acceleration;
+                    if (npc.velocity.X > 0 && xDir < 0)
+                        npc.velocity.X = npc.velocity.X - acceleration;
+                }
+                if (npc.velocity.Y < yDir)
+                {
+                    npc.velocity.Y = npc.velocity.Y + acceleration;
+                    if (npc.velocity.Y < 0 && yDir > 0)
+                        npc.velocity.Y = npc.velocity.Y + acceleration;
+                }
+                else if (npc.velocity.Y > yDir)
+                {
+                    npc.velocity.Y = npc.velocity.Y - acceleration;
+                    if (npc.velocity.Y > 0 && yDir < 0)
+                        npc.velocity.Y = npc.velocity.Y - acceleration;
+                }
+            }
+
+            return true;
+        }
+
+        public override void FindFrame(int frameHeight)
+        {
+            npc.frame.Y = frameNum * frameHeight;
+        }
+
+        public override void AI()
+        {
+            Vector2 direction = Main.player[npc.target].Center - npc.Center;
+            direction.Normalize();
+            direction.X *= 8.5f;
+            direction.Y *= 8.5f;
+
+            int amountOfProjectiles;
+            if (Phase == 1)
+            {
+                amountOfProjectiles = 4;
+            }
+            else
+            {
+                amountOfProjectiles = 2;
+            }
+
+            #region attacks
+            attackTimer++;
+
+            if (npc.life < npc.lifeMax / 2)
+            {
+                Phase = 1;
+                frameNum = 1;
+                npc.rotation += npc.velocity.X * 0.1f;
+            }
+            else
+            {
+                npc.rotation = npc.velocity.X * 0.03f;
+            }
+
+            if (Phase == 1)
+            {
+                if (attackTimer == 100 || attackTimer == 150)
+                {
+                    for (int i = 0; i < amountOfProjectiles; ++i)
+                    {
+                        float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        int damage = Main.expertMode ? 15 : 17;
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ProjectileType<DunekeeperHand>(), damage, 1, Main.myPlayer, 0, 0);
+                    }
+                }
+                if (attackTimer == 200 || attackTimer == 250)
+                {
+                    Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, 0, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, 0, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 0, 8, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 0, -8, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
+                }
+                if (attackTimer == 300)
+                {
+                    attackTimer = 0;
                 }
             }
             else
             {
-                switch(attackTimer)
+                if (attackTimer == 100 || attackTimer == 150)
                 {
-                    case 100:
-                        Shoot(player);
-                        break;
-                    case 200:
-                        Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, -8, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
-                        Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, -8, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
-                        Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, 8, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
-                        Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, 8, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
-                        break;
-                    case 300:
-                        attackTimer = 0;
-                        break;
+                    
+                    for (int i = 0; i < amountOfProjectiles; ++i)
+                    {
+                        float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        int damage = Main.expertMode ? 15 : 17;
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ProjectileType<DunekeeperHand>(), damage, 1, Main.myPlayer, 0, 0);
+                    }
+                }
+                if (attackTimer == 200 || attackTimer == 250)
+                {
+                    Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, -8, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, -8, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, 8, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, 8, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
+                }
+                if (attackTimer == 300)
+                {
+                    attackTimer = 0;
                 }
             }
-
-            #region movement
-            player = Main.player[npc.target];
-
-            Move(new Vector2(0f, 0f));
-
-            DespawnHandler();
-
-            npc.spriteDirection = npc.direction;
             #endregion
 
+
+            
         }
+
+        
 
     }
 

@@ -10,6 +10,8 @@ using Eternal.Items.Ammo;
 using Eternal.Items.BossBags;
 using Eternal.Items;
 using Eternal.Items.Weapons.Melee;
+using Eternal.Items.Materials;
+using Eternal.Projectiles.Boss;
 
 namespace Eternal.NPCs.Boss.AoI
 {
@@ -203,22 +205,19 @@ namespace Eternal.NPCs.Boss.AoI
             }
             else
             {
-               if (Main.rand.Next(1) == 0)
-               {
-                    player.QuickSpawnItem(ItemType<Arkbow>());
-                    player.QuickSpawnItem(ItemType<ArkArrow>(), Main.rand.Next(30, 90));
-               }
-
-               if (Main.rand.Next(2) == 0)
-               {
-                    player.QuickSpawnItem(ItemType<DormantHeroSword>());
-               }
-
-               if (Main.rand.Next(2) == 0)
-               {
-                    player.QuickSpawnItem(ItemType<TheImperiousCohort>());
-               }
-
+                if (Main.rand.Next(1) == 0)
+                {
+                   Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<Arkbow>());
+                   Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<ArkArrow>(), Main.rand.Next(30, 90));
+                }
+                if (Main.rand.Next(2) == 0)
+                {
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<DormantHeroSword>());
+                }
+                if (Main.rand.Next(3) == 0)
+                {
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<TheImperiousCohort>());
+                }
             }
         }
 

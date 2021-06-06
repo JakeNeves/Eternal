@@ -14,6 +14,9 @@ using Eternal.Items.Weapons.Melee;
 using Eternal.Items.Weapons.Magic;
 using Eternal.Items.Weapons.Summon;
 using Eternal.NPCs.Boss.Empraynia;
+using Eternal.Items.Materials;
+using Eternal.Items.Placeable;
+using Eternal.Items.Weapons.Throwing;
 
 namespace Eternal
 {
@@ -99,6 +102,7 @@ namespace Eternal
 			Mod bossCheckList = ModLoader.GetMod("BossCheckList");
 			if (bossCheckList != null)
             {
+				//Pre-Hardmode
 				bossCheckList.Call(
 					"AddBoss",
 					5.4f,
@@ -106,8 +110,8 @@ namespace Eternal
 					this,
 					"The Carmanite Scouter",
 					(Func<bool>)(() => EternalWorld.downedCarmaniteScouter),
-					0,
 					ModContent.ItemType<SuspiciousLookingDroplet>(),
+					0,
 					new List<int> { ModContent.ItemType<CarmaniteScouterBag>(), ModContent.ItemType<Carmanite>(), ModContent.ItemType<CarmaniteBane>(), ModContent.ItemType<CarmaniteRipperClaws>(), ModContent.ItemType<BruteCleavage>(), ModContent.ItemType<CarmanitePurgatory>(), ModContent.ItemType<CarmaniteDeadshot>() },
 					"Spawn by using [i:" + ModContent.ItemType<SuspiciousLookingDroplet>() +"] during the Night.",
 					"The Blood-Feasting Amalgamate of the night.",
@@ -131,9 +135,10 @@ namespace Eternal
 					"Eternal/NPCs/Boss/Dunekeeper/Dunekeeper_Head_Boss"
 				);
 
+				//Hardmode
 				bossCheckList.Call(
 					"AddBoss",
-					6.0f,
+					7f,
 					ModContent.NPCType<NPCs.Boss.Incinerius.Incinerius>(),
 					this,
 					"Incinerius",
@@ -152,8 +157,8 @@ namespace Eternal
 					10.6f,
 					ModContent.NPCType<NPCs.Boss.SubzeroElemental.SubzeroElemental>(),
 					this,
-					"The Subzero Elemental",
-					(Func<bool>)(() => EternalWorld.downedIncinerius),
+					"Subzero Elemental",
+					(Func<bool>)(() => EternalWorld.downedSubzeroElemental),
 					ModContent.ItemType<AncientGlacialInscription>(),
 					0,
 					new List<int> { ModContent.ItemType<SubzeroElementalBag>(), ModContent.ItemType<TheKelvinator>(), ModContent.ItemType<FrostGladiator>(), ModContent.ItemType<FrostyImmaterializer>() },
@@ -162,6 +167,40 @@ namespace Eternal
 					"Eternal/BossChecklist/SubzeroElemental",
 					"Eternal/NPCs/Boss/SubzeroElemental/SubzeroElemental_Head_Boss"
 				);
+
+				//Post-Moon Lord
+				bossCheckList.Call(
+					"AddBoss",
+					15f,
+					ModContent.NPCType<NPCs.Boss.SubzeroElemental.SubzeroElemental>(),
+					this,
+					"Subzero Elemental (Post-Moon Lord)",
+					(Func<bool>)(() => EternalWorld.downedSubzeroElementalP2),
+					ModContent.ItemType<AncientGlacialInscription>(),
+					0,
+					new List<int> { ModContent.ItemType<SubzeroElementalBag>(), ModContent.ItemType<TheKelvinator>(), ModContent.ItemType<FrostGladiator>(), ModContent.ItemType<FrostyImmaterializer>(), ModContent.ItemType<SydaniteOre>() },
+					"Refight the Subzero Elemental Post-Moon Lord.",
+					"The Living Kelvin Construct is Back",
+					"Eternal/BossChecklist/SubzeroElemental",
+					"Eternal/NPCs/Boss/SubzeroElemental/SubzeroElemental_Head_Boss"
+				);
+
+				bossCheckList.Call(
+					"AddBoss",
+					15.5f,
+					ModContent.NPCType<NPCs.Boss.CosmicApparition.CosmicApparition>(),
+					this,
+					"Cosmic Apparition",
+					(Func<bool>)(() => EternalWorld.downedCosmicApparition),
+					ModContent.ItemType<AncientGlacialInscription>(),
+					0,
+					new List<int> { ModContent.ItemType<CosmicApparitionBag>(), ModContent.ItemType<ApparitionalRendingStaff>(), ModContent.ItemType<ApparitionalDisk>(), ModContent.ItemType<CosmicFist>(), ModContent.ItemType<Cometstorm>() },
+					"Spawn by Killing a Soul Crystal after defeating Empraynia, Post-Moon Lord.",
+					"The Ghostly Smile of Someone Powerful",
+					"Eternal/BossChecklist/CosmicApparition",
+					"Eternal/NPCs/Boss/CosmicApparition/CosmicAppatition_Head_Boss"
+				);
+
 			}
 			#endregion
 		}

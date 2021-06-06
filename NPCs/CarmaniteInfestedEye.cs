@@ -4,6 +4,7 @@ using Terraria.ID;
 using Eternal.Items.Summon;
 using static Terraria.ModLoader.ModContent;
 using Eternal.Items;
+using Eternal.Items.Materials;
 
 namespace Eternal.NPCs
 {

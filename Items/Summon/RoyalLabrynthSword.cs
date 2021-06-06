@@ -1,4 +1,5 @@
-﻿using Eternal.NPCs.Boss.AoI;
+﻿using Eternal.Items.Materials;
+using Eternal.NPCs.Boss.AoI;
 using Eternal.Tiles;
 using System.Collections.Generic;
 using Terraria;
@@ -13,7 +14,8 @@ namespace Eternal.Items.Summon
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Summons the Ark of Imperious, the god of living swords\n'The blades of the labrynth are rising'");
+            DisplayName.SetDefault("Royal Shrine Sword");
+            Tooltip.SetDefault("Summons the Ark of Imperious, the god of living swords\n'The blades of the shrine are rising'");
         }
 
         public override void SetDefaults()

@@ -1,17 +1,12 @@
 ﻿using Terraria;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Eternal
 {
 
     public class EternalColor
     {
-        public static readonly Color Hell = new Color(180, 5, Main.DiscoR); // Hell Mode Content
+        public static readonly Color Hell = new Color(255, Main.DiscoG, 0); // Hell Mode Content
 
         public static readonly Color DarkBlue = new Color(5, 35, 215); // Endgame Content
         public static readonly Color DarkTeal = new Color(0, 168, 79); // Post-True Incinerius Content

@@ -12,7 +12,7 @@ namespace Eternal.Items.Accessories.Hell
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Grants Immunity to On Fire and Provides the Obsidian Skull Effect\nHell Mode Drop");
+            Tooltip.SetDefault("Grants Immunity to On Fire and Provides the Obsidian Skull Effect\nHell");
 
             Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(5, 8));
         }
@@ -21,7 +21,7 @@ namespace Eternal.Items.Accessories.Hell
         {
             item.width = 25;
             item.height = 39;
-            item.rare = ItemRarityID.Expert;
+            item.rare = ItemRarityID.Red;
             item.accessory = true;
         }
 

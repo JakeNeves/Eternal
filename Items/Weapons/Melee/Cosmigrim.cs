@@ -1,4 +1,5 @@
 ﻿using Eternal.Dusts;
+using Eternal.Items.Materials;
 using Eternal.Tiles;
 using Microsoft.Xna.Framework;
 using Terraria;

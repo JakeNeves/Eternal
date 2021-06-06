@@ -1,4 +1,6 @@
-﻿using Terraria;
+﻿using Eternal.Items.Materials;
+using System.Collections.Generic;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
@@ -26,6 +28,17 @@ namespace Eternal.Items.Placeable
             item.consumable = true;
             item.value = Item.buyPrice(platinum: 10, gold: 30);
             item.createTile = TileType<Tiles.AncientForge>();
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            foreach (TooltipLine line2 in tooltips)
+            {
+                if (line2.mod == "Terraria" && line2.Name == "ItemName")
+                {
+                    line2.overrideColor = EternalColor.DarkTeal;
+                }
+            }
         }
 
         public override void AddRecipes()

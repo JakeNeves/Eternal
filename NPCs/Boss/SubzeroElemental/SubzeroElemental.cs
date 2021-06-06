@@ -11,6 +11,7 @@ using Eternal.Items.Weapons.Ranged;
 using Eternal.Items.Weapons.Summon;
 using Eternal.Projectiles.Enemy;
 using System;
+using Eternal.Items.Placeable;
 
 namespace Eternal.NPCs.Boss.SubzeroElemental
 {
@@ -55,12 +56,26 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = 81200;
+            if (NPC.downedMoonlord)
+            {
+                npc.lifeMax = 812000;
+            }
+            else
+            {
+                npc.lifeMax = 81200;
+            }
             npc.damage = (int)(npc.damage + 1f);
             npc.defense = (int)(npc.defense + numPlayers);
             if (EternalWorld.hellMode)
             {
-                npc.lifeMax = 122400;
+                if (NPC.downedMoonlord)
+                {
+                    npc.lifeMax = 1224000;
+                }
+                else
+                {
+                    npc.lifeMax = 122400;
+                }
             }
         }
 
@@ -155,6 +170,25 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
                 case 150:
                     Shoot();
                     break;
+                case 160:
+                    if(NPC.downedMoonlord)
+                    {
+                        Vector2 direction = Main.player[npc.target].Center - npc.Center;
+                        direction.Normalize();
+                        direction.X *= 8.5f;
+                        direction.Y *= 8.5f;
+
+                        int amountOfProjectiles = Main.rand.Next(8, 24);
+                        for (int i = 0; i < amountOfProjectiles; ++i)
+                        {
+                            float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                            float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+                            int damage = Main.expertMode ? 15 : 17;
+                            if (Main.netMode != NetmodeID.MultiplayerClient)
+                                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ProjectileType<FridgedSpike>(), damage, 1, Main.myPlayer, 0, 0);
+                        }
+                    }
+                    break;
                 case 200:
                     AttackTimer = 0;
                     break;
@@ -222,8 +256,13 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
             if(!EternalWorld.downedSubzeroElemental)
             {
                 Main.NewText("The air is getting fridged in the tundra...", 0, 95, 215);
-                Main.NewText("Someone is reconizing your devotion into preventing the underworld from freezing...", 0, 80, 200);
+                //Main.NewText("Someone is reconizing your devotion into preventing the underworld from freezing...", 0, 80, 200);
                 EternalWorld.downedSubzeroElemental = true;
+            }
+            else if (NPC.downedMoonlord && EternalWorld.downedSubzeroElemental && !EternalWorld.downedSubzeroElementalP2)
+            {
+                Main.NewText("Ancient Ice Constructs of the Tundra have been empowered...", 0, 95, 215);
+                EternalWorld.downedSubzeroElementalP2 = true;
             }
 
             if (Main.expertMode)
@@ -234,17 +273,20 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
             {
                 if (Main.rand.Next(1) == 0)
                 {
-                    player.QuickSpawnItem(ItemType<TheKelvinator>());
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<FrostGladiator>());
                 }
-
                 if (Main.rand.Next(2) == 0)
                 {
-                    player.QuickSpawnItem(ItemType<FrostGladiator>());
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<FrostyImmaterializer>());
                 }
-
                 if (Main.rand.Next(3) == 0)
                 {
-                    player.QuickSpawnItem(ItemType<FrostyImmaterializer>());
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<TheKelvinator>());
+                }
+
+                if (NPC.downedMoonlord)
+                {
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<SydaniteOre>(), Main.rand.Next(15, 55));
                 }
             }
 
@@ -252,8 +294,16 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
 
         public override void BossLoot(ref string name, ref int potionType)
         {
-            potionType = ItemID.GreaterHealingPotion;
-            name = "A " + name;
+            if(NPC.downedMoonlord)
+            {
+                potionType = ItemID.SuperHealingPotion;
+            }
+            else
+            {
+                potionType = ItemID.GreaterHealingPotion;
+            }
+            
+            name = "The " + name;
         }
 
         public override void FindFrame(int frameHeight)

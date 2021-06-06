@@ -60,6 +60,8 @@ namespace Eternal.NPCs
                 case NPCID.MoonLordCore:
                     if (!NPC.downedMoonlord)
                     {
+                        Main.NewText("The tundra freezes restless...", 7, 28, 224);
+                        Main.NewText("A faint eterial hum can be heard from the shrine...", 48, 255, 179);
                         Main.NewText("A comet has landed and struck the world!", 0, 215, 215);
                         EternalWorld.DropComet();
                     }

@@ -12,7 +12,6 @@ using System.IO;
 using System.Collections.Generic;
 using Eternal.NPCs;
 using Terraria.GameContent.Generation;
-using Eternal.World;
 
 namespace Eternal
 {
@@ -40,14 +39,22 @@ namespace Eternal
 
         /// <summary>
         ///     Just Like a Master Mode+ or an Expert Mode++
+        ///     <param>
+        ///         hellMode
+        ///     </param>
         /// </summary>
         public static bool hellMode = false;
 
         #region DownedBosses
+        //Pre-Hardmode
         public static bool downedCarmaniteScouter = false;
         public static bool downedDunekeeper = false;
+        //Hardmode
         public static bool downedIncinerius = false;
         public static bool downedSubzeroElemental = false;
+        //Post-Moon Lord
+        public static bool downedSubzeroElementalP2 = false;
+        public static bool downedCosmicApparition = false;
         #endregion
 
         public override void TileCountsAvailable(int[] tileCounts)
@@ -63,10 +70,15 @@ namespace Eternal
 
         public override void Initialize()
 		{
+            //Pre-Hardmode
 			downedCarmaniteScouter = false;
             downedDunekeeper = false;
+            //Hardmode
             downedIncinerius = false;
             downedSubzeroElemental = false;
+            //Post-Moon Lord
+            downedSubzeroElementalP2 = false;
+            downedCosmicApparition = false;
 
             hellMode = false;
         }
@@ -75,10 +87,17 @@ namespace Eternal
 		{
 			var downed = new List<string>();
             var difficulty = new List<string>();
-			if (downedCarmaniteScouter) downed.Add("eternal");
+            #region DownedBosses
+            //Pre-Hardmode
+            if (downedCarmaniteScouter) downed.Add("eternal");
             if (downedDunekeeper) downed.Add("eternal");
+            //Hardmode
             if (downedIncinerius) downed.Add("eternal");
             if (downedSubzeroElemental) downed.Add("eternal");
+            //Post-Moon Lord
+            if (downedSubzeroElementalP2) downed.Add("eternal");
+            if (downedCosmicApparition) downed.Add("eternal");
+            #endregion
 
             if (hellMode) difficulty.Add("eternal");
 
@@ -94,10 +113,17 @@ namespace Eternal
         {
             var downed = tag.GetList<string>("downed");
             var difficulty = tag.GetList<string>("difficulty");
+            #region DownedBosses
+            //Pre-Hardmode
             downedCarmaniteScouter = downed.Contains("eternal");
             downedDunekeeper = downed.Contains("eternal");
+            //Hardmode
             downedIncinerius = downed.Contains("eternal");
             downedSubzeroElemental = downed.Contains("eternal");
+            //Post-Moon Lord
+            downedSubzeroElementalP2 = downed.Contains("eternal");
+            downedCosmicApparition = downed.Contains("eternal");
+            #endregion
 
             hellMode = difficulty.Contains("eternal");
         }
@@ -109,10 +135,15 @@ namespace Eternal
             {
                 BitsByte flags = reader.ReadByte();
                 #region DownedBossFlags
+                //Pre-Hardmode
                 downedCarmaniteScouter = flags[0];
                 downedDunekeeper = flags[0];
+                //Hardmode
                 downedIncinerius = flags[0];
                 downedSubzeroElemental = flags[0];
+                //Post-Moon Lord
+                downedSubzeroElementalP2 = flags[0];
+                downedCosmicApparition = flags[0];
                 #endregion
             }
         }
@@ -121,10 +152,17 @@ namespace Eternal
         {
             BitsByte flags = new BitsByte();
             BitsByte difficultyFlag = new BitsByte();
+            #region DownedBossFlags
+            //Pre-Hardmode
             flags[0] = downedCarmaniteScouter;
             flags[1] = downedDunekeeper;
+            //Hardmode
             flags[2] = downedIncinerius;
             flags[3] = downedSubzeroElemental;
+            //Post-Moon Lord
+            flags[4] = downedSubzeroElementalP2;
+            flags[5] = downedCosmicApparition;
+            #endregion
 
             difficultyFlag[0] = hellMode;
 
@@ -137,10 +175,15 @@ namespace Eternal
             BitsByte flags = reader.ReadByte();
             BitsByte difficultyFlag = new BitsByte();
             #region DownedBossFlags
+            //Pre-Hardmode
             downedCarmaniteScouter = flags[0];
             downedDunekeeper = flags[0];
+            //Hardmode
             downedIncinerius = flags[0];
             downedSubzeroElemental = flags[0];
+            //Post-Moon Lord
+            downedSubzeroElementalP2 = flags[0];
+            downedCosmicApparition = flags[0];
             #endregion
 
             difficultyFlag[0] = hellMode;
@@ -154,6 +197,7 @@ namespace Eternal
             //    TestMethod((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16);
         }
 
+        #region commet
         //ripped this from tremor, credit to whoever wrote this originally...
         public static void DropComet()
         {
@@ -403,11 +447,10 @@ namespace Eternal
             }
             return true;
         }
+        #endregion
 
-        public void GenBeneath(GenerationProgress progress)
+        public void GenBeneath()
         {
-            progress.Message = "Making Grim Caves...";
-
             WorldGen.TileRunner(32, 32, WorldGen.genRand.Next(90, 200), 40, TileType<Grimstone>(), true, WorldGen.genRand.Next(9, 20), WorldGen.genRand.Next(-2, 2));
             WorldGen.TileRunner(32, 32, WorldGen.genRand.Next(90, 200), 40, TileType<Grimstone>(), true, WorldGen.genRand.Next(-20, -9), WorldGen.genRand.Next(-2, 2));
         }
@@ -469,12 +512,22 @@ namespace Eternal
 
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
         {
-            int shiniesIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Shinies"));
+            /*int shiniesIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Shinies"));
             if (shiniesIndex == -1)
             {
-                tasks.Insert(shiniesIndex + 1, new PassLegacy("Generating Eternak Ores", EternalOres));
+                tasks.Insert(shiniesIndex + 1, new PassLegacy("Generating Eternal Ores", EternalOres));
 
                 return;
+            }*/
+
+            int GraniteIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Granite"));
+            if (GraniteIndex != -1)
+            {
+                tasks.Insert(GraniteIndex + 1, new PassLegacy("Post Terrain", delegate (GenerationProgress progress)
+                {
+                    progress.Message = "Making Grim Caves...";
+                    GenBeneath();
+                }));
             }
 
             int LivingTreesIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Living Trees"));
@@ -524,7 +577,7 @@ namespace Eternal
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
         };
-        #endregion
+        
 
         public bool PlaceShrine(int i, int j)
         {
@@ -567,6 +620,7 @@ namespace Eternal
             }
             return true;
         }
+        #endregion
 
         public void EternalOres(GenerationProgress progress)
         {

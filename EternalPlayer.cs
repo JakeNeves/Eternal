@@ -10,6 +10,7 @@ using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
+
 namespace Eternal
 {
     public class EternalPlayer : ModPlayer
@@ -24,12 +25,15 @@ namespace Eternal
         public bool cEnergy = false;
         #endregion
 
-        public bool incineriusPet = false;
-
         public bool ZoneLabrynth = false;
 		public bool ZoneThunderduneBiome = false;
 		public bool ZoneCommet = false;
         public bool ZoneBeneath = false;
+
+        public override void ResetEffects()
+        {
+            EternalGlobalProjectile.cometGauntlet = false;
+        }
 
         public override void PostUpdate()
         {

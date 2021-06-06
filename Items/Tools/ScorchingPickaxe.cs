@@ -5,6 +5,7 @@ using static Terraria.ModLoader.ModContent;
 using Eternal.Tiles;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using Eternal.Items.Materials;
 
 namespace Eternal.Items.Tools
 {

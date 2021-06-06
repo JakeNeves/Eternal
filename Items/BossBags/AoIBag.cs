@@ -5,6 +5,7 @@ using Terraria;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using Eternal.Items.Ammo;
+using Eternal.Items.Materials;
 
 namespace Eternal.Items.BossBags
 {

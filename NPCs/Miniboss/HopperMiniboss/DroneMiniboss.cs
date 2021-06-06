@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Eternal.Items;
 using static Terraria.ModLoader.ModContent;
 using System;
+using Eternal.Items.Materials;
 
 namespace Eternal.NPCs.Miniboss.HopperMiniboss
 {
@@ -72,6 +73,7 @@ namespace Eternal.NPCs.Miniboss.HopperMiniboss
         public override void AI()
         {
             attackTimer++;
+            npc.rotation = npc.velocity.X * 0.03f;
             #region movement
             npc.TargetClosest(true);
             npc.spriteDirection = npc.direction;
@@ -127,45 +129,49 @@ namespace Eternal.NPCs.Miniboss.HopperMiniboss
             #endregion
 
             #region attacks
-            switch (attackTimer)
+            if (attackTimer == 25 || attackTimer == 30 || attackTimer == 35 || attackTimer == 40)
             {
-                case 10:
-                    Shoot(player);
-                    break;
-                case 20:
-                    Shoot(player);
-                    break;
-                case 30:
-                    Shoot(player);
-                    break;
-                case 110:
-                    Shoot(player);
-                    break;
-                case 120:
-                    Shoot(player);
-                    break;
-                case 130:
-                    Shoot(player);
-                    break;
-                case 200:
-                    attackTimer = 0;
-                    break;
+                Shoot(player);
+            }
+            else if (attackTimer == 125 || attackTimer == 130 || attackTimer == 135 || attackTimer == 140)
+            {
+                Shoot(player);
+            }
+            else if (attackTimer == 150)
+            {
+                attackTimer = 0;
             }
             #endregion
         }
 
         private void Shoot(Player player)
         {
-            float angle = Main.rand.Next(0, (int)Math.PI * 200) / 100f;
+            /*float angle = Main.rand.Next(0, (int)Math.PI * 200) / 100f;
             Vector2 vel = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle)) * 3 * Main.rand.Next(5);
             Projectile.NewProjectile(bossCenter.X, bossCenter.Y - 15, vel.X + 15, vel.Y, ProjectileID.BulletDeadeye, 30, 5f);
-            Projectile.NewProjectile(bossCenter.X, bossCenter.Y + 15, vel.X - 15, vel.Y, ProjectileID.BulletDeadeye, 30, 5f);
+            Projectile.NewProjectile(bossCenter.X, bossCenter.Y + 15, vel.X - 15, vel.Y, ProjectileID.BulletDeadeye, 30, 5f);*/
+
             Main.PlaySound(SoundID.Item11, npc.position);
+
+            Vector2 direction = Main.player[npc.target].Center - npc.Center;
+            direction.Normalize();
+            direction.X *= 8.5f;
+            direction.Y *= 8.5f;
+
+            int amountOfProjectiles = Main.rand.Next(1, 3);
+            for (int i = 0; i < amountOfProjectiles; ++i)
+            {
+                float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+                int damage = Main.expertMode ? 15 : 17;
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ProjectileID.BulletDeadeye, damage, 1, Main.myPlayer, 0, 0);
+            }
         }
 
         public override void FindFrame(int frameHeight)
         {
-            npc.frameCounter += 0.15f;
+            npc.frameCounter += 0.5f;
             npc.frameCounter %= Main.npcFrameCount[npc.type];
             int Frame = (int)npc.frameCounter;
             npc.frame.Y = Frame * frameHeight;

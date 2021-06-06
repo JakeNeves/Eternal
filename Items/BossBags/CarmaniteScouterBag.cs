@@ -1,4 +1,5 @@
-﻿using Eternal.Items.Weapons.Expert;
+﻿using Eternal.Items.Materials;
+using Eternal.Items.Weapons.Expert;
 using Eternal.Items.Weapons.Melee;
 using Eternal.Items.Weapons.Ranged;
 using Terraria;

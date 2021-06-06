@@ -13,7 +13,7 @@ namespace Eternal.Items.Accessories.Hell
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Heart of Rage");
-            Tooltip.SetDefault("Increased Melee Damage By 5%\nHell Mode Drop");
+            Tooltip.SetDefault("Increased Melee Damage By 5%\nHell");
         }
 
         public override void SetDefaults()
@@ -21,7 +21,7 @@ namespace Eternal.Items.Accessories.Hell
             item.width = 28;
             item.height = 26;
             item.value = 0;
-            item.rare = ItemRarityID.Expert;
+            item.rare = ItemRarityID.Red;
             item.accessory = true;
         }
 

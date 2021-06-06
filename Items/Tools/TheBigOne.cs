@@ -1,4 +1,5 @@
-﻿using Eternal.Tiles;
+﻿using Eternal.Items.Materials;
+using Eternal.Tiles;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;

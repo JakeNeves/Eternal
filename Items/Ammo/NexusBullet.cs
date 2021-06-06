@@ -1,4 +1,5 @@
-﻿using Eternal.Projectiles.Weapons.Ranged;
+﻿using Eternal.Items.Materials;
+using Eternal.Projectiles.Weapons.Ranged;
 using Eternal.Tiles;
 using Terraria;
 using Terraria.ID;

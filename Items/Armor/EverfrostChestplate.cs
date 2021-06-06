@@ -1,4 +1,5 @@
-﻿using Eternal.Tiles;
+﻿using Eternal.Items.Materials;
+using Eternal.Tiles;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

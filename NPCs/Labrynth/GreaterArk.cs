@@ -7,6 +7,7 @@ using Eternal.Tiles;
 using System.Linq;
 using Eternal.Items;
 using static Terraria.ModLoader.ModContent;
+using Eternal.Items.Materials;
 
 namespace Eternal.NPCs.Labrynth
 {

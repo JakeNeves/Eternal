@@ -16,7 +16,6 @@ namespace Eternal.Projectiles.Enemy
             projectile.height = 35;
             projectile.hostile = true;
             projectile.friendly = false;
-            projectile.melee = true;
             projectile.ignoreWater = true;
             projectile.penetrate = 1;
         }

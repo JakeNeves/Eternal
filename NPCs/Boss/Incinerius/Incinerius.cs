@@ -10,6 +10,7 @@ using Eternal.Items;
 using Eternal.Items.Weapons.Melee;
 using Eternal.Items.Weapons.Magic;
 using Eternal.Items.Accessories.Hell;
+using Eternal.Items.Materials;
 
 namespace Eternal.NPCs.Boss.Incinerius
 {
@@ -128,20 +129,44 @@ namespace Eternal.NPCs.Boss.Incinerius
                 {
                     if (Main.rand.Next(1) == 0)
                     {
-                        player.QuickSpawnItem(ItemType<SmotheringInferno>());
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<FuryFlare>());
                     }
-
                     if (Main.rand.Next(2) == 0)
                     {
-                        player.QuickSpawnItem(ItemType<Incinerator>());
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<Incinerator>());
                     }
-
                     if (Main.rand.Next(3) == 0)
                     {
-                        player.QuickSpawnItem(ItemType<Pyroyo>());
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<SmotheringInferno>());
                     }
+                    if (Main.rand.Next(4) == 0)
+                    {
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<Pyroyo>());
+                    }
+                }
+            }
 
-                    player.QuickSpawnItem(ItemType<ScorchedMetal>(), Main.rand.Next(10, 90));
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                int num1 = (int)(npc.position.X + (npc.width / 2)) / 16;
+                int num2 = (int)(npc.position.Y + (npc.height / 2)) / 16;
+                int num5 = npc.width / 2 / 16 + 1;
+                for (int index2 = num1 - num5; index2 <= num1 + num5; ++index2)
+                {
+                    for (int index3 = num2 - num5; index3 <= num2 + num5; ++index3)
+                    {
+                        if ((index2 == num1 - num5 || index2 == num1 + num5 || (index3 == num2 - num5 || index3 == num2 + num5)) && !Main.tile[index2, index3].active())
+                        {
+                            Main.tile[index2, index3].type = (ushort)TileType<Tiles.ScorchedBrick>();
+                            Main.tile[index2, index3].active(true);
+                        }
+                        Main.tile[index2, index3].lava(false);
+                        Main.tile[index2, index3].liquid = 0;
+                        if (Main.netMode == NetmodeID.Server)
+                            NetMessage.SendTileSquare(-1, index2, index3, 1);
+                        else
+                            WorldGen.SquareTileFrame(index2, index3, true);
+                    }
                 }
             }
         }
@@ -241,7 +266,7 @@ namespace Eternal.NPCs.Boss.Incinerius
         {
             for (int i = 0; i < 50; i++)
             {
-                int dust = Dust.NewDust(npc.position, npc.width, npc.height, 6);
+                int dust = Dust.NewDust(npc.position, npc.width, npc.height, DustID.Fire);
                 Main.dust[dust].scale = 1.5f;
                 Main.dust[dust].noGravity = true;
                 Main.dust[dust].velocity *= 0f;

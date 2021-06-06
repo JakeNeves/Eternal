@@ -1,4 +1,4 @@
-﻿using Eternal.Projectiles;
+﻿using Eternal.Projectiles.Weapons.Expert;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,7 +10,7 @@ namespace Eternal.Items.Weapons.Expert
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("[c/FCA5033:Throwing Item]\n'Very meaty, very meaty indeed...'");
+            Tooltip.SetDefault("[c/FCA5033:Throwing Item]\nThrows a chunk from a carmanite parasite\n'Very meaty, very meaty indeed...'");
         }
 
         public override void SetDefaults()
