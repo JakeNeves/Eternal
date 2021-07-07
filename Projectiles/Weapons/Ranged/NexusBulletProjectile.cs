@@ -35,9 +35,9 @@ namespace Eternal.Projectiles.Weapons.Ranged
             aiType = ProjectileID.Bullet;
         }
 
-			public override void AI()
-        	{
-            	Lighting.AddLight(projectile.position, 1.98f, 0.49f, 2.47f);
+		public override void AI()
+        {
+            Lighting.AddLight(projectile.position, 1.98f, 0.49f, 2.47f);
 
 			for (int k = 0; k < 5; k++)
 			{

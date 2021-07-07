@@ -5,13 +5,13 @@ using Terraria.ModLoader.IO;
 using Terraria.World.Generation;
 using static Terraria.ModLoader.ModContent;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
 using Eternal.Tiles;
 using System;
 using System.IO;
 using System.Collections.Generic;
 using Eternal.NPCs;
 using Terraria.GameContent.Generation;
+using Terraria.Graphics.Effects;
 
 namespace Eternal
 {
@@ -35,6 +35,7 @@ namespace Eternal
         public static int DuneTiles;
         public static int LabrynthTiles;
         public static int BeneathTiles;
+        public static int AshpitTiles;
         #endregion
 
         /// <summary>
@@ -66,6 +67,7 @@ namespace Eternal
             labrynth = LabrynthTiles;
             BeneathTiles = tileCounts[TileType<Grimstone>()];
             theBeneath = BeneathTiles;
+            ashpit = tileCounts[TileType<HeatslateGrowth>()];
         }
 
         public override void Initialize()
@@ -191,10 +193,14 @@ namespace Eternal
 
         public override void PostUpdate()
         {
+            Player player = Main.LocalPlayer;
+            EternalPlayer modPlayer = player.GetEternalPlayer();
+
             EternalGlobalNPC.hellModeDifficulty = hellMode;
 
             //if (JustPressed(Keys.D1))
             //    TestMethod((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16);
+
         }
 
         #region commet
@@ -639,5 +645,6 @@ namespace Eternal
         public static int commet = 0;
         public static int labrynth = 0;
         public static int theBeneath = 0;
+        public static int ashpit = 0;
     }
 }

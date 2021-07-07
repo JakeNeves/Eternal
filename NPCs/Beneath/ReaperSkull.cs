@@ -102,10 +102,7 @@ namespace Eternal.NPCs.Beneath
 
         public override void NPCLoot()
         {
-            if (Main.rand.Next(4, 8) == 0)
-            {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<DepthsDebris>());
-            }
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<DepthsDebris>(), Main.rand.Next(3, 9));
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

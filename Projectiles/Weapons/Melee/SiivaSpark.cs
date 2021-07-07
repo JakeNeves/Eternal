@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Eternal.Projectiles.Weapons.Melee
 {
-    class SiivaSpark : ModProjectile
+    public class SiivaSpark : ModProjectile
     {
 		public override void SetStaticDefaults()
         {

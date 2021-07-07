@@ -1,15 +1,9 @@
 ﻿using Eternal.Items;
-using Eternal.Items.Accessories;
-using Eternal.Items.BossBags;
-using System;
+using Eternal.NPCs;
 using System.Collections.Generic;
-using System.Linq;
 using Terraria;
-using Terraria.DataStructures;
-using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 
 namespace Eternal
 {
@@ -19,6 +13,7 @@ namespace Eternal
         #region Defbuffs
         public bool ominousPresence = false;
         public bool doomFire = false;
+        public bool embericCombustion = false;
         #endregion
 
         #region Minions
@@ -29,6 +24,7 @@ namespace Eternal
 		public bool ZoneThunderduneBiome = false;
 		public bool ZoneCommet = false;
         public bool ZoneBeneath = false;
+        public bool ZoneAshpit = false;
 
         public override void ResetEffects()
         {
@@ -46,6 +42,7 @@ namespace Eternal
         public override void UpdateDead()
         {
             doomFire = false;
+            embericCombustion = false;
         }
 
         public override void UpdateBadLifeRegen()
@@ -59,12 +56,21 @@ namespace Eternal
                 player.lifeRegenTime = 0;
                 player.lifeRegen -= 20;
             }
+            else if (embericCombustion)
+            {
+                if (player.lifeRegen > 0)
+                {
+                    player.lifeRegen = 0;
+                }
+                player.lifeRegenTime = 0;
+                player.lifeRegen -= 15;
+            }
         }
 
         public override void SetupStartInventory(IList<Item> items, bool mediumcoreDeath)
 		{
 			Item item = new Item();
-			item.SetDefaults(ItemType<StartingBag>());
+			item.SetDefaults(ModContent.ItemType<StartingBag>());
             items.Add(item);
 		}
 
@@ -74,6 +80,7 @@ namespace Eternal
 			ZoneCommet = EternalWorld.commet > 20;
             ZoneLabrynth = EternalWorld.labrynth > 50;
             ZoneBeneath = EternalWorld.theBeneath > 50;
+            ZoneAshpit = EternalWorld.ashpit > 70;
         }
     }
 }

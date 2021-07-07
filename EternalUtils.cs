@@ -3,8 +3,8 @@ using Terraria;
 
 namespace Eternal
 {
-    public class EternalUtils
+    public static class EternalUtils
     {
-        public static Color COLOR_GLOWPULSE => Color.Cyan * (Main.mouseTextColor / 255f);
+        public static EternalPlayer GetEternalPlayer(this Player player) => player.GetModPlayer<EternalPlayer>();
     }
 }

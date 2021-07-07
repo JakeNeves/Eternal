@@ -1,6 +1,6 @@
 [c/1EC9E3:Eternal] - By [c/008CFF:Jake][c/0204CFF:TEM]!
 
-1.0.6  - [c/009933:Repetance Update]
+1.0.7  - [c/009933:Repetance Update] [c/fff000:Part II]
 
 Feel free to join my Discord Server and help out with the mod if you want
 https://discord.gg/HUJ8KUSAjC
@@ -16,10 +16,6 @@ and three out of the twenty post-moon lord bosses
 
 [c/00B359:---Future Plans---]
 
-* Make use of the two pre-hardmode
-  bosses and use them as an alternate
-  pre-hardmode boss progression path
-
 * Fully Implement the currently existing
   biomes into the world generation
 
@@ -34,8 +30,7 @@ kes/birb7 - Sprite Artist
 
 [c/00b359:---Changelog---]
 
-1.0.6
-Added Boss loot for the Cosmic Apparition
-Updated Boss Checklist Integration
-Added Heatslate and the Ashes of Inferno
-Updated the Dunekeeper and the Carmanite Scouter
+1.0.7
+Added Dawnstone
+Added a few new arrows
+Added the Appolyon (WIP)

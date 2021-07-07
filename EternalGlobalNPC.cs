@@ -12,8 +12,9 @@ namespace Eternal.NPCs
 
         #region Defbuffs
         public bool doomFire;
+        public bool embericComustion;
         #endregion
-        
+
         public override void ResetEffects(NPC npc)
         {
             doomFire = false;
@@ -30,7 +31,19 @@ namespace Eternal.NPCs
                 npc.lifeRegen -= 20;
                 if (damage < 2)
                 {
-                    damage = 2;
+                    damage = 20;
+                }
+            }
+            else if (embericComustion)
+            {
+                if (npc.lifeRegen > 0)
+                {
+                    npc.lifeRegen = 0;
+                }
+                npc.lifeRegen -= 15;
+                if (damage < 2)
+                {
+                    damage = 15;
                 }
             }
         }

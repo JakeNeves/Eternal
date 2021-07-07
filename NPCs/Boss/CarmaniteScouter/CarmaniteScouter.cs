@@ -44,7 +44,7 @@ namespace Eternal.NPCs.Boss.CarmaniteScouter
             npc.noTileCollide = true;
             npc.HitSound = mod.GetLegacySoundSlot(SoundType.NPCHit, "Sounds/NPCHit/CarmaniteScouterHit");
             npc.DeathSound = mod.GetLegacySoundSlot(SoundType.NPCKilled, "Sounds/NPCKilled/CarmaniteScouterDeath");
-            music = MusicID.Boss5;
+            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/UnfatefulStrike"); //MusicID.Boss5
             bossBag = ItemType<CarmaniteScouterBag>();
         }
 
@@ -104,12 +104,9 @@ namespace Eternal.NPCs.Boss.CarmaniteScouter
             {
                 npc.dontTakeDamage = false;
             }
-            
-            if (!Main.dayTime) { 
-                Target();
-            }
 
             Timer++;
+            Target();
             RotateNPCToTarget();
             DespawnHandler();
 
@@ -167,11 +164,7 @@ namespace Eternal.NPCs.Boss.CarmaniteScouter
 
         private void Move(Vector2 offset)
         {
-            if (Main.dayTime)
-            {
-                speed = 20f;
-            }
-            else if (Timer == 130 || Timer == 230 || Timer == 330 || Timer == 430)
+            if (Timer == 130 || Timer == 230 || Timer == 330 || Timer == 430)
             {
                 speed = 8f;
             }
@@ -242,7 +235,9 @@ namespace Eternal.NPCs.Boss.CarmaniteScouter
 
         public override void NPCLoot()
         {
-            if(EternalWorld.hellMode)
+            Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Custom/AltBossDefeat"), Main.myPlayer);
+
+            if (EternalWorld.hellMode)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<HeartofRage>());
             }

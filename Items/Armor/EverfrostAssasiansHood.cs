@@ -35,7 +35,7 @@ namespace Eternal.Items.Armor
             player.buffImmune[BuffID.Chilled] = true;
             player.buffImmune[BuffID.Frostburn] = true;
             player.buffImmune[BuffID.Frozen] = true;
-            player.meleeDamage += 20f;
+            player.rangedDamage += 20f;
         }
 
         public override void AddRecipes()

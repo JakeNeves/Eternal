@@ -5,7 +5,6 @@ using Terraria.ModLoader;
 using System;
 using Eternal.Items.Summon;
 using System.Collections.Generic;
-using Eternal.Items;
 using Eternal.Items.Weapons.Ranged;
 using Eternal.Items.MusicBox;
 using Eternal.Items.Armor;
@@ -17,6 +16,8 @@ using Eternal.NPCs.Boss.Empraynia;
 using Eternal.Items.Materials;
 using Eternal.Items.Placeable;
 using Eternal.Items.Weapons.Throwing;
+using Eternal.Skies;
+using Terraria.Graphics.Shaders;
 
 namespace Eternal
 {
@@ -51,17 +52,20 @@ namespace Eternal
 			AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/BladeofBrutality"), ItemType("AoIMusicBox"), TileType("AoIMusicBox"));
 			AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/DunesWrath"), ItemType("DunekeeperMusicBox"), TileType("DunekeeperMusicBox"));
 			AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/FieryBattler"), ItemType("IncineriusMusicBox"), TileType("IncineriusMusicBox"));
-			#endregion
+            #endregion
 
-			if (Main.netMode != NetmodeID.Server)
+            if (Main.netMode != NetmodeID.Server)
             {
 				#region sky things
 				Filters.Scene["Eternal:Empraynia"] = new Filter(new EmprayniaScreenShaderData("FilterMiniTower").UseColor(0.229f, 0.84f, 0.255f).UseOpacity(0.6f), EffectPriority.VeryHigh);
 				SkyManager.Instance["Eternal:Empraynia"] = new EmprayniaSky();
+
+				Filters.Scene["SpiritMod:AshpitSky"] = new Filter((new ScreenShaderData("FilterMiniTower")).UseColor(0f, 0f, 0f).UseOpacity(0f), EffectPriority.VeryLow);
+				SkyManager.Instance["SpiritMod:AshpitSky"] = new AshpitSky();
 				#endregion
 			}
 		}
-		
+
 		public override void UpdateMusic(ref int music, ref MusicPriority priority)
         {
 			if(Main.myPlayer == -1 || Main.gameMenu || !Main.LocalPlayer.active)
@@ -72,26 +76,32 @@ namespace Eternal
 			if(Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneThunderduneBiome)
             {
 				music = GetSoundSlot(SoundType.Music, "Sounds/Music/VitreousSandsofThunder");
-				priority = MusicPriority.BiomeLow;
+				priority = MusicPriority.BiomeMedium;
             }
 
 			if (Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneCommet)
 			{
 				music = GetSoundSlot(SoundType.Music, "Sounds/Music/ShatteredStar");
-				priority = MusicPriority.BiomeLow;
+				priority = MusicPriority.BiomeMedium;
 			}
 
 			if (Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneLabrynth)
 			{
 				music = GetSoundSlot(SoundType.Music, "Sounds/Music/MazesAndLivingSwords");
-				priority = MusicPriority.BiomeLow;
+				priority = MusicPriority.BiomeMedium;
 			}
 
 			if (Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneBeneath)
 			{
 				//music = MusicID.Eerie;
 				music = GetSoundSlot(SoundType.Music, "Sounds/Music/DeepDark");
-				priority = MusicPriority.BiomeLow;
+				priority = MusicPriority.BiomeMedium;
+			}
+
+			if (Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneAshpit)
+			{
+				music = GetSoundSlot(SoundType.Music, "Sounds/Music/AshFields");
+				priority = MusicPriority.BiomeMedium;
 			}
 
 		}
@@ -114,7 +124,7 @@ namespace Eternal
 					0,
 					new List<int> { ModContent.ItemType<CarmaniteScouterBag>(), ModContent.ItemType<Carmanite>(), ModContent.ItemType<CarmaniteBane>(), ModContent.ItemType<CarmaniteRipperClaws>(), ModContent.ItemType<BruteCleavage>(), ModContent.ItemType<CarmanitePurgatory>(), ModContent.ItemType<CarmaniteDeadshot>() },
 					"Spawn by using [i:" + ModContent.ItemType<SuspiciousLookingDroplet>() +"] during the Night.",
-					"The Blood-Feasting Amalgamate of the night.",
+					"The Blood-Feasting Amalgamate.",
 					"Eternal/BossChecklist/CarmaniteScouter",
 					"Eternal/NPCs/Boss/CarmaniteScouter/CarmaniteScouter_Head_Boss"
 				);
@@ -144,7 +154,7 @@ namespace Eternal
 					"Incinerius",
 					(Func<bool>)(() => EternalWorld.downedIncinerius),
 					ModContent.ItemType<RelicofInferno>(),
-					0,
+					new List<int> { ModContent.ItemType<IncineriusMusicBox>() },
 					new List<int> { ModContent.ItemType<IncineriusBag>(), ModContent.ItemType<ScorchedMetal>(), ModContent.ItemType<SmotheringInferno>(), ModContent.ItemType<FuryFlare>(), ModContent.ItemType<Pyroyo>() },
 					"Spawn by using [i:" + ModContent.ItemType<RelicofInferno>() + "] in the underworld.",
 					"The Flaming Golem of the Underworld",

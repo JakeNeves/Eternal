@@ -16,7 +16,7 @@ namespace Eternal.Items.Materials
         {
             item.width = 26;
             item.height = 26;
-            item.value = Item.buyPrice(platinum: 1, gold: 25, silver: 50);
+            item.value = Item.buyPrice(silver: 50);
             item.rare = ItemRarityID.Green;
             item.maxStack = 999;
         }

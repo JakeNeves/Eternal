@@ -1,5 +1,6 @@
 ﻿using Eternal.Items.Materials;
 using Eternal.Items.Placeable;
+using Eternal.NPCs;
 using Eternal.NPCs.Boss.Dunekeeper;
 using Terraria;
 using Terraria.ID;

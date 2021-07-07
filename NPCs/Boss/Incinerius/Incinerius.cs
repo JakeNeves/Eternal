@@ -1,17 +1,13 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using Eternal.Items.BossBags;
-using Eternal.Items;
 using Eternal.Items.Weapons.Melee;
 using Eternal.Items.Weapons.Magic;
 using Eternal.Items.Accessories.Hell;
-using Eternal.Items.Materials;
-
 namespace Eternal.NPCs.Boss.Incinerius
 {
     [AutoloadBossHead]

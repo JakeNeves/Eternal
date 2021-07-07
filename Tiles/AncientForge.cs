@@ -9,14 +9,13 @@ using Eternal.Items.Placeable;
 
 namespace Eternal.Tiles
 {
-    class AncientForge : ModTile
+    public class AncientForge : ModTile
     {
 
         public override void SetDefaults()
         {
             Main.tileFrameImportant[Type] = true;
             Main.tileNoAttach[Type] = true;
-            Main.tileTable[Type] = true;
             Main.tileLavaDeath[Type] = false;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
             TileObjectData.addTile(Type);

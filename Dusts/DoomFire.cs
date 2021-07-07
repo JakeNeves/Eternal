@@ -10,7 +10,8 @@ namespace Eternal.Dusts
 		public override void OnSpawn(Dust dust)
 		{
 			dust.velocity.Y = Main.rand.Next(-8, 4) * 0.1f;
-			dust.velocity.X *= 0.2f;
+            dust.noGravity = true;
+            dust.velocity.X *= 0.2f;
 			dust.scale *= 1.4f;
 		}
 
@@ -32,7 +33,7 @@ namespace Eternal.Dusts
             {
                 strength = 1f;
             }
-            Lighting.AddLight(dust.position, 0.8f * strength, 0.4f * strength, 0.2f * strength);
+            Lighting.AddLight(dust.position, 0.8f * strength, 0.0f * strength, 0.6f * strength);
             return false;
 
         }
