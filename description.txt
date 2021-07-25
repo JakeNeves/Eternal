@@ -31,6 +31,11 @@ kes/birb7 - Sprite Artist
 [c/00b359:---Changelog---]
 
 1.0.7
+Added Shadow Tomb
+Added Configurations for the mod
+ * Added "Original Music" option
+   to toggle between the new and the original
+   music of the mod (DOES NOT APPLY TO VANILLA MUSIC)
 Added Dawnstone
 Added a few new arrows
 Added the Appolyon (WIP)

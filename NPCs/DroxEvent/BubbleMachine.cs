@@ -18,13 +18,13 @@ namespace Eternal.NPCs.DroxEvent
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Drox Bubble Machine");
-            Main.npcFrameCount[npc.type] = 5;
+            Main.npcFrameCount[npc.type] = 7;
         }
 
         public override void SetDefaults()
         {
-            npc.width = 44;
-            npc.height = 44;
+            npc.width = 48;
+            npc.height = 36;
             npc.damage = 18;
             npc.defense = 10;
             npc.lifeMax = 600;
@@ -36,6 +36,7 @@ namespace Eternal.NPCs.DroxEvent
 
         public override void AI()
         {
+	    npc.rotation += npc.velocity.X * 0.1f;
             Target();
             Move(new Vector2(0, 0));
         }

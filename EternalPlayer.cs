@@ -26,6 +26,9 @@ namespace Eternal
         public bool ZoneBeneath = false;
         public bool ZoneAshpit = false;
 
+        public bool droxEvent = false;
+        public int droxEventPoints = 0;
+
         public override void ResetEffects()
         {
             EternalGlobalProjectile.cometGauntlet = false;
@@ -65,6 +68,13 @@ namespace Eternal
                 player.lifeRegenTime = 0;
                 player.lifeRegen -= 15;
             }
+        }
+
+        public override void UpdateBiomeVisuals()
+        {
+            bool ashpitBiome = (ZoneAshpit);
+
+            player.ManageSpecialBiomeVisuals("Eternal:AshpitSky", ashpitBiome);
         }
 
         public override void SetupStartInventory(IList<Item> items, bool mediumcoreDeath)

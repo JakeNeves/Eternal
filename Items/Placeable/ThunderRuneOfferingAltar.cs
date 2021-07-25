@@ -8,20 +8,19 @@ namespace Eternal.Items.Placeable
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Use Tritalodium to interact" + 
-                             "\n'Found underground somewhere...'");
+            DisplayName.SetDefault("Spirit Tablet Offering Altar");
         }
 
         public override void SetDefaults()
         {
-            item.width = 40;
+            item.width = 48;
             item.height = 38;
             item.maxStack = 99;
             item.useTurn = false;
             item.autoReuse = true;
             item.useAnimation = 15;
             item.useTime = 10;
-            item.rare = ItemRarityID.Green;
+            item.rare = ItemRarityID.White;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.consumable = true;
             item.value = 0;

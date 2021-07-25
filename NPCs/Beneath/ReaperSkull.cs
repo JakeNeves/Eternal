@@ -7,6 +7,7 @@ using System.Linq;
 using Microsoft.Xna.Framework.Graphics;
 using Eternal.Tiles;
 using Eternal.Items.Materials;
+using Eternal.Items.Summon;
 
 namespace Eternal.NPCs.Beneath
 {
@@ -102,6 +103,10 @@ namespace Eternal.NPCs.Beneath
 
         public override void NPCLoot()
         {
+            if(Main.rand.Next(1) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<StoneSkull>());
+            }
             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<DepthsDebris>(), Main.rand.Next(3, 9));
         }
 

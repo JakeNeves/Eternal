@@ -1,8 +1,5 @@
-﻿using Eternal.NPCs;
-using Eternal.Projectiles;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
@@ -11,8 +8,7 @@ namespace Eternal.Tiles.Interactive
 {
     public class ThunderRuneOfferingAltar : ModTile
     {
-
-        private Tile tile;
+        private Player player;
 
         public override void SetDefaults()
         {
@@ -23,14 +19,15 @@ namespace Eternal.Tiles.Interactive
             TileObjectData.addTile(Type);
             disableSmartCursor = true;
             ModTranslation name = CreateMapEntryName();
-            name.SetDefault("Thunder Rune Offering Altar");
+            name.SetDefault("Spirit Tablet Offering Altar");
             AddMapEntry(new Color(247, 236, 171), name);
         }
 
         public override bool NewRightClick(int i, int j)
         {
-            Projectile.NewProjectile(0, 800, 0, 0, ModContent.ProjectileType<ShadowSpawn>(), 0, 0);
-            return true;
+            Player player = Main.player[Main.myPlayer];
+            Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, ModContent.ItemType<Items.Summon.SpiritTablet>());
+            return !Main.LocalPlayer.HasItem(ModContent.ItemType<Items.Summon.SpiritTablet>());
         }
 
         public override void MouseOver(int i, int j)
@@ -38,7 +35,7 @@ namespace Eternal.Tiles.Interactive
             Player player = Main.player[Main.myPlayer];
             player.noThrow = 2;
             player.showItemIcon = true;
-            player.showItemIcon2 = ModContent.ItemType<Items.Summon.RuneofThunder>();
+            player.showItemIcon2 = ModContent.ItemType<Items.Summon.SpiritTablet>();
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)

@@ -6,7 +6,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Items.Materials
 {
-    class DormantHeroSword : ModItem
+    public class DormantHeroSword : ModItem
     {
 
         public override void SetStaticDefaults()

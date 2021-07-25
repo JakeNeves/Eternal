@@ -15,6 +15,9 @@ namespace Eternal.Items.Materials
         {
             Tooltip.SetDefault("'A shard of the emperor's promise'");
 
+	    ItemID.Sets.ItemIconPulse[item.type] = true;
+            ItemID.Sets.ItemNoGravity[item.type] = true;
+
             Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(6, 4));
         }
 

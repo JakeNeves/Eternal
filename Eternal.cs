@@ -18,6 +18,7 @@ using Eternal.Items.Placeable;
 using Eternal.Items.Weapons.Throwing;
 using Eternal.Skies;
 using Terraria.Graphics.Shaders;
+using Terraria.UI;
 
 namespace Eternal
 {
@@ -60,8 +61,8 @@ namespace Eternal
 				Filters.Scene["Eternal:Empraynia"] = new Filter(new EmprayniaScreenShaderData("FilterMiniTower").UseColor(0.229f, 0.84f, 0.255f).UseOpacity(0.6f), EffectPriority.VeryHigh);
 				SkyManager.Instance["Eternal:Empraynia"] = new EmprayniaSky();
 
-				Filters.Scene["SpiritMod:AshpitSky"] = new Filter((new ScreenShaderData("FilterMiniTower")).UseColor(0f, 0f, 0f).UseOpacity(0f), EffectPriority.VeryLow);
-				SkyManager.Instance["SpiritMod:AshpitSky"] = new AshpitSky();
+				Filters.Scene["Eternal:AshpitSky"] = new Filter((new ScreenShaderData("FilterMiniTower")).UseColor(0f, 0f, 0f).UseOpacity(0f), EffectPriority.VeryLow);
+				SkyManager.Instance["Eternal:AshpitSky"] = new AshpitSky();
 				#endregion
 			}
 		}
@@ -81,8 +82,16 @@ namespace Eternal
 
 			if (Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneCommet)
 			{
-				music = GetSoundSlot(SoundType.Music, "Sounds/Music/ShatteredStar");
-				priority = MusicPriority.BiomeMedium;
+				if (!ModContent.GetInstance<EternalConfig>().originalMusic)
+				{
+					music = GetSoundSlot(SoundType.Music, "Sounds/Music/New/AstralDiscovery");
+					priority = MusicPriority.BiomeMedium;
+				}
+				else
+				{
+					music = GetSoundSlot(SoundType.Music, "Sounds/Music/ShatteredStar");
+					priority = MusicPriority.BiomeMedium;
+				}
 			}
 
 			if (Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneLabrynth)
@@ -104,7 +113,17 @@ namespace Eternal
 				priority = MusicPriority.BiomeMedium;
 			}
 
+			if (Main.LocalPlayer.GetModPlayer<EternalPlayer>().droxEvent)
+			{
+				 music = GetSoundSlot(SoundType.Music, "Sounds/Music/MechanicalEnvy");
+				 priority = MusicPriority.BossMedium;
+			}
+
 		}
+
+        public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
+        {
+        }
 
         public override void PostSetupContent()
         {

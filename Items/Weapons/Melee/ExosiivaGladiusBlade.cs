@@ -20,19 +20,19 @@ namespace Eternal.Items.Weapons.Melee
 
         public override void SetDefaults()
         {
-            item.width = 104;
-            item.height = 110;
+            item.width = 72;
+            item.height = 90;
             item.damage = 20000;
             item.melee = true;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.knockBack = 10;
             item.rare = ItemRarityID.Purple;
-            item.value = Item.sellPrice(platinum: 10, gold: 50);
+            item.value = Item.sellPrice(platinum: 5, gold: 50);
             item.autoReuse = true;
             item.shoot = ProjectileType<ExosiivaProjectile>();
-            item.shootSpeed = 9.5f;
-            item.useTime = 12;
-            item.useAnimation = 12;
+            item.shootSpeed = 12.25f;
+            item.useTime = 18;
+            item.useAnimation = 18;
             item.UseSound = SoundID.Item1;
         }
 

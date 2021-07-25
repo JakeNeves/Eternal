@@ -10,6 +10,8 @@ using Eternal.Items.BossBags;
 using Microsoft.Xna.Framework.Graphics;
 using Eternal.Items.Armor;
 using Eternal.Projectiles.Boss;
+using Eternal.Items.Materials;
+using Eternal.Items.Weapons.Hell;
 
 namespace Eternal.NPCs.Boss.Dunekeeper
 {
@@ -84,6 +86,14 @@ namespace Eternal.NPCs.Boss.Dunekeeper
             Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, -8, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
             Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, 8, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
             Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, 8, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
+
+            if(EternalWorld.hellMode)
+            {
+                if(!Main.LocalPlayer.HasItem(ItemType<KnifeHandle>()) || !Main.LocalPlayer.HasItem(ItemType<TheKnife>()))
+                {
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<KnifeHandle>());
+                }
+            }
 
             if (Main.expertMode)
             {

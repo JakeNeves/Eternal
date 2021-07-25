@@ -1,4 +1,6 @@
-﻿using Terraria;
+﻿using Eternal.Items.Materials;
+using Eternal.Items.Weapons.Hell;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -63,6 +65,10 @@ namespace Eternal.NPCs
                     {
                         Main.NewText("The dark caves beneath the world go silent...", 224, 28, 7);
                     }
+                    if (EternalWorld.hellMode)
+                    {
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SkeletronJawbone>());
+                    }
                     break;
                 case NPCID.Plantera:
                     if (!NPC.downedPlantBoss)
@@ -82,6 +88,15 @@ namespace Eternal.NPCs
                     {
                         Main.NewText("A comet has landed and struck the world!", 0, 215, 215);
                         EternalWorld.DropComet();
+                    }
+                    break;
+                case NPCID.WallofFlesh:
+                    if (hellModeDifficulty)
+                    {
+                        if (!Main.LocalPlayer.HasItem(ModContent.ItemType<KnifeBlade>()) || !Main.LocalPlayer.HasItem(ModContent.ItemType<TheKnife>()))
+                        {
+                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<KnifeBlade>());
+                        }
                     }
                     break;
             }
