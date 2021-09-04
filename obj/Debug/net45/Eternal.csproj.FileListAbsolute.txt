@@ -20,7 +20,6 @@ C:\Users\jaken\Documents\My Games\Terraria\ModLoader\Mod Sources\Eternal\bin\Deb
 C:\Users\jaken\Documents\My Games\Terraria\ModLoader\Mod Sources\Eternal\bin\Debug\net45\TerrariaHooks.dll
 C:\Users\jaken\Documents\My Games\Terraria\ModLoader\Mod Sources\Eternal\bin\Debug\net45\tModLoader.exe
 C:\Users\jaken\Documents\My Games\Terraria\ModLoader\Mod Sources\Eternal\bin\Debug\net45\tModLoader.pdb
-C:\Users\jaken\Documents\My Games\Terraria\ModLoader\Mod Sources\Eternal\bin\Debug\net45\tModLoader.xml
 C:\Users\jaken\Documents\My Games\Terraria\ModLoader\Mod Sources\Eternal\bin\Debug\net45\MonoMod.RuntimeDetour.xml
 C:\Users\jaken\Documents\My Games\Terraria\ModLoader\Mod Sources\Eternal\bin\Debug\net45\MonoMod.Utils.xml
 C:\Users\jaken\Documents\My Games\Terraria\ModLoader\Mod Sources\Eternal\obj\Debug\net45\Eternal.AssemblyInfoInputs.cache

@@ -13,6 +13,7 @@ using Eternal.Projectiles.Boss;
 using Eternal.Items.Materials;
 using Eternal.Items.Weapons.Hell;
 using Eternal.Projectiles.Enemy;
+using Eternal.Projectiles;
 
 namespace Eternal.NPCs.Boss.DroxOverlord
 {
@@ -85,6 +86,11 @@ namespace Eternal.NPCs.Boss.DroxOverlord
                     Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, DustID.Electric, npc.oldVelocity.X * 0.5f, npc.oldVelocity.Y * 0.5f);
                 }
             }
+        }
+
+        public override void BossLoot(ref string name, ref int potionType)
+        {
+            potionType = ItemID.GreaterHealingPotion;
         }
 
         public override void NPCLoot()
@@ -349,6 +355,10 @@ namespace Eternal.NPCs.Boss.DroxOverlord
                 }
                 if (attackTimer == 200)
                 {
+                    if (EternalWorld.hellMode)
+                    {
+                        Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-200, 200), npc.Center.Y + Main.rand.Next(-200, 200), 0, 0, ProjectileType<Warning>(), 12, 0, Main.myPlayer, 0f, 0f);
+                    }
                     attackTimer = 0;
                 }
             }
@@ -384,12 +394,16 @@ namespace Eternal.NPCs.Boss.DroxOverlord
                 if (attackTimer == 180 || attackTimer == 280 || attackTimer == 380 || attackTimer == 480)
                 {
                     Main.PlaySound(SoundID.DD2_KoboldExplosion, npc.position);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -12, 0, ProjectileType<DroxBomberBomb>(), 6, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 12, 0, ProjectileType<DroxBomberBomb>(), 6, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 12, ProjectileType<DroxBomberBomb>(), 6, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -12, 0, ProjectileType<DroxMissile>(), 6, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 12, 0, ProjectileType<DroxMissile>(), 6, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 12, ProjectileType<DroxMissile>(), 6, 0, Main.myPlayer, 0f, 0f);
                 }
                 if (attackTimer == 200)
                 {
+                    if (EternalWorld.hellMode)
+                    {
+                        Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-200, 200), npc.Center.Y + Main.rand.Next(-200, 200), 0, 0, ProjectileType<Warning>(), 12, 0, Main.myPlayer, 0f, 0f);
+                    }
                     attackTimer = 0;
                 }
             }
@@ -445,6 +459,10 @@ namespace Eternal.NPCs.Boss.DroxOverlord
                 }
                 if (attackTimer == 230)
                 {
+                    if (EternalWorld.hellMode)
+                    {
+                        Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-200, 200), npc.Center.Y + Main.rand.Next(-200, 200), 0, 0, ProjectileType<Warning>(), 12, 0, Main.myPlayer, 0f, 0f);
+                    }
                     attackTimer = 0;
                 }
             }
@@ -472,8 +490,12 @@ namespace Eternal.NPCs.Boss.DroxOverlord
                 {
                     NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCType<DroxMine>());
                 }
-                if (attackTimer == 500)
+                if (attackTimer == 550)
                 {
+                    if (EternalWorld.hellMode)
+                    {
+                        Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-200, 200), npc.Center.Y + Main.rand.Next(-200, 200), 0, 0, ProjectileType<Warning>(), 12, 0, Main.myPlayer, 0f, 0f);
+                    }
                     attackTimer = 0;
                 }
             }

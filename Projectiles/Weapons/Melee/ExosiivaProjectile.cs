@@ -28,7 +28,7 @@ namespace Eternal.Projectiles.Weapons.Melee
             projectile.penetrate = 10;
             projectile.timeLeft = 900;
             projectile.alpha = 255;
-            projectile.light = 1.0f;
+            projectile.light = 0.5f;
             projectile.melee = true;
             projectile.ignoreWater = true;
             projectile.tileCollide = false;

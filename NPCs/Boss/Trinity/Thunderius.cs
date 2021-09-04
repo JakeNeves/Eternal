@@ -1,10 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Eternal.Items.Potions;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.NPCs.Boss.Trinity
 {
@@ -13,7 +13,7 @@ namespace Eternal.NPCs.Boss.Trinity
     {
 
         #region Fundementals
-        const int ShootType = ProjectileID.ImpFireball;
+        const int ShootType = ProjectileID.MartianTurretBolt;
         const int ShootDamage = 9;
         const float ShootKnockback = 0f;
         const int ShootDirection = 5;
@@ -23,14 +23,33 @@ namespace Eternal.NPCs.Boss.Trinity
         int Timer;
         #endregion
 
+        public override void SetStaticDefaults()
+        {
+            NPCID.Sets.TrailCacheLength[npc.type] = 8;
+            NPCID.Sets.TrailingMode[npc.type] = 0;
+        }
+
+        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        {
+            Vector2 drawOrigin = new Vector2(Main.npcTexture[npc.type].Width * 0.5f, npc.height * 0.5f);
+            for (int k = 0; k < npc.oldPos.Length; k++)
+            {
+                Vector2 drawPos = npc.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, npc.gfxOffY);
+                Color color = npc.GetAlpha(lightColor) * ((float)(npc.oldPos.Length - k) / (float)npc.oldPos.Length);
+                spriteBatch.Draw(Main.npcTexture[npc.type], drawPos, null, color, npc.rotation, drawOrigin, npc.scale, SpriteEffects.None, 0f);
+            }
+            return true;
+        }
+
         public override void SetDefaults()
         {
-            npc.width = 112;
-            npc.height = 112;
-            npc.lifeMax = 2600000;
-            npc.defense = 80;
+            npc.width = 84;
+            npc.height = 84;
+            npc.lifeMax = 2000000;
+            npc.defense = 70;
             npc.damage = 110;
             npc.aiStyle = -1;
+            npc.knockBackResist = -1f;
             npc.HitSound = SoundID.NPCHit41;
             npc.DeathSound = SoundID.NPCDeath44;
             npc.noGravity = true;
@@ -41,6 +60,11 @@ namespace Eternal.NPCs.Boss.Trinity
 
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
             => GlowMaskUtils.DrawNPCGlowMask(spriteBatch, npc, mod.GetTexture("NPCs/Boss/Trinity/Thunderius_Glow"));
+
+        public override void BossLoot(ref string name, ref int potionType)
+        {
+            potionType = ModContent.ItemType<PristineHealingPotion>();
+        }
 
         public override void AI()
         {

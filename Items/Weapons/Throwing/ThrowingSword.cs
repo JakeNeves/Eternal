@@ -1,10 +1,9 @@
-﻿using Eternal.Projectiles.Weapons.Ranged;
+﻿using Eternal.Items.Materials;
+using Eternal.Projectiles.Weapons.Ranged;
 using Eternal.Tiles;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Items.Weapons.Throwing
 {
@@ -31,8 +30,18 @@ namespace Eternal.Items.Weapons.Throwing
             item.consumable = true;
             item.knockBack = 2f;
             item.rare = ItemRarityID.Red;
-            item.shoot = ProjectileType<ArkArrowProjectile>();
+            item.shoot = ModContent.ProjectileType<ArkArrowProjectile>();
             item.shootSpeed = 18f;
+        }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddTile(ModContent.TileType<Starforge>());
+            recipe.AddIngredient(ModContent.ItemType<BrokenLabrynthSword>());
+            recipe.AddIngredient(ModContent.ItemType<StarmetalBar>());
+            recipe.SetResult(this, 333);
+            recipe.AddRecipe();
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

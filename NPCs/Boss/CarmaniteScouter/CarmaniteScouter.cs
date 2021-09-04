@@ -16,7 +16,7 @@ using Eternal.Projectiles.Boss;
 namespace Eternal.NPCs.Boss.CarmaniteScouter
 {
     [AutoloadBossHead]
-    class CarmaniteScouter : ModNPC
+    public class CarmaniteScouter : ModNPC
     {
         
         private Player player;

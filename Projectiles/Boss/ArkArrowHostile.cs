@@ -23,10 +23,9 @@ namespace Eternal.Projectiles.Boss
             projectile.height = 46;
             projectile.friendly = false;
             projectile.hostile = true;
-            projectile.ranged = true;
             projectile.ignoreWater = true;
             projectile.penetrate = 3;
-            projectile.timeLeft = 300;
+            projectile.timeLeft = 400;
         }
 
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
@@ -38,20 +37,32 @@ namespace Eternal.Projectiles.Boss
             return projHitbox.Intersects(targetHitbox);
         }
 
-        private const float maxTicks = 20f;
-        private const int alphaReducation = 25;
+        // private const float maxTicks = 20f;
+        // private const int alphaReducation = 25;
+
+        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        {
+            Vector2 drawOrigin = new Vector2(Main.projectileTexture[projectile.type].Width * 0.5f, projectile.height * 0.5f);
+            for (int k = 0; k < projectile.oldPos.Length; k++)
+            {
+                Vector2 drawPos = projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, projectile.gfxOffY);
+                Color color = projectile.GetAlpha(lightColor) * ((float)(projectile.oldPos.Length - k) / (float)projectile.oldPos.Length);
+                spriteBatch.Draw(Main.projectileTexture[projectile.type], drawPos, null, color, projectile.rotation, drawOrigin, projectile.scale, SpriteEffects.None, 0f);
+            }
+            return true;
+        }
 
         public override void Kill(int timeLeft)
         {
             //Main.PlaySound(SoundID.Tink, (int)projectile.position.X, (int)projectile.position.Y, 1, 1f, 0f);
-            Main.PlaySound(SoundID.NPCHit4, Main.myPlayer);
+            Main.PlaySound(SoundID.NPCHit4, projectile.position);
             Vector2 usePos = projectile.position;
             Vector2 rotVector = (projectile.rotation - MathHelper.ToRadians(90f)).ToRotationVector2();
         }
 
         public override void AI()
         {
-            if (projectile.alpha > 0)
+            /*if (projectile.alpha > 0)
             {
                 projectile.alpha -= alphaReducation;
             }
@@ -71,10 +82,13 @@ namespace Eternal.Projectiles.Boss
                     projectile.ai[1] = maxTicks;
                     projectile.velocity.X = projectile.velocity.X * velXmult;
                     projectile.velocity.Y = projectile.velocity.Y + velYmult;
+                
                 }
+            }*/
 
-                projectile.rotation = projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);
-            }
+            projectile.rotation = projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);
+
+            projectile.stepSpeed += 2.5f;
         }
 
     }

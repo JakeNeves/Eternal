@@ -13,10 +13,15 @@ namespace Eternal.NPCs.Boss.Empraynia
     public class Empraynia : ModNPC
     {
         int timer;
+        int frameNum;
+        int phase;
+        int attackNo;
 
         private Player player;
 
         bool expert = Main.expertMode;
+
+        bool hands = false;
 
         public override void SetStaticDefaults()
         {
@@ -31,11 +36,24 @@ namespace Eternal.NPCs.Boss.Empraynia
             return null;
         }
 
+        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        {
+            Vector2 drawOrigin = new Vector2(Main.npcTexture[npc.type].Width * 0.5f, npc.height * 0.5f);
+            for (int k = 0; k < npc.oldPos.Length; k++)
+            {
+                Vector2 drawPos = npc.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, npc.gfxOffY);
+                Color color = npc.GetAlpha(lightColor) * ((float)(npc.oldPos.Length - k) / (float)npc.oldPos.Length);
+                Texture2D shadowTexture = mod.GetTexture("NPCs/Boss/Empraynia/Empraynia_Shadow");
+                spriteBatch.Draw(shadowTexture, drawPos, null, color, npc.rotation, drawOrigin, npc.scale, SpriteEffects.None, 0f);
+            }
+            return true;
+        }
+
         public override void SetDefaults()
         {
             npc.lifeMax = 78000;
-            npc.width = 221;
-            npc.height = 227;
+            npc.width = 148;
+            npc.height = 173;
             npc.damage = 180;
             npc.defense = 64;
             npc.knockBackResist = -1f;
@@ -72,6 +90,32 @@ namespace Eternal.NPCs.Boss.Empraynia
 
         public override bool PreAI()
         {
+
+            if(npc.life  < npc.lifeMax / 2)
+            {
+                phase = 1;
+            }
+
+            if (phase == 1)
+            {
+                frameNum = 3;
+            }
+            else
+            {
+                if (attackNo == 1)
+                {
+                    frameNum = 1;
+                }
+                else if (attackNo == 2)
+                {
+                    frameNum = 2;
+                }
+                else
+                {
+                    frameNum = 0;
+                }
+            }
+
             npc.netUpdate = true;
             npc.TargetClosest(true);
             Player player = Main.player[npc.target];
@@ -141,12 +185,6 @@ namespace Eternal.NPCs.Boss.Empraynia
                 }
                 #endregion
 
-                if (!NPC.AnyNPCs(ModContent.NPCType<EmprayniaRoller>()))
-                {
-                    if (Main.expertMode || npc.life <= 9000)
-                        NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<EmprayniaRoller>(), 0, 2, 1, 0, npc.whoAmI, npc.target);
-                }
-
                 #region close up attack
                 float currentXDist = Math.Abs(npc.Center.X - player.Center.X);
                 if (npc.Center.X < player.Center.X && npc.ai[2] < 0)
@@ -204,10 +242,33 @@ namespace Eternal.NPCs.Boss.Empraynia
 
         public override void AI()
         {
-
-            if (!SkyManager.Instance["Eternal:Empraynia"].IsActive())
+            if (!hands && Main.netMode != NetmodeID.MultiplayerClient)
             {
-                SkyManager.Instance.Activate("Eternal:Empraynia");
+                npc.TargetClosest(true);
+                hands = true;
+                NPC eHand = Main.npc[NPC.NewNPC((int)(npc.position.X + (float)(npc.width * 2)), (int)npc.position.Y + npc.height * 2, ModContent.NPCType<EmprayniaHand>(), 0, 0f, 0f, 0f, 0f, 255)];
+                eHand.ai[0] = 1f;
+                eHand.ai[1] = (float)npc.whoAmI;
+                eHand.target = npc.target;
+                eHand.netUpdate = true;
+                eHand = Main.npc[NPC.NewNPC((int)(npc.position.X + (float)(npc.width * 2)), (int)npc.position.Y + npc.height * 2, ModContent.NPCType<EmprayniaHand>(), 0, 0f, 0f, 0f, 0f, 255)];
+                eHand.ai[0] = -1f;
+                eHand.ai[1] = (float)npc.whoAmI;
+                eHand.target = npc.target;
+                eHand.netUpdate = true;
+            }
+
+            if (npc.active)
+            {
+                if (!SkyManager.Instance["Eternal:Empraynia"].IsActive())
+                {
+                    SkyManager.Instance.Activate("Eternal:Empraynia");
+                }
+            }
+            else
+            {
+                Main.NewText("The sky resumes back to it's tranquil state...", 220, 0, 210);
+                SkyManager.Instance.Deactivate("Eternal:Empraynia");
             }
 
             npc.netUpdate = true;
@@ -238,6 +299,7 @@ namespace Eternal.NPCs.Boss.Empraynia
             }
             else if ((timer == 600 || timer == 650 || timer == 700 || timer == 800 || timer == 850 || timer == 880))
             {
+                attackNo = 2;
                 //Main.PlaySound(SoundID.Item, (int)npc.position.X, (int)npc.position.Y, 73);
                 Main.PlayTrackedSound(SoundID.DD2_EtherianPortalSpawnEnemy, npc.Center);
                 if (Main.netMode != NetmodeID.MultiplayerClient)
@@ -256,8 +318,9 @@ namespace Eternal.NPCs.Boss.Empraynia
             }
             else if ((timer == 900 || timer == 950))
             {
-                if (Main.rand.Next(50) == 5)
+                if (Main.rand.Next(50) == 0)
                 {
+                    attackNo = 1;
                     Main.PlayTrackedSound(SoundID.DD2_EtherianPortalSpawnEnemy, npc.Center);
                     Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, -12, 0, ProjectileID.ShadowBeamHostile, 6, 0, Main.myPlayer, 0f, 0f);
                     Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 12, 0, ProjectileID.ShadowBeamHostile, 6, 0, Main.myPlayer, 0f, 0f);
@@ -270,6 +333,7 @@ namespace Eternal.NPCs.Boss.Empraynia
                 }
                 else
                 {
+                    attackNo = 1;
                     Main.PlayTrackedSound(SoundID.DD2_EtherianPortalSpawnEnemy, npc.Center);
                     Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, -12, 0, ProjectileID.DD2DarkMageBolt, 6, 0, Main.myPlayer, 0f, 0f);
                     Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 12, 0, ProjectileID.DD2DarkMageBolt, 6, 0, Main.myPlayer, 0f, 0f);
@@ -284,15 +348,20 @@ namespace Eternal.NPCs.Boss.Empraynia
             else if (timer == 1000)
             {
                 timer = 0;
+                attackNo = 0;
+            }
+            else
+            {
+                attackNo = 0;
             }
         }
 
         public override void FindFrame(int frameHeight)
         {
-            npc.frameCounter += 0.24f;
-            npc.frameCounter %= Main.npcFrameCount[npc.type];
-            int frame = (int)npc.frameCounter;
-            npc.frame.Y = frame * frameHeight;
+            //npc.frameCounter += 0.24f;
+            //npc.frameCounter %= Main.npcFrameCount[npc.type];
+            //int frame = (int)npc.frameCounter;
+            npc.frame.Y = frameNum * frameHeight;
         }
 
         public override void NPCLoot()
@@ -315,16 +384,6 @@ namespace Eternal.NPCs.Boss.Empraynia
             Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, 8, ProjectileID.DD2DarkMageBolt, 6, 0, Main.myPlayer, 0f, 0f);
             Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, 8, ProjectileID.DD2DarkMageBolt, 6, 0, Main.myPlayer, 0f, 0f);
 
-            if(!NPC.downedMoonlord)
-            {
-                Main.NewText("The sky resumes back to it's tranquil state...", 220, 0, 210);
-                SkyManager.Instance.Deactivate("Eternal:Empraynia");
-            }
-            else if(NPC.downedMoonlord)
-            {
-                NPC.NewNPC((int)npc.Center.X - 20, (int)npc.Center.Y, ModContent.NPCType<SoulCrystal>());
-            }
-
             if (Main.expertMode)
             {
                 //npc.DropBossBags();
@@ -333,6 +392,8 @@ namespace Eternal.NPCs.Boss.Empraynia
             {
                 
             }
+            Main.NewText("The sky resumes back to it's tranquil state...", 220, 0, 210);
+            SkyManager.Instance.Deactivate("Eternal:Empraynia");
         }
 
         public override void BossLoot(ref string name, ref int potionType)
@@ -340,13 +401,6 @@ namespace Eternal.NPCs.Boss.Empraynia
             potionType = ItemID.GreaterHealingPotion;
         }
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
-        {
-            var effects = npc.direction == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
-            spriteBatch.Draw(Main.npcTexture[npc.type], npc.Center - Main.screenPosition + new Vector2(0, npc.gfxOffY), npc.frame,
-            lightColor, npc.rotation, npc.frame.Size() / 2, npc.scale, effects, 0);
-            return false;
-        }
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
             => GlowMaskUtils.DrawNPCGlowMask(spriteBatch, npc, mod.GetTexture("NPCs/Boss/Empraynia/Empraynia_Glow"));
 

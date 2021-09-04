@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Eternal.Projectiles.Minions;
-using static Terraria.ModLoader.ModContent;
+using Eternal.Buffs.Minions;
 
 namespace Eternal.Items.Weapons.Summon
 {
@@ -15,7 +14,13 @@ namespace Eternal.Items.Weapons.Summon
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Creates cryonic energy from loose shards of ice\nEach energy takes up a quarter of a slot\nIt may also be a little op Pre-Moon Lord\n'Not a discount Cosmic Immaterializer I swear...'");
+            Tooltip.SetDefault("Creates cryonic energy from loose shards of ice" +
+                             "\nEach energy takes up a quarter of a slot" +
+                             "\nIt may also be a little op Pre-Moon Lord" +
+                             "\n'Not a discount Cosmic Immaterializer I swear...'");
+
+            ItemID.Sets.GamepadWholeScreenUseRange[item.type] = true;
+            ItemID.Sets.LockOnIgnoresCollision[item.type] = true;
         }
 
         public override void SetDefaults()
@@ -34,14 +39,16 @@ namespace Eternal.Items.Weapons.Summon
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.value = Item.sellPrice(gold: 30);
             item.rare = ItemRarityID.Yellow;
-            item.shoot = ProjectileType<CryonicEnergy>();
-            item.shootSpeed = 5.75f;
+            item.buffType = ModContent.BuffType<CryonicEnergyBuff>();
+            item.shoot = ModContent.ProjectileType<CryonicEnergy>();
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, ProjectileType<CryonicEnergy>(), damage, knockBack, Main.myPlayer, 0f, 0f);
-            return false;
+            player.AddBuff(item.buffType, 2);
+
+            position = Main.MouseWorld;
+            return true;
         }
 
     }

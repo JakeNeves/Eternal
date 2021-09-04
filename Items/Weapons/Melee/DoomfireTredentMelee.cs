@@ -45,7 +45,7 @@ namespace Eternal.Items.Weapons.Melee
 			{
 				if (line2.mod == "Terraria" && line2.Name == "ItemName")
 				{
-					line2.overrideColor = EternalColor.Teal;
+					line2.overrideColor = EternalColor.DarkTeal;
 				}
 			}
 		}

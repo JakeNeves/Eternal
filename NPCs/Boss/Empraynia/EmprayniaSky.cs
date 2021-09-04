@@ -26,12 +26,12 @@ namespace Eternal.NPCs.Boss.Empraynia
         {
             if (maxDepth >= 3.40282347E+38f && minDepth < 3.40282347E+38f)
             {
-                spriteBatch.Draw(Main.blackTileTexture, new Rectangle(0, 0, Main.screenWidth, Main.screenHeight), Color.Purple /*new Color(0.229f, 0.84f, 0.255f)*/ * opacity);
+                spriteBatch.Draw(Main.blackTileTexture, new Rectangle(0, 0, Main.screenWidth, Main.screenHeight), new Color(2.29f, 0.84f, 2.55f) * opacity);
             }
             
             if (maxDepth >= 0 && minDepth < 0)
             {
-                spriteBatch.Draw(Main.blackTileTexture, new Rectangle(0, 0, Main.screenWidth, Main.screenHeight), Color.Purple /*new Color(0.229f, 0.84f, 0.255f)*/ * 0.75f);
+                spriteBatch.Draw(Main.blackTileTexture, new Rectangle(0, 0, Main.screenWidth, Main.screenHeight), new Color(2.29f, 0.84f, 2.55f) * 0.5f);
             }
         }
 

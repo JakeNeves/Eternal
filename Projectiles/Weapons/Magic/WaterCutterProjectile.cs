@@ -11,15 +11,15 @@ namespace Eternal.Projectiles.Weapons.Magic
 		public override void SetStaticDefaults()
         {
 			DisplayName.SetDefault("Water Cutter");
-			ProjectileID.Sets.TrailCacheLength[projectile.type] = 100;
+			ProjectileID.Sets.TrailCacheLength[projectile.type] = 30;
 			ProjectileID.Sets.TrailingMode[projectile.type] = 0;
 		}
 		public override void SetDefaults()
 		{
-			projectile.width = 2;
-			projectile.height = 2;
+			projectile.width = 16;
+			projectile.height = 38;
 			projectile.friendly = true;
-			projectile.melee = true;
+			projectile.magic = true;
 			projectile.penetrate = -1;
 			projectile.light = 1.0f;
 			projectile.timeLeft = 600;
@@ -35,7 +35,12 @@ namespace Eternal.Projectiles.Weapons.Magic
 			target.AddBuff(BuffID.BrokenArmor, 120);
 		}
 
-		public override bool OnTileCollide(Vector2 oldVelocity)
+        public override void AI()
+        {
+			projectile.rotation = projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);
+		}
+
+        public override bool OnTileCollide(Vector2 oldVelocity)
 		{
 			projectile.penetrate--;
 			if (projectile.penetrate <= 0)

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Eternal.NPCs.Boss.CosmicEmperor;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -13,7 +14,7 @@ namespace Eternal.Items.Summon
         {
             Tooltip.SetDefault("Extinction" +
                                 "\nUnleashes the Emperor of the cosmos" +
-                                "\n[N.Y.I]" +
+                                "\n[WIP]" +
                                 "\n'A presence gazes upon your world...'");
         }
 
@@ -29,8 +30,16 @@ namespace Eternal.Items.Summon
 
         public override bool UseItem(Player player)
         {
-            Main.NewText("Proove that you can challenge me first...", 0, 95, 215);
-            player.KillMe(PlayerDeathReason.ByCustomReason(player.name + " disinigrated into stardust"), 10000, 1, false);
+            if (!EternalWorld.downedArkOfImperious)
+            {
+                Main.NewText("Proove that you can challenge me first...", 0, 95, 215);
+                player.KillMe(PlayerDeathReason.ByCustomReason(player.name + " disinigrated into stardust"), 10000, 1, false);
+            }
+            else
+            {
+                NPC.NewNPC((int)player.Center.X, (int)player.Center.Y - 900, NPCType<CosmicEmperorMask>());
+                Main.NewText("To whom, who has challenged greater beings... I have been watching you gain strength ever sinced you've slayed the mighty lord of the moon!", 0, 95, 215);
+            }
             Main.PlaySound(SoundID.Roar, player.position, 0);
             return true;
         }

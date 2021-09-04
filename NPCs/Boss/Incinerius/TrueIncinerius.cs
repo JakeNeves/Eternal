@@ -11,7 +11,7 @@ namespace Eternal.NPCs.Boss.Incinerius
     public class TrueIncinerius : ModNPC
     {
         int Timer;
-        const float Speed = 14;
+        const float Speed = 8.5f;
         const float Acceleration = 4;
 
         public override void SetStaticDefaults()

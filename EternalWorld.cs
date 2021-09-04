@@ -56,6 +56,11 @@ namespace Eternal
         //Post-Moon Lord
         public static bool downedSubzeroElementalP2 = false;
         public static bool downedCosmicApparition = false;
+
+        public static bool downedArkOfImperious = false;
+
+        //Events
+        public static bool downedDroxClan = false;
         #endregion
 
         public override void TileCountsAvailable(int[] tileCounts)
@@ -82,6 +87,11 @@ namespace Eternal
             downedSubzeroElementalP2 = false;
             downedCosmicApparition = false;
 
+            downedArkOfImperious = false;
+
+            //Events
+            downedDroxClan = false;
+
             hellMode = false;
         }
 
@@ -99,7 +109,12 @@ namespace Eternal
             //Post-Moon Lord
             if (downedSubzeroElementalP2) downed.Add("eternal");
             if (downedCosmicApparition) downed.Add("eternal");
+
+            if (downedArkOfImperious) downed.Add("eternal");
             #endregion
+
+            //Events
+            if (downedDroxClan) downed.Add("eternal");
 
             if (hellMode) difficulty.Add("eternal");
 
@@ -125,7 +140,12 @@ namespace Eternal
             //Post-Moon Lord
             downedSubzeroElementalP2 = downed.Contains("eternal");
             downedCosmicApparition = downed.Contains("eternal");
+
+            downedArkOfImperious = downed.Contains("eternal");
             #endregion
+
+            //Events
+            downedDroxClan = downed.Contains("eternal");
 
             hellMode = difficulty.Contains("eternal");
         }
@@ -139,14 +159,19 @@ namespace Eternal
                 #region DownedBossFlags
                 //Pre-Hardmode
                 downedCarmaniteScouter = flags[0];
-                downedDunekeeper = flags[0];
+                downedDunekeeper = flags[1];
                 //Hardmode
-                downedIncinerius = flags[0];
-                downedSubzeroElemental = flags[0];
+                downedIncinerius = flags[2];
+                downedSubzeroElemental = flags[3];
                 //Post-Moon Lord
-                downedSubzeroElementalP2 = flags[0];
-                downedCosmicApparition = flags[0];
+                downedSubzeroElementalP2 = flags[4];
+                downedCosmicApparition = flags[5];
+
+                downedArkOfImperious = flags[6];
                 #endregion
+
+                //Events
+                downedArkOfImperious = flags[0];
             }
         }
 
@@ -164,7 +189,12 @@ namespace Eternal
             //Post-Moon Lord
             flags[4] = downedSubzeroElementalP2;
             flags[5] = downedCosmicApparition;
+
+            flags[6] = downedArkOfImperious;
             #endregion
+
+            //Events
+            flags[0] = downedDroxClan;
 
             difficultyFlag[0] = hellMode;
 
@@ -179,14 +209,19 @@ namespace Eternal
             #region DownedBossFlags
             //Pre-Hardmode
             downedCarmaniteScouter = flags[0];
-            downedDunekeeper = flags[0];
+            downedDunekeeper = flags[1];
             //Hardmode
-            downedIncinerius = flags[0];
-            downedSubzeroElemental = flags[0];
+            downedIncinerius = flags[2];
+            downedSubzeroElemental = flags[3];
             //Post-Moon Lord
-            downedSubzeroElementalP2 = flags[0];
-            downedCosmicApparition = flags[0];
+            downedSubzeroElementalP2 = flags[4];
+            downedCosmicApparition = flags[5];
+
+            downedArkOfImperious = flags[6];
             #endregion
+
+            //Events
+            downedArkOfImperious = flags[0];
 
             difficultyFlag[0] = hellMode;
         }

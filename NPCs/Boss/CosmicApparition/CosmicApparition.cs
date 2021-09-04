@@ -12,6 +12,8 @@ using Eternal.Items.Weapons.Ranged;
 using Eternal.Dusts;
 using Eternal.Items.Weapons.Throwing;
 using Eternal.Projectiles.Boss;
+using Eternal.Items.Potions;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Eternal.NPCs.Boss.CosmicApparition
 {
@@ -270,7 +272,7 @@ namespace Eternal.NPCs.Boss.CosmicApparition
 
         public override void BossLoot(ref string name, ref int potionType)
         {
-            potionType = ItemID.SuperHealingPotion;
+            potionType = ModContent.ItemType<PristineHealingPotion>();
         }
 
         public override void NPCLoot()
@@ -283,9 +285,6 @@ namespace Eternal.NPCs.Boss.CosmicApparition
                 int damage = expert ? 15 : 19;
                 Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X * 14f, direction.Y * 14f, ProjectileID.DD2DrakinShot, damage, 1, Main.myPlayer, 0, 0);
             }
-
-            Main.NewText("The sky resumes back to it's tranquil state...", 220, 0, 210);
-            SkyManager.Instance.Deactivate("Eternal:Empraynia");
 
             if (!EternalWorld.downedCosmicApparition)
             {

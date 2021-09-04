@@ -19,19 +19,14 @@ namespace Eternal.Buffs.Minions
 
         public override void Update(Player player, ref int buffIndex)
         {
-            EternalPlayer modPlayer = (EternalPlayer)player.GetModPlayer(mod, "EternalPlayer");
-            if (player.ownedProjectileCounts[ProjectileType<CryonicEnergy>()] > 0)
+            if (player.ownedProjectileCounts[ModContent.ProjectileType<CryonicEnergy>()] > 0)
             {
-                modPlayer.cEnergy = true;
-            }
-            if (!modPlayer.cEnergy)
-            {
-                player.DelBuff(buffIndex);
-                buffIndex--;
+                player.buffTime[buffIndex] = 18000;
             }
             else
             {
-                player.buffTime[buffIndex] = 18000;
+                player.DelBuff(buffIndex);
+                buffIndex--;
             }
         }
 

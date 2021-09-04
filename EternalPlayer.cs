@@ -29,6 +29,9 @@ namespace Eternal
         public bool droxEvent = false;
         public int droxEventPoints = 0;
 
+        public const int maxLifrFruits = 5;
+        public int lifeFruits;
+
         public override void ResetEffects()
         {
             EternalGlobalProjectile.cometGauntlet = false;

@@ -3,7 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System;
-using Terraria.Graphics.Effects;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Eternal.NPCs.Boss.CosmicApparition
 {

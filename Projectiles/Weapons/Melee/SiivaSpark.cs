@@ -12,6 +12,7 @@ namespace Eternal.Projectiles.Weapons.Melee
         {
 			ProjectileID.Sets.TrailCacheLength[projectile.type] = 75;
 			ProjectileID.Sets.TrailingMode[projectile.type] = 0;
+			ProjectileID.Sets.Homing[projectile.type] = true;
 		}
 		public override void SetDefaults()
 		{
@@ -21,7 +22,7 @@ namespace Eternal.Projectiles.Weapons.Melee
 			projectile.melee = true;
 			projectile.penetrate = 3;
 			projectile.light = 1.0f;
-			projectile.timeLeft = 300;
+			projectile.timeLeft = 600;
 			projectile.ignoreWater = true;
 			projectile.extraUpdates = 1;
 		}
@@ -39,9 +40,43 @@ namespace Eternal.Projectiles.Weapons.Melee
 			return true;
 		}
 
-		
+        public override void AI()
+        {
+			float maxDetectRadius = 400f;
+			float projSpeed = 5f;
 
-		public override bool OnTileCollide(Vector2 oldVelocity)
+			NPC closestNPC = FindClosestNPC(maxDetectRadius);
+			if (closestNPC == null)
+				return;
+
+			projectile.velocity = (closestNPC.Center - projectile.Center).SafeNormalize(Vector2.Zero) * projSpeed;
+        }
+
+		public NPC FindClosestNPC(float maxDetectDistance)
+        {
+			NPC closestNPC = null;
+
+			float sqrMaxDetectDistance = maxDetectDistance * maxDetectDistance;
+
+			for (int k = 0; k < Main.maxNPCs; k++)
+            {
+				NPC target = Main.npc[k];
+				if (target.CanBeChasedBy())
+                {
+					float sqrDistanceToTarget = Vector2.Distance(target.Center, projectile.Center);
+
+					if (sqrDistanceToTarget < sqrMaxDetectDistance)
+                    {
+						sqrMaxDetectDistance = sqrDistanceToTarget;
+						closestNPC = target;
+                    }
+                }
+            }
+
+			return closestNPC;
+        }
+
+        public override bool OnTileCollide(Vector2 oldVelocity)
 		{
 			projectile.penetrate--;
 			if (projectile.penetrate <= 0)

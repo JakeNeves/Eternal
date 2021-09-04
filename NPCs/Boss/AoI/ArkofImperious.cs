@@ -4,14 +4,14 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
 using static Terraria.ModLoader.ModContent;
-using Eternal.Projectiles.Enemy;
 using Eternal.Items.Weapons.Ranged;
 using Eternal.Items.Ammo;
 using Eternal.Items.BossBags;
-using Eternal.Items;
 using Eternal.Items.Weapons.Melee;
 using Eternal.Items.Materials;
 using Eternal.Projectiles.Boss;
+using Eternal.Items.Potions;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Eternal.NPCs.Boss.AoI
 {
@@ -60,6 +60,18 @@ namespace Eternal.NPCs.Boss.AoI
             bossBag = ItemType<AoIBag>();
         }
 
+        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        {
+            Vector2 drawOrigin = new Vector2(Main.npcTexture[npc.type].Width * 0.5f, npc.height * 0.5f);
+            for (int k = 0; k < npc.oldPos.Length; k++)
+            {
+                Vector2 drawPos = npc.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, npc.gfxOffY);
+                Color color = npc.GetAlpha(lightColor) * ((float)(npc.oldPos.Length - k) / (float)npc.oldPos.Length);
+                spriteBatch.Draw(Main.npcTexture[npc.type], drawPos, null, color, npc.rotation, drawOrigin, npc.scale, SpriteEffects.None, 0f);
+            }
+            return true;
+        }
+
         public override void OnHitPlayer(Player player, int damage, bool crit)
         {
             player.AddBuff(BuffID.Bleeding, 180, false);
@@ -83,7 +95,7 @@ namespace Eternal.NPCs.Boss.AoI
 
         public override void BossLoot(ref string name, ref int potionType)
         {
-            potionType = ItemID.SuperHealingPotion;
+            potionType = ItemType<PristineHealingPotion>();
         }
 
         public override void AI()
@@ -140,7 +152,7 @@ namespace Eternal.NPCs.Boss.AoI
                 if (npc.ai[3] > cooldown)
                     npc.ai[3] = -cooldown;
 
-                if (npc.ai[3] == 0 && Main.netMode != NetmodeID.MultiplayerClient)
+                /*if (npc.ai[3] == 0 && Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     Vector2 position = npc.Center;
                     position.X += npc.velocity.X * 7;
@@ -150,8 +162,8 @@ namespace Eternal.NPCs.Boss.AoI
                     float num12 = speed / length;
                     speedX = speedX * num12;
                     speedY = speedY * num12;
-                    Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ProjectileType<ArkArrowHostile>(), 28, 0, Main.myPlayer);
-                }
+                    Projectile.NewProjectile(position.X, position.Y, speedX + 8, speedY + 8, ProjectileType<ArkArrowHostile>(), 28, 0, Main.myPlayer);
+                }*/
             }
             #endregion
 
@@ -160,6 +172,15 @@ namespace Eternal.NPCs.Boss.AoI
             if ((AttackTimer == 100 || AttackTimer == 150 || AttackTimer == 175))
             {
                 NPC.NewNPC((int)npc.Center.X - 20, (int)npc.Center.Y, NPCType<Arkling>());
+
+                Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, -12, 0, ProjectileType<ArkArrowHostile>(), 6, 0, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 12, 0, ProjectileType<ArkArrowHostile>(), 6, 0, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 0, 12, ProjectileType<ArkArrowHostile>(), 6, 0, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 0, -12, ProjectileType<ArkArrowHostile>(), 6, 0, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, -8, ProjectileType<ArkArrowHostile>(), 6, 0, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, -8, ProjectileType<ArkArrowHostile>(), 6, 0, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, 8, ProjectileType<ArkArrowHostile>(), 6, 0, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, 8, ProjectileType<ArkArrowHostile>(), 6, 0, Main.myPlayer, 0f, 0f);
             }
             else if ((AttackTimer == 200 || AttackTimer == 250 || AttackTimer == 275))
             {
@@ -199,6 +220,12 @@ namespace Eternal.NPCs.Boss.AoI
 
         public override void NPCLoot()
         {
+            if(!EternalWorld.downedArkOfImperious)
+            {
+                Main.NewText("The stars are calling upon you...", 0, 90, 216);
+                EternalWorld.downedArkOfImperious = true;
+            }
+
             if (Main.expertMode)
             {
                 npc.DropBossBags();
@@ -217,6 +244,10 @@ namespace Eternal.NPCs.Boss.AoI
                 if (Main.rand.Next(3) == 0)
                 {
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<TheImperiousCohort>());
+                }
+                if (Main.rand.Next(4) == 0)
+                {
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<TheEnigma>());
                 }
             }
         }

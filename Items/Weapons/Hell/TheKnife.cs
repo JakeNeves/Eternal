@@ -13,7 +13,7 @@ namespace Eternal.Items.Weapons.Hell
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("[c/FCA5033:Throwing Item]\nThrows a knife that will return to the thrower\n'stab stab stab!'\nHell");
+            Tooltip.SetDefault("[c/FCA5033:Throwing Item]\n'stab stab stab!'\nHell");
         }
 
         public override void SetDefaults()

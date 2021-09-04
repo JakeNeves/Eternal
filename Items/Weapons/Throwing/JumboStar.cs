@@ -1,6 +1,7 @@
 ﻿using Eternal.Items.Materials;
 using Eternal.Projectiles.Weapons.Throwing;
 using Eternal.Tiles;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -17,7 +18,7 @@ namespace Eternal.Items.Weapons.Throwing
         }
         public override void SetDefaults()
         {
-            item.damage = 275;
+            item.damage = 900;
             item.ranged = true;
             item.width = 186;
             item.height = 186;
@@ -32,6 +33,17 @@ namespace Eternal.Items.Weapons.Throwing
             item.shoot = ProjectileType<JumboStarProjectile>();
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            foreach (TooltipLine line2 in tooltips)
+            {
+                if (line2.mod == "Terraria" && line2.Name == "ItemName")
+                {
+                    line2.overrideColor = EternalColor.Teal;
+                }
+            }
         }
 
         public override void AddRecipes()

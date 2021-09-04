@@ -48,19 +48,6 @@ namespace Eternal.NPCs.DroxEvent
             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<DroxPlate>(), Main.rand.Next(2, 8));
         }
 
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
-        {
-            npc.lifeMax = 32000;
-            npc.damage = 20;
-
-            if (EternalWorld.hellMode)
-            {
-                npc.lifeMax = 64000;
-                npc.damage = 22;
-                npc.defense = 20;
-            }
-        }
-
         public Vector2 bossCenter
         {
             get { return npc.Center; }

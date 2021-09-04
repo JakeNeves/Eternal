@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Eternal.Dusts;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -24,6 +25,7 @@ namespace Eternal.Projectiles.Boss
             projectile.penetrate = -1;
             projectile.tileCollide = false;
             projectile.ignoreWater = true;
+            projectile.light = 0.75f;
         }
 
         public override void AI()
@@ -46,16 +48,16 @@ namespace Eternal.Projectiles.Boss
 
         public override void Kill(int timeLeft)
         {
-            Main.PlaySound(SoundID.DD2_MonkStaffGroundImpact, projectile.position);
+            Main.PlaySound(SoundID.DD2_BetsyFireballShot, projectile.position);
 
-            Projectile.NewProjectile(projectile.position.X + 40, projectile.position.Y + 40, -8, 0, ModContent.ProjectileType<CosmicPierce>(), 6, 0, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(projectile.position.X + 40, projectile.position.Y + 40, 8, 0, ModContent.ProjectileType<CosmicPierce>(), 6, 0, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(projectile.position.X + 40, projectile.position.Y + 40, 0, 8, ModContent.ProjectileType<CosmicPierce>(), 6, 0, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(projectile.position.X + 40, projectile.position.Y + 40, 0, -8, ModContent.ProjectileType<CosmicPierce>(), 6, 0, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(projectile.position.X + 40, projectile.position.Y + 40, -8, -8, ModContent.ProjectileType<CosmicPierce>(), 6, 0, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(projectile.position.X + 40, projectile.position.Y + 40, 8, -8, ModContent.ProjectileType<CosmicPierce>(), 6, 0, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(projectile.position.X + 40, projectile.position.Y + 40, -8, 8, ModContent.ProjectileType<CosmicPierce>(), 6, 0, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(projectile.position.X + 40, projectile.position.Y + 40, 8, 8, ModContent.ProjectileType<CosmicPierce>(), 6, 0, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(projectile.position.X, projectile.position.Y, -8, 0, ModContent.ProjectileType<EmperorPierce>(), 6, 0, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(projectile.position.X, projectile.position.Y, 8, 0, ModContent.ProjectileType<EmperorPierce>(), 6, 0, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(projectile.position.X, projectile.position.Y, 0, 8, ModContent.ProjectileType<EmperorPierce>(), 6, 0, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(projectile.position.X, projectile.position.Y, 0, -8, ModContent.ProjectileType<EmperorPierce>(), 6, 0, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(projectile.position.X, projectile.position.Y, -6, -6, ModContent.ProjectileType<EmperorPierce>(), 6, 0, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(projectile.position.X, projectile.position.Y, 6, -6, ModContent.ProjectileType<EmperorPierce>(), 6, 0, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(projectile.position.X, projectile.position.Y, -6, 6, ModContent.ProjectileType<EmperorPierce>(), 6, 0, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(projectile.position.X, projectile.position.Y, 6, 6, ModContent.ProjectileType<EmperorPierce>(), 6, 0, Main.myPlayer, 0f, 0f);
         }
     }
 }

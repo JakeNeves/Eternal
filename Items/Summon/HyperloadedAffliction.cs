@@ -1,4 +1,5 @@
-﻿using Eternal.NPCs.Boss.Empraynia;
+﻿using Eternal.NPCs.Boss.CosmicApparition;
+using Eternal.NPCs.Boss.Empraynia;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -28,8 +29,16 @@ namespace Eternal.Items.Summon
 
         public override bool CanUseItem(Player player)
         {
-            Main.NewText("The sky is shifting...", 220, 0, 210);
-            return !NPC.AnyNPCs(NPCType<Empraynia>());
+            if (Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneCommet)
+            {
+                Main.NewText("Something gazes upon you...", 220, 0, 210);
+                //Main.NewText("The crystal inside Empraynia's body has broken free...", 215, 0, 225);
+            }
+            else
+            {
+                Main.NewText("The sky is shifting...", 220, 0, 210);
+            }
+            return !NPC.AnyNPCs(NPCType<Empraynia>()) || !NPC.AnyNPCs(NPCType<SoulCrystal>());
         }
 
         public override void AddRecipes()
@@ -46,7 +55,16 @@ namespace Eternal.Items.Summon
 
         public override bool UseItem(Player player)
         {
-            NPC.SpawnOnPlayer(player.whoAmI, NPCType<Empraynia>());
+            if (Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneCommet)
+            {
+                //NPC.SpawnOnPlayer(player.whoAmI, NPCType<SoulCrystal>());
+                NPC.NewNPC((int)player.Center.X, (int)player.Center.Y - 900, NPCType<SoulCrystal>());
+            }
+            else
+            {
+                NPC.SpawnOnPlayer(player.whoAmI, NPCType<Empraynia>());
+            }
+            
             Main.PlaySound(SoundID.Roar, player.position, 0);
             return true;
         }

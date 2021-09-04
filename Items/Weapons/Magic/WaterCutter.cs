@@ -29,7 +29,7 @@ namespace Eternal.Items.Weapons.Magic
             item.value = Item.sellPrice(silver: 9);
             item.rare = ItemRarityID.Blue;
             item.autoReuse = true;
-            item.shootSpeed = 9.5f;
+            item.shootSpeed = 20f;
             item.shoot = ProjectileType<WaterCutterProjectile>();
             item.UseSound = SoundID.LiquidsWaterLava;
         }
