@@ -1,6 +1,5 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 using Terraria.ID;
 using Eternal.Items.Materials;
 using System.Collections.Generic;
@@ -14,7 +13,7 @@ namespace Eternal.Items.Armor
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("18% increased movement speed");
+            Tooltip.SetDefault("+18% increased movement speed");
         }
 
         public override void SetDefaults()
@@ -46,9 +45,9 @@ namespace Eternal.Items.Armor
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddTile(ModContent.TileType<Starforge>());
-            recipe.AddIngredient(ItemType<StarmetalBar>(), 8);
-            recipe.AddIngredient(ItemType<CometiteBar>(), 12);
-            recipe.AddIngredient(ItemType<GalaxianPlating>(), 8);
+            recipe.AddIngredient(ModContent.ItemType<StarmetalBar>(), 8);
+            recipe.AddIngredient(ModContent.ItemType<CometiteBar>(), 12);
+            recipe.AddIngredient(ModContent.ItemType<GalaxianPlating>(), 8);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

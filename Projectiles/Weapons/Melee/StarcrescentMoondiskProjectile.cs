@@ -38,6 +38,14 @@ namespace Eternal.Projectiles.Weapons.Melee
             {
                 Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, DustID.Electric, projectile.oldVelocity.X * 0.5f, projectile.oldVelocity.Y * 0.5f);
             }
+
+            if (Main.rand.Next(1) == 0)
+            {
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -8, -8, ProjectileType<StarcrescentProjectile>(), 6, 0, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 8, -8, ProjectileType<StarcrescentProjectile>(), 6, 0, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -8, 8, ProjectileType<StarcrescentProjectile>(), 6, 0, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 8, 8, ProjectileType<StarcrescentProjectile>(), 6, 0, Main.myPlayer, 0f, 0f);
+            }
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)

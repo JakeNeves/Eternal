@@ -15,13 +15,13 @@ namespace Eternal.NPCs.Comet
 
         public override void SetStaticDefaults()
         {
-            Main.npcFrameCount[npc.type] = 1;
+            Main.npcFrameCount[npc.type] = 2;
         }
 
         public override void SetDefaults()
         {
-            npc.width = 31;
-            npc.height = 47;
+            npc.width = 22;
+            npc.height = 32;
             npc.damage = 100;
             npc.defense = 50;
             npc.lifeMax = 11000;
@@ -31,6 +31,14 @@ namespace Eternal.NPCs.Comet
             npc.lavaImmune = true;
             npc.value = 50f;
             npc.aiStyle = 5;
+        }
+
+        public override void FindFrame(int frameHeight)
+        {
+            npc.frameCounter += 0.15f;
+            npc.frameCounter %= Main.npcFrameCount[npc.type];
+            int Frame = (int)npc.frameCounter;
+            npc.frame.Y = Frame * frameHeight;
         }
 
         public override void HitEffect(int hitDirection, double damage)

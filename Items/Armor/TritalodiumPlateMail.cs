@@ -7,7 +7,7 @@ using static Terraria.ModLoader.ModContent;
 namespace Eternal.Items.Armor
 {
     [AutoloadEquip(EquipType.Body)]
-    class TritalodiumPlateMail : ModItem
+    public class TritalodiumPlateMail : ModItem
     {
         public override void SetDefaults()
         {
@@ -20,7 +20,7 @@ namespace Eternal.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.statLifeMax2 += 50;
+            player.statLifeMax2 += 15;
         }
 
         public override void AddRecipes()

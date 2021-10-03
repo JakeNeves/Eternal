@@ -1,13 +1,15 @@
 1.0.7
 Repetence Update Part II
 
-Added Cosmic Emperor (Phase 1)
-Updated Eternal Mod's Soundtrack (comet and shrine currently) 
+Added Cosmic Emperor (Phase 1 and 2, there will be four phases, but they are not added yet)
+Updated Eternal Mod's Soundtrack (comet, shrine and incinerius currently) 
 Added Shadow Tomb (WIP, skip the dunekeeper for now)
 Added Configurations for the mod
  * Added "Original Music" option
    to toggle between the new and the original
-   music of the mod (DOES NOT APPLY TO VANILLA MUSIC)
+   music of the mod (DOES NOT APPLY TO VANILLA OR OTHER MODDED MUSIC)
+ * Added "Hell Mode Vanilla Bosses" option
+   to toggle stat buffs for vanilla bosses
 Added Dawnstone
 Added a few new arrows
 Added the Appolyon (NYI)

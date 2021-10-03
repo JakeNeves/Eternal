@@ -35,8 +35,10 @@ namespace Eternal.Projectiles.Weapons.Melee
             projectile.spriteDirection = projectile.direction;
             projectile.rotation += projectile.velocity.X * 0.1f;
 
-            projectile.light -= 0.1f;
-            projectile.alpha += 1;
+            //projectile.light -= 0.1f;
+            //projectile.alpha += 1;
+            projectile.alpha++;
+            projectile.light--;
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)

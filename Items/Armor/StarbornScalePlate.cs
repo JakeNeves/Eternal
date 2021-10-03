@@ -4,13 +4,17 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Items.Armor
 {
     [AutoloadEquip(EquipType.Body)]
     public class StarbornScalePlate : ModItem
     {
+
+        public override void SetStaticDefaults()
+        {
+            Tooltip.SetDefault("+25 increased max life");
+        }
 
         public override void SetDefaults()
         {
@@ -32,13 +36,18 @@ namespace Eternal.Items.Armor
             }
         }
 
+        public override void UpdateEquip(Player player)
+        {
+            player.statLifeMax2 += 50;
+        }
+
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddTile(ModContent.TileType<Starforge>());
-            recipe.AddIngredient(ItemType<StarmetalBar>(), 16);
-            recipe.AddIngredient(ItemType<CometiteBar>(), 24);
-            recipe.AddIngredient(ItemType<GalaxianPlating>(), 12);
+            recipe.AddIngredient(ModContent.ItemType<StarmetalBar>(), 16);
+            recipe.AddIngredient(ModContent.ItemType<CometiteBar>(), 24);
+            recipe.AddIngredient(ModContent.ItemType<GalaxianPlating>(), 12);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

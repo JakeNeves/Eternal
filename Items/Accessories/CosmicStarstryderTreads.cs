@@ -45,7 +45,7 @@ namespace Eternal.Items.Accessories
                         player.armor[i].type == ItemID.RocketBoots ||
                         player.armor[i].type == ItemID.FlurryBoots ||
                         player.armor[i].type == ItemID.SailfishBoots ||
-                        //player.armor[i].type == ItemID.DuneriderBoots ||
+                        //player.armor[i].type == ItemID.SandBoots ||
                         player.armor[i].type == ItemID.SpectreBoots ||
                         player.armor[i].type == ItemID.LightningBoots ||
                         player.armor[i].type == ItemID.FrostsparkBoots
@@ -132,7 +132,7 @@ namespace Eternal.Items.Accessories
             {
                 if (line2.mod == "Terraria" && line2.Name == "ItemName")
                 {
-                    line2.overrideColor = EternalColor.DarkTeal;
+                    line2.overrideColor = EternalColor.Teal;
                 }
             }
         }

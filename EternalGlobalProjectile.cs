@@ -1,6 +1,7 @@
 ﻿using Eternal.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Eternal
@@ -8,14 +9,26 @@ namespace Eternal
     public class EternalGlobalProjectile : GlobalProjectile
     {
         public static bool cometGauntlet = false;
+        public static bool emperorsGift = false;
 
         public override void AI(Projectile projectile)
         {
-            if (projectile.melee == true && cometGauntlet == true)
+            if (projectile.melee && cometGauntlet)
             {
                 for (int k = 0; k < 5; k++)
                 {
-                    Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Starmetal>(), projectile.oldVelocity.X * 0.5f, projectile.oldVelocity.Y * 0.5f);
+                    Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, DustID.Shadowflame, projectile.oldVelocity.X * 0.5f, projectile.oldVelocity.Y * 0.5f);
+                }
+            }
+
+            if (emperorsGift)
+            {
+                if (projectile.melee || projectile.ranged || projectile.magic || projectile.minion)
+                {
+                    for (int k = 0; k < 5; k++)
+                    {
+                        Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<EmperorFire>(), projectile.oldVelocity.X * 0.5f, projectile.oldVelocity.Y * 0.5f);
+                    }
                 }
             }
 

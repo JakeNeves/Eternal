@@ -13,7 +13,7 @@ namespace Eternal.Items.Accessories.Expert
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Core of the Labrynth");
+            DisplayName.SetDefault("Core of the Shrine");
             Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(6, 4));
         }
 

@@ -2,10 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 using Eternal.Items.BossBags;
-using Eternal.Items;
-using Eternal.Items.Accessories.Hell;
 using Eternal.Items.Weapons.Melee;
 using Eternal.Items.Weapons.Ranged;
 using Eternal.Items.Weapons.Summon;
@@ -50,7 +47,7 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
             npc.knockBackResist = 0f;
             npc.noGravity = true;
             npc.noTileCollide = true;
-            bossBag = ItemType<SubzeroElementalBag>();
+            bossBag = ModContent.ItemType<SubzeroElementalBag>();
             music = MusicID.Boss3;
         }
 
@@ -112,7 +109,7 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
 
         private void Shoot()
         {
-            int type = ProjectileType<FridgedSpike>();
+            int type = ModContent.ProjectileType<FridgedSpike>();
             Vector2 velocity = player.Center - npc.Center;
             float magnitude = Magnitude(velocity);
             if (magnitude > 0)
@@ -154,10 +151,10 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
 
             switch(AttackTimer)
             {
-                case 110:
+                case 110 | 120 | 130:
                     Shoot();
                     break;
-                case 120:
+                case 140 | 180 | 190:
                     NPC.NewNPC((int)npc.Center.X - 20, (int)npc.Center.Y, NPCID.IceElemental);
                     if (EternalWorld.hellMode)
                     {
@@ -167,10 +164,10 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
                         NPC.NewNPC((int)npc.Center.X - 20, (int)npc.Center.Y, NPCID.IceSlime);
                     }
                     break;
-                case 150:
+                case 200 | 210 | 220:
                     Shoot();
                     break;
-                case 160:
+                case 240 | 260 | 280:
                     if(NPC.downedMoonlord)
                     {
                         Vector2 direction = Main.player[npc.target].Center - npc.Center;
@@ -185,11 +182,11 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
                             float B = (float)Main.rand.Next(-200, 200) * 0.01f;
                             int damage = Main.expertMode ? 15 : 17;
                             if (Main.netMode != NetmodeID.MultiplayerClient)
-                                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ProjectileType<FridgedSpike>(), damage, 1, Main.myPlayer, 0, 0);
+                                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<FridgedSpike>(), damage, 1, Main.myPlayer, 0, 0);
                         }
                     }
                     break;
-                case 200:
+                case 300:
                     AttackTimer = 0;
                     break;
             }
@@ -205,14 +202,17 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
         {
             if (!player.ZoneSnow)
             {
+                npc.rotation = npc.velocity.X * 0.08f;
                 speed = 24f;
             }
             else if (Phase == 1)
             {
+                npc.rotation = npc.velocity.X * 0.08f;
                 speed = 12f;
             }
             else
             {
+                npc.rotation = npc.velocity.X * 0.06f;
                 speed = 10f;
             }
             Vector2 moveTo = player.Center + offset;
@@ -273,20 +273,20 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
             {
                 if (Main.rand.Next(1) == 0)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<FrostGladiator>());
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<FrostGladiator>());
                 }
                 if (Main.rand.Next(2) == 0)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<FrostyImmaterializer>());
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<FrostyImmaterializer>());
                 }
                 if (Main.rand.Next(3) == 0)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<TheKelvinator>());
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<TheKelvinator>());
                 }
 
                 if (NPC.downedMoonlord)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<SydaniteOre>(), Main.rand.Next(15, 55));
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SydaniteOre>(), Main.rand.Next(15, 55));
                 }
             }
 

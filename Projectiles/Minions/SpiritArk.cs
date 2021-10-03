@@ -1,4 +1,5 @@
 ﻿using Eternal.Buffs.Minions;
+using Eternal.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -47,6 +48,10 @@ namespace Eternal.Projectiles.Minions
 
         public override void AI()
         {
+            if (Main.rand.Next(4) == 0)
+                for (int k = 0; k < 5; k++)
+                    Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<SpiritArkWisp>(), projectile.oldVelocity.X * 1f, projectile.oldVelocity.Y * 1f);
+
             Lighting.AddLight(projectile.position, 0.87f, 2.55f, 1.62f);
 
             Player player = Main.player[projectile.owner];

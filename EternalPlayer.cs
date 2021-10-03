@@ -35,6 +35,7 @@ namespace Eternal
         public override void ResetEffects()
         {
             EternalGlobalProjectile.cometGauntlet = false;
+            EternalGlobalProjectile.emperorsGift = false;
         }
 
         public override void PostUpdate()

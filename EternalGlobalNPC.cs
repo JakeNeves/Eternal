@@ -65,9 +65,13 @@ namespace Eternal.NPCs
                     {
                         Main.NewText("The dark caves beneath the world go silent...", 224, 28, 7);
                     }
-                    if (EternalWorld.hellMode)
+                    if (hellModeDifficulty)
                     {
                         Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SkeletronJawbone>());
+                        if (!Main.LocalPlayer.HasItem(ModContent.ItemType<KnifeBlade>()) || !Main.LocalPlayer.HasItem(ModContent.ItemType<TheCleaver>()))
+                        {
+                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<CleaverHead>());
+                        }
                     }
                     break;
                 case NPCID.Plantera:
@@ -105,7 +109,7 @@ namespace Eternal.NPCs
         #region Hell Mode Vanilla Bosses
         public override void ScaleExpertStats(NPC npc, int numPlayers, float bossLifeScale)
         {
-            if (hellModeDifficulty)
+            if (hellModeDifficulty && ModContent.GetInstance<EternalConfig>().hellModeVanillaBosses)
             {
                 switch (npc.type)
                 {

@@ -19,8 +19,8 @@ namespace Eternal.NPCs.Comet
 
         public override void SetDefaults()
         {
-            npc.width = 36;
-            npc.height = 36;
+            npc.width = 28;
+            npc.height = 28;
             npc.aiStyle = 26;
             npc.damage = 90;
             npc.defense = 75;

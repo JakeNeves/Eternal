@@ -1,9 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Eternal.Dusts;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Projectiles.Weapons.Ranged
 {
@@ -61,7 +61,9 @@ namespace Eternal.Projectiles.Weapons.Ranged
 
         public override void AI()
         {
-
+            if (Main.rand.Next(4) == 0)
+                for (int k = 0; k < 5; k++)
+                    Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<ArkEnergy>(), projectile.oldVelocity.X * 1f, projectile.oldVelocity.Y * 1f);
 
             if (projectile.alpha > 0)
             {

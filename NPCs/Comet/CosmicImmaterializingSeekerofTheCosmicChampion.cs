@@ -19,13 +19,12 @@ namespace Eternal.NPCs.Comet
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Antheminous Anathema");
-            Main.npcFrameCount[npc.type] = 2;
         }
 
         public override void SetDefaults()
         {
-            npc.width = 31;
-            npc.height = 47;
+            npc.width = 28;
+            npc.height = 32;
             npc.damage = 100;
             npc.defense = 50;
             npc.lifeMax = 11000;
@@ -75,14 +74,6 @@ namespace Eternal.NPCs.Comet
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<StarmetalBar>(), Main.rand.Next(10, 75));
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<GalaxianPlating>(), Main.rand.Next(3, 12));
             }
-        }
-
-        public override void FindFrame(int frameHeight)
-        {
-            npc.frameCounter += 0.15f;
-            npc.frameCounter %= Main.npcFrameCount[npc.type];
-            int Frame = (int)npc.frameCounter;
-            npc.frame.Y = Frame * frameHeight;
         }
 
     }

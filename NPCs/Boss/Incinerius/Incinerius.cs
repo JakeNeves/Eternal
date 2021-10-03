@@ -8,6 +8,8 @@ using Eternal.Items.BossBags;
 using Eternal.Items.Weapons.Melee;
 using Eternal.Items.Weapons.Magic;
 using Eternal.Items.Accessories.Hell;
+using Eternal.Projectiles.Boss;
+
 namespace Eternal.NPCs.Boss.Incinerius
 {
     [AutoloadBossHead]
@@ -19,7 +21,7 @@ namespace Eternal.NPCs.Boss.Incinerius
         }
 
         #region Fundementals
-        const int ShootType = ProjectileID.ImpFireball;
+        int ShootType = ProjectileType<FlamingSoul>();
         const int ShootDamage = 9;
         const float ShootKnockback = 0f;
         const int ShootDirection = 5;
@@ -34,7 +36,14 @@ namespace Eternal.NPCs.Boss.Incinerius
             npc.width = 99;
             npc.height = 119;
             npc.boss = true;
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/FieryBattler");
+            if (!GetInstance<EternalConfig>().originalMusic)
+            {
+                music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/New/PyroneticPurgatory");
+            }
+            else
+            {
+                music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/FieryBattler");
+            }
             npc.aiStyle = -1;
             npc.damage = 12;
             npc.defense = 20;
@@ -252,6 +261,7 @@ namespace Eternal.NPCs.Boss.Incinerius
 
         void IncineriusShot()
         {
+            Main.PlaySound(SoundID.DD2_BetsyFireballShot, npc.position);
             Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, -ShootDirection, 0, ShootType, ShootDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
             Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, ShootDirection, 0, ShootType, ShootDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
             Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, 0, ShootDirection, ShootType, ShootDamage, ShootKnockback, Main.myPlayer, 0f, 0f);

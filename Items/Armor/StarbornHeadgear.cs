@@ -1,6 +1,5 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 using Terraria.ID;
 using Eternal.Items.Materials;
 using Eternal.Tiles;
@@ -25,17 +24,22 @@ namespace Eternal.Items.Armor
 
         public override bool IsArmorSet(Item head, Item body, Item legs)
         {
-            return body.type == ItemType<StarbornScalePlate>() && legs.type == ItemType<StarbornGreaves>();
+            return body.type == ModContent.ItemType<StarbornScalePlate>() && legs.type == ModContent.ItemType<StarbornGreaves>();
         }
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "20% increased ranged damage";
+            player.setBonus = "20% increased ranged damage and shroomite armor effects";
             player.rangedDamage += 0.20f;
+            player.rocketDamage += 0.20f;
+            player.arrowDamage += 0.20f;
+            player.bulletDamage += 0.20f;
+
+            player.shroomiteStealth = true;
 
             Dust dust;
             Vector2 position = Main.LocalPlayer.Center;
-            dust = Main.dust[Dust.NewDust(position, (int)player.Center.X, (int)player.Center.Y, DustType<Starmetal>(), 0f, 0f, 0, new Color(255, 255, 255), 1f)];
+            dust = Main.dust[Dust.NewDust(position, (int)player.Center.X, (int)player.Center.Y, ModContent.DustType<Starmetal>(), 0f, 0f, 0, new Color(255, 255, 255), 1f)];
             dust.fadeIn = 0.3f;
 
         }
@@ -55,9 +59,9 @@ namespace Eternal.Items.Armor
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddTile(ModContent.TileType<Starforge>());
-            recipe.AddIngredient(ItemType<StarmetalBar>(), 5);
-            recipe.AddIngredient(ItemType<CometiteBar>(), 16);
-            recipe.AddIngredient(ItemType<GalaxianPlating>(), 4);
+            recipe.AddIngredient(ModContent.ItemType<StarmetalBar>(), 5);
+            recipe.AddIngredient(ModContent.ItemType<CometiteBar>(), 16);
+            recipe.AddIngredient(ModContent.ItemType<GalaxianPlating>(), 4);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

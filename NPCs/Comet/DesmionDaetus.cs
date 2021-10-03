@@ -1,12 +1,12 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
-using Eternal.Items;
 using Eternal.Tiles;
 using System.Linq;
 using Eternal.Items.Weapons.Ranged;
 using Eternal.Items.Materials;
+using Microsoft.Xna.Framework;
+using System;
 
 namespace Eternal.NPCs.Comet
 {
@@ -14,21 +14,27 @@ namespace Eternal.NPCs.Comet
     {
         public override void SetStaticDefaults()
         {
-            Main.npcFrameCount[npc.type] = 2;
+            Main.npcFrameCount[npc.type] = 4;
         }
 
         public override void SetDefaults()
         {
-            npc.lifeMax = 32000;
+            if (EternalWorld.downedCosmicApparition)
+            {
+                npc.lifeMax = 64000;
+            }
+            else
+            {
+                npc.lifeMax = 32000;
+            }
             npc.damage = 100;
             npc.defense = 90;
             npc.knockBackResist = 0f;
-            npc.width = 37;
-            npc.height = 31;
-            npc.aiStyle = 22;
+            npc.width = 35;
+            npc.height = 36;
+            npc.aiStyle = -1;
             npc.noGravity = true;
             npc.noTileCollide = true;
-            aiType = NPCID.Wraith;
             npc.HitSound = SoundID.NPCHit4;
             npc.DeathSound = SoundID.NPCDeath52;
             npc.value = Item.sellPrice(platinum: 1, gold: 20, silver: 90, copper: 90);
@@ -38,11 +44,64 @@ namespace Eternal.NPCs.Comet
         public override void AI()
         {
             Lighting.AddLight(npc.position, 0.75f, 0f, 0.75f);
-            npc.spriteDirection = npc.direction;
-
-            if (EternalWorld.downedCosmicApparition)
+            npc.rotation = npc.velocity.X * 0.04f;
+            npc.TargetClosest(true);
+            //npc.spriteDirection = npc.direction;
+            Player player = Main.player[npc.target];
+            npc.spriteDirection = npc.direction = npc.Center.X < player.Center.X ? -1 : 1;
+            if (player.dead || !player.active)
             {
-                npc.lifeMax = 64000;
+                npc.TargetClosest(false);
+                npc.active = false;
+            }
+
+            float speed = 12.5f;
+            float acceleration = 0.10f;
+            Vector2 vector2 = new Vector2(npc.position.X + (float)npc.width * 0.5f, npc.position.Y + (float)npc.height * 0.5f);
+            float xDir = Main.player[npc.target].position.X + (float)(Main.player[npc.target].width / 2) - vector2.X;
+            float yDir = (float)(Main.player[npc.target].position.Y + (Main.player[npc.target].height / 2) - 120) - vector2.Y;
+            float length = (float)Math.Sqrt(xDir * xDir + yDir * yDir);
+            if (length > 400 && Main.expertMode)
+            {
+                ++speed;
+                acceleration += 0.05F;
+                if (length > 600)
+                {
+                    ++speed;
+                    acceleration += 0.05F;
+                    if (length > 800)
+                    {
+                        ++speed;
+                        acceleration += 0.05F;
+                    }
+                }
+            }
+            float num10 = speed / length;
+            xDir = xDir * num10;
+            yDir = yDir * num10;
+            if (npc.velocity.X < xDir)
+            {
+                npc.velocity.X = npc.velocity.X + acceleration;
+                if (npc.velocity.X < 0 && xDir > 0)
+                    npc.velocity.X = npc.velocity.X + acceleration;
+            }
+            else if (npc.velocity.X > xDir)
+            {
+                npc.velocity.X = npc.velocity.X - acceleration;
+                if (npc.velocity.X > 0 && xDir < 0)
+                    npc.velocity.X = npc.velocity.X - acceleration;
+            }
+            if (npc.velocity.Y < yDir)
+            {
+                npc.velocity.Y = npc.velocity.Y + acceleration;
+                if (npc.velocity.Y < 0 && yDir > 0)
+                    npc.velocity.Y = npc.velocity.Y + acceleration;
+            }
+            else if (npc.velocity.Y > yDir)
+            {
+                npc.velocity.Y = npc.velocity.Y - acceleration;
+                if (npc.velocity.Y > 0 && yDir < 0)
+                    npc.velocity.Y = npc.velocity.Y - acceleration;
             }
         }
 
@@ -50,16 +109,16 @@ namespace Eternal.NPCs.Comet
         {
             if (Main.rand.Next(3) == 0)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<NovaNexus>());
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<NovaNexus>());
             }
             if (EternalWorld.downedCosmicApparition)
             {
                 if (Main.rand.Next(5) == 0)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<InterstellarSingularity>(), Main.rand.Next(5, 20));
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<InterstellarSingularity>(), Main.rand.Next(5, 20));
                 }
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<StarmetalBar>(), Main.rand.Next(10, 75));
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<GalaxianPlating>(), Main.rand.Next(3, 12));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<StarmetalBar>(), Main.rand.Next(10, 75));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<GalaxianPlating>(), Main.rand.Next(3, 12));
             }
         }
 

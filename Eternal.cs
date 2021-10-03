@@ -23,13 +23,13 @@ using Eternal.Items.Potions;
 using Eternal.Items.Accessories.Expert;
 using Eternal.Items.Weapons.Expert;
 using Microsoft.Xna.Framework;
-//using Eternal.Integration;
+using Eternal.Integration;
 
 namespace Eternal
 {
 	public class Eternal : Mod
 	{
-        internal static Mod instance;
+        internal static Eternal instance;
 
         public Eternal()
 		{
@@ -51,6 +51,8 @@ namespace Eternal
 
         public override void Load()
         {
+			instance = this;
+
 			#region Music Boxes
 			AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/MazesAndLivingSwords"), ItemType("LabrynthMusicBox"), TileType("LabrynthMusicBox"));
 			AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/DeepDark"), ItemType("BeneathMusicBox"), TileType("BeneathMusicBox"));
@@ -140,12 +142,12 @@ namespace Eternal
 
 		#region Eternal Mod Integration
 		//Calamity Mod Integration
-		//public CalamityIntegration CalamityIntegration { get; private set; }
-		//public bool CalamityLoaded => CalamityIntegration != null;
+		public CalamityIntegration CalamityIntegration { get; private set; }
+		public bool CalamityLoaded => CalamityIntegration != null;
 
 		//Fargo's Mod Integration
-		//public FargoModIntegration FargoModIntegration { get; private set; }
-		//public bool FargowiltasModLoaded => FargoModIntegration != null;
+		public FargoModIntegration FargoModIntegration { get; private set; }
+		public bool FargowiltasModLoaded => FargoModIntegration != null;
 		#endregion
 
 		public static bool NoInvasion(NPCSpawnInfo spawnInfo)
@@ -266,7 +268,7 @@ namespace Eternal
 					"Spawn by Killing a Soul Crystal after defeating Empraynia, Post-Moon Lord.",
 					"The Ghostly Smile of Someone Powerful",
 					"Eternal/BossChecklist/CosmicApparition",
-					"Eternal/NPCs/Boss/CosmicApparition/CosmicAppatition_Head_Boss"
+					"Eternal/NPCs/Boss/CosmicApparition/CosmicApparition_Head_Boss"
 				);
 
 				bossCheckList.Call(
@@ -330,6 +332,19 @@ namespace Eternal
 					new Color(1f, 1f, 1f),
 					new Color(1f, 1f, 1f));
 				FKBossHealthBar.Call("hbFinishSingle", ModContent.NPCType<NPCs.Boss.AoI.ArkofImperious>());
+				// Cosmic Emperor
+				FKBossHealthBar.Call("hbStart");
+				FKBossHealthBar.Call("hbSetTexture",
+					GetTexture("BossBars/CosmicEmperorBarStart"),
+					GetTexture("BossBars/CosmicEmperorBarMiddle"),
+					GetTexture("BossBars/CosmicEmperorBarEnd"),
+					GetTexture("BossBars/CosmicEmperorBarFill"));
+				FKBossHealthBar.Call("hbSetBossHeadTexture", GetTexture("NPCs/Boss/CosmicEmperor/CosmicEmperor_Head_Boss"));
+				FKBossHealthBar.Call("hbSetColours",
+					new Color(1f, 1f, 1f),
+					new Color(1f, 1f, 1f),
+					new Color(1f, 1f, 1f));
+				FKBossHealthBar.Call("hbFinishSingle", ModContent.NPCType<NPCs.Boss.CosmicEmperor.CosmicEmperor>());
 			}
 			#endregion
 		}

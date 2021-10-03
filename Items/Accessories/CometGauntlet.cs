@@ -1,5 +1,6 @@
 ﻿using Eternal.Items.Materials;
 using Eternal.Tiles;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,14 +12,16 @@ namespace Eternal.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Increased Melee Damage 60%" +
+            Tooltip.SetDefault("60% increased melee damage" +
+                               "\n30% melee damage multiplier" +
+                               "\n70% increased melee speed" +
                                "\n'The comets are now in the palm of your hand'");
         }
 
         public override void SetDefaults()
         {
             item.width = 26;
-            item.height = 30;
+            item.height = 24;
             item.accessory = true;
             item.value = Item.sellPrice(gold: 30);
             item.rare = ItemRarityID.Red;
@@ -29,6 +32,20 @@ namespace Eternal.Items.Accessories
             EternalGlobalProjectile.cometGauntlet = true;
 
             player.meleeDamage += 0.6f;
+            player.meleeSpeed += 0.7f;
+            player.meleeDamageMult += 0.3f;
+            item.shootSpeed += 0.25f;
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> list)
+        {
+            foreach (TooltipLine line2 in list)
+            {
+                if (line2.mod == "Terraria" && line2.Name == "ItemName")
+                {
+                    line2.overrideColor = EternalColor.Teal;
+                }
+            }
         }
 
         public override void AddRecipes()
