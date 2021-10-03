@@ -13,15 +13,24 @@ namespace Eternal.NPCs.Miniboss.Mechworm
             npc.width = 86;
             npc.height = 76;
             npc.knockBackResist = -1f;
-            npc.noGravity = true;
             npc.behindTiles = true;
             npc.HitSound = SoundID.NPCHit4;
             npc.DeathSound = SoundID.NPCDeath14;
             npc.netAlways = true;
-            npc.lifeMax = 25000;
+            npc.lifeMax = 250000;
             npc.damage = 50;
             npc.defense = 30;
             npc.aiStyle = -1;
+            npc.boss = true;
+        }
+
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = 500000;
+            if (EternalWorld.hellMode)
+            {
+                npc.lifeMax = 750000;
+            }
         }
 
         public override void Init()
