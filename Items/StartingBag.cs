@@ -32,7 +32,7 @@ namespace Eternal.Items
         {
             //The Creator's Message item will be temporarly here until the mod is complete.
             player.QuickSpawnItem(ItemType<CreatorsMessage>());
-            player.QuickSpawnItem(ItemType<AncientPendant>());
+            player.QuickSpawnItem(ItemType<AncientEmblem>());
             player.QuickSpawnItem(ItemType<BloodLocket>());
         }
 

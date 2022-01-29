@@ -8,10 +8,16 @@ namespace Eternal.Invasion
     {
         public override void PostUpdate()
         {
-            if (DroxClanWorld.DCPoints >= 1000)
+            DroxClanPlayer modPlayer = Main.player[Main.myPlayer].GetModPlayer<DroxClanPlayer>();
+
+            if (!DroxClanWorld.DClan)
+                DroxClanWorld.DCStage = 0;
+
+            if (DroxClanWorld.DCPoints >= 100)
             {
                 EternalWorld.downedDroxClan = true;
                 Main.NewText("The Drox Clan has been defeated!", 175, 75, 255);
+                DroxClanWorld.DCStage = 0;
                 DroxClanWorld.DCPoints = 0;
                 DroxClanWorld.DClan = false;
                 if (Main.netMode == NetmodeID.Server)

@@ -1,10 +1,12 @@
-﻿using Eternal.NPCs.Boss.CosmicEmperor;
+﻿using Eternal.Items.Materials;
+using Eternal.Items.Materials.Elementalblights;
+using Eternal.NPCs.Boss.CosmicEmperor;
+using Eternal.Tiles;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Items.Summon
 {
@@ -12,16 +14,15 @@ namespace Eternal.Items.Summon
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Extinction" +
+            Tooltip.SetDefault("Inscribed with sacred primordial handwritting" +
                                 "\nUnleashes the Emperor of the cosmos" +
-                                "\n[WIP]" +
-                                "\n'A presence gazes upon your world...'");
+                                "\n'Only those who have prooven there worth, sha'll be challenged.'");
         }
 
         public override void SetDefaults()
         {
-            item.width = 54;
-            item.height = 54;
+            item.width = 36;
+            item.height = 52;
             item.rare = ItemRarityID.Red;
             item.useTime = 45;
             item.useAnimation = 45;
@@ -37,11 +38,23 @@ namespace Eternal.Items.Summon
             }
             else
             {
-                NPC.NewNPC((int)player.Center.X, (int)player.Center.Y - 900, NPCType<CosmicEmperorMask>());
-                Main.NewText("To whom, who has challenged greater beings... I have been watching you gain strength ever sinced you've slayed the mighty lord of the moon!", 0, 95, 215);
+                NPC.NewNPC((int)player.Center.X, (int)player.Center.Y - 900, ModContent.NPCType<CosmicEmperorMask>());
+                Main.NewText("To whom, who has challenged greater beings... I have been watching you gain strength ever sinced you've slayed the mighty lord, banished to the moon!", 0, 95, 215);
             }
             Main.PlaySound(SoundID.Roar, player.position, 0);
             return true;
+        }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddTile(ModContent.TileType<AncientForge>());
+            recipe.AddIngredient(ModContent.ItemType<CoreofEternal>(), 12);
+            recipe.AddIngredient(ModContent.ItemType<CometiteBar>(), 16);
+            recipe.AddIngredient(ModContent.ItemType<DuskblightCrystal>(), 24);
+            recipe.AddIngredient(ModContent.ItemType<CometiteCrystal>(), 20);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

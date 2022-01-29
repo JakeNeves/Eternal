@@ -54,6 +54,11 @@ namespace Eternal.Items.BossBags
             {
                 player.QuickSpawnItem(ItemType<TheEnigma>());
             }
+
+            if (EternalWorld.hellMode)
+                player.QuickSpawnItem(ItemType<ArkaniumCompound>(), Main.rand.Next(60, 80));
+            else
+                player.QuickSpawnItem(ItemType<ArkaniumCompound>(), Main.rand.Next(40, 60));
         }
 
         public override int BossBagNPC => NPCType<NPCs.Boss.AoI.ArkofImperious>();

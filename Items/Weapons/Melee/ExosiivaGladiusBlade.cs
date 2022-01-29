@@ -12,16 +12,19 @@ namespace Eternal.Items.Weapons.Melee
 {
     public class ExosiivaGladiusBlade : ModItem
     {
-
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Fires Multiple Exosiiva Swords\n'It's a Literal Bullet Hell'\n[c/FF0000:Warning] - May cause frame drops at the cost of multiple projectiles existing off-screen...\nHowever the frames will go back to normal eventually.\n[c/FC036B:Developer Item]\nDedicated to [c/038CFC:JakeTEM]");
+            Tooltip.SetDefault("Fires Multiple Exosiiva Swords" +
+                             "\nStriking with the base weapon has a chance to heal the player" +
+                             "\n'It's a Literal Bullet Hell'" +
+                             "\n[c/FC036B:Developer Item]" +
+                             "\nDedicated to [c/038CFC:JakeTEM]");
         }
 
         public override void SetDefaults()
         {
-            item.width = 72;
-            item.height = 90;
+            item.width = 102;
+            item.height = 102;
             item.damage = 20000;
             item.melee = true;
             item.useStyle = ItemUseStyleID.SwingThrow;
@@ -34,6 +37,14 @@ namespace Eternal.Items.Weapons.Melee
             item.useTime = 18;
             item.useAnimation = 18;
             item.UseSound = SoundID.Item1;
+        }
+
+        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        {
+            if (Main.rand.Next(4) == 0)
+            {
+                item.healLife = 15;
+            }
         }
 
         public override void AddRecipes()
@@ -62,15 +73,14 @@ namespace Eternal.Items.Weapons.Melee
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            int numberProjectiles = Main.rand.Next(2, 12);
+            int numberProjectiles = Main.rand.Next(2, 4);
             for (int j = 0; j < numberProjectiles; j++)
             {
-                Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(15));
+                Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(30));
                 Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, type, damage, knockBack, player.whoAmI);
-                Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, ProjectileType<SiivaSpark>(), damage, knockBack, player.whoAmI);
                 Main.PlaySound(SoundID.Item8, Main.myPlayer);
             }
-            int spread = 10;
+            int spread = 2;
             float spreadMult = 0.5f;
             for (int i = 0; i < 3; i++)
             {

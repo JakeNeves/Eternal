@@ -1,16 +1,14 @@
-﻿using Microsoft.Xna.Framework;
-using Eternal.Projectiles.Weapons.Melee;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Eternal.Items.Weapons.Melee
 {
-    class PrismaticFractal : ModItem
+    public class PrismaticFractal : ModItem
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'Not to be confused with the Terraprisma'\nPierce the rainbow, Taste the rainbow!\nFires a Prisim Sword\n[c/FC036B:Dedicated Content]\nDedicated to [c/038CFC:JakeTEM]");
+            Tooltip.SetDefault("'Not to be confused with the Terraprisma'\nPierce the rainbow, Taste the rainbow!\nFires a Prisim Sword\n[c/FC036B:Developer Item]\nDedicated to [c/038CFC:JakeTEM]");
         }
 
         public override void SetDefaults()
@@ -18,7 +16,7 @@ namespace Eternal.Items.Weapons.Melee
             item.width = 44;
             item.height = 44;
             item.shootSpeed = 12f;
-            item.damage = 120;
+            item.damage = 86;
             item.knockBack = 10.5f;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.useAnimation = 30;

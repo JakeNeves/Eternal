@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using static Terraria.ModLoader.ModContent;
 using Eternal.Tiles;
 using Eternal.Items.Materials;
+using Eternal.Items.Materials.Elementalblights;
 
 namespace Eternal.Items.Accessories
 {
@@ -16,18 +17,18 @@ namespace Eternal.Items.Accessories
         {
             Tooltip.SetDefault("Counts as Wings" + 
                                "\nAllows flight and slow fall" + 
-                               "\nAllows the wearer to run at Ludicrous Speed!" + 
-                               "\nProvides Mobility on ice" + 
-                               "\nLava Waders Effects" +
-                               "\nTemporary Immunity to lava" +
-                               "\nMaster Ninja Gear Effects" +
+                               "\nAllows the wearer to run at ludicrous speed!" + 
+                               "\nProvides mobility on ice" + 
+                               "\nLava Waders effects" +
+                               "\nMaster Ninja Gear effects" +
+                               "\nImmunity to lava" +
                                "\n'Ascendance'");
         }
 
         public override void SetDefaults()
         {
-            item.width = 44;
-            item.height = 30;
+            item.width = 70;
+            item.height = 46;
             item.value = Item.sellPrice(platinum: 5);
             item.rare = ItemRarityID.Red;
             item.accessory = true;
@@ -95,9 +96,9 @@ namespace Eternal.Items.Accessories
             }*/
             #endregion
 
-            player.accRunSpeed = 8.5f;
+            player.accRunSpeed = 8.3f;
             player.rocketBoots = 4;
-            player.moveSpeed += 0.24f;
+            player.moveSpeed += 0.20f;
             player.iceSkate = true;
             player.jumpBoost = true;
             player.noFallDmg = true;
@@ -143,6 +144,7 @@ namespace Eternal.Items.Accessories
             recipe.AddTile(TileType<Starforge>());
             recipe.AddIngredient(ItemType<CometiteBar>(), 20);
             recipe.AddIngredient(ItemType<StarmetalBar>(), 40);
+            recipe.AddIngredient(ItemType<DuskblightCrystal>(), 16);
             recipe.AddIngredient(ItemID.FrostsparkBoots);
             recipe.AddIngredient(ItemID.LavaWaders);
             recipe.AddIngredient(ItemID.MasterNinjaGear);

@@ -44,8 +44,7 @@ namespace Eternal.Items.Summon
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddTile(TileID.Anvils);
-            recipe.AddIngredient(ItemType<TritalodiumBar>(), 5);
-            recipe.AddIngredient(ItemType<CoraliumSludge>(), 10);
+            recipe.AddIngredient(ItemID.Diamond, 1);
             recipe.AddIngredient(ItemID.SandBlock, 25);
             recipe.AddIngredient(ItemID.SandstoneBrick, 15);
             recipe.SetResult(this);

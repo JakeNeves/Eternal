@@ -1,10 +1,7 @@
-﻿using Eternal.Projectiles;
-using Eternal.Tiles;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Items.Weapons.Melee
 {
@@ -19,7 +16,7 @@ namespace Eternal.Items.Weapons.Melee
         {
             item.width = 42;
             item.height = 48;
-            item.damage = 200;
+            item.damage = 95;
             item.knockBack = 18;
             item.value = Item.buyPrice(platinum: 1);
             item.useTime = 18;

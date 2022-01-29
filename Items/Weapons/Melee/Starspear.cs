@@ -1,6 +1,7 @@
 ﻿using Eternal.Items.Materials;
 using Eternal.Projectiles.Weapons.Melee;
 using Eternal.Tiles;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -8,7 +9,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Items.Weapons.Melee
 {
-    class Starspear : ModItem
+    public class Starspear : ModItem
     {
 
 		public override void SetStaticDefaults()
@@ -24,8 +25,8 @@ namespace Eternal.Items.Weapons.Melee
 			item.useTime = 24;
 			item.shootSpeed = 4.5f;
 			item.knockBack = 65f;
-			item.width = 76;
-			item.height = 76;
+			item.width = 66;
+			item.height = 66;
 			item.rare = ItemRarityID.Red;
 			item.value = Item.sellPrice(gold: 10);
 
@@ -46,6 +47,17 @@ namespace Eternal.Items.Weapons.Melee
 			recipe.AddIngredient(ItemType<StarmetalBar>(), 4);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
+		}
+
+		public override void ModifyTooltips(List<TooltipLine> tooltips)
+		{
+			foreach (TooltipLine line2 in tooltips)
+			{
+				if (line2.mod == "Terraria" && line2.Name == "ItemName")
+				{
+					line2.overrideColor = EternalColor.Teal;
+				}
+			}
 		}
 
 		public override bool CanUseItem(Player player)

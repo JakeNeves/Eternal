@@ -1,6 +1,6 @@
 [c/1EC9E3:Eternal] - By [c/008CFF:Jake][c/0204CFF:TEM]!
 
-1.0.7  - [c/009933:Repetance Update] [c/fff000:Part II]
+1.0.8  - [c/009933:The Bionic Update]
 
 Feel free to join my Discord Server and help out with the mod if you want
 https://discord.gg/HUJ8KUSAjC
@@ -16,30 +16,22 @@ and four out of the twenty post-moon lord bosses
 
 [c/00B359:---Future Plans---]
 
-* Fully Implement the currently existing
-  biomes into the world generation
+* Implement Phases 3 and 4 of the Cosmic Emperor
 
-* Add Loot for Empraynia
+* Fully Implement Minibosses
 
 [c/00B359:---Credits---]
 
-JakeTEM - Mod Owner
-ViVi - Sprite Artist
-Jaer Hend - Sprite Artist
-kes/birb7 - Sprite Artist
+JakeTEM - Literally most of enerything
 
 [c/00b359:---Changelog---]
 
-1.0.7
-Added Cosmic Emperor (Phase 1 and 2, there will be four phases, but they are not added yet)
-Updated Eternal Mod's Soundtrack (comet, shrine and incinerius currently) 
-Added Shadow Tomb (WIP, skip the dunekeeper for now)
-Added Configurations for the mod
- * Added "Original Music" option
-   to toggle between the new and the original
-   music of the mod (DOES NOT APPLY TO VANILLA OR OTHER MODDED MUSIC)
- * Added "Hell Mode Vanilla Bosses" option
-   to toggle stat buffs for vanilla bosses
-Added Dawnstone
-Added a few new arrows
-Added the Appolyon (NYI)
+1.0.8
+* Updated Sprites for most of the content
+
+* Added Music Configurations for Vanilla Music
+  * Added music for the Snow Biome
+  * Added music for the Underground/Cavern
+  * Added music for the Mechanical Bosses
+
+* Added Sebestion Kox and the Bionic Bosses (Including upgraded variants)

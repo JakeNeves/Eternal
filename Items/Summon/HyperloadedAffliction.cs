@@ -1,9 +1,8 @@
-﻿using Eternal.NPCs.Boss.CosmicApparition;
+﻿using Eternal.Items.Materials.Elementalblights;
 using Eternal.NPCs.Boss.Empraynia;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Items.Summon
 {
@@ -17,28 +16,20 @@ namespace Eternal.Items.Summon
 
         public override void SetDefaults()
         {
-            item.width = 42;
-            item.height = 38;
+            item.width = 34;
+            item.height = 40;
             item.rare = ItemRarityID.Yellow;
             item.useAnimation = 45;
             item.useTime = 45;
             item.consumable = true;
-            item.maxStack = 99;
+            item.maxStack = 999;
             item.useStyle = ItemUseStyleID.HoldingUp;
         }
 
         public override bool CanUseItem(Player player)
         {
-            if (Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneCommet)
-            {
-                Main.NewText("Something gazes upon you...", 220, 0, 210);
-                //Main.NewText("The crystal inside Empraynia's body has broken free...", 215, 0, 225);
-            }
-            else
-            {
-                Main.NewText("The sky is shifting...", 220, 0, 210);
-            }
-            return !NPC.AnyNPCs(NPCType<Empraynia>()) || !NPC.AnyNPCs(NPCType<SoulCrystal>());
+            Main.NewText("The sky is shifting...", 220, 0, 210);
+            return !NPC.AnyNPCs(ModContent.NPCType<Empraynia>());
         }
 
         public override void AddRecipes()
@@ -46,8 +37,7 @@ namespace Eternal.Items.Summon
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.AddIngredient(ItemID.Ectoplasm, 4);
-            recipe.AddIngredient(ItemID.SpectreBar, 8);
-            recipe.AddIngredient(ItemID.ShroomiteBar, 8);
+            recipe.AddIngredient(ModContent.ItemType<DuskblightCrystal>(), 16);
             recipe.AddIngredient(ItemID.SoulofNight, 6);
             recipe.SetResult(this);
             recipe.AddRecipe();
@@ -55,16 +45,7 @@ namespace Eternal.Items.Summon
 
         public override bool UseItem(Player player)
         {
-            if (Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneCommet)
-            {
-                //NPC.SpawnOnPlayer(player.whoAmI, NPCType<SoulCrystal>());
-                NPC.NewNPC((int)player.Center.X, (int)player.Center.Y - 900, NPCType<SoulCrystal>());
-            }
-            else
-            {
-                NPC.SpawnOnPlayer(player.whoAmI, NPCType<Empraynia>());
-            }
-            
+            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<Empraynia>());
             Main.PlaySound(SoundID.Roar, player.position, 0);
             return true;
         }

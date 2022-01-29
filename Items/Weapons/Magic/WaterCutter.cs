@@ -6,7 +6,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Items.Weapons.Magic
 {
-    class WaterCutter : ModItem
+    public class WaterCutter : ModItem
     {
 
         public override void SetStaticDefaults()
@@ -21,8 +21,8 @@ namespace Eternal.Items.Weapons.Magic
             item.mana = 15;
             item.width = 28;
             item.height = 32;
-            item.useTime = 20;
-            item.useAnimation = 20;
+            item.useTime = 6;
+            item.useAnimation = 6;
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.noMelee = true;
             item.knockBack = 0f;

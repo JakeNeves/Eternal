@@ -1,8 +1,8 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 using Terraria.DataStructures;
+using Eternal.Items.Materials.Elementalblights;
 
 namespace Eternal.Items.Materials
 {
@@ -26,8 +26,9 @@ namespace Eternal.Items.Materials
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddTile(TileType<Tiles.AncientForge>());
-            recipe.AddIngredient(ItemType<Placeable.ThunderiteOre>());
+            recipe.AddTile(TileID.AdamantiteForge);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.ThunderiteOre>());
+            recipe.AddIngredient(ModContent.ItemType<ThunderblightCrystal>());
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

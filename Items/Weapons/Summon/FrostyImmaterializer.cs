@@ -15,8 +15,6 @@ namespace Eternal.Items.Weapons.Summon
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("Creates cryonic energy from loose shards of ice" +
-                             "\nEach energy takes up a quarter of a slot" +
-                             "\nIt may also be a little op Pre-Moon Lord" +
                              "\n'Not a discount Cosmic Immaterializer I swear...'");
 
             ItemID.Sets.GamepadWholeScreenUseRange[item.type] = true;
@@ -27,7 +25,7 @@ namespace Eternal.Items.Weapons.Summon
         {
             item.width = 50;
             item.height = 44;
-            item.damage = 190;
+            item.damage = 96;
             item.mana = 30;
             item.knockBack = 9.5f;
             item.summon = true;

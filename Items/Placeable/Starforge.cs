@@ -16,9 +16,9 @@ namespace Eternal.Items.Placeable
 
         public override void SetDefaults()
         {
-            item.width = 48;
+            item.width = 80;
             item.height = 48;
-            item.maxStack = 99;
+            item.maxStack = 999;
             item.useTurn = false;
             item.autoReuse = true;
             item.useAnimation = 15;
@@ -36,7 +36,7 @@ namespace Eternal.Items.Placeable
             {
                 if (line2.mod == "Terraria" && line2.Name == "ItemName")
                 {
-                    line2.overrideColor = EternalColor.DarkTeal;
+                    line2.overrideColor = EternalColor.Teal;
                 }
             }
         }

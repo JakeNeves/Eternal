@@ -16,12 +16,10 @@ namespace Eternal.NPCs.Boss.CosmicApparition
 
         bool canTeleport = true;
 
-        const float Speed = 12f;
-        const float Acceleration = 0.4f;
-
         public override void SetStaticDefaults()
         {
-            Main.npcFrameCount[npc.type] = 6;
+            Main.npcFrameCount[npc.type] = 4;
+            DisplayName.SetDefault("Wandering Soul");
         }
 
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
@@ -32,13 +30,13 @@ namespace Eternal.NPCs.Boss.CosmicApparition
 
         public override void SetDefaults()
         {
-            npc.width = 35;
-            npc.height = 69;
+            npc.width = 28;
+            npc.height = 46;
             npc.lifeMax = 12800;
             npc.defense = 18;
-            npc.HitSound = SoundID.NPCHit4;
-            npc.DeathSound = SoundID.NPCDeath44;
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/TrappedSoul");
+            npc.HitSound = SoundID.NPCHit52;
+            npc.DeathSound = null;
+            music = 0; //mod.GetSoundSlot(SoundType.Music, "Sounds/Music/TrappedSoul");
             npc.damage = 200;
             npc.noGravity = true;
             npc.noTileCollide = true;
@@ -48,7 +46,7 @@ namespace Eternal.NPCs.Boss.CosmicApparition
         public override void NPCLoot()
         {
             Main.PlaySound(SoundID.Roar, (int)npc.position.X, (int)npc.position.Y, 2);
-            Main.NewText("Shrieks echo as the soul breaks free...", 175, 75, 255);
+            Main.NewText("Shrieks echo as the soul angers...", 175, 75, 255);
             NPC.NewNPC((int)npc.Center.X - 20, (int)npc.Center.Y, ModContent.NPCType<CosmicApparition>());
         }
 
@@ -74,7 +72,7 @@ namespace Eternal.NPCs.Boss.CosmicApparition
                         {
                             speed = 10f;
                         }
-                        float acceleration = 0.10f;
+                        float acceleration = 0.20f;
                         Vector2 vector2 = new Vector2(npc.position.X + (float)npc.width * 0.5f, npc.position.Y + (float)npc.height * 0.5f);
                         float xDir = Main.player[npc.target].position.X + (float)(Main.player[npc.target].width / 2) - vector2.X;
                         float yDir = (float)(Main.player[npc.target].position.Y + (Main.player[npc.target].height / 2) - 120) - vector2.Y;
@@ -132,6 +130,7 @@ namespace Eternal.NPCs.Boss.CosmicApparition
                     Vector2 targetPosition = Main.player[npc.target].position;
                     Vector2 target = npc.HasPlayerTarget ? player.Center : Main.npc[npc.target].Center;
                     npc.netAlways = true;
+                    projectileTimer++;
                     if (canTeleport)
                     {
                         teleportTimer++;

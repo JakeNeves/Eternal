@@ -59,6 +59,8 @@ namespace Eternal
 
         public static bool downedArkOfImperious = false;
 
+        public static bool downedCosmicEmperor = false;
+
         //Events
         public static bool downedDroxClan = false;
         #endregion
@@ -70,7 +72,7 @@ namespace Eternal
             thunderduneBiome = DuneTiles;
             commet = tileCounts[TileType<CometiteOre>()];
             labrynth = LabrynthTiles;
-            BeneathTiles = tileCounts[TileType<Grimstone>()];
+            BeneathTiles = tileCounts[TileType<Grimstone>()] + tileCounts[TileType<Darkslate>()];
             theBeneath = BeneathTiles;
             ashpit = tileCounts[TileType<HeatslateGrowth>()];
         }
@@ -88,6 +90,8 @@ namespace Eternal
             downedCosmicApparition = false;
 
             downedArkOfImperious = false;
+
+            downedCosmicEmperor = false;
 
             //Events
             downedDroxClan = false;
@@ -111,6 +115,8 @@ namespace Eternal
             if (downedCosmicApparition) downed.Add("eternal");
 
             if (downedArkOfImperious) downed.Add("eternal");
+
+            if (downedCosmicEmperor) downed.Add("eternal");
             #endregion
 
             //Events
@@ -142,6 +148,8 @@ namespace Eternal
             downedCosmicApparition = downed.Contains("eternal");
 
             downedArkOfImperious = downed.Contains("eternal");
+
+            downedCosmicEmperor = downed.Contains("eternal");
             #endregion
 
             //Events
@@ -168,10 +176,12 @@ namespace Eternal
                 downedCosmicApparition = flags[5];
 
                 downedArkOfImperious = flags[6];
+
+                downedCosmicEmperor = flags[7];
                 #endregion
 
                 //Events
-                downedArkOfImperious = flags[0];
+                downedDroxClan = flags[0];
             }
         }
 
@@ -218,10 +228,12 @@ namespace Eternal
             downedCosmicApparition = flags[5];
 
             downedArkOfImperious = flags[6];
+
+            downedCosmicEmperor = flags[7];
             #endregion
 
             //Events
-            downedArkOfImperious = flags[0];
+            downedDroxClan = flags[0];
 
             difficultyFlag[0] = hellMode;
         }
@@ -492,11 +504,11 @@ namespace Eternal
 
         public void GenBeneath()
         {
-            int benX = WorldGen.genRand.Next(400, Main.maxTilesX - 300);
+            int benX = WorldGen.genRand.Next(2000, Main.maxTilesX - 1600);
             int benY = WorldGen.genRand.Next((int)WorldGen.rockLayerHigh, Main.maxTilesY);
-            WorldGen.TileRunner(benX, benY, WorldGen.genRand.Next(200, 800), 40, TileType<Grimstone>(), true, WorldGen.genRand.Next(9, 20), WorldGen.genRand.Next(-2, 2));
-            WorldGen.TileRunner(benX, benY, WorldGen.genRand.Next(200, 800), 40, TileType<Grimstone>(), true, WorldGen.genRand.Next(-20, -9), WorldGen.genRand.Next(-2, 2));
-            WorldGen.TileRunner(benX, benY, WorldGen.genRand.Next(100, 400), 20, TileType<CoraliumSludge>(), true, WorldGen.genRand.Next(-10, -9), WorldGen.genRand.Next(-2, 2));
+            WorldGen.TileRunner(benX, benY, WorldGen.genRand.Next(800, 950), 80, TileType<Grimstone>(), false, WorldGen.genRand.Next(9, 20), WorldGen.genRand.Next(-4, 4));
+            WorldGen.TileRunner(benX, benY, WorldGen.genRand.Next(800, 950), 80, TileType<Grimstone>(), false, WorldGen.genRand.Next(-20, -9), WorldGen.genRand.Next(-4, 4));
+            WorldGen.TileRunner(benX, benY, WorldGen.genRand.Next(200, 650), 20, TileType<Darkslate>(), false, WorldGen.genRand.Next(-10, -9), WorldGen.genRand.Next(-2, 2));
         }
 
         public void createShrine()
@@ -580,38 +592,42 @@ namespace Eternal
         #region Ark Shrine
         private readonly int[,] _shrineShape =
         {
-            {0,0,0,0,1,1,0,0,0,1,1,0,0,0,1,1,0,0,0,1,1,0,0,0,0 },
-            {0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0 },
-            {0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0 },
-            {0,0,0,0,0,0,2,2,2,2,0,0,0,0,2,2,2,2,2,0,0,0,0,0,0 },
-            {0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,2,2,2,0,0,0,0,0,0,0 },
-            {0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0 },
-            {0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0 },
-            {0,0,0,0,0,0,2,2,2,0,0,0,0,0,2,2,2,0,0,0,0,0,0,0,0 },
-            {0,0,0,0,0,0,2,2,2,0,0,0,0,0,2,2,2,2,0,0,0,0,0,0,0 },
-            {0,0,0,0,0,2,2,2,2,0,0,0,0,2,2,2,2,2,0,0,0,0,0,0,0 },
-            {0,0,0,0,0,2,2,2,2,2,0,0,2,2,2,2,2,2,2,0,0,0,0,0,0 },
-            {0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0 },
-            {0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0 },
-            {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
+            {0,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,0 },
+            {0,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,0 },
+            {0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0 },
+            {0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+            {0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0 },
+            {0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0 },
+            {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
         };
 
         private readonly int[,] _shrineShapeWall =
         {
-            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-            {0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0 },
-            {0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0 },
-            {0,0,0,0,0,0,1,1,1,1,1,0,0,0,1,1,1,1,1,0,0,0,0,0,0 },
-            {0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0 },
-            {0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0 },
-            {0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0 },
-            {0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0 },
-            {0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0 },
-            {0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0 },
-            {0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0 },
-            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0 },
         };
         
 
@@ -643,9 +659,7 @@ namespace Eternal
                         {
                             case 1:
                                 tile.type = (ushort)TileType<LabrynthStone>();
-                                break;
-                            case 2:
-                                tile.type = (ushort)TileType<CoraliumSludge>();
+                                tile.active(true);
                                 break;
                         }
                         switch (_shrineShapeWall[y, x])

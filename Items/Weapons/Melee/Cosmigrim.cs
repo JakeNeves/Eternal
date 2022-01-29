@@ -23,7 +23,7 @@ namespace Eternal.Items.Weapons.Melee
             item.height = 52;
             item.melee = true;
             item.rare = ItemRarityID.Red;
-            item.damage = 1000;
+            item.damage = 220;
             item.useAnimation = 20;
             item.useTime = 20;
             item.useStyle = ItemUseStyleID.SwingThrow;

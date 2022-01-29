@@ -1,7 +1,5 @@
 ﻿using Eternal.Projectiles.Weapons.Ranged;
-using Eternal.Tiles;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;

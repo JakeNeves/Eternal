@@ -1,13 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Eternal.Projectiles.Weapons.Melee
 {
-    class ExosiivaProjectile : ModProjectile
+    public class ExosiivaProjectile : ModProjectile
     {
         
 
@@ -20,20 +19,43 @@ namespace Eternal.Projectiles.Weapons.Melee
 
         public override void SetDefaults()
         {
-            projectile.width = 40;
-            projectile.height = 106;
-            projectile.aiStyle = 1;
+            projectile.width = 102;
+            projectile.height = 102;
+            projectile.aiStyle = -1;
             projectile.friendly = true;
             projectile.hostile = false;
-            projectile.penetrate = 10;
+            projectile.penetrate = -1;
             projectile.timeLeft = 900;
-            projectile.alpha = 255;
+            projectile.alpha = 0;
             projectile.light = 0.5f;
             projectile.melee = true;
             projectile.ignoreWater = true;
             projectile.tileCollide = false;
-            projectile.extraUpdates = 1;
-            aiType = ProjectileID.Bullet; //ProjectileID.PossessedHatchet;
+        }
+
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            projectile.Kill();
+
+            projectile.alpha++;
+
+            if (Eternal.instance.CalamityLoaded)
+            {
+                target.AddBuff(ModLoader.GetMod("CalamityMod").BuffType("ExoFreeze"), 240);
+                target.AddBuff(ModLoader.GetMod("CalamityMod").BuffType("Vaporfied"), 240);
+                target.AddBuff(ModLoader.GetMod("CalamityMod").BuffType("ProfanedWeakness"), 240);
+                target.AddBuff(ModLoader.GetMod("CalamityMod").BuffType("GalvanicCorrosion"), 240);
+            }
+        }
+
+        public override void AI()
+        {
+            projectile.rotation += projectile.velocity.X * 0.1f;
+
+            if (projectile.timeLeft <= 50)
+            {
+                projectile.velocity.Y++;
+            }
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)

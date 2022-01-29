@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -26,7 +24,7 @@ namespace Eternal.Items.Weapons.Summon
         {
             item.width = 40;
             item.height = 40;
-            item.damage = 330;
+            item.damage = 110;
             item.mana = 60;
             item.knockBack = 9.5f;
             item.summon = true;

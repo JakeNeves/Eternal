@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Eternal.Items.Materials;
 using Terraria.DataStructures;
+using Eternal.Items.Materials.Elementalblights;
 
 namespace Eternal.Items.Weapons.Melee
 {
@@ -56,6 +57,11 @@ namespace Eternal.Items.Weapons.Melee
             recipe.AddIngredient(ItemType<ThunderiteBar>(), 10);
             recipe.AddIngredient(ItemType<SydaniteBar>(), 10);
             recipe.AddIngredient(ItemType<ScoriumBar>(), 10);
+            recipe.AddIngredient(ItemType<ConcintratedThunderblight>(), 16);
+            recipe.AddIngredient(ItemType<ConcintratedFrostblight>(), 16);
+            recipe.AddIngredient(ItemType<ConcintratedInfernoblight>(), 16);
+            recipe.AddIngredient(ItemType<CoreofEternal>(), 3);
+            recipe.AddIngredient(ItemType<DuskblightCrystal>(), 24);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

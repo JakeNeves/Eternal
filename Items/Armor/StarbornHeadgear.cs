@@ -12,6 +12,10 @@ namespace Eternal.Items.Armor
     [AutoloadEquip(EquipType.Head)]
     public class StarbornHeadgear : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            Tooltip.SetDefault("17% increased ranged damage");
+        }
 
         public override void SetDefaults()
         {
@@ -39,9 +43,13 @@ namespace Eternal.Items.Armor
 
             Dust dust;
             Vector2 position = Main.LocalPlayer.Center;
-            dust = Main.dust[Dust.NewDust(position, (int)player.Center.X, (int)player.Center.Y, ModContent.DustType<Starmetal>(), 0f, 0f, 0, new Color(255, 255, 255), 1f)];
+            dust = Main.dust[Dust.NewDust(player.position, (int)player.width, (int)player.height, ModContent.DustType<Starmetal>(), 0f, 0f, 0, new Color(255, 255, 255), 1f)];
             dust.fadeIn = 0.3f;
+        }
 
+        public override void UpdateEquip(Player player)
+        {
+            player.rangedDamage += 0.17f;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
@@ -62,6 +70,7 @@ namespace Eternal.Items.Armor
             recipe.AddIngredient(ModContent.ItemType<StarmetalBar>(), 5);
             recipe.AddIngredient(ModContent.ItemType<CometiteBar>(), 16);
             recipe.AddIngredient(ModContent.ItemType<GalaxianPlating>(), 4);
+            recipe.AddIngredient(ModContent.ItemType<CometiteCrystal>(), 6);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

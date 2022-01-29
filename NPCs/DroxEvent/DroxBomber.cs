@@ -35,12 +35,17 @@ namespace Eternal.NPCs.DroxEvent
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (Main.LocalPlayer.GetModPlayer<EternalPlayer>().droxEvent)
+            /*if (Main.LocalPlayer.GetModPlayer<EternalPlayer>().droxEvent)
             {
                 int[] TileArray2 = { TileID.Grass, TileID.Dirt, TileID.Stone, TileID.Sand, TileID.SnowBlock, TileID.IceBlock };
                 return TileArray2.Contains(Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY].type) && Main.LocalPlayer.GetModPlayer<EternalPlayer>().droxEvent ? 2.09f : 0f;
             }
-            return 0f;
+            return 0f;*/
+
+            if (Main.LocalPlayer.GetModPlayer<EternalPlayer>().droxEvent)
+                return SpawnCondition.OverworldDay.Chance * 0.75f + SpawnCondition.OverworldNight.Chance * 0.75f;
+            else
+                return SpawnCondition.OverworldDay.Chance * 0f + SpawnCondition.OverworldDay.Chance * 0f;
         }
 
         public override void AI()
@@ -91,6 +96,8 @@ namespace Eternal.NPCs.DroxEvent
         public override void NPCLoot()
         {
             Projectile.NewProjectile(npc.position.X, npc.position.Y, 0, 0, ModContent.ProjectileType<DroxBomberBomb>(), 6, 0, Main.myPlayer, 0f, 0f);
+            if (DroxClanWorld.DClan)
+                DroxClanWorld.DCPoints = 4;
         }
 
     }

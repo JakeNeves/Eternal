@@ -13,20 +13,20 @@ namespace Eternal.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Shocks Enemies\n'Someone thought that this could be the yoyo version of that Elements Awoken Boss'");
+            Tooltip.SetDefault("'Electrically electrifying!'");
         }
 
         public override void SetDefaults()
         {
             item.useStyle = ItemUseStyleID.HoldingOut;
-            item.width = 22;
-            item.height = 18;
+            item.width = 24;
+            item.height = 20;
             item.useAnimation = 25;
             item.useTime = 25;
             item.shootSpeed = 30f;
             item.knockBack = 5.5f;
-            item.damage = 20;
-            item.rare = ItemRarityID.Blue;
+            item.damage = 60;
+            item.rare = ItemRarityID.Orange;
 
             item.melee = true;
             item.channel = true;

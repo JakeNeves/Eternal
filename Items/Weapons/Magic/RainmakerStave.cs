@@ -13,15 +13,18 @@ namespace Eternal.Items.Weapons.Magic
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("'We all know where this is going...'");
+            Item.staff[item.type] = true;
         }
 
         public override void SetDefaults()
         {
-            item.damage = 925;
+            item.width = 44;
+            item.height = 44;
+            item.damage = 110;
             item.magic = true;
             item.mana = 75;
-            item.useTime = 18;
-            item.useAnimation = 18;
+            item.useTime = 12;
+            item.useAnimation = 12;
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.knockBack = 0.75f;
             item.value = Item.sellPrice(platinum: 1);
@@ -36,7 +39,7 @@ namespace Eternal.Items.Weapons.Magic
         //just so it acts like the daedelus stormbow, credit to whoever wrote this originally...
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            int numberProjectiles = 15 + Main.rand.Next(5);
+            int numberProjectiles = 3;
             for (int index = 0; index < numberProjectiles; ++index)
             {
                 Vector2 vector2_1 = new Vector2((float)(player.position.X + player.width * 0.5 + Main.rand.Next(201) * -player.direction + (Main.mouseX + (double)Main.screenPosition.X - player.position.X)), (float)(player.position.Y + player.height * 0.5 - 600.0));

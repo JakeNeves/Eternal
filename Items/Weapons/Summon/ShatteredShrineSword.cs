@@ -24,7 +24,7 @@ namespace Eternal.Items.Weapons.Summon
         {
             item.width = 32;
             item.height = 34;
-            item.damage = 4600;
+            item.damage = 2000;
             item.mana = 30;
             item.knockBack = 8f;
             item.summon = true;

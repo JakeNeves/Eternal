@@ -3,7 +3,6 @@ using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
-using static Terraria.ModLoader.ModContent;
 using Eternal.Items.Weapons.Ranged;
 using Eternal.Items.Ammo;
 using Eternal.Items.BossBags;
@@ -12,6 +11,7 @@ using Eternal.Items.Materials;
 using Eternal.Projectiles.Boss;
 using Eternal.Items.Potions;
 using Microsoft.Xna.Framework.Graphics;
+using Eternal.Dusts;
 
 namespace Eternal.NPCs.Boss.AoI
 {
@@ -20,10 +20,16 @@ namespace Eternal.NPCs.Boss.AoI
     {
         private Player player;
 
+        bool isDashing = false;
+
+        bool justSpawnedCircle = false;
+
         #region Fundimentals
-        float speed = 0;
+        float speed = 16;
         int Phase = 0;
         int AttackTimer = 0;
+        int moveTimer;
+        float acceleration = 0.2f;
         #endregion
 
         public override void SetStaticDefaults()
@@ -57,7 +63,7 @@ namespace Eternal.NPCs.Boss.AoI
             npc.buffImmune[BuffID.Frostburn] = true;
             npc.buffImmune[BuffID.Frozen] = true;
             npc.buffImmune[BuffID.Chilled] = true;
-            bossBag = ItemType<AoIBag>();
+            bossBag = ModContent.ItemType<AoIBag>();
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
@@ -95,7 +101,111 @@ namespace Eternal.NPCs.Boss.AoI
 
         public override void BossLoot(ref string name, ref int potionType)
         {
-            potionType = ItemType<PristineHealingPotion>();
+            potionType = ModContent.ItemType<PristineHealingPotion>();
+        }
+
+        public override bool PreAI()
+        {
+            if (Phase == 0)
+            {
+                DoAttacksPhase1();
+            }
+            if (Phase == 1)
+            {
+                DoAttacksPhase2();
+            }
+            if (Phase == 3)
+            {
+                DoAttacksPhase3();
+            }
+
+            Movement();
+
+            return true;
+        }
+
+        private void Movement()
+        {
+            float speed = 48f;
+            float acceleration = 0.20f;
+            Vector2 vector2 = new Vector2(npc.position.X + (float)npc.width * 0.5f, npc.position.Y + (float)npc.height * 0.5f);
+            float xDir = Main.player[npc.target].position.X + (float)(Main.player[npc.target].width / 2) - vector2.X;
+            float yDir = (float)(Main.player[npc.target].position.Y + (Main.player[npc.target].height / 2) - 120) - vector2.Y;
+            float length = (float)Math.Sqrt(xDir * xDir + yDir * yDir);
+
+            npc.TargetClosest(true);
+            npc.spriteDirection = npc.direction;
+            Player player = Main.player[npc.target];
+            if (player.dead || !player.active)
+            {
+                npc.TargetClosest(false);
+                npc.active = false;
+            }
+
+            if (isDashing)
+            {
+                speed = 48f;
+                acceleration = 0.20f;
+                npc.rotation = npc.velocity.ToRotation() + MathHelper.ToRadians(90f);
+            }
+            else
+            {
+                speed = 12f;
+                acceleration = 0.10f;
+                if (EternalWorld.hellMode)
+                {
+                    npc.rotation = npc.velocity.X * 0.06f;
+                }
+                else
+                {
+                    npc.rotation = npc.velocity.X * 0.03f;
+                }
+
+            }
+
+            if (length > 400 && Main.expertMode)
+            {
+                ++speed;
+                acceleration += 0.05F;
+                if (length > 600)
+                {
+                    ++speed;
+                    acceleration += 0.05F;
+                    if (length > 800)
+                    {
+                        ++speed;
+                        acceleration += 0.05F;
+                    }
+                }
+            }
+            float num10 = speed / length;
+            xDir = xDir * num10;
+            yDir = yDir * num10;
+            if (npc.velocity.X < xDir)
+            {
+                npc.velocity.X = npc.velocity.X + acceleration;
+                if (npc.velocity.X < 0 && xDir > 0)
+                    npc.velocity.X = npc.velocity.X + acceleration;
+            }
+            else if (npc.velocity.X > xDir)
+            {
+                npc.velocity.X = npc.velocity.X - acceleration;
+                if (npc.velocity.X > 0 && xDir < 0)
+                    npc.velocity.X = npc.velocity.X - acceleration;
+            }
+            if (npc.velocity.Y < yDir)
+            {
+                npc.velocity.Y = npc.velocity.Y + acceleration;
+                if (npc.velocity.Y < 0 && yDir > 0)
+                    npc.velocity.Y = npc.velocity.Y + acceleration;
+            }
+            else if (npc.velocity.Y > yDir)
+            {
+                npc.velocity.Y = npc.velocity.Y - acceleration;
+                if (npc.velocity.Y > 0 && yDir < 0)
+                    npc.velocity.Y = npc.velocity.Y - acceleration;
+            }
+
         }
 
         public override void AI()
@@ -105,117 +215,149 @@ namespace Eternal.NPCs.Boss.AoI
             float yDir = (float)(Main.player[npc.target].position.Y + (Main.player[npc.target].height / 2) - 120) - vector2.Y;
             float length = (float)Math.Sqrt(xDir * xDir + yDir * yDir);
 
-            player = Main.player[npc.target];
-
-            Move(new Vector2(0f, 0f));
-
-            DespawnHandler();
-
             if (npc.life < npc.lifeMax / 2)
             {
                 Phase = 1;
             }
-
-            #region close up attack
-            float currentXDist = Math.Abs(npc.Center.X - player.Center.X);
-            if (npc.Center.X < player.Center.X && npc.ai[2] < 0)
-                npc.ai[2] = 0;
-            if (npc.Center.X > player.Center.X && npc.ai[2] > 0)
-                npc.ai[2] = 0;
-
-            float yDist = player.position.Y - (npc.position.Y + npc.height);
-            if (yDist < 0)
-                npc.velocity.Y = npc.velocity.Y - 0.2F;
-            if (yDist > 150)
-                npc.velocity.Y = npc.velocity.Y + 0.2F;
-            npc.velocity.Y = MathHelper.Clamp(npc.velocity.Y, -6, 6);
-            if (EternalWorld.hellMode)
+            if (npc.life < npc.lifeMax / 4)
             {
-                npc.rotation = npc.velocity.X * 0.06f;
+                Phase = 2;
             }
-            else
-            {
-                npc.rotation = npc.velocity.X * 0.03f;
-            }
-
-            if ((currentXDist < 500 || EternalWorld.hellMode) && npc.position.Y < player.position.Y)
-            {
-                ++npc.ai[3];
-                int cooldown = 15;
-                if (npc.life < npc.lifeMax * 0.75)
-                    cooldown = 154;
-                if (npc.life < npc.lifeMax * 0.5)
-                    cooldown = 13;
-                if (npc.life < npc.lifeMax * 0.25)
-                    cooldown = 12;
-                cooldown++;
-                if (npc.ai[3] > cooldown)
-                    npc.ai[3] = -cooldown;
-
-                /*if (npc.ai[3] == 0 && Main.netMode != NetmodeID.MultiplayerClient)
-                {
-                    Vector2 position = npc.Center;
-                    position.X += npc.velocity.X * 7;
-
-                    float speedX = player.Center.X - npc.Center.X;
-                    float speedY = player.Center.Y - npc.Center.Y;
-                    float num12 = speed / length;
-                    speedX = speedX * num12;
-                    speedY = speedY * num12;
-                    Projectile.NewProjectile(position.X, position.Y, speedX + 8, speedY + 8, ProjectileType<ArkArrowHostile>(), 28, 0, Main.myPlayer);
-                }*/
-            }
-            #endregion
 
             AttackTimer++;
 
-            if ((AttackTimer == 100 || AttackTimer == 150 || AttackTimer == 175))
+            if (Phase == 1)
             {
-                NPC.NewNPC((int)npc.Center.X - 20, (int)npc.Center.Y, NPCType<Arkling>());
-
-                Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, -12, 0, ProjectileType<ArkArrowHostile>(), 6, 0, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 12, 0, ProjectileType<ArkArrowHostile>(), 6, 0, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 0, 12, ProjectileType<ArkArrowHostile>(), 6, 0, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 0, -12, ProjectileType<ArkArrowHostile>(), 6, 0, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, -8, ProjectileType<ArkArrowHostile>(), 6, 0, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, -8, ProjectileType<ArkArrowHostile>(), 6, 0, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, 8, ProjectileType<ArkArrowHostile>(), 6, 0, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, 8, ProjectileType<ArkArrowHostile>(), 6, 0, Main.myPlayer, 0f, 0f);
+                if (!justSpawnedCircle)
+                {
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType<AoICircle>(), npc.damage, 0, 0, 0f, npc.whoAmI);
+                    justSpawnedCircle = true;
+                }
             }
-            else if ((AttackTimer == 200 || AttackTimer == 250 || AttackTimer == 275))
+
+            if (Phase == 2)
             {
-                NPC.NewNPC((int)npc.Center.X - 20, (int)npc.Center.Y, NPCType<Arkling>());
-                AttackTimer = 0;
+                int maxDist;
+
+                if(Main.expertMode)
+                {
+                    maxDist = 1000;
+                }
+                else if (EternalWorld.hellMode)
+                {
+                    maxDist = 900;
+                }
+                else
+                {
+                    maxDist = 2000;
+                }
+
+                // ripped from another mod, credit to the person who wrote this
+                for (int i = 0; i < 120; i++)
+                {
+                    double angle = Main.rand.NextDouble() * 2d * Math.PI;
+                    Vector2 offset = new Vector2((float)Math.Sin(angle) * maxDist, (float)Math.Cos(angle) * maxDist);
+                    Dust dust = Main.dust[Dust.NewDust(npc.Center + offset, 0, 0, ModContent.DustType<ArkEnergy>(), 0, 0, 100)];
+                    dust.noGravity = true;
+                }
+                for (int i = 0; i < Main.player.Length; i++)
+                {
+                    Player player = Main.player[i];
+                    if (player.active && !player.dead && Vector2.Distance(player.Center, npc.Center) > maxDist)
+                    {
+                        Vector2 toTarget = new Vector2(npc.Center.X - player.Center.X, npc.Center.Y - player.Center.Y);
+                        toTarget.Normalize();
+                        float speed = Vector2.Distance(player.Center, npc.Center) > maxDist + 500 ? 1f : 0.5f;
+                        player.velocity += toTarget * 0.5f;
+
+                        player.dashDelay = 2;
+                        player.grappling[0] = -1;
+                        player.grapCount = 0;
+                        for (int p = 0; p < Main.projectile.Length; p++)
+                        {
+                            if (Main.projectile[p].active && Main.projectile[p].owner == player.whoAmI && Main.projectile[p].aiStyle == 7)
+                            {
+                                Main.projectile[p].Kill();
+                            }
+                        }
+                    }
+                }
+                int maxdusts = 6;
+                for (int i = 0; i < maxdusts; i++)
+                {
+                    float dustDistance = 200;
+                    float dustSpeed = 8;
+                    Vector2 offset = Vector2.UnitX.RotateRandom(MathHelper.Pi) * dustDistance;
+                    Vector2 velocity = -offset.SafeNormalize(-Vector2.UnitY) * dustSpeed;
+                    Dust vortex = Dust.NewDustPerfect(new Vector2(npc.Center.X, npc.Center.Y) + offset, ModContent.DustType<ArkEnergy>(), velocity, 0, default(Color), 1.5f);
+                    vortex.noGravity = true;
+                }
             }
 
         }
 
-        private void Move(Vector2 offset)
+        private void DoAttacksPhase1()
         {
-            if (Phase == 1)
+            if ((AttackTimer == 100 || AttackTimer == 150 || AttackTimer == 175))
             {
-                speed = 14f;
+                //NPC.NewNPC((int)npc.Center.X - 20, (int)npc.Center.Y, ModContent.NPCType<Arkling>());
+
+                Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, -12, 0, ModContent.ProjectileType<ArkArrowHostile>(), 6, 0, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 12, 0, ModContent.ProjectileType<ArkArrowHostile>(), 6, 0, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 0, 12, ModContent.ProjectileType<ArkArrowHostile>(), 6, 0, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 0, -12, ModContent.ProjectileType<ArkArrowHostile>(), 6, 0, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, -8, ModContent.ProjectileType<ArkArrowHostile>(), 6, 0, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, -8, ModContent.ProjectileType<ArkArrowHostile>(), 6, 0, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, 8, ModContent.ProjectileType<ArkArrowHostile>(), 6, 0, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, 8, ModContent.ProjectileType<ArkArrowHostile>(), 6, 0, Main.myPlayer, 0f, 0f);
             }
-            else
+            if(AttackTimer == 300)
             {
-                speed = 10f;
+                isDashing = true;
             }
-            npc.rotation = npc.velocity.X * 0.06f;
-            Vector2 moveTo = player.Center + offset;
-            Vector2 move = moveTo - npc.Center;
-            float magnitude = Magnitude(move);
-            if (magnitude > speed)
+            else if (AttackTimer == 475)
             {
-                move *= speed / magnitude;
+                isDashing = false;
+                AttackTimer = 0;
             }
-            float turnResistance = 5f;
-            move = (npc.velocity * turnResistance + move) / (turnResistance + 1f);
-            magnitude = Magnitude(move);
-            if (magnitude > speed)
-            {
-                move *= speed / magnitude;
+        }
+
+        private void DoAttacksPhase2()
+        {
+            float projRot = MathHelper.PiOver2;
+
+            int shootTimer = 4;
+            int rate = 60;
+
+            if (AttackTimer >= 100 && AttackTimer < 180)
+            { 
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    projRot += 0.01f;
+                    if (--shootTimer <= 0)
+                    {
+                        shootTimer = rate;
+                        var shootPos = npc.Center + new Vector2(0, 17);
+                        var shootVel = new Vector2(0, 7).RotatedBy(MathHelper.PiOver2);
+                        int[] i = {
+                            Projectile.NewProjectile(shootPos, shootVel, ModContent.ProjectileType<ArkArrowHostile>(), 90, 1f),
+                            Projectile.NewProjectile(shootPos, shootVel.RotatedBy(MathHelper.PiOver2), ModContent.ProjectileType<ArkArrowHostile>(), 90, 1f),
+                            Projectile.NewProjectile(shootPos, shootVel.RotatedBy(MathHelper.Pi), ModContent.ProjectileType<ArkArrowHostile>(), 90, 1f),
+                            Projectile.NewProjectile(shootPos, shootVel.RotatedBy(-MathHelper.PiOver2), ModContent.ProjectileType<ArkArrowHostile>(), 90, 1f)
+                        };
+                        for (int l = 0; l < i.Length; l++)
+                        {
+                            Main.projectile[i[l]].hostile = true;
+                            Main.projectile[i[l]].tileCollide = false;
+                        }
+                    }
+                }
             }
-            npc.velocity = move;
+        }
+
+        private void DoAttacksPhase3()
+        {
+
         }
 
         public override void NPCLoot()
@@ -234,45 +376,24 @@ namespace Eternal.NPCs.Boss.AoI
             {
                 if (Main.rand.Next(1) == 0)
                 {
-                   Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<Arkbow>());
-                   Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<ArkArrow>(), Main.rand.Next(30, 90));
+                   Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Arkbow>());
+                   Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ArkArrow>(), Main.rand.Next(30, 90));
                 }
                 if (Main.rand.Next(2) == 0)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<DormantHeroSword>());
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<DormantHeroSword>());
                 }
                 if (Main.rand.Next(3) == 0)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<TheImperiousCohort>());
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<TheImperiousCohort>());
                 }
                 if (Main.rand.Next(4) == 0)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<TheEnigma>());
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<TheEnigma>());
                 }
-            }
-        }
 
-        private void DespawnHandler()
-        {
-            if (!player.active || player.dead)
-            {
-                npc.TargetClosest(false);
-                player = Main.player[npc.target];
-                if (!player.active || player.dead)
-                {
-                    npc.velocity = new Vector2(0f, -10f);
-                    if (npc.timeLeft > 10)
-                    {
-                        npc.timeLeft = 10;
-                    }
-                    return;
-                }
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ArkaniumCompound>(), Main.rand.Next(20, 40));
             }
-        }
-
-        private float Magnitude(Vector2 mag)
-        {
-            return (float)Math.Sqrt(mag.X * mag.X + mag.Y * mag.Y);
         }
 
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)

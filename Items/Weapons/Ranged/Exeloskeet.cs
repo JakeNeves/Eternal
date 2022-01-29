@@ -1,11 +1,8 @@
-﻿using Eternal.Projectiles;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
-using Eternal.Tiles;
 
 namespace Eternal.Items.Weapons.Ranged
 {
@@ -21,13 +18,13 @@ namespace Eternal.Items.Weapons.Ranged
         {
             item.width = 72;
             item.height = 40;
-            item.damage = 7777;
+            item.damage = 777;
             item.noMelee = true;
             item.ranged = true;
             item.useTime = 7;
             item.useAnimation = 7;
             item.useStyle = ItemUseStyleID.HoldingOut;
-            item.UseSound = SoundID.NPCHit41; //mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Custom/NovaNexus");
+            item.UseSound = SoundID.NPCHit41;
             item.autoReuse = true;
             item.shootSpeed = 7f;
             item.shoot = AmmoID.Bullet;

@@ -2,9 +2,11 @@
 
 namespace Eternal.Integration
 {
-    public class CalamityIntegration : ModIntegration
+    public partial class EternalPlayer : ModPlayer
     {
-        public CalamityIntegration(Mod callerMod) : base(callerMod, "CalamityMod")
+        private readonly Mod calamity = ModLoader.GetMod("CalamityMod");
+
+        public void ResetCalamityModIntegrationEffects()
         {
         }
     }

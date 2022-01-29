@@ -7,7 +7,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Items.Placeable
 {
-    class AncientForge : ModItem
+    public class AncientForge : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -16,9 +16,9 @@ namespace Eternal.Items.Placeable
 
         public override void SetDefaults()
         {
-            item.width = 48;
-            item.height = 48;
-            item.maxStack = 99;
+            item.width = 80;
+            item.height = 60;
+            item.maxStack = 999;
             item.useTurn = false;
             item.autoReuse = true;
             item.useAnimation = 15;
@@ -26,7 +26,7 @@ namespace Eternal.Items.Placeable
             item.rare = ItemRarityID.Red;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.consumable = true;
-            item.value = Item.buyPrice(platinum: 10, gold: 30);
+            item.value = Item.buyPrice(platinum: 2, gold: 30);
             item.createTile = TileType<Tiles.AncientForge>();
         }
 
@@ -36,7 +36,7 @@ namespace Eternal.Items.Placeable
             {
                 if (line2.mod == "Terraria" && line2.Name == "ItemName")
                 {
-                    line2.overrideColor = EternalColor.DarkTeal;
+                    line2.overrideColor = EternalColor.Teal;
                 }
             }
         }

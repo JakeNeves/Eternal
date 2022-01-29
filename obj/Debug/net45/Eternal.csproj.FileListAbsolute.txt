@@ -19,13 +19,11 @@ C:\Users\jaken\Documents\My Games\Terraria\ModLoader\Mod Sources\Eternal\bin\Deb
 C:\Users\jaken\Documents\My Games\Terraria\ModLoader\Mod Sources\Eternal\bin\Debug\net45\System.ValueTuple.dll
 C:\Users\jaken\Documents\My Games\Terraria\ModLoader\Mod Sources\Eternal\bin\Debug\net45\TerrariaHooks.dll
 C:\Users\jaken\Documents\My Games\Terraria\ModLoader\Mod Sources\Eternal\bin\Debug\net45\tModLoader.exe
-C:\Users\jaken\Documents\My Games\Terraria\ModLoader\Mod Sources\Eternal\bin\Debug\net45\tModLoader.pdb
 C:\Users\jaken\Documents\My Games\Terraria\ModLoader\Mod Sources\Eternal\bin\Debug\net45\MonoMod.RuntimeDetour.xml
 C:\Users\jaken\Documents\My Games\Terraria\ModLoader\Mod Sources\Eternal\bin\Debug\net45\MonoMod.Utils.xml
 C:\Users\jaken\Documents\My Games\Terraria\ModLoader\Mod Sources\Eternal\obj\Debug\net45\Eternal.AssemblyInfoInputs.cache
 C:\Users\jaken\Documents\My Games\Terraria\ModLoader\Mod Sources\Eternal\obj\Debug\net45\Eternal.AssemblyInfo.cs
 C:\Users\jaken\Documents\My Games\Terraria\ModLoader\Mod Sources\Eternal\obj\Debug\net45\Eternal.csproj.CoreCompileInputs.cache
-C:\Users\jaken\Documents\My Games\Terraria\ModLoader\Mod Sources\Eternal\obj\Debug\net45\Eternal.csproj.CopyComplete
 C:\Users\jaken\Documents\My Games\Terraria\ModLoader\Mod Sources\Eternal\obj\Debug\net45\Eternal.dll
 C:\Users\jaken\Documents\My Games\Terraria\ModLoader\Mod Sources\Eternal\obj\Debug\net45\Eternal.pdb
 C:\Users\jaken\OneDrive\Documents\My Games\Terraria\ModLoader\Mod Sources\Eternal\bin\Debug\net45\Eternal.dll
@@ -61,3 +59,5 @@ C:\Users\jaken\OneDrive\Documents\My Games\Terraria\ModLoader\Mod Sources\Eterna
 C:\Users\jaken\OneDrive\Documents\My Games\Terraria\ModLoader\Mod Sources\Eternal\obj\Debug\net45\Eternal.dll
 C:\Users\jaken\OneDrive\Documents\My Games\Terraria\ModLoader\Mod Sources\Eternal\obj\Debug\net45\Eternal.pdb
 C:\Users\jaken\Documents\My Games\Terraria\ModLoader\Mod Sources\Eternal\obj\Debug\net45\Eternal.csproj.AssemblyReference.cache
+C:\Users\jaken\Documents\My Games\Terraria\ModLoader\Mod Sources\Eternal\obj\Debug\net45\Eternal.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jaken\Documents\My Games\Terraria\ModLoader\Mod Sources\Eternal\obj\Debug\net45\Eternal.csproj.CopyComplete

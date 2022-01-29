@@ -12,7 +12,6 @@ using Eternal.Items.BossBags;
 using Eternal.Items.Weapons.Melee;
 using Eternal.Items.Weapons.Magic;
 using Eternal.Items.Weapons.Summon;
-using Eternal.NPCs.Boss.Empraynia;
 using Eternal.Items.Materials;
 using Eternal.Items.Placeable;
 using Eternal.Items.Weapons.Throwing;
@@ -23,13 +22,23 @@ using Eternal.Items.Potions;
 using Eternal.Items.Accessories.Expert;
 using Eternal.Items.Weapons.Expert;
 using Microsoft.Xna.Framework;
-using Eternal.Integration;
+using Eternal.Items.Tools;
+using Eternal.UI;
+using Eternal.Items.Weapons.Radiant;
+using Eternal.Items.Materials.Elementalblights;
 
 namespace Eternal
 {
 	public class Eternal : Mod
 	{
         internal static Eternal instance;
+
+		private UserInterface _etherealPowerBarUserInterface;
+
+		internal EtherealPowerBar EtherealPowerBar;
+
+		internal bool CalamityLoaded;
+		internal bool FargowiltasModLoaded;
 
         public Eternal()
 		{
@@ -44,6 +53,10 @@ namespace Eternal
 
 		}
 
+        public override void AddRecipeGroups()
+        {
+		}
+
         public override void Unload()
         {
 			instance = null;
@@ -54,15 +67,25 @@ namespace Eternal
 			instance = this;
 
 			#region Music Boxes
-			AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/MazesAndLivingSwords"), ItemType("LabrynthMusicBox"), TileType("LabrynthMusicBox"));
-			AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/DeepDark"), ItemType("BeneathMusicBox"), TileType("BeneathMusicBox"));
+			if (!ModContent.GetInstance<EternalConfig>().originalMusic)
+			{
+				AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/New/ImperiousShrine"), ItemType("LabrynthMusicBox"), TileType("LabrynthMusicBox"));
+				AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/New/PyroneticPurgatory"), ItemType("IncineriusMusicBox"), TileType("IncineriusMusicBox"));
+				AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/New/DarknessFromDeepBelow"), ItemType("BeneathMusicBox"), TileType("BeneathMusicBox"));
+			}
+			else
+			{
+				AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/MazesAndLivingSwords"), ItemType("LabrynthMusicBox"), TileType("LabrynthMusicBox"));
+				AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/DeepDark"), ItemType("BeneathMusicBox"), TileType("BeneathMusicBox"));
+				AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/FieryBattler"), ItemType("IncineriusMusicBox"), TileType("IncineriusMusicBox"));
+			}
 
 			AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/BladeofBrutality"), ItemType("AoIMusicBox"), TileType("AoIMusicBox"));
 			AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/DunesWrath"), ItemType("DunekeeperMusicBox"), TileType("DunekeeperMusicBox"));
-			AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/FieryBattler"), ItemType("IncineriusMusicBox"), TileType("IncineriusMusicBox"));
-            #endregion
+				
+			#endregion
 
-            if (Main.netMode != NetmodeID.Server)
+			if (Main.netMode != NetmodeID.Server)
             {
 				#region sky things
 				Filters.Scene["Eternal:Empraynia"] = new Filter(new EmprayniaScreenShaderData("FilterMiniTower").UseColor(0.229f, 0.84f, 0.255f).UseOpacity(0.6f), EffectPriority.VeryHigh);
@@ -70,18 +93,33 @@ namespace Eternal
 
 				Filters.Scene["Eternal:AshpitSky"] = new Filter((new ScreenShaderData("FilterMiniTower")).UseColor(0f, 0f, 0f).UseOpacity(0f), EffectPriority.VeryLow);
 				SkyManager.Instance["Eternal:AshpitSky"] = new AshpitSky();
+
+				Filters.Scene["Eternal:CosmicEmperorP3"] = new Filter(new EmprayniaScreenShaderData("FilterMiniTower").UseColor(0f, 0f, 0f).UseOpacity(0f), EffectPriority.VeryHigh);
+				SkyManager.Instance["Eternal:CosmicEmperorP3"] = new EmprayniaSky();
 				#endregion
 			}
-		}
 
-		public override void UpdateMusic(ref int music, ref MusicPriority priority)
+			#region Radiant Class Bar
+			EtherealPowerBar = new EtherealPowerBar();
+			_etherealPowerBarUserInterface = new UserInterface();
+			_etherealPowerBarUserInterface.SetState(EtherealPowerBar);
+            #endregion
+        }
+
+        public override void UpdateUI(GameTime gameTime)
+        {
+			_etherealPowerBarUserInterface?.Update(gameTime);
+        }
+
+        public override void UpdateMusic(ref int music, ref MusicPriority priority)
         {
 			if(Main.myPlayer == -1 || Main.gameMenu || !Main.LocalPlayer.active)
             {
 				return;
             }
 
-			if(Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneThunderduneBiome)
+            #region Modded Music
+            if (Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneThunderduneBiome)
             {
 				music = GetSoundSlot(SoundType.Music, "Sounds/Music/VitreousSandsofThunder");
 				priority = MusicPriority.BiomeMedium;
@@ -117,9 +155,16 @@ namespace Eternal
 
 			if (Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneBeneath)
 			{
-				//music = MusicID.Eerie;
-				music = GetSoundSlot(SoundType.Music, "Sounds/Music/DeepDark");
-				priority = MusicPriority.BiomeMedium;
+				if (!ModContent.GetInstance<EternalConfig>().originalMusic)
+				{
+					music = GetSoundSlot(SoundType.Music, "Sounds/Music/New/DarknessFromDeepBelow");
+					priority = MusicPriority.BiomeMedium;
+				}
+				else
+				{
+					music = GetSoundSlot(SoundType.Music, "Sounds/Music/DeepDark");
+					priority = MusicPriority.BiomeMedium;
+				}
 			}
 
 			if (Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneAshpit)
@@ -133,22 +178,94 @@ namespace Eternal
 				 music = GetSoundSlot(SoundType.Music, "Sounds/Music/MechanicalEnvy");
 				 priority = MusicPriority.BossMedium;
 			}
+            #endregion
 
-		}
+            #region Vanilla Music Replacement
+			if (ModContent.GetInstance<EternalConfig>().replaceVanillaMusic)
+            {
+				if (Main.musicVolume != 0)
+				{
+					if (Main.myPlayer != -1 && !Main.gameMenu && Main.LocalPlayer.active)
+					{
+						Player player = Main.player[Main.myPlayer];
+						if (player.ZoneDirtLayerHeight || player.ZoneRockLayerHeight && !Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneBeneath)
+						{
+							music = GetSoundSlot(SoundType.Music, "Sounds/Music/VanillaReplace/MysteriousUnderground");
+							priority = MusicPriority.Environment;
+						}
+						if (player.ZoneSnow && !Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneCommet)
+						{
+							if (!Main.dayTime)
+							{
+								if (Main.raining)
+								{
+									music = GetSoundSlot(SoundType.Music, "Sounds/Music/VanillaReplace/WinterStorm");
+									priority = MusicPriority.BiomeHigh;
+								}
+								else
+								{
+									music = GetSoundSlot(SoundType.Music, "Sounds/Music/VanillaReplace/MidnightSnowyFeilds");
+									priority = MusicPriority.BiomeHigh;
+								}
+							}
+							else
+							{
+								if (Main.raining)
+								{
+									music = GetSoundSlot(SoundType.Music, "Sounds/Music/VanillaReplace/WinterStorm");
+									priority = MusicPriority.BiomeHigh;
+								}
+								else
+								{
+									music = GetSoundSlot(SoundType.Music, "Sounds/Music/VanillaReplace/WinterWonderland");
+									priority = MusicPriority.BiomeHigh;
+								}
+							}
+						}
+
+						if (player.ZoneDesert && !Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneCommet)
+						{
+							if (!Main.dayTime)
+							{
+								music = GetSoundSlot(SoundType.Music, "Sounds/Music/VanillaReplace/MidnightDesertEscapade");
+								priority = MusicPriority.BiomeHigh;
+							}
+							else
+							{
+								music = GetSoundSlot(SoundType.Music, "Sounds/Music/VanillaReplace/SandySunshine");
+								priority = MusicPriority.BiomeHigh;
+							}
+						}
+
+						if (NPC.AnyNPCs(NPCID.Retinazer) || NPC.AnyNPCs(NPCID.Spazmatism) || NPC.AnyNPCs(NPCID.TheDestroyer) || NPC.AnyNPCs(NPCID.SkeletronPrime))
+                        {
+							music = GetSoundSlot(SoundType.Music, "Sounds/Music/VanillaReplace/MechanicalMayham");
+							priority = MusicPriority.BossHigh;
+						}
+                    }
+                }
+			}
+            #endregion
+
+        }
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
+			int ethPowerBarIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Resource Bars"));
+			if (ethPowerBarIndex != 1)
+            {
+				layers.Insert(ethPowerBarIndex, new LegacyGameInterfaceLayer(
+					"Eternal: Ethereal Power Bar",
+					delegate
+					{
+						_etherealPowerBarUserInterface.Draw(Main.spriteBatch, new GameTime());
+						return true;
+					},
+					InterfaceScaleType.UI)
+				);
+            }
         }
 
-		#region Eternal Mod Integration
-		//Calamity Mod Integration
-		public CalamityIntegration CalamityIntegration { get; private set; }
-		public bool CalamityLoaded => CalamityIntegration != null;
-
-		//Fargo's Mod Integration
-		public FargoModIntegration FargoModIntegration { get; private set; }
-		public bool FargowiltasModLoaded => FargoModIntegration != null;
-		#endregion
 
 		public static bool NoInvasion(NPCSpawnInfo spawnInfo)
 		{
@@ -158,15 +275,18 @@ namespace Eternal
 
 		public override void PostSetupContent()
         {
-            /*try
+            try
             {
-				CalamityIntegration = new CalamityIntegration(this).TryLoad() as CalamityIntegration;
-				FargoModIntegration = new FargoModIntegration(this).TryLoad() as FargoModIntegration;
-            }
+				//CalamityIntegration = new CalamityIntegration(this).TryLoad() as CalamityIntegration;
+				//FargoModIntegration = new FargoModIntegration(this).TryLoad() as FargoModIntegration;
+
+				CalamityLoaded = ModLoader.GetMod("CalamityMod") != null;
+				FargowiltasModLoaded = ModLoader.GetMod("FargowiltasSouls") != null;
+			}
 			catch (Exception e)
             {
 				Logger.Warn("Eternal PostSetupContent Error: " + e.StackTrace + e.Message);
-            }*/
+            }
 
 			#region Boss Checklist Integration
 			Mod bossCheckList = ModLoader.GetMod("BossCheckList");
@@ -198,7 +318,7 @@ namespace Eternal
 					(Func<bool>)(() => EternalWorld.downedDunekeeper),
 					ModContent.ItemType<RuneofThunder>(),
 					new List<int> { ModContent.ItemType<DunekeeperMusicBox>() },
-					new List<int> { ModContent.ItemType<DunekeeperBag>(), ModContent.ItemType<PrimordialBolt>(), ModContent.ItemType<DuneCore>(), ModContent.ItemType<StormBeholder>(), ModContent.ItemType<ThunderduneHeadgear>(), ModContent.ItemType<Wasteland>(), ItemID.LesserHealingPotion },
+					new List<int> { ModContent.ItemType<DunekeeperBag>(), ModContent.ItemType<PrimordialBolt>(), ModContent.ItemType<ThunderblightCrystal>(), ModContent.ItemType<StormBeholder>(), ModContent.ItemType<ThunderduneHeadgear>(), ModContent.ItemType<Wasteland>(), ItemID.LesserHealingPotion },
 					"Spawn by using the [i:" + ModContent.ItemType<RuneofThunder>() + "] in the desert.",
 					"The Unstabe Thundergen of the Desert.",
 					"Eternal/BossChecklist/Dunekeeper",
@@ -265,8 +385,8 @@ namespace Eternal
 					ModContent.ItemType<HyperloadedAffliction>(),
 					0,
 					new List<int> { ModContent.ItemType<CosmicApparitionBag>(), ModContent.ItemType<ApparitionalRendingStaff>(), ModContent.ItemType<ApparitionalDisk>(), ModContent.ItemType<CosmicFist>(), ModContent.ItemType<Cometstorm>(), ModContent.ItemType<PristineHealingPotion>() },
-					"Spawn by Killing a Soul Crystal after defeating Empraynia, Post-Moon Lord.",
-					"The Ghostly Smile of Someone Powerful",
+					"Spawn by using a [i:" + ModContent.ItemType<OtherworldlyDebris>() + "] in the comet biome",
+					"The Ghost of Someone Powerful",
 					"Eternal/BossChecklist/CosmicApparition",
 					"Eternal/NPCs/Boss/CosmicApparition/CosmicApparition_Head_Boss"
 				);
@@ -285,6 +405,22 @@ namespace Eternal
 					"The mighty imperial blade of the shrine",
 					"Eternal/BossChecklist/ArkofImperious",
 					"Eternal/NPCs/Boss/AoI/ArkofImperious_Head_Boss"
+				);
+
+				bossCheckList.Call(
+					"AddBoss",
+					20.05f,
+					ModContent.NPCType<NPCs.Boss.CosmicEmperor.CosmicEmperor>(),
+					this,
+					"The Cosmic Emperor",
+					(Func<bool>)(() => EternalWorld.downedCosmicEmperor),
+					ModContent.ItemType<CosmicTablet>(),
+					new List<int> { },
+					new List<int> { ModContent.ItemType<CosmoniumFragment>(), ModContent.ItemType<Exelodon>(), ModContent.ItemType<TheBigOne>(), ModContent.ItemType<ExosiivaGladiusBlade>(), ModContent.ItemType<StarcrescentMoondisk>(), ModContent.ItemType<PristineHealingPotion>() },
+					"Spawn by using the [i:" + ModContent.ItemType<CosmicTablet>() + "] after defeating the Ark of Imperious",
+					"The most powerful being to enounter",
+					"Eternal/BossChecklist/CosmicEmperor",
+					"Eternal/NPCs/Boss/CosmicEmperor/CosmicEmperor_Head_Boss"
 				);
 
 			}
@@ -319,6 +455,23 @@ namespace Eternal
 					new Color(1f, 1f, 1f),
 					new Color(1f, 1f, 1f));
 				FKBossHealthBar.Call("hbFinishSingle", ModContent.NPCType<NPCs.Boss.SubzeroElemental.SubzeroElemental>());
+				// Bionic Bosses
+				FKBossHealthBar.Call("hbStart");
+				FKBossHealthBar.Call("hbSetTexture",
+					GetTexture("BossBars/BionicBossBarStart"),
+					GetTexture("BossBars/BionicBossBarMiddle"),
+					GetTexture("BossBars/BionicBossBarEnd"),
+					GetTexture("BossBars/BionicBossBarFill"));
+				FKBossHealthBar.Call("hbSetBossHeadTexture", GetTexture("NPCs/Boss/BionicBosses/Atlas_Head_Boss"));
+				FKBossHealthBar.Call("hbFinishSingle", ModContent.NPCType<NPCs.Boss.BionicBosses.Atlas>());
+				FKBossHealthBar.Call("hbStart");
+				FKBossHealthBar.Call("hbSetTexture",
+					GetTexture("BossBars/BionicBossBarStart"),
+					GetTexture("BossBars/BionicBossBarMiddle"),
+					GetTexture("BossBars/BionicBossBarEnd"),
+					GetTexture("BossBars/BionicBossBarFill"));
+				FKBossHealthBar.Call("hbSetBossHeadTexture", GetTexture("NPCs/Boss/BionicBosses/Orion_Head_Boss"));
+				FKBossHealthBar.Call("hbFinishSingle", ModContent.NPCType<NPCs.Boss.BionicBosses.Orion>());
 				// AoI
 				FKBossHealthBar.Call("hbStart");
 				FKBossHealthBar.Call("hbSetTexture",
@@ -345,6 +498,18 @@ namespace Eternal
 					new Color(1f, 1f, 1f),
 					new Color(1f, 1f, 1f));
 				FKBossHealthBar.Call("hbFinishSingle", ModContent.NPCType<NPCs.Boss.CosmicEmperor.CosmicEmperor>());
+				FKBossHealthBar.Call("hbStart");
+				FKBossHealthBar.Call("hbSetTexture",
+					GetTexture("BossBars/CosmicEmperorBarStart"),
+					GetTexture("BossBars/CosmicEmperorBarMiddle"),
+					GetTexture("BossBars/CosmicEmperorBarEnd"),
+					GetTexture("BossBars/CosmicEmperorBarFill"));
+				FKBossHealthBar.Call("hbSetBossHeadTexture", GetTexture("NPCs/Boss/CosmicEmperor/CosmicEmperorMask_Head_Boss"));
+				FKBossHealthBar.Call("hbSetColours",
+					new Color(1f, 1f, 1f),
+					new Color(1f, 1f, 1f),
+					new Color(1f, 1f, 1f));
+				FKBossHealthBar.Call("hbFinishSingle", ModContent.NPCType<NPCs.Boss.CosmicEmperor.CosmicEmperorMask>());
 			}
 			#endregion
 		}

@@ -18,7 +18,7 @@ namespace Eternal.Items.Weapons.Throwing
         }
         public override void SetDefaults()
         {
-            item.damage = 900;
+            item.damage = 220;
             item.ranged = true;
             item.width = 186;
             item.height = 186;
@@ -27,9 +27,9 @@ namespace Eternal.Items.Weapons.Throwing
             item.noUseGraphic = true;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.knockBack = 25;
-            item.value = Item.buyPrice(platinum: 5);
+            item.value = Item.buyPrice(gold: 5);
             item.rare = ItemRarityID.Red;
-            item.shootSpeed = 3.5f;
+            item.shootSpeed = 19.25f;
             item.shoot = ProjectileType<JumboStarProjectile>();
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;

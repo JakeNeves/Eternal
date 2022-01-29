@@ -1,12 +1,11 @@
 ﻿using Eternal.Items.Weapons.Melee;
 using Eternal.Items.Weapons.Ranged;
-using Eternal.Items.Weapons.Expert;
 using Terraria;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using Eternal.Items.Ammo;
 using Eternal.Items.Materials;
 using Eternal.Items.Weapons.Magic;
+using Eternal.Items.Accessories.Expert;
 
 namespace Eternal.Items.BossBags
 {
@@ -49,6 +48,19 @@ namespace Eternal.Items.BossBags
             {
                 player.QuickSpawnItem(ItemType<Cometstorm>());
             }
+
+            if (Main.rand.Next(4) == 0)
+            {
+                player.QuickSpawnItem(ItemType<GhoulishGladius>());
+            }
+
+            if (Main.rand.Next(5) == 0)
+            {
+                player.QuickSpawnItem(ItemType<CosmicGhostbuster>());
+            }
+
+            player.QuickSpawnItem(ItemType<ResonantPhantasmoblood>());
+            player.QuickSpawnItem(ItemType<ApparitionalMatter>(), Main.rand.Next(30, 80));
         }
 
         public override int BossBagNPC => NPCType<NPCs.Boss.CosmicApparition.CosmicApparition>();

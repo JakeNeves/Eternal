@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria.Graphics.Effects;
-using Eternal.NPCs.Boss.CosmicApparition;
 
 namespace Eternal.NPCs.Boss.Empraynia
 {
@@ -20,12 +19,11 @@ namespace Eternal.NPCs.Boss.Empraynia
         private Player player;
 
         bool expert = Main.expertMode;
-
         bool hands = false;
 
         public override void SetStaticDefaults()
         {
-            NPCID.Sets.TrailCacheLength[npc.type] = 8;
+            NPCID.Sets.TrailCacheLength[npc.type] = 12;
             NPCID.Sets.TrailingMode[npc.type] = 0;
             Main.npcFrameCount[npc.type] = 4;
         }
@@ -242,6 +240,7 @@ namespace Eternal.NPCs.Boss.Empraynia
 
         public override void AI()
         {
+
             if (!hands && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 npc.TargetClosest(true);
@@ -294,7 +293,7 @@ namespace Eternal.NPCs.Boss.Empraynia
                     float B = (float)Main.rand.Next(-200, 200) * 0.01f;
                     int damage = expert ? 15 : 17;
                     if (Main.netMode != NetmodeID.MultiplayerClient)
-                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ProjectileID.DD2DrakinShot, damage, 1, Main.myPlayer, 0, 0);
+                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ProjectileID.DD2DrakinShot, npc.damage, 1, Main.myPlayer, 0, 0);
                 }
             }
             else if ((timer == 600 || timer == 650 || timer == 700 || timer == 800 || timer == 850 || timer == 880))
@@ -309,10 +308,10 @@ namespace Eternal.NPCs.Boss.Empraynia
                     int damage = expert ? 15 : 19;
                     if (EternalWorld.hellMode)
                     {
-                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X * 14f, direction.Y * 14f, ProjectileID.ShadowBeamHostile, damage, 1, Main.myPlayer, 0, 0);
+                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X * 14f, direction.Y * 14f, ProjectileID.ShadowBeamHostile, npc.damage, 1, Main.myPlayer, 0, 0);
                     }
                     else {
-                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X * 14f, direction.Y * 14f, ProjectileID.DD2DarkMageBolt, damage, 1, Main.myPlayer, 0, 0);
+                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X * 14f, direction.Y * 14f, ProjectileID.DD2DarkMageBolt, npc.damage, 1, Main.myPlayer, 0, 0);
                     }
                 }
             }
@@ -322,27 +321,27 @@ namespace Eternal.NPCs.Boss.Empraynia
                 {
                     attackNo = 1;
                     Main.PlayTrackedSound(SoundID.DD2_EtherianPortalSpawnEnemy, npc.Center);
-                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, -12, 0, ProjectileID.ShadowBeamHostile, 6, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 12, 0, ProjectileID.ShadowBeamHostile, 6, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 0, 12, ProjectileID.ShadowBeamHostile, 6, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 0, -12, ProjectileID.ShadowBeamHostile, 6, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, -12, -12, ProjectileID.DD2DarkMageBolt, 6, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 12, -12, ProjectileID.DD2DarkMageBolt, 6, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, -12, 12, ProjectileID.DD2DarkMageBolt, 6, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 12, 12, ProjectileID.DD2DarkMageBolt, 6, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, -12, 0, ProjectileID.ShadowBeamHostile, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 12, 0, ProjectileID.ShadowBeamHostile, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 0, 12, ProjectileID.ShadowBeamHostile, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 0, -12, ProjectileID.ShadowBeamHostile, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, -12, -12, ProjectileID.DD2DarkMageBolt, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 12, -12, ProjectileID.DD2DarkMageBolt, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, -12, 12, ProjectileID.DD2DarkMageBolt, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 12, 12, ProjectileID.DD2DarkMageBolt, npc.damage, 0, Main.myPlayer, 0f, 0f);
                 }
                 else
                 {
                     attackNo = 1;
                     Main.PlayTrackedSound(SoundID.DD2_EtherianPortalSpawnEnemy, npc.Center);
-                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, -12, 0, ProjectileID.DD2DarkMageBolt, 6, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 12, 0, ProjectileID.DD2DarkMageBolt, 6, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 0, 12, ProjectileID.DD2DarkMageBolt, 6, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 0, -12, ProjectileID.DD2DarkMageBolt, 6, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, -12, -12, ProjectileID.ShadowBeamHostile, 6, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 12, -12, ProjectileID.ShadowBeamHostile, 6, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, -12, 12, ProjectileID.ShadowBeamHostile, 6, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 12, 12, ProjectileID.ShadowBeamHostile, 6, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, -12, 0, ProjectileID.DD2DarkMageBolt, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 12, 0, ProjectileID.DD2DarkMageBolt, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 0, 12, ProjectileID.DD2DarkMageBolt, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 0, -12, ProjectileID.DD2DarkMageBolt, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, -12, -12, ProjectileID.ShadowBeamHostile, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 12, -12, ProjectileID.ShadowBeamHostile, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, -12, 12, ProjectileID.ShadowBeamHostile, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 12, 12, ProjectileID.ShadowBeamHostile, npc.damage, 0, Main.myPlayer, 0f, 0f);
                 }
             }
             else if (timer == 1000)
@@ -366,23 +365,23 @@ namespace Eternal.NPCs.Boss.Empraynia
 
         public override void NPCLoot()
         {
-            Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, -12, 0, ProjectileID.DD2DarkMageBolt, 6, 0, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 12, 0, ProjectileID.DD2DarkMageBolt, 6, 0, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 0, 12, ProjectileID.DD2DarkMageBolt, 6, 0, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 0, -12, ProjectileID.DD2DarkMageBolt, 6, 0, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, -12, -12, ProjectileID.DD2DarkMageBolt, 6, 0, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 12, -12, ProjectileID.DD2DarkMageBolt, 6, 0, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, -12, 12, ProjectileID.DD2DarkMageBolt, 6, 0, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 12, 12, ProjectileID.DD2DarkMageBolt, 6, 0, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, -12, 0, ProjectileID.DD2DarkMageBolt, npc.damage, 0, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 12, 0, ProjectileID.DD2DarkMageBolt, npc.damage, 0, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 0, 12, ProjectileID.DD2DarkMageBolt, npc.damage, 0, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 0, -12, ProjectileID.DD2DarkMageBolt, npc.damage, 0, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, -12, -12, ProjectileID.DD2DarkMageBolt, npc.damage, 0, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 12, -12, ProjectileID.DD2DarkMageBolt, npc.damage, 0, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, -12, 12, ProjectileID.DD2DarkMageBolt, npc.damage, 0, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 12, 12, ProjectileID.DD2DarkMageBolt, npc.damage, 0, Main.myPlayer, 0f, 0f);
 
-            Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, 0, ProjectileID.DD2DarkMageBolt, 6, 0, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, 0, ProjectileID.DD2DarkMageBolt, 6, 0, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 0, 8, ProjectileID.DD2DarkMageBolt, 6, 0, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 0, -8, ProjectileID.DD2DarkMageBolt, 6, 0, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, -8, ProjectileID.DD2DarkMageBolt, 6, 0, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, -8, ProjectileID.DD2DarkMageBolt, 6, 0, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, 8, ProjectileID.DD2DarkMageBolt, 6, 0, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, 8, ProjectileID.DD2DarkMageBolt, 6, 0, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, 0, ProjectileID.DD2DarkMageBolt, npc.damage, 0, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, 0, ProjectileID.DD2DarkMageBolt, npc.damage, 0, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 0, 8, ProjectileID.DD2DarkMageBolt, npc.damage, 0, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 0, -8, ProjectileID.DD2DarkMageBolt, npc.damage, 0, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, -8, ProjectileID.DD2DarkMageBolt, npc.damage, 0, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, -8, ProjectileID.DD2DarkMageBolt, npc.damage, 0, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, 8, ProjectileID.DD2DarkMageBolt, npc.damage, 0, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, 8, ProjectileID.DD2DarkMageBolt, npc.damage, 0, Main.myPlayer, 0f, 0f);
 
             if (Main.expertMode)
             {

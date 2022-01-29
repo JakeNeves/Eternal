@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 namespace Eternal.Items.Vanity
 {
     [AutoloadEquip(EquipType.Legs)]
-    class JakesKicks : ModItem
+    public class JakesKicks : ModItem
     {
 
         public override void SetStaticDefaults()
@@ -19,6 +19,7 @@ namespace Eternal.Items.Vanity
             item.width = 22;
             item.height = 18;
             item.vanity = true;
+	    item.value = Item.buyPrice(platinum: 1, gold: 30);
         }
 
     }

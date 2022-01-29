@@ -1,4 +1,5 @@
 ﻿using Eternal.Items.Materials;
+using Eternal.Items.Materials.Elementalblights;
 using Eternal.Projectiles.Weapons.Ranged;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,7 +12,7 @@ namespace Eternal.Items.Ammo
 
         public override void SetDefaults()
         {
-            item.damage = 6;
+            item.damage = 16;
             item.ranged = true;
             item.width = 14;
             item.height = 34;
@@ -28,7 +29,7 @@ namespace Eternal.Items.Ammo
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddTile(TileID.WorkBenches);
-            recipe.AddIngredient(ItemType<DuneCore>());
+            recipe.AddIngredient(ItemType<ThunderblightCrystal>());
             recipe.AddIngredient(ItemID.WoodenArrow);
             recipe.SetResult(this, 16);
             recipe.AddRecipe();

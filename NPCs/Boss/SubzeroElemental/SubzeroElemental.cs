@@ -9,6 +9,7 @@ using Eternal.Items.Weapons.Summon;
 using Eternal.Projectiles.Enemy;
 using System;
 using Eternal.Items.Placeable;
+using Eternal.Items.Weapons.Radiant;
 
 namespace Eternal.NPCs.Boss.SubzeroElemental
 {
@@ -25,19 +26,27 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
 
         public override void SetStaticDefaults()
         {
-            Main.npcFrameCount[npc.type] = 4;
+            Main.npcFrameCount[npc.type] = 16;
         }
 
         public override void SetDefaults()
         {
-            npc.width = 67;
-            npc.height = 71;
+            npc.width = 98;
+            npc.height = 116;
             npc.lifeMax = 46000;
-            npc.damage = 50;
-            npc.defense = 75;
+            if (NPC.downedMoonlord)
+            {
+                npc.lifeMax = 92000;
+                npc.damage = 100;
+            }
+            else
+            {
+                npc.lifeMax = 46000;
+                npc.damage = 50;
+            }
             npc.boss = true;
             npc.HitSound = null; //SoundID.NPCHit4;
-            npc.DeathSound = SoundID.NPCDeath3;
+            npc.DeathSound = SoundID.NPCDeath44;
             npc.aiStyle = -1;
             npc.buffImmune[BuffID.Frostburn] = true;
             npc.buffImmune[BuffID.Poisoned] = true;
@@ -55,23 +64,26 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
         {
             if (NPC.downedMoonlord)
             {
-                npc.lifeMax = 812000;
+                npc.lifeMax = 134000;
+                npc.damage = 200;
             }
             else
             {
-                npc.lifeMax = 81200;
+                npc.lifeMax = 92000;
+                npc.damage = 100;
             }
-            npc.damage = (int)(npc.damage + 1f);
-            npc.defense = (int)(npc.defense + numPlayers);
+
             if (EternalWorld.hellMode)
             {
                 if (NPC.downedMoonlord)
                 {
-                    npc.lifeMax = 1224000;
+                    npc.lifeMax = 176000;
+                    npc.damage = 250;
                 }
                 else
                 {
-                    npc.lifeMax = 122400;
+                    npc.lifeMax = 134000;
+                    npc.damage = 200;
                 }
             }
         }
@@ -147,6 +159,15 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
                 npc.dontTakeDamage = false;
             }
 
+            if (NPC.AnyNPCs(ModContent.NPCType<SubzeroElementalShield>()))
+            {
+                npc.dontTakeDamage = true;
+            }
+            else
+            {
+                npc.dontTakeDamage = false;
+            }
+
             AttackTimer++;
 
             switch(AttackTimer)
@@ -168,6 +189,10 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
                     Shoot();
                     break;
                 case 240 | 260 | 280:
+                    if (!NPC.AnyNPCs(ModContent.NPCType<SubzeroElementalShield>()))
+                    {
+                        NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<SubzeroElementalShield>());
+                    }
                     if(NPC.downedMoonlord)
                     {
                         Vector2 direction = Main.player[npc.target].Center - npc.Center;
@@ -182,7 +207,7 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
                             float B = (float)Main.rand.Next(-200, 200) * 0.01f;
                             int damage = Main.expertMode ? 15 : 17;
                             if (Main.netMode != NetmodeID.MultiplayerClient)
-                                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<FridgedSpike>(), damage, 1, Main.myPlayer, 0, 0);
+                                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<FridgedSpike>(), npc.damage, 1, Main.myPlayer, 0, 0);
                         }
                     }
                     break;
@@ -287,6 +312,17 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
                 if (NPC.downedMoonlord)
                 {
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SydaniteOre>(), Main.rand.Next(15, 55));
+
+                    if (Main.rand.Next(4) == 0)
+                    {
+                        player.QuickSpawnItem(ModContent.ItemType<Frostpike>());
+                    }
+
+                    if (Main.rand.Next(5) == 0)
+                    {
+                        player.QuickSpawnItem(ModContent.ItemType<FrostDisk>());
+                    }
+
                 }
             }
 

@@ -17,7 +17,7 @@ namespace Eternal.Tiles
 			Main.tileMergeDirt[Type] = false;
 			Main.tileBlockLight[Type] = true;
 			Main.tileLighted[Type] = false;
-			dustType = DustID.Electric;
+			dustType = DustID.YellowTorch;
 			drop = ItemType<Items.Placeable.ThunderiteOre>();
 			ModTranslation name = CreateMapEntryName();
 			name.SetDefault("Thunderite");

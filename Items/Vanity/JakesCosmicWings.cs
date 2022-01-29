@@ -6,7 +6,7 @@ using static Terraria.ModLoader.ModContent;
 namespace Eternal.Items.Vanity
 {
     [AutoloadEquip(EquipType.Wings)]
-    class JakesCosmicWings : ModItem
+    public class JakesCosmicWings : ModItem
     {
 
         public override void SetStaticDefaults()
@@ -17,14 +17,15 @@ namespace Eternal.Items.Vanity
 
         public override void SetDefaults()
         {
-            item.width = 40;
-            item.height = 36;
+            item.width = 36;
+            item.height = 32;
             item.accessory = true;
+            item.value = Item.buyPrice(platinum: 1, gold: 30);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.wingTimeMax = 210;
+            player.wingTimeMax = 200;
         }
 
         public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising, ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)

@@ -1,11 +1,9 @@
-﻿using Eternal.Items;
-using Eternal.Items.Weapons.Melee;
+﻿using Eternal.Items.Weapons.Melee;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Eternal.Tiles;
 using System.Linq;
-using static Terraria.ModLoader.ModContent;
 using Eternal.Items.Materials;
 
 namespace Eternal.NPCs.Comet
@@ -23,9 +21,12 @@ namespace Eternal.NPCs.Comet
             npc.height = 28;
             npc.aiStyle = 26;
             npc.damage = 90;
-            npc.defense = 75;
+            npc.defense = 15;
             npc.knockBackResist = 0f;
-            npc.lifeMax = 18000;
+            if (EternalWorld.downedCosmicApparition)
+                npc.lifeMax = 2000;
+            else
+                npc.lifeMax = 1100;
             npc.HitSound = SoundID.NPCHit4;
             npc.DeathSound = SoundID.NPCDeath5;
             npc.value = Item.sellPrice(gold: 30);
@@ -46,17 +47,17 @@ namespace Eternal.NPCs.Comet
         {
             if (Main.rand.Next(3) == 0)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<VividMilkyWayClimax>());
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<VividMilkyWayClimax>());
             }
             if (EternalWorld.downedCosmicApparition)
             {
                 if (Main.rand.Next(5) == 0)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<InterstellarSingularity>(), Main.rand.Next(5, 20));
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<InterstellarSingularity>(), Main.rand.Next(5, 20));
                 }
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<StarmetalBar>(), Main.rand.Next(10, 75));
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<Astragel>(), Main.rand.Next(10, 50));
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<GalaxianPlating>(), Main.rand.Next(3, 12));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<StarmetalBar>(), Main.rand.Next(10, 75));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Astragel>(), Main.rand.Next(10, 50));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<GalaxianPlating>(), Main.rand.Next(3, 12));
             }
         }
 

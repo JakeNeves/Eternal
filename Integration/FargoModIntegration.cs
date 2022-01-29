@@ -2,9 +2,11 @@
 
 namespace Eternal.Integration
 {
-    public class FargoModIntegration : ModIntegration
+    public partial class EternalPlayer : ModPlayer
     {
-        public FargoModIntegration(Mod callerMod) : base(callerMod, "FargowilasSouls")
+        private readonly Mod fargowiltasMod = ModLoader.GetMod("FargowiltasSouls");
+
+        public void ResetFargowiltasModIntegrationEffects()
         {
         }
     }

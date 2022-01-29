@@ -9,7 +9,7 @@ namespace Eternal.Items.Debug
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Carmanite Scouter Un-Killer");
-            Tooltip.SetDefault("[c/FF0000:Debug Item]\nMakes the Carmanite Scouter no longer a downed boss\nkilling it will spawn Tritalodium again...");
+            Tooltip.SetDefault("[c/FF0000:Debug Item]\nMakes the Carmanite Scouter no longer a downed boss");
         }
 
         public override void SetDefaults()

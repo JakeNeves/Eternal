@@ -7,6 +7,7 @@ using static Terraria.ModLoader.ModContent;
 using Eternal.Items.Armor;
 using Eternal.Items.Accessories.Expert;
 using Eternal.Items.Materials;
+using Eternal.Items.Accessories;
 
 namespace Eternal.Items.BossBags
 {

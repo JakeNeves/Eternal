@@ -21,7 +21,7 @@ namespace Eternal.Items.Weapons.Melee
         {
             item.width = 26;
             item.height = 26;
-            item.damage = 930;
+            item.damage = 1000;
             item.melee = true;
             item.noMelee = true;
             item.noUseGraphic = true;

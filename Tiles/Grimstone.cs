@@ -11,7 +11,6 @@ namespace Eternal.Tiles
 		public override void SetDefaults()
 		{
 			Main.tileSolid[Type] = true;
-			Main.tileMergeDirt[Type] = true;
 			Main.tileBlockLight[Type] = true;
 			Main.tileLighted[Type] = false;
 			dustType = DustID.Stone;

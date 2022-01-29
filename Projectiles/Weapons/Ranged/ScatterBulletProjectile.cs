@@ -25,7 +25,6 @@ namespace Eternal.Projectiles.Weapons.Ranged
             projectile.ranged = true;
             projectile.penetrate = 5;
             projectile.timeLeft = 150;
-            projectile.alpha = 255;
             projectile.light = 0.5f;
             projectile.ignoreWater = true;
             projectile.tileCollide = true;

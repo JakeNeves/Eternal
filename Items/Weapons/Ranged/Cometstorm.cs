@@ -17,13 +17,13 @@ namespace Eternal.Items.Weapons.Ranged
 
         public override void SetDefaults()
         {
-            item.width = 40;
-            item.height = 24;
+            item.width = 68;
+            item.height = 34;
             item.damage = 800;
             item.noMelee = true;
             item.ranged = true;
-            item.useTime = 12;
-            item.useAnimation = 12;
+            item.useTime = 10;
+            item.useAnimation = 10;
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.UseSound = SoundID.Item11;
             item.autoReuse = true;

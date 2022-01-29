@@ -12,6 +12,7 @@ using Eternal.Items.Armor;
 using Eternal.Projectiles.Boss;
 using Eternal.Items.Materials;
 using Eternal.Items.Weapons.Hell;
+using Eternal.Items.Materials.Elementalblights;
 
 namespace Eternal.NPCs.Boss.Dunekeeper
 {
@@ -113,6 +114,7 @@ namespace Eternal.NPCs.Boss.Dunekeeper
                 {
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<StormBeholder>());
                 }
+                player.QuickSpawnItem(ItemType<ThunderblightCrystal>(), Main.rand.Next(15, 20));
             }
         }
 

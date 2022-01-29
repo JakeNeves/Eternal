@@ -17,7 +17,7 @@ namespace Eternal.Items.Weapons.Ranged
         {
             item.width = 38;
             item.height = 24;
-            item.damage = 8;
+            item.damage = 6;
 			item.knockBack = 4;
             item.noMelee = true;
             item.ranged = true;

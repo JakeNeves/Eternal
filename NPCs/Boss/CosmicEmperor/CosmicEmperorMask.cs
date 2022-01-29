@@ -3,19 +3,8 @@ using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
-using Eternal.Items.Weapons.Melee;
-using Eternal.Items.Weapons.Ranged;
-using Eternal.Items.BossBags;
-using Microsoft.Xna.Framework.Graphics;
-using Eternal.Items.Armor;
 using Eternal.Projectiles.Boss;
-using Eternal.Items.Materials;
-using Eternal.Items.Weapons.Hell;
-using Eternal.Projectiles.Enemy;
-using Eternal.Projectiles;
 using Eternal.Buffs;
-using Eternal.Items.Potions;
-using Eternal.Items.Tools;
 
 namespace Eternal.NPCs.Boss.CosmicEmperor
 {
@@ -39,7 +28,7 @@ namespace Eternal.NPCs.Boss.CosmicEmperor
             npc.width = 34;
             npc.height = 50;
             npc.defense = 380;
-            npc.damage = 380;
+            npc.damage = 120;
             npc.lifeMax = 6000000;
             npc.HitSound = mod.GetLegacySoundSlot(SoundType.NPCHit, "Sounds/NPCHit/EmperorHit");
             npc.DeathSound = null;
@@ -155,6 +144,8 @@ namespace Eternal.NPCs.Boss.CosmicEmperor
 
         public override void AI()
         {
+            Player player = Main.player[npc.target];
+
             Vector2 direction = Main.player[npc.target].Center - npc.Center;
             direction.Normalize();
             direction.X *= 8.5f;
@@ -191,26 +182,85 @@ namespace Eternal.NPCs.Boss.CosmicEmperor
                 attackTimer++;
 
                 #region Attacks
-                if (attackTimer == 100 || attackTimer == 120 || attackTimer == 140 || attackTimer == 160)
+                if (npc.life < npc.lifeMax / 2)
                 {
-                    Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-200, 200), npc.Center.Y + Main.rand.Next(-200, 200), 0, 0, ModContent.ProjectileType<CosmicRing>(), 12, 0, Main.myPlayer, 0f, 0f);
-                }
-                if (attackTimer == 200 || attackTimer == 202 || attackTimer == 204 || attackTimer == 206 || attackTimer == 208 || attackTimer == 210)
-                {
-                    amountOfProjectiles = Main.rand.Next(2, 6);
-                    for (int i = 0; i < amountOfProjectiles; ++i)
+                    if (attackTimer == 100 || attackTimer == 105 || attackTimer == 110 || attackTimer == 115)
                     {
-                        float A = (float)Main.rand.Next(-200, 200) * 0.01f;
-                        float B = (float)Main.rand.Next(-200, 200) * 0.01f;
-                        int damage = Main.expertMode ? 15 : 17;
-                        if (Main.netMode != NetmodeID.MultiplayerClient)
-                            Main.PlaySound(SoundID.DD2_BetsyFireballShot, npc.position);
-                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<CosmicFireball>(), damage, 1, Main.myPlayer, 0, 0);
+                        amountOfProjectiles = 2;
+                        for (int i = 0; i < amountOfProjectiles; ++i)
+                        {
+                            float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                            float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+                            int damage = Main.expertMode ? 110 : 220;
+                            if (Main.netMode != NetmodeID.MultiplayerClient)
+                                Main.PlaySound(SoundID.Item71, npc.position);
+                                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<EmperorBlade>(), damage, 1, Main.myPlayer, 0, 0);
+                        }
+                    }
+                    else if (attackTimer == 215)
+                    {
+                        attackTimer = 0;
                     }
                 }
-                else if (attackTimer == 215)
+                else
                 {
-                    attackTimer = 0;
+                    if (attackTimer == 100 || attackTimer == 105 || attackTimer == 110 || attackTimer == 115)
+                    {
+                        Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Custom/CosmicEmperorRing"), npc.position);
+                        Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-200, 200), npc.Center.Y + Main.rand.Next(-200, 200), 0, 0, ModContent.ProjectileType<CosmicRing>(), 12, 0, Main.myPlayer, 0f, 0f);
+                    }
+                    if (attackTimer == 200 || attackTimer == 205 || attackTimer == 210 || attackTimer == 215 || attackTimer == 220 || attackTimer == 225)
+                    {
+                        amountOfProjectiles = 1;
+                        for (int i = 0; i < amountOfProjectiles; ++i)
+                        {
+                            float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                            float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+                            int damage = Main.expertMode ? 110 : 220;
+                            if (Main.netMode != NetmodeID.MultiplayerClient)
+                                Main.PlaySound(SoundID.DD2_BetsyFireballShot, npc.position);
+                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<CosmicFireball>(), damage, 1, Main.myPlayer, 0, 0);
+                        }
+                    }
+                    else if (attackTimer == 230)
+                    {
+                        attackTimer = 0;
+                    }
+
+                }
+                #endregion
+
+                #region Death Dialogue
+                if (player.dead)
+                {
+                    if (Main.rand.Next(1) == 0)
+                    {
+                        Main.NewText("Come on, how was that hard?", 0, 95, 215);
+                    }
+                    if (Main.rand.Next(2) == 0)
+                    {
+                        Main.NewText("You're tellimg me you've fought Calamitis' supreme form, yet you fail upon challengine me!", 0, 95, 215);
+                    }
+                    if (Main.rand.Next(3) == 0)
+                    {
+                        Main.NewText("You know what, you deserve some practice!", 0, 95, 215);
+                    }
+                    if (Main.rand.Next(4) == 0)
+                    {
+                        if (EternalWorld.hellMode)
+                            Main.NewText("You died... on the hardest difficulty? Maybe try fighting me on an easier difficulty!", 0, 95, 215);
+                        else
+                            Main.NewText("Come on, not even a single thing I've done could have killed super easily!", 0, 95, 215);
+                    }
+                    if (Main.rand.Next(5) == 0)
+                    {
+                        Main.NewText("Man, I wonder how many times you've died to Calamitis, she is probably sure you died more than once to her I think...", 0, 95, 215);
+                    }
+                    if (Main.rand.Next(6) == 0)
+                    {
+                        Main.NewText("Maybe next time, I would go easier on you, or you can keep trying until you perfect it...", 0, 95, 215);
+                    }
+                    npc.active = false;
                 }
                 #endregion
             }

@@ -269,11 +269,7 @@ namespace Eternal.NPCs.Boss.CarmaniteScouter
 
             if (!EternalWorld.downedCarmaniteScouter)
             {
-                Main.NewText("The ground has been smothered with mysterious energy...", 215, 215, 0);
-                for (int k = 0; k < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 6E-05); k++)
-                {
-                    WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next((int)(Main.maxTilesY * .3f), (int)(Main.maxTilesY * .65f)), WorldGen.genRand.Next(2, 8), WorldGen.genRand.Next(4, 6), TileType<TritalodiumOre>(), false, 0f, 0f, false, true);
-                }
+                //Main.NewText("The ground has been smothered with mysterious energy...", 215, 215, 0);
                 EternalWorld.downedCarmaniteScouter = true;
             }
         }

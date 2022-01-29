@@ -15,13 +15,13 @@ namespace Eternal.Items.Weapons.Ranged
 
         public override void SetDefaults()
         {
-            item.width = 86;
-            item.height = 32;
-            item.damage = 900;
+            item.width = 58;
+            item.height = 26;
+            item.damage = 110;
             item.noMelee = true;
             item.ranged = true;
-            item.useTime = 5;
-            item.useAnimation = 5;
+            item.useTime = 12;
+            item.useAnimation = 12;
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.UseSound = mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Custom/NovaNexus");
             item.autoReuse = true;
@@ -29,15 +29,18 @@ namespace Eternal.Items.Weapons.Ranged
             item.shoot = AmmoID.Bullet;
             item.useAmmo = AmmoID.Bullet;
             item.rare = ItemRarityID.Red;
-            item.knockBack = 1.2f;
+            item.knockBack = 2f;
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            int numberProjectiles = 5;
-            for (int j = 0; j < numberProjectiles; j++)
+            float numberProjectiles = 3 + Main.rand.Next(3);
+            float rotation = MathHelper.ToRadians(30);
+
+            for (int i = 0; i < numberProjectiles; i++)
             {
-                Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(15));
+                //Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(15));
+                Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1)));
                 Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, type, damage, knockBack, player.whoAmI);
             }
             return false;

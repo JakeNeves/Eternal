@@ -19,8 +19,8 @@ namespace Eternal.Items.Summon
 
         public override void SetDefaults()
         {
-            item.width = 26;
-            item.height = 42;
+            item.width = 22;
+            item.height = 60;
             item.rare = ItemRarityID.Pink;
             item.useAnimation = 45;
             item.useTime = 45;

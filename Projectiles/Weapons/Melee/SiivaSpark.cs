@@ -8,6 +8,8 @@ namespace Eternal.Projectiles.Weapons.Melee
 {
     public class SiivaSpark : ModProjectile
     {
+		int timer = 0;
+
 		public override void SetStaticDefaults()
         {
 			ProjectileID.Sets.TrailCacheLength[projectile.type] = 75;
@@ -45,11 +47,16 @@ namespace Eternal.Projectiles.Weapons.Melee
 			float maxDetectRadius = 400f;
 			float projSpeed = 5f;
 
-			NPC closestNPC = FindClosestNPC(maxDetectRadius);
-			if (closestNPC == null)
-				return;
+			timer++;
 
-			projectile.velocity = (closestNPC.Center - projectile.Center).SafeNormalize(Vector2.Zero) * projSpeed;
+			if (timer >= 75)
+			{
+				NPC closestNPC = FindClosestNPC(maxDetectRadius);
+				if (closestNPC == null)
+					return;
+
+				projectile.velocity = (closestNPC.Center - projectile.Center).SafeNormalize(Vector2.Zero) * projSpeed;
+			}
         }
 
 		public NPC FindClosestNPC(float maxDetectDistance)

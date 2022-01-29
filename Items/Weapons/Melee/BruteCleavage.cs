@@ -1,7 +1,5 @@
-﻿using Terraria;
-using Terraria.ID;
+﻿using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Items.Weapons.Melee
 {
@@ -9,10 +7,10 @@ namespace Eternal.Items.Weapons.Melee
     {
         public override void SetDefaults()
         {
-            item.width = 50;
-            item.height = 54;
+            item.width = 52;
+            item.height = 40;
             item.melee = true;
-            item.rare = ItemRarityID.Green;
+            item.rare = ItemRarityID.Orange;
             item.damage = 24;
             item.useAnimation = 26;
             item.useTime = 26;

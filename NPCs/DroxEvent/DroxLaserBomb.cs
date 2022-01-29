@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using static Terraria.ModLoader.ModContent;
 using System;
 using Eternal.Items.Materials;
+using System.Linq;
 
 namespace Eternal.NPCs.DroxEvent
 {
@@ -27,7 +28,7 @@ namespace Eternal.NPCs.DroxEvent
             npc.width = 28;
             npc.height = 36;
             npc.aiStyle = -1;
-            npc.defense = 16;
+            npc.defense = 5;
             npc.knockBackResist = -1;
             npc.lifeMax = 600;
             npc.damage = 18;
@@ -37,21 +38,26 @@ namespace Eternal.NPCs.DroxEvent
             npc.noGravity = true;
         }
 
-        public override void BossLoot(ref string name, ref int potionType)
-        {
-            potionType = ItemID.GreaterHealingPotion;
-        }
-
         public override void NPCLoot()
         {
             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<DroxCore>());
             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<DroxPlate>(), Main.rand.Next(2, 8));
+            if (DroxClanWorld.DClan)
+                DroxClanWorld.DCPoints = 6;
         }
 
-        public Vector2 bossCenter
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            get { return npc.Center; }
-            set { npc.position = value - new Vector2(npc.width / 2, npc.height / 2); }
+            /*if (Main.LocalPlayer.GetModPlayer<EternalPlayer>().droxEvent)
+            {
+                int[] TileArray2 = { TileID.Grass, TileID.Dirt, TileID.Stone, TileID.Sand, TileID.SnowBlock, TileID.IceBlock };
+                return TileArray2.Contains(Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY].type) && Main.LocalPlayer.GetModPlayer<EternalPlayer>().droxEvent ? 2.09f : 0f;
+            }
+            return 0f;*/
+            if (Main.LocalPlayer.GetModPlayer<EternalPlayer>().droxEvent)
+                return SpawnCondition.OverworldDay.Chance * 0.75f + SpawnCondition.OverworldNight.Chance * 0.75f;
+            else
+                return SpawnCondition.OverworldDay.Chance * 0f + SpawnCondition.OverworldDay.Chance * 0f;
         }
 
         public override void AI()
@@ -130,10 +136,6 @@ namespace Eternal.NPCs.DroxEvent
 
         private void Shoot(Player player)
         {
-            /*float angle = Main.rand.Next(0, (int)Math.PI * 200) / 100f;
-            Vector2 vel = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle)) * 3 * Main.rand.Next(5);
-            Projectile.NewProjectile(bossCenter.X, bossCenter.Y - 15, vel.X + 15, vel.Y, ProjectileID.BulletDeadeye, 30, 5f);
-            Projectile.NewProjectile(bossCenter.X, bossCenter.Y + 15, vel.X - 15, vel.Y, ProjectileID.BulletDeadeye, 30, 5f);*/
 
             Vector2 direction = Main.player[npc.target].Center - npc.Center;
             direction.Normalize();

@@ -3,13 +3,10 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System;
-using Terraria.Graphics.Effects;
-using Eternal.Projectiles.Enemy;
 using Eternal.Items.BossBags;
 using Eternal.Items.Weapons.Magic;
 using Eternal.Items.Weapons.Melee;
 using Eternal.Items.Weapons.Ranged;
-using Eternal.Dusts;
 using Eternal.Items.Weapons.Throwing;
 using Eternal.Projectiles.Boss;
 using Eternal.Items.Potions;
@@ -36,20 +33,26 @@ namespace Eternal.NPCs.Boss.CosmicApparition
 
         public static int cAppGlobalFrame;
 
+        public static int cAppAnimNumber;
+
         private Player player;
+
+        bool phase2Warn = false;
 
         public override void SetStaticDefaults()
         {
-            Main.npcFrameCount[npc.type] = 3;
+            Main.npcFrameCount[npc.type] = 4;
+            NPCID.Sets.TrailCacheLength[npc.type] = 14;
+            NPCID.Sets.TrailingMode[npc.type] = 0;
         }
 
         public override void SetDefaults()
         {
-            npc.width = 64;
-            npc.height = 50;
-            npc.lifeMax = 256000;
+            npc.width = 28;
+            npc.height = 46;
+            npc.lifeMax = 120000;
             npc.damage = 100;
-            npc.defense = 20;
+            npc.defense = 60;
             npc.knockBackResist = -1f;
             npc.boss = true;
             music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/ApparitionalAccumulation");
@@ -68,39 +71,35 @@ namespace Eternal.NPCs.Boss.CosmicApparition
             bossBag = ModContent.ItemType<CosmicApparitionBag>();
         }
 
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = 240000;
+            npc.defense = 75;
+            npc.damage = 110;
+            if (EternalWorld.hellMode)
+            {
+                npc.lifeMax = 360000;
+                npc.defense = 80;
+                npc.damage = 120;
+            }
+        }
+
         public override void AI()
         {
-            Vector2 targetPosition = Main.player[npc.target].position;
+            Lighting.AddLight(npc.position, 0.75f, 0f, 0.75f);
 
-            if(frameNum == 0)
-            {
-                cAppGlobalFrame = 0;
-            } 
-            else if (frameNum == 1)
-            {
-                cAppGlobalFrame = 1;
-            } 
-            else if (frameNum == 2)
-            {
-                cAppGlobalFrame = 2;
-            }
+            Vector2 targetPosition = Main.player[npc.target].position;
 
             if (npc.life <= npc.lifeMax / 2)
             {
-                frameNum = 1;
                 phase = 1;
                 attackTimer++;
             }
 
-            if (npc.life <= npc.lifeMax / 3)
-            {
-                frameNum = 2;
-            }
-
-            for (int k = 0; k < 5; k++)
-            {
-                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, ModContent.DustType<Starmetal>(), npc.oldVelocity.X * 0.5f, npc.oldVelocity.Y * 0.5f);
-            }
+            //for (int k = 0; k < 5; k++)
+            //{
+            //    Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, ModContent.DustType<Starmetal>(), npc.oldVelocity.X * 0.5f, npc.oldVelocity.Y * 0.5f);
+            //}
 
             #region Flying
             npc.TargetClosest(true);
@@ -154,6 +153,7 @@ namespace Eternal.NPCs.Boss.CosmicApparition
                     npc.netUpdate = true;
                 }
             }
+            npc.rotation = npc.velocity.X * 0.06f;
             #endregion
 
             player.AddBuff(BuffID.Horrified, 1, false);
@@ -163,20 +163,24 @@ namespace Eternal.NPCs.Boss.CosmicApparition
             {
                 if (!NPC.AnyNPCs(ModContent.NPCType<CosmicDecoy>()))
                 {
-                    NPC.NewNPC((int)npc.Center.X - 20, (int)npc.Center.Y, ModContent.NPCType<CosmicDecoy>());
+                    int amountOfClones = Main.rand.Next(1, 3);
+                    for (int i = 0; i < amountOfClones; ++i)
+                    {
+                        NPC.NewNPC((int)npc.Center.X + Main.rand.Next(-30, 30), (int)npc.Center.Y + Main.rand.Next(-30, 30), ModContent.NPCType<CosmicDecoy>());
+                    }
                 }
 
             }
             else if(attackTimer == 200 || attackTimer == 225 || attackTimer == 250 || attackTimer == 275)
             {
-                Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, -12, 0, ModContent.ProjectileType<CosmicPierce>(), 6, 0, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 12, 0, ModContent.ProjectileType<CosmicPierce>(), 6, 0, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 0, 12, ModContent.ProjectileType<CosmicPierce>(), 6, 0, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 0, -12, ModContent.ProjectileType<CosmicPierce>(), 6, 0, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, -8, ModContent.ProjectileType<CosmicPierce>(), 6, 0, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, -8, ModContent.ProjectileType<CosmicPierce>(), 6, 0, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, 8, ModContent.ProjectileType<CosmicPierce>(), 6, 0, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, 8, ModContent.ProjectileType<CosmicPierce>(), 6, 0, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, -12, 0, ModContent.ProjectileType<CosmicPierce>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 12, 0, ModContent.ProjectileType<CosmicPierce>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 0, 12, ModContent.ProjectileType<CosmicPierce>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 0, -12, ModContent.ProjectileType<CosmicPierce>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, -8, ModContent.ProjectileType<CosmicPierce>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, -8, ModContent.ProjectileType<CosmicPierce>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, 8, ModContent.ProjectileType<CosmicPierce>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, 8, ModContent.ProjectileType<CosmicPierce>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
             }
             if (attackTimer == 300)
             {
@@ -209,13 +213,27 @@ namespace Eternal.NPCs.Boss.CosmicApparition
 
             if (phase == 1)
             {
-                if (NPC.AnyNPCs(ModContent.NPCType<CosmicDecoy>()))
+                if (EternalWorld.hellMode)
                 {
-                    npc.dontTakeDamage = true;
+                    if (NPC.AnyNPCs(ModContent.NPCType<CosmicDecoy>()))
+                    {
+                        npc.dontTakeDamage = true;
+                    }
+                    if (!NPC.AnyNPCs(ModContent.NPCType<CosmicDecoy>()))
+                    {
+                        npc.dontTakeDamage = false;
+                    }
                 }
-                if (!NPC.AnyNPCs(ModContent.NPCType<CosmicDecoy>()))
+
+                if (!phase2Warn)
                 {
-                    npc.dontTakeDamage = false;
+                    Main.PlaySound(SoundID.NPCDeath10, (int)npc.position.X, (int)npc.position.Y);
+                    phase2Warn = true;
+                }
+
+                if (EternalWorld.hellMode)
+                {
+                    player.AddBuff(BuffID.Obstructed, 1, false);
                 }
             }
 
@@ -250,7 +268,6 @@ namespace Eternal.NPCs.Boss.CosmicApparition
                 npc.TargetClosest(false);
                 npc.direction = 1;
                 npc.velocity.Y = npc.velocity.Y - 0.1f;
-                SkyManager.Instance.Deactivate("Eternal:Empraynia");
                 if (npc.timeLeft > 5)
                 {
                     npc.timeLeft = 5;
@@ -261,7 +278,40 @@ namespace Eternal.NPCs.Boss.CosmicApparition
 
         public override void FindFrame(int frameHeight)
         {
-            npc.frame.Y = frameNum * frameHeight;
+            /*if (npc.life < npc.lifeMax / 2)
+            {
+                if (++npc.frameCounter > 8)
+                {
+                    npc.frameCounter = 5;
+                    npc.frame.Y += frameHeight;
+                    if (npc.frame.Y >= 8 * frameHeight)
+                    {
+                        npc.frame.Y = 5;
+                    }
+                }
+            }
+            else
+            {
+                if (++npc.frameCounter > 4)
+                {
+                    npc.frameCounter = 0;
+                    npc.frame.Y += frameHeight;
+                    if (npc.frame.Y >= 4 * frameHeight)
+                    {
+                        npc.frame.Y = 0;
+                    }
+                }
+            }*/
+
+            /*npc.frame.Width = 28;
+            //npc.frame.X = frameNum * frameHeight;
+            npc.frame.X = ((int)actualFrame % 4) * npc.frame.Height;
+            npc.frame.Y = (((int)actualFrame - ((int)actualFrame % 4)) / 3) * npc.frame.Height;*/
+
+            npc.frameCounter += 0.15f;
+            npc.frameCounter %= Main.npcFrameCount[npc.type];
+            int Frame = (int)npc.frameCounter;
+            npc.frame.Y = Frame * frameHeight;
         }
 
         public override void HitEffect(int hitDirection, double damage)
@@ -288,6 +338,8 @@ namespace Eternal.NPCs.Boss.CosmicApparition
 
             if (!EternalWorld.downedCosmicApparition)
             {
+                Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Custom/CosmicEmperorLaugh"), (int)npc.position.X, (int)npc.position.Y);
+                Main.NewText("A Cosmic Emperor gazes upon your devotion to victory...", 170, 70, 250);
                 Main.NewText("The cosmic entities have been empowered...", 240, 0, 240);
                 EternalWorld.downedCosmicApparition = true;
             }
@@ -315,7 +367,46 @@ namespace Eternal.NPCs.Boss.CosmicApparition
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ApparitionalRendingStaff>());
                 }
 
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ApparitionalRendingStaff>(), Main.rand.Next(15, 45));
+
             }
+        }
+
+        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        {
+            if (phase >= 1)
+            {
+                //tf does this supposed to mean
+                int num159 = 1;
+                float num160 = 0f;
+                int num161 = num159;
+                SpriteEffects spriteEffects = SpriteEffects.None;
+                Microsoft.Xna.Framework.Color color25 = Lighting.GetColor((int)((double)npc.position.X + (double)npc.width * 0.5) / 16, (int)(((double)npc.position.Y + (double)npc.height * 0.5) / 16.0));
+                Texture2D texture2D4 = mod.GetTexture("NPCs/Boss/CosmicApparition/CosmicApparition2");
+                int num1561 = texture2D4.Height / Main.npcFrameCount[npc.type];
+                int y31 = num1561 * (int)npc.frameCounter;
+                Microsoft.Xna.Framework.Rectangle rectangle2 = new Microsoft.Xna.Framework.Rectangle(0, y31, texture2D4.Width, num1561);
+                Vector2 origin3 = rectangle2.Size() / 2f;
+                SpriteEffects effects = spriteEffects;
+                if (npc.spriteDirection > 0)
+                {
+                    effects = SpriteEffects.FlipHorizontally;
+                }
+                float num165 = npc.rotation;
+                Microsoft.Xna.Framework.Color color29 = npc.GetAlpha(color25);
+                Main.spriteBatch.Draw(texture2D4, npc.position + npc.Size / 2f - Main.screenPosition + new Vector2(0f, npc.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle2), color29, num165 + npc.rotation * num160 * (float)(num161 - 1) * -(float)spriteEffects.HasFlag(SpriteEffects.FlipHorizontally).ToDirectionInt(), origin3, npc.scale, effects, 0f);
+                return false;
+            }
+
+            Vector2 drawOrigin = new Vector2(Main.npcTexture[npc.type].Width * 0.5f, npc.height * 0.5f);
+            for (int k = 0; k < npc.oldPos.Length; k++)
+            {
+                Vector2 drawPos = npc.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, npc.gfxOffY);
+                Color color = npc.GetAlpha(lightColor) * ((float)(npc.oldPos.Length - k) / (float)npc.oldPos.Length);
+                Texture2D shadowTexture = mod.GetTexture("NPCs/Boss/CosmicApparition/CosmicApparition_Shadow");
+                spriteBatch.Draw(shadowTexture, drawPos, null, color, npc.rotation, drawOrigin, npc.scale, SpriteEffects.None, 0f);
+            }
+            return true;
         }
 
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)

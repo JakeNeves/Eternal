@@ -1,6 +1,4 @@
-﻿using Eternal.Items;
-using Eternal.Projectiles.Weapons.Melee;
-using Eternal.Tiles;
+﻿using Eternal.Projectiles.Weapons.Melee;
 using System;
 using Terraria;
 using Terraria.ID;
@@ -9,7 +7,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Items.Weapons.Melee
 {
-    class Pyroyo : ModItem
+    public class Pyroyo : ModItem
     {
         public override void SetStaticDefaults()
         {

@@ -3,12 +3,13 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 using Eternal.Items.BossBags;
 using Eternal.Items.Weapons.Melee;
 using Eternal.Items.Weapons.Magic;
 using Eternal.Items.Accessories.Hell;
 using Eternal.Projectiles.Boss;
+using Eternal.Buffs;
+using Eternal.Dusts;
 
 namespace Eternal.NPCs.Boss.Incinerius
 {
@@ -21,7 +22,7 @@ namespace Eternal.NPCs.Boss.Incinerius
         }
 
         #region Fundementals
-        int ShootType = ProjectileType<FlamingSoul>();
+        int ShootType = ModContent.ProjectileType<FlamingSoul>();
         const int ShootDamage = 9;
         const float ShootKnockback = 0f;
         const int ShootDirection = 5;
@@ -36,7 +37,7 @@ namespace Eternal.NPCs.Boss.Incinerius
             npc.width = 99;
             npc.height = 119;
             npc.boss = true;
-            if (!GetInstance<EternalConfig>().originalMusic)
+            if (!ModContent.GetInstance<EternalConfig>().originalMusic)
             {
                 music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/New/PyroneticPurgatory");
             }
@@ -49,6 +50,8 @@ namespace Eternal.NPCs.Boss.Incinerius
             npc.defense = 20;
             npc.lifeMax = 20000;
             npc.buffImmune[BuffID.OnFire] = true;
+            npc.buffImmune[ModContent.BuffType<Buffs.EmbericCombustion>()] = true;
+            npc.buffImmune[ModContent.BuffType<Buffs.DoomFire>()] = true;
             npc.buffImmune[BuffID.Poisoned] = true;
             npc.buffImmune[BuffID.Venom] = true;
             npc.buffImmune[BuffID.Electrified] = true;
@@ -58,7 +61,7 @@ namespace Eternal.NPCs.Boss.Incinerius
             npc.noTileCollide = true;
             npc.HitSound = null;
             npc.DeathSound = SoundID.NPCDeath42;
-            bossBag = ItemType<IncineriusBag>();
+            bossBag = ModContent.ItemType<IncineriusBag>();
         }
 
         public Vector2 bossCenter
@@ -107,7 +110,7 @@ namespace Eternal.NPCs.Boss.Incinerius
                 {
                     Main.NewText("I am not done yet...", 215, 95, 0);
                     Main.NewText("Incinerius reveals his true form!", 175, 75, 255);
-                    NPC.NewNPC((int)npc.Center.X - 20, (int)npc.Center.Y, NPCType<TrueIncinerius>());
+                    NPC.NewNPC((int)npc.Center.X - 20, (int)npc.Center.Y, ModContent.NPCType<TrueIncinerius>());
                 }
                 
                 Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/IncineriusHead"), 1f);
@@ -123,7 +126,7 @@ namespace Eternal.NPCs.Boss.Incinerius
             {
                 if (EternalWorld.hellMode)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<ProtectiveFlame>());
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ProtectiveFlame>());
                 }
 
                 if (Main.expertMode)
@@ -134,19 +137,19 @@ namespace Eternal.NPCs.Boss.Incinerius
                 {
                     if (Main.rand.Next(1) == 0)
                     {
-                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<FuryFlare>());
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<FuryFlare>());
                     }
                     if (Main.rand.Next(2) == 0)
                     {
-                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<Incinerator>());
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Incinerator>());
                     }
                     if (Main.rand.Next(3) == 0)
                     {
-                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<SmotheringInferno>());
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SmotheringInferno>());
                     }
                     if (Main.rand.Next(4) == 0)
                     {
-                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<Pyroyo>());
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Pyroyo>());
                     }
                 }
             }
@@ -162,7 +165,7 @@ namespace Eternal.NPCs.Boss.Incinerius
                     {
                         if ((index2 == num1 - num5 || index2 == num1 + num5 || (index3 == num2 - num5 || index3 == num2 + num5)) && !Main.tile[index2, index3].active())
                         {
-                            Main.tile[index2, index3].type = (ushort)TileType<Tiles.ScorchedBrick>();
+                            Main.tile[index2, index3].type = (ushort)ModContent.TileType<Tiles.ScorchedBrick>();
                             Main.tile[index2, index3].active(true);
                         }
                         Main.tile[index2, index3].lava(false);
@@ -182,11 +185,11 @@ namespace Eternal.NPCs.Boss.Incinerius
 
             Lighting.AddLight(npc.position, 0.215f, 0.95f, 0f);
 
-            if (NPC.AnyNPCs(NPCType<RollingFire>()))
+            if (NPC.AnyNPCs(ModContent.NPCType<RollingFire>()))
             {
                 npc.dontTakeDamage = true;
             }
-            if (!NPC.AnyNPCs(NPCType<RollingFire>()))
+            if (!NPC.AnyNPCs(ModContent.NPCType<RollingFire>()))
             {
                 npc.dontTakeDamage = false;
             }
@@ -257,6 +260,37 @@ namespace Eternal.NPCs.Boss.Incinerius
 
                 Timer = 0;
             }
+
+            #region Death Dialogue
+            if (player.dead)
+            {
+                if (Main.rand.Next(1) == 0)
+                {
+                    Main.NewText("Surprise, you have fallen before me!", 215, 95, 0);
+                }
+                if (Main.rand.Next(2) == 0)
+                {
+                    Main.NewText("Did you like the improvements that I made?", 215, 95, 0);
+                }
+                if (Main.rand.Next(3) == 0)
+                {
+                    Main.NewText("I was the first construct of the underworld, but not the first flame.", 215, 95, 0);
+                }
+                if (Main.rand.Next(4) == 0)
+                {
+                    Main.NewText(player.name + ", your mistakes don't get you far... Remember that!", 215, 95, 0);
+                }
+                if (Main.rand.Next(5) == 0)
+                {
+                    Main.NewText("That was terrible...", 215, 95, 0);
+                }
+                if (Main.rand.Next(6) == 0)
+                {
+                    Main.NewText("Maybe if you were skilled enough, I wouldn't have called you out for skill issue right now...", 215, 95, 0);
+                }
+                npc.active = false;
+            }
+            #endregion
         }
 
         void IncineriusShot()
@@ -272,13 +306,13 @@ namespace Eternal.NPCs.Boss.Incinerius
         {
             for (int i = 0; i < 50; i++)
             {
-                int dust = Dust.NewDust(npc.position, npc.width, npc.height, DustID.Fire);
+                int dust = Dust.NewDust(npc.position, npc.width, npc.height, ModContent.DustType<Dusts.EmbericCombustion>());
                 Main.dust[dust].scale = 1.5f;
                 Main.dust[dust].noGravity = true;
                 Main.dust[dust].velocity *= 0f;
                 Main.dust[dust].velocity *= 0f;
             }
-            NPC.NewNPC((int)npc.Center.X - 20, (int)npc.Center.Y, NPCType<RollingFire>());
+            NPC.NewNPC((int)npc.Center.X - 20, (int)npc.Center.Y, ModContent.NPCType<RollingFire>());
         }
 
         public override void FindFrame(int frameHeight)

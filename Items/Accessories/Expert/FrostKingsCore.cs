@@ -1,27 +1,44 @@
 ﻿using Microsoft.Xna.Framework;
-using System.Collections.Generic;
-using System.Linq;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.DataStructures;
-using static Terraria.ModLoader.ModContent;
 using Terraria;
+using Eternal.Projectiles.Accessories;
 
 namespace Eternal.Items.Accessories.Expert
 {
     public class FrostKingsCore : ModItem
     {
+
+
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Frost King's Core");
-            Tooltip.SetDefault("Grants Immunity to Chilled, Frostburn, and Frozen Debuffs"
-                                           + "\n17% Extra Melee and Ranged"
-                                           + "\nDash Effects"
-                                           + "\nEffects of Frost Armor");
+            DisplayName.SetDefault("The Frost King's Core");
+            Tooltip.SetDefault("Creates a crystal ice barrier around the player"
+                                           + "\n17% extra melee and ranged damage"
+                                           + "\nDash effects");
+        }
+
+        public override void SetDefaults()
+        {
+            item.accessory = true;
+            item.width = 26;
+            item.height = 46;
+            item.value = Item.buyPrice(gold: 15);
+            item.rare = ItemRarityID.Expert;
+            item.expert = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            player.meleeDamage += 0.17f;
+            player.rangedDamage += 0.17f;
+
+            player.buffImmune[BuffID.Chilled] = true;
+            player.buffImmune[BuffID.Frostburn] = true;
+            player.buffImmune[BuffID.Frozen] = true;
+
+            EternalPlayer.frostKingsCore = true;
+
             EternalDashPlayer modDashPlayer = player.GetModPlayer<EternalDashPlayer>();
 
             #region Dash Effect
@@ -55,24 +72,7 @@ namespace Eternal.Items.Accessories.Expert
             }
             #endregion
 
-            player.meleeDamage += 0.17f;
-            player.rangedDamage += 0.17f;
-
-            player.buffImmune[BuffID.Chilled] = true;
-            player.buffImmune[BuffID.Frostburn] = true;
-            player.buffImmune[BuffID.Frozen] = true;
-
-            player.frostArmor = true;
         }
 
-        public override void SetDefaults()
-        {
-            item.accessory = true;
-            item.width = 36;
-            item.height = 30;
-            item.value = Item.buyPrice(gold: 15);
-            item.rare = ItemRarityID.Expert;
-            item.expert = true;
-        }
     }
 }

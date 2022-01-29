@@ -17,7 +17,7 @@ namespace Eternal.NPCs.Labrynth
         public override void SetDefaults()
         {
             npc.aiStyle = -1;
-            npc.lifeMax = 250;
+            npc.lifeMax = 150;
             npc.damage = 20;
             npc.defense = 10;
             npc.knockBackResist = 0f;

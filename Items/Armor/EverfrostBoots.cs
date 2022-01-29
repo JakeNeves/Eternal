@@ -28,7 +28,6 @@ namespace Eternal.Items.Armor
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemType<SydaniteBar>(), 20);
-            recipe.AddIngredient(ItemType<TritalodiumLeggings>());
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);
             recipe.AddRecipe();

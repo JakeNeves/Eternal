@@ -6,6 +6,7 @@ using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using Eternal.Items.Armor;
 using Eternal.Items.Materials;
+using Eternal.Items.Materials.Elementalblights;
 
 namespace Eternal.Items.BossBags
 {
@@ -51,7 +52,7 @@ namespace Eternal.Items.BossBags
 
             player.QuickSpawnItem(ItemType<PrimordialBolt>());
 
-            player.QuickSpawnItem(ItemType<DuneCore>(), Main.rand.Next(25, 75));
+            player.QuickSpawnItem(ItemType<ThunderblightCrystal>(), Main.rand.Next(25, 75));
         }
 
         public override int BossBagNPC => NPCType<NPCs.Boss.Dunekeeper.Dunekeeper>();

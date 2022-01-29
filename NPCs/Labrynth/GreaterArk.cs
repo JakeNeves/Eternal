@@ -20,9 +20,9 @@ namespace Eternal.NPCs.Labrynth
         public override void SetDefaults()
         {
             npc.aiStyle = -1;
-            npc.lifeMax = 46000;
-            npc.damage = 38;
-            npc.defense = 72;
+            npc.lifeMax = 3200;
+            npc.damage = 40;
+            npc.defense = 30;
             npc.knockBackResist = 0f;
             npc.width = 38;
             npc.height = 60;
@@ -62,7 +62,7 @@ namespace Eternal.NPCs.Labrynth
 
         private void Move(Vector2 offset)
         {
-            speed = 8f;
+            speed = 6.75f;
             Vector2 moveTo = player.Center + offset;
             Vector2 move = moveTo - npc.Center;
             float magnitude = Magnitude(move);
@@ -82,7 +82,7 @@ namespace Eternal.NPCs.Labrynth
 
         public override void NPCLoot()
         {
-            if (Main.rand.Next(4, 8) == 0)
+            if (Main.rand.Next(2) == 0)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<BrokenLabrynthSword>());
             }
@@ -94,7 +94,7 @@ namespace Eternal.NPCs.Labrynth
             if (!(player.ZoneTowerSolar || player.ZoneTowerVortex || player.ZoneTowerNebula || player.ZoneTowerStardust) && ((!Main.pumpkinMoon && !Main.snowMoon) || spawnInfo.spawnTileY > Main.worldSurface || Main.dayTime) && (!Main.eclipse || spawnInfo.spawnTileY > Main.worldSurface || !Main.dayTime) && (SpawnCondition.GoblinArmy.Chance == 0))
             {
                 int[] TileArray2 = { ModContent.TileType<LabrynthStone>(), TileID.Grass, TileID.Dirt, TileID.Stone, TileID.Sand, TileID.SnowBlock, TileID.IceBlock };
-                return TileArray2.Contains(Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY].type) && Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneLabrynth && NPC.downedMoonlord ? 2.09f : 0f;
+                return TileArray2.Contains(Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY].type) && Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneLabrynth && NPC.downedMoonlord ? 1.00f : 0f;
             }
             return SpawnCondition.OverworldDay.Chance * 0.5f;
         }

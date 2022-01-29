@@ -23,7 +23,7 @@ namespace Eternal.Items.Placeable
             item.useTime = 10;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.consumable = true;
-            item.createTile = TileType<Tiles.GrimstoneBrick>();
+            item.createTile = TileType<Tiles.Decorative.GrimstoneBrick>();
         }
 
         public override void AddRecipes()

@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Eternal.Projectiles.Weapons.Melee
 {
-    class TheEnigmaProjectile : ModProjectile
+    public class TheEnigmaProjectile : ModProjectile
     {
         public override void SetStaticDefaults()
         {
@@ -32,7 +32,7 @@ namespace Eternal.Projectiles.Weapons.Melee
         {
             if (Main.rand.NextBool())
             {
-                Dust dust = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, 16);
+                Dust dust = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, DustID.GreenTorch);
                 dust.noGravity = true;
                 dust.scale = 1.6f;
             }

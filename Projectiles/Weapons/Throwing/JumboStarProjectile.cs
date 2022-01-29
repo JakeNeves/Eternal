@@ -1,13 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Projectiles.Weapons.Throwing
 {
-    class JumboStarProjectile : ModProjectile
+    public class JumboStarProjectile : ModProjectile
     {
         public override void SetStaticDefaults()
         {
@@ -22,6 +20,7 @@ namespace Eternal.Projectiles.Weapons.Throwing
             projectile.ranged = true;
             projectile.ignoreWater = true;
             projectile.penetrate = 3;
+            projectile.ranged = true;
         }
 
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)

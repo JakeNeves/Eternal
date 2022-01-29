@@ -11,7 +11,7 @@ namespace Eternal.Items.Placeable
 	{
         public override void SetStaticDefaults()
         {
-			DisplayName.SetDefault("Sjrine Stone Wall");
+			DisplayName.SetDefault("Shrine Stone Wall");
         }
 
         public override void SetDefaults()

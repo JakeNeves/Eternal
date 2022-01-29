@@ -1,12 +1,10 @@
-﻿using Eternal.Items;
-using Eternal.Items.Materials;
+﻿using Eternal.Items.Materials;
 using Eternal.Projectiles.Weapons.Melee;
 using Eternal.Tiles;
 using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Items.Weapons.Melee
 {
@@ -26,7 +24,7 @@ namespace Eternal.Items.Weapons.Melee
             item.useTime = 25;
             item.shootSpeed = 60f;
             item.knockBack = 20f;
-            item.damage = 1024;
+            item.damage = 110;
             item.rare = ItemRarityID.Red;
 
             item.melee = true;
@@ -36,7 +34,7 @@ namespace Eternal.Items.Weapons.Melee
 
             item.UseSound = SoundID.Item1;
             item.value = Item.sellPrice(gold: 10);
-            item.shoot = ProjectileType<PermafrostProjectile>();
+            item.shoot = ModContent.ProjectileType<PermafrostProjectile>();
         }
 
         private static readonly int[] unwantedPrefixes = new int[] { PrefixID.Terrible, PrefixID.Dull, PrefixID.Annoying, PrefixID.Broken, PrefixID.Damaged, PrefixID.Shoddy };
@@ -50,18 +48,11 @@ namespace Eternal.Items.Weapons.Melee
             return true;
         }
 
-        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
-        {
-            target.AddBuff(BuffID.Chilled, 120);
-            target.AddBuff(BuffID.Frostburn, 120);
-            target.AddBuff(BuffID.Frozen, 120);
-        }
-
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddTile(TileType<AncientForge>());
-            recipe.AddIngredient(ItemType<SydaniteBar>(), 20);
+            recipe.AddTile(ModContent.TileType<Starforge>());
+            recipe.AddIngredient(ModContent.ItemType<SydaniteBar>(), 20);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

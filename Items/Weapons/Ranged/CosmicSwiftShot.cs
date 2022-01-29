@@ -1,31 +1,33 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Eternal.Projectiles.Weapons.Ranged;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Eternal.Items.Weapons.Ranged
 {
-    class CosmicSwiftShot : ModItem
+    public class CosmicSwiftShot : ModItem
     {
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Fires arrows at extreme speeds\n'The Triple-Shot Bow of The Cosmos'");
+            Tooltip.SetDefault("Has a chance to fire a Swift Shot Starbuster\n'The Triple-Shot Bow of The Cosmos'");
         }
 
         public override void SetDefaults()
         {
-            item.width = 38;
-            item.height = 56;
-            item.damage = 875;
+            item.width = 32;
+            item.height = 48;
+            item.damage = 110;
             item.noMelee = true;
             item.ranged = true;
-            item.useTime = 8;
-            item.useAnimation = 8;
+            item.useTime = 12;
+            item.useAnimation = 12;
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.UseSound = SoundID.Item5;
             item.autoReuse = true;
-            item.shootSpeed = 15.5f;
+            item.shootSpeed = 16f;
+            item.knockBack = 3.2f;
             item.shoot = AmmoID.Arrow;
             item.useAmmo = AmmoID.Arrow;
             item.rare = ItemRarityID.Red;
@@ -36,8 +38,15 @@ namespace Eternal.Items.Weapons.Ranged
             int numberProjectiles = 3;
             for (int j = 0; j < numberProjectiles; j++)
             {
-                Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(15));
-                Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, type, damage, knockBack, player.whoAmI);
+                Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(30));
+                if (Main.rand.Next(4) == 0)
+                {
+                    Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, ModContent.ProjectileType<SwiftShotStarbuster>(), damage, knockBack, player.whoAmI);
+                }
+                else
+                {
+                    Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, type, damage, knockBack, player.whoAmI);
+                }
             }
             return false;
         }

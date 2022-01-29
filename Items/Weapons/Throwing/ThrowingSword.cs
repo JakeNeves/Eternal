@@ -17,7 +17,7 @@ namespace Eternal.Items.Weapons.Throwing
 
         public override void SetDefaults()
         {
-            item.damage = 840;
+            item.damage = 330;
             item.ranged = true;
 			item.noUseGraphic = true;
 			item.UseSound = SoundID.Item1;

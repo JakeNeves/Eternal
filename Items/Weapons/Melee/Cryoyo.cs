@@ -1,6 +1,4 @@
-﻿using Eternal.Items;
-using Eternal.Projectiles.Weapons.Melee;
-using Eternal.Tiles;
+﻿using Eternal.Projectiles.Weapons.Melee;
 using System;
 using Terraria;
 using Terraria.ID;
@@ -25,7 +23,7 @@ namespace Eternal.Items.Weapons.Melee
             item.useTime = 25;
             item.shootSpeed = 30f;
             item.knockBack = 9f;
-            item.damage = 95;
+            item.damage = 90;
             item.rare = ItemRarityID.Pink;
 
             item.melee = true;
@@ -47,11 +45,6 @@ namespace Eternal.Items.Weapons.Melee
                 return false;
             }
             return true;
-        }
-
-        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
-        {
-            target.AddBuff(BuffID.Frostburn, 60);
         }
     }
 }

@@ -9,22 +9,22 @@ using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Items.Tools
 {
-    class TheBigOne : ModItem
+    public class TheBigOne : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Jaer Hend's Mighty Forest Felling Mega Axe of Eternity");
-            Tooltip.SetDefault("A Very Big Axe\n'Sprited by Jaer Hend'\nName Inspired from Triactics' True Panidinian Mage-Hammer of Might\n[c/FC036B:Developer Item]\nDedicated to [c/038CFC:Jaer Hend/Jerrhead]");
+            DisplayName.SetDefault("Jaer Hend's Mighty Hamaxe of Eternity");
+            Tooltip.SetDefault("A Very Big Axe\n'Sprited by Jaer Hend'\n[c/FC036B:Developer Item]\nDedicated to [c/038CFC:Jaer Hend]");
         }
 
         public override void SetDefaults()
         {
             item.damage = 10000;
             item.melee = true;
-            item.width = 170;
-            item.height = 164;
-            item.useTime = 50;
-            item.useAnimation = 50;
+            item.width = 164;
+            item.height = 162;
+            item.useTime = 25;
+            item.useAnimation = 25;
             item.axe = 100;
             item.hammer = 200;
             item.useStyle = ItemUseStyleID.SwingThrow;
@@ -53,6 +53,7 @@ namespace Eternal.Items.Tools
             recipe.AddIngredient(ItemType<StellarAlloy>(), 5);
             recipe.AddIngredient(ItemType<CosmoniumFragment>());
             recipe.AddIngredient(ItemID.PossessedHatchet);
+            recipe.AddIngredient(ItemType<CoreofEternal>(), 3);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

@@ -6,7 +6,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Tiles
 {
-    class ScoriumOre : ModTile
+    public class ScoriumOre : ModTile
     {
 
 		public override void SetDefaults()
@@ -17,6 +17,7 @@ namespace Eternal.Tiles
 			Main.tileMergeDirt[Type] = false;
 			Main.tileBlockLight[Type] = true;
 			Main.tileLighted[Type] = false;
+			dustType = DustID.OrangeTorch;
 			drop = ItemType<Items.Placeable.ScoriumOre>();
 			ModTranslation name = CreateMapEntryName();
 			name.SetDefault("Scorium");

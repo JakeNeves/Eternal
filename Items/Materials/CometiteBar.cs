@@ -11,19 +11,20 @@ namespace Eternal.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cometite Crystal");
-            Tooltip.SetDefault("'A shard of pure starpower'");
+            Tooltip.SetDefault("'A metallic alloy of pure starpower'");
 
-            Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(5, 10));
+            ItemID.Sets.ItemNoGravity[item.type] = true;
+
+            Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(5, 6));
         }
 
         public override void SetDefaults()
         {
-            item.width = 16;
-            item.height = 22;
+            item.width = 30;
+            item.height = 24;
             item.value = Item.sellPrice(gold: 5);
             item.rare = ItemRarityID.Red;
-            item.maxStack = 99;
+            item.maxStack = 999;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

@@ -27,10 +27,14 @@ namespace Eternal.NPCs.Boss.DroxOverlord
             npc.value = 50f;
             npc.aiStyle = -1;
             npc.knockBackResist = -1f;
-            npc.buffImmune[BuffID.OnFire] = true;
             npc.buffImmune[BuffID.Poisoned] = true;
+            npc.buffImmune[BuffID.OnFire] = true;
             npc.buffImmune[BuffID.Venom] = true;
-            npc.buffImmune[BuffID.Electrified] = true;
+            npc.buffImmune[BuffID.ShadowFlame] = true;
+            npc.buffImmune[BuffID.CursedInferno] = true;
+            npc.buffImmune[BuffID.Frostburn] = true;
+            npc.buffImmune[BuffID.Frozen] = true;
+            npc.buffImmune[BuffID.Chilled] = true;
         }
 
         public override void HitEffect(int hitDirection, double damage)
@@ -39,12 +43,12 @@ namespace Eternal.NPCs.Boss.DroxOverlord
             {
                 for (int i = 0; i < 50; i++)
                 {
-                    int dustIndex = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y), npc.width / 2, npc.height / 2, 6, 0f, 0f, 5, default(Color), 0.5f);
+                    int dustIndex = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y), npc.width / 2, npc.height / 2, DustID.Fire, 0f, 0f, 5, default(Color), 0.5f);
                     Main.dust[dustIndex].velocity *= 0.5f;
                 }
                 for (int i = 0; i < 25; i++)
                 {
-                    int dustIndex = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y), npc.width, npc.height, 31, 0f, 0f, 100, default(Color), 2f);
+                    int dustIndex = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y), npc.width, npc.height, DustID.Smoke, 0f, 0f, 100, default(Color), 2f);
                     Main.dust[dustIndex].velocity *= 1.4f;
                 }
             }

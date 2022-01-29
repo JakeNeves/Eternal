@@ -17,7 +17,7 @@ namespace Eternal.Tiles
 			Main.tileMergeDirt[Type] = false;
 			Main.tileBlockLight[Type] = true;
 			Main.tileLighted[Type] = false;
-			dustType = DustID.Ice;
+			dustType = DustID.IceTorch;
 			drop = ItemType<Items.Placeable.SydaniteOre>();
 			ModTranslation name = CreateMapEntryName();
 			name.SetDefault("Sydanite");

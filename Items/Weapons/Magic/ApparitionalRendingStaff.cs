@@ -19,7 +19,7 @@ namespace Eternal.Items.Weapons.Magic
 
         public override void SetDefaults()
         {
-            item.damage = 900;
+            item.damage = 220;
             item.magic = true;
             item.mana = 20;
             item.width = 44;

@@ -1,0 +1,77 @@
+﻿using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+using Eternal.Tiles;
+using System.Linq;
+using Eternal.Items.Weapons.Ranged;
+using Eternal.Items.Materials;
+
+namespace Eternal.NPCs.Comet
+{
+    public class AntheminousAnathema : ModNPC
+    {
+
+        private Player player;
+        private float speed;
+
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Antheminous Anathema");
+        }
+
+        public override void SetDefaults()
+        {
+            npc.width = 28;
+            npc.height = 32;
+            npc.damage = 100;
+            npc.defense = 15;
+            if (EternalWorld.downedCosmicApparition)
+                npc.lifeMax = 2000;
+            else
+                npc.lifeMax = 1100;
+            npc.HitSound = SoundID.NPCHit4;
+            npc.DeathSound = SoundID.NPCHit3;
+            npc.noGravity = true;
+            npc.lavaImmune = true;
+            npc.value = 50f;
+            npc.aiStyle = 5;
+        }
+
+        private static int[] SpawnTiles = { };
+
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        {
+            Player player = spawnInfo.player;
+            if (!(player.ZoneTowerSolar || player.ZoneTowerVortex || player.ZoneTowerNebula || player.ZoneTowerStardust) && ((!Main.pumpkinMoon && !Main.snowMoon) || spawnInfo.spawnTileY > Main.worldSurface || Main.dayTime) && (!Main.eclipse || spawnInfo.spawnTileY > Main.worldSurface || !Main.dayTime) && (SpawnCondition.GoblinArmy.Chance == 0))
+            {
+                int[] TileArray2 = { ModContent.TileType<CometiteOre>(), TileID.Grass, TileID.Dirt, TileID.Stone, TileID.Sand, TileID.SnowBlock, TileID.IceBlock };
+                return TileArray2.Contains(Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY].type) && Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneCommet ? 2.09f : 0f;
+            }
+            return SpawnCondition.OverworldNightMonster.Chance * 0.5f;
+        }
+        public override void AI()
+        {
+            Lighting.AddLight(npc.position, 0.75f, 0f, 0.75f);
+            npc.spriteDirection = npc.direction;
+        }
+
+        public override void NPCLoot()
+        {
+            if (Main.rand.Next(3) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<CosmicSwiftShot>());
+            }
+            if (EternalWorld.downedCosmicApparition)
+            {
+                if (Main.rand.Next(5) == 0)
+                {
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<InterstellarSingularity>(), Main.rand.Next(5, 20));
+                }
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<StarmetalBar>(), Main.rand.Next(10, 75));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Astragel>(), Main.rand.Next(10, 50));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<GalaxianPlating>(), Main.rand.Next(3, 12));
+            }
+        }
+
+    }
+}

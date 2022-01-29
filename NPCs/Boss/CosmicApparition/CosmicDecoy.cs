@@ -9,26 +9,26 @@ namespace Eternal.NPCs.Boss.CosmicApparition
 {
     public class CosmicDecoy : ModNPC
     {
-        public override string Texture => "Eternal/NPCs/Boss/CosmicApparition/CosmicApparition";
+        //public override string Texture => "Eternal/NPCs/Boss/CosmicApparition/CosmicApparition";
 
         const float Speed = 14f;
         const float Acceleration = 0.2f;
         int Timer;
 
-        int frameNum;
-
         public override void SetStaticDefaults()
         {
-            Main.npcFrameCount[npc.type] = 3;
+            Main.npcFrameCount[npc.type] = 4;
+            NPCID.Sets.TrailCacheLength[npc.type] = 14;
+            NPCID.Sets.TrailingMode[npc.type] = 0;
         }
 
         public override void SetDefaults()
         {
-            npc.width = 64;
-            npc.height = 50;
-            npc.lifeMax = 36000;
+            npc.width = 28;
+            npc.height = 46;
+            npc.lifeMax = 3600;
             npc.damage = 100;
-            npc.defense = 20;
+            npc.defense = 18;
             npc.knockBackResist = -1f;
             npc.HitSound = SoundID.NPCHit52;
             npc.DeathSound = SoundID.NPCDeath55;
@@ -46,7 +46,10 @@ namespace Eternal.NPCs.Boss.CosmicApparition
 
         public override void FindFrame(int frameHeight)
         {
-            npc.frame.Y = frameNum * frameHeight;
+            npc.frameCounter += 0.15f;
+            npc.frameCounter %= Main.npcFrameCount[npc.type];
+            int Frame = (int)npc.frameCounter;
+            npc.frame.Y = Frame * frameHeight;
         }
 
         public override void AI()
@@ -59,7 +62,6 @@ namespace Eternal.NPCs.Boss.CosmicApparition
                 npc.TargetClosest(false);
                 npc.active = false;
             }
-            frameNum = CosmicApparition.cAppGlobalFrame;
             Timer++;
             if (Timer >= 0)
             {
@@ -103,6 +105,20 @@ namespace Eternal.NPCs.Boss.CosmicApparition
                     npc.netUpdate = true;
                 }
             }
+            npc.rotation = npc.velocity.X * 0.06f;
+        }
+
+        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        {
+            Vector2 drawOrigin = new Vector2(Main.npcTexture[npc.type].Width * 0.5f, npc.height * 0.5f);
+            for (int k = 0; k < npc.oldPos.Length; k++)
+            {
+                Vector2 drawPos = npc.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, npc.gfxOffY);
+                Color color = npc.GetAlpha(lightColor) * ((float)(npc.oldPos.Length - k) / (float)npc.oldPos.Length);
+                Texture2D shadowTexture = mod.GetTexture("NPCs/Boss/CosmicApparition/CosmicApparition_Shadow");
+                spriteBatch.Draw(shadowTexture, drawPos, null, color, npc.rotation, drawOrigin, npc.scale, SpriteEffects.None, 0f);
+            }
+            return true;
         }
     }
 }

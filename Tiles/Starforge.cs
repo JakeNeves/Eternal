@@ -6,10 +6,11 @@ using Terraria.ObjectData;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using Eternal.Dusts;
+using Terraria.DataStructures;
 
 namespace Eternal.Tiles
 {
-    class Starforge : ModTile
+    public class Starforge : ModTile
     {
 
         public override void SetDefaults()
@@ -19,7 +20,13 @@ namespace Eternal.Tiles
             Main.tileTable[Type] = true;
             Main.tileLavaDeath[Type] = false;
             dustType = DustType<Starmetal>();
-            TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
+            TileObjectData.newTile.CopyFrom(TileObjectData.Style2xX);
+            TileObjectData.newTile.Width = 5;
+            TileObjectData.newTile.Height = 3;
+            TileObjectData.newTile.Origin = new Point16(4, 2);
+            TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16, 16 };
+            TileObjectData.newTile.StyleWrapLimit = 2;
+            TileObjectData.newTile.StyleMultiplier = 2;
             TileObjectData.addTile(Type);
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Starforge");
@@ -41,7 +48,7 @@ namespace Eternal.Tiles
                 zero = Vector2.Zero;
             }
             int height = tile.frameY == 36 ? 18 : 16;
-            Main.spriteBatch.Draw(mod.GetTexture("Tiles/Starforge_Glow"), new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y) + zero, new Rectangle(tile.frameX, tile.frameY, 16, height), Color.Purple, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(mod.GetTexture("Tiles/Starforge_Glow"), new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y) + zero, new Rectangle(tile.frameX, tile.frameY, 16, height), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
         }
 
     }

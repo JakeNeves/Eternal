@@ -1,4 +1,5 @@
 ﻿using Eternal.Items.Materials;
+using Eternal.Items.Materials.Elementalblights;
 using Eternal.Items.Weapons.Hell;
 using Terraria;
 using Terraria.ID;
@@ -20,6 +21,7 @@ namespace Eternal.NPCs
         public override void ResetEffects(NPC npc)
         {
             doomFire = false;
+            embericComustion = false;
         }
 
         public override void UpdateLifeRegen(NPC npc, ref int damage)
@@ -50,60 +52,160 @@ namespace Eternal.NPCs
             }
         }
 
+        public override void SetDefaults(NPC npc)
+        {
+            if (EternalWorld.downedCarmaniteScouter)
+            {
+            }
+            if (EternalWorld.downedDunekeeper)
+            {
+            }
+            if (EternalWorld.downedDroxClan)
+            {
+            }
+        }
+
         public override void NPCLoot(NPC npc)
         {
-            switch(npc.type)
+            #region Boss Triggers
+            if (NPC.AnyNPCs(NPCID.EyeofCthulhu))
+                if (!NPC.downedBoss1)
+                    Main.NewText("A faint screech can be heard from deep below...", 224, 28, 7);
+
+            if (NPC.AnyNPCs(NPCID.Skeleton))
             {
-                case NPCID.EyeofCthulhu:
-                    if (!NPC.downedBoss1)
+                if (!NPC.downedBoss3)
+                    Main.NewText("The dark caves beneath the world go silent...", 224, 28, 7);
+                if (hellModeDifficulty)
+                {
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SkeletronJawbone>());
+                    if (!Main.LocalPlayer.HasItem(ModContent.ItemType<KnifeBlade>()) || !Main.LocalPlayer.HasItem(ModContent.ItemType<TheCleaver>()))
                     {
-                        Main.NewText("A faint screech can be heard from deep below...", 224, 28, 7);
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<CleaverHead>());
                     }
-                    break;
-                case NPCID.Skeleton:
-                    if (!NPC.downedBoss3)
-                    {
-                        Main.NewText("The dark caves beneath the world go silent...", 224, 28, 7);
-                    }
-                    if (hellModeDifficulty)
-                    {
-                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SkeletronJawbone>());
-                        if (!Main.LocalPlayer.HasItem(ModContent.ItemType<KnifeBlade>()) || !Main.LocalPlayer.HasItem(ModContent.ItemType<TheCleaver>()))
-                        {
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<CleaverHead>());
-                        }
-                    }
-                    break;
-                case NPCID.Plantera:
-                    if (!NPC.downedPlantBoss)
-                    {
-                        Main.NewText("A cold gust of wind blows from the tundra...", 7, 28, 224);
-                    }
-                    break;
-                case NPCID.MoonLordCore:
-                    if (!NPC.downedMoonlord)
-                    {
-                        Main.NewText("The tundra freezes restless...", 7, 28, 224);
-                        Main.NewText("A faint eterial hum can be heard from the shrine...", 48, 255, 179);
-                        Main.NewText("A comet has landed and struck the world!", 0, 215, 215);
-                        EternalWorld.DropComet();
-                    }
-                    if (NPC.downedMoonlord)
-                    {
-                        Main.NewText("A comet has landed and struck the world!", 0, 215, 215);
-                        EternalWorld.DropComet();
-                    }
-                    break;
-                case NPCID.WallofFlesh:
-                    if (hellModeDifficulty)
-                    {
-                        if (!Main.LocalPlayer.HasItem(ModContent.ItemType<KnifeBlade>()) || !Main.LocalPlayer.HasItem(ModContent.ItemType<TheKnife>()))
-                        {
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<KnifeBlade>());
-                        }
-                    }
-                    break;
+                }
             }
+
+            if (NPC.AnyNPCs(NPCID.Plantera))
+                if (!NPC.downedPlantBoss)
+                    Main.NewText("A cold gust of wind blows from the tundra...", 7, 28, 224);
+
+            if (NPC.AnyNPCs(NPCID.MoonLordCore))
+            {
+                if (!NPC.downedMoonlord)
+                {
+                    Main.NewText("The tundra freezes restless...", 7, 28, 224);
+                    Main.NewText("A faint eterial hum can be heard from the shrine...", 48, 255, 179);
+                    Main.NewText("A comet has landed and struck the world!", 0, 215, 215);
+                    EternalWorld.DropComet();
+                }
+                else
+                {
+                    if (Main.rand.Next(2) == 0)
+                    {
+                        Main.NewText("A comet has landed and struck the world!", 0, 215, 215);
+                        EternalWorld.DropComet();
+                    }
+                }
+            }
+            if (NPC.AnyNPCs(NPCID.WallofFlesh))
+            {
+                if (hellModeDifficulty)
+                {
+                    if (!Main.LocalPlayer.HasItem(ModContent.ItemType<KnifeBlade>()) || !Main.LocalPlayer.HasItem(ModContent.ItemType<TheKnife>()))
+                    {
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<KnifeBlade>());
+                    }
+                }
+            }
+            #endregion
+
+            Player player = Main.player[Main.myPlayer];
+
+            #region Elemental Drops
+            if (!Main.dayTime)
+            {
+                if (NPC.AnyNPCs(NPCID.PossessedArmor) || NPC.AnyNPCs(NPCID.Wraith) || NPC.AnyNPCs(NPCID.Werewolf))
+                {
+                    if (Main.rand.Next(3) == 0)
+                    {
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<DuskblightCrystal>(), Main.rand.Next(2, 8));
+                    }
+                }
+            }
+
+            if (Main.bloodMoon)
+            {
+                if (NPC.AnyNPCs(NPCID.BloodZombie) || NPC.AnyNPCs(NPCID.Drippler))
+                {
+                    if (Main.rand.Next(3) == 0)
+                    {
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<CarnageblightCrystal>(), Main.rand.Next(1, 4));
+                    }
+                }
+            }
+
+            if (player.ZoneUnderworldHeight)
+            {
+                if (NPC.AnyNPCs(NPCID.Demon) || NPC.AnyNPCs(NPCID.Lavabat) || NPC.AnyNPCs(NPCID.Hellbat) || NPC.AnyNPCs(NPCID.LavaSlime) || NPC.AnyNPCs(NPCID.BoneSerpentHead) || NPC.AnyNPCs(NPCID.HellArmoredBones))
+                {
+                    if (Main.hardMode)
+                    {
+                        if (Main.rand.Next(3) == 0)
+                        {
+                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<InfernoblightCrystal>(), Main.rand.Next(2, 8));
+                        }
+                    }
+                }
+            }
+
+            if (player.ZoneBeach)
+            {
+                if (NPC.AnyNPCs(NPCID.GreenJellyfish) || NPC.AnyNPCs(NPCID.BlueJellyfish) || NPC.AnyNPCs(NPCID.PinkJellyfish) || NPC.AnyNPCs(NPCID.Shark))
+                {
+                    if (Main.rand.Next(3) == 0)
+                    {
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<AquablightCrystal>(), Main.rand.Next(1, 4));
+                    }
+                }
+            }
+
+            if (player.ZoneSnow)
+            {
+                if (NPC.AnyNPCs(NPCID.IceGolem) || NPC.AnyNPCs(NPCID.IceElemental) || NPC.AnyNPCs(NPCID.IceBat) || NPC.AnyNPCs(NPCID.IceTortoise))
+                {
+                    if (EternalWorld.downedSubzeroElemental)
+                    {
+                        if (Main.rand.Next(3) == 0)
+                        {
+                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<FrostblightCrystal>(), Main.rand.Next(1, 4));
+                        }
+                    }
+                }
+            }
+
+            if (player.ZoneJungle)
+            {
+                if (NPC.AnyNPCs(NPCID.GiantFlyingFox) || NPC.AnyNPCs(NPCID.GiantTortoise) || NPC.AnyNPCs(NPCID.JungleBat) || NPC.AnyNPCs(NPCID.Snatcher) || NPC.AnyNPCs(NPCID.ManEater) || NPC.AnyNPCs(NPCID.AngryTrapper) || NPC.AnyNPCs(NPCID.Hornet))
+                {
+                    if (Main.rand.Next(3) == 0)
+                    {
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<NatureblightCrystal>(), Main.rand.Next(1, 4));
+                    }
+                }
+            }
+
+            if (Main.raining)
+            {
+                if (NPC.AnyNPCs(NPCID.AngryNimbus))
+                {
+                    if (Main.rand.Next(3) == 0)
+                    {
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ThunderblightCrystal>(), Main.rand.Next(1, 4));
+                    }
+                }
+            }
+            #endregion
         }
 
         #region Hell Mode Vanilla Bosses
@@ -250,5 +352,18 @@ namespace Eternal.NPCs
             }
         }
         #endregion
+
+        public override void AI(NPC npc)
+        {
+            if (EternalWorld.downedCarmaniteScouter)
+            {
+            }
+            if (EternalWorld.downedDunekeeper)
+            {
+            }
+            if (EternalWorld.downedDroxClan)
+            {
+            }
+        }
     }
 }

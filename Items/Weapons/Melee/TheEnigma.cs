@@ -11,7 +11,7 @@ using System.Collections.Generic;
 
 namespace Eternal.Items.Weapons.Melee
 {
-    class TheEnigma : ModItem
+    public class TheEnigma : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -27,7 +27,7 @@ namespace Eternal.Items.Weapons.Melee
             item.useTime = 25;
             item.shootSpeed = 30f;
             item.knockBack = 5.5f;
-            item.damage = 4000;
+            item.damage = 2000;
             item.rare = ItemRarityID.Red;
 
             item.melee = true;

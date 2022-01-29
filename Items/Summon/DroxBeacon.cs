@@ -1,4 +1,6 @@
-﻿using Eternal.Items.Materials;
+﻿using Eternal.Invasion;
+using Eternal.Items.Materials;
+using Eternal.NPCs.Boss.DroxOverlord;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -24,15 +26,22 @@ namespace Eternal.Items.Summon
             item.useStyle = ItemUseStyleID.HoldingUp;
         }
 
-        /*public override bool CanUseItem(Player player)
+        public override bool CanUseItem(Player player)
         {
-            return !NPC.AnyNPCs(NPCType<Empraynia>());
-        }*/
+            DroxClanPlayer modPlayer = Main.player[Main.myPlayer].GetModPlayer<DroxClanPlayer>();
+            if (DroxClanWorld.DClan)
+                return false;
+            return true;
+        }
 
         public override bool UseItem(Player player)
         {
-            //NPC.SpawnOnPlayer(player.whoAmI, NPCType<Empraynia>());
+            NPC.SpawnOnPlayer(player.whoAmI, NPCType<DroxOverlord>());
+            DroxClanPlayer modPlayer = Main.player[Main.myPlayer].GetModPlayer<DroxClanPlayer>();
+            DroxClanWorld.DClan = true;
+            Main.LocalPlayer.GetModPlayer<EternalPlayer>().droxEvent = true;
             Main.NewText("The Drox Clan is striking!", 175, 75, 255);
+            Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Custom/DroxClan"), player.position);
             return true;
         }
 
@@ -41,10 +50,22 @@ namespace Eternal.Items.Summon
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.AddIngredient(ItemID.Wire, 6);
-            recipe.AddIngredient(ItemType<DroxCore>());
-            recipe.AddIngredient(ItemType<DroxPlate>(), 2);
+            recipe.AddIngredient(ItemID.IronBar, 12);
+            recipe.AddIngredient(ItemID.HallowedBar, 12);
+            recipe.AddIngredient(ItemID.ChlorophyteBar, 12);
+            recipe.AddIngredient(ItemID.ShroomiteBar, 6);
             recipe.SetResult(this);
             recipe.AddRecipe();
+
+            ModRecipe altrecipe = new ModRecipe(mod);
+            altrecipe.AddTile(TileID.MythrilAnvil);
+            altrecipe.AddIngredient(ItemID.Wire, 6);
+            altrecipe.AddIngredient(ItemID.LeadBar, 12);
+            altrecipe.AddIngredient(ItemID.HallowedBar, 12);
+            altrecipe.AddIngredient(ItemID.ChlorophyteBar, 12);
+            altrecipe.AddIngredient(ItemID.ShroomiteBar, 6);
+            altrecipe.SetResult(this);
+            altrecipe.AddRecipe();
         }
     }
 }

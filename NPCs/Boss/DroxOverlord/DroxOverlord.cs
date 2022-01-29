@@ -14,6 +14,7 @@ using Eternal.Items.Materials;
 using Eternal.Items.Weapons.Hell;
 using Eternal.Projectiles.Enemy;
 using Eternal.Projectiles;
+using Eternal.NPCs.DroxEvent;
 
 namespace Eternal.NPCs.Boss.DroxOverlord
 {
@@ -56,20 +57,27 @@ namespace Eternal.NPCs.Boss.DroxOverlord
             npc.DeathSound = SoundID.NPCDeath3;
             // bossBag = ItemType<DunekeeperBag>();
             music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/MechanicalEnvy");
-            npc.buffImmune[BuffID.OnFire] = true;
             npc.buffImmune[BuffID.Poisoned] = true;
+            npc.buffImmune[BuffID.OnFire] = true;
             npc.buffImmune[BuffID.Venom] = true;
-            npc.buffImmune[BuffID.Electrified] = true;
+            npc.buffImmune[BuffID.ShadowFlame] = true;
+            npc.buffImmune[BuffID.CursedInferno] = true;
+            npc.buffImmune[BuffID.Frostburn] = true;
+            npc.buffImmune[BuffID.Frozen] = true;
+            npc.buffImmune[BuffID.Chilled] = true;
         }
 
         public override void HitEffect(int hitDirection, double damage)
         {
             if (npc.life <= 0)
             {
-              // Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/DunekeeperEye"), 1f);
-              // Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/DunekeeperLeftHalf"), 1f);
-              // Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/DunekeeperRightHalf"), 1f);
-                 CombatText.NewText(npc.Hitbox, Color.DarkRed, "CRITICAL DAMAGE TO SYSTEM DETECTED, POWERING DOWN...", dramatic: true);
+                // Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/DunekeeperEye"), 1f);
+                // Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/DunekeeperLeftHalf"), 1f);
+                // Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/DunekeeperRightHalf"), 1f);
+                CombatText.NewText(npc.Hitbox, Color.DarkRed, "CRITICAL DAMAGE TO SYSTEM DETECTED, POWERING DOWN...", dramatic: true);
+                DroxClanWorld.DClan = false;
+                Main.LocalPlayer.GetModPlayer<EternalPlayer>().droxEvent = false;
+                Main.NewText("The Drox Clan has retreated!", 175, 75, 255);
             }
             else if (npc.life <= 12000)
             {
@@ -95,7 +103,8 @@ namespace Eternal.NPCs.Boss.DroxOverlord
 
         public override void NPCLoot()
         {
-            
+            if (DroxClanWorld.DClan)
+                DroxClanWorld.DCPoints = 90;
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -113,6 +122,8 @@ namespace Eternal.NPCs.Boss.DroxOverlord
 
         public override bool PreAI()
         {
+            npc.rotation = npc.velocity.X * 0.03f;
+
             npc.TargetClosest(true);
             npc.spriteDirection = npc.direction;
             Player player = Main.player[npc.target];
@@ -120,6 +131,15 @@ namespace Eternal.NPCs.Boss.DroxOverlord
             {
                 npc.TargetClosest(false);
                 npc.active = false;
+            }
+
+            if (player.dead || !player.active)
+                npc.active = false;
+
+            if (!npc.active)
+            {
+                DroxClanWorld.DClan = false;
+                Main.LocalPlayer.GetModPlayer<EternalPlayer>().droxEvent = false;
             }
 
             if (Phase == 2)
@@ -230,23 +250,8 @@ namespace Eternal.NPCs.Boss.DroxOverlord
             return true;
         }
 
-        public override void FindFrame(int frameHeight)
+        private void DoAttacksPhase1()
         {
-            npc.frame.Y = frameNum * frameHeight;
-        }
-
-        public override void AI()
-        {
-            if (NPC.AnyNPCs(NPCType<DroxMine>()))
-            {
-                npc.dontTakeDamage = true;
-            }
-            else
-            {
-                npc.dontTakeDamage = false;
-            }
-
-            npc.rotation = npc.velocity.X * 0.03f;
             Vector2 direction = Main.player[npc.target].Center - npc.Center;
             direction.Normalize();
             direction.X *= 8.5f;
@@ -264,6 +269,97 @@ namespace Eternal.NPCs.Boss.DroxOverlord
             else
             {
                 amountOfProjectiles = 4;
+            }
+
+            if (attackTimer == 105 || attackTimer == 110)
+            {
+
+                for (int i = 0; i < amountOfProjectiles; ++i)
+                {
+                    float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                    float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+                    int damage = Main.expertMode ? 15 : 17;
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ProjectileID.MartianTurretBolt, damage, 1, Main.myPlayer, 0, 0);
+                }
+            }
+            if (EternalWorld.hellMode)
+            {
+                if (attackTimer == 115 || attackTimer == 116 || attackTimer == 117 || attackTimer == 118 || attackTimer == 119 || attackTimer == 120)
+                {
+                    Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, -8, ProjectileID.DeathLaser, 6, 0, Main.myPlayer, 0f, 0f);
+                }
+                else if (attackTimer == 125 || attackTimer == 126 || attackTimer == 127 || attackTimer == 128 || attackTimer == 129 || attackTimer == 130)
+                {
+                    Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, -8, ProjectileID.DeathLaser, 6, 0, Main.myPlayer, 0f, 0f);
+                }
+                else if (attackTimer == 135 || attackTimer == 136 || attackTimer == 137 || attackTimer == 138 || attackTimer == 139 || attackTimer == 140)
+                {
+                    Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, 8, ProjectileID.DeathLaser, 6, 0, Main.myPlayer, 0f, 0f);
+                }
+                else if (attackTimer == 145 || attackTimer == 146 || attackTimer == 147 || attackTimer == 148 || attackTimer == 149 || attackTimer == 150)
+                {
+                    Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, 8, ProjectileID.DeathLaser, 6, 0, Main.myPlayer, 0f, 0f);
+                }
+            }
+            else
+            {
+                if (attackTimer == 115 || attackTimer == 117 || attackTimer == 119)
+                {
+                    Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, -8, ProjectileID.EyeLaser, 6, 0, Main.myPlayer, 0f, 0f);
+                }
+                else if (attackTimer == 121 || attackTimer == 123 || attackTimer == 125)
+                {
+                    Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, -8, ProjectileID.EyeLaser, 6, 0, Main.myPlayer, 0f, 0f);
+                }
+                else if (attackTimer == 127 || attackTimer == 129 || attackTimer == 131)
+                {
+                    Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, 8, ProjectileID.EyeLaser, 6, 0, Main.myPlayer, 0f, 0f);
+                }
+                else if (attackTimer == 133 || attackTimer == 135 || attackTimer == 137)
+                {
+                    Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, 8, ProjectileID.EyeLaser, 6, 0, Main.myPlayer, 0f, 0f);
+                }
+            }
+            if (attackTimer == 200)
+            {
+                if (EternalWorld.hellMode)
+                {
+                    Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-200, 200), npc.Center.Y + Main.rand.Next(-200, 200), 0, 0, ProjectileType<Warning>(), 12, 0, Main.myPlayer, 0f, 0f);
+                }
+                attackTimer = 0;
+            }
+        }
+
+        private void DoAttacksPhase2()
+        {
+
+        }
+
+        private void DoAttacksPhase3()
+        {
+
+        }
+
+        private void DoAttacksPhase4()
+        {
+
+        }
+
+        public override void FindFrame(int frameHeight)
+        {
+            npc.frame.Y = frameNum * frameHeight;
+        }
+
+        public override void AI()
+        {
+            if (NPC.AnyNPCs(NPCType<DroxMine>()) || NPC.AnyNPCs(NPCType<DroxBomber>()) || NPC.AnyNPCs(NPCType<DroxLaserBomb>()))
+            {
+                npc.dontTakeDamage = true;
+            }
+            else
+            {
+                npc.dontTakeDamage = false;
             }
 
             if (majorDamage)
@@ -303,64 +399,7 @@ namespace Eternal.NPCs.Boss.DroxOverlord
 
             if(Phase == 0)
             {
-                if (attackTimer == 105 || attackTimer == 110)
-                {
-
-                    for (int i = 0; i < amountOfProjectiles; ++i)
-                    {
-                        float A = (float)Main.rand.Next(-200, 200) * 0.01f;
-                        float B = (float)Main.rand.Next(-200, 200) * 0.01f;
-                        int damage = Main.expertMode ? 15 : 17;
-                        if (Main.netMode != NetmodeID.MultiplayerClient)
-                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ProjectileID.MartianTurretBolt, damage, 1, Main.myPlayer, 0, 0);
-                    }
-                }
-                if (EternalWorld.hellMode)
-                {
-                    if (attackTimer == 115 || attackTimer == 116 || attackTimer == 117 || attackTimer == 118 || attackTimer == 119 || attackTimer == 120)
-                    {
-                        Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, -8, ProjectileID.DeathLaser, 6, 0, Main.myPlayer, 0f, 0f);
-                    }
-                    else if (attackTimer == 125 || attackTimer == 126 || attackTimer == 127 || attackTimer == 128 || attackTimer == 129 || attackTimer == 130)
-                    {
-                        Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, -8, ProjectileID.DeathLaser, 6, 0, Main.myPlayer, 0f, 0f);
-                    }
-                    else if (attackTimer == 135 || attackTimer == 136 || attackTimer == 137 || attackTimer == 138 || attackTimer == 139 || attackTimer == 140)
-                    {
-                        Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, 8, ProjectileID.DeathLaser, 6, 0, Main.myPlayer, 0f, 0f);
-                    }
-                    else if (attackTimer == 145 || attackTimer == 146 || attackTimer == 147 || attackTimer == 148 || attackTimer == 149 || attackTimer == 150)
-                    {
-                        Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, 8, ProjectileID.DeathLaser, 6, 0, Main.myPlayer, 0f, 0f);
-                    }
-                }
-                else
-                {
-                    if (attackTimer == 116 || attackTimer == 118 || attackTimer == 120)
-                    {
-                        Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, -8, ProjectileID.EyeLaser, 6, 0, Main.myPlayer, 0f, 0f);
-                    }
-                    else if (attackTimer == 126 || attackTimer == 128 || attackTimer == 130)
-                    {
-                        Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, -8, ProjectileID.EyeLaser, 6, 0, Main.myPlayer, 0f, 0f);
-                    }
-                    else if (attackTimer == 136 || attackTimer == 138 || attackTimer == 140)
-                    {
-                        Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, 8, ProjectileID.EyeLaser, 6, 0, Main.myPlayer, 0f, 0f);
-                    }
-                    else if (attackTimer == 146 || attackTimer == 148 || attackTimer == 150)
-                    {
-                        Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, 8, ProjectileID.EyeLaser, 6, 0, Main.myPlayer, 0f, 0f);
-                    }
-                }
-                if (attackTimer == 200)
-                {
-                    if (EternalWorld.hellMode)
-                    {
-                        Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-200, 200), npc.Center.Y + Main.rand.Next(-200, 200), 0, 0, ProjectileType<Warning>(), 12, 0, Main.myPlayer, 0f, 0f);
-                    }
-                    attackTimer = 0;
-                }
+                DoAttacksPhase1();
             }
             if (Phase == 1)
             {

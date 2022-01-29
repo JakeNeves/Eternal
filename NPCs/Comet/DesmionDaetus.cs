@@ -20,15 +20,11 @@ namespace Eternal.NPCs.Comet
         public override void SetDefaults()
         {
             if (EternalWorld.downedCosmicApparition)
-            {
-                npc.lifeMax = 64000;
-            }
+                npc.lifeMax = 2000;
             else
-            {
-                npc.lifeMax = 32000;
-            }
+                npc.lifeMax = 1100;
             npc.damage = 100;
-            npc.defense = 90;
+            npc.defense = 15;
             npc.knockBackResist = 0f;
             npc.width = 35;
             npc.height = 36;
@@ -118,6 +114,7 @@ namespace Eternal.NPCs.Comet
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<InterstellarSingularity>(), Main.rand.Next(5, 20));
                 }
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<StarmetalBar>(), Main.rand.Next(10, 75));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Astragel>(), Main.rand.Next(10, 50));
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<GalaxianPlating>(), Main.rand.Next(3, 12));
             }
         }

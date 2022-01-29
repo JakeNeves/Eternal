@@ -16,7 +16,7 @@ namespace Eternal.Items.Weapons.Throwing
 
         public override void SetDefaults()
         {
-            item.damage = 168;
+            item.damage = 98;
             item.width = 64;
             item.height = 64;
             item.ranged = true;

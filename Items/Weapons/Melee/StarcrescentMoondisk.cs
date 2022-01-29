@@ -3,18 +3,20 @@ using Eternal.Tiles;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using Eternal.Items.Materials;
 
 namespace Eternal.Items.Weapons.Melee
 {
     public class StarcrescentMoondisk : ModItem
     {
+
         bool rightClick;
 
         public override void SetStaticDefaults() {
-             Tooltip.SetDefault("<right> to throw Starcrescent Shards\n'Free the moonlight!'");
+             Tooltip.SetDefault("<right> to throw Starcrescent Shards" +
+                              "\n'Free the moonlight!'");
         }
 
         public override void SetDefaults()
@@ -31,7 +33,7 @@ namespace Eternal.Items.Weapons.Melee
             item.value = Item.buyPrice(gold: 30, silver: 95);
             item.rare = ItemRarityID.Red;
             item.shootSpeed = 8.2f;
-            item.shoot = ProjectileType<StarcrescentMoondiskProjectile>();
+            item.shoot = ModContent.ProjectileType<StarcrescentMoondiskProjectile>();
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
         }
@@ -54,7 +56,7 @@ namespace Eternal.Items.Weapons.Melee
                 rightClick = true;
                 item.useTime = 8;
                 item.useAnimation = 8;
-                item.shoot = ProjectileType<StarcrescentProjectile>();
+                item.shoot = ModContent.ProjectileType<StarcrescentProjectile>();
                 item.shootSpeed = 4.4f;
             }
             else
@@ -62,7 +64,7 @@ namespace Eternal.Items.Weapons.Melee
                 rightClick = false;
                 item.useTime = 12;
                 item.useAnimation = 12;
-                item.shoot = ProjectileType<StarcrescentMoondiskProjectile>();
+                item.shoot = ModContent.ProjectileType<StarcrescentMoondiskProjectile>();
                 item.shootSpeed = 8.2f;
                 for (int i = 0; i < 1000; ++i)
                 {
@@ -97,6 +99,19 @@ namespace Eternal.Items.Weapons.Melee
                 return false;
             }
             return true;
+        }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddTile(ModContent.TileType<AncientForge>());
+            recipe.AddIngredient(ModContent.ItemType<FrostDisk>());
+            recipe.AddIngredient(ModContent.ItemType<NightmareReaperscythe>());
+            recipe.AddIngredient(ModContent.ItemType<StellarAlloy>(), 6);
+            recipe.AddIngredient(ModContent.ItemType<CosmoniumFragment>());
+            recipe.AddIngredient(ModContent.ItemType<CoreofEternal>(), 12);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
 
     }

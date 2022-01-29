@@ -5,7 +5,7 @@ using Terraria;
 
 namespace Eternal.Invasion
 {
-    class ProgressBar
+    public class ProgressBar
     {
         public void DrawBar(SpriteBatch spriteBatch)
         {

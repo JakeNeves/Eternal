@@ -13,8 +13,7 @@ namespace Eternal.Items.Accessories
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("60% increased melee damage" +
-                               "\n30% melee damage multiplier" +
-                               "\n70% increased melee speed" +
+                               "\n17% increased melee speed" +
                                "\n'The comets are now in the palm of your hand'");
         }
 
@@ -32,9 +31,8 @@ namespace Eternal.Items.Accessories
             EternalGlobalProjectile.cometGauntlet = true;
 
             player.meleeDamage += 0.6f;
-            player.meleeSpeed += 0.7f;
+            player.meleeSpeed += 0.17f;
             player.meleeDamageMult += 0.3f;
-            item.shootSpeed += 0.25f;
         }
 
         public override void ModifyTooltips(List<TooltipLine> list)

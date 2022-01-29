@@ -9,7 +9,7 @@ namespace Eternal.Projectiles.Weapons.Ranged
     {
         public override void SetStaticDefaults()
         {
-            ProjectileID.Sets.TrailCacheLength[projectile.type] = 3;
+            ProjectileID.Sets.TrailCacheLength[projectile.type] = 6;
             ProjectileID.Sets.TrailingMode[projectile.type] = 0;
         }
 
@@ -22,8 +22,7 @@ namespace Eternal.Projectiles.Weapons.Ranged
             projectile.penetrate = 1;
             projectile.timeLeft = 75;
             projectile.ranged = true;
-            projectile.penetrate = 5;
-            projectile.alpha = 255;
+            projectile.penetrate = 5;;
             projectile.extraUpdates = 1;
             aiType = ProjectileID.Bullet;
             projectile.light = 0.5f;

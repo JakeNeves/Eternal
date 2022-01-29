@@ -1,21 +1,17 @@
 ﻿using Eternal.Dusts;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Projectiles.Weapons.Melee
 {
-    class StarspearProjectile : ModProjectile
+    public class StarspearProjectile : ModProjectile
     {
 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Starspear");
-            ProjectileID.Sets.TrailCacheLength[projectile.type] = 5;
-            ProjectileID.Sets.TrailingMode[projectile.type] = 0;
         }
 
 		public override void SetDefaults()

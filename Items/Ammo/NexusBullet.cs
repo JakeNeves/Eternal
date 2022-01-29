@@ -1,7 +1,6 @@
 ﻿using Eternal.Items.Materials;
 using Eternal.Projectiles.Weapons.Ranged;
 using Eternal.Tiles;
-using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
@@ -18,7 +17,7 @@ namespace Eternal.Items.Ammo
 
         public override void SetDefaults()
         {
-            item.damage = 225;
+            item.damage = 100;
             item.ranged = true;
             item.width = 12;
             item.height = 21;

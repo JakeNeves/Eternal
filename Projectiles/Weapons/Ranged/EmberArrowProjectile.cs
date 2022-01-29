@@ -39,7 +39,7 @@ namespace Eternal.Projectiles.Weapons.Ranged
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(BuffType<Buffs.EmbericCombustion>(), 160);
+            target.AddBuff(BuffType<Buffs.EmbericCombustion>(), 1020);
         }
 
         private const float maxTicks = 45f;
