@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Eternal.Items.Potions;
 using Eternal.Projectiles.Boss;
+using Eternal.Items.Materials;
 
 namespace Eternal.NPCs.Boss.BionicBosses
 {
@@ -312,6 +313,11 @@ namespace Eternal.NPCs.Boss.BionicBosses
                     return;
                 }
             }
+        }
+
+        public override void NPCLoot()
+        {
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<FrightCore>(), Main.rand.Next(20, 40));
         }
 
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)

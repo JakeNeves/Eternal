@@ -7,6 +7,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using System;
 using Eternal.Items.Placeable;
+using Eternal.Items.Materials.Elementalblights;
 
 namespace Eternal.NPCs
 {
@@ -110,6 +111,10 @@ namespace Eternal.NPCs
                 {
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SydaniteOre>(), Main.rand.Next(6, 36));
                 }
+            }
+            if (Main.rand.Next(4) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<FrostblightCrystal>(), Main.rand.Next(4, 12));
             }
         }
 

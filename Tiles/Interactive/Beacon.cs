@@ -44,6 +44,13 @@ namespace Eternal.Tiles.Interactive
                 Main.NewText("XR-2006 Atlas-X9 has awoken!", 175, 75, 255);
                 NPC.NewNPC((int)player.Center.X, (int)player.Center.Y - 900, ModContent.NPCType<Atlas>());
             }
+            else if (Main.LocalPlayer.HasItem(ModContent.ItemType<Items.Summon.BorealisCore>()))
+            {
+                Main.PlaySound(SoundID.DD2_BetsySummon, player.position);
+                Main.PlaySound(SoundID.Roar, player.position);
+                Main.NewText("XR-2003 Borealis-X1 has awoken!", 175, 75, 255);
+                NPC.NewNPC((int)player.Center.X, (int)player.Center.Y + 900, ModContent.NPCType<Borealis>());
+            }
             else if (Main.LocalPlayer.HasItem(ModContent.ItemType<Items.Summon.OrionCore>()))
             {
                 Main.PlaySound(SoundID.DD2_BetsySummon, player.position);

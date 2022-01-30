@@ -5,24 +5,25 @@ using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Eternal.Items.Potions;
 using Eternal.Projectiles.Boss;
+using Eternal.Items.Materials;
 
 namespace Eternal.NPCs.Boss.BionicBosses
 {
     //[AutoloadBossHead]
-    public class BorealisNeox : ModNPC
+    public class Borealis : ModNPC
     {
         private Player player;
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("EXR-2303 Borealis-N30X");
+            DisplayName.SetDefault("XR-2003 Borealis-X1");
         }
 
         public override void SetDefaults()
         {
             npc.aiStyle = -1;
-            npc.lifeMax = 1240000;
-            npc.damage = 80;
+            npc.lifeMax = 620000;
+            npc.damage = 60;
             npc.defense = 30;
             npc.knockBackResist = -1f;
             npc.width = 114;
@@ -34,7 +35,7 @@ namespace Eternal.NPCs.Boss.BionicBosses
             npc.noTileCollide = true;
             npc.HitSound = SoundID.NPCHit4;
             npc.DeathSound = SoundID.NPCDeath14;
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/NeoxPower");
+            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/ExoMenace");
             npc.buffImmune[BuffID.Poisoned] = true;
             npc.buffImmune[BuffID.OnFire] = true;
             npc.buffImmune[BuffID.Venom] = true;
@@ -48,15 +49,14 @@ namespace Eternal.NPCs.Boss.BionicBosses
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = 2530000;
+            npc.lifeMax = 1240000;
             npc.damage = 120;
-            npc.defense = 85;
+            npc.defense = 60;
 
             if (EternalWorld.hellMode)
             {
-                npc.lifeMax = 6060000;
+                npc.lifeMax = 2530000;
                 npc.damage = 240;
-                npc.defense = 90;
             }
         }
 
@@ -64,7 +64,7 @@ namespace Eternal.NPCs.Boss.BionicBosses
         {
             if (npc.life <= 0)
             {
-                CombatText.NewText(npc.Hitbox, Color.LightBlue, "SYSTEM FAILIURES DETECTED, CONTACTING MACHINE EXR-2308...", dramatic: true);
+                CombatText.NewText(npc.Hitbox, Color.Red, "SYSTEM FAILIURES DETECTED, SELF-DESTRUCT INITIATED...", dramatic: true);
             }
             else
             {
@@ -83,7 +83,6 @@ namespace Eternal.NPCs.Boss.BionicBosses
 
         public override bool PreAI()
         {
-            Lighting.AddLight(npc.Center, 0.73f, 1.40f, 2.12f);
 
             //npc.rotation = npc.velocity.ToRotation() + MathHelper.ToRadians(90f);
             npc.rotation = npc.velocity.X * 0.01f;
@@ -91,7 +90,7 @@ namespace Eternal.NPCs.Boss.BionicBosses
             npc.netUpdate = true;
             player = Main.player[npc.target];
             npc.dontTakeDamage = false;
-            float speed = 36.25f;
+            float speed = 20.05f;
             float acceleration = 0.4f;
             Vector2 vector2 = new Vector2(npc.position.X + (float)npc.width * 0.5f, npc.position.Y + (float)npc.height * 0.5f);
             float xDir = Main.player[npc.target].position.X + (float)(Main.player[npc.target].width / 2) - vector2.X;
@@ -164,7 +163,7 @@ namespace Eternal.NPCs.Boss.BionicBosses
 
         public override void NPCLoot()
         {
-            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<OrionNeox>());
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SmiteCore>(), Main.rand.Next(20, 40));
         }
 
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)

@@ -7,6 +7,7 @@ using static Terraria.ModLoader.ModContent;
 using Eternal.Items.Accessories.Expert;
 using Eternal.Items.Placeable;
 using Eternal.Items.Weapons.Radiant;
+using Eternal.Items.Materials.Elementalblights;
 
 namespace Eternal.Items.BossBags
 {
@@ -35,6 +36,8 @@ namespace Eternal.Items.BossBags
 
         public override void OpenBossBag(Player player)
         {
+            player.QuickSpawnItem(ItemType<FrostblightCrystal>(), Main.rand.Next(20, 40));
+
             if (Main.rand.Next(1) == 0)
             {
                 player.QuickSpawnItem(ItemType<TheKelvinator>());

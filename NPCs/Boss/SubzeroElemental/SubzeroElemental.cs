@@ -10,6 +10,7 @@ using Eternal.Projectiles.Enemy;
 using System;
 using Eternal.Items.Placeable;
 using Eternal.Items.Weapons.Radiant;
+using Eternal.Items.Materials.Elementalblights;
 
 namespace Eternal.NPCs.Boss.SubzeroElemental
 {
@@ -296,6 +297,8 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
             }
             else
             {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<FrostblightCrystal>(), Main.rand.Next(10, 20));
+
                 if (Main.rand.Next(1) == 0)
                 {
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<FrostGladiator>());

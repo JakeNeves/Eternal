@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using System;
 using Microsoft.Xna.Framework.Graphics;
 using Eternal.Items.Potions;
+using Eternal.Items.Materials;
 
 namespace Eternal.NPCs.Boss.BionicBosses
 {
@@ -60,23 +61,78 @@ namespace Eternal.NPCs.Boss.BionicBosses
             }
         }
 
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            if (npc.life <= 0)
+            {
+                CombatText.NewText(npc.Hitbox, Color.Red, "SYSTEM FAILIURES DETECTED, SELF-DESTRUCT INITIATED...", dramatic: true);
+            }
+            else
+            {
+                for (int k = 0; k < damage / npc.lifeMax * 20.0; k++)
+                {
+                    Dust.NewDust(npc.Center, npc.width, npc.height, DustID.Electric, hitDirection, -2f, 0, default(Color), 1f);
+                    Dust.NewDust(npc.Center, npc.width, npc.height, DustID.Fire, hitDirection, -1f, 0, default(Color), 1f);
+                }
+            }
+        }
+
         public override bool PreAI()
         {
             npc.netUpdate = true;
             npc.TargetClosest(true);
-            if (npc.life < npc.lifeMax / 2)
-            {
-                Move(new Vector2(75f, 200f));
-            }
-            else
-            {
-                Move(new Vector2(150f, -400f));
-            }
             Player player = Main.player[npc.target];
             if (!player.active || player.dead)
-            {
                 npc.TargetClosest(false);
+            float speed = 25.05f;
+            float acceleration = 0.4f;
+            Vector2 vector2 = new Vector2(npc.position.X + (float)npc.width * 0.5f, npc.position.Y + (float)npc.height * 0.5f);
+            float xDir = Main.player[npc.target].position.X + (float)(Main.player[npc.target].width / 2) - vector2.X;
+            float yDir = (float)(Main.player[npc.target].position.Y + (Main.player[npc.target].height / 2) - 120) - vector2.Y;
+            float length = (float)Math.Sqrt(xDir * xDir + yDir * yDir);
+            if (length > 400 && Main.expertMode)
+            {
+                ++speed;
+                acceleration += 0.05F;
+                if (length > 600)
+                {
+                    ++speed;
+                    acceleration += 0.10F;
+                    if (length > 800)
+                    {
+                        ++speed;
+                        acceleration += 0.15F;
+                    }
+                }
             }
+            float num10 = speed / length;
+            xDir = xDir * num10;
+            yDir = yDir * num10;
+            if (npc.velocity.X < xDir)
+            {
+                npc.velocity.X = npc.velocity.X + acceleration;
+                if (npc.velocity.X < 0 && xDir > 0)
+                    npc.velocity.X = npc.velocity.X + acceleration;
+            }
+            else if (npc.velocity.X > xDir)
+            {
+                npc.velocity.X = npc.velocity.X - acceleration;
+                if (npc.velocity.X > 0 && xDir < 0)
+                    npc.velocity.X = npc.velocity.X - acceleration;
+            }
+            if (npc.velocity.Y < yDir)
+            {
+                npc.velocity.Y = npc.velocity.Y + acceleration;
+                if (npc.velocity.Y < 0 && yDir > 0)
+                    npc.velocity.Y = npc.velocity.Y + acceleration;
+            }
+            else if (npc.velocity.Y > yDir)
+            {
+                npc.velocity.Y = npc.velocity.Y - acceleration;
+                if (npc.velocity.Y > 0 && yDir < 0)
+                    npc.velocity.Y = npc.velocity.Y - acceleration;
+            }
+
             return true;
         }
 
@@ -148,32 +204,6 @@ namespace Eternal.NPCs.Boss.BionicBosses
             }
         }
 
-        private void Move(Vector2 offset)
-        {
-            Player player = Main.player[npc.target];
-            speed = 40.5f;
-            Vector2 moveTo = player.Center + offset;
-            Vector2 move = moveTo - npc.Center;
-            float magnitude = Magnitude(move);
-            if (magnitude > speed)
-            {
-                move *= speed / magnitude;
-            }
-            float turnResistance = 5f;
-            move = (npc.velocity * turnResistance + move) / (turnResistance + 1f);
-            magnitude = Magnitude(move);
-            if (magnitude > speed)
-            {
-                move *= speed / magnitude;
-            }
-            npc.velocity = move;
-        }
-
-        private float Magnitude(Vector2 mag)
-        {
-            return (float)Math.Sqrt(mag.X * mag.X + mag.Y * mag.Y);
-        }
-
         public override void FindFrame(int frameHeight)
         {
             npc.frame.Y = frameNum * frameHeight;
@@ -188,55 +218,16 @@ namespace Eternal.NPCs.Boss.BionicBosses
             npc.rotation = rotation + ((float)Math.PI * 0.5f);
         }
 
+        public override void NPCLoot()
+        {
+            if (!NPC.AnyNPCs(ModContent.NPCType<ProtonNeox>()) && !NPC.AnyNPCs(ModContent.NPCType<QuasarNeox>()))
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SightCore>(), Main.rand.Next(20, 40));
+        }
+
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
         {
             scale = 1.5f;
             return null;
-        }
-
-        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
-        {
-            Texture2D texture = ModContent.GetTexture("Eternal/NPCs/Boss/BionicBosses/Triplets_Chain");
-            NPC parentNPC = Main.npc[0];
-            for (int i = 0; i < Main.npc.Length; ++i)
-            {
-                if (Main.npc[i].type == ModContent.NPCType<Quasar>())
-                {
-                    parentNPC = Main.npc[i];
-                    break;
-                }
-            }
-            Vector2 position = npc.Center;
-            Vector2 mountedCenter = parentNPC.Center;
-            Microsoft.Xna.Framework.Rectangle? sourceRectangle = new Microsoft.Xna.Framework.Rectangle?();
-            Vector2 origin = new Vector2((float)texture.Width * 0.5f, (float)texture.Height * 0.5f);
-            float num1 = (float)texture.Height;
-            Vector2 vector2_4 = mountedCenter - position;
-            float rotation = (float)Math.Atan2((double)vector2_4.Y, (double)vector2_4.X) - 1.57f;
-            bool flag = true;
-            if (float.IsNaN(position.X) && float.IsNaN(position.Y))
-                flag = false;
-            if (float.IsNaN(vector2_4.X) && float.IsNaN(vector2_4.Y))
-                flag = false;
-            while (flag)
-            {
-                if ((double)vector2_4.Length() < (double)num1 + 1.0)
-                {
-                    flag = false;
-                }
-                else
-                {
-                    Vector2 vector2_1 = vector2_4;
-                    vector2_1.Normalize();
-                    position += vector2_1 * num1;
-                    vector2_4 = mountedCenter - position;
-                    Color color2 = Lighting.GetColor((int)position.X / 16, (int)((double)position.Y / 16.0));
-                    color2 = npc.GetAlpha(color2);
-                    Main.spriteBatch.Draw(texture, position - Main.screenPosition, sourceRectangle, color2, rotation, origin, 1f, SpriteEffects.None, 0.0f);
-                }
-            }
-
-            return true;
         }
 
     }

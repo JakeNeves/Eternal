@@ -41,7 +41,10 @@ namespace Eternal.Items.Summon
             recipe.AddTile(ModContent.TileType<AncientForge>());
             recipe.AddIngredient(ModContent.ItemType<FrightCore>());
             recipe.AddIngredient(ModContent.ItemType<MightCore>());
+            recipe.AddIngredient(ModContent.ItemType<MindCore>());
             recipe.AddIngredient(ModContent.ItemType<PiCore>());
+            recipe.AddIngredient(ModContent.ItemType<SightCore>());
+            recipe.AddIngredient(ModContent.ItemType<SmiteCore>());
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
