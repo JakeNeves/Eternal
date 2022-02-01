@@ -22,6 +22,26 @@ namespace Eternal.NPCs.Boss.CosmicApparition
             NPCID.Sets.TrailingMode[npc.type] = 0;
         }
 
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            if (npc.life <= 0)
+            {
+                Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/CosmicApparitionHead"), 1f);
+                Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/CosmicApparitionBody"), 1f);
+                Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/CosmicApparitionArm"), 1f);
+                Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/CosmicApparitionArm"), 1f);
+            }
+            else
+            {
+
+                for (int k = 0; k < damage / npc.lifeMax * 20.0; k++)
+                {
+                    Dust.NewDust(npc.Center, npc.width, npc.height, DustID.PurpleTorch, hitDirection, -2f, 0, default(Color), 1f);
+                    Dust.NewDust(npc.Center, npc.width, npc.height, DustID.Shadowflame, hitDirection, -1f, 0, default(Color), 1f);
+                }
+            }
+        }
+
         public override void SetDefaults()
         {
             npc.width = 28;

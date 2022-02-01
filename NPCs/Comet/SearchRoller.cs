@@ -36,11 +36,6 @@ namespace Eternal.NPCs.Comet
         {
             Lighting.AddLight(npc.position, 0.75f, 0f, 0.75f);
             npc.rotation += npc.velocity.X * 0.1f;
-
-            if (EternalWorld.downedCosmicApparition)
-            {
-                npc.lifeMax = 36000;
-            }
         }
 
         public override void NPCLoot()
@@ -70,19 +65,15 @@ namespace Eternal.NPCs.Comet
                 Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SearchRollerShell"), 1f);
                 Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SearchRollerShell"), 1f);
                 Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SearchRollerShell"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SearchRollerSpike1"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SearchRollerSpike1"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SearchRollerSpike1"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SearchRollerSpike1"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SearchRollerSpike2"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SearchRollerSpike2"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SearchRollerSpike2"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SearchRollerSpike2"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SearchRollerSpike"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SearchRollerSpike"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SearchRollerSpike"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SearchRollerSpike"), 1f);
             }
             else
             {
                 for (int k = 0; k < damage / npc.lifeMax * 50; k++)
-                    Dust.NewDust(npc.position, npc.width, npc.height, 27, 2.5f * hitDirection, -2.5f, 0, default, 1.7f);
+                    Dust.NewDust(npc.position, npc.width, npc.height, DustID.Shadowflame, 2.5f * hitDirection, -2.5f, 0, default, 1.7f);
             }
         }
 

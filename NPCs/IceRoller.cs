@@ -22,8 +22,11 @@ namespace Eternal.NPCs
         {
             npc.width = 68;
             npc.height = 68;
-            npc.lifeMax = 15000;
-            npc.defense = 24;
+            if (EternalWorld.downedSubzeroElementalP2)
+                npc.lifeMax = 3000;
+            else
+                npc.lifeMax = 1500;
+            npc.defense = 20;
             npc.damage = 48;
             npc.knockBackResist = -1f;
             npc.aiStyle = -1;
@@ -59,12 +62,7 @@ namespace Eternal.NPCs
 
         public override bool PreAI()
         {
-            if (EternalWorld.downedSubzeroElementalP2)
-            {
-                npc.lifeMax = 30000;
-            }
-
-            RotateNPCToTarget();
+            //RotateNPCToTarget();
 
             Move();
 
@@ -137,13 +135,13 @@ namespace Eternal.NPCs
             npc.frame.Y = Frame * frameHeight;
         }
 
-        private void RotateNPCToTarget()
+        /*private void RotateNPCToTarget()
         {
             if (player == null) return;
             Vector2 direction = npc.Center - player.Center;
             float rotation = (float)Math.Atan2(direction.Y, direction.X);
             npc.rotation = rotation + ((float)Math.PI * 0.5f);
-        }
+        }*/
 
         private void Move()
         {

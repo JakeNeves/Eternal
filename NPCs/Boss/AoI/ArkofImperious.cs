@@ -48,7 +48,14 @@ namespace Eternal.NPCs.Boss.AoI
             npc.HitSound = SoundID.NPCHit4;
             npc.DeathSound = SoundID.NPCDeath3;
             npc.boss = true;
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/BladeofBrutality");
+            if (!ModContent.GetInstance<EternalConfig>().originalMusic)
+            {
+                music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/New/ImperiousStrike");
+            }
+            else
+            {
+                music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/BladeofBrutality");
+            }
             npc.defense = 70;
             npc.damage = 62;
             npc.lavaImmune = true;

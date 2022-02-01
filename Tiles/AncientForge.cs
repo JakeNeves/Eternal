@@ -36,6 +36,7 @@ namespace Eternal.Tiles
                 TileID.WorkBenches,
                 TileID.AdamantiteForge,
                 TileID.MythrilAnvil,
+                TileID.Anvils,
                 TileID.Bottles,
                 TileID.AlchemyTable,
                 TileID.CookingPots,

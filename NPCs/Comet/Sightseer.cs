@@ -5,11 +5,15 @@ using Eternal.Tiles;
 using System.Linq;
 using Eternal.Items.Weapons.Magic;
 using Eternal.Items.Materials;
+using Microsoft.Xna.Framework;
+using System;
 
 namespace Eternal.NPCs.Comet
 {
-    class Sightseer : ModNPC
+    public class Sightseer : ModNPC
     {
+
+        private Player player;
 
         public override void SetStaticDefaults()
         {
@@ -31,7 +35,7 @@ namespace Eternal.NPCs.Comet
             npc.noGravity = true;
             npc.lavaImmune = true;
             npc.value = 50f;
-            npc.aiStyle = 5;
+            npc.noTileCollide = true;
         }
 
         public override void FindFrame(int frameHeight)
@@ -50,7 +54,7 @@ namespace Eternal.NPCs.Comet
             else
             {
                 for (int k = 0; k < damage / npc.lifeMax * 50; k++)
-                    Dust.NewDust(npc.position, npc.width, npc.height, 27, 2.5f * hitDirection, -2.5f, 0, default, 1.7f);
+                    Dust.NewDust(npc.position, npc.width, npc.height, DustID.Shadowflame, 2.5f * hitDirection, -2.5f, 0, default, 1.7f);
             }
         }
 
@@ -69,11 +73,65 @@ namespace Eternal.NPCs.Comet
         public override void AI()
         {
             Lighting.AddLight(npc.position, 0.75f, 0f, 0.75f);
-            npc.spriteDirection = npc.direction;
-
-            if (EternalWorld.downedCosmicApparition)
+            Player player = Main.player[npc.target];
+            if (player.dead || !player.active)
             {
-                npc.lifeMax = 22000;
+                npc.TargetClosest(false);
+                npc.active = false;
+            }
+
+            if (player == null) return;
+            Vector2 direction = npc.Center - player.Center;
+            float rotation = (float)Math.Atan2(direction.Y, direction.X);
+            npc.rotation = rotation + ((float)Math.PI * 0.5f);
+
+            float speed = 10f;
+            float acceleration = 0.10f;
+            Vector2 vector2 = new Vector2(npc.position.X + (float)npc.width * 0.5f, npc.position.Y + (float)npc.height * 0.5f);
+            float xDir = Main.player[npc.target].position.X + (float)(Main.player[npc.target].width / 2) - vector2.X;
+            float yDir = (float)(Main.player[npc.target].position.Y + (Main.player[npc.target].height / 2) - 120) - vector2.Y;
+            float length = (float)Math.Sqrt(xDir * xDir + yDir * yDir);
+            if (length > 400 && Main.expertMode)
+            {
+                ++speed;
+                acceleration += 0.05F;
+                if (length > 600)
+                {
+                    ++speed;
+                    acceleration += 0.05F;
+                    if (length > 800)
+                    {
+                        ++speed;
+                        acceleration += 0.05F;
+                    }
+                }
+            }
+            float num10 = speed / length;
+            xDir = xDir * num10;
+            yDir = yDir * num10;
+            if (npc.velocity.X < xDir)
+            {
+                npc.velocity.X = npc.velocity.X + acceleration;
+                if (npc.velocity.X < 0 && xDir > 0)
+                    npc.velocity.X = npc.velocity.X + acceleration;
+            }
+            else if (npc.velocity.X > xDir)
+            {
+                npc.velocity.X = npc.velocity.X - acceleration;
+                if (npc.velocity.X > 0 && xDir < 0)
+                    npc.velocity.X = npc.velocity.X - acceleration;
+            }
+            if (npc.velocity.Y < yDir)
+            {
+                npc.velocity.Y = npc.velocity.Y + acceleration;
+                if (npc.velocity.Y < 0 && yDir > 0)
+                    npc.velocity.Y = npc.velocity.Y + acceleration;
+            }
+            else if (npc.velocity.Y > yDir)
+            {
+                npc.velocity.Y = npc.velocity.Y - acceleration;
+                if (npc.velocity.Y > 0 && yDir < 0)
+                    npc.velocity.Y = npc.velocity.Y - acceleration;
             }
         }
 

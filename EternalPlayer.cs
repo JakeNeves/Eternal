@@ -12,6 +12,8 @@ namespace Eternal
     public class EternalPlayer : ModPlayer
     {
 
+        public int cosmicApparitionPresence = 0;
+
         bool justSpawnedIceWheel = false;
 
         #region Defbuffs
@@ -45,6 +47,42 @@ namespace Eternal
             EternalGlobalProjectile.cometGauntlet = false;
             EternalGlobalProjectile.emperorsGift = false;
             frostKingsCore = false;
+        }
+
+        public override void PreUpdate()
+        {
+            if (EternalWorld.hellMode)
+            {
+                if (!EternalWorld.downedCosmicApparition && NPC.downedMoonlord && !NPC.AnyNPCs(ModContent.NPCType<NPCs.Boss.CosmicApparition.CosmicApparition>()))
+                {
+                    cosmicApparitionPresence++;
+                    switch (cosmicApparitionPresence)
+                    {
+                        case 4000:
+                            Main.NewText("An unknown halucination manifests and seeks your soul...", 220, 0, 210);
+                            break;
+                        case 8000:
+                            Main.NewText("Shrieks of fallen lives start to echo around you...", 220, 0, 210);
+                            break;
+                        case 12000:
+                            Main.NewText("Something approaches from a vast distance...", 220, 0, 210);
+                            break;
+                        case 16000:
+                            NPC.NewNPC((int)player.Center.X, (int)player.Center.Y - 900, ModContent.NPCType<NPCs.Boss.CosmicApparition.CosmicApparition>());
+                            Main.NewText("A Cosmic Apparition has awoken!", 175, 75, 255);
+                            cosmicApparitionPresence = 0;
+                            break;
+                    }
+                }
+                else
+                {
+                    cosmicApparitionPresence = 0;
+                }
+            }
+            else
+            {
+                cosmicApparitionPresence = 0;
+            }
         }
 
         public override void PostUpdate()

@@ -316,12 +316,30 @@ namespace Eternal.NPCs.Boss.CosmicApparition
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            for (int k = 0; k < damage / npc.lifeMax * 50; k++)
-                Dust.NewDust(npc.position, npc.width, npc.height, DustID.Shadowflame, 2.5f * hitDirection, -2.5f, 0, default, 1.7f);
+            if (npc.life <= 0)
+            {
+                Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/CosmicApparitionHead"), 1f);
+                Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/CosmicApparitionBody"), 1f);
+                Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/CosmicApparitionArm"), 1f);
+                Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/CosmicApparitionArm"), 1f);
+            }
+            else
+            {
+
+                for (int k = 0; k < damage / npc.lifeMax * 20.0; k++)
+                {
+                    Dust.NewDust(npc.Center, npc.width, npc.height, DustID.PurpleTorch, hitDirection, -2f, 0, default(Color), 1f);
+                    Dust.NewDust(npc.Center, npc.width, npc.height, DustID.Shadowflame, hitDirection, -1f, 0, default(Color), 1f);
+                }
+            }
+
+            // for (int k = 0; k < damage / npc.lifeMax * 50; k++)
+            //     Dust.NewDust(npc.position, npc.width, npc.height, DustID.Shadowflame, 2.5f * hitDirection, -2.5f, 0, default, 1.7f);
         }
 
         public override void BossLoot(ref string name, ref int potionType)
         {
+            name = "The " + name;
             potionType = ModContent.ItemType<PristineHealingPotion>();
         }
 
