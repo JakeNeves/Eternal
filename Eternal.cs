@@ -26,6 +26,7 @@ using Eternal.Items.Tools;
 using Eternal.UI;
 using Eternal.Items.Weapons.Radiant;
 using Eternal.Items.Materials.Elementalblights;
+using Terraria.GameContent.UI;
 
 namespace Eternal
 {
@@ -39,6 +40,8 @@ namespace Eternal
 
 		internal bool CalamityLoaded;
 		internal bool FargowiltasModLoaded;
+
+		public static int ApollyonCoin = -1;
 
         public Eternal()
 		{
@@ -66,21 +69,25 @@ namespace Eternal
         {
 			instance = this;
 
+			ApollyonCoin = CustomCurrencyManager.RegisterCurrency(new Items.ACoins(ModContent.ItemType<Items.ApollyonCoin>()));
+
 			#region Music Boxes
 			if (!ModContent.GetInstance<EternalConfig>().originalMusic)
 			{
 				AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/New/ImperiousShrine"), ItemType("LabrynthMusicBox"), TileType("LabrynthMusicBox"));
 				AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/New/PyroneticPurgatory"), ItemType("IncineriusMusicBox"), TileType("IncineriusMusicBox"));
 				AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/New/DarknessFromDeepBelow"), ItemType("BeneathMusicBox"), TileType("BeneathMusicBox"));
+				AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/New/ImperiousStrike"), ItemType("AoIMusicBox"), TileType("AoIMusicBox"));
 			}
 			else
 			{
 				AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/MazesAndLivingSwords"), ItemType("LabrynthMusicBox"), TileType("LabrynthMusicBox"));
 				AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/DeepDark"), ItemType("BeneathMusicBox"), TileType("BeneathMusicBox"));
 				AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/FieryBattler"), ItemType("IncineriusMusicBox"), TileType("IncineriusMusicBox"));
+				AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/BladeofBrutality"), ItemType("AoIMusicBox"), TileType("AoIMusicBox"));
 			}
 
-			AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/BladeofBrutality"), ItemType("AoIMusicBox"), TileType("AoIMusicBox"));
+			
 			AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/DunesWrath"), ItemType("DunekeeperMusicBox"), TileType("DunekeeperMusicBox"));
 				
 			#endregion
@@ -172,12 +179,6 @@ namespace Eternal
 				music = GetSoundSlot(SoundType.Music, "Sounds/Music/AshFields");
 				priority = MusicPriority.BiomeMedium;
 			}
-
-			if (Main.LocalPlayer.GetModPlayer<EternalPlayer>().droxEvent)
-			{
-				 music = GetSoundSlot(SoundType.Music, "Sounds/Music/MechanicalEnvy");
-				 priority = MusicPriority.BossMedium;
-			}
             #endregion
 
             #region Vanilla Music Replacement
@@ -222,6 +223,11 @@ namespace Eternal
 								}
 							}
 						}
+						if (player.ZoneDungeon)
+                        {
+							music = GetSoundSlot(SoundType.Music, "Sounds/Music/VanillaReplace/CursedKeep");
+							priority = MusicPriority.BiomeMedium;
+						}
 
 						if (player.ZoneDesert && !Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneCommet)
 						{
@@ -233,6 +239,14 @@ namespace Eternal
 							else
 							{
 								music = GetSoundSlot(SoundType.Music, "Sounds/Music/VanillaReplace/SandySunshine");
+								priority = MusicPriority.BiomeHigh;
+							}
+						}
+						if (!Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneCommet && !player.ZoneDungeon && !player.ZoneDesert && !player.ZoneSnow)
+                        {
+							if (!Main.dayTime)
+							{
+								music = GetSoundSlot(SoundType.Music, "Sounds/Music/VanillaReplace/StarlightStarbright");
 								priority = MusicPriority.BiomeHigh;
 							}
 						}
@@ -384,7 +398,7 @@ namespace Eternal
 					(Func<bool>)(() => EternalWorld.downedCosmicApparition),
 					ModContent.ItemType<OtherworldlyDebris>(),
 					0,
-					new List<int> { ModContent.ItemType<CosmicApparitionBag>(), ModContent.ItemType<ResonantPhantasmoblood>(), ModContent.ItemType<ApparitionalRendingStaff>(), ModContent.ItemType<ApparitionalDisk>(), ModContent.ItemType<CosmicFist>(), ModContent.ItemType<Cometstorm>(), ModContent.ItemType<PristineHealingPotion>() },
+					new List<int> { ModContent.ItemType<CosmicApparitionBag>(), ModContent.ItemType<ResonantPhantasmoblood>(), ModContent.ItemType<ApparitionalRendingStaff>(), ModContent.ItemType<ApparitionalDisk>(), ModContent.ItemType<Vexation>(), ModContent.ItemType<Cometstorm>(), ModContent.ItemType<PristineHealingPotion>() },
 					"Spawn by using a [i:" + ModContent.ItemType<OtherworldlyDebris>() + "] in the comet biome",
 					"The Ghost of Someone Powerful",
 					"Eternal/BossChecklist/CosmicApparition",
@@ -400,7 +414,7 @@ namespace Eternal
 					(Func<bool>)(() => EternalWorld.downedArkOfImperious),
 					ModContent.ItemType<RoyalLabrynthSword>(),
 					new List<int> { ModContent.ItemType<AoIMusicBox>() },
-					new List<int> { ModContent.ItemType<AoIBag>(), ModContent.ItemType<TheImperiousCohort>(), ModContent.ItemType<TheEnigma>(), ModContent.ItemType<DormantHeroSword>(), ModContent.ItemType<Arkbow>(), ModContent.ItemType<PristineHealingPotion>() },
+					new List<int> { ModContent.ItemType<AoIBag>(), ModContent.ItemType<GiftofTheSwordGod>(), ModContent.ItemType<TheImperiousCohort>(), ModContent.ItemType<TheEnigma>(), ModContent.ItemType<DormantHeroSword>(), ModContent.ItemType<Arkbow>(), ModContent.ItemType<PristineHealingPotion>() },
 					"Spawn by using the [i:" + ModContent.ItemType<RoyalLabrynthSword>() + "] at the shrine",
 					"The mighty imperial blade of the shrine",
 					"Eternal/BossChecklist/ArkofImperious",
@@ -471,7 +485,55 @@ namespace Eternal
 					GetTexture("BossBars/BionicBossBarEnd"),
 					GetTexture("BossBars/BionicBossBarFill"));
 				FKBossHealthBar.Call("hbSetBossHeadTexture", GetTexture("NPCs/Boss/BionicBosses/Orion_Head_Boss"));
+				FKBossHealthBar.Call("hbFinishSingle", ModContent.NPCType<NPCs.Boss.BionicBosses.Borealis>());
+				FKBossHealthBar.Call("hbStart");
+				FKBossHealthBar.Call("hbSetTexture",
+					GetTexture("BossBars/BionicBossBarStart"),
+					GetTexture("BossBars/BionicBossBarMiddle"),
+					GetTexture("BossBars/BionicBossBarEnd"),
+					GetTexture("BossBars/BionicBossBarFill"));
+				FKBossHealthBar.Call("hbSetBossHeadTexture", GetTexture("NPCs/Boss/BionicBosses/Photon_Head_Boss"));
+				FKBossHealthBar.Call("hbFinishSingle", ModContent.NPCType<NPCs.Boss.BionicBosses.Photon>());
+				FKBossHealthBar.Call("hbStart");
+				FKBossHealthBar.Call("hbSetTexture",
+					GetTexture("BossBars/BionicBossBarStart"),
+					GetTexture("BossBars/BionicBossBarMiddle"),
+					GetTexture("BossBars/BionicBossBarEnd"),
+					GetTexture("BossBars/BionicBossBarFill"));
+				FKBossHealthBar.Call("hbSetBossHeadTexture", GetTexture("NPCs/Boss/BionicBosses/Proton_Head_Boss"));
+				FKBossHealthBar.Call("hbFinishSingle", ModContent.NPCType<NPCs.Boss.BionicBosses.Proton>());
+				FKBossHealthBar.Call("hbStart");
+				FKBossHealthBar.Call("hbSetTexture",
+					GetTexture("BossBars/BionicBossBarStart"),
+					GetTexture("BossBars/BionicBossBarMiddle"),
+					GetTexture("BossBars/BionicBossBarEnd"),
+					GetTexture("BossBars/BionicBossBarFill"));
+				FKBossHealthBar.Call("hbSetBossHeadTexture", GetTexture("NPCs/Boss/BionicBosses/Quasar_Head_Boss"));
+				FKBossHealthBar.Call("hbFinishSingle", ModContent.NPCType<NPCs.Boss.BionicBosses.Quasar>());
+				FKBossHealthBar.Call("hbStart");
+				FKBossHealthBar.Call("hbSetTexture",
+					GetTexture("BossBars/BionicBossBarStart"),
+					GetTexture("BossBars/BionicBossBarMiddle"),
+					GetTexture("BossBars/BionicBossBarEnd"),
+					GetTexture("BossBars/BionicBossBarFill"));
+				FKBossHealthBar.Call("hbSetBossHeadTexture", GetTexture("NPCs/Boss/BionicBosses/Orion_Head_Boss"));
 				FKBossHealthBar.Call("hbFinishSingle", ModContent.NPCType<NPCs.Boss.BionicBosses.Orion>());
+				FKBossHealthBar.Call("hbStart");
+				FKBossHealthBar.Call("hbSetTexture",
+					GetTexture("BossBars/BionicBossBarStart"),
+					GetTexture("BossBars/BionicBossBarMiddle"),
+					GetTexture("BossBars/BionicBossBarEnd"),
+					GetTexture("BossBars/BionicBossBarFill"));
+				FKBossHealthBar.Call("hbSetBossHeadTexture", GetTexture("NPCs/Boss/BionicBosses/Orion_Head_Boss"));
+				FKBossHealthBar.Call("hbFinishSingle", ModContent.NPCType<NPCs.Boss.BionicBosses.Polarus>());
+				FKBossHealthBar.Call("hbStart");
+				FKBossHealthBar.Call("hbSetTexture",
+					GetTexture("BossBars/BionicBossBarStart"),
+					GetTexture("BossBars/BionicBossBarMiddle"),
+					GetTexture("BossBars/BionicBossBarEnd"),
+					GetTexture("BossBars/BionicBossBarFill"));
+				FKBossHealthBar.Call("hbSetBossHeadTexture", GetTexture("NPCs/Boss/BionicBosses/Orion_Head_Boss"));
+				FKBossHealthBar.Call("hbFinishSingle", ModContent.NPCType<NPCs.Boss.BionicBosses.Omnicron.Omnicron>());
 				// AoI
 				FKBossHealthBar.Call("hbStart");
 				FKBossHealthBar.Call("hbSetTexture",

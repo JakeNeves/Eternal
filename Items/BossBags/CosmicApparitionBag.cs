@@ -41,7 +41,7 @@ namespace Eternal.Items.BossBags
 
             if (Main.rand.Next(2) == 0)
             {
-                player.QuickSpawnItem(ItemType<CosmicFist>());
+                player.QuickSpawnItem(ItemType<Vexation>());
             }
 
             if (Main.rand.Next(3) == 0)

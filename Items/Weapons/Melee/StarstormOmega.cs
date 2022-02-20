@@ -15,7 +15,9 @@ namespace Eternal.Items.Weapons.Melee
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'Where do we even go from here...'");
+            Tooltip.SetDefault("[c/ff0000:Warning]" +
+                             "\nThis weapon can cause lag, use at your own risk!" +
+                             "\n'Where do we even go from here?'");
         }
 
         public override void SetDefaults()

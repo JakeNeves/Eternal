@@ -34,7 +34,8 @@ namespace Eternal.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "30% increased melee damage and 20% increased melee speed";
+            player.setBonus = "30% increased melee damage and 20% increased melee speed" +
+                            "\nYou release Swords when struck";
             player.meleeDamage += 0.30f;
             player.meleeSpeed += 0.20f;
 
@@ -43,6 +44,8 @@ namespace Eternal.Items.Armor
             dust = Main.dust[Dust.NewDust(player.position, (int)player.width, (int)player.height, ModContent.DustType<ArkEnergy>(), 0f, 0f, 0, new Color(255, 255, 255), 0.5f)];
             dust.fadeIn = 0.4f;
             dust.noGravity = true;
+
+            EternalPlayer.ArkaniumArmor = true;
         }
 
         public override void UpdateEquip(Player player)

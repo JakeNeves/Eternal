@@ -3,12 +3,12 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System;
-using Microsoft.Xna.Framework.Graphics;
 using Eternal.Items.Potions;
 using Eternal.Items.Materials;
 
 namespace Eternal.NPCs.Boss.BionicBosses
 {
+    [AutoloadBossHead]
     public class Photon : ModNPC
     {
 

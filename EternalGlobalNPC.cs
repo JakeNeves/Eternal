@@ -60,9 +60,6 @@ namespace Eternal.NPCs
             if (EternalWorld.downedDunekeeper)
             {
             }
-            if (EternalWorld.downedDroxClan)
-            {
-            }
         }
 
         public override void NPCLoot(NPC npc)
@@ -359,9 +356,6 @@ namespace Eternal.NPCs
             {
             }
             if (EternalWorld.downedDunekeeper)
-            {
-            }
-            if (EternalWorld.downedDroxClan)
             {
             }
         }

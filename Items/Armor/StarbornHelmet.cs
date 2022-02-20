@@ -33,9 +33,13 @@ namespace Eternal.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "+8 minion slots and 20% increased minion damage";
+            player.setBonus = "+8 minion slots and 20% increased minion damage" +
+                            "\nWeapon projectiles heal the player by 15% when below half healt upon hitting any enemy" +
+                            "\n15% increased damage when below half health";
             player.minionDamage += 0.20f;
             player.maxMinions += 8;
+
+            EternalGlobalProjectile.starbornArmor = true;
 
             Dust dust;
             Vector2 position = Main.LocalPlayer.Center;

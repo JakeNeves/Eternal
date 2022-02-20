@@ -9,8 +9,7 @@ namespace Eternal.Items.Materials
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Debris of the Depths");
-            Tooltip.SetDefault("Can be exchanged for Apollyon Coins" + 
-                            "\n'A Cluster of Crumbled Grimstone'");
+            Tooltip.SetDefault("'A Cluster of Crumbled Grimstone'");
         }
 
         public override void SetDefaults()

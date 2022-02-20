@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Eternal.Tiles;
 using Eternal.Items.Materials;
 using Eternal.Items.Summon;
+using Eternal.Items;
 
 namespace Eternal.NPCs.Beneath
 {
@@ -107,6 +108,11 @@ namespace Eternal.NPCs.Beneath
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<StoneSkull>());
             }
+            if (Main.rand.Next(2) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ApollyonCoin>(), Main.rand.Next(2, 9));
+            }
+
             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<DepthsDebris>(), Main.rand.Next(3, 9));
         }
 

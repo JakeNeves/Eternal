@@ -50,19 +50,17 @@ namespace Eternal
         //Pre-Hardmode
         public static bool downedCarmaniteScouter = false;
         public static bool downedDunekeeper = false;
+
         //Hardmode
         public static bool downedIncinerius = false;
         public static bool downedSubzeroElemental = false;
+
         //Post-Moon Lord
         public static bool downedSubzeroElementalP2 = false;
         public static bool downedCosmicApparition = false;
-
         public static bool downedArkOfImperious = false;
 
         public static bool downedCosmicEmperor = false;
-
-        //Events
-        public static bool downedDroxClan = false;
         #endregion
 
         public override void TileCountsAvailable(int[] tileCounts)
@@ -82,19 +80,17 @@ namespace Eternal
             //Pre-Hardmode
 			downedCarmaniteScouter = false;
             downedDunekeeper = false;
+
             //Hardmode
             downedIncinerius = false;
             downedSubzeroElemental = false;
+
             //Post-Moon Lord
             downedSubzeroElementalP2 = false;
             downedCosmicApparition = false;
-
             downedArkOfImperious = false;
 
             downedCosmicEmperor = false;
-
-            //Events
-            downedDroxClan = false;
 
             hellMode = false;
         }
@@ -108,19 +104,17 @@ namespace Eternal
             if (downedCarmaniteScouter) downed.Add("eternal");
             if (downedDunekeeper) downed.Add("eternal");
             //Hardmode
+
             if (downedIncinerius) downed.Add("eternal");
             if (downedSubzeroElemental) downed.Add("eternal");
+
             //Post-Moon Lord
             if (downedSubzeroElementalP2) downed.Add("eternal");
             if (downedCosmicApparition) downed.Add("eternal");
-
             if (downedArkOfImperious) downed.Add("eternal");
 
             if (downedCosmicEmperor) downed.Add("eternal");
             #endregion
-
-            //Events
-            if (downedDroxClan) downed.Add("eternal");
 
             if (hellMode) difficulty.Add("eternal");
 
@@ -136,24 +130,23 @@ namespace Eternal
         {
             var downed = tag.GetList<string>("downed");
             var difficulty = tag.GetList<string>("difficulty");
+
             #region DownedBosses
             //Pre-Hardmode
             downedCarmaniteScouter = downed.Contains("eternal");
             downedDunekeeper = downed.Contains("eternal");
+
             //Hardmode
             downedIncinerius = downed.Contains("eternal");
             downedSubzeroElemental = downed.Contains("eternal");
+
             //Post-Moon Lord
             downedSubzeroElementalP2 = downed.Contains("eternal");
             downedCosmicApparition = downed.Contains("eternal");
-
             downedArkOfImperious = downed.Contains("eternal");
 
             downedCosmicEmperor = downed.Contains("eternal");
             #endregion
-
-            //Events
-            downedDroxClan = downed.Contains("eternal");
 
             hellMode = difficulty.Contains("eternal");
         }
@@ -161,6 +154,7 @@ namespace Eternal
         public override void LoadLegacy(BinaryReader reader)
         {
             int loadVersion = reader.ReadInt32();
+
             if (loadVersion == 0)
             {
                 BitsByte flags = reader.ReadByte();
@@ -179,9 +173,6 @@ namespace Eternal
 
                 downedCosmicEmperor = flags[7];
                 #endregion
-
-                //Events
-                downedDroxClan = flags[0];
             }
         }
 
@@ -189,22 +180,23 @@ namespace Eternal
         {
             BitsByte flags = new BitsByte();
             BitsByte difficultyFlag = new BitsByte();
+
             #region DownedBossFlags
             //Pre-Hardmode
             flags[0] = downedCarmaniteScouter;
             flags[1] = downedDunekeeper;
+
             //Hardmode
             flags[2] = downedIncinerius;
             flags[3] = downedSubzeroElemental;
+
             //Post-Moon Lord
             flags[4] = downedSubzeroElementalP2;
             flags[5] = downedCosmicApparition;
-
             flags[6] = downedArkOfImperious;
-            #endregion
 
-            //Events
-            flags[0] = downedDroxClan;
+            flags[7] = downedCosmicEmperor;
+            #endregion
 
             difficultyFlag[0] = hellMode;
 
@@ -216,24 +208,23 @@ namespace Eternal
         {
             BitsByte flags = reader.ReadByte();
             BitsByte difficultyFlag = new BitsByte();
+
             #region DownedBossFlags
             //Pre-Hardmode
             downedCarmaniteScouter = flags[0];
             downedDunekeeper = flags[1];
+
             //Hardmode
             downedIncinerius = flags[2];
             downedSubzeroElemental = flags[3];
+
             //Post-Moon Lord
             downedSubzeroElementalP2 = flags[4];
             downedCosmicApparition = flags[5];
-
             downedArkOfImperious = flags[6];
 
             downedCosmicEmperor = flags[7];
             #endregion
-
-            //Events
-            downedDroxClan = flags[0];
 
             difficultyFlag[0] = hellMode;
         }

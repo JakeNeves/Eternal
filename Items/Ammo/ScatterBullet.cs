@@ -4,7 +4,6 @@ using Eternal.Tiles;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Items.Ammo
 {
@@ -26,7 +25,7 @@ namespace Eternal.Items.Ammo
             item.consumable = true;
             item.knockBack = 1.5f;
             item.rare = ItemRarityID.Lime;
-            item.shoot = ProjectileType<ScatterBulletProjectile>();
+            item.shoot = ModContent.ProjectileType<ScatterBulletProjectile>();
             item.shootSpeed = 18f;
             item.ammo = AmmoID.Bullet;
         }
@@ -35,8 +34,9 @@ namespace Eternal.Items.Ammo
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddTile(TileID.MythrilAnvil);
-            recipe.AddIngredient(ItemType<DroxPlate>(), 2);
-            recipe.AddIngredient(ItemType<DroxCore>());
+            recipe.AddIngredient(ItemID.HallowedBar, 2);
+            recipe.AddIngredient(ItemID.ChlorophyteBar, 2);
+            recipe.AddIngredient(ItemID.MusketBall);
             recipe.SetResult(this, 333);
             recipe.AddRecipe();
         }

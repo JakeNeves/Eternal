@@ -65,7 +65,7 @@ namespace Eternal.NPCs.Town
         public override void SetChatButtons(ref string button, ref string button2)
         {
             button = Language.GetTextValue("LegacyInterface.28");
-            button2 = "Exchange for Apollyon Coins";
+            button2 = "Apollyon Coins";
         }
 
         public override void OnChatButtonClicked(bool firstButton, ref bool shop)
@@ -75,18 +75,30 @@ namespace Eternal.NPCs.Town
             else
             {
                 Player player = Main.player[Main.myPlayer];
-                if (Main.LocalPlayer.HasItem(ModContent.ItemType<DepthsDebris>()))
+                /*if (Main.LocalPlayer.HasItem(ModContent.ItemType<DepthsDebris>()))
                 {
                     Main.PlaySound(SoundID.Tink);
                     Main.npcChatText = "Sweet, here is your reward, feel free to come see me again if you want to exchange more materials for my Apollyon Coins, otherwise spend some on what I have to offer " + player.name + "!";
                     int debris = Main.LocalPlayer.FindItem(ModContent.ItemType<DepthsDebris>());
                     Main.LocalPlayer.inventory[debris].TurnToAir();
-                    Main.LocalPlayer.QuickSpawnItem(ModContent.ItemType<ApollyonCoin>(), Main.rand.Next(3, 12));
+                    Main.LocalPlayer.QuickSpawnItem(ModContent.ItemType<ApollyonCoin>());
                     return;
                 }
                 else
                 {
                     Main.npcChatText = "I would let you have some of my special tokens, however you must find me something that I can use to make them with " + player.name + ", try looking for creatures from deep below in the darkest area of the world.";
+                }*/
+                switch(Main.rand.Next(3))
+                {
+                    case 0:
+                        Main.npcChatText = "Apollyon Coins have a chance to be dropped by creatures within the darkest part of this world.";
+                        break;
+                    case 1:
+                        Main.npcChatText = "Apollyon Coins are basically a way of buying items from me without having to spend real money on what I sell...";
+                        break;
+                    default:
+                        Main.npcChatText = "Apollyon Coins are the currency that I use for exchanging for items with, just like actual money. What else can you do with this mysterious stone?";
+                        break;
                 }
             }
         }
@@ -171,18 +183,28 @@ namespace Eternal.NPCs.Town
 
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<ScorchedMetal>());
-            nextSlot++;
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<SpiritTablet>());
+            shop.item[nextSlot].shopCustomPrice = new int?(12);
+            shop.item[nextSlot].shopSpecialCurrency = Eternal.ApollyonCoin;
             nextSlot++;
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<GrimstoneTorch>());
+            shop.item[nextSlot].shopCustomPrice = new int?(2);
+            shop.item[nextSlot].shopSpecialCurrency = Eternal.ApollyonCoin;
             nextSlot++;
             if (EternalWorld.downedArkOfImperious)
             {
                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<ArkaniumCompound>());
+                shop.item[nextSlot].shopCustomPrice = new int?(24);
+                shop.item[nextSlot].shopSpecialCurrency = Eternal.ApollyonCoin;
                 nextSlot++;
             }
-
+            if (EternalWorld.downedIncinerius)
+            {
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<ScorchedMetal>());
+                shop.item[nextSlot].shopCustomPrice = new int?(16);
+                shop.item[nextSlot].shopSpecialCurrency = Eternal.ApollyonCoin;
+                nextSlot++;
+            }
         }
 
         public override bool CanGoToStatue(bool toKingStatue)

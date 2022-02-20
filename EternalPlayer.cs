@@ -1,11 +1,14 @@
-﻿using Eternal.Items;
+﻿using Eternal.Buffs;
+using Eternal.Items;
 using Eternal.NPCs;
 using Eternal.Projectiles.Accessories;
+using Eternal.Projectiles.Armor;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace Eternal
 {
@@ -28,6 +31,11 @@ namespace Eternal
 
         #region Accessory Effects
         public static bool frostKingsCore = false;
+        public static bool AoIGift = false;
+        #endregion
+
+        #region Armor Effects
+        public static bool ArkaniumArmor = false;
         #endregion
 
         public bool ZoneLabrynth = false;
@@ -46,7 +54,12 @@ namespace Eternal
         {
             EternalGlobalProjectile.cometGauntlet = false;
             EternalGlobalProjectile.emperorsGift = false;
+            EternalGlobalProjectile.starbornArmor = false;
             frostKingsCore = false;
+            AoIGift = false;
+            ArkaniumArmor = false;
+
+            player.statLifeMax2 += lifeFruits * 2;
         }
 
         public override void PreUpdate()
@@ -82,6 +95,38 @@ namespace Eternal
             else
             {
                 cosmicApparitionPresence = 0;
+            }
+        }
+
+        public override TagCompound Save()
+        {
+            return new TagCompound
+            {
+                {"lifeFruits", lifeFruits}
+            };
+        }
+
+        public override void Load(TagCompound tag)
+        {
+            lifeFruits = tag.GetInt("lifeFruits");
+        }
+
+        public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
+        {
+
+            if (ArkaniumArmor)
+            {
+                if (Main.rand.Next(4) == 0)
+                    player.HealEffect(Main.rand.Next(3, 5), false);
+                
+                Projectile.NewProjectile(player.position.X + 80, player.position.Y + 80, -12, 0, ModContent.ProjectileType<ArkaniumSword>(), 6, 0, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(player.position.X + 80, player.position.Y + 80, 12, 0, ModContent.ProjectileType<ArkaniumSword>(), 6, 0, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(player.position.X + 80, player.position.Y + 80, 0, 12, ModContent.ProjectileType<ArkaniumSword>(), 6, 0, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(player.position.X + 80, player.position.Y + 80, 0, -12, ModContent.ProjectileType<ArkaniumSword>(), 6, 0, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(player.position.X + 40, player.position.Y + 40, -8, -8, ModContent.ProjectileType<ArkaniumSword>(), 6, 0, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(player.position.X + 40, player.position.Y + 40, 8, -8, ModContent.ProjectileType<ArkaniumSword>(), 6, 0, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(player.position.X + 40, player.position.Y + 40, -8, 8, ModContent.ProjectileType<ArkaniumSword>(), 6, 0, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(player.position.X + 40, player.position.Y + 40, 8, 8, ModContent.ProjectileType<ArkaniumSword>(), 6, 0, Main.myPlayer, 0f, 0f);
             }
         }
 
@@ -124,7 +169,7 @@ namespace Eternal
                 player.lifeRegen -= 20;
                 if (player.statLife <= 0)
                 {
-                    player.KillMe(PlayerDeathReason.ByCustomReason(player.name + " had there soul consumed by the wrath of Incinerius"), 10000, 1, false);
+                    player.KillMe(PlayerDeathReason.ByCustomReason(player.name + "'s soul consumed by the wrath of Incinerius"), 10000, 1, false);
                 }
             }
             else if (embericCombustion)
@@ -137,7 +182,7 @@ namespace Eternal
                 player.lifeRegen -= 15;
                 if (player.statLife <= 0)
                 {
-                    player.KillMe(PlayerDeathReason.ByCustomReason(player.name + "' was cremated into ashes"), 10000, 1, false);
+                    player.KillMe(PlayerDeathReason.ByCustomReason(player.name + " was cremated into ashes"), 10000, 1, false);
                 }
             }
         }

@@ -33,9 +33,13 @@ namespace Eternal.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "20% increased melee damage and 17% increased melee speed";
+            player.setBonus = "20% increased melee damage and 17% increased melee speed" +
+                            "\nWeapon projectiles heal the player by 15% when below half healt upon hitting any enemy" +
+                            "\n15% increased damage when below half health";
             player.meleeDamage += 0.20f;
             player.meleeSpeed += 0.17f;
+
+            EternalGlobalProjectile.starbornArmor = true;
 
             Dust dust;
             Vector2 position = Main.LocalPlayer.Center;

@@ -11,6 +11,7 @@ using Eternal.Items.Weapons.Throwing;
 using Eternal.Projectiles.Boss;
 using Eternal.Items.Potions;
 using Microsoft.Xna.Framework.Graphics;
+using Eternal.Items.Materials;
 
 namespace Eternal.NPCs.Boss.CosmicApparition
 {
@@ -351,13 +352,13 @@ namespace Eternal.NPCs.Boss.CosmicApparition
                 Vector2 direction = Main.player[npc.target].Center - npc.Center;
                 direction.Normalize();
                 int damage = expert ? 15 : 19;
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X * 14f, direction.Y * 14f, ProjectileID.DD2DrakinShot, damage, 1, Main.myPlayer, 0, 0);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X * 14f, direction.Y * 14f, ProjectileID.DD2DrakinShot, npc.damage, 1, Main.myPlayer, 0, 0);
             }
 
             if (!EternalWorld.downedCosmicApparition)
             {
                 Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Custom/CosmicEmperorLaugh"), (int)npc.position.X, (int)npc.position.Y);
-                Main.NewText("A Cosmic Emperor gazes upon your devotion to victory...", 170, 70, 250);
+                Main.NewText("Someone gazes upon your devotion to victory...", 220, 20, 220);
                 Main.NewText("The cosmic entities have been empowered...", 240, 0, 240);
                 EternalWorld.downedCosmicApparition = true;
             }
@@ -378,14 +379,14 @@ namespace Eternal.NPCs.Boss.CosmicApparition
                 }
                 if (Main.rand.Next(3) == 0)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<CosmicFist>());
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Vexation>());
                 }
                 if (Main.rand.Next(4) == 0)
                 {
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ApparitionalRendingStaff>());
                 }
 
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ApparitionalRendingStaff>(), Main.rand.Next(15, 45));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ApparitionalMatter>(), Main.rand.Next(15, 45));
 
             }
         }

@@ -1,5 +1,6 @@
 ﻿using Eternal.Dusts;
 using Eternal.Items.Materials.Elementalblights;
+using Eternal.Projectiles.Weapons.Expert;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -9,6 +10,20 @@ namespace Eternal
 {
     public class EternalGlobalItem : GlobalItem
     {
+        public override bool Shoot(Item item, Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        {
+            if (EternalPlayer.AoIGift)
+            {
+                if (item.melee)
+                {
+                    Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(30));
+                    Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, ModContent.ProjectileType<AoIProjectile>(), damage, knockBack, player.whoAmI);
+                    Main.PlaySound(SoundID.DD2_DarkMageAttack, Main.myPlayer);
+                }
+            }
+
+            return true;
+        }
 
         public override void MeleeEffects(Item item, Player player, Rectangle hitbox)
         {

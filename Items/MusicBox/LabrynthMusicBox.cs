@@ -9,8 +9,11 @@ namespace Eternal.Items.MusicBox
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Music Box (Labrynth)");
-            Tooltip.SetDefault("JakeTEM - Mazes and Living Swords");
+            DisplayName.SetDefault("Music Box (Shrine)");
+            if (!ModContent.GetInstance<EternalConfig>().originalMusic)
+                Tooltip.SetDefault("JakeTEM - Imperious Shrine");
+            else
+                Tooltip.SetDefault("JakeTEM - Mazes and Living Swords");
         }
 
         public override void SetDefaults()

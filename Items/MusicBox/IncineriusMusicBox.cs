@@ -10,7 +10,10 @@ namespace Eternal.Items.MusicBox
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Music Box (Incinerius)");
-            Tooltip.SetDefault("JakeTEM - Fiery Battler");
+            if (!ModContent.GetInstance<EternalConfig>().originalMusic)
+                Tooltip.SetDefault("JakeTEM - Pyronetic Purgatory");
+            else
+                Tooltip.SetDefault("JakeTEM - Fiery Battler");
         }
 
         public override void SetDefaults()

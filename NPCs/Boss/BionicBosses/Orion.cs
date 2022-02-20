@@ -1,4 +1,5 @@
-﻿using Eternal.Items.Potions;
+﻿using Eternal.Items.Materials;
+using Eternal.Items.Potions;
 using Eternal.Projectiles.Boss;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -246,6 +247,11 @@ namespace Eternal.NPCs.Boss.BionicBosses
             {
 
             }
+        }
+
+        public override void NPCLoot()
+        {
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<PiCore>(), Main.rand.Next(20, 40));
         }
 
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)

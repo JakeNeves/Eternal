@@ -1,11 +1,10 @@
 ﻿using Eternal.Items.Weapons.Melee;
 using Eternal.Items.Weapons.Ranged;
-using Eternal.Items.Weapons.Expert;
 using Terraria;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 using Eternal.Items.Ammo;
 using Eternal.Items.Materials;
+using Eternal.Items.Accessories.Expert;
 
 namespace Eternal.Items.BossBags
 {
@@ -36,31 +35,33 @@ namespace Eternal.Items.BossBags
         {
             if (Main.rand.Next(1) == 0)
             {
-                player.QuickSpawnItem(ItemType<Arkbow>());
-                player.QuickSpawnItem(ItemType<ArkArrow>(), Main.rand.Next(300, 900));
+                player.QuickSpawnItem(ModContent.ItemType<Arkbow>());
+                player.QuickSpawnItem(ModContent.ItemType<ArkArrow>(), Main.rand.Next(300, 900));
             }
 
             if (Main.rand.Next(2) == 0)
             {
-                player.QuickSpawnItem(ItemType<TheImperiousCohort>());
+                player.QuickSpawnItem(ModContent.ItemType<TheImperiousCohort>());
             }
 
             if (Main.rand.Next(3) == 0)
             {
-                player.QuickSpawnItem(ItemType<DormantHeroSword>());
+                player.QuickSpawnItem(ModContent.ItemType<DormantHeroSword>());
             }
 
             if (Main.rand.Next(4) == 0)
             {
-                player.QuickSpawnItem(ItemType<TheEnigma>());
+                player.QuickSpawnItem(ModContent.ItemType<TheEnigma>());
             }
 
             if (EternalWorld.hellMode)
-                player.QuickSpawnItem(ItemType<ArkaniumCompound>(), Main.rand.Next(60, 80));
+                player.QuickSpawnItem(ModContent.ItemType<ArkaniumCompound>(), Main.rand.Next(60, 80));
             else
-                player.QuickSpawnItem(ItemType<ArkaniumCompound>(), Main.rand.Next(40, 60));
+                player.QuickSpawnItem(ModContent.ItemType<ArkaniumCompound>(), Main.rand.Next(40, 60));
+
+            player.QuickSpawnItem(ModContent.ItemType<GiftofTheSwordGod>());
         }
 
-        public override int BossBagNPC => NPCType<NPCs.Boss.AoI.ArkofImperious>();
+        public override int BossBagNPC => ModContent.NPCType<NPCs.Boss.AoI.ArkofImperious>();
     }
 }

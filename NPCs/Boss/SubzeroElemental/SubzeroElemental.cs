@@ -27,14 +27,13 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
 
         public override void SetStaticDefaults()
         {
-            Main.npcFrameCount[npc.type] = 16;
+            Main.npcFrameCount[npc.type] = 3;
         }
 
         public override void SetDefaults()
         {
-            npc.width = 98;
-            npc.height = 116;
-            npc.lifeMax = 46000;
+            npc.width = 66;
+            npc.height = 88;
             if (NPC.downedMoonlord)
             {
                 npc.lifeMax = 92000;

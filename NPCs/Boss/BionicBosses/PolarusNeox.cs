@@ -5,6 +5,8 @@ using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Eternal.Items.Potions;
 using Eternal.Projectiles.Enemy;
+using Microsoft.Xna.Framework.Graphics;
+using Eternal.Projectiles.Boss;
 
 namespace Eternal.NPCs.Boss.BionicBosses
 {
@@ -43,6 +45,7 @@ namespace Eternal.NPCs.Boss.BionicBosses
             npc.noTileCollide = true;
             npc.HitSound = SoundID.NPCHit4;
             npc.DeathSound = SoundID.NPCDeath14;
+            npc.alpha = 0;
             music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/NeoxPower");
             npc.buffImmune[BuffID.Poisoned] = true;
             npc.buffImmune[BuffID.OnFire] = true;
@@ -174,6 +177,23 @@ namespace Eternal.NPCs.Boss.BionicBosses
                         npc.position.X = targetPosition.X + Main.rand.Next(-300, 300);
                         npc.position.Y = targetPosition.Y + Main.rand.Next(-300, 300);
                         teleportTimer = 0;
+
+                        if (npc.life < npc.lifeMax / 3)
+                        {
+                            Vector2 direction = Main.player[npc.target].Center - npc.Center;
+                            direction.Normalize();
+                            direction.X *= 8.5f;
+                            direction.Y *= 8.5f;
+                            int amountOfProjectiles = 8;
+
+                            for (int i = 0; i < amountOfProjectiles; ++i)
+                            {
+                                float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                                float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+                                if (Main.netMode != NetmodeID.MultiplayerClient)
+                                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<PolarusNeoxSignalDroneLaser>(), npc.damage, 1, Main.myPlayer, 0, 0);
+                            }
+                        }
                     }
                 }
                 else
@@ -219,6 +239,23 @@ namespace Eternal.NPCs.Boss.BionicBosses
                         npc.position.X = targetPosition.X + Main.rand.Next(-450, 450);
                         npc.position.Y = targetPosition.Y + Main.rand.Next(-450, 450);
                         teleportTimer = 0;
+
+                        if (npc.life < npc.lifeMax / 3)
+                        {
+                            Vector2 direction = Main.player[npc.target].Center - npc.Center;
+                            direction.Normalize();
+                            direction.X *= 8.5f;
+                            direction.Y *= 8.5f;
+                            int amountOfProjectiles = 4;
+
+                            for (int i = 0; i < amountOfProjectiles; ++i)
+                            {
+                                float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                                float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+                                if (Main.netMode != NetmodeID.MultiplayerClient)
+                                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<PolarusNeoxSignalDroneLaser>(), npc.damage, 1, Main.myPlayer, 0, 0);
+                            }
+                        }
                     }
                 }
                 else
@@ -331,14 +368,22 @@ namespace Eternal.NPCs.Boss.BionicBosses
                     {
                         if (attackTimer == 150 || attackTimer == 155 || attackTimer == 160 || attackTimer == 165 || attackTimer == 170 || attackTimer == 175 || attackTimer == 180 || attackTimer == 185 || attackTimer == 190 || attackTimer == 195 || attackTimer == 200)
                         {
-
+                            Main.PlaySound(SoundID.DD2_ExplosiveTrapExplode, Main.myPlayer);
+                            for (int i = 0; i < 2; ++i)
+                            {
+                                Projectile.NewProjectile(player.position.X + Main.rand.Next(-600, 600), player.position.Y - 800, 0, Main.rand.Next(36, 96), ModContent.ProjectileType<PolarusNeoxMissile>(), 50, 0, Main.myPlayer, 0f, 0f);
+                            }
                         }
                     }
                     else
                     {
                         if (attackTimer == 150 || attackTimer == 160 || attackTimer == 170 || attackTimer == 180 || attackTimer == 190 || attackTimer == 200)
                         {
-
+                            Main.PlaySound(SoundID.DD2_ExplosiveTrapExplode, Main.myPlayer);
+                            for (int i = 0; i < 2; ++i)
+                            {
+                                Projectile.NewProjectile(player.position.X + Main.rand.Next(-600, 600), player.position.Y - 800, 0, 36, ModContent.ProjectileType<PolarusNeoxMissile>(), 50, 0, Main.myPlayer, 0f, 0f);
+                            }
                         }
                     }
                     if (attackTimer == 300)
@@ -352,6 +397,55 @@ namespace Eternal.NPCs.Boss.BionicBosses
         public override void FindFrame(int frameHeight)
         {
             npc.frame.Y = frameNum * frameHeight;
+        }
+
+        public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
+        {
+            // Brin of Cthulu things
+            Microsoft.Xna.Framework.Color color9 = Lighting.GetColor((int)((double)npc.position.X + (double)npc.width * 0.5) / 16, (int)(((double)npc.position.Y + (double)npc.height * 0.5) / 16.0));
+            float num66 = 0f;
+            Vector2 vector11 = new Vector2((float)(Main.npcTexture[npc.type].Width / 2), (float)(Main.npcTexture[npc.type].Height / Main.npcFrameCount[npc.type] / 2));
+            SpriteEffects spriteEffects = SpriteEffects.None;
+            if (npc.spriteDirection == 1)
+            {
+                spriteEffects = SpriteEffects.FlipHorizontally;
+            }
+            Microsoft.Xna.Framework.Rectangle frame6 = npc.frame;
+            Microsoft.Xna.Framework.Color alpha15 = npc.GetAlpha(color9);
+            float alpha = 1.25f * (1f - (float)npc.life / (float)npc.lifeMax);
+            alpha *= alpha;
+            alpha = Math.Min(alpha, 1);
+            alpha15.R = (byte)((float)alpha15.R * alpha);
+            alpha15.G = (byte)((float)alpha15.G * alpha);
+            alpha15.B = (byte)((float)alpha15.B * alpha);
+            alpha15.A = (byte)((float)alpha15.A * alpha);
+            for (int num213 = 0; num213 < 4; num213++)
+            {
+                Vector2 position9 = npc.position;
+                float num214 = Math.Abs(npc.Center.X - Main.player[Main.myPlayer].Center.X);
+                float num215 = Math.Abs(npc.Center.Y - Main.player[Main.myPlayer].Center.Y);
+                if (num213 == 0 || num213 == 2)
+                {
+                    position9.X = Main.player[Main.myPlayer].Center.X + num214;
+                }
+                else
+                {
+                    position9.X = Main.player[Main.myPlayer].Center.X - num214;
+                }
+                position9.X -= (float)(npc.width / 2);
+                if (num213 == 0 || num213 == 1)
+                {
+                    position9.Y = Main.player[Main.myPlayer].Center.Y + num215;
+                }
+                else
+                {
+                    position9.Y = Main.player[Main.myPlayer].Center.Y - num215;
+                }
+                position9.Y -= (float)(npc.height / 2);
+                Main.spriteBatch.Draw(Main.npcTexture[npc.type], new Vector2(position9.X - Main.screenPosition.X + (float)(npc.width / 2) - (float)Main.npcTexture[npc.type].Width * npc.scale / 2f + vector11.X * npc.scale, position9.Y - Main.screenPosition.Y + (float)npc.height - (float)Main.npcTexture[npc.type].Height * npc.scale / (float)Main.npcFrameCount[npc.type] + 4f + vector11.Y * npc.scale + num66 + npc.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(frame6), alpha15, npc.rotation, vector11, npc.scale, spriteEffects, 0f);
+            }
+            Main.spriteBatch.Draw(Main.npcTexture[npc.type], new Vector2(npc.position.X - Main.screenPosition.X + (float)(npc.width / 2) - (float)Main.npcTexture[npc.type].Width * npc.scale / 2f + vector11.X * npc.scale, npc.position.Y - Main.screenPosition.Y + (float)npc.height - (float)Main.npcTexture[npc.type].Height * npc.scale / (float)Main.npcFrameCount[npc.type] + 4f + vector11.Y * npc.scale + num66 + npc.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(frame6), npc.GetAlpha(color9), npc.rotation, vector11, npc.scale, spriteEffects, 0f);
+            return false;
         }
 
         private void DespawnHandler()

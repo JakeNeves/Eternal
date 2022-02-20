@@ -7,6 +7,7 @@ using System.Linq;
 using Microsoft.Xna.Framework.Graphics;
 using Eternal.Tiles;
 using Eternal.Items.Materials;
+using Eternal.Items;
 
 namespace Eternal.NPCs.Beneath
 {
@@ -103,6 +104,11 @@ namespace Eternal.NPCs.Beneath
         public override void NPCLoot()
         {
             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<DepthsDebris>(), Main.rand.Next(3, 9));
+
+            if (Main.rand.Next(2) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ApollyonCoin>(), Main.rand.Next(1, 6));
+            }
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

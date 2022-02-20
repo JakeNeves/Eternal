@@ -6,16 +6,14 @@ using Eternal.Tiles;
 using System.Linq;
 using System;
 using Eternal.Items.Materials;
+using Eternal.Items;
 
 namespace Eternal.NPCs.Beneath
 {
     public class Geodian : ModNPC
     {
-        const float Speed = 10.5f;
-        const float Acceleration = 0.2f;
 
         int moveTimer;
-        int Timer;
 
         public override void SetStaticDefaults()
         {
@@ -33,6 +31,7 @@ namespace Eternal.NPCs.Beneath
             npc.lavaImmune = true;
             npc.noGravity = true;
             npc.aiStyle = -1;
+            npc.noTileCollide = true;
             npc.HitSound = SoundID.NPCHit41;
             npc.DeathSound = SoundID.NPCDeath44;
         }
@@ -41,6 +40,11 @@ namespace Eternal.NPCs.Beneath
         {
             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<DepthsDebris>(), Main.rand.Next(3, 9));
             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.Placeable.Grimstone>(), Main.rand.Next(3, 9));
+
+            if (Main.rand.Next(2) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ApollyonCoin>(), Main.rand.Next(3, 12));
+            }
         }
 
         public override void HitEffect(int hitDirection, double damage)
@@ -57,83 +61,78 @@ namespace Eternal.NPCs.Beneath
             int frame = (int)npc.frameCounter;
             npc.frame.Y = frame * frameHeight;
         }
-            
+
         #endregion
 
         public override void AI()
         {
             moveTimer++;
+            npc.rotation = npc.velocity.X * 0.03f;
 
-            switch (moveTimer)
+            npc.TargetClosest(true);
+            npc.spriteDirection = npc.direction;
+            Player player = Main.player[npc.target];
+            if (player.dead || !player.active)
             {
-                case 100:
-                    npc.TargetClosest(true);
-                    npc.spriteDirection = npc.direction;
-                    Player player = Main.player[npc.target];
-                    if (player.dead || !player.active)
-                    {
-                        npc.TargetClosest(false);
-                        npc.active = false;
-                    }
-                    Timer++;
-                    if (Timer >= 0)
-                    {
-                        Vector2 StartPosition = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height * 0.5f);
-                        float DirectionX = Main.player[npc.target].position.X + Main.player[npc.target].width / 2 - StartPosition.X;
-                        float DirectionY = Main.player[npc.target].position.Y + (Main.player[npc.target].height / 2) - 120 - StartPosition.Y;
-                        float Length = (float)Math.Sqrt(DirectionX * DirectionX + DirectionY * DirectionY);
-                        float Num = Speed / Length;
-                        DirectionX = DirectionX * Num;
-                        DirectionY = DirectionY * Num;
-                        if (npc.velocity.X < DirectionX)
-                        {
-                            npc.velocity.X = npc.velocity.X + Acceleration;
-                            if (npc.velocity.X < 0 && DirectionX > 0)
-                                npc.velocity.X = npc.velocity.X + Acceleration;
-                        }
-                        else if (npc.velocity.X > DirectionX)
-                        {
-                            npc.velocity.X = npc.velocity.X - Acceleration;
-                            if (npc.velocity.X > 0 && DirectionX < 0)
-                                npc.velocity.X = npc.velocity.X - Acceleration;
-                        }
-                        if (npc.velocity.Y < DirectionY)
-                        {
-                            npc.velocity.Y = npc.velocity.Y + Acceleration;
-                            if (npc.velocity.Y < 0 && DirectionY > 0)
-                                npc.velocity.Y = npc.velocity.Y + Acceleration;
-                        }
-                        else if (npc.velocity.Y > DirectionY)
-                        {
-                            npc.velocity.Y = npc.velocity.Y - Acceleration;
-                            if (npc.velocity.Y > 0 && DirectionY < 0)
-                                npc.velocity.Y = npc.velocity.Y - Acceleration;
-                        }
-                        if (Main.rand.Next(36) == 1)
-                        {
-                            Vector2 StartPosition2 = new Vector2(npc.position.X + (npc.width * 0.5f), npc.position.Y + (npc.height / 2));
-                            float BossRotation = (float)Math.Atan2(StartPosition2.Y - (Main.player[npc.target].position.Y + (Main.player[npc.target].height * 0.5f)), StartPosition2.X - (Main.player[npc.target].position.X + (Main.player[npc.target].width * 0.5f)));
-                            npc.velocity.X = (float)(Math.Cos(BossRotation) * 9) * -1;
-                            npc.velocity.Y = (float)(Math.Sin(BossRotation) * 9) * -1;
-                            npc.netUpdate = true;
-                        }
-                    }
-                    break;
-                case 150:
-                    Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, 0, ProjectileID.DeathLaser, 6, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, 0, ProjectileID.DeathLaser, 6, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 0, 8, ProjectileID.DeathLaser, 6, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 0, -8, ProjectileID.DeathLaser, 6, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, -8, ProjectileID.DeathLaser, 6, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, -8, ProjectileID.DeathLaser, 6, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, 8, ProjectileID.DeathLaser, 6, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, 8, ProjectileID.DeathLaser, 6, 0, Main.myPlayer, 0f, 0f);
-                    break;
-                case 200:
-                    moveTimer = 0;
-                    break;
+                npc.TargetClosest(false);
+                npc.active = false;
             }
-            
+
+            float speed = 18f;
+            float acceleration = 0.10f;
+            if (moveTimer <= 200)
+            {
+                Vector2 vector2 = new Vector2(npc.position.X + (float)npc.width * 0.5f, npc.position.Y + (float)npc.height * 0.5f);
+                float xDir = Main.player[npc.target].position.X + (float)(Main.player[npc.target].width / 2) - vector2.X;
+                float yDir = (float)(Main.player[npc.target].position.Y + (Main.player[npc.target].height / 2) - 120) - vector2.Y;
+                float length = (float)Math.Sqrt(xDir * xDir + yDir * yDir);
+                if (length > 400 && Main.expertMode)
+                {
+                    ++speed;
+                    acceleration += 0.05F;
+                    if (length > 600)
+                    {
+                        ++speed;
+                        acceleration += 0.10F;
+                        if (length > 800)
+                        {
+                            ++speed;
+                            acceleration += 0.15F;
+                        }
+                    }
+                }
+                float num10 = speed / length;
+                xDir = xDir * num10;
+                yDir = yDir * num10;
+                if (npc.velocity.X < xDir)
+                {
+                    npc.velocity.X = npc.velocity.X + acceleration;
+                    if (npc.velocity.X < 0 && xDir > 0)
+                        npc.velocity.X = npc.velocity.X + acceleration;
+                }
+                else if (npc.velocity.X > xDir)
+                {
+                    npc.velocity.X = npc.velocity.X - acceleration;
+                    if (npc.velocity.X > 0 && xDir < 0)
+                        npc.velocity.X = npc.velocity.X - acceleration;
+                }
+                if (npc.velocity.Y < yDir)
+                {
+                    npc.velocity.Y = npc.velocity.Y + acceleration;
+                    if (npc.velocity.Y < 0 && yDir > 0)
+                        npc.velocity.Y = npc.velocity.Y + acceleration;
+                }
+                else if (npc.velocity.Y > yDir)
+                {
+                    npc.velocity.Y = npc.velocity.Y - acceleration;
+                    if (npc.velocity.Y > 0 && yDir < 0)
+                        npc.velocity.Y = npc.velocity.Y - acceleration;
+                }
+            }
+            else if (moveTimer == 210)
+            {
+                moveTimer = 0;
+            }
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -142,7 +141,7 @@ namespace Eternal.NPCs.Beneath
             if (!(player.ZoneTowerSolar || player.ZoneTowerVortex || player.ZoneTowerNebula || player.ZoneTowerStardust) && ((!Main.pumpkinMoon && !Main.snowMoon) || spawnInfo.spawnTileY > Main.worldSurface || Main.dayTime) && (!Main.eclipse || spawnInfo.spawnTileY > Main.worldSurface || !Main.dayTime) && (SpawnCondition.GoblinArmy.Chance == 0))
             {
                 int[] TileArray2 = { ModContent.TileType<Grimstone>(), TileID.Dirt, TileID.Stone };
-                return TileArray2.Contains(Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY].type) && Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneBeneath && NPC.downedBoss1 ? 2.09f : 0f;
+                return TileArray2.Contains(Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY].type) && Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneBeneath && EternalWorld.downedCarmaniteScouter ? 2.09f : 0f;
             }
             return SpawnCondition.OverworldNightMonster.Chance * 0.5f;
         }

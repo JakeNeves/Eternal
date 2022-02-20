@@ -3,13 +3,9 @@ using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
-using static Terraria.ModLoader.ModContent;
-using Eternal.Items;
 using Eternal.Items.BossBags;
 using Eternal.Items.Accessories.Hell;
-using Eternal.Tiles;
 using Eternal.Items.Weapons.Melee;
-using Eternal.Projectiles.Enemy;
 using Eternal.Items.Materials;
 using Eternal.Projectiles.Boss;
 
@@ -42,10 +38,14 @@ namespace Eternal.NPCs.Boss.CarmaniteScouter
             npc.boss = true;
             npc.noGravity = true;
             npc.noTileCollide = true;
-            npc.HitSound = mod.GetLegacySoundSlot(SoundType.NPCHit, "Sounds/NPCHit/CarmaniteScouterHit");
-            npc.DeathSound = mod.GetLegacySoundSlot(SoundType.NPCKilled, "Sounds/NPCKilled/CarmaniteScouterDeath");
+            npc.HitSound = SoundID.NPCHit1; //mod.GetLegacySoundSlot(SoundType.NPCHit, "Sounds/NPCHit/CarmaniteScouterHit");
+            npc.DeathSound = SoundID.NPCDeath12; //mod.GetLegacySoundSlot(SoundType.NPCKilled, "Sounds/NPCKilled/CarmaniteScouterDeath");
             music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/UnfatefulStrike"); //MusicID.Boss5
-            bossBag = ItemType<CarmaniteScouterBag>();
+            bossBag = ModContent.ItemType<CarmaniteScouterBag>();
+            if (EternalWorld.hellMode)
+                npc.scale = 0.75f;
+            else
+                npc.scale = 1f;
         }
 
         public override void HitEffect(int hitDirection, double damage)
@@ -96,11 +96,11 @@ namespace Eternal.NPCs.Boss.CarmaniteScouter
         public override void AI()
         {
 
-            if (NPC.AnyNPCs(NPCType<ScouterEye>()))
+            if (NPC.AnyNPCs(ModContent.NPCType<ScouterEye>()))
             {
                 npc.dontTakeDamage = true;
             }
-            if (!NPC.AnyNPCs(NPCType<ScouterEye>()))
+            if (!NPC.AnyNPCs(ModContent.NPCType<ScouterEye>()))
             {
                 npc.dontTakeDamage = false;
             }
@@ -139,15 +139,15 @@ namespace Eternal.NPCs.Boss.CarmaniteScouter
         void SpawnScouterEye()
         {
             //Main.PlaySound(new LegacySoundStyle(4, 13), Main.myPlayer);
-            if (!NPC.AnyNPCs(NPCType<ScouterEye>()))
+            if (!NPC.AnyNPCs(ModContent.NPCType<ScouterEye>()))
             {
-                NPC.NewNPC((int)npc.Center.X - 0, (int)npc.Center.Y, NPCType<ScouterEye>());
+                NPC.NewNPC((int)npc.Center.X - 0, (int)npc.Center.Y, ModContent.NPCType<ScouterEye>());
             }
         }
 
         private void Shoot()
         {
-            int type = ProjectileType<CarmaniteParasite>();
+            int type = ModContent.ProjectileType<CarmaniteParasite>();
             Vector2 velocity = player.Center - npc.Center;
             float magnitude = Magnitude(velocity);
             if (magnitude > 0)
@@ -239,7 +239,7 @@ namespace Eternal.NPCs.Boss.CarmaniteScouter
 
             if (EternalWorld.hellMode)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<HeartofRage>());
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<HeartofRage>());
             }
 
             if (Main.expertMode)
@@ -250,26 +250,27 @@ namespace Eternal.NPCs.Boss.CarmaniteScouter
             {
                 if (Main.rand.Next(1) == 0)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<CarmaniteBane>());
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<CarmaniteBane>());
                 }
                 if (Main.rand.Next(2) == 0)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<CarmanitePurgatory>());
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<CarmanitePurgatory>());
                 }
                 if (Main.rand.Next(3) == 0)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<CarmaniteRipperClaws>());
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<CarmaniteRipperClaws>());
                 }
                 if (Main.rand.Next(4) == 0)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<BruteCleavage>());
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<BruteCleavage>());
                 }
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<Carmanite>(), Main.rand.Next(15, 30));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Carmanite>(), Main.rand.Next(15, 30));
             }
 
             if (!EternalWorld.downedCarmaniteScouter)
             {
                 //Main.NewText("The ground has been smothered with mysterious energy...", 215, 215, 0);
+                Main.NewText("Something stirs in the darkest place beneath the world...", 224, 28, 7);
                 EternalWorld.downedCarmaniteScouter = true;
             }
         }

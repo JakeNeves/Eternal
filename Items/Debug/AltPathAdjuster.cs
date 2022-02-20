@@ -37,7 +37,6 @@ namespace Eternal.Items.Debug
                 item.useTime = 15;
                 EternalWorld.downedCarmaniteScouter = true;
                 EternalWorld.downedDunekeeper = true;
-                EternalWorld.downedDroxClan = true;
                 Main.NewText("Alt-Path Buffs have been applied", 0, 215, 215);
             }
             else
@@ -48,7 +47,6 @@ namespace Eternal.Items.Debug
                 item.useTime = 15;
                 EternalWorld.downedCarmaniteScouter = false;
                 EternalWorld.downedDunekeeper = false;
-                EternalWorld.downedDroxClan = false;
                 Main.NewText("Alt-Path Buffs have been removed", 0, 215, 215);
             }
             return base.CanUseItem(player);

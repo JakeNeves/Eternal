@@ -26,6 +26,7 @@ namespace Eternal.Items.Weapons.Ranged
             item.useAnimation = 12;
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.UseSound = SoundID.Item5;
+            item.knockBack = 1.5f;
             item.autoReuse = true;
             item.shootSpeed = 16f;
             item.shoot = AmmoID.Arrow;

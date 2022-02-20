@@ -139,6 +139,7 @@ namespace Eternal.NPCs.Boss.BionicBosses.Omnicron
                 npc.localAI[0] = 1f;
                 int omniHook = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<OmnicronHook>(), npc.whoAmI, 0f, 0f, 0f, 0f, 255);
                 omniHook = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<OmnicronHook>(), npc.whoAmI, 0f, 0f, 0f, 0f, 255);
+                omniHook = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<OmnicronHook>(), npc.whoAmI, 0f, 0f, 0f, 0f, 255);
             }
 
             #region Plantera-Like Movement

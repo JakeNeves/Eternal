@@ -11,6 +11,8 @@ namespace Eternal
         public static bool cometGauntlet = false;
         public static bool emperorsGift = false;
 
+        public static bool starbornArmor = false;
+
         public static bool piercingBuff = false;
 
         public override void AI(Projectile projectile)
@@ -39,9 +41,21 @@ namespace Eternal
 
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
         {
+            Player player = Main.player[Main.myPlayer];
+
             if (piercingBuff)
             {
                 target.AddBuff(ModContent.BuffType<Buffs.RedFracture>(), 1024);
+            }
+
+            if (starbornArmor)
+            {
+                if (player.statLife < player.statLifeMax2 / 2)
+                {
+                    player.HealEffect(15, false);
+
+                    player.allDamage += 0.15f;
+                }
             }
         }
 

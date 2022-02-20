@@ -10,7 +10,10 @@ namespace Eternal.Items.MusicBox
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Music Box (The Beneath)");
-            Tooltip.SetDefault("JakeTEM - Deep Dark");
+            if (!ModContent.GetInstance<EternalConfig>().originalMusic)
+                Tooltip.SetDefault("JakeTEM - Darkness from Deep Below");
+            else
+                Tooltip.SetDefault("JakeTEM - Deep Dark");
         }
 
         public override void SetDefaults()

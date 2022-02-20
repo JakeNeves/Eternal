@@ -10,13 +10,17 @@ possible, including a new difficulty (WIP)!
 From what we expect, this mod is not fully finished yet so there is no harm in cheating in anything from the mod via HERO's and/or Cheat Sheet...
 
 It currently adds
-Two pre-hardmode bosses
-four out of the ten hardmode bosses
-and four out of the twenty post-moon lord bosses
+2 pre-hardmode bosses
+3/10 hardmode bosses
+11/20 post-moon lord bosses
+
+[c/00B450:Total of 16/32 bosses in the mod]
 
 [c/00B359:---Future Plans---]
 
 * Implement Phases 3 and 4 of the Cosmic Emperor
+
+* Add Mod Integration for Fargo's Mod
 
 * Fully Implement Minibosses
 
@@ -28,6 +32,8 @@ JakeTEM - Literally most of enerything
 
 1.0.8
 * Updated Sprites for most of the content
+
+* Updated Mod Integration for Calamity
 
 * Added Music Configurations for Vanilla Music
   * Added music for the Snow Biome

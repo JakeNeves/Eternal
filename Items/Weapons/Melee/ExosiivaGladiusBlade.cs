@@ -15,7 +15,6 @@ namespace Eternal.Items.Weapons.Melee
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("Fires Multiple Exosiiva Swords" +
-                             "\nStriking with the base weapon has a chance to heal the player" +
                              "\n'It's a Literal Bullet Hell'" +
                              "\n[c/FC036B:Developer Item]" +
                              "\nDedicated to [c/038CFC:JakeTEM]");
@@ -37,14 +36,6 @@ namespace Eternal.Items.Weapons.Melee
             item.useTime = 18;
             item.useAnimation = 18;
             item.UseSound = SoundID.Item1;
-        }
-
-        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
-        {
-            if (Main.rand.Next(4) == 0)
-            {
-                item.healLife = 15;
-            }
         }
 
         public override void AddRecipes()

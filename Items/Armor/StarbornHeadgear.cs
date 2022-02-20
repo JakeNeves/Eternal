@@ -33,11 +33,15 @@ namespace Eternal.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "20% increased ranged damage and shroomite armor effects";
+            player.setBonus = "20% increased ranged damage and shroomite armor effects" +
+                            "\nWeapon projectiles heal the player by 15% when below half healt upon hitting any enemy" +
+                            "\n15% increased damage when below half health";
             player.rangedDamage += 0.20f;
             player.rocketDamage += 0.20f;
             player.arrowDamage += 0.20f;
             player.bulletDamage += 0.20f;
+
+            EternalGlobalProjectile.starbornArmor = true;
 
             player.shroomiteStealth = true;
 

@@ -34,7 +34,8 @@ namespace Eternal.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "30% increased minion damage, 50% decreased mana cost and +16 minion slots";
+            player.setBonus = "30% increased minion damage, 50% decreased mana cost and +16 minion slots" +
+                            "\nYou release Swords when struck";
             player.minionDamage += 0.30f;
             player.manaCost -= 0.50f;
             player.maxMinions += 16;
@@ -44,6 +45,8 @@ namespace Eternal.Items.Armor
             dust = Main.dust[Dust.NewDust(player.position, (int)player.width, (int)player.height, ModContent.DustType<ArkEnergy>(), 0f, 0f, 0, new Color(255, 255, 255), 0.5f)];
             dust.fadeIn = 0.4f;
             dust.noGravity = true;
+
+            EternalPlayer.ArkaniumArmor = true;
         }
 
         public override void UpdateEquip(Player player)
