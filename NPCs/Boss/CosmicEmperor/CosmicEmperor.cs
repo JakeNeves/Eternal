@@ -43,9 +43,9 @@ namespace Eternal.NPCs.Boss.CosmicEmperor
         {
             npc.width = 34;
             npc.height = 50;
-            npc.defense = 760;
-            npc.damage = 120;
-            npc.lifeMax = 12000000;
+            npc.defense = 225;
+            npc.damage = 100;
+            npc.lifeMax = 9000000;
             npc.HitSound = mod.GetLegacySoundSlot(SoundType.NPCHit, "Sounds/NPCHit/EmperorHit");
             npc.DeathSound = null;
             music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/PlayingPuny");
@@ -88,10 +88,10 @@ namespace Eternal.NPCs.Boss.CosmicEmperor
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = 24000000;
+            npc.lifeMax = 12000000;
             if (EternalWorld.hellMode)
             {
-                npc.lifeMax = 36000000;
+                npc.lifeMax = 24000000;
             }
         }
 
@@ -531,7 +531,7 @@ namespace Eternal.NPCs.Boss.CosmicEmperor
         public override void NPCLoot()
         {
             //Main.NewText("You've done well... here is a gift that you can have!", 0, 95, 215);
-            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<InterstellarMetal>(), 99);
+            /*Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<InterstellarMetal>(), 99);
             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<CosmoniumFragment>(), 99);
 
             if (Main.rand.Next(1) == 0)
@@ -545,7 +545,8 @@ namespace Eternal.NPCs.Boss.CosmicEmperor
             if (Main.rand.Next(3) == 0)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Exelodon>());
-            }
+            }*/
+            NPC.NewNPC((int)npc.Center.X - 20, (int)npc.Center.Y, ModContent.NPCType<CosmicEmperorP3>());
         }
 
     }

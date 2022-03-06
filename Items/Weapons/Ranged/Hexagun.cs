@@ -45,6 +45,12 @@ namespace Eternal.Items.Weapons.Ranged
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
+            Vector2 muzzleOffset = Vector2.Normalize(new Vector2(speedX, speedY)) * 36f;
+            if (Collision.CanHit(position, 0, 0, position + muzzleOffset, 0, 0))
+            {
+                position += muzzleOffset;
+            }
+
             int numberProjectiles = 6;
             for (int j = 0; j < numberProjectiles; j++)
             {

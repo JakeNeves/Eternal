@@ -89,7 +89,7 @@ namespace Eternal.Items.Weapons.Melee
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddTile(ModContent.TileType<AncientForge>());
             recipe.AddIngredient(ModContent.ItemType<StarmetalBar>(), 36);
-            recipe.AddIngredient(ModContent.ItemType<BrokenLabrynthSword>(), 12);
+            recipe.AddIngredient(ModContent.ItemType<BrokenShrineSword>(), 12);
             recipe.AddIngredient(ModContent.ItemType<ArkaniumCompound>(), 16);
             recipe.AddIngredient(ModContent.ItemType<StarstormBeta>());
             recipe.SetResult(this);

@@ -4,7 +4,6 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Eternal.Items.Potions;
-using Eternal.Projectiles.Boss;
 
 namespace Eternal.NPCs.Boss.BionicBosses.Omnicron
 {
@@ -20,7 +19,7 @@ namespace Eternal.NPCs.Boss.BionicBosses.Omnicron
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("EXM-2024 Omicron-N30X");
+            DisplayName.SetDefault("EXM-2324 Omicron-N30X");
             Main.npcFrameCount[npc.type] = 2;
         }
 
@@ -73,6 +72,7 @@ namespace Eternal.NPCs.Boss.BionicBosses.Omnicron
                 //Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/AtlasHead"), 1f);
                 //Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/AtlasJaw"), 1f);
                 //Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/AtlasBody"), 1f);
+                CombatText.NewText(npc.Hitbox, Color.Orange, "SYSTEM FAILIURES DETECTED, CONTACTING MACHINES EXE-3068, EXE-3076 AND EXE-3090...", dramatic: true);
             }
             else
             {
@@ -270,6 +270,13 @@ namespace Eternal.NPCs.Boss.BionicBosses.Omnicron
             npc.rotation = (float)Math.Atan2((double)num741, (double)num740) + 1.57f;
             #endregion
 
+        }
+
+        public override void NPCLoot()
+        {
+            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<PhotonNeox>());
+            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<ProtonNeox>());
+            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<QuasarNeox>());
         }
 
         public override void FindFrame(int frameHeight)

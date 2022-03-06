@@ -9,7 +9,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Items.Summon
 {
-    public class RoyalLabrynthSword : ModItem
+    public class RoyalShrineSword : ModItem
     {
 
         public override void SetStaticDefaults()
@@ -48,7 +48,7 @@ namespace Eternal.Items.Summon
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddTile(TileType<Starforge>());
-            recipe.AddIngredient(ItemType<BrokenLabrynthSword>());
+            recipe.AddIngredient(ItemType<BrokenShrineSword>());
             recipe.AddIngredient(ItemType<Astragel>(), 10);
             recipe.AddIngredient(ItemType<CometiteBar>(), 6);
             recipe.SetResult(this);

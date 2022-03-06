@@ -20,7 +20,7 @@ namespace Eternal.Items.Materials
             item.height = 24;
             item.rare = ItemRarityID.Red;
             item.value = Item.sellPrice(platinum: 10);
-            item.maxStack = 99;
+            item.maxStack = 999;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

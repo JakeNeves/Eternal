@@ -36,6 +36,7 @@ namespace Eternal.Items.Armor
         {
             player.setBonus = "42% increased magic damage" +
                             "\nYou emit a source of light" +
+                            "\nStarborn weapons cost 0 mana" +
                             "\nStarborn and Arkanium Armor Effects";
             player.magicDamage += 0.42f;
 

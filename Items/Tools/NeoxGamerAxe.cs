@@ -50,10 +50,9 @@ namespace Eternal.Items.Tools
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddTile(TileType<AncientForge>());
-            recipe.AddIngredient(ItemType<StellarAlloy>(), 5);
-            recipe.AddIngredient(ItemType<CosmoniumFragment>());
-            recipe.AddIngredient(ItemID.PossessedHatchet);
-            recipe.AddIngredient(ItemType<CoreofEternal>(), 3);
+            recipe.AddIngredient(ItemType<NeoxCore>(), 6);
+            recipe.AddIngredient(ItemType<CoreofEternal>(), 12);
+            recipe.AddIngredient(ItemID.MeteorHamaxe);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

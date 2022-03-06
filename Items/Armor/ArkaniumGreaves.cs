@@ -45,7 +45,7 @@ namespace Eternal.Items.Armor
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddTile(ModContent.TileType<AncientForge>());
-            recipe.AddIngredient(ModContent.ItemType<BrokenLabrynthSword>(), 6);
+            recipe.AddIngredient(ModContent.ItemType<BrokenShrineSword>(), 6);
             recipe.AddIngredient(ModContent.ItemType<ArkaniumCompound>(), 12);
             recipe.SetResult(this);
             recipe.AddRecipe();

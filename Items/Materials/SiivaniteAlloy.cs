@@ -4,8 +4,6 @@ using Terraria.DataStructures;
 using static Terraria.ModLoader.ModContent;
 using Terraria;
 using Eternal.Tiles;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 
 namespace Eternal.Items.Materials
 {
@@ -13,7 +11,7 @@ namespace Eternal.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Contains Godly Energy\n'The power of the scourges linger within the energy'");
+            Tooltip.SetDefault("Contains Godly Energy\n'The power of the primordial elementals linger within such divine material'");
 
             Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(4, 6));
         }
@@ -22,20 +20,15 @@ namespace Eternal.Items.Materials
         {
             item.width = 29;
             item.height = 23;
-            item.value = Item.buyPrice(platinum: 3);
+            item.value = Item.buyPrice(platinum: 1);
             item.rare = ItemRarityID.Red;
-            item.maxStack = 99;
-        }
-
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
-        {
-            tooltips[0].overrideColor = new Color(5, 35, 215);
+            item.maxStack = 999;
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddTile(TileType<AncientForge>());
+            recipe.AddTile(TileType<Starforge>());
             recipe.AddIngredient(ItemType<SydaniteBar>());
             recipe.AddIngredient(ItemType<ThunderiteBar>());
             recipe.AddIngredient(ItemType<ScoriumBar>());

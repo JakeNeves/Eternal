@@ -39,7 +39,10 @@ namespace Eternal.Items.Summon
             else
             {
                 NPC.NewNPC((int)player.Center.X, (int)player.Center.Y - 900, ModContent.NPCType<CosmicEmperorMask>());
-                Main.NewText("To whom, who has challenged greater beings... I have been watching you gain strength ever sinced you've slayed the mighty lord, banished to the moon!", 0, 95, 215);
+                if (EternalWorld.downedCosmicEmperor)
+                    Main.NewText("So we meet again huh, if you called me here to use me as a test dummy, then you called the wrong guy!", 0, 95, 215);
+                else
+                    Main.NewText("To whom, who has challenged greater beings... I have been watching you gain strength ever sinced you've slayed the mighty lord, banished to the moon!", 0, 95, 215);
             }
             Main.PlaySound(SoundID.Roar, player.position, 0);
             return true;

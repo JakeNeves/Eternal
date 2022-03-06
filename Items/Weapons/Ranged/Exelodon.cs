@@ -69,6 +69,12 @@ namespace Eternal.Items.Weapons.Ranged
 
             float rotation = MathHelper.ToRadians(15);
 
+            Vector2 muzzleOffset = Vector2.Normalize(new Vector2(speedX, speedY)) * 70f;
+            if (Collision.CanHit(position, 0, 0, position + muzzleOffset, 0, 0))
+            {
+                position += muzzleOffset;
+            }
+
             for (int i = 0; i < numberProjectiles; i++)
             {
                 //Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(15));

@@ -56,8 +56,57 @@ namespace Eternal
 
 		}
 
-        public override void AddRecipeGroups()
-        {
+		public override void AddRecipeGroups()
+		{
+			RecipeGroup celestialFragment = new RecipeGroup(() => "any" + " Celestial Fragment", new int[]
+			{
+				ItemID.FragmentNebula,
+				ItemID.FragmentVortex,
+				ItemID.FragmentSolar,
+				ItemID.FragmentStardust
+			});
+
+			RecipeGroup adamantanium = new RecipeGroup(() => "Any" + " Adamantite Bar", new int[]
+			{
+				ItemID.AdamantiteBar,
+				ItemID.TitaniumBar
+			});
+
+			RecipeGroup adamantaniumForge = new RecipeGroup(() => "Any" + " Adamantite Forge", new int[]
+			{
+				ItemID.AdamantiteForge,
+				ItemID.TitaniumForge
+			});
+
+			RecipeGroup mythrilAnvil = new RecipeGroup(() => "Any" + " Mythril Anvil", new int[]
+			{
+				ItemID.MythrilAnvil,
+				ItemID.OrichalcumAnvil
+			});
+
+			RecipeGroup gemStaff = new RecipeGroup(() => "Any" + " Gem Staff", new int[]
+			{
+				ItemID.AmberStaff,
+				ItemID.RubyStaff,
+				ItemID.DiamondStaff,
+				ItemID.AmethystStaff,
+				ItemID.EmeraldStaff,
+				ItemID.SapphireStaff,
+				ItemID.TopazStaff,
+			});
+
+			RecipeGroup grimstone = new RecipeGroup(() => "Any" + " Grimstone", new int[]
+			{
+				ModContent.ItemType<Grimstone>(),
+				ModContent.ItemType<Darkslate>()
+			});
+
+			RecipeGroup.RegisterGroup("Eternal:CelestialFragment", celestialFragment);
+			RecipeGroup.RegisterGroup("Eternal:Adamantanium", adamantanium);
+			RecipeGroup.RegisterGroup("Eternal:AdamantaniumForge", adamantaniumForge);
+			RecipeGroup.RegisterGroup("Eternal:MythrilAnvil", mythrilAnvil);
+			RecipeGroup.RegisterGroup("Eternal:GemStaff", gemStaff);
+			RecipeGroup.RegisterGroup("Eternal:Grimstone", grimstone);
 		}
 
         public override void Unload()
@@ -412,10 +461,10 @@ namespace Eternal
 					this,
 					"Ark of Imperious",
 					(Func<bool>)(() => EternalWorld.downedArkOfImperious),
-					ModContent.ItemType<RoyalLabrynthSword>(),
+					ModContent.ItemType<RoyalShrineSword>(),
 					new List<int> { ModContent.ItemType<AoIMusicBox>() },
 					new List<int> { ModContent.ItemType<AoIBag>(), ModContent.ItemType<GiftofTheSwordGod>(), ModContent.ItemType<TheImperiousCohort>(), ModContent.ItemType<TheEnigma>(), ModContent.ItemType<DormantHeroSword>(), ModContent.ItemType<Arkbow>(), ModContent.ItemType<PristineHealingPotion>() },
-					"Spawn by using the [i:" + ModContent.ItemType<RoyalLabrynthSword>() + "] at the shrine",
+					"Spawn by using the [i:" + ModContent.ItemType<RoyalShrineSword>() + "] at the shrine",
 					"The mighty imperial blade of the shrine",
 					"Eternal/BossChecklist/ArkofImperious",
 					"Eternal/NPCs/Boss/AoI/ArkofImperious_Head_Boss"
@@ -424,7 +473,7 @@ namespace Eternal
 				bossCheckList.Call(
 					"AddBoss",
 					20.05f,
-					ModContent.NPCType<NPCs.Boss.CosmicEmperor.CosmicEmperor>(),
+					ModContent.NPCType<NPCs.Boss.CosmicEmperor.CosmicEmperorP3>(),
 					this,
 					"The Cosmic Emperor",
 					(Func<bool>)(() => EternalWorld.downedCosmicEmperor),
@@ -432,7 +481,7 @@ namespace Eternal
 					new List<int> { },
 					new List<int> { ModContent.ItemType<CosmoniumFragment>(), ModContent.ItemType<Exelodon>(), ModContent.ItemType<TheBigOne>(), ModContent.ItemType<ExosiivaGladiusBlade>(), ModContent.ItemType<StarcrescentMoondisk>(), ModContent.ItemType<PristineHealingPotion>() },
 					"Spawn by using the [i:" + ModContent.ItemType<CosmicTablet>() + "] after defeating the Ark of Imperious",
-					"The most powerful being to enounter",
+					"The almighty powerful emperor of the cosmos.",
 					"Eternal/BossChecklist/CosmicEmperor",
 					"Eternal/NPCs/Boss/CosmicEmperor/CosmicEmperor_Head_Boss"
 				);
@@ -572,6 +621,18 @@ namespace Eternal
 					new Color(1f, 1f, 1f),
 					new Color(1f, 1f, 1f));
 				FKBossHealthBar.Call("hbFinishSingle", ModContent.NPCType<NPCs.Boss.CosmicEmperor.CosmicEmperorMask>());
+				FKBossHealthBar.Call("hbStart");
+				FKBossHealthBar.Call("hbSetTexture",
+					GetTexture("BossBars/CosmicEmperorBarStart"),
+					GetTexture("BossBars/CosmicEmperorBarMiddle"),
+					GetTexture("BossBars/CosmicEmperorBarEnd"),
+					GetTexture("BossBars/CosmicEmperorBarFill"));
+				FKBossHealthBar.Call("hbSetBossHeadTexture", GetTexture("NPCs/Boss/CosmicEmperor/CosmicEmperorP3_Head_Boss"));
+				FKBossHealthBar.Call("hbSetColours",
+					new Color(1f, 1f, 1f),
+					new Color(1f, 1f, 1f),
+					new Color(1f, 1f, 1f));
+				FKBossHealthBar.Call("hbFinishSingle", ModContent.NPCType<NPCs.Boss.CosmicEmperor.CosmicEmperorP3>());
 			}
 			#endregion
 		}

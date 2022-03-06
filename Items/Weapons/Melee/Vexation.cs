@@ -32,7 +32,14 @@ namespace Eternal.Items.Weapons.Melee
 
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
         {
-            player.HealEffect(3, false);
+            if (EternalPlayer.StarbornArmorMeleeBonus)
+            {
+                player.HealEffect(6, false);
+            }
+            else
+            {
+                player.HealEffect(3, false);
+            }
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

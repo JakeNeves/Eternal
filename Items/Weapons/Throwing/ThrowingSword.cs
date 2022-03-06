@@ -38,7 +38,7 @@ namespace Eternal.Items.Weapons.Throwing
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddTile(ModContent.TileType<Starforge>());
-            recipe.AddIngredient(ModContent.ItemType<BrokenLabrynthSword>());
+            recipe.AddIngredient(ModContent.ItemType<BrokenShrineSword>());
             recipe.AddIngredient(ModContent.ItemType<StarmetalBar>());
             recipe.SetResult(this, 333);
             recipe.AddRecipe();

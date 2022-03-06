@@ -5,12 +5,11 @@ using Terraria.ModLoader;
 
 namespace Eternal.Items.Materials
 {
-    public class BrokenLabrynthSword : ModItem
+    public class BrokenShrineSword : ModItem
     {
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Broken Shrine Sword");
             Tooltip.SetDefault("'A sword that is well worn.'");
         }
 

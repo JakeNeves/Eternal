@@ -14,6 +14,7 @@ namespace Eternal.NPCs.Boss.BionicBosses
         private Player player;
 
         bool justSpawnedArms = false;
+        bool phase2Init = false;
 
         public override void SetStaticDefaults()
         {
@@ -88,18 +89,38 @@ namespace Eternal.NPCs.Boss.BionicBosses
         {
             if (!justSpawnedArms)
             {
-                NPC.NewNPC((int)npc.position.X - 64, (int)npc.position.Y, ModContent.NPCType<AtlasNeoxLaser>());
-                NPC.NewNPC((int)npc.position.X - 64, (int)npc.position.Y, ModContent.NPCType<AtlasNeoxCannon>());
+                if (npc.life < npc.lifeMax / 2)
+                {
+                    NPC.NewNPC((int)npc.position.X - 200, (int)npc.position.Y - 100, ModContent.NPCType<AtlasNeoxSaw>());
+                    NPC.NewNPC((int)npc.position.X + 200, (int)npc.position.Y - 100, ModContent.NPCType<AtlasNeoxSlicers>());
+                    NPC.NewNPC((int)npc.position.X - 100, (int)npc.position.Y, ModContent.NPCType<AtlasNeoxVice>());
+                    NPC.NewNPC((int)npc.position.X + 100, (int)npc.position.Y, ModContent.NPCType<AtlasNeoxVice>());
+                }
+                else
+                {
+                    NPC.NewNPC((int)npc.position.X - 64, (int)npc.position.Y, ModContent.NPCType<AtlasNeoxLaser>());
+                    NPC.NewNPC((int)npc.position.X - 64, (int)npc.position.Y, ModContent.NPCType<AtlasNeoxCannon>());
+                }
                 justSpawnedArms = true;
             }
 
-            if (NPC.AnyNPCs(ModContent.NPCType<AtlasNeoxLaser>()) || NPC.AnyNPCs(ModContent.NPCType<AtlasNeoxCannon>()))
+            if (NPC.AnyNPCs(ModContent.NPCType<AtlasNeoxLaser>()) || NPC.AnyNPCs(ModContent.NPCType<AtlasNeoxCannon>()) || NPC.AnyNPCs(ModContent.NPCType<AtlasNeoxSaw>()) || NPC.AnyNPCs(ModContent.NPCType<AtlasNeoxVice>()) || NPC.AnyNPCs(ModContent.NPCType<AtlasNeoxSlicers>()))
             {
                 npc.dontTakeDamage = true;
             }
             else
             {
                 npc.dontTakeDamage = false;
+            }
+
+            if (npc.life < npc.lifeMax / 2)
+            {
+                if (!phase2Init)
+                {
+                    CombatText.NewText(npc.Hitbox, Color.Red, "DEPLOYING MELEE MODULES...", dramatic: true);
+                    justSpawnedArms = false;
+                    phase2Init = true;
+                }
             }
         }
 

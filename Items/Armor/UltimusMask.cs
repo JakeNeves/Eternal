@@ -35,6 +35,7 @@ namespace Eternal.Items.Armor
         public override void UpdateArmorSet(Player player)
         {
             player.setBonus = "42% increased melee damage and 25% increased melee speed" +
+                            "\nSome melee weapons recieve special modifiers" +
                             "\nYou emit a source of light" +
                             "\nStarborn and Arkanium Armor Effects";
             player.meleeDamage += 0.42f;
@@ -44,6 +45,7 @@ namespace Eternal.Items.Armor
 
             EternalGlobalProjectile.starbornArmor = true;
             EternalPlayer.ArkaniumArmor = true;
+            EternalPlayer.StarbornArmorMeleeBonus = true;
         }
 
         public override void UpdateEquip(Player player)

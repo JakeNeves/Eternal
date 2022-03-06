@@ -1,4 +1,6 @@
 ﻿using Eternal.Items.Potions;
+using Eternal.NPCs.Boss.BionicBosses.Omnicron;
+using Eternal.Projectiles.Boss;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -12,6 +14,8 @@ namespace Eternal.NPCs.Boss.BionicBosses
     public class OrionNeox : ModNPC
     {
         private Player player;
+
+        int AttackTimer = 0;
 
         public override void SetStaticDefaults()
         {
@@ -34,7 +38,7 @@ namespace Eternal.NPCs.Boss.BionicBosses
         {
             if (npc.life <= 0)
             {
-                CombatText.NewText(npc.Hitbox, Color.Purple, "SYSTEM FAILIURES DETECTED, CONTACTING MACHINES EXE-3068, EXE-3076 AND EXE-3090...", dramatic: true);
+                CombatText.NewText(npc.Hitbox, Color.Purple, "SYSTEM FAILIURES DETECTED, CONTACTING MACHINES EXR-2324", dramatic: true);
             }
             else
             {
@@ -171,11 +175,65 @@ namespace Eternal.NPCs.Boss.BionicBosses
             }
         }
 
+        public override void AI()
+        {
+            AttackTimer++;
+            DoAttacksPhase1();
+        }
+
+        private void DoAttacksPhase1()
+        {
+            Vector2 direction = Main.player[npc.target].Center - npc.Center;
+            direction.Normalize();
+            direction.X *= 8.5f;
+            direction.Y *= 8.5f;
+            int amountOfProjectiles;
+
+            if (Main.expertMode)
+            {
+                amountOfProjectiles = Main.rand.Next(4, 8);
+            }
+            else if (EternalWorld.hellMode)
+            {
+                amountOfProjectiles = Main.rand.Next(8, 12);
+            }
+            else
+            {
+                amountOfProjectiles = Main.rand.Next(2, 4);
+            }
+
+            if (AttackTimer == 100 || AttackTimer == 105 || AttackTimer == 110 || AttackTimer == 115 || AttackTimer == 120 || AttackTimer == 125 || AttackTimer == 130)
+            {
+                for (int i = 0; i < amountOfProjectiles; ++i)
+                {
+                    float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                    float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+                    int damage = Main.expertMode ? 15 : 17;
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<OrionNeoxLaser>(), npc.damage / 2, 1, Main.myPlayer, 0, 0);
+                }
+            }
+            if (AttackTimer == 200 || AttackTimer == 205 || AttackTimer == 210 || AttackTimer == 215 || AttackTimer == 220 || AttackTimer == 225 || AttackTimer == 230)
+            {
+                for (int i = 0; i < amountOfProjectiles; ++i)
+                {
+                    float A = (float)Main.rand.Next(-100, 100) * 0.01f;
+                    float B = (float)Main.rand.Next(-100, 100) * 0.01f;
+                    int damage = Main.expertMode ? 15 : 17;
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                        Main.PlaySound(SoundID.DD2_KoboldExplosion, npc.position);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<OrionNeoxBomb>(), npc.damage / 2, 1, Main.myPlayer, 0, 0);
+                }
+            }
+            if (AttackTimer == 231)
+            {
+                AttackTimer = 0;
+            }
+        }
+
         public override void NPCLoot()
         {
-            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<PhotonNeox>());
-            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<ProtonNeox>());
-            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<QuasarNeox>());
+            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<OmnicronNeox>());
         }
 
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)

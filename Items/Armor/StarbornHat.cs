@@ -34,7 +34,8 @@ namespace Eternal.Items.Armor
         public override void UpdateArmorSet(Player player)
         {
             player.setBonus = "+60 mana, 25% decreased mana cost and 20% increased magic damage" +
-                            "\nWeapon projectiles heal the player by 15% when below half healt upon hitting any enemy" +
+                            "\nWeapon projectiles heal the player by 15% when below half health upon hitting any enemy" +
+                            "\nStarborn weapons cost 0 mana" +
                             "\n15% increased damage when below half health";
             player.magicDamage += 0.20f;
             player.statManaMax2 += 60;

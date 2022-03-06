@@ -27,8 +27,8 @@ namespace Eternal.NPCs.Boss.CosmicEmperor
         {
             npc.width = 34;
             npc.height = 50;
-            npc.defense = 380;
-            npc.damage = 120;
+            npc.defense = 100;
+            npc.damage = 90;
             npc.lifeMax = 6000000;
             npc.HitSound = mod.GetLegacySoundSlot(SoundType.NPCHit, "Sounds/NPCHit/EmperorHit");
             npc.DeathSound = null;
@@ -155,21 +155,43 @@ namespace Eternal.NPCs.Boss.CosmicEmperor
             {
                 introTimer++;
                 npc.dontTakeDamage = true;
-                switch (introTimer)
+                if (EternalWorld.downedCosmicEmperor)
                 {
-                    case 120:
-                        Main.NewText("It Appears you've prooven your worth...", 0, 95, 215);
-                        break;
-                    case 240:
-                        Main.NewText("Therefore, You've called upon me with the Cosmic Tablet...", 0, 95, 215);
-                        break;
-                    case 360:
-                        Main.NewText("I sha'll accept, what you've seeked me for...", 0, 95, 215);
-                        break;
-                    case 480:
-                        Main.NewText("Let the battle begin!", 0, 95, 215);
-                        break;
+                    switch (introTimer)
+                    {
+                        case 120:
+                            Main.NewText("Otherwise you're here because you want a rematch...", 0, 95, 215);
+                            break;
+                        case 240:
+                            Main.NewText("Anywho therefore, You've called upon me with the Cosmic Tablet...", 0, 95, 215);
+                            break;
+                        case 360:
+                            Main.NewText("I sha'll accept, what you've seeked me for...", 0, 95, 215);
+                            break;
+                        case 480:
+                            Main.NewText("Let the battle begin!", 0, 95, 215);
+                            break;
+                    }
                 }
+                else
+                {
+                    switch (introTimer)
+                    {
+                        case 120:
+                            Main.NewText("It Appears you've prooven your worth...", 0, 95, 215);
+                            break;
+                        case 240:
+                            Main.NewText("Therefore, You've called upon me with the Cosmic Tablet...", 0, 95, 215);
+                            break;
+                        case 360:
+                            Main.NewText("I sha'll accept, what you've seeked me for...", 0, 95, 215);
+                            break;
+                        case 480:
+                            Main.NewText("Let the battle begin!", 0, 95, 215);
+                            break;
+                    }
+                }
+                
                 if (introTimer >= 480)
                 {
                     npc.dontTakeDamage = false;

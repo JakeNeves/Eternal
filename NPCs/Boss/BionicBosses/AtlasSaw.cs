@@ -21,7 +21,7 @@ namespace Eternal.NPCs.Boss.BionicBosses
         {
             npc.lifeMax = 46000;
             npc.width = 48;
-            npc.height = 152;
+            npc.height = 74;
             npc.damage = 120;
             npc.defense = 32;
             npc.knockBackResist = -1f;

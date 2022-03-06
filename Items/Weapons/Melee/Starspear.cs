@@ -1,11 +1,11 @@
 ﻿using Eternal.Items.Materials;
 using Eternal.Projectiles.Weapons.Melee;
 using Eternal.Tiles;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Items.Weapons.Melee
 {
@@ -14,7 +14,8 @@ namespace Eternal.Items.Weapons.Melee
 
 		public override void SetStaticDefaults()
 		{
-			Tooltip.SetDefault("A Starsharp Spear");
+			Tooltip.SetDefault("<right> to throw and leave a trail of bombs" +
+							 "\n'A Starsharp Spear'");
 		}
 
 		public override void SetDefaults()
@@ -24,7 +25,7 @@ namespace Eternal.Items.Weapons.Melee
 			item.useAnimation = 18;
 			item.useTime = 24;
 			item.shootSpeed = 4.5f;
-			item.knockBack = 65f;
+			item.knockBack = 4f;
 			item.width = 66;
 			item.height = 66;
 			item.rare = ItemRarityID.Red;
@@ -36,15 +37,15 @@ namespace Eternal.Items.Weapons.Melee
 			item.autoReuse = true;
 
 			item.UseSound = SoundID.Item1;
-			item.shoot = ProjectileType<StarspearProjectile>();
+			item.shoot = ModContent.ProjectileType<StarspearProjectile>();
 		}
 
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddTile(TileType<Starforge>());
-			recipe.AddIngredient(ItemType<InterstellarSingularity>(), 5);
-			recipe.AddIngredient(ItemType<StarmetalBar>(), 4);
+			recipe.AddTile(ModContent.TileType<Starforge>());
+			recipe.AddIngredient(ModContent.ItemType<InterstellarSingularity>(), 5);
+			recipe.AddIngredient(ModContent.ItemType<StarmetalBar>(), 4);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 		}
@@ -60,10 +61,53 @@ namespace Eternal.Items.Weapons.Melee
 			}
 		}
 
-		public override bool CanUseItem(Player player)
+		public override bool AltFunctionUse(Player player)
 		{
-			return player.ownedProjectileCounts[item.shoot] < 1;
+			return true;
 		}
 
-	}
+		public override bool CanUseItem(Player player)
+		{
+			if (player.altFunctionUse == 2)
+            {
+				item.useTime = 18;
+				item.useAnimation = 18;
+				item.shoot = ModContent.ProjectileType<StarspearProjectileThrown>();
+				item.shootSpeed = 16f;
+				item.useStyle = ItemUseStyleID.SwingThrow;
+			}
+			else
+            {
+				item.useTime = 24;
+				item.useAnimation = 18;
+				item.shoot = ModContent.ProjectileType<StarspearProjectile>();
+				item.shootSpeed = 4.5f;
+				item.useStyle = ItemUseStyleID.HoldingOut;
+
+				return player.ownedProjectileCounts[item.shoot] < 1;
+			}
+
+			return true;
+		}
+
+        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        {
+			if (EternalPlayer.StarbornArmorMeleeBonus)
+            {
+				if (player.altFunctionUse == 2)
+                {
+					Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(30));
+					for (int i = 0; i < 3; i++)
+						Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, type, damage, knockBack, player.whoAmI);
+				}
+				else
+                {
+					Projectile.NewProjectile(position.X, position.Y, speedX, speedY, type, damage, knockBack, player.whoAmI);
+				}
+
+			}
+            return true;
+        }
+
+    }
 }

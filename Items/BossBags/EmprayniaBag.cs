@@ -15,7 +15,7 @@ namespace Eternal.Items.BossBags
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Treasure Bag");
+            DisplayName.SetDefault("Treasure Bag (NYI)");
             Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
         }
 
@@ -56,6 +56,6 @@ namespace Eternal.Items.BossBags
             player.QuickSpawnItem(ItemType<ScorchedMetal>(), Main.rand.Next(25, 75));
         }
 
-        public override int BossBagNPC => NPCType<NPCs.Boss.Incinerius.Incinerius>();
+        public override int BossBagNPC => NPCType<NPCs.Boss.Empraynia.Empraynia>();
     }
 }
