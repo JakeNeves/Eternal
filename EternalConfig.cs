@@ -14,24 +14,24 @@ namespace Eternal
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
         /// <summary>
-        /// Music Configuration to toggle between the new and the classic soundtrack
+        /// Music Configuration to toggle between the new and the old soundtrack
         /// </summary>
         [SeparatePage]
         [Header("Music Configuration")]
         [DefaultValue(false)]
-        [Label("Original Eternal Soundtrack")]
-        [BackgroundColor(10, 40, 120)]
-        [Tooltip("Determines when to use the classic soundtrack over the new soundtrack...\n(Default: Off)")]
+        [Label("Old Eternal Soundtrack")]
+        [BackgroundColor(71, 245, 169)]
+        [Tooltip("Determines when to use the old soundtrack over the new soundtrack...\n(Default: Off)")]
         public bool originalMusic = false;
 
         /// <summary>
         /// Music Configuration to toggle between the Eternal Mod and the base game Soundtrack
         /// </summary>
-        [DefaultValue(true)]
-        [BackgroundColor(30, 10, 30)]
-        [Label("Replace Vanilla Music with Eternal Music")]
-        [Tooltip("Toggle Between the Vanilla Music and the Eternal Mod Music...\n(Default: On)")]
-        public bool replaceVanillaMusic = true;
+        [DefaultValue(false)]
+        [BackgroundColor(71, 245, 169)]
+        [Label("Replace Vanilla Music with Eternal Music [c/008060:(WIP)]")]
+        [Tooltip("Toggle Between the Vanilla Music and the Eternal Mod Music...\n(Default: Off)")]
+        public bool replaceVanillaMusic = false;
 
         /// <summary>
         /// Gives bosses from the base game an increase of stats, simular to Master Mode
@@ -39,7 +39,7 @@ namespace Eternal
         [SeparatePage]
         [Header("Gameplay Tweaks Configuration")]
         [DefaultValue(true)]
-        [BackgroundColor(60, 20, 5)]
+        [BackgroundColor(138, 29, 29)]
         [Label("Hell Mode Stat Buffs for Vanilla Bosses")]
         [Tooltip("Determines when to increase the stats of vanilla terraia bosses in hell mode...\n(Default: On)")]
         public bool hellModeVanillaBosses = true;

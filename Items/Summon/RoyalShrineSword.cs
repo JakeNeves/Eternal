@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Items.Summon
 {
@@ -14,8 +13,7 @@ namespace Eternal.Items.Summon
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Royal Shrine Sword");
-            Tooltip.SetDefault("Summons the Ark of Imperious, the god of living swords\n'The blades of the shrine are rising'");
+            Tooltip.SetDefault("Summons the Ark of Imperious upon swinging, the god of living swords\n'A pulse of light shines towards the direction of the shrine'");
         }
 
         public override void SetDefaults()
@@ -23,9 +21,12 @@ namespace Eternal.Items.Summon
             item.width = 50;
             item.height = 50;
             item.rare = ItemRarityID.Red;
-            item.useAnimation = 45;
-            item.useTime = 45;
-            item.useStyle = ItemUseStyleID.HoldingUp;
+            item.useAnimation = 15;
+            item.useTime = 15;
+            item.useStyle = ItemUseStyleID.SwingThrow;
+            item.shoot = ModContent.ProjectileType<Projectiles.AoISpark>();
+            item.shootSpeed = 6f;
+            item.UseSound = SoundID.Item71;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
@@ -41,25 +42,18 @@ namespace Eternal.Items.Summon
 
         public override bool CanUseItem(Player player)
         {
-            return Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneLabrynth && !NPC.AnyNPCs(NPCType<ArkofImperious>());
+            return Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneLabrynth && !NPC.AnyNPCs(ModContent.NPCType<ArkofImperious>());
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddTile(TileType<Starforge>());
-            recipe.AddIngredient(ItemType<BrokenShrineSword>());
-            recipe.AddIngredient(ItemType<Astragel>(), 10);
-            recipe.AddIngredient(ItemType<CometiteBar>(), 6);
+            recipe.AddTile(ModContent.TileType<Starforge>());
+            recipe.AddIngredient(ModContent.ItemType<BrokenShrineSword>());
+            recipe.AddIngredient(ModContent.ItemType<WeatheredPlating>(), 3);
+            recipe.AddIngredient(ModContent.ItemType<CometiteBar>(), 10);
             recipe.SetResult(this);
             recipe.AddRecipe();
-        }
-
-        public override bool UseItem(Player player)
-        {
-            NPC.SpawnOnPlayer(player.whoAmI, NPCType<ArkofImperious>());
-            Main.PlaySound(SoundID.Roar, player.position, 0);
-            return true;
         }
     }
 }

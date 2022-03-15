@@ -1,14 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using System;
 using System.Linq;
 using Eternal.Tiles;
-using Eternal.Items;
-using static Terraria.ModLoader.ModContent;
 using Eternal.Items.Materials;
+using Eternal.Dusts;
 
 namespace Eternal.NPCs.Labrynth
 {
@@ -27,11 +25,34 @@ namespace Eternal.NPCs.Labrynth
             npc.defense = 10;
             npc.lifeMax = 18000;
             npc.HitSound = SoundID.NPCHit4;
-            npc.DeathSound = SoundID.NPCDeath3;
+            npc.DeathSound = SoundID.DD2_DarkMageHealImpact;
             npc.noGravity = true;
             npc.noTileCollide = true;
             npc.knockBackResist = -1f;
             npc.damage = 118;
+        }
+
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            if (npc.life <= 0)
+            {
+                for (int i = 0; i < 25; i++)
+                {
+                    Vector2 position = npc.Center + Vector2.UnitX.RotatedBy(MathHelper.ToRadians(360f / 25 * i)) * 15;
+                    Dust dust = Dust.NewDustPerfect(npc.position, ModContent.DustType<ArkEnergy>());
+                    dust.noGravity = true;
+                    dust.velocity = Vector2.Normalize(position - npc.Center) * 4;
+                    dust.noLight = false;
+                    dust.fadeIn = 1f;
+                }
+            }
+            else
+            {
+                for (int k = 0; k < damage / npc.lifeMax * 20.0; k++)
+                {
+                    Dust.NewDust(npc.Center, npc.width, npc.height, DustID.GreenTorch, hitDirection, 0f, 0, default(Color), 0.7f);
+                }
+            }
         }
 
         public override void AI()
@@ -85,7 +106,11 @@ namespace Eternal.NPCs.Labrynth
         {
             if (Main.rand.Next(2) == 0)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<BrokenShrineSword>());
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<BrokenShrineSword>());
+            }
+            if (Main.rand.Next(6) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<WeatheredPlating>(), Main.rand.Next(6, 12));
             }
         }
 

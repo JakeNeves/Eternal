@@ -55,7 +55,7 @@ namespace Eternal.Projectiles.Boss
         public override void Kill(int timeLeft)
         {
             //Main.PlaySound(SoundID.Tink, (int)projectile.position.X, (int)projectile.position.Y, 1, 1f, 0f);
-            Main.PlaySound(SoundID.NPCHit4, projectile.position);
+            Main.PlaySound(SoundID.DD2_DarkMageHealImpact, projectile.position);
             Vector2 usePos = projectile.position;
             Vector2 rotVector = (projectile.rotation - MathHelper.ToRadians(90f)).ToRotationVector2();
         }

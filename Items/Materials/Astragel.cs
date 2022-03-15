@@ -10,12 +10,13 @@ namespace Eternal.Items.Materials
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'Not to be confused with normal Gel or Astrageldeon'");
+            Tooltip.SetDefault("'Not actual gel'");
+            ItemID.Sets.ItemNoGravity[item.type] = true;
         }
 
         public override void SetDefaults()
         {
-            item.width = 24;
+            item.width = 20;
             item.height = 24;
             item.value = Item.sellPrice(platinum: 1, gold: 30);
             item.rare = ItemRarityID.Red;

@@ -51,7 +51,7 @@ namespace Eternal.Projectiles.Armor
         public override void Kill(int timeLeft)
         {
             //Main.PlaySound(SoundID.Tink, (int)projectile.position.X, (int)projectile.position.Y, 1, 1f, 0f);
-            Main.PlaySound(SoundID.NPCHit4, projectile.position);
+            Main.PlaySound(SoundID.DD2_DarkMageHealImpact, projectile.position);
         }
 
         public override void AI()

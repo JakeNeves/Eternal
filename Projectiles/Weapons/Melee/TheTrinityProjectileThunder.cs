@@ -3,7 +3,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using static Terraria.ModLoader.ModContent;
 using System;
 
 namespace Eternal.Projectiles.Weapons.Melee
@@ -30,7 +29,6 @@ namespace Eternal.Projectiles.Weapons.Melee
             projectile.width = 18;
 
             projectile.penetrate = -1;
-            projectile.melee = true;
             projectile.scale = 1f;
 
             projectile.extraUpdates = 1;

@@ -11,7 +11,6 @@ namespace Eternal.Items.Weapons.Magic
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("CrystalBarrage");
             Tooltip.SetDefault("Fires multiple colored projectiles" + 
                               "\n'Fire the rainbow, taste the rainbow'");
             Item.staff[item.type] = true;

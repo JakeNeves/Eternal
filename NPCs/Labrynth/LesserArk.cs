@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Eternal.Tiles;
 using System.Linq;
+using Eternal.Dusts;
 
 namespace Eternal.NPCs.Labrynth
 {
@@ -28,7 +29,30 @@ namespace Eternal.NPCs.Labrynth
             npc.noGravity = true;
             npc.noTileCollide = true;
             npc.HitSound = SoundID.NPCHit4;
-            npc.DeathSound = SoundID.NPCDeath3;
+            npc.DeathSound = SoundID.DD2_DarkMageHealImpact;
+        }
+
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            if (npc.life <= 0)
+            {
+                for (int i = 0; i < 25; i++)
+                {
+                    Vector2 position = npc.Center + Vector2.UnitX.RotatedBy(MathHelper.ToRadians(360f / 25 * i)) * 15;
+                    Dust dust = Dust.NewDustPerfect(npc.position, ModContent.DustType<ArkEnergy>());
+                    dust.noGravity = true;
+                    dust.velocity = Vector2.Normalize(position - npc.Center) * 4;
+                    dust.noLight = false;
+                    dust.fadeIn = 1f;
+                }
+            }
+            else
+            {
+                for (int k = 0; k < damage / npc.lifeMax * 20.0; k++)
+                {
+                    Dust.NewDust(npc.Center, npc.width, npc.height, DustID.GreenTorch, hitDirection, 0f, 0, default(Color), 0.7f);
+                }
+            }
         }
 
         public override void AI()

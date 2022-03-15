@@ -222,6 +222,11 @@ namespace Eternal.NPCs.Boss.BionicBosses
         {
             if (!NPC.AnyNPCs(ModContent.NPCType<PhotonNeox>()) && !NPC.AnyNPCs(ModContent.NPCType<ProtonNeox>()))
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SightCore>(), Main.rand.Next(20, 40));
+
+            if (Main.rand.Next(6) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<WeatheredPlating>(), Main.rand.Next(3, 9));
+            }
         }
 
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)

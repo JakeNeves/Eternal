@@ -4,12 +4,11 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Eternal.Items.Potions;
-using Eternal.Projectiles.Boss;
 using Eternal.Items.Materials;
 
 namespace Eternal.NPCs.Boss.BionicBosses
 {
-    //[AutoloadBossHead]
+    [AutoloadBossHead]
     public class Borealis : ModNPC
     {
         private Player player;
@@ -164,6 +163,11 @@ namespace Eternal.NPCs.Boss.BionicBosses
         public override void NPCLoot()
         {
             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SmiteCore>(), Main.rand.Next(20, 40));
+
+            if (Main.rand.Next(6) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<WeatheredPlating>(), Main.rand.Next(3, 9));
+            }
         }
 
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)

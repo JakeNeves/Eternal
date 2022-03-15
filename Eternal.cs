@@ -533,7 +533,7 @@ namespace Eternal
 					GetTexture("BossBars/BionicBossBarMiddle"),
 					GetTexture("BossBars/BionicBossBarEnd"),
 					GetTexture("BossBars/BionicBossBarFill"));
-				FKBossHealthBar.Call("hbSetBossHeadTexture", GetTexture("NPCs/Boss/BionicBosses/Orion_Head_Boss"));
+				FKBossHealthBar.Call("hbSetBossHeadTexture", GetTexture("NPCs/Boss/BionicBosses/Borealis_Head_Boss"));
 				FKBossHealthBar.Call("hbFinishSingle", ModContent.NPCType<NPCs.Boss.BionicBosses.Borealis>());
 				FKBossHealthBar.Call("hbStart");
 				FKBossHealthBar.Call("hbSetTexture",
@@ -573,7 +573,7 @@ namespace Eternal
 					GetTexture("BossBars/BionicBossBarMiddle"),
 					GetTexture("BossBars/BionicBossBarEnd"),
 					GetTexture("BossBars/BionicBossBarFill"));
-				FKBossHealthBar.Call("hbSetBossHeadTexture", GetTexture("NPCs/Boss/BionicBosses/Orion_Head_Boss"));
+				FKBossHealthBar.Call("hbSetBossHeadTexture", GetTexture("NPCs/Boss/BionicBosses/Polarus_Head_Boss"));
 				FKBossHealthBar.Call("hbFinishSingle", ModContent.NPCType<NPCs.Boss.BionicBosses.Polarus>());
 				FKBossHealthBar.Call("hbStart");
 				FKBossHealthBar.Call("hbSetTexture",
@@ -581,7 +581,7 @@ namespace Eternal
 					GetTexture("BossBars/BionicBossBarMiddle"),
 					GetTexture("BossBars/BionicBossBarEnd"),
 					GetTexture("BossBars/BionicBossBarFill"));
-				FKBossHealthBar.Call("hbSetBossHeadTexture", GetTexture("NPCs/Boss/BionicBosses/Orion_Head_Boss"));
+				FKBossHealthBar.Call("hbSetBossHeadTexture", GetTexture("NPCs/Boss/BionicBosses/Omnicron/Omnicron_Head_Boss"));
 				FKBossHealthBar.Call("hbFinishSingle", ModContent.NPCType<NPCs.Boss.BionicBosses.Omnicron.Omnicron>());
 				// AoI
 				FKBossHealthBar.Call("hbStart");

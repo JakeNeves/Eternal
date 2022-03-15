@@ -8,7 +8,7 @@ using Eternal.Projectiles.Boss;
 
 namespace Eternal.NPCs.Boss.BionicBosses.Omnicron
 {
-    //[AutoloadBossHead]
+    [AutoloadBossHead]
     public class Omnicron : ModNPC
     {
         private Player player;

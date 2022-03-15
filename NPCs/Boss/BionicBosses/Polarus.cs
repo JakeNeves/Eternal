@@ -4,13 +4,12 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Eternal.Items.Potions;
-using Eternal.Projectiles.Enemy;
 using Microsoft.Xna.Framework.Graphics;
 using Eternal.Items.Materials;
 
 namespace Eternal.NPCs.Boss.BionicBosses
 {
-    //[AutoloadBossHead]
+    [AutoloadBossHead]
     public class Polarus : ModNPC
     {
         private Player player;
@@ -439,6 +438,11 @@ namespace Eternal.NPCs.Boss.BionicBosses
         public override void NPCLoot()
         {
             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<MindCore>(), Main.rand.Next(20, 40));
+
+            if (Main.rand.Next(6) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<WeatheredPlating>(), Main.rand.Next(3, 9));
+            }
         }
 
         private void DespawnHandler()

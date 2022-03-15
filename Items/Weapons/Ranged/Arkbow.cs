@@ -11,7 +11,7 @@ namespace Eternal.Items.Weapons.Ranged
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Rapidly Fires Four to Twelve Arrows\n'The arks perferred to use thier blades instead of this...'");
+            Tooltip.SetDefault("Rapidly Fires Four to Eight Arrows\n'The arks perferred to use thier blades instead of this...'");
         }
 
         public override void SetDefaults()
@@ -50,7 +50,7 @@ namespace Eternal.Items.Weapons.Ranged
             float rotation = MathHelper.ToRadians(15);
             for (int i = 0; i < numberProjectiles; i++)
             {
-                Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1)));
+                Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(rotation);
                 Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, type, damage, knockBack, player.whoAmI);
             }
             return false;
