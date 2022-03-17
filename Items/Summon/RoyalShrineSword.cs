@@ -42,7 +42,7 @@ namespace Eternal.Items.Summon
 
         public override bool CanUseItem(Player player)
         {
-            return Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneLabrynth && !NPC.AnyNPCs(ModContent.NPCType<ArkofImperious>());
+            return Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneLabrynth && !NPC.AnyNPCs(ModContent.NPCType<ArkofImperious>()) && player.ownedProjectileCounts[item.shoot] < 1;
         }
 
         public override void AddRecipes()

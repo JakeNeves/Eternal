@@ -16,8 +16,8 @@ namespace Eternal.Items.Materials
 
         public override void SetDefaults()
         {
-            item.width = 62;
-            item.height = 62;
+            item.width = 54;
+            item.height = 54;
             item.rare = ItemRarityID.Gray;
         }
     }

@@ -44,6 +44,7 @@ namespace Eternal.Items.Armor
 
             EternalGlobalProjectile.starbornArmor = true;
             EternalPlayer.ArkaniumArmor = true;
+            EternalPlayer.UltimusArmor = true;
         }
 
         public override void UpdateEquip(Player player)

@@ -57,7 +57,7 @@ namespace Eternal.NPCs.Boss.AoI
                 music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/BladeofBrutality");
             }
             npc.defense = 70;
-            npc.damage = 62;
+            npc.damage = 75;
             npc.lavaImmune = true;
             npc.noTileCollide = true;
             npc.noGravity = true;
@@ -122,10 +122,12 @@ namespace Eternal.NPCs.Boss.AoI
         {
             npc.lifeMax = 2400000;
             npc.defense = 72;
+            npc.damage = 100;
             if(EternalWorld.hellMode)
             {
                 npc.lifeMax = 3600000;
                 npc.defense = 74;
+                npc.damage = 125;
             }
         }
 
@@ -136,19 +138,6 @@ namespace Eternal.NPCs.Boss.AoI
 
         public override bool PreAI()
         {
-            if (Phase == 0)
-            {
-                DoAttacksPhase1();
-            }
-            if (Phase == 1)
-            {
-                DoAttacksPhase2();
-            }
-            if (Phase == 3)
-            {
-                DoAttacksPhase3();
-            }
-
             Movement();
 
             return true;
@@ -249,7 +238,7 @@ namespace Eternal.NPCs.Boss.AoI
             {
                 Phase = 1;
             }
-            if (npc.life < npc.lifeMax / 4)
+            if (npc.life < npc.lifeMax / 3)
             {
                 Phase = 2;
             }
@@ -264,6 +253,7 @@ namespace Eternal.NPCs.Boss.AoI
                     justSpawnedCircle = true;
                 }
             }
+            DoAttacks();
 
             if (Phase == 2)
             {
@@ -326,68 +316,94 @@ namespace Eternal.NPCs.Boss.AoI
 
         }
 
-        private void DoAttacksPhase1()
+        private void DoAttacks()
         {
-            if ((AttackTimer == 100 || AttackTimer == 150 || AttackTimer == 175))
-            {
-                //NPC.NewNPC((int)npc.Center.X - 20, (int)npc.Center.Y, ModContent.NPCType<Arkling>());
+            Player player = Main.player[npc.target];
 
-                Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, -12, 0, ModContent.ProjectileType<ArkArrowHostile>(), 6, 0, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 12, 0, ModContent.ProjectileType<ArkArrowHostile>(), 6, 0, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 0, 12, ModContent.ProjectileType<ArkArrowHostile>(), 6, 0, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 0, -12, ModContent.ProjectileType<ArkArrowHostile>(), 6, 0, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, -8, ModContent.ProjectileType<ArkArrowHostile>(), 6, 0, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, -8, ModContent.ProjectileType<ArkArrowHostile>(), 6, 0, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, 8, ModContent.ProjectileType<ArkArrowHostile>(), 6, 0, Main.myPlayer, 0f, 0f);
-                Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, 8, ModContent.ProjectileType<ArkArrowHostile>(), 6, 0, Main.myPlayer, 0f, 0f);
-            }
-            if(AttackTimer == 300)
-            {
-                isDashing = true;
-            }
-            else if (AttackTimer == 475)
+            if (npc.life < npc.lifeMax / 2)
             {
                 isDashing = false;
-                AttackTimer = 0;
-            }
-        }
 
-        private void DoAttacksPhase2()
-        {
-            float projRot = MathHelper.PiOver2;
-
-            int shootTimer = 4;
-            int rate = 60;
-
-            if (AttackTimer >= 100 && AttackTimer < 180)
-            { 
-                if (Main.netMode != NetmodeID.MultiplayerClient)
+                if ((AttackTimer == 120 || AttackTimer == 145 || AttackTimer == 160))
                 {
-                    projRot += 0.01f;
-                    if (--shootTimer <= 0)
+                    if (EternalWorld.hellMode)
                     {
-                        shootTimer = rate;
-                        var shootPos = npc.Center + new Vector2(0, 17);
-                        var shootVel = new Vector2(0, 7).RotatedBy(MathHelper.PiOver2);
-                        int[] i = {
-                            Projectile.NewProjectile(shootPos, shootVel, ModContent.ProjectileType<ArkArrowHostile>(), 90, 1f),
-                            Projectile.NewProjectile(shootPos, shootVel.RotatedBy(MathHelper.PiOver2), ModContent.ProjectileType<ArkArrowHostile>(), 90, 1f),
-                            Projectile.NewProjectile(shootPos, shootVel.RotatedBy(MathHelper.Pi), ModContent.ProjectileType<ArkArrowHostile>(), 90, 1f),
-                            Projectile.NewProjectile(shootPos, shootVel.RotatedBy(-MathHelper.PiOver2), ModContent.ProjectileType<ArkArrowHostile>(), 90, 1f)
-                        };
-                        for (int l = 0; l < i.Length; l++)
+                        for (int i = 0; i < 12; i++)
                         {
-                            Main.projectile[i[l]].hostile = true;
-                            Main.projectile[i[l]].tileCollide = false;
+                            NPC.NewNPC((int)npc.Center.X - 20, (int)npc.Center.Y, ModContent.NPCType<Arkling>());
                         }
+
+
+                    }
+                    else
+                    {
+
                     }
                 }
+                if ((AttackTimer == 185 || AttackTimer == 200 || AttackTimer == 225))
+                {
+                    Vector2 direction = Main.player[npc.target].Center - npc.Center;
+                    direction.Normalize();
+                    direction.X *= 8.5f;
+                    direction.Y *= 8.5f;
+
+                    int amountOfProjectiles = 2;
+                    for (int i = 0; i < amountOfProjectiles; ++i)
+                    {
+                        float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                            Main.PlaySound(SoundID.DD2_LightningAuraZap, npc.position);
+                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<ArkEnergyHostile>(), npc.damage / 2, 1, Main.myPlayer, 0, 0);
+                    }
+                }
+                else if (AttackTimer == 250)
+                {
+                    AttackTimer = 0;
+                }
             }
-        }
+            else if (npc.life < npc.lifeMax / 3)
+            {
 
-        private void DoAttacksPhase3()
-        {
+            }
+            else
+            {
+                if ((AttackTimer == 100 || AttackTimer == 150 || AttackTimer == 175))
+                {
+                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, -12, 0, ModContent.ProjectileType<ArkArrowHostile>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 12, 0, ModContent.ProjectileType<ArkArrowHostile>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 0, 12, ModContent.ProjectileType<ArkArrowHostile>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 0, -12, ModContent.ProjectileType<ArkArrowHostile>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, -8, ModContent.ProjectileType<ArkArrowHostile>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, -8, ModContent.ProjectileType<ArkArrowHostile>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, 8, ModContent.ProjectileType<ArkArrowHostile>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, 8, ModContent.ProjectileType<ArkArrowHostile>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
 
+                    Vector2 direction = Main.player[npc.target].Center - npc.Center;
+                    direction.Normalize();
+                    direction.X *= 8.5f;
+                    direction.Y *= 8.5f;
+
+                    int amountOfProjectiles = 1;
+                    for (int i = 0; i < amountOfProjectiles; ++i)
+                    {
+                        float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                            Main.PlaySound(SoundID.DD2_LightningAuraZap, npc.position);
+                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<ArkEnergyHostile>(), npc.damage / 2, 1, Main.myPlayer, 0, 0);
+                    }
+                }
+                if (AttackTimer == 300)
+                {
+                    isDashing = true;
+                }
+                else if (AttackTimer == 475)
+                {
+                    isDashing = false;
+                    AttackTimer = 0;
+                }
+            }
         }
 
         public override void NPCLoot()

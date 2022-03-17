@@ -37,6 +37,8 @@ namespace Eternal
         #region Armor Effects
         public static bool ArkaniumArmor = false;
         public static bool StarbornArmorMeleeBonus = false;
+        public static bool UltimusArmor = false;
+        public static bool UltimusArmorMeleeBonus = false;
         #endregion
 
         public bool ZoneLabrynth = false;
@@ -60,6 +62,8 @@ namespace Eternal
             AoIGift = false;
             ArkaniumArmor = false;
             StarbornArmorMeleeBonus = false;
+            UltimusArmor = false;
+            UltimusArmorMeleeBonus = false;
 
             player.statLifeMax2 += lifeFruits * 2;
         }
