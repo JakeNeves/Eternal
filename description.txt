@@ -18,11 +18,9 @@ It currently adds
 
 [c/00B359:---Future Plans---]
 
-* Implement Phases 3 and 4 of the Cosmic Emperor
-
 * Add Mod Integration for Fargo's Mod
 
-* Fully Implement Minibosses
+* Implement some Minibosses
 
 [c/00B359:---Credits---]
 
@@ -33,6 +31,10 @@ JakeTEM - Literally most of enerything
 1.0.8
 * Updated Sprites for most of the content
 
+* (partially) Implimented phase 3 and scrapped phase 4 of the Cosmic Emperor
+
+* Reworked some items ;)
+
 * Updated Mod Integration for Calamity
 
 * Added Music Configurations for Vanilla Music
@@ -40,4 +42,4 @@ JakeTEM - Literally most of enerything
   * Added music for the Underground/Cavern
   * Added music for the Mechanical Bosses
 
-* Added Sebestion Kox and the Bionic Bosses (Including upgraded variants)
+* Added Sebestion Kox, the Bionic and N30X Bosses (Note: Not all of the bosses have proper AI implimented yet... Excpect patches to come out sometime after the release of 1.0.8)
