@@ -17,9 +17,9 @@ namespace Eternal.Items.Weapons.Melee
 
         public override void SetDefaults()
         {
-            item.width = 64;
-            item.height = 64;
-            item.damage = 2048;
+            item.width = 56;
+            item.height = 56;
+            item.damage = 1000;
             item.knockBack = 30;
             item.value = Item.buyPrice(platinum: 1, gold: 3);
             item.useTime = 15;
@@ -53,7 +53,7 @@ namespace Eternal.Items.Weapons.Melee
                 Item.staff[item.type] = false;
                 item.useStyle = ItemUseStyleID.SwingThrow;
                 item.shoot = ProjectileType<SiivaSpark>();
-                item.shootSpeed = 5.5f;
+                item.shootSpeed = 12f;
                 item.autoReuse = true;
             }
             return base.CanUseItem(player);

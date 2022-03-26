@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -12,42 +11,52 @@ namespace Eternal.Projectiles.Weapons.Melee
 
 		public override void SetStaticDefaults()
         {
-			ProjectileID.Sets.TrailCacheLength[projectile.type] = 75;
-			ProjectileID.Sets.TrailingMode[projectile.type] = 0;
 			ProjectileID.Sets.Homing[projectile.type] = true;
 		}
 		public override void SetDefaults()
 		{
-			projectile.width = 10;
-			projectile.height = 10;
+			projectile.width = 6;
+			projectile.height = 6;
 			projectile.friendly = true;
 			projectile.melee = true;
-			projectile.penetrate = 3;
-			projectile.light = 1.0f;
-			projectile.timeLeft = 600;
+			projectile.penetrate = 4;
+			projectile.timeLeft = 300;
 			projectile.ignoreWater = true;
-			projectile.extraUpdates = 1;
-		}
-
-
-		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
-		{
-			Vector2 drawOrigin = new Vector2(Main.projectileTexture[projectile.type].Width * 0.5f, projectile.height * 0.5f);
-			for (int k = 0; k < projectile.oldPos.Length; k++)
-			{
-				Vector2 drawPos = projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, projectile.gfxOffY);
-				Color color = projectile.GetAlpha(lightColor) * ((float)(projectile.oldPos.Length - k) / (float)projectile.oldPos.Length);
-				spriteBatch.Draw(Main.projectileTexture[projectile.type], drawPos, null, color, projectile.rotation, drawOrigin, projectile.scale, SpriteEffects.None, 0f);
-			}
-			return true;
+			projectile.extraUpdates = 2;
+			projectile.alpha = 255;
 		}
 
         public override void AI()
         {
 			float maxDetectRadius = 400f;
-			float projSpeed = 5f;
+			float projSpeed = 12f;
 
 			timer++;
+
+			float dustScale = 1f;
+			if (projectile.ai[0] == 0f)
+				dustScale = 0.25f;
+			else if (projectile.ai[0] == 1f)
+				dustScale = 0.5f;
+			else if (projectile.ai[0] == 2f)
+				dustScale = 0.75f;
+
+			if (Main.rand.Next(2) == 0)
+			{
+				Dust dust = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, DustID.Electric, projectile.velocity.X * 0.2f, projectile.velocity.Y * 0.2f, 100);
+				if (Main.rand.NextBool(3))
+				{
+					dust.noGravity = true;
+					dust.scale *= 3f;
+					dust.velocity.X *= 2f;
+					dust.velocity.Y *= 2f;
+				}
+
+				dust.scale *= 1.5f;
+				dust.velocity *= 1.2f;
+				dust.scale *= dustScale;
+			}
+			projectile.ai[0] += 1f;
 
 			if (timer >= 75)
 			{
@@ -107,7 +116,12 @@ namespace Eternal.Projectiles.Weapons.Melee
 			return false;
 		}
 
-		public override void Kill(int timeLeft)
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+			projectile.Kill();
+        }
+
+        public override void Kill(int timeLeft)
 		{
 			for (int k = 0; k < 5; k++)
 			{
@@ -116,5 +130,15 @@ namespace Eternal.Projectiles.Weapons.Melee
 			Collision.HitTiles(projectile.position + projectile.velocity, projectile.velocity, projectile.width, projectile.height);
 			Main.PlaySound(SoundID.NPCHit3, projectile.position);
 		}
+
+		public override void ModifyDamageHitbox(ref Rectangle hitbox)
+		{
+			int size = 30;
+			hitbox.X -= size;
+			hitbox.Y -= size;
+			hitbox.Width += size * 2;
+			hitbox.Height += size * 2;
+		}
+
 	}
 }

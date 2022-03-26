@@ -1,4 +1,5 @@
-﻿using Eternal.Items.Potions;
+﻿using Eternal.Items.Materials;
+using Eternal.Items.Potions;
 using Eternal.NPCs.Boss.BionicBosses.Omnicron;
 using Eternal.Projectiles.Boss;
 using Microsoft.Xna.Framework;
@@ -234,6 +235,11 @@ namespace Eternal.NPCs.Boss.BionicBosses
         public override void NPCLoot()
         {
             NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<OmnicronNeox>());
+
+            if (Main.rand.Next(2) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<NeoxCore>(), Main.rand.Next(6, 16));
+            }
         }
 
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)

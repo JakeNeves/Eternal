@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Eternal.Items.Potions;
+using Eternal.Items.Materials;
 
 namespace Eternal.NPCs.Boss.BionicBosses.Omnicron
 {
@@ -277,6 +278,11 @@ namespace Eternal.NPCs.Boss.BionicBosses.Omnicron
             NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<PhotonNeox>());
             NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<ProtonNeox>());
             NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<QuasarNeox>());
+
+            if (Main.rand.Next(2) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<NeoxCore>(), Main.rand.Next(6, 16));
+            }
         }
 
         public override void FindFrame(int frameHeight)

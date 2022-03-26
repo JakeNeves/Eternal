@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System;
 using Eternal.Items.Potions;
+using Eternal.Items.Materials;
 
 namespace Eternal.NPCs.Boss.BionicBosses
 {
@@ -181,6 +182,11 @@ namespace Eternal.NPCs.Boss.BionicBosses
         {
             if (!NPC.AnyNPCs(ModContent.NPCType<ProtonNeox>()) && !NPC.AnyNPCs(ModContent.NPCType<QuasarNeox>()))
                 NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<PolarusNeox>());
+
+            if (Main.rand.Next(2) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<NeoxCore>(), Main.rand.Next(6, 16));
+            }
         }
 
         private void RotateNPCToTarget()
