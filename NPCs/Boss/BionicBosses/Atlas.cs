@@ -6,6 +6,7 @@ using Terraria.ID;
 using Eternal.Items.Potions;
 using Eternal.Projectiles.Boss;
 using Eternal.Items.Materials;
+using EternalMusic;
 
 namespace Eternal.NPCs.Boss.BionicBosses
 {
@@ -45,7 +46,15 @@ namespace Eternal.NPCs.Boss.BionicBosses
             npc.noTileCollide = true;
             npc.HitSound = SoundID.NPCHit4;
             npc.DeathSound = SoundID.NPCDeath14;
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/ExoMenace");
+            Mod musicMod = ModLoader.GetMod("EternalMusic");
+            if (musicMod == null)
+            {
+                music = MusicID.Boss1;
+            }
+            else
+            {
+                music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/ExoMenace");
+            }
             npc.buffImmune[BuffID.Poisoned] = true;
             npc.buffImmune[BuffID.OnFire] = true;
             npc.buffImmune[BuffID.Venom] = true;

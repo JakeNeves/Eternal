@@ -24,6 +24,7 @@ namespace Eternal.NPCs.Labrynth
             npc.aiStyle = -1;
             npc.defense = 10;
             npc.lifeMax = 18000;
+            npc.value = Item.buyPrice(gold: 30, silver: 15);
             npc.HitSound = SoundID.NPCHit4;
             npc.DeathSound = SoundID.DD2_DarkMageHealImpact;
             npc.noGravity = true;

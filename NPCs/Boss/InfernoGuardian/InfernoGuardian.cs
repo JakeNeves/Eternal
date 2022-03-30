@@ -2,6 +2,7 @@
 using Terraria.ModLoader;
 using Eternal.Items.Ammo;
 using Eternal.Dusts;
+using Terraria.ID;
 
 namespace Eternal.NPCs.Boss.InfernoGuardian
 {
@@ -32,7 +33,15 @@ namespace Eternal.NPCs.Boss.InfernoGuardian
             npc.noTileCollide = true;
             npc.lavaImmune = true;
             npc.boss = true;
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/UnfatefulStrike");
+            Mod musicMod = ModLoader.GetMod("EternalMusic");
+            if (musicMod == null)
+            {
+                music = MusicID.Boss5;
+            }
+            else
+            {
+                music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/UnfatefulStrike");
+            }
         }
 
         public override void AI()

@@ -85,6 +85,8 @@ namespace Eternal.Tiles.Interactive
             {
                 NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<AtlasNeox>());
                 CombatText.NewText(player.Hitbox, Main.DiscoColor, "UNIDENTIFIED TARGET FOUND, PREPARING UNITS FOR STRIKE!", dramatic: true);
+                Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Custom/ChromaCoreActivate"), Main.myPlayer);
+                Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Custom/DroxClan"), Main.myPlayer);
             }
             else
             {

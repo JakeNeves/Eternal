@@ -32,7 +32,15 @@ namespace Eternal.NPCs.Boss.CosmicEmperor
             npc.lifeMax = 6000000;
             npc.HitSound = mod.GetLegacySoundSlot(SoundType.NPCHit, "Sounds/NPCHit/EmperorHit");
             npc.DeathSound = null;
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/JourneysConquest");
+            Mod musicMod = ModLoader.GetMod("EternalMusic");
+            if (musicMod == null)
+            {
+                music = MusicID.Boss3;
+            }
+            else
+            {
+                music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/JourneysConquest");
+            }
             npc.buffImmune[BuffID.Chilled] = true;
             npc.buffImmune[BuffID.OnFire] = true;
             npc.buffImmune[BuffID.Suffocation] = true;

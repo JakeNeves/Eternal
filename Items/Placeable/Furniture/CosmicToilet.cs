@@ -11,8 +11,7 @@ namespace Eternal.Items.Placeable.Furniture
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("Seriously? THIS is what you " +
-                             "\nused the Cosmonium Fragments for?" +
-                             "\n'What if it wasn't purple?'");
+                             "\nused the Cosmonium Fragments for?");
         }
 
         public override void SetDefaults()

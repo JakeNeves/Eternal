@@ -24,7 +24,7 @@ namespace Eternal.NPCs.Labrynth
             npc.knockBackResist = 0f;
             npc.width = 38;
             npc.height = 60;
-            npc.value = Item.buyPrice(gold: 30);
+            npc.value = Item.buyPrice(silver: 8);
             npc.lavaImmune = true;
             npc.noGravity = true;
             npc.noTileCollide = true;

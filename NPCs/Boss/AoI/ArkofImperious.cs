@@ -12,6 +12,7 @@ using Eternal.Projectiles.Boss;
 using Eternal.Items.Potions;
 using Microsoft.Xna.Framework.Graphics;
 using Eternal.Dusts;
+using EternalMusic;
 
 namespace Eternal.NPCs.Boss.AoI
 {
@@ -48,13 +49,21 @@ namespace Eternal.NPCs.Boss.AoI
             npc.HitSound = SoundID.NPCHit4;
             npc.DeathSound = SoundID.DD2_DarkMageHealImpact;
             npc.boss = true;
-            if (!ModContent.GetInstance<EternalConfig>().originalMusic)
+            Mod musicMod = ModLoader.GetMod("EternalMusic");
+            if (musicMod == null)
             {
-                music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/New/ImperiousStrike");
+                music = MusicID.Boss3;
             }
             else
             {
-                music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/BladeofBrutality");
+                if (!ModContent.GetInstance<EternalMusicConfig>().originalMusic)
+                {
+                    music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/New/ImperiousStrike");
+                }
+                else
+                {
+                    music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/BladeofBrutality");
+                }
             }
             npc.defense = 70;
             npc.damage = 75;

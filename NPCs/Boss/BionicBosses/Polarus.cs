@@ -40,7 +40,15 @@ namespace Eternal.NPCs.Boss.BionicBosses
             npc.noGravity = true;
             npc.lavaImmune = true;
             npc.boss = true;
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/ExoMenace");
+            Mod musicMod = ModLoader.GetMod("EternalMusic");
+            if (musicMod == null)
+            {
+                music = MusicID.Boss3;
+            }
+            else
+            {
+                music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/ExoMenace");
+            }
             npc.HitSound = SoundID.NPCHit4;
             npc.DeathSound = SoundID.NPCDeath14;
             npc.buffImmune[BuffID.Poisoned] = true;

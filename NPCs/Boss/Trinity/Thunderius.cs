@@ -55,7 +55,15 @@ namespace Eternal.NPCs.Boss.Trinity
             npc.noGravity = true;
             npc.noTileCollide = true;
             npc.boss = true;
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/TheTrinity");
+            Mod musicMod = ModLoader.GetMod("EternalMusic");
+            if (musicMod == null)
+            {
+                music = MusicID.LunarBoss;
+            }
+            else
+            {
+                music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/TheTrinity");
+            }
         }
 
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)

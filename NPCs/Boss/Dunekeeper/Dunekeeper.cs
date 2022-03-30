@@ -54,7 +54,15 @@ namespace Eternal.NPCs.Boss.Dunekeeper
             npc.HitSound = SoundID.NPCHit3;
             npc.DeathSound = SoundID.NPCDeath3;
             bossBag = ItemType<DunekeeperBag>();
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/DunesWrath");
+            Mod musicMod = ModLoader.GetMod("EternalMusic");
+            if (musicMod == null)
+            {
+                music = MusicID.Boss1;
+            }
+            else
+            {
+                music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/DunesWrath");
+            }
         }
 
         public override void HitEffect(int hitDirection, double damage)
