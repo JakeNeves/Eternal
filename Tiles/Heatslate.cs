@@ -11,7 +11,7 @@ namespace Eternal.Tiles
 		public override void SetDefaults()
 		{
 			Main.tileSolid[Type] = true;
-			Main.tileMerge[Type][TileType<HeatslateGrowth>()] = true;
+			//Main.tileMerge[Type][TileType<HeatslateGrowth>()] = true;
 			Main.tileMergeDirt[Type] = false;
 			Main.tileBlockLight[Type] = true;
 			Main.tileLighted[Type] = false;

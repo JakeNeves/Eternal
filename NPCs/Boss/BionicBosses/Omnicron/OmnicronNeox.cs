@@ -40,15 +40,7 @@ namespace Eternal.NPCs.Boss.BionicBosses.Omnicron
             npc.noTileCollide = true;
             npc.HitSound = SoundID.NPCHit4;
             npc.DeathSound = SoundID.NPCDeath14;
-            Mod musicMod = ModLoader.GetMod("EternalMusic");
-            if (musicMod == null)
-            {
-                music = MusicID.LunarBoss;
-            }
-            else
-            {
-                music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/ExoMenace");
-            }
+            music = MusicID.LunarBoss;
             npc.buffImmune[BuffID.Poisoned] = true;
             npc.buffImmune[BuffID.OnFire] = true;
             npc.buffImmune[BuffID.Venom] = true;

@@ -72,7 +72,7 @@ namespace Eternal
             labrynth = LabrynthTiles;
             BeneathTiles = tileCounts[TileType<Grimstone>()] + tileCounts[TileType<Darkslate>()];
             theBeneath = BeneathTiles;
-            ashpit = tileCounts[TileType<HeatslateGrowth>()];
+            ashpit = tileCounts[TileType<Heatslate>()];
         }
 
         public override void Initialize()
@@ -232,7 +232,7 @@ namespace Eternal
         public override void PostUpdate()
         {
             Player player = Main.LocalPlayer;
-            EternalPlayer modPlayer = player.GetEternalPlayer();
+            //EternalPlayer modPlayer = player.GetEternalPlayer();
 
             EternalGlobalNPC.hellModeDifficulty = hellMode;
 

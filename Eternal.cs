@@ -26,8 +26,6 @@ using Eternal.UI;
 using Eternal.Items.Weapons.Radiant;
 using Eternal.Items.Materials.Elementalblights;
 using Terraria.GameContent.UI;
-using EternalMusic.Items.Placeable;
-using EternalMusic;
 
 namespace Eternal
 {
@@ -153,185 +151,30 @@ namespace Eternal
             {
 				return;
             }
-
-			Mod musicMod = ModLoader.GetMod("EternalMusic");
-			if (musicMod == null)
+			if (Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneLabrynth)
 			{
-				if (Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneLabrynth)
-				{
-					music = MusicID.Dungeon;
-					priority = MusicPriority.BiomeMedium;
-				}
-
-				if (Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneCommet)
-				{
-					music = MusicID.Eerie;
-					priority = MusicPriority.BiomeMedium;
-				}
-
-				if (Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneThunderduneBiome)
-				{
-					music = MusicID.Desert;
-					priority = MusicPriority.BiomeMedium;
-				}
-
-				if (Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneAshpit)
-				{
-					music = MusicID.Eerie;
-					priority = MusicPriority.BiomeMedium;
-				}
-
+				music = MusicID.Dungeon;
+				priority = MusicPriority.BiomeMedium;
 			}
-			else
+
+			if (Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneCommet)
 			{
-				if (Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneCommet)
-				{
-					if (!ModContent.GetInstance<EternalMusicConfig>().originalMusic)
-					{
-						music = GetSoundSlot(SoundType.Music, "Sounds/Music/New/AstralDiscovery");
-						priority = MusicPriority.BiomeMedium;
-					}
-					else
-					{
-						music = GetSoundSlot(SoundType.Music, "Sounds/Music/ShatteredStar");
-						priority = MusicPriority.BiomeMedium;
-					}
-				}
-
-				if (Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneThunderduneBiome)
-				{
-					music = GetSoundSlot(SoundType.Music, "Sounds/Music/VitreousSandsofThunder");
-					priority = MusicPriority.BiomeMedium;
-				}
-
-				if (Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneLabrynth)
-				{
-					if (!ModContent.GetInstance<EternalMusicConfig>().originalMusic)
-					{
-						music = GetSoundSlot(SoundType.Music, "Sounds/Music/New/ImperiousShrine");
-						priority = MusicPriority.BiomeMedium;
-					}
-					else
-					{
-						music = GetSoundSlot(SoundType.Music, "Sounds/Music/MazesAndLivingSwords");
-						priority = MusicPriority.BiomeMedium;
-					}
-				}
-
-				if (Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneBeneath)
-				{
-					if (!ModContent.GetInstance<EternalMusicConfig>().originalMusic)
-					{
-						music = GetSoundSlot(SoundType.Music, "Sounds/Music/New/DarknessFromDeepBelow");
-						priority = MusicPriority.BiomeMedium;
-					}
-					else
-					{
-						music = GetSoundSlot(SoundType.Music, "Sounds/Music/DeepDark");
-						priority = MusicPriority.BiomeMedium;
-					}
-				}
-
-				if (Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneAshpit)
-				{
-					music = GetSoundSlot(SoundType.Music, "Sounds/Music/AshFields");
-					priority = MusicPriority.BiomeMedium;
-				}
-
-				if (ModContent.GetInstance<EternalMusicConfig>().replaceVanillaMusic)
-				{
-					if (Main.musicVolume != 0)
-					{
-						if (Main.myPlayer != -1 && !Main.gameMenu && Main.LocalPlayer.active)
-						{
-							Player player = Main.player[Main.myPlayer];
-							if (player.ZoneDirtLayerHeight || player.ZoneRockLayerHeight && !Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneBeneath)
-							{
-								music = GetSoundSlot(SoundType.Music, "Sounds/Music/VanillaReplace/MysteriousUnderground");
-								priority = MusicPriority.Environment;
-							}
-							if (player.ZoneSnow && !Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneCommet)
-							{
-								if (!Main.dayTime)
-								{
-									if (Main.raining)
-									{
-										music = GetSoundSlot(SoundType.Music, "Sounds/Music/VanillaReplace/WinterStorm");
-										priority = MusicPriority.BiomeHigh;
-									}
-									else
-									{
-										music = GetSoundSlot(SoundType.Music, "Sounds/Music/VanillaReplace/MidnightSnowyFeilds");
-										priority = MusicPriority.BiomeHigh;
-									}
-								}
-								else
-								{
-									if (Main.raining)
-									{
-										music = GetSoundSlot(SoundType.Music, "Sounds/Music/VanillaReplace/WinterStorm");
-										priority = MusicPriority.BiomeHigh;
-									}
-									else
-									{
-										music = GetSoundSlot(SoundType.Music, "Sounds/Music/VanillaReplace/WinterWonderland");
-										priority = MusicPriority.BiomeHigh;
-									}
-								}
-							}
-							if (player.ZoneDungeon)
-							{
-								music = GetSoundSlot(SoundType.Music, "Sounds/Music/VanillaReplace/CursedKeep");
-								priority = MusicPriority.BiomeMedium;
-							}
-
-							if (player.ZoneDesert && !Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneCommet)
-							{
-								if (!Main.dayTime)
-								{
-									music = GetSoundSlot(SoundType.Music, "Sounds/Music/VanillaReplace/MidnightDesertEscapade");
-									priority = MusicPriority.BiomeHigh;
-								}
-								else
-								{
-									music = GetSoundSlot(SoundType.Music, "Sounds/Music/VanillaReplace/SandySunshine");
-									priority = MusicPriority.BiomeHigh;
-								}
-							}
-
-							if (Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneLabrynth)
-							{
-								if (!ModContent.GetInstance<EternalMusicConfig>().originalMusic)
-								{
-									music = GetSoundSlot(SoundType.Music, "Sounds/Music/New/ImperiousShrine");
-									priority = MusicPriority.BiomeMedium;
-								}
-								else
-								{
-									music = GetSoundSlot(SoundType.Music, "Sounds/Music/MazesAndLivingSwords");
-									priority = MusicPriority.BiomeMedium;
-								}
-							}
-
-							if (!Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneCommet && !player.ZoneDungeon && !player.ZoneDesert && !player.ZoneSnow)
-							{
-								if (!Main.dayTime)
-								{
-									music = GetSoundSlot(SoundType.Music, "Sounds/Music/VanillaReplace/StarlightStarbright");
-									priority = MusicPriority.BiomeHigh;
-								}
-							}
-
-							if (NPC.AnyNPCs(NPCID.Retinazer) || NPC.AnyNPCs(NPCID.Spazmatism) || NPC.AnyNPCs(NPCID.TheDestroyer) || NPC.AnyNPCs(NPCID.SkeletronPrime))
-							{
-								music = GetSoundSlot(SoundType.Music, "Sounds/Music/VanillaReplace/MechanicalMayham");
-								priority = MusicPriority.BossHigh;
-							}
-						}
-					}
-				}
+				music = MusicID.Eerie;
+				priority = MusicPriority.BiomeMedium;
 			}
-        }
+
+			if (Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneThunderduneBiome)
+			{
+				music = MusicID.Desert;
+				priority = MusicPriority.BiomeMedium;
+			}
+
+			if (Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneAshpit || Main.LocalPlayer.GetModPlayer<EternalPlayer>().ZoneBeneath)
+			{
+				music = MusicID.Eerie;
+				priority = MusicPriority.BiomeMedium;
+			}
+		}
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
@@ -359,7 +202,7 @@ namespace Eternal
 
 		public override void PostSetupContent()
         {
-            try
+			try
             {
 				//CalamityIntegration = new CalamityIntegration(this).TryLoad() as CalamityIntegration;
 				//FargoModIntegration = new FargoModIntegration(this).TryLoad() as FargoModIntegration;
@@ -401,7 +244,7 @@ namespace Eternal
 					"Dunekeeper",
 					(Func<bool>)(() => EternalWorld.downedDunekeeper),
 					ModContent.ItemType<RuneofThunder>(),
-					new List<int> { ModContent.ItemType<DunekeeperMusicBox>() },
+					0,
 					new List<int> { ModContent.ItemType<DunekeeperBag>(), ModContent.ItemType<PrimordialBolt>(), ModContent.ItemType<ThunderblightCrystal>(), ModContent.ItemType<StormBeholder>(), ModContent.ItemType<ThunderduneHeadgear>(), ModContent.ItemType<Wasteland>(), ItemID.LesserHealingPotion },
 					"Spawn by using the [i:" + ModContent.ItemType<RuneofThunder>() + "] in the desert.",
 					"The Unstabe Thundergen of the Desert.",
@@ -418,7 +261,7 @@ namespace Eternal
 					"Incinerius",
 					(Func<bool>)(() => EternalWorld.downedIncinerius),
 					ModContent.ItemType<RelicofInferno>(),
-					new List<int> { ModContent.ItemType<IncineriusMusicBox>() },
+					0,
 					new List<int> { ModContent.ItemType<IncineriusBag>(), ModContent.ItemType<FlameInfusedJewel>(), ModContent.ItemType<ScorchedMetal>(), ModContent.ItemType<SmotheringInferno>(), ModContent.ItemType<FuryFlare>(), ModContent.ItemType<Pyroyo>(), ItemID.GreaterHealingPotion },
 					"Spawn by using the [i:" + ModContent.ItemType<RelicofInferno>() + "] in the underworld.",
 					"The Flaming Golem of the Underworld",
@@ -483,7 +326,7 @@ namespace Eternal
 					"Ark of Imperious",
 					(Func<bool>)(() => EternalWorld.downedArkOfImperious),
 					ModContent.ItemType<RoyalShrineSword>(),
-					new List<int> { ModContent.ItemType<AoIMusicBox>() },
+					0,
 					new List<int> { ModContent.ItemType<AoIBag>(), ModContent.ItemType<GiftofTheSwordGod>(), ModContent.ItemType<TheImperiousCohort>(), ModContent.ItemType<TheEnigma>(), ModContent.ItemType<DormantHeroSword>(), ModContent.ItemType<Arkbow>(), ModContent.ItemType<PristineHealingPotion>() },
 					"Spawn by using the [i:" + ModContent.ItemType<RoyalShrineSword>() + "] at the shrine",
 					"The mighty imperial blade of the shrine",

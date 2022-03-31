@@ -4,4 +4,4 @@ version = 1.0.8
 homepage = https://discord.gg/HUJ8KUSAjC
 includeSource = true
 includePDB = true
-weakReferences = CalamityMod@1.5.0.004, FargowiltasSouls@1.3.99.91, EternalMusic@1.0.8
+weakReferences = CalamityMod, FargowiltasSouls

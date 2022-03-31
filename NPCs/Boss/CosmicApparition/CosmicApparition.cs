@@ -56,15 +56,7 @@ namespace Eternal.NPCs.Boss.CosmicApparition
             npc.defense = 60;
             npc.knockBackResist = -1f;
             npc.boss = true;
-            Mod musicMod = ModLoader.GetMod("EternalMusic");
-            if (musicMod == null)
-            {
-                music = MusicID.Boss2;
-            }
-            else
-            {
-                music = mod.GetSoundSlot(SoundType.Music, "Sounds/MusicApparitionalAccumulation");
-            }
+            music = MusicID.Boss2;
             npc.HitSound = SoundID.NPCHit52;
             npc.DeathSound = SoundID.NPCDeath55;
             npc.noTileCollide = true;

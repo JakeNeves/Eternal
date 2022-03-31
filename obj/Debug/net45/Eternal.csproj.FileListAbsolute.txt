@@ -61,4 +61,3 @@ C:\Users\jaken\OneDrive\Documents\My Games\Terraria\ModLoader\Mod Sources\Eterna
 C:\Users\jaken\Documents\My Games\Terraria\ModLoader\Mod Sources\Eternal\obj\Debug\net45\Eternal.csproj.AssemblyReference.cache
 C:\Users\jaken\Documents\My Games\Terraria\ModLoader\Mod Sources\Eternal\obj\Debug\net45\Eternal.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\jaken\Documents\My Games\Terraria\ModLoader\Mod Sources\Eternal\obj\Debug\net45\Eternal.csproj.CopyComplete
-C:\Users\jaken\Documents\My Games\Terraria\ModLoader\Mod Sources\Eternal\bin\Debug\net45\EternalMusic.XNA.dll

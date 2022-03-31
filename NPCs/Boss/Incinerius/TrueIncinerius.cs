@@ -1,8 +1,6 @@
 ﻿using System;
-using EternalMusic;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.Graphics.Effects;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -28,22 +26,7 @@ namespace Eternal.NPCs.Boss.Incinerius
             npc.damage = 25;
             npc.defense = 75;
             npc.boss = true;
-            Mod musicMod = ModLoader.GetMod("EternalMusic");
-            if (musicMod == null)
-            {
-                music = MusicID.Boss3;
-            }
-            else
-            {
-                if (!ModContent.GetInstance<EternalMusicConfig>().originalMusic)
-                {
-                    music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/New/PyroneticPurgatory");
-                }
-                else
-                {
-                    music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/BlazingExtinction");
-                }
-            }
+            music = MusicID.Boss3;
             npc.lavaImmune = true;
             npc.noTileCollide = true;
             npc.buffImmune[BuffID.OnFire] = true;

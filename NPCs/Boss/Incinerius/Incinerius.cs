@@ -8,9 +8,6 @@ using Eternal.Items.Weapons.Melee;
 using Eternal.Items.Weapons.Magic;
 using Eternal.Items.Accessories.Hell;
 using Eternal.Projectiles.Boss;
-using Eternal.Buffs;
-using Eternal.Dusts;
-using EternalMusic;
 
 namespace Eternal.NPCs.Boss.Incinerius
 {
@@ -38,22 +35,7 @@ namespace Eternal.NPCs.Boss.Incinerius
             npc.width = 99;
             npc.height = 119;
             npc.boss = true;
-            Mod musicMod = ModLoader.GetMod("EternalMusic");
-            if (musicMod == null)
-            {
-                music = MusicID.Boss3;
-            }
-            else
-            {
-                if (!ModContent.GetInstance<EternalMusicConfig>().originalMusic)
-                {
-                    music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/New/PyroneticPurgatory");
-                }
-                else
-                {
-                    music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/FieryBattler");
-                }
-            }
+            music = MusicID.Boss3;
             npc.aiStyle = -1;
             npc.damage = 12;
             npc.defense = 20;

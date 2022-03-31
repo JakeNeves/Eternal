@@ -40,15 +40,7 @@ namespace Eternal.NPCs.Boss.CarmaniteScouter
             npc.noTileCollide = true;
             npc.HitSound = SoundID.NPCHit1; //mod.GetLegacySoundSlot(SoundType.NPCHit, "Sounds/NPCHit/CarmaniteScouterHit");
             npc.DeathSound = SoundID.NPCDeath12; //mod.GetLegacySoundSlot(SoundType.NPCKilled, "Sounds/NPCKilled/CarmaniteScouterDeath");
-            Mod musicMod = ModLoader.GetMod("EternalMusic");
-            if (musicMod == null)
-            {
-                music = MusicID.Boss5;
-            }
-            else
-            {
-                music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/UnfatefulStrike");
-            }
+            music = MusicID.Boss5;
             bossBag = ModContent.ItemType<CarmaniteScouterBag>();
             if (EternalWorld.hellMode)
                 npc.scale = 0.75f;

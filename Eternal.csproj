@@ -13,15 +13,4 @@
   <ItemGroup>
     <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="CalamityMod">
-      <HintPath>..bin\debug\net45\CalamityMod.XNA.dll</HintPath>
-    </Reference>
-    <Reference Include="EternalMusic">
-      <HintPath>..\..\references\mods\EternalMusic.XNA.dll</HintPath>
-    </Reference>
-    <Reference Include="FargowiltasSouls">
-      <HintPath>..bin\debug\net45\FargowiltasSouls.XNA.dll</HintPath>
-    </Reference>
-  </ItemGroup>
 </Project>

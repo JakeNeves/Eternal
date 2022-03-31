@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Eternal.Items;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -19,7 +19,7 @@ namespace Eternal.NPCs.Miniboss.SebastionsEmergencyDrone
         {
             npc.width = 29;
             npc.height = 33;
-            npc.lifeMax = 5600;
+            npc.lifeMax = 5000;
             npc.defense = 10;
             npc.damage = 12;
             npc.aiStyle = 62;
@@ -28,7 +28,7 @@ namespace Eternal.NPCs.Miniboss.SebastionsEmergencyDrone
             npc.DeathSound = SoundID.NPCDeath3;
             aiType = NPCID.ElfCopter;
             npc.boss = true;
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/MinorAttack");
+            music = MusicID.Boss5;
         }
 
         public override void BossLoot(ref string name, ref int potionType)
@@ -41,6 +41,13 @@ namespace Eternal.NPCs.Miniboss.SebastionsEmergencyDrone
         {
             Lighting.AddLight(npc.position, 0.20f, 0.30f, 0.40f);
             npc.spriteDirection = npc.direction;
+        }
+
+        public override void NPCLoot()
+        {
+            if (NPC.downedMoonlord)
+                if (Main.rand.Next(4) == 0)
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<ExoBeaconBlackBox>());
         }
 
         public override void FindFrame(int frameHeight)
