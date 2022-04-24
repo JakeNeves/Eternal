@@ -1,18 +1,18 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
+﻿using Eternal.Dusts;
 using Eternal.Items.Materials;
 using Eternal.Tiles;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using Eternal.Dusts;
+using System.Collections.Generic;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Eternal.Items.Armor
 {
     [AutoloadEquip(EquipType.Head)]
     public class StarbornMask : ModItem
     {
-	    public override void SetStaticDefaults()
+        public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("17% increased melee damage");
         }

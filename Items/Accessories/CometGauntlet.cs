@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Items.Accessories
 {
@@ -49,10 +48,10 @@ namespace Eternal.Items.Accessories
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddTile(TileType<Starforge>());
-            recipe.AddIngredient(ItemType<GalaxianPlating>(), 20);
-            recipe.AddIngredient(ItemType<StarmetalBar>(), 40);
-            recipe.AddIngredient(ItemType<InterstellarSingularity>(), 10);
+            recipe.AddTile(ModContent.TileType<Starforge>());
+            recipe.AddIngredient(ModContent.ItemType<GalaxianPlating>(), 20);
+            recipe.AddIngredient(ModContent.ItemType<StarmetalBar>(), 40);
+            recipe.AddIngredient(ModContent.ItemType<InterstellarSingularity>(), 10);
             recipe.AddIngredient(ItemID.FireGauntlet);
             recipe.SetResult(this);
             recipe.AddRecipe();

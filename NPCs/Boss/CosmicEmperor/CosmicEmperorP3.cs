@@ -1,15 +1,16 @@
-﻿using System;
-using Terraria;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using Terraria.ID;
-using Eternal.Projectiles.Boss;
-using Eternal.Buffs;
+﻿using Eternal.Buffs;
+using Eternal.Items.BossBags;
 using Eternal.Items.Materials;
-using Eternal.Items.Weapons.Melee;
-using Eternal.Items.Tools;
-using Eternal.Items.Weapons.Ranged;
 using Eternal.Items.Potions;
+using Eternal.Items.Tools;
+using Eternal.Items.Weapons.Melee;
+using Eternal.Items.Weapons.Ranged;
+using Eternal.Projectiles.Boss;
+using Microsoft.Xna.Framework;
+using System;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Eternal.NPCs.Boss.CosmicEmperor
 {
@@ -76,6 +77,7 @@ namespace Eternal.NPCs.Boss.CosmicEmperor
             npc.noTileCollide = true;
             npc.boss = true;
             npc.knockBackResist = -1f;
+            bossBag = ModContent.ItemType<CosmicEmperorCapsule>();
         }
 
         public override void BossLoot(ref string name, ref int potionType)
@@ -170,6 +172,9 @@ namespace Eternal.NPCs.Boss.CosmicEmperor
                 {
                     if (EternalWorld.downedCosmicEmperor)
                     {
+                        npc.velocity.Y += 0.01f;
+                        npc.noTileCollide = false;
+
                         switch (introTimer)
                         {
                             case 0:
@@ -221,6 +226,9 @@ namespace Eternal.NPCs.Boss.CosmicEmperor
                     }
                     else
                     {
+                        npc.velocity.Y += 0.01f;
+                        npc.noTileCollide = false;
+
                         switch (introTimer)
                         {
                             case 0:
@@ -276,6 +284,7 @@ namespace Eternal.NPCs.Boss.CosmicEmperor
                         bossIntro = false;
                         introTimer = 0;
                         tohouAttack = true;
+                        npc.noTileCollide = true;
                     }
                 }
                 else
@@ -495,17 +504,6 @@ namespace Eternal.NPCs.Boss.CosmicEmperor
             return true;
         }
 
-        public override void PostAI()
-        {
-            if (npc.life <= 1000)
-            {
-                npc.boss = false;
-                /*Main.NewText("You've done well... I feel like you should be ready for my true power!", 0, 95, 215);
-                NPC.NewNPC((int)npc.Center.X - 20, (int)npc.Center.Y, ModContent.NPCType<CosmicEmperor>());
-                npc.life = 0;*/
-            }
-        }
-
         public override void NPCLoot()
         {
 
@@ -517,23 +515,34 @@ namespace Eternal.NPCs.Boss.CosmicEmperor
             else
                 Main.NewText("I am aware that you and I may see each other again one day for some time.", 0, 95, 215);
 
-            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<InterstellarMetal>(), Main.rand.Next(30, 60));
-            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<CosmoniumFragment>(), Main.rand.Next(30, 60));
-
             if (!EternalWorld.downedCosmicEmperor)
                 EternalWorld.downedCosmicEmperor = true;
 
-            if (Main.rand.Next(1) == 0)
+            if (Main.expertMode)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ExosiivaGladiusBlade>());
+                npc.DropBossBags();
             }
-            if (Main.rand.Next(2) == 0)
+            else
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<TheBigOne>());
-            }
-            if (Main.rand.Next(3) == 0)
-            {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Exelodon>());
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<InterstellarMetal>(), Main.rand.Next(30, 60));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<CosmoniumFragment>(), Main.rand.Next(30, 60));
+
+                if (Main.rand.Next(1) == 0)
+                {
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ExosiivaGladiusBlade>());
+                }
+                if (Main.rand.Next(2) == 0)
+                {
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<TheBigOne>());
+                }
+                if (Main.rand.Next(3) == 0)
+                {
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Exelodon>());
+                }
+                if (Main.rand.Next(4) == 0)
+                {
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<FinalBossBlade>());
+                }
             }
         }
     }

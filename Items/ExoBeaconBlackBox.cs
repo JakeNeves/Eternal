@@ -36,12 +36,12 @@ namespace Eternal.Items
             }
         }
 
-	    public override void AddRecipes()
+        public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddTile(ModContent.TileType<Starforge>());
             recipe.AddIngredient(ItemID.LunarBar, 3);
-	        recipe.AddIngredient(ItemID.Wire, 12);
+            recipe.AddIngredient(ItemID.Wire, 12);
             recipe.AddIngredient(ModContent.ItemType<GalaxianPlating>(), 6);
             recipe.SetResult(this);
             recipe.AddRecipe();

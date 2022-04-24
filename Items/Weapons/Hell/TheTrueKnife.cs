@@ -1,10 +1,9 @@
 ﻿using Eternal.Projectiles.Weapons.Throwing;
-using Eternal.Items.Materials;
+using System.Collections.Generic;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using Terraria;
-using System.Collections.Generic;
 
 namespace Eternal.Items.Weapons.Hell
 {
@@ -20,11 +19,11 @@ namespace Eternal.Items.Weapons.Hell
         {
             item.damage = 200;
             item.ranged = true;
-			item.noUseGraphic = true;
+            item.noUseGraphic = true;
             item.autoReuse = true;
-			item.UseSound = SoundID.Item1;
-			item.useStyle = ItemUseStyleID.SwingThrow;
-			item.useTime = 14;
+            item.UseSound = SoundID.Item1;
+            item.useStyle = ItemUseStyleID.SwingThrow;
+            item.useTime = 14;
             item.useAnimation = 14;
             item.width = 44;
             item.height = 14;

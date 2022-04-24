@@ -1,10 +1,10 @@
-﻿using System;
-using Terraria;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using Terraria.ID;
+﻿using Eternal.Buffs;
 using Eternal.Projectiles.Boss;
-using Eternal.Buffs;
+using Microsoft.Xna.Framework;
+using System;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Eternal.NPCs.Boss.CosmicEmperor
 {
@@ -191,7 +191,7 @@ namespace Eternal.NPCs.Boss.CosmicEmperor
                             break;
                     }
                 }
-                
+
                 if (introTimer >= 480)
                 {
                     npc.dontTakeDamage = false;
@@ -216,7 +216,7 @@ namespace Eternal.NPCs.Boss.CosmicEmperor
                             int damage = Main.expertMode ? 110 : 220;
                             if (Main.netMode != NetmodeID.MultiplayerClient)
                                 Main.PlaySound(SoundID.Item71, npc.position);
-                                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<EmperorBlade>(), damage, 1, Main.myPlayer, 0, 0);
+                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<EmperorBlade>(), damage, 1, Main.myPlayer, 0, 0);
                         }
                     }
                     else if (attackTimer == 215)
@@ -366,7 +366,7 @@ namespace Eternal.NPCs.Boss.CosmicEmperor
 
         public override void NPCLoot()
         {
-            
+
             Main.NewText("You've done well... I feel like you should be ready for my true power!", 0, 95, 215);
             NPC.NewNPC((int)npc.Center.X - 20, (int)npc.Center.Y, ModContent.NPCType<CosmicEmperor>());
 

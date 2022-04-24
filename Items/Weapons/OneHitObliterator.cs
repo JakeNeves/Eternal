@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,9 +10,9 @@ namespace Eternal.Items.Weapons
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("One-Hit Obliterator");
-            Tooltip.SetDefault("[c/FF0000:Cheat Item]" + 
+            Tooltip.SetDefault("[c/FF0000:Cheat Item]" +
                 "\nCan manipulate anything in a single swing" +
-                "\nItems will not drop from enemies when killed" + 
+                "\nItems will not drop from enemies when killed" +
                 "\nAutomatically drains your health to 1 HP");
         }
 

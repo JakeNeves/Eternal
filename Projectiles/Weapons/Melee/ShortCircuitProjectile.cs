@@ -1,9 +1,7 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
+﻿using Microsoft.Xna.Framework;
 using System;
-using Eternal.Items.Materials;
-using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ModLoader;
 
 namespace Eternal.Projectiles.Weapons.Melee
 {
@@ -52,7 +50,8 @@ namespace Eternal.Projectiles.Weapons.Melee
             if (projectile.ai[0] == 0f)
             {
                 projectile.rotation = new Vector2(sign, 0f - player.gravDir).ToRotation() + qrtPi + (float)Math.PI;
-                if (projectile.velocity.X < 0f) {
+                if (projectile.velocity.X < 0f)
+                {
                     projectile.rotation -= (float)Math.PI / 2f;
                 }
             }

@@ -1,9 +1,9 @@
-﻿using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria.DataStructures;
-using static Terraria.ModLoader.ModContent;
+﻿using Eternal.Tiles;
 using Terraria;
-using Eternal.Tiles;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Items.Materials
 {

@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Graphics.Effects;
 using Terraria.ModLoader;
-using Terraria.Utilities;
 
 namespace Eternal.Skies
 {
@@ -60,7 +59,8 @@ namespace Eternal.Skies
 
         public override void Draw(SpriteBatch spriteBatch, float minDepth, float maxDepth)
         {
-            if (minDepth < 1f || maxDepth == 3.40282347E+38f) {
+            if (minDepth < 1f || maxDepth == 3.40282347E+38f)
+            {
                 var color = new Color(255, 195, 60) * opacity;
                 spriteBatch.Draw(Main.magicPixel, new Rectangle(0, 0, Main.screenWidth, Main.screenHeight), color);
             }

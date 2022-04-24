@@ -6,13 +6,13 @@ namespace Eternal.Dusts
     public class EmperorFire : ModDust
     {
 
-		public override void OnSpawn(Dust dust)
-		{
-			dust.velocity.Y = Main.rand.Next(-8, 2) * 0.1f;
-			dust.velocity.X *= 0.2f;
-			dust.scale *= 0.75f;
+        public override void OnSpawn(Dust dust)
+        {
+            dust.velocity.Y = Main.rand.Next(-8, 2) * 0.1f;
+            dust.velocity.X *= 0.2f;
+            dust.scale *= 0.75f;
             dust.noGravity = true;
-		}
+        }
 
         public override bool MidUpdate(Dust dust)
         {

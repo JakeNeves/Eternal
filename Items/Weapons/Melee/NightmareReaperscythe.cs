@@ -8,8 +8,9 @@ namespace Eternal.Items.Weapons.Melee
     public class NightmareReaperscythe : ModItem
     {
 
-        public override void SetStaticDefaults() {
-             Tooltip.SetDefault("<right> to throw\n'Not to be confused with the Death Sickle'");
+        public override void SetStaticDefaults()
+        {
+            Tooltip.SetDefault("<right> to throw\n'Not to be confused with the Death Sickle'");
         }
 
         public override void SetDefaults()

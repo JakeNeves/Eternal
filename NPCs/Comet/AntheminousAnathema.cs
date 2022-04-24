@@ -1,12 +1,12 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using Eternal.Tiles;
-using System.Linq;
+﻿using Eternal.Items.Materials;
 using Eternal.Items.Weapons.Ranged;
-using Eternal.Items.Materials;
+using Eternal.Tiles;
 using Microsoft.Xna.Framework;
 using System;
+using System.Linq;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Eternal.NPCs.Comet
 {
@@ -39,6 +39,22 @@ namespace Eternal.NPCs.Comet
         }
 
         private static int[] SpawnTiles = { };
+
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            if (npc.life <= 0)
+            {
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/AntheminousAnathemaBody"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/AntheminousAnathemaHead"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/AntheminousAnathemaFang"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/AntheminousAnathemaFang"), 1f);
+            }
+            else
+            {
+                for (int k = 0; k < damage / npc.lifeMax * 50; k++)
+                    Dust.NewDust(npc.position, npc.width, npc.height, 27, 2.5f * hitDirection, -2.5f, 0, default, 1.7f);
+            }
+        }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {

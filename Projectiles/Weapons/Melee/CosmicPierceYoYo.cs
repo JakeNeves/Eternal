@@ -41,7 +41,7 @@ namespace Eternal.Projectiles.Weapons.Melee
             projectile.rotation = projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);
 
             float maxDetectRadius = 200f;
-	        float projSpeed = 6f;
+            float projSpeed = 6f;
 
             timer++;
 
@@ -55,28 +55,28 @@ namespace Eternal.Projectiles.Weapons.Melee
             }
         }
 
-	    public NPC FindClosestNPC(float maxDetectDistance)
+        public NPC FindClosestNPC(float maxDetectDistance)
         {
-	        NPC closestNPC = null;
+            NPC closestNPC = null;
 
-	        float sqrMaxDetectDistance = maxDetectDistance * maxDetectDistance;
+            float sqrMaxDetectDistance = maxDetectDistance * maxDetectDistance;
 
-	        for (int k = 0; k < Main.maxNPCs; k++)
+            for (int k = 0; k < Main.maxNPCs; k++)
             {
-		        NPC target = Main.npc[k];
-		        if (target.CanBeChasedBy())
+                NPC target = Main.npc[k];
+                if (target.CanBeChasedBy())
                 {
-		            float sqrDistanceToTarget = Vector2.Distance(target.Center, projectile.Center);
+                    float sqrDistanceToTarget = Vector2.Distance(target.Center, projectile.Center);
 
-		            if (sqrDistanceToTarget < sqrMaxDetectDistance)
+                    if (sqrDistanceToTarget < sqrMaxDetectDistance)
                     {
-		                sqrMaxDetectDistance = sqrDistanceToTarget;
-			            closestNPC = target;
+                        sqrMaxDetectDistance = sqrDistanceToTarget;
+                        closestNPC = target;
                     }
                 }
             }
 
-	        return closestNPC;
+            return closestNPC;
         }
 
         public override void Kill(int timeLeft)

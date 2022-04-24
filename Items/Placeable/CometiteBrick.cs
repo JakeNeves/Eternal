@@ -1,5 +1,5 @@
-﻿using Terraria.ModLoader;
-using Terraria.ID;
+﻿using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Eternal.Items.Placeable
 {
@@ -26,7 +26,7 @@ namespace Eternal.Items.Placeable
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddTile(ModContent.TileType<Tiles.Starforge>());
             recipe.AddIngredient(ModContent.ItemType<CometiteOre>());
-	        recipe.AddIngredient(ItemID.StoneBlock);
+            recipe.AddIngredient(ItemID.StoneBlock);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

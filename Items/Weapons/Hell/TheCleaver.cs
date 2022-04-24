@@ -1,9 +1,9 @@
-﻿using Eternal.Projectiles.Weapons.Melee;
+﻿using Eternal.Items.Materials;
+using Eternal.Projectiles.Weapons.Melee;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Eternal.Items.Materials;
 
 namespace Eternal.Items.Weapons.Hell
 {
@@ -12,7 +12,7 @@ namespace Eternal.Items.Weapons.Hell
 
         public override void SetStaticDefaults()
         {
-	        DisplayName.SetDefault("The Cleaver");
+            DisplayName.SetDefault("The Cleaver");
             Tooltip.SetDefault("[c/FCA5033:Throwing Item]\n'One swing with this, you can easily make prime cuts!'\nHell");
         }
 

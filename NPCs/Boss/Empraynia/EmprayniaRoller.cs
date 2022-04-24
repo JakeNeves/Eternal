@@ -1,10 +1,8 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using Terraria;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
 using Terraria.ID;
-using Eternal.Tiles;
-using System.Linq;
+using Terraria.ModLoader;
 
 namespace Eternal.NPCs.Boss.Empraynia
 {

@@ -1,11 +1,11 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
+﻿using Eternal.Dusts;
 using Eternal.Items.Materials;
-using System.Collections.Generic;
 using Eternal.Tiles;
-using Eternal.Dusts;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Eternal.Items.Armor
 {

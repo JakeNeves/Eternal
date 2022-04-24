@@ -1,12 +1,11 @@
-﻿using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
+﻿using Eternal.Items.Materials;
 using Eternal.Tiles;
-using System.Linq;
-using Eternal.Items.Weapons.Ranged;
-using Eternal.Items.Materials;
 using Microsoft.Xna.Framework;
 using System;
+using System.Linq;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Eternal.NPCs.Comet
 {

@@ -1,12 +1,11 @@
-﻿using Eternal.Projectiles.Weapons.Melee;
-using System.Collections.Generic;
+﻿using Eternal.Items.Materials;
+using Eternal.Projectiles.Weapons.Melee;
+using Eternal.Tiles;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
-using Eternal.Tiles;
-using Eternal.Items.Materials;
 
 namespace Eternal.Items.Weapons.Melee
 {
@@ -31,7 +30,7 @@ namespace Eternal.Items.Weapons.Melee
             item.rare = ItemRarityID.Purple;
             item.value = Item.sellPrice(platinum: 5, gold: 50);
             item.autoReuse = true;
-            item.shoot = ProjectileType<ExosiivaProjectile>();
+            item.shoot = ModContent.ProjectileType<ExosiivaProjectile>();
             item.shootSpeed = 12.25f;
             item.useTime = 18;
             item.useAnimation = 18;
@@ -41,12 +40,12 @@ namespace Eternal.Items.Weapons.Melee
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddTile(TileType<AncientForge>());
-            recipe.AddIngredient(ItemType<StellarAlloy>(), 5);
-            recipe.AddIngredient(ItemType<CosmoniumFragment>());
-            recipe.AddIngredient(ItemType<SiivaniteRiftBlade>());
-            recipe.AddIngredient(ItemType<SiivaniteAlloy>(), 5);
-            recipe.AddIngredient(ItemType<PrismaticFractal>());
+            recipe.AddTile(ModContent.TileType<AncientForge>());
+            recipe.AddIngredient(ModContent.ItemType<StellarAlloy>(), 5);
+            recipe.AddIngredient(ModContent.ItemType<CosmoniumFragment>());
+            recipe.AddIngredient(ModContent.ItemType<SiivaniteRiftBlade>());
+            recipe.AddIngredient(ModContent.ItemType<SiivaniteAlloy>(), 5);
+            recipe.AddIngredient(ModContent.ItemType<CoreofEternal>(), 16);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

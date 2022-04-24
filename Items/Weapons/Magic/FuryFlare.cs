@@ -35,7 +35,7 @@ namespace Eternal.Items.Weapons.Magic
             item.UseSound = SoundID.Item8;
         }
 
-	public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             int numberProjectiles = Main.rand.Next(12, 60);
             for (int j = 0; j < numberProjectiles; j++)

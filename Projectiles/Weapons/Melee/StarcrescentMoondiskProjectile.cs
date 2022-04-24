@@ -24,7 +24,7 @@ namespace Eternal.Projectiles.Weapons.Melee
             projectile.height = 54;
             projectile.aiStyle = 3;
             projectile.friendly = true;
-            projectile.melee= true;
+            projectile.melee = true;
             projectile.penetrate = 3;
             projectile.timeLeft = 600;
             projectile.light = 1.0f;

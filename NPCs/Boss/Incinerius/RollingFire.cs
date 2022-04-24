@@ -1,11 +1,6 @@
 ﻿using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
-using static Terraria.ModLoader.ModContent;
-using Eternal.Items;
-using Eternal.Tiles;
-using System.Linq;
-using Eternal.Items.Weapons.Ranged;
+using Terraria.ModLoader;
 
 namespace Eternal.NPCs.Boss.Incinerius
 {

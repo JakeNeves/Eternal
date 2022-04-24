@@ -1,9 +1,9 @@
 ﻿using Eternal.Projectiles.Weapons.Melee;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Collections.Generic;
 
 namespace Eternal.Items.Weapons.Melee
 {

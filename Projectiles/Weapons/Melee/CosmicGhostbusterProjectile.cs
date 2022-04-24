@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -45,7 +44,7 @@ namespace Eternal.Projectiles.Weapons.Melee
                 Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -6, 6, ModContent.ProjectileType<CosmicPierceYoYo>(), projectile.damage, 0, Main.myPlayer, 0f, 0f);
                 Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 6, 6, ModContent.ProjectileType<CosmicPierceYoYo>(), projectile.damage, 0, Main.myPlayer, 0f, 0f);
             }
-            else if(timer >= 120)
+            else if (timer >= 120)
             {
                 timer = 0;
             }

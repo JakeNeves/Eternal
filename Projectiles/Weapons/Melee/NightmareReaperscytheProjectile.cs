@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Projectiles.Weapons.Melee
 {
@@ -23,7 +22,7 @@ namespace Eternal.Projectiles.Weapons.Melee
             projectile.height = 52;
             projectile.aiStyle = 3;
             projectile.friendly = true;
-            projectile.melee= true;
+            projectile.melee = true;
             projectile.penetrate = 3;
             projectile.timeLeft = 600;
             projectile.light = 0.75f;
@@ -46,7 +45,7 @@ namespace Eternal.Projectiles.Weapons.Melee
             {
                 Vector2 drawPos = projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, projectile.gfxOffY);
                 Color color = projectile.GetAlpha(lightColor) * ((float)(projectile.oldPos.Length - k) / (float)projectile.oldPos.Length);
-		        Texture2D shadowTexture = mod.GetTexture("Projectiles/Weapons/Melee/NightmareReaperscytheProjectile_Shadow");
+                Texture2D shadowTexture = mod.GetTexture("Projectiles/Weapons/Melee/NightmareReaperscytheProjectile_Shadow");
                 spriteBatch.Draw(shadowTexture, drawPos, null, color, projectile.rotation, drawOrigin, projectile.scale, SpriteEffects.None, 0f);
             }
             return true;

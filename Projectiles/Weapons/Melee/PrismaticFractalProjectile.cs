@@ -8,7 +8,7 @@ namespace Eternal.Projectiles.Weapons.Melee
 {
     class PrismaticFractalProjectile : ModProjectile
     {
-        
+
 
         public override void SetStaticDefaults()
         {

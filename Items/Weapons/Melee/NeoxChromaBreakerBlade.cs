@@ -1,10 +1,10 @@
-﻿using Terraria;
+﻿using Eternal.Items.Materials;
+using Eternal.Projectiles.Weapons.Melee;
+using Eternal.Tiles;
+using System.Collections.Generic;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Collections.Generic;
-using Eternal.Tiles;
-using Eternal.Items.Materials;
-using Eternal.Projectiles.Weapons.Melee;
 
 namespace Eternal.Items.Weapons.Melee
 {
@@ -35,7 +35,7 @@ namespace Eternal.Items.Weapons.Melee
             item.melee = true;
         }
 
-	    public override void ModifyTooltips(List<TooltipLine> tooltips)
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             foreach (TooltipLine line2 in tooltips)
             {

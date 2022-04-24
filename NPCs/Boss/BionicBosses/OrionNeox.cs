@@ -1,6 +1,5 @@
 ﻿using Eternal.Items.Materials;
 using Eternal.Items.Potions;
-using Eternal.NPCs.Boss.BionicBosses.Omnicron;
 using Eternal.Projectiles.Boss;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -17,6 +16,8 @@ namespace Eternal.NPCs.Boss.BionicBosses
         private Player player;
 
         int AttackTimer = 0;
+
+        bool justSpawnedCircle = false;
 
         public override void SetStaticDefaults()
         {
@@ -56,8 +57,8 @@ namespace Eternal.NPCs.Boss.BionicBosses
             npc.width = 222;
             npc.height = 222;
             npc.lifeMax = 1240000;
-            npc.defense = 80;
-            npc.damage = 120;
+            npc.defense = 75;
+            npc.damage = 60;
             npc.aiStyle = -1;
             npc.knockBackResist = -1f;
             npc.value = Item.buyPrice(platinum: 6, gold: 40);
@@ -80,14 +81,14 @@ namespace Eternal.NPCs.Boss.BionicBosses
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             npc.lifeMax = 2530000;
-            npc.damage = 240;
-            npc.defense = 85;
+            npc.damage = 124;
+            npc.defense = 80;
 
             if (EternalWorld.hellMode)
             {
                 npc.lifeMax = 6060000;
-                npc.damage = 260;
-                npc.defense = 90;
+                npc.damage = 136;
+                npc.defense = 95;
             }
         }
 
@@ -101,6 +102,12 @@ namespace Eternal.NPCs.Boss.BionicBosses
             Lighting.AddLight(npc.Center, 0.77f, 0.18f, 0.86f);
 
             npc.rotation += npc.velocity.X * 0.1f;
+
+            if (!justSpawnedCircle)
+            {
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType<OrionNeoxCircle>(), npc.damage / 3, 0, 0, 0f, npc.whoAmI);
+                justSpawnedCircle = true;
+            }
 
             npc.netUpdate = true;
             player = Main.player[npc.target];
@@ -234,7 +241,10 @@ namespace Eternal.NPCs.Boss.BionicBosses
 
         public override void NPCLoot()
         {
-            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<OmnicronNeox>());
+            player = Main.player[npc.target];
+            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<PhotonNeox>());
+            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<ProtonNeox>());
+            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<QuasarNeox>());
 
             if (Main.rand.Next(2) == 0)
             {

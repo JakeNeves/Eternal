@@ -1,10 +1,10 @@
-﻿using Terraria;
+﻿using Eternal.Items.Materials;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using Microsoft.Xna.Framework;
-using Terraria.Graphics.Shaders;
-using Eternal.Items.Materials;
 
 namespace Eternal.Items.Tools
 {
@@ -26,7 +26,7 @@ namespace Eternal.Items.Tools
             item.useTime = 10;
             item.useAnimation = 15;
             item.axe = 10;
-            item.hammer = 20; 
+            item.hammer = 20;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.knockBack = 2;
             item.value = Item.buyPrice(gold: 1, silver: 10);

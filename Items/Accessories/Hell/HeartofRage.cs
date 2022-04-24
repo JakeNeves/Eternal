@@ -1,10 +1,7 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Items.Accessories.Hell
 {
@@ -13,13 +10,13 @@ namespace Eternal.Items.Accessories.Hell
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Heart of Rage");
-            Tooltip.SetDefault("Increased Melee Damage By 5%\nHell");
+            Tooltip.SetDefault("Increased Melee Damage By 25%\nHell");
         }
 
         public override void SetDefaults()
         {
-            item.width = 28;
-            item.height = 26;
+            item.width = 22;
+            item.height = 20;
             item.value = 0;
             item.rare = ItemRarityID.Red;
             item.accessory = true;
@@ -38,7 +35,7 @@ namespace Eternal.Items.Accessories.Hell
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.meleeDamage += 0.5f;
+            player.meleeDamage += 0.25f;
         }
     }
 }

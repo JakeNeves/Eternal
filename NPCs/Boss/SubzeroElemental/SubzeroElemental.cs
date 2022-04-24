@@ -1,16 +1,15 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Eternal.Items.BossBags;
+using Eternal.Items.Materials.Elementalblights;
+using Eternal.Items.Placeable;
+using Eternal.Items.Weapons.Melee;
+using Eternal.Items.Weapons.Radiant;
+using Eternal.Items.Weapons.Summon;
+using Eternal.Projectiles.Enemy;
+using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Eternal.Items.BossBags;
-using Eternal.Items.Weapons.Melee;
-using Eternal.Items.Weapons.Ranged;
-using Eternal.Items.Weapons.Summon;
-using Eternal.Projectiles.Enemy;
-using System;
-using Eternal.Items.Placeable;
-using Eternal.Items.Weapons.Radiant;
-using Eternal.Items.Materials.Elementalblights;
 
 namespace Eternal.NPCs.Boss.SubzeroElemental
 {
@@ -94,16 +93,12 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
             {
                 Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/SubzeroElementalHead1"), 1f);
                 Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/SubzeroElementalHead2"), 1f);
-                Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/SubzeroElementalBody"), 1f);
+                Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/SubzeroElementalBody1"), 1f);
+                Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/SubzeroElementalBody2"), 1f);
                 Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/SubzeroElementalLeftArm"), 1f);
-                Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/SubzeroElementalLeftHand"), 1f);
                 Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/SubzeroElementalRightArm"), 1f);
-                Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/SubzeroElementalRightHand"), 1f);
-                Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/SubzeroElementalRightHorn1"), 1f);
-                Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/SubzeroElementalRightHorn2"), 1f);
-                Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/SubzeroElementalRightSpike1"), 1f);
-                Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/SubzeroElementalRightSpike2"), 1f);
-            } else
+            }
+            else
             {
                 Main.PlaySound(SoundID.Tink, (int)npc.position.X, (int)npc.position.Y, 1, 1f, 0f);
                 Dust.NewDust(new Vector2(npc.position.X, npc.position.Y), npc.width, npc.height, DustID.Ice);
@@ -150,16 +145,7 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
                 Phase = 1;
             }
 
-            if (!player.ZoneSnow)
-            {
-                npc.dontTakeDamage = true;
-            }
-            else
-            {
-                npc.dontTakeDamage = false;
-            }
-
-            if (NPC.AnyNPCs(ModContent.NPCType<SubzeroElementalShield>()))
+            if (!player.ZoneSnow || NPC.AnyNPCs(ModContent.NPCType<SubzeroElementalShield>()))
             {
                 npc.dontTakeDamage = true;
             }
@@ -170,7 +156,7 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
 
             AttackTimer++;
 
-            switch(AttackTimer)
+            switch (AttackTimer)
             {
                 case 110 | 120 | 130:
                     Shoot();
@@ -180,7 +166,8 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
                     if (EternalWorld.hellMode)
                     {
                         NPC.NewNPC((int)npc.Center.X - 20, (int)npc.Center.Y, NPCID.SpikedIceSlime);
-                    } else
+                    }
+                    else
                     {
                         NPC.NewNPC((int)npc.Center.X - 20, (int)npc.Center.Y, NPCID.IceSlime);
                     }
@@ -193,7 +180,7 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
                     {
                         NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<SubzeroElementalShield>());
                     }
-                    if(NPC.downedMoonlord)
+                    if (NPC.downedMoonlord)
                     {
                         Vector2 direction = Main.player[npc.target].Center - npc.Center;
                         direction.Normalize();
@@ -278,7 +265,7 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
 
         public override void NPCLoot()
         {
-            if(!EternalWorld.downedSubzeroElemental)
+            if (!EternalWorld.downedSubzeroElemental)
             {
                 Main.NewText("The air is getting fridged in the tundra...", 0, 95, 215);
                 //Main.NewText("Someone is reconizing your devotion into preventing the underworld from freezing...", 0, 80, 200);
@@ -332,7 +319,7 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
 
         public override void BossLoot(ref string name, ref int potionType)
         {
-            if(NPC.downedMoonlord)
+            if (NPC.downedMoonlord)
             {
                 potionType = ItemID.SuperHealingPotion;
             }
@@ -340,7 +327,7 @@ namespace Eternal.NPCs.Boss.SubzeroElemental
             {
                 potionType = ItemID.GreaterHealingPotion;
             }
-            
+
             name = "The " + name;
         }
 

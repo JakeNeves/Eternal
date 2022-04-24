@@ -16,7 +16,7 @@ namespace Eternal.Items.Weapons.Melee
             Tooltip.SetDefault("True melee attacks heal you upon striking an enemy" +
                              "\nFires swords from all four directions when wearing the Ultimus armor with the mask" +
                              "\n[c/008060:Ancient Artifact]" +
-                             "\nThis blade was once weilded by the cosmic emperor, until he met his fate with doom, something had killed the emperor in one attack!" + 
+                             "\nThis blade was once weilded by the cosmic emperor, until he met his fate with doom, something had killed the emperor in one attack!" +
                              "\nHowever, the emperor's soul quickly reincarnate with his brittle body and the emperor eventually found a way to cheat death, but his power to do so remains unknown...");
         }
 

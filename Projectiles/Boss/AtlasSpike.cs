@@ -1,7 +1,7 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Eternal.Projectiles.Boss
 {
@@ -24,7 +24,7 @@ namespace Eternal.Projectiles.Boss
             projectile.hostile = true;
         }
 
-	public override void OnHitPlayer(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, int damage, bool crit)
         {
             target.AddBuff(ModContent.BuffType<Buffs.RedFracture>(), 4096);
         }

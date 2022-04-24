@@ -1,9 +1,9 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using System.Collections.Generic;
-using Eternal.Items.Materials;
+﻿using Eternal.Items.Materials;
 using Eternal.Projectiles.Weapons.Melee;
+using System.Collections.Generic;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Eternal.Items.Weapons.Melee
 {

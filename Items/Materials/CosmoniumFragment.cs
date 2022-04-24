@@ -1,11 +1,8 @@
-﻿using Microsoft.Xna.Framework;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
+using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.DataStructures;
-using static Terraria.ModLoader.ModContent;
-using Terraria;
 
 namespace Eternal.Items.Materials
 {
@@ -15,7 +12,7 @@ namespace Eternal.Items.Materials
         {
             Tooltip.SetDefault("'A shard of the emperor's promise'");
 
-	    ItemID.Sets.ItemIconPulse[item.type] = true;
+            ItemID.Sets.ItemIconPulse[item.type] = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
 
             Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(6, 4));

@@ -1,5 +1,4 @@
 ﻿using Eternal.Dusts;
-using Eternal.Items.Weapons.Throwing;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -50,7 +49,7 @@ namespace Eternal.Projectiles.Weapons.Melee
             Lighting.AddLight(projectile.position, 0.90f, 0.22f, 1.20f);
 
             float maxDetectRadius = 100f;
-	    float projSpeed = 8.6f;
+            float projSpeed = 8.6f;
 
             projectile.rotation = projectile.velocity.ToRotation() + MathHelper.ToRadians(45f);
 
@@ -58,11 +57,11 @@ namespace Eternal.Projectiles.Weapons.Melee
 
             if (timer >= 100)
             {
-                 NPC closestNPC = FindClosestNPC(maxDetectRadius);
-                     if (closestNPC == null)
-                 return;
+                NPC closestNPC = FindClosestNPC(maxDetectRadius);
+                if (closestNPC == null)
+                    return;
 
-                 projectile.velocity = (closestNPC.Center - projectile.Center).SafeNormalize(Vector2.Zero) * projSpeed;
+                projectile.velocity = (closestNPC.Center - projectile.Center).SafeNormalize(Vector2.Zero) * projSpeed;
             }
 
         }

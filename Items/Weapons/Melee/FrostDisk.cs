@@ -9,8 +9,9 @@ namespace Eternal.Items.Weapons.Melee
     public class FrostDisk : ModItem
     {
 
-        public override void SetStaticDefaults() {
-             Tooltip.SetDefault("'Feel the frostburn'");
+        public override void SetStaticDefaults()
+        {
+            Tooltip.SetDefault("'Feel the frostburn'");
         }
 
         public override void SetDefaults()

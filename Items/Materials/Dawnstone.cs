@@ -19,8 +19,8 @@ namespace Eternal.Items.Materials
             item.rare = ItemRarityID.LightPurple;
             item.maxStack = 99;
         }
-	
-	    public override void AddRecipes()
+
+        public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddTile(TileID.AdamantiteForge);

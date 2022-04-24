@@ -63,7 +63,7 @@ namespace Eternal.Items
                 }
             }
 
-            if(!bossActive)
+            if (!bossActive)
             {
                 if (EternalWorld.hellMode == false)
                 {

@@ -1,16 +1,14 @@
-﻿using Eternal.Items;
+﻿using Eternal.Items.Materials;
+using Eternal.Items.Materials.Elementalblights;
 using Eternal.Projectiles.Weapons.Melee;
 using Eternal.Tiles;
+using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
-using Eternal.Items.Materials;
-using Terraria.DataStructures;
-using Eternal.Items.Materials.Elementalblights;
 
 namespace Eternal.Items.Weapons.Melee
 {

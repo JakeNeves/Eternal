@@ -37,7 +37,7 @@ namespace Eternal.Items.Materials
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddTile(ModContent.TileType<Tiles.Starforge>());
-            recipe.AddIngredient(RecipeGroupID.IronBar, 6);
+            recipe.AddIngredient(ItemID.HallowedBar, 6);
             recipe.AddIngredient(ItemID.SoulofFlight, 1);
             recipe.AddIngredient(ItemID.SoulofFright, 1);
             recipe.AddIngredient(ItemID.SoulofLight, 1);

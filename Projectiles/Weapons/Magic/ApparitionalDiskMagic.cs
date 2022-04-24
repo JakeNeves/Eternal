@@ -1,6 +1,5 @@
 ﻿using Eternal.Dusts;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -76,7 +75,7 @@ namespace Eternal.Projectiles.Weapons.Magic
                 }
 
                 //projectile.rotation = projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);
-                
+
             }
         }
 

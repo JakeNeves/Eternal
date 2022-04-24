@@ -1,10 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria.Graphics.Effects;
 using System;
 using Terraria;
 using Terraria.Graphics;
-using Terraria.ModLoader;
+using Terraria.Graphics.Effects;
 using Terraria.Utilities;
 
 namespace Eternal.Skies
@@ -56,7 +55,7 @@ namespace Eternal.Skies
                 {
                     num11 = j;
                 }
-                if(depth <= minDepth)
+                if (depth <= minDepth)
                 {
                     break;
                 }

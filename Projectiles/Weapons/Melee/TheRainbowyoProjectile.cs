@@ -1,8 +1,8 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace Eternal.Projectiles.Weapons.Melee
 {
@@ -30,7 +30,7 @@ namespace Eternal.Projectiles.Weapons.Melee
             projectile.penetrate = -1;
             projectile.melee = true;
             projectile.scale = 1f;
-            
+
         }
 
         public override void AI()
@@ -45,7 +45,7 @@ namespace Eternal.Projectiles.Weapons.Melee
             {
                 Vector2 drawPos = projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, projectile.gfxOffY);
                 Color color = projectile.GetAlpha(lightColor) * ((float)(projectile.oldPos.Length - k) / (float)projectile.oldPos.Length);
-		        Texture2D shadowTexture = mod.GetTexture("Projectiles/Weapons/Melee/TheRainbowyoProjectile_Shadow");
+                Texture2D shadowTexture = mod.GetTexture("Projectiles/Weapons/Melee/TheRainbowyoProjectile_Shadow");
                 spriteBatch.Draw(shadowTexture, drawPos, null, color, projectile.rotation, drawOrigin, projectile.scale, SpriteEffects.None, 0f);
             }
             return true;

@@ -20,7 +20,7 @@ namespace Eternal.Items.Weapons.Radiant
             item.magic = false;
             item.summon = false;
             item.thrown = false;
-        
+
         }
 
         public override void ModifyWeaponDamage(Player player, ref float add, ref float mult, ref float flat)

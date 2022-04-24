@@ -1,12 +1,12 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using Eternal.Tiles;
-using System.Linq;
+﻿using Eternal.Items.Materials;
 using Eternal.Items.Weapons.Magic;
-using Eternal.Items.Materials;
+using Eternal.Tiles;
 using Microsoft.Xna.Framework;
 using System;
+using System.Linq;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Eternal.NPCs.Comet
 {
@@ -50,6 +50,10 @@ namespace Eternal.NPCs.Comet
         {
             if (npc.life <= 0)
             {
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SightseerHead"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SightseerBody"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SightseerWing"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SightseerWing"), 1f);
             }
             else
             {

@@ -1,5 +1,5 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -92,7 +92,7 @@ namespace Eternal.NPCs.Boss.Incinerius
             }
             Timer++;
             npc.TargetClosest(true);
-            if(Timer >= 0)
+            if (Timer >= 0)
             {
                 Vector2 StartPosition = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height * 0.5f);
                 float DirectionX = Main.player[npc.target].position.X + Main.player[npc.target].width / 2 - StartPosition.X;

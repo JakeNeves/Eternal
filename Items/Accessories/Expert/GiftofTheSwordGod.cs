@@ -14,15 +14,15 @@ namespace Eternal.Items.Accessories.Expert
                              "\n'The Ark of Imperious' Gift of Courage'");
         }
 
-		public override void SetDefaults()
-		{
-			item.width = 30;
-			item.height = 38;
-			item.rare = ItemRarityID.Expert;
-			item.expert = true;
-			item.value = Item.sellPrice(gold: 12);
+        public override void SetDefaults()
+        {
+            item.width = 30;
+            item.height = 38;
+            item.rare = ItemRarityID.Expert;
+            item.expert = true;
+            item.value = Item.sellPrice(gold: 12);
             item.accessory = true;
-		}
+        }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {

@@ -10,9 +10,10 @@ namespace Eternal.Items.Weapons.Melee
     public class HypercoreRipsaw : ModItem
     {
 
-        public override void SetStaticDefaults() {
-             Tooltip.SetDefault("Fires shards that pierce through your foes" + 
-                               "\n'Powered with an Intel Core i9-12900K 3.2 GHz Processor and NVIDIA GeForce RTX-3090 Ti' graphics card");
+        public override void SetStaticDefaults()
+        {
+            Tooltip.SetDefault("Fires shards that pierce through your foes" +
+                              "\n'Powered with an Intel Core i9-12900K 3.2 GHz Processor and NVIDIA GeForce RTX-3090 Ti' graphics card");
         }
 
         public override void SetDefaults()

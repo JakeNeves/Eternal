@@ -8,9 +8,10 @@ namespace Eternal.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Grants Immunity to Obstruction while in The Beneath");
+            Tooltip.SetDefault("Grants Immunity to Obstruction while in The Beneath" +
+			     "\nCan't be equipped while the Boots of Blinding Speed is equipped");
         }
-        
+
         public override void SetDefaults()
         {
             item.width = 24;

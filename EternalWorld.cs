@@ -1,17 +1,17 @@
-﻿using Terraria;
+﻿using Eternal.Invasions.MechanicalEnvy;
+using Eternal.NPCs;
+using Eternal.Tiles;
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using Terraria;
+using Terraria.GameContent.Generation;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.World.Generation;
 using static Terraria.ModLoader.ModContent;
-using Microsoft.Xna.Framework;
-using Eternal.Tiles;
-using System;
-using System.IO;
-using System.Collections.Generic;
-using Eternal.NPCs;
-using Terraria.GameContent.Generation;
-using Terraria.Graphics.Effects;
 
 namespace Eternal
 {
@@ -45,6 +45,7 @@ namespace Eternal
         ///     </param>
         /// </summary>
         public static bool hellMode = false;
+        public static bool mechanicalEnvyUp = false;
 
         #region DownedBosses
         //Pre-Hardmode
@@ -61,6 +62,9 @@ namespace Eternal
         public static bool downedArkOfImperious = false;
 
         public static bool downedCosmicEmperor = false;
+
+        //Invasions
+        public static bool downedMechanicalEnvy = false;
         #endregion
 
         public override void TileCountsAvailable(int[] tileCounts)
@@ -76,9 +80,12 @@ namespace Eternal
         }
 
         public override void Initialize()
-		{
+        {
+            Main.invasionSize = 0;
+            mechanicalEnvyUp = false;
+
             //Pre-Hardmode
-			downedCarmaniteScouter = false;
+            downedCarmaniteScouter = false;
             downedDunekeeper = false;
 
             //Hardmode
@@ -92,12 +99,15 @@ namespace Eternal
 
             downedCosmicEmperor = false;
 
+            //Invasions
+            downedMechanicalEnvy = false;
+
             hellMode = false;
         }
 
-		public override TagCompound Save()
-		{
-			var downed = new List<string>();
+        public override TagCompound Save()
+        {
+            var downed = new List<string>();
             var difficulty = new List<string>();
             #region DownedBosses
             //Pre-Hardmode
@@ -114,17 +124,21 @@ namespace Eternal
             if (downedArkOfImperious) downed.Add("eternal");
 
             if (downedCosmicEmperor) downed.Add("eternal");
+
+            //Invasions
+            if (downedMechanicalEnvy) downed.Add("eternal");
+
             #endregion
 
             if (hellMode) difficulty.Add("eternal");
 
             return new TagCompound
-			{
-				{"downed", downed },
+            {
+                {"downed", downed },
                 {"difficulty", difficulty }
             };
 
-		}
+        }
 
         public override void Load(TagCompound tag)
         {
@@ -146,6 +160,9 @@ namespace Eternal
             downedArkOfImperious = downed.Contains("eternal");
 
             downedCosmicEmperor = downed.Contains("eternal");
+
+            //Invasions
+            downedMechanicalEnvy = downed.Contains("eternal");
             #endregion
 
             hellMode = difficulty.Contains("eternal");
@@ -172,6 +189,9 @@ namespace Eternal
                 downedArkOfImperious = flags[6];
 
                 downedCosmicEmperor = flags[7];
+
+                //Invasions
+                downedMechanicalEnvy = flags[0];
                 #endregion
             }
         }
@@ -196,6 +216,9 @@ namespace Eternal
             flags[6] = downedArkOfImperious;
 
             flags[7] = downedCosmicEmperor;
+
+            //Invasions
+            flags[0] = downedMechanicalEnvy;
             #endregion
 
             difficultyFlag[0] = hellMode;
@@ -224,6 +247,9 @@ namespace Eternal
             downedArkOfImperious = flags[6];
 
             downedCosmicEmperor = flags[7];
+
+            //Invasions
+            downedMechanicalEnvy = flags[0];
             #endregion
 
             difficultyFlag[0] = hellMode;
@@ -238,6 +264,15 @@ namespace Eternal
 
             //if (JustPressed(Keys.D1))
             //    TestMethod((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16);
+
+            if (mechanicalEnvyUp)
+            {
+                if (Main.invasionX == (double)Main.spawnTileX)
+                {
+                    MechanicalEnvy.CheckCustomInvasionProgress();
+                }
+                MechanicalEnvy.UpdateCustomInvasion();
+            }
 
         }
 
@@ -620,7 +655,7 @@ namespace Eternal
             {0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0 },
             {0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0 },
         };
-        
+
 
         public bool PlaceShrine(int i, int j)
         {

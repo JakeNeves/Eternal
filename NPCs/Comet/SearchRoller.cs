@@ -1,10 +1,10 @@
-﻿using Eternal.Items.Weapons.Melee;
+﻿using Eternal.Items.Materials;
+using Eternal.Items.Weapons.Melee;
+using Eternal.Tiles;
+using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Eternal.Tiles;
-using System.Linq;
-using Eternal.Items.Materials;
 
 namespace Eternal.NPCs.Comet
 {

@@ -1,5 +1,4 @@
-﻿using Terraria;
-using Terraria.ID;
+﻿using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Eternal.Items.Materials
@@ -10,7 +9,7 @@ namespace Eternal.Items.Materials
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("???");
-	    ItemID.Sets.ItemNoGravity[item.type] = true;
+            ItemID.Sets.ItemNoGravity[item.type] = true;
         }
 
         public override void SetDefaults()

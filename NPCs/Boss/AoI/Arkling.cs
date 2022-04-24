@@ -1,6 +1,6 @@
-﻿using System;
-using Eternal.Dusts;
+﻿using Eternal.Dusts;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -9,7 +9,7 @@ namespace Eternal.NPCs.Boss.AoI
 {
     public class Arkling : ModNPC
     {
-        
+
         public override void SetDefaults()
         {
             npc.lifeMax = 4000;

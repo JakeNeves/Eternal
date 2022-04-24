@@ -1,11 +1,12 @@
-﻿using System;
-using Terraria;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using Terraria.ID;
+﻿using Eternal.Items.Materials;
 using Eternal.Items.Potions;
+using Eternal.NPCs.Boss.BionicBosses.Omnicron;
 using Eternal.Projectiles.Boss;
-using Eternal.Items.Materials;
+using Microsoft.Xna.Framework;
+using System;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Eternal.NPCs.Boss.BionicBosses
 {
@@ -13,6 +14,11 @@ namespace Eternal.NPCs.Boss.BionicBosses
     public class BorealisNeox : ModNPC
     {
         private Player player;
+
+        int AttackTimer = 0;
+        int Phase = 0;
+
+        bool isDashing = false;
 
         public override void SetStaticDefaults()
         {
@@ -86,8 +92,7 @@ namespace Eternal.NPCs.Boss.BionicBosses
         {
             Lighting.AddLight(npc.Center, 0.73f, 1.40f, 2.12f);
 
-            //npc.rotation = npc.velocity.ToRotation() + MathHelper.ToRadians(90f);
-            npc.rotation = npc.velocity.X * 0.01f;
+            npc.rotation = npc.velocity.X * 0.03f;
 
             npc.netUpdate = true;
             player = Main.player[npc.target];
@@ -98,6 +103,38 @@ namespace Eternal.NPCs.Boss.BionicBosses
             float xDir = Main.player[npc.target].position.X + (float)(Main.player[npc.target].width / 2) - vector2.X;
             float yDir = (float)(Main.player[npc.target].position.Y + (Main.player[npc.target].height / 2) - 120) - vector2.Y;
             float length = (float)Math.Sqrt(xDir * xDir + yDir * yDir);
+
+            if (isDashing)
+            {
+                if (EternalWorld.hellMode)
+                {
+                    speed = 48f;
+                    acceleration = 0.16f;
+                }
+                else if (Main.expertMode)
+                {
+                    speed = 42.75f;
+                    acceleration = 0.12f;
+                }
+                else
+                {
+                    speed = 38.50f;
+                    acceleration = 0.8f;
+                }
+
+                for (int k = 0; k < 8; k++)
+                {
+                    Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, DustID.BlueTorch, npc.oldVelocity.X * 0.75f, npc.oldVelocity.Y * 0.75f);
+                }
+
+                npc.rotation = npc.velocity.ToRotation() + MathHelper.ToRadians(90f);
+            }
+            else
+            {
+                speed = 32.25f;
+                acceleration = 0.4f;
+            }
+
             if (length > 400 && Main.expertMode)
             {
                 ++speed;
@@ -105,11 +142,11 @@ namespace Eternal.NPCs.Boss.BionicBosses
                 if (length > 600)
                 {
                     ++speed;
-                    acceleration += 0.05F;
+                    acceleration += 0.10F;
                     if (length > 800)
                     {
                         ++speed;
-                        acceleration += 0.05F;
+                        acceleration += 0.15F;
                     }
                 }
             }
@@ -145,6 +182,118 @@ namespace Eternal.NPCs.Boss.BionicBosses
             return true;
         }
 
+        public override void AI()
+        {
+            AttackTimer++;
+
+            if (npc.life < npc.lifeMax / 2)
+            {
+                if ((AttackTimer == 165 || AttackTimer == 170 || AttackTimer == 175 || AttackTimer == 180 || AttackTimer == 185 || AttackTimer == 190))
+                {
+                    Vector2 direction = Main.player[npc.target].Center - npc.Center;
+                    direction.Normalize();
+                    direction.X *= 8.5f;
+                    direction.Y *= 8.5f;
+
+                    int amountOfProjectiles = 2;
+                    for (int i = 0; i < amountOfProjectiles; ++i)
+                    {
+                        float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<BorealisNeoxLaser>(), npc.damage / 2, 1, Main.myPlayer, 0, 0);
+                    }
+                }
+                if (AttackTimer == 195)
+                {
+                    isDashing = true;
+                }
+                else if (AttackTimer == 300)
+                {
+                    AttackTimer = 0;
+                    isDashing = false;
+                }
+            }
+            if (npc.life < npc.lifeMax / 3)
+            {
+                if (AttackTimer == 50 || AttackTimer == 65 || AttackTimer == 70 || AttackTimer == 85 || AttackTimer == 90 || AttackTimer == 105 || AttackTimer == 115 || AttackTimer == 130)
+                {
+                    Vector2 direction = Main.player[npc.target].Center - npc.Center;
+                    direction.Normalize();
+                    direction.X *= 8.5f;
+                    direction.Y *= 8.5f;
+
+                    int amountOfProjectiles = 2;
+                    for (int i = 0; i < amountOfProjectiles; ++i)
+                    {
+                        float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        int damage = Main.expertMode ? 110 : 220;
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<BorealisNeoxSpike>(), damage, 1, Main.myPlayer, 0, 0);
+                    }
+                }
+                if ((AttackTimer == 115 || AttackTimer == 120 || AttackTimer == 125))
+                {
+                    Vector2 direction = Main.player[npc.target].Center - npc.Center;
+                    direction.Normalize();
+                    direction.X *= 8.5f;
+                    direction.Y *= 8.5f;
+
+                    int amountOfProjectiles = 4;
+                    for (int i = 0; i < amountOfProjectiles; ++i)
+                    {
+                        float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<BorealisNeoxLaser>(), npc.damage / 2, 1, Main.myPlayer, 0, 0);
+                    }
+                }
+                else if (AttackTimer == 300)
+                {
+                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, -12, 0, ModContent.ProjectileType<BorealisNeoxLaser>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 12, 0, ModContent.ProjectileType<BorealisNeoxLaser>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 0, 12, ModContent.ProjectileType<BorealisNeoxLaser>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 0, -12, ModContent.ProjectileType<BorealisNeoxLaser>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
+
+                    isDashing = false;
+                    AttackTimer = 0;
+                }
+            }
+            else
+            {
+                if ((AttackTimer == 100 || AttackTimer == 150 || AttackTimer == 175))
+                {
+                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, -12, 0, ModContent.ProjectileType<BorealisNeoxSpike>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 12, 0, ModContent.ProjectileType<BorealisNeoxSpike>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 0, 12, ModContent.ProjectileType<BorealisNeoxSpike>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 0, -12, ModContent.ProjectileType<BorealisNeoxSpike>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, -8, ModContent.ProjectileType<BorealisNeoxSpike>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, -8, ModContent.ProjectileType<BorealisNeoxSpike>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, 8, ModContent.ProjectileType<BorealisNeoxSpike>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, 8, ModContent.ProjectileType<BorealisNeoxSpike>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
+
+                    Vector2 direction = Main.player[npc.target].Center - npc.Center;
+                    direction.Normalize();
+                    direction.X *= 8.5f;
+                    direction.Y *= 8.5f;
+
+                    int amountOfProjectiles = 1;
+                    for (int i = 0; i < amountOfProjectiles; ++i)
+                    {
+                        float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<BorealisNeoxLaser>(), npc.damage / 2, 1, Main.myPlayer, 0, 0);
+                    }
+                }
+                else if (AttackTimer == 475)
+                {
+                    AttackTimer = 0;
+                }
+            }
+        }
+
         private void DespawnHandler()
         {
             if (!player.active || player.dead)
@@ -165,7 +314,8 @@ namespace Eternal.NPCs.Boss.BionicBosses
 
         public override void NPCLoot()
         {
-            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<OrionNeox>());
+            player = Main.player[npc.target];
+            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<OmnicronNeox>());
 
             if (Main.rand.Next(2) == 0)
             {

@@ -1,13 +1,13 @@
-﻿using Terraria;
+﻿using Eternal.Items.Materials;
+using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using Terraria.ID;
-using Eternal.Items.Materials;
 
 namespace Eternal.Items.Armor
 {
     [AutoloadEquip(EquipType.Head)]
-    public class DawnstoneMask  : ModItem
+    public class DawnstoneMask : ModItem
     {
 
         public override void SetDefaults()

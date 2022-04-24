@@ -1,6 +1,4 @@
-﻿using Eternal.Dusts;
-using Eternal.NPCs;
-using Microsoft.Xna.Framework;
+﻿using Eternal.NPCs;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

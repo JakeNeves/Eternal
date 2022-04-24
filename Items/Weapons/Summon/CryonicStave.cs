@@ -1,10 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Eternal.Buffs.Minions;
+using Eternal.Items.Materials;
+using Eternal.Projectiles.Minions;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Eternal.Projectiles.Minions;
-using Eternal.Buffs.Minions;
-using Eternal.Items.Materials;
 
 namespace Eternal.Items.Weapons.Summon
 {

@@ -8,7 +8,7 @@ namespace Eternal.Items
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Minor Improvements to Some Stats" + 
+            Tooltip.SetDefault("Minor Improvements to Some Stats" +
                                "\n'ugh...'");
         }
 

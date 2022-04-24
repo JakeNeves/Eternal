@@ -1,14 +1,14 @@
-﻿using System;
-using Terraria;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using Terraria.ID;
-using System.Linq;
-using Microsoft.Xna.Framework.Graphics;
-using Eternal.Tiles;
+﻿using Eternal.Items;
 using Eternal.Items.Materials;
 using Eternal.Items.Summon;
-using Eternal.Items;
+using Eternal.Tiles;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Linq;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Eternal.NPCs.Beneath
 {
@@ -57,7 +57,7 @@ namespace Eternal.NPCs.Beneath
                 Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/ReaperSkullHead"), 1f);
                 Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/ReaperSkullJaw"), 1f);
             }
-            
+
             for (int k = 0; k < damage / npc.lifeMax * 50; k++)
                 Dust.NewDust(new Vector2(npc.position.X, npc.position.Y), npc.width, npc.height, DustID.Stone);
 
@@ -104,7 +104,7 @@ namespace Eternal.NPCs.Beneath
 
         public override void NPCLoot()
         {
-            if(Main.rand.Next(1) == 0)
+            if (Main.rand.Next(1) == 0)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<StoneSkull>());
             }

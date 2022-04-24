@@ -12,7 +12,7 @@ namespace Eternal.Items.Weapons.Magic
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Fires Apparitional Disks that fly upwards" + 
+            Tooltip.SetDefault("Fires Apparitional Disks that fly upwards" +
                 "\n'Not an Actual Rending Staff'");
             Item.staff[item.type] = true;
         }

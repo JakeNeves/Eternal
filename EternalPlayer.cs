@@ -1,6 +1,4 @@
-﻿using Eternal.Buffs;
-using Eternal.Items;
-using Eternal.NPCs;
+﻿using Eternal.Items;
 using Eternal.Projectiles.Accessories;
 using Eternal.Projectiles.Armor;
 using System.Collections.Generic;
@@ -42,8 +40,8 @@ namespace Eternal
         #endregion
 
         public bool ZoneLabrynth = false;
-		public bool ZoneThunderduneBiome = false;
-		public bool ZoneCommet = false;
+        public bool ZoneThunderduneBiome = false;
+        public bool ZoneCommet = false;
         public bool ZoneBeneath = false;
         public bool ZoneAshpit = false;
 
@@ -124,7 +122,7 @@ namespace Eternal
             {
                 if (Main.rand.Next(4) == 0)
                     player.HealEffect(Main.rand.Next(3, 5), false);
-                
+
                 Projectile.NewProjectile(player.position.X + 80, player.position.Y + 80, -12, 0, ModContent.ProjectileType<ArkaniumSword>(), 6, 0, Main.myPlayer, 0f, 0f);
                 Projectile.NewProjectile(player.position.X + 80, player.position.Y + 80, 12, 0, ModContent.ProjectileType<ArkaniumSword>(), 6, 0, Main.myPlayer, 0f, 0f);
                 Projectile.NewProjectile(player.position.X + 80, player.position.Y + 80, 0, 12, ModContent.ProjectileType<ArkaniumSword>(), 6, 0, Main.myPlayer, 0f, 0f);
@@ -201,16 +199,16 @@ namespace Eternal
         }
 
         public override void SetupStartInventory(IList<Item> items, bool mediumcoreDeath)
-		{
-			Item item = new Item();
-			item.SetDefaults(ModContent.ItemType<StartingBag>());
+        {
+            Item item = new Item();
+            item.SetDefaults(ModContent.ItemType<StartingBag>());
             items.Add(item);
-		}
+        }
 
         public override void UpdateBiomes()
         {
-			ZoneThunderduneBiome = EternalWorld.thunderduneBiome > 100;
-			ZoneCommet = EternalWorld.commet > 20;
+            ZoneThunderduneBiome = EternalWorld.thunderduneBiome > 100;
+            ZoneCommet = EternalWorld.commet > 20;
             ZoneLabrynth = EternalWorld.labrynth > 50;
             ZoneBeneath = EternalWorld.theBeneath > 50;
             ZoneAshpit = EternalWorld.ashpit > 70;

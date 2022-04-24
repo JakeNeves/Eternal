@@ -1,10 +1,10 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using Eternal.Items.Materials.Elementalblights;
+﻿using Eternal.Items.Materials.Elementalblights;
+using Eternal.Items.Placeable;
 using Microsoft.Xna.Framework;
 using System;
-using Eternal.Items.Placeable;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Eternal.NPCs
 {
@@ -43,7 +43,7 @@ namespace Eternal.NPCs
 
             for (int k = 0; k < 5; k++)
             {
-                 Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, DustID.Fire, npc.oldVelocity.X * 0.5f, npc.oldVelocity.Y * 0.5f);
+                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, DustID.Fire, npc.oldVelocity.X * 0.5f, npc.oldVelocity.Y * 0.5f);
             }
         }
 

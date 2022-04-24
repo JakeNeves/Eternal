@@ -1,5 +1,4 @@
-﻿using Eternal.Items.Materials;
-using Eternal.Items.Materials.Elementalblights;
+﻿using Eternal.Items.Materials.Elementalblights;
 using Eternal.Projectiles.Weapons.Ranged;
 using Terraria.ID;
 using Terraria.ModLoader;

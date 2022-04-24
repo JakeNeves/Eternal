@@ -1,12 +1,8 @@
-﻿using Eternal.Tiles;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
+using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.DataStructures;
-using static Terraria.ModLoader.ModContent;
-using Terraria;
 
 namespace Eternal.Items.Materials
 {

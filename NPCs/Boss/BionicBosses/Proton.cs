@@ -1,10 +1,10 @@
-﻿using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
+﻿using Eternal.Items.Materials;
+using Eternal.Items.Potions;
 using Microsoft.Xna.Framework;
 using System;
-using Eternal.Items.Potions;
-using Eternal.Items.Materials;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Eternal.NPCs.Boss.BionicBosses
 {

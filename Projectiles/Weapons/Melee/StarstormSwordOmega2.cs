@@ -42,17 +42,17 @@ namespace Eternal.Projectiles.Weapons.Melee
             projectile.light--;
 
             float maxDetectRadius = 150f;
-	    float projSpeed = 10f;
+            float projSpeed = 10f;
 
             timer++;
 
             if (timer >= 100)
             {
-                 NPC closestNPC = FindClosestNPC(maxDetectRadius);
-                     if (closestNPC == null)
-                 return;
+                NPC closestNPC = FindClosestNPC(maxDetectRadius);
+                if (closestNPC == null)
+                    return;
 
-                 projectile.velocity = (closestNPC.Center - projectile.Center).SafeNormalize(Vector2.Zero) * projSpeed;
+                projectile.velocity = (closestNPC.Center - projectile.Center).SafeNormalize(Vector2.Zero) * projSpeed;
             }
         }
 

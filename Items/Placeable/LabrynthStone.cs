@@ -1,6 +1,6 @@
-﻿using Terraria.ModLoader;
+﻿using Terraria.ID;
+using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using Terraria.ID;
 
 namespace Eternal.Items.Placeable
 {
@@ -9,7 +9,7 @@ namespace Eternal.Items.Placeable
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Shrine Stone");
-            Tooltip.SetDefault("Mined with a Lunar Pickaxe or Higher..." + 
+            Tooltip.SetDefault("Mined with a Lunar Pickaxe or Higher..." +
                 "\n'Those were the days...'");
         }
 

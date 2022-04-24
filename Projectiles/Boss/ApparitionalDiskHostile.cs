@@ -74,7 +74,7 @@ namespace Eternal.Projectiles.Boss
                 }
 
                 //projectile.rotation = projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);
-                
+
             }
         }
 

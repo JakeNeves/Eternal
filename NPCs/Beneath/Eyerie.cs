@@ -1,13 +1,13 @@
-﻿using System;
-using Terraria;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using Terraria.ID;
-using System.Linq;
-using Microsoft.Xna.Framework.Graphics;
-using Eternal.Tiles;
+﻿using Eternal.Items;
 using Eternal.Items.Materials;
-using Eternal.Items;
+using Eternal.Tiles;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Linq;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Eternal.NPCs.Beneath
 {

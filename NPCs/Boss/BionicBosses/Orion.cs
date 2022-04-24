@@ -14,6 +14,8 @@ namespace Eternal.NPCs.Boss.BionicBosses
     public class Orion : ModNPC
     {
 
+        bool justSpawnedCircle = false;
+
         #region Fundementals
         const float Speed = 20.05f;
         const float Acceleration = 0.4f;
@@ -44,8 +46,8 @@ namespace Eternal.NPCs.Boss.BionicBosses
 
         public override void SetDefaults()
         {
-            npc.width = 198;
-            npc.height = 198;
+            npc.width = 118;
+            npc.height = 118;
             npc.lifeMax = 620000;
             npc.defense = 30;
             npc.damage = 60;
@@ -103,6 +105,12 @@ namespace Eternal.NPCs.Boss.BionicBosses
         public override bool PreAI()
         {
             Lighting.AddLight(npc.Center, 1.90f, 0.22f, 0.22f);
+
+            if (!justSpawnedCircle)
+            {
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType<OrionCircle>(), npc.damage, 0, 0, 0f, npc.whoAmI);
+                justSpawnedCircle = true;
+            }
 
             npc.TargetClosest(true);
             npc.spriteDirection = npc.direction;
@@ -194,7 +202,7 @@ namespace Eternal.NPCs.Boss.BionicBosses
                 amountOfProjectiles = 1;
             }
 
-            if(AttackTimer == 100 || AttackTimer == 105 || AttackTimer == 110 || AttackTimer == 115 || AttackTimer == 120 || AttackTimer == 125 || AttackTimer == 130)
+            if (AttackTimer == 100 || AttackTimer == 105 || AttackTimer == 110 || AttackTimer == 115 || AttackTimer == 120 || AttackTimer == 125 || AttackTimer == 130)
             {
                 for (int i = 0; i < amountOfProjectiles; ++i)
                 {
@@ -214,7 +222,7 @@ namespace Eternal.NPCs.Boss.BionicBosses
                     int damage = Main.expertMode ? 15 : 17;
                     if (Main.netMode != NetmodeID.MultiplayerClient)
                         Main.PlaySound(SoundID.DD2_KoboldExplosion, npc.position);
-                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<OrionSaw>(), npc.damage, 1, Main.myPlayer, 0, 0);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<OrionSaw>(), npc.damage, 1, Main.myPlayer, 0, 0);
                 }
             }
             if (AttackTimer == 231)

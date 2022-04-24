@@ -1,11 +1,11 @@
-﻿using System;
-using Terraria;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using Terraria.ID;
+﻿using Eternal.Items.Materials;
 using Eternal.Items.Potions;
 using Eternal.Projectiles.Boss;
-using Eternal.Items.Materials;
+using Microsoft.Xna.Framework;
+using System;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Eternal.NPCs.Boss.BionicBosses
 {
@@ -215,7 +215,7 @@ namespace Eternal.NPCs.Boss.BionicBosses
                             int damage = Main.expertMode ? 125 : 150;
                             if (Main.netMode != NetmodeID.MultiplayerClient)
                                 Main.PlaySound(SoundID.DD2_KoboldExplosion, npc.position);
-                                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<AtlasMissile>(), damage, 1, Main.myPlayer, 0, 0);
+                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<AtlasMissile>(), damage, 1, Main.myPlayer, 0, 0);
                         }
                     }
                     if (Timer == 160)

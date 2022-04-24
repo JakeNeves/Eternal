@@ -1,8 +1,8 @@
-﻿using Terraria;
-using Terraria.ModLoader;
+﻿using Eternal.Dusts;
 using Eternal.Items.Ammo;
-using Eternal.Dusts;
+using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Eternal.NPCs.Boss.InfernoGuardian
 {
@@ -73,7 +73,7 @@ namespace Eternal.NPCs.Boss.InfernoGuardian
             }
             #endregion
 
-            if(!isDefeated)
+            if (!isDefeated)
             {
                 timer++;
 

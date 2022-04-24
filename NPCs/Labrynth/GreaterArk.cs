@@ -1,12 +1,12 @@
-﻿using System;
-using Terraria;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using Terraria.ID;
-using Eternal.Tiles;
-using System.Linq;
+﻿using Eternal.Dusts;
 using Eternal.Items.Materials;
-using Eternal.Dusts;
+using Eternal.Tiles;
+using Microsoft.Xna.Framework;
+using System;
+using System.Linq;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Eternal.NPCs.Labrynth
 {

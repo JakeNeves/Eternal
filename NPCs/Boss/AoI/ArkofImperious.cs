@@ -1,17 +1,17 @@
-﻿using System;
-using Terraria;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using Terraria.ID;
-using Eternal.Items.Weapons.Ranged;
+﻿using Eternal.Dusts;
 using Eternal.Items.Ammo;
 using Eternal.Items.BossBags;
-using Eternal.Items.Weapons.Melee;
 using Eternal.Items.Materials;
-using Eternal.Projectiles.Boss;
 using Eternal.Items.Potions;
+using Eternal.Items.Weapons.Melee;
+using Eternal.Items.Weapons.Ranged;
+using Eternal.Projectiles.Boss;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Eternal.Dusts;
+using System;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Eternal.NPCs.Boss.AoI
 {
@@ -21,7 +21,8 @@ namespace Eternal.NPCs.Boss.AoI
         private Player player;
 
         bool isDashing = false;
-
+        bool phase2Init = false;
+        bool phase3Init = false;
         bool justSpawnedCircle = false;
 
         #region Fundimentals
@@ -116,7 +117,7 @@ namespace Eternal.NPCs.Boss.AoI
             npc.lifeMax = 2400000;
             npc.defense = 72;
             npc.damage = 100;
-            if(EternalWorld.hellMode)
+            if (EternalWorld.hellMode)
             {
                 npc.lifeMax = 3600000;
                 npc.defense = 74;
@@ -230,10 +231,40 @@ namespace Eternal.NPCs.Boss.AoI
             if (npc.life < npc.lifeMax / 2)
             {
                 Phase = 1;
+                if (!phase2Init)
+                {
+                    AttackTimer = 0;
+                    for (int i = 0; i < 25; i++)
+                    {
+                        Vector2 position = npc.Center + Vector2.UnitX.RotatedBy(MathHelper.ToRadians(360f / 25 * i)) * 15;
+                        Dust dust = Dust.NewDustPerfect(npc.position, ModContent.DustType<ArkEnergy>());
+                        dust.noGravity = true;
+                        dust.velocity = Vector2.Normalize(position - npc.Center) * 4;
+                        dust.noLight = false;
+                        dust.fadeIn = 1f;
+                    }
+                    Main.PlaySound(SoundID.DD2_SkeletonSummoned, npc.position);
+                    phase2Init = true;
+                }
             }
             if (npc.life < npc.lifeMax / 3)
             {
                 Phase = 2;
+                if (!phase3Init)
+                {
+                    AttackTimer = 0;
+                    for (int i = 0; i < 25; i++)
+                    {
+                        Vector2 position = npc.Center + Vector2.UnitX.RotatedBy(MathHelper.ToRadians(360f / 25 * i)) * 15;
+                        Dust dust = Dust.NewDustPerfect(npc.position, ModContent.DustType<SpiritArkWisp>());
+                        dust.noGravity = true;
+                        dust.velocity = Vector2.Normalize(position - npc.Center) * 4;
+                        dust.noLight = false;
+                        dust.fadeIn = 1f;
+                    }
+                    Main.NewText("A barrier starts forming around the Ark of Imperious", 0, 168, 79);
+                    phase3Init = true;
+                }
             }
 
             AttackTimer++;
@@ -252,7 +283,7 @@ namespace Eternal.NPCs.Boss.AoI
             {
                 int maxDist;
 
-                if(Main.expertMode)
+                if (Main.expertMode)
                 {
                     maxDist = 1000;
                 }
@@ -355,9 +386,52 @@ namespace Eternal.NPCs.Boss.AoI
                     AttackTimer = 0;
                 }
             }
-            else if (npc.life < npc.lifeMax / 3)
+            if (npc.life < npc.lifeMax / 3)
             {
+                if (AttackTimer == 50 || AttackTimer == 65 || AttackTimer == 70 || AttackTimer == 85 || AttackTimer == 90 || AttackTimer == 105 || AttackTimer == 115 || AttackTimer == 130)
+                {
+                    Vector2 direction = Main.player[npc.target].Center - npc.Center;
+                    direction.Normalize();
+                    direction.X *= 8.5f;
+                    direction.Y *= 8.5f;
 
+                    int amountOfProjectiles = 2;
+                    for (int i = 0; i < amountOfProjectiles; ++i)
+                    {
+                        float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        int damage = Main.expertMode ? 110 : 220;
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                            Main.PlaySound(SoundID.Item8, npc.position);
+                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<ArkArrowHostile>(), damage, 1, Main.myPlayer, 0, 0);
+                    }
+                }
+                if ((AttackTimer == 115 || AttackTimer == 120 || AttackTimer == 125))
+                {
+                    Vector2 direction = Main.player[npc.target].Center - npc.Center;
+                    direction.Normalize();
+                    direction.X *= 8.5f;
+                    direction.Y *= 8.5f;
+
+                    int amountOfProjectiles = 4;
+                    for (int i = 0; i < amountOfProjectiles; ++i)
+                    {
+                        float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                            Main.PlaySound(SoundID.DD2_LightningAuraZap, npc.position);
+                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<ArkEnergyHostile>(), npc.damage / 2, 1, Main.myPlayer, 0, 0);
+                    }
+                }
+                else if (AttackTimer == 250)
+                {
+                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, -12, 0, ModContent.ProjectileType<ArkEnergyHostile>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 12, 0, ModContent.ProjectileType<ArkEnergyHostile>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 0, 12, ModContent.ProjectileType<ArkEnergyHostile>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 0, -12, ModContent.ProjectileType<ArkEnergyHostile>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
+
+                    AttackTimer = 0;
+                }
             }
             else
             {
@@ -401,7 +475,7 @@ namespace Eternal.NPCs.Boss.AoI
 
         public override void NPCLoot()
         {
-            if(!EternalWorld.downedArkOfImperious)
+            if (!EternalWorld.downedArkOfImperious)
             {
                 Main.NewText("The stars are calling upon you...", 0, 90, 216);
                 EternalWorld.downedArkOfImperious = true;
@@ -415,8 +489,8 @@ namespace Eternal.NPCs.Boss.AoI
             {
                 if (Main.rand.Next(1) == 0)
                 {
-                   Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Arkbow>());
-                   Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ArkArrow>(), Main.rand.Next(30, 90));
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Arkbow>());
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ArkArrow>(), Main.rand.Next(30, 90));
                 }
                 if (Main.rand.Next(2) == 0)
                 {

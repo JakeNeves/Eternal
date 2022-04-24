@@ -1,9 +1,9 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using System;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace Eternal.NPCs.Boss.BionicBosses
 {
@@ -129,7 +129,7 @@ namespace Eternal.NPCs.Boss.BionicBosses
                     int damage = Main.expertMode ? 20 : 30;
                     if (Main.netMode != NetmodeID.MultiplayerClient)
                         Main.PlaySound(SoundID.Item11, npc.position);
-                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ProjectileID.BombSkeletronPrime, damage, 1, Main.myPlayer, 0, 0);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ProjectileID.BombSkeletronPrime, damage, 1, Main.myPlayer, 0, 0);
                 }
             }
             if (attackTimer == 110)

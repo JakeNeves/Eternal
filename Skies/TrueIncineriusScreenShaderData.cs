@@ -1,5 +1,4 @@
 ﻿using Terraria;
-using System;
 using Terraria.Graphics.Shaders;
 using Terraria.ModLoader;
 

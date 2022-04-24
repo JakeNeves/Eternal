@@ -18,7 +18,7 @@ namespace Eternal.Items.Weapons.Ranged
             item.width = 38;
             item.height = 24;
             item.damage = 6;
-			item.knockBack = 4;
+            item.knockBack = 4;
             item.noMelee = true;
             item.ranged = true;
             item.useTime = 2;
@@ -32,13 +32,13 @@ namespace Eternal.Items.Weapons.Ranged
             item.rare = ItemRarityID.Blue;
         }
 
-		public override void AddRecipes()
+        public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddTile(TileID.Anvils);
             recipe.AddIngredient(ItemID.MeteoriteBar, 2);
-			recipe.AddIngredient(ItemID.HellstoneBar, 2);
-			recipe.AddIngredient(ItemID.IllegalGunParts);
+            recipe.AddIngredient(ItemID.HellstoneBar, 2);
+            recipe.AddIngredient(ItemID.IllegalGunParts);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

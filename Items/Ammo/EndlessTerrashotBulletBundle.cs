@@ -1,6 +1,4 @@
-﻿using Eternal.Items.Materials;
-using Eternal.Projectiles.Weapons.Ranged;
-using Eternal.Tiles;
+﻿using Eternal.Projectiles.Weapons.Ranged;
 using Terraria.ID;
 using Terraria.ModLoader;
 

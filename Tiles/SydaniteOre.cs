@@ -9,24 +9,24 @@ namespace Eternal.Tiles
     class SydaniteOre : ModTile
     {
 
-		public override void SetDefaults()
-		{
-			TileID.Sets.Ore[Type] = true;
-			Main.tileSpelunker[Type] = true;
-			Main.tileSolid[Type] = true;
-			Main.tileMergeDirt[Type] = false;
-			Main.tileBlockLight[Type] = true;
-			Main.tileLighted[Type] = false;
-			dustType = DustID.IceTorch;
-			drop = ItemType<Items.Placeable.SydaniteOre>();
-			ModTranslation name = CreateMapEntryName();
-			name.SetDefault("Sydanite");
-			AddMapEntry(new Color(25, 230, 250), name);
-			minPick = 225;
-			soundType = SoundID.Tink;
-			soundStyle = 1;
-			mineResist = 5f;
-		}
+        public override void SetDefaults()
+        {
+            TileID.Sets.Ore[Type] = true;
+            Main.tileSpelunker[Type] = true;
+            Main.tileSolid[Type] = true;
+            Main.tileMergeDirt[Type] = false;
+            Main.tileBlockLight[Type] = true;
+            Main.tileLighted[Type] = false;
+            dustType = DustID.IceTorch;
+            drop = ItemType<Items.Placeable.SydaniteOre>();
+            ModTranslation name = CreateMapEntryName();
+            name.SetDefault("Sydanite");
+            AddMapEntry(new Color(25, 230, 250), name);
+            minPick = 225;
+            soundType = SoundID.Tink;
+            soundStyle = 1;
+            mineResist = 5f;
+        }
 
-	}
+    }
 }

@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 
 namespace Eternal.Dusts
@@ -7,13 +6,13 @@ namespace Eternal.Dusts
     public class ArkEnergy : ModDust
     {
 
-		public override void OnSpawn(Dust dust)
-		{
-			dust.velocity.Y = Main.rand.Next(-4, 2) * 0.1f;
-			dust.velocity.X *= 0.2f;
-			dust.scale *= 1.4f;
+        public override void OnSpawn(Dust dust)
+        {
+            dust.velocity.Y = Main.rand.Next(-4, 2) * 0.1f;
+            dust.velocity.X *= 0.2f;
+            dust.scale *= 1.4f;
             dust.noGravity = false;
-		}
+        }
 
         public override bool MidUpdate(Dust dust)
         {

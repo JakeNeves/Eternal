@@ -1,6 +1,6 @@
 [c/1EC9E3:Eternal] - By [c/008CFF:Jake][c/0204CFF:TEM]!
 
-1.0.8  - [c/009933:The Bionic Update]
+1.0.8.1  - [c/009933:The Bionic Update]
 
 Feel free to join my Discord Server and help out with the mod if you want
 https://discord.gg/HUJ8KUSAjC
@@ -11,6 +11,8 @@ From what we expect, this mod is not fully finished yet so there is no harm in c
 
 [c/00B359:---Music Addon Mod---]
 The music for the mod is now it's seperate addon mod
+Right now you can only download it from the 'EternalMusic'
+GitHub Reopsitory
 
 It currently adds
 2 pre-hardmode bosses
@@ -21,15 +23,24 @@ It currently adds
 
 [c/00B359:---Future Plans---]
 
-* Add Mod Integration for Fargo's Mod
-
-* Implement some Minibosses
+* Port the mod over to tModLoader 1.4
 
 [c/00B359:---Credits---]
 
 JakeTEM - Literally most of enerything
 
 [c/00b359:---Changelog---]
+
+1.0.8.1
+* Beacon recipes now use hallowed bars instead of dirt
+
+* Added the Final Boss Blade
+
+* Implimented the Treasure Capsule
+
+* Cosmic Emperor Tweaks
+
+* Implimented AI for some of the Bionic and N30X Bosses
 
 1.0.8
 * Updated Sprites for most of the content

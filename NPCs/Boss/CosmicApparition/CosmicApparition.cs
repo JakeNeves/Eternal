@@ -1,17 +1,17 @@
-﻿using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using System;
-using Eternal.Items.BossBags;
+﻿using Eternal.Items.BossBags;
+using Eternal.Items.Materials;
+using Eternal.Items.Potions;
 using Eternal.Items.Weapons.Magic;
 using Eternal.Items.Weapons.Melee;
 using Eternal.Items.Weapons.Ranged;
 using Eternal.Items.Weapons.Throwing;
 using Eternal.Projectiles.Boss;
-using Eternal.Items.Potions;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Eternal.Items.Materials;
+using System;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Eternal.NPCs.Boss.CosmicApparition
 {
@@ -159,7 +159,7 @@ namespace Eternal.NPCs.Boss.CosmicApparition
 
             player.AddBuff(BuffID.Horrified, 1, false);
 
-            
+
             if (attackTimer == 100)
             {
                 if (!NPC.AnyNPCs(ModContent.NPCType<CosmicDecoy>()))
@@ -172,7 +172,7 @@ namespace Eternal.NPCs.Boss.CosmicApparition
                 }
 
             }
-            else if(attackTimer == 200 || attackTimer == 225 || attackTimer == 250 || attackTimer == 275)
+            else if (attackTimer == 200 || attackTimer == 225 || attackTimer == 250 || attackTimer == 275)
             {
                 Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, -12, 0, ModContent.ProjectileType<CosmicPierce>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
                 Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 12, 0, ModContent.ProjectileType<CosmicPierce>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
@@ -190,7 +190,7 @@ namespace Eternal.NPCs.Boss.CosmicApparition
 
             generalAttackTimer++;
 
-            if(generalAttackTimer == 100 || generalAttackTimer == 125 || generalAttackTimer == 150 || generalAttackTimer == 175)
+            if (generalAttackTimer == 100 || generalAttackTimer == 125 || generalAttackTimer == 150 || generalAttackTimer == 175)
             {
                 Vector2 direction = Main.player[npc.target].Center - npc.Center;
                 direction.Normalize();
@@ -207,7 +207,7 @@ namespace Eternal.NPCs.Boss.CosmicApparition
                         Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<CosmicPierce>(), damage, 1, Main.myPlayer, 0, 0);
                 }
             }
-            else if(generalAttackTimer == 200)
+            else if (generalAttackTimer == 200)
             {
                 generalAttackTimer = 0;
             }
@@ -263,7 +263,7 @@ namespace Eternal.NPCs.Boss.CosmicApparition
 
             }
 
-            if(!player.active || player.dead)
+            if (!player.active || player.dead)
             {
                 teleport = false;
                 npc.TargetClosest(false);

@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 
 namespace Eternal.Dusts
@@ -7,13 +6,13 @@ namespace Eternal.Dusts
     public class DoomFire : ModDust
     {
 
-		public override void OnSpawn(Dust dust)
-		{
-			dust.velocity.Y = Main.rand.Next(-8, 4) * 0.1f;
+        public override void OnSpawn(Dust dust)
+        {
+            dust.velocity.Y = Main.rand.Next(-8, 4) * 0.1f;
             dust.noGravity = true;
             dust.velocity.X *= 0.2f;
-			dust.scale *= 1.4f;
-		}
+            dust.scale *= 1.4f;
+        }
 
         public override bool MidUpdate(Dust dust)
         {

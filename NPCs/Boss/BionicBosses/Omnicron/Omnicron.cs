@@ -1,10 +1,9 @@
-﻿using System;
-using Terraria;
-using Terraria.ModLoader;
+﻿using Eternal.Items.Potions;
 using Microsoft.Xna.Framework;
+using System;
+using Terraria;
 using Terraria.ID;
-using Eternal.Items.Potions;
-using Eternal.Projectiles.Boss;
+using Terraria.ModLoader;
 
 namespace Eternal.NPCs.Boss.BionicBosses.Omnicron
 {
@@ -16,7 +15,8 @@ namespace Eternal.NPCs.Boss.BionicBosses.Omnicron
         float vectX = 0f;
         float vectY = 0f;
 
-        bool isSpinning = false;
+        int Phase;
+        int attackTimer;
 
         public override void SetStaticDefaults()
         {
@@ -114,10 +114,15 @@ namespace Eternal.NPCs.Boss.BionicBosses.Omnicron
 
         public override void AI()
         {
-            if (isSpinning)
-                npc.rotation += npc.velocity.X * 0.1f;
+            int amountOfProjectiles;
+            if (Phase == 1)
+            {
+                amountOfProjectiles = 4;
+            }
             else
-                npc.rotation = npc.velocity.X * 0.06f;
+            {
+                amountOfProjectiles = 2;
+            }
 
             player = Main.player[npc.target];
             npc.TargetClosest(true);
@@ -212,10 +217,6 @@ namespace Eternal.NPCs.Boss.BionicBosses.Omnicron
             targetX = num730 - vector91.X;
             targetY = num731 - vector91.Y;
             num738 = (float)Math.Sqrt((double)(targetX * targetX + targetY * targetY));
-            if (isSpinning)
-            {
-                speedMultiplier += 2f;
-            }
             if (num738 < num734)
             {
                 targetX = npc.velocity.X;
@@ -264,6 +265,73 @@ namespace Eternal.NPCs.Boss.BionicBosses.Omnicron
             float num741 = Main.player[npc.target].Center.Y - vector92.Y;
             npc.rotation = (float)Math.Atan2((double)num741, (double)num740) + 1.57f;
             #endregion
+
+            Vector2 direction = Main.player[npc.target].Center - npc.Center;
+            direction.Normalize();
+            direction.X *= 8.5f;
+            direction.Y *= 8.5f;
+
+            attackTimer++;
+
+            if (Phase == 1)
+            {
+                if (attackTimer == 100 || attackTimer == 102 || attackTimer == 104 || attackTimer == 106 || attackTimer == 108 || attackTimer == 110 || attackTimer == 112 || attackTimer == 114 || attackTimer == 116 || attackTimer == 118 || attackTimer == 120 || attackTimer == 122)
+                {
+                    for (int i = 0; i < amountOfProjectiles; ++i)
+                    {
+                        float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        int damage = Main.expertMode ? 15 : 17;
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ProjectileID.BombSkeletronPrime, npc.damage, 1, Main.myPlayer, 0, 0);
+                    }
+                }
+                if (attackTimer == 130 || attackTimer == 135)
+                {
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -8, 0, ProjectileID.PinkLaser, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 8, 0, ProjectileID.PinkLaser, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 8, ProjectileID.PinkLaser, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, -8, ProjectileID.PinkLaser, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -4, 4, ProjectileID.PinkLaser, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -4, -4, ProjectileID.PinkLaser, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4, -4, ProjectileID.PinkLaser, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4, 4, ProjectileID.PinkLaser, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                }
+                if (attackTimer == 300)
+                {
+                    attackTimer = 0;
+                }
+            }
+            else
+            {
+                if (attackTimer == 100 || attackTimer == 105 || attackTimer == 110 || attackTimer == 115)
+                {
+
+                    for (int i = 0; i < amountOfProjectiles; ++i)
+                    {
+                        float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        int damage = Main.expertMode ? 15 : 17;
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ProjectileID.DeathLaser, npc.damage, 1, Main.myPlayer, 0, 0);
+                    }
+                }
+                if (attackTimer == 200 || attackTimer == 250)
+                {
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -8, 0, ProjectileID.DeathLaser, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 8, 0, ProjectileID.DeathLaser, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 8, ProjectileID.DeathLaser, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, -8, ProjectileID.DeathLaser, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -4, 4, ProjectileID.DeathLaser, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -4, -4, ProjectileID.DeathLaser, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4, -4, ProjectileID.DeathLaser, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4, 4, ProjectileID.DeathLaser, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                }
+                if (attackTimer == 300)
+                {
+                    attackTimer = 0;
+                }
+            }
 
         }
 

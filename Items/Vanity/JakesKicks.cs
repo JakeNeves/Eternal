@@ -1,5 +1,4 @@
 ﻿using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Eternal.Items.Vanity
@@ -19,7 +18,7 @@ namespace Eternal.Items.Vanity
             item.width = 22;
             item.height = 18;
             item.vanity = true;
-	    item.value = Item.buyPrice(platinum: 1, gold: 30);
+            item.value = Item.buyPrice(platinum: 1, gold: 30);
         }
 
     }

@@ -28,7 +28,7 @@ namespace Eternal.Skies
             {
                 spriteBatch.Draw(Main.blackTileTexture, new Rectangle(0, 0, Main.screenWidth, Main.screenHeight), new Color(2.29f, 0.84f, 2.55f) * opacity);
             }
-            
+
             if (maxDepth >= 0 && minDepth < 0)
             {
                 spriteBatch.Draw(Main.blackTileTexture, new Rectangle(0, 0, Main.screenWidth, Main.screenHeight), new Color(2.29f, 0.84f, 2.55f) * 0.5f);
@@ -64,7 +64,7 @@ namespace Eternal.Skies
 
         private float GetOpacity()
         {
-            if(this.UpdateEmprayniaIndex())
+            if (this.UpdateEmprayniaIndex())
             {
                 float x = 0f;
                 if (this.EmprayniaIndex != -1)

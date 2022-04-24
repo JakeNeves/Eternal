@@ -1,12 +1,12 @@
-﻿using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Eternal.Tiles;
-using System.Linq;
+﻿using Eternal.Items.Materials;
 using Eternal.Items.Weapons.Ranged;
-using Eternal.Items.Materials;
+using Eternal.Tiles;
 using Microsoft.Xna.Framework;
 using System;
+using System.Linq;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Eternal.NPCs.Comet
 {
@@ -126,10 +126,7 @@ namespace Eternal.NPCs.Comet
                 Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DesmionDaetusBody"), 1f);
                 Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DesmionDaetusLeftArm"), 1f);
                 Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DesmionDaetusRightArm"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DesmionDaetusLeftFinger"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DesmionDaetusLeftFinger"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DesmionDaetusRightFinger"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DesmionDaetusRightFinger"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DesmionDaetusHead"), 1f);
             }
             else
             {

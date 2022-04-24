@@ -1,20 +1,20 @@
-﻿using System;
-using Terraria;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using Terraria.ID;
+﻿using Eternal.Items.Accessories.Hell;
 using Eternal.Items.BossBags;
-using Eternal.Items.Accessories.Hell;
-using Eternal.Items.Weapons.Melee;
 using Eternal.Items.Materials;
+using Eternal.Items.Weapons.Melee;
 using Eternal.Projectiles.Boss;
+using Microsoft.Xna.Framework;
+using System;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Eternal.NPCs.Boss.CarmaniteScouter
 {
     [AutoloadBossHead]
     public class CarmaniteScouter : ModNPC
     {
-        
+
         private Player player;
         private float speed;
         int Timer;
@@ -85,7 +85,7 @@ namespace Eternal.NPCs.Boss.CarmaniteScouter
             npc.damage = 16;
             npc.defense = 14;
 
-            if(EternalWorld.hellMode)
+            if (EternalWorld.hellMode)
             {
                 npc.lifeMax = 10000; //(int)(npc.lifeMax + 30f * bossLifeScale);
                 npc.damage = 20; //(int)(npc.damage + 2.5f);

@@ -18,7 +18,7 @@ namespace Eternal.Items.Vanity
             item.width = 20;
             item.height = 12;
             item.vanity = true;
-	        item.value = Item.buyPrice(platinum: 1, gold: 30);
+            item.value = Item.buyPrice(platinum: 1, gold: 30);
         }
 
     }

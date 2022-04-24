@@ -56,7 +56,7 @@ namespace Eternal.Items.Weapons.Melee
                 }
             }
             return false;
-            
+
         }
 
         public override void AddRecipes()

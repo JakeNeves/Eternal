@@ -1,10 +1,10 @@
-﻿using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
+﻿using Eternal.Items.Materials;
+using Eternal.Items.Potions;
 using Microsoft.Xna.Framework;
 using System;
-using Eternal.Items.Potions;
-using Eternal.Items.Materials;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Eternal.NPCs.Boss.BionicBosses
 {
@@ -179,6 +179,7 @@ namespace Eternal.NPCs.Boss.BionicBosses
 
         public override void NPCLoot()
         {
+            player = Main.player[npc.target];
             if (!NPC.AnyNPCs(ModContent.NPCType<PhotonNeox>()) && !NPC.AnyNPCs(ModContent.NPCType<ProtonNeox>()))
                 NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<PolarusNeox>());
 

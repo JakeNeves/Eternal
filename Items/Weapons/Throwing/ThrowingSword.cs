@@ -19,10 +19,10 @@ namespace Eternal.Items.Weapons.Throwing
         {
             item.damage = 330;
             item.ranged = true;
-			item.noUseGraphic = true;
-			item.UseSound = SoundID.Item1;
-			item.useStyle = ItemUseStyleID.SwingThrow;
-			item.useTime = 14;
+            item.noUseGraphic = true;
+            item.UseSound = SoundID.Item1;
+            item.useStyle = ItemUseStyleID.SwingThrow;
+            item.useTime = 14;
             item.useAnimation = 14;
             item.width = 26;
             item.height = 46;

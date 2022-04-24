@@ -6,9 +6,9 @@ using Terraria.ModLoader;
 
 namespace Eternal.Projectiles.Weapons.Melee
 {
-    public class CohortDagger: ModProjectile
+    public class CohortDagger : ModProjectile
     {
-        
+
 
         public override void SetStaticDefaults()
         {

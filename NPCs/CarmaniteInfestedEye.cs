@@ -1,10 +1,9 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
+﻿using Eternal.Items.Materials;
 using Eternal.Items.Summon;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using Eternal.Items;
-using Eternal.Items.Materials;
 
 namespace Eternal.NPCs
 {

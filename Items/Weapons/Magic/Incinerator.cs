@@ -12,7 +12,7 @@ namespace Eternal.Items.Weapons.Magic
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Eruption");
-            Tooltip.SetDefault("Fires flaming swords from below" + 
+            Tooltip.SetDefault("Fires flaming swords from below" +
                               "\n'Hot Objects Included'");
         }
 

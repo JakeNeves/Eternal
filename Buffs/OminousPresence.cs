@@ -1,5 +1,4 @@
 ﻿using Eternal.NPCs.Boss.AoI;
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;

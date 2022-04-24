@@ -1,5 +1,4 @@
 ﻿using Eternal.Items.Accessories;
-using Eternal.Items;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

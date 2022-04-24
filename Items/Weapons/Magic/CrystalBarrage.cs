@@ -1,5 +1,4 @@
-﻿using Eternal.Projectiles.Weapons.Magic;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,7 +10,7 @@ namespace Eternal.Items.Weapons.Magic
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Fires multiple colored projectiles" + 
+            Tooltip.SetDefault("Fires multiple colored projectiles" +
                               "\n'Fire the rainbow, taste the rainbow'");
             Item.staff[item.type] = true;
         }

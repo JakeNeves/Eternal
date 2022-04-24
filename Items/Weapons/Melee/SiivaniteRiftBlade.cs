@@ -41,7 +41,7 @@ namespace Eternal.Items.Weapons.Melee
         {
             if (player.altFunctionUse == 2)
             {
-                
+
                 //item.UseSound = mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Custom/RiftBlade");
                 item.useStyle = ItemUseStyleID.SwingThrow;
                 item.shoot = ProjectileID.None;

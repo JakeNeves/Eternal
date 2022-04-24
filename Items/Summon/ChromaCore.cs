@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Eternal.Items.Materials;
+using Eternal.Tiles;
+using System.Collections.Generic;
+using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.DataStructures;
-using Terraria;
-using Eternal.Tiles;
-using Eternal.Items.Materials;
 
 namespace Eternal.Items.Summon
 {
@@ -12,7 +12,7 @@ namespace Eternal.Items.Summon
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Used at the Exo Beacon" + 
+            Tooltip.SetDefault("Used at the Exo Beacon" +
                              "\nCalls upon something powerful");
 
             Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(6, 19));

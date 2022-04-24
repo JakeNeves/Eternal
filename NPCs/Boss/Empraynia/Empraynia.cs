@@ -1,10 +1,11 @@
-﻿using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
+﻿using Eternal.Items.BossBags;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using Terraria;
 using Terraria.Graphics.Effects;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Eternal.NPCs.Boss.Empraynia
 {
@@ -67,6 +68,7 @@ namespace Eternal.NPCs.Boss.Empraynia
             npc.buffImmune[BuffID.Poisoned] = true;
             npc.HitSound = SoundID.NPCHit12;
             npc.DeathSound = SoundID.NPCDeath5;
+            bossBag = ModContent.ItemType<EmprayniaBag>();
         }
 
         public override void HitEffect(int hitDirection, double damage)
@@ -89,7 +91,7 @@ namespace Eternal.NPCs.Boss.Empraynia
         public override bool PreAI()
         {
 
-            if(npc.life  < npc.lifeMax / 2)
+            if (npc.life < npc.lifeMax / 2)
             {
                 phase = 1;
             }
@@ -310,7 +312,8 @@ namespace Eternal.NPCs.Boss.Empraynia
                     {
                         Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X * 14f, direction.Y * 14f, ProjectileID.ShadowBeamHostile, npc.damage, 1, Main.myPlayer, 0, 0);
                     }
-                    else {
+                    else
+                    {
                         Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X * 14f, direction.Y * 14f, ProjectileID.DD2DarkMageBolt, npc.damage, 1, Main.myPlayer, 0, 0);
                     }
                 }
@@ -365,6 +368,8 @@ namespace Eternal.NPCs.Boss.Empraynia
 
         public override void NPCLoot()
         {
+            player = Main.player[npc.target];
+
             Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, -12, 0, ProjectileID.DD2DarkMageBolt, npc.damage, 0, Main.myPlayer, 0f, 0f);
             Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 12, 0, ProjectileID.DD2DarkMageBolt, npc.damage, 0, Main.myPlayer, 0f, 0f);
             Projectile.NewProjectile(npc.position.X + 80, npc.position.Y + 80, 0, 12, ProjectileID.DD2DarkMageBolt, npc.damage, 0, Main.myPlayer, 0f, 0f);
@@ -389,7 +394,7 @@ namespace Eternal.NPCs.Boss.Empraynia
             }
             else
             {
-                
+
             }
             Main.NewText("The sky resumes back to it's tranquil state...", 220, 0, 210);
             SkyManager.Instance.Deactivate("Eternal:Empraynia");

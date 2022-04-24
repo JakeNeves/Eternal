@@ -13,15 +13,15 @@ namespace Eternal.Items.Accessories.Expert
             Tooltip.SetDefault("Immunity to Lava");
         }
 
-		public override void SetDefaults()
-		{
-			item.width = 22;
-			item.height = 36;
-			item.rare = ItemRarityID.Expert;
-			item.expert = true;
-			item.value = Item.sellPrice(gold: 5);
-            		item.accessory = true;
-		}
+        public override void SetDefaults()
+        {
+            item.width = 22;
+            item.height = 36;
+            item.rare = ItemRarityID.Expert;
+            item.expert = true;
+            item.value = Item.sellPrice(gold: 5);
+            item.accessory = true;
+        }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {

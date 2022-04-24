@@ -1,7 +1,6 @@
-﻿using Eternal.NPCs.Boss.AoI;
-using Terraria;
-using Terraria.ModLoader;
+﻿using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Eternal.Projectiles.Accessories
 {

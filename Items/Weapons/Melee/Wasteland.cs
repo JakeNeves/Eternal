@@ -1,6 +1,4 @@
-﻿using Eternal.Items;
-using Eternal.Projectiles.Weapons.Melee;
-using Eternal.Tiles;
+﻿using Eternal.Projectiles.Weapons.Melee;
 using System;
 using Terraria;
 using Terraria.ID;

@@ -1,10 +1,9 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using static Terraria.ModLoader.ModContent;
-using System;
 
 namespace Eternal.Projectiles.Weapons.Magic
 {
@@ -77,7 +76,7 @@ namespace Eternal.Projectiles.Weapons.Magic
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
-		{
+        {
             Vector2 drawOrigin = new Vector2(Main.projectileTexture[projectile.type].Width * 0.5f, projectile.height * 0.5f);
             for (int k = 0; k < projectile.oldPos.Length; k++)
             {

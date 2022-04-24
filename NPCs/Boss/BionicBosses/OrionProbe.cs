@@ -1,11 +1,8 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using System;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using Terraria.Graphics.Effects;
-using Eternal.NPCs.Boss.CosmicApparition;
 
 namespace Eternal.NPCs.Boss.BionicBosses
 {

@@ -22,7 +22,7 @@ namespace Eternal.Projectiles.Weapons.Ranged
             projectile.penetrate = 1;
             projectile.timeLeft = 75;
             projectile.ranged = true;
-            projectile.penetrate = 5;;
+            projectile.penetrate = 5; ;
             projectile.extraUpdates = 1;
             aiType = ProjectileID.Bullet;
             projectile.light = 0.5f;

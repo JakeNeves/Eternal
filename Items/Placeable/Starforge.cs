@@ -58,6 +58,6 @@ namespace Eternal.Items.Placeable
             altrecipe.AddIngredient(ItemType<StarmetalBar>(), 8);
             altrecipe.SetResult(this);
             altrecipe.AddRecipe();
-        } 
+        }
     }
 }

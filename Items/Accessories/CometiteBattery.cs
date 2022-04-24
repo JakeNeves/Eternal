@@ -9,7 +9,7 @@ namespace Eternal.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Heavily increased ethereal power regeneration by 75%" + 
+            Tooltip.SetDefault("Heavily increased ethereal power regeneration by 75%" +
                              "\nProvides a large amount of ethereal power capacity 60");
         }
 

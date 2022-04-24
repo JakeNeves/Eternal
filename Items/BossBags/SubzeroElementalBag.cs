@@ -1,13 +1,12 @@
-﻿using Eternal.Items.Weapons.Melee;
-using Eternal.Items.Weapons.Ranged;
+﻿using Eternal.Items.Accessories.Expert;
+using Eternal.Items.Materials.Elementalblights;
+using Eternal.Items.Placeable;
+using Eternal.Items.Weapons.Melee;
+using Eternal.Items.Weapons.Radiant;
 using Eternal.Items.Weapons.Summon;
 using Terraria;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using Eternal.Items.Accessories.Expert;
-using Eternal.Items.Placeable;
-using Eternal.Items.Weapons.Radiant;
-using Eternal.Items.Materials.Elementalblights;
 
 namespace Eternal.Items.BossBags
 {
@@ -53,7 +52,7 @@ namespace Eternal.Items.BossBags
                 player.QuickSpawnItem(ItemType<FrostyImmaterializer>());
             }
 
-            if(NPC.downedMoonlord)
+            if (NPC.downedMoonlord)
             {
                 player.QuickSpawnItem(ItemType<SydaniteOre>(), Main.rand.Next(20, 60));
 

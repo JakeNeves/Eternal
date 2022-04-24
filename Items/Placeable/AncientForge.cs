@@ -64,6 +64,6 @@ namespace Eternal.Items.Placeable
             altrecipe.AddIngredient(ItemID.TitaniumForge);
             altrecipe.SetResult(this);
             altrecipe.AddRecipe();
-        } 
+        }
     }
 }

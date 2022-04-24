@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Eternal.Items.Accessories.Hell;
+using Eternal.Items.BossBags;
+using Eternal.Items.Weapons.Magic;
+using Eternal.Items.Weapons.Melee;
+using Eternal.Projectiles.Boss;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Eternal.Items.BossBags;
-using Eternal.Items.Weapons.Melee;
-using Eternal.Items.Weapons.Magic;
-using Eternal.Items.Accessories.Hell;
-using Eternal.Projectiles.Boss;
 
 namespace Eternal.NPCs.Boss.Incinerius
 {
@@ -97,13 +97,13 @@ namespace Eternal.NPCs.Boss.Incinerius
                 {
                     Main.NewText("Ack...", 215, 95, 0);
                 }
-                else if(NPC.downedMoonlord)
+                else if (NPC.downedMoonlord)
                 {
                     Main.NewText("I am not done yet...", 215, 95, 0);
                     Main.NewText("Incinerius reveals his true form!", 175, 75, 255);
                     NPC.NewNPC((int)npc.Center.X - 20, (int)npc.Center.Y, ModContent.NPCType<TrueIncinerius>());
                 }
-                
+
                 Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/IncineriusHead"), 1f);
                 Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/IncineriusBody"), 1f);
             }
@@ -194,7 +194,7 @@ namespace Eternal.NPCs.Boss.Incinerius
                 npc.active = false;
             }
             Timer++;
-            if(Timer >= 0)
+            if (Timer >= 0)
             {
                 Vector2 StartPosition = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height * 0.5f);
                 float DirectionX = Main.player[npc.target].position.X + Main.player[npc.target].width / 2 - StartPosition.X;
@@ -236,16 +236,16 @@ namespace Eternal.NPCs.Boss.Incinerius
                     npc.netUpdate = true;
                 }
             }
-            if(Timer == 700)
+            if (Timer == 700)
             {
                 IncineriusShot();
                 SpawnRollingFire();
             }
-            if(Timer == 900)
+            if (Timer == 900)
             {
                 SpawnRollingFire();
             }
-            if(Timer == 1000)
+            if (Timer == 1000)
             {
                 IncineriusShot();
 

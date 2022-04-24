@@ -1,9 +1,9 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using Eternal.Items.Accessories;
-using static Terraria.ModLoader.ModContent;
+﻿using Eternal.Items.Accessories;
 using Eternal.Items.Accessories.Expert;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace Eternal
 {

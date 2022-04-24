@@ -8,7 +8,7 @@ namespace Eternal.Projectiles.Weapons.Melee
 {
     class FlameBall : ModProjectile
     {
-        
+
 
         public override void SetStaticDefaults()
         {

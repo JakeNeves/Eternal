@@ -1,11 +1,10 @@
-﻿using Terraria;
+﻿using Eternal.Items.Materials;
+using Eternal.Items.Materials.Elementalblights;
+using Eternal.Tiles;
+using System.Collections.Generic;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Collections.Generic;
-using static Terraria.ModLoader.ModContent;
-using Eternal.Tiles;
-using Eternal.Items.Materials;
-using Eternal.Items.Materials.Elementalblights;
 
 namespace Eternal.Items.Accessories
 {
@@ -15,10 +14,10 @@ namespace Eternal.Items.Accessories
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Counts as Wings" + 
-                               "\nAllows flight and slow fall" + 
-                               "\nAllows the wearer to run at ludicrous speed!" + 
-                               "\nProvides mobility on ice" + 
+            Tooltip.SetDefault("Counts as Wings" +
+                               "\nAllows flight and slow fall" +
+                               "\nAllows the wearer to run at ludicrous speed!" +
+                               "\nProvides mobility on ice" +
                                "\nLava Waders effects" +
                                "\nMaster Ninja Gear effects" +
                                "\nImmunity to lava" +
@@ -36,12 +35,12 @@ namespace Eternal.Items.Accessories
 
         public override bool CanEquipAccessory(Player player, int slot)
         {
-            if(slot < 10)
+            if (slot < 10)
             {
                 int maxAccessoryIndex = 5 + player.extraAccessorySlots;
-                for (int i = 3; i < + maxAccessoryIndex; i++)
+                for (int i = 3; i < +maxAccessoryIndex; i++)
                 {
-                    if (slot != i && 
+                    if (slot != i &&
                         (player.armor[i].type == ItemID.HermesBoots ||
                         player.armor[i].type == ItemID.RocketBoots ||
                         player.armor[i].type == ItemID.FlurryBoots ||
@@ -49,8 +48,9 @@ namespace Eternal.Items.Accessories
                         //player.armor[i].type == ItemID.SandBoots ||
                         player.armor[i].type == ItemID.SpectreBoots ||
                         player.armor[i].type == ItemID.LightningBoots ||
-                        player.armor[i].type == ItemID.FrostsparkBoots
-                        //player.armor[i].type == ItemID.TerrasparkBoots
+                        player.armor[i].type == ItemID.FrostsparkBoots ||
+                        //player.armor[i].type == ItemID.TerrasparkBoots ||
+                        player.armor[i].type == ModContent.ItemType<BootsofBlindingSpeed>()
                         ))
                     {
                         return false;
@@ -96,7 +96,7 @@ namespace Eternal.Items.Accessories
             }*/
             #endregion
 
-            player.accRunSpeed = 8.3f;
+            player.accRunSpeed = 9.0f;
             player.rocketBoots = 4;
             player.moveSpeed += 0.20f;
             player.iceSkate = true;
@@ -141,10 +141,11 @@ namespace Eternal.Items.Accessories
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddTile(TileType<Starforge>());
-            recipe.AddIngredient(ItemType<CometiteBar>(), 20);
-            recipe.AddIngredient(ItemType<StarmetalBar>(), 40);
-            recipe.AddIngredient(ItemType<DuskblightCrystal>(), 16);
+            recipe.AddTile(ModContent.TileType<Starforge>());
+            recipe.AddIngredient(ModContent.ItemType<CometiteBar>(), 20);
+            recipe.AddIngredient(ModContent.ItemType<CometiteCrystal>(), 12);
+            recipe.AddIngredient(ModContent.ItemType<StarmetalBar>(), 40);
+            recipe.AddIngredient(ModContent.ItemType<DuskblightCrystal>(), 16);
             recipe.AddIngredient(ItemID.FrostsparkBoots);
             recipe.AddIngredient(ItemID.LavaWaders);
             recipe.AddIngredient(ItemID.MasterNinjaGear);

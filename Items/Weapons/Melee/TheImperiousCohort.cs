@@ -74,7 +74,7 @@ namespace Eternal.Items.Weapons.Melee
                 Main.PlaySound(SoundID.Item8, Main.myPlayer);
             }
             return false;
-            
+
         }
 
     }

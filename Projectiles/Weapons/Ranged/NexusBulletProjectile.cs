@@ -33,61 +33,61 @@ namespace Eternal.Projectiles.Weapons.Ranged
             aiType = ProjectileID.Bullet;
         }
 
-		public override void AI()
+        public override void AI()
         {
             Lighting.AddLight(projectile.position, 1.98f, 0.49f, 2.47f);
-		}
+        }
 
-		public override bool OnTileCollide(Vector2 oldVelocity)
-		{
-			for (int k = 0; k < 5; k++)
-			{
-				Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Starmetal>(), projectile.oldVelocity.X * 0.5f, projectile.oldVelocity.Y * 0.5f);
-			}
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            for (int k = 0; k < 5; k++)
+            {
+                Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Starmetal>(), projectile.oldVelocity.X * 0.5f, projectile.oldVelocity.Y * 0.5f);
+            }
 
-			projectile.penetrate--;
-			if (projectile.penetrate <= 0)
-			{
-				projectile.Kill();
-			}
-			else
-			{
-				Collision.HitTiles(projectile.position + projectile.velocity, projectile.velocity, projectile.width, projectile.height);
-				Main.PlaySound(SoundID.Item10, projectile.position);
-				if (projectile.velocity.X != oldVelocity.X)
-				{
-					projectile.velocity.X = -oldVelocity.X;
-				}
-				if (projectile.velocity.Y != oldVelocity.Y)
-				{
-					projectile.velocity.Y = -oldVelocity.Y;
-				}
-			}
-			return false;
-		}
+            projectile.penetrate--;
+            if (projectile.penetrate <= 0)
+            {
+                projectile.Kill();
+            }
+            else
+            {
+                Collision.HitTiles(projectile.position + projectile.velocity, projectile.velocity, projectile.width, projectile.height);
+                Main.PlaySound(SoundID.Item10, projectile.position);
+                if (projectile.velocity.X != oldVelocity.X)
+                {
+                    projectile.velocity.X = -oldVelocity.X;
+                }
+                if (projectile.velocity.Y != oldVelocity.Y)
+                {
+                    projectile.velocity.Y = -oldVelocity.Y;
+                }
+            }
+            return false;
+        }
 
-		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
-		{
-			Vector2 drawOrigin = new Vector2(Main.projectileTexture[projectile.type].Width * 0.5f, projectile.height * 0.5f);
-			for (int k = 0; k < projectile.oldPos.Length; k++)
-			{
-				Vector2 drawPos = projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, projectile.gfxOffY);
-				Color color = projectile.GetAlpha(lightColor) * ((float)(projectile.oldPos.Length - k) / (float)projectile.oldPos.Length);
-				spriteBatch.Draw(Main.projectileTexture[projectile.type], drawPos, null, color, projectile.rotation, drawOrigin, projectile.scale, SpriteEffects.None, 0f);
-			}
-			return true;
-		}
+        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        {
+            Vector2 drawOrigin = new Vector2(Main.projectileTexture[projectile.type].Width * 0.5f, projectile.height * 0.5f);
+            for (int k = 0; k < projectile.oldPos.Length; k++)
+            {
+                Vector2 drawPos = projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, projectile.gfxOffY);
+                Color color = projectile.GetAlpha(lightColor) * ((float)(projectile.oldPos.Length - k) / (float)projectile.oldPos.Length);
+                spriteBatch.Draw(Main.projectileTexture[projectile.type], drawPos, null, color, projectile.rotation, drawOrigin, projectile.scale, SpriteEffects.None, 0f);
+            }
+            return true;
+        }
 
-		public override void Kill(int timeLeft)
-		{
-			for (int k = 0; k < 5; k++)
-			{
-				Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Starmetal>(), projectile.oldVelocity.X * 0.5f, projectile.oldVelocity.Y * 0.5f);
-			}
+        public override void Kill(int timeLeft)
+        {
+            for (int k = 0; k < 5; k++)
+            {
+                Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Starmetal>(), projectile.oldVelocity.X * 0.5f, projectile.oldVelocity.Y * 0.5f);
+            }
 
-			Collision.HitTiles(projectile.position + projectile.velocity, projectile.velocity, projectile.width, projectile.height);
-			Main.PlaySound(SoundID.Item10, projectile.position);
-		}
+            Collision.HitTiles(projectile.position + projectile.velocity, projectile.velocity, projectile.width, projectile.height);
+            Main.PlaySound(SoundID.Item10, projectile.position);
+        }
 
-	}
+    }
 }

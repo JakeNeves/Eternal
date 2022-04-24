@@ -1,10 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
-using Terraria.DataStructures;
-using System.Collections.Generic;
 
 namespace Eternal.Items.Accessories.Hell
 {

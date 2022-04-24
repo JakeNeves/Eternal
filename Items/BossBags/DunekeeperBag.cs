@@ -1,12 +1,11 @@
-﻿using Eternal.Items.Weapons.Melee;
-using Eternal.Items.Weapons.Ranged;
+﻿using Eternal.Items.Armor;
+using Eternal.Items.Materials.Elementalblights;
 using Eternal.Items.Weapons.Expert;
+using Eternal.Items.Weapons.Melee;
+using Eternal.Items.Weapons.Ranged;
 using Terraria;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using Eternal.Items.Armor;
-using Eternal.Items.Materials;
-using Eternal.Items.Materials.Elementalblights;
 
 namespace Eternal.Items.BossBags
 {

@@ -1,8 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria;
-using Eternal.Projectiles.Accessories;
 
 namespace Eternal.Items.Accessories.Expert
 {

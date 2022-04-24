@@ -1,13 +1,12 @@
-﻿using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-
+﻿using Eternal.Items.Materials.Elementalblights;
+using Eternal.Items.Placeable;
 using Eternal.Projectiles.Enemy;
-using System.Linq;
 using Microsoft.Xna.Framework;
 using System;
-using Eternal.Items.Placeable;
-using Eternal.Items.Materials.Elementalblights;
+using System.Linq;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Eternal.NPCs
 {

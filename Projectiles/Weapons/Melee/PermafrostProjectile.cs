@@ -31,7 +31,7 @@ namespace Eternal.Projectiles.Weapons.Melee
             target.AddBuff(BuffID.Chilled, 120);
             target.AddBuff(BuffID.Frostburn, 120);
             target.AddBuff(BuffID.Frozen, 120);
-        } 
+        }
 
         public override void PostAI()
         {

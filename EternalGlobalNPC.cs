@@ -1,6 +1,8 @@
-﻿using Eternal.Items.Materials;
+﻿using Eternal.Invasions.MechanicalEnvy;
+using Eternal.Items.Materials;
 using Eternal.Items.Materials.Elementalblights;
 using Eternal.Items.Weapons.Hell;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -17,6 +19,36 @@ namespace Eternal.NPCs
         public bool doomFire;
         public bool embericComustion;
         #endregion
+
+        public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
+        {
+            if (EternalWorld.mechanicalEnvyUp && (Main.invasionX == (double)Main.spawnTileX))
+            {
+                pool.Clear();
+
+                foreach (int i in MechanicalEnvy.invaders)
+                {
+                    pool.Add(i, 1f);
+                }
+            }
+        }
+
+        public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
+        {
+            if (EternalWorld.mechanicalEnvyUp && (Main.invasionX == (double)Main.spawnTileX))
+            {
+                spawnRate = 100;
+                maxSpawns = 10000;
+            }
+        }
+
+        public override void PostAI(NPC npc)
+        {
+            if (EternalWorld.mechanicalEnvyUp && (Main.invasionX == (double)Main.spawnTileX))
+            {
+                npc.timeLeft = 1000;
+            }
+        }
 
         public override void ResetEffects(NPC npc)
         {
@@ -52,18 +84,21 @@ namespace Eternal.NPCs
             }
         }
 
-        public override void SetDefaults(NPC npc)
-        {
-            if (EternalWorld.downedCarmaniteScouter)
-            {
-            }
-            if (EternalWorld.downedDunekeeper)
-            {
-            }
-        }
-
         public override void NPCLoot(NPC npc)
         {
+            if (EternalWorld.mechanicalEnvyUp)
+            {
+                foreach (int invader in MechanicalEnvy.invaders)
+                {
+                    if (npc.type == invader)
+                    {
+                        Main.invasionSize -= 1;
+                    }
+                }
+            }
+
+            Player player = Main.player[Main.myPlayer];
+
             #region Boss Triggers
             if (NPC.AnyNPCs(NPCID.EyeofCthulhu))
                 if (!NPC.downedBoss1)
@@ -116,8 +151,6 @@ namespace Eternal.NPCs
                 }
             }
             #endregion
-
-            Player player = Main.player[Main.myPlayer];
 
             #region Elemental Drops
             if (!Main.dayTime)
@@ -349,15 +382,5 @@ namespace Eternal.NPCs
             }
         }
         #endregion
-
-        public override void AI(NPC npc)
-        {
-            if (EternalWorld.downedCarmaniteScouter)
-            {
-            }
-            if (EternalWorld.downedDunekeeper)
-            {
-            }
-        }
     }
 }

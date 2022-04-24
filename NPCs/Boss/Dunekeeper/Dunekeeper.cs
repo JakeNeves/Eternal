@@ -1,18 +1,18 @@
-﻿using System;
-using Terraria;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using Terraria.ID;
-using static Terraria.ModLoader.ModContent;
+﻿using Eternal.Items.Armor;
+using Eternal.Items.BossBags;
+using Eternal.Items.Materials;
+using Eternal.Items.Materials.Elementalblights;
+using Eternal.Items.Weapons.Hell;
 using Eternal.Items.Weapons.Melee;
 using Eternal.Items.Weapons.Ranged;
-using Eternal.Items.BossBags;
-using Microsoft.Xna.Framework.Graphics;
-using Eternal.Items.Armor;
 using Eternal.Projectiles.Boss;
-using Eternal.Items.Materials;
-using Eternal.Items.Weapons.Hell;
-using Eternal.Items.Materials.Elementalblights;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.NPCs.Boss.Dunekeeper
 {
@@ -76,7 +76,8 @@ namespace Eternal.NPCs.Boss.Dunekeeper
 
         public override void NPCLoot()
         {
-            
+            player = Main.player[npc.target];
+
             //Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Custom/AltBossDefeat"), Main.myPlayer);
 
             Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, 0, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
@@ -88,9 +89,9 @@ namespace Eternal.NPCs.Boss.Dunekeeper
             Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, -8, 8, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
             Projectile.NewProjectile(npc.position.X + 40, npc.position.Y + 40, 8, 8, ProjectileID.MartianTurretBolt, 6, 0, Main.myPlayer, 0f, 0f);
 
-            if(EternalWorld.hellMode)
+            if (EternalWorld.hellMode)
             {
-                if(!Main.LocalPlayer.HasItem(ItemType<KnifeHandle>()) || !Main.LocalPlayer.HasItem(ItemType<TheKnife>()))
+                if (!Main.LocalPlayer.HasItem(ItemType<KnifeHandle>()) || !Main.LocalPlayer.HasItem(ItemType<TheKnife>()))
                 {
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<KnifeHandle>());
                 }
@@ -189,7 +190,8 @@ namespace Eternal.NPCs.Boss.Dunekeeper
                     }
                 }
             }
-            else {
+            else
+            {
                 float speed;
                 if (EternalWorld.hellMode)
                 {
@@ -316,7 +318,7 @@ namespace Eternal.NPCs.Boss.Dunekeeper
             {
                 if (attackTimer == 100 || attackTimer == 150)
                 {
-                    
+
                     for (int i = 0; i < amountOfProjectiles; ++i)
                     {
                         float A = (float)Main.rand.Next(-200, 200) * 0.01f;
@@ -340,15 +342,9 @@ namespace Eternal.NPCs.Boss.Dunekeeper
             }
             #endregion
 
-
-            
         }
 
-        
-
     }
-
-        
 
 }
 

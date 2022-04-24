@@ -66,7 +66,7 @@ namespace Eternal.NPCs.Town
 
         public override void OnChatButtonClicked(bool firstButton, ref bool shop)
         {
-            if(firstButton)
+            if (firstButton)
                 shop = true;
         }
 

@@ -51,6 +51,6 @@ namespace Eternal.Items.Placeable.Furniture
             recipe.AddIngredient(ItemID.Toilet);
             recipe.SetResult(this);
             recipe.AddRecipe();
-        } 
+        }
     }
 }

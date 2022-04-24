@@ -1,10 +1,10 @@
-﻿using Terraria;
-using Terraria.ModLoader;
+﻿using Eternal.Buffs;
 using Microsoft.Xna.Framework;
-using Terraria.ID;
-using Eternal.Buffs;
-using System;
 using Microsoft.Xna.Framework.Graphics;
+using System;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Eternal.NPCs.Boss.CosmicEmperor
 {

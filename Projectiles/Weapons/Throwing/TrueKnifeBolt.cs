@@ -86,7 +86,7 @@ namespace Eternal.Projectiles.Weapons.Throwing
                 }
 
                 projectile.rotation = projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);
-                
+
             }
         }
 

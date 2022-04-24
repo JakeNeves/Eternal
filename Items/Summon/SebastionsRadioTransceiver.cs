@@ -1,6 +1,4 @@
-﻿using Eternal.Items.Placeable;
-using Eternal.NPCs.Boss;
-using Eternal.NPCs.Miniboss.SebastionsEmergencyDrone;
+﻿using Eternal.NPCs.Miniboss.SebastionsEmergencyDrone;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

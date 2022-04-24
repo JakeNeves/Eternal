@@ -1,5 +1,4 @@
 ﻿using Eternal.Dusts;
-using Eternal.Items.Weapons.Throwing;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

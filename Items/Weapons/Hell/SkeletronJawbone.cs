@@ -1,6 +1,6 @@
 ﻿using Eternal.Projectiles.Weapons.Melee;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -12,7 +12,7 @@ namespace Eternal.Items.Weapons.Hell
 
         public override void SetStaticDefaults()
         {
-	    DisplayName.SetDefault("Skeletron's Jawbone");
+            DisplayName.SetDefault("Skeletron's Jawbone");
             Tooltip.SetDefault("Fires Bone Shards\n<right> to trigger Skeletron's Fury\n'the spirit of skeletron empowers you...'");
         }
 

@@ -10,7 +10,7 @@ namespace Eternal.Items.Weapons.Ranged
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Fires One to Two Arrows" + 
+            Tooltip.SetDefault("Fires One to Two Arrows" +
                 "\n'Feel the thunder!'");
         }
 

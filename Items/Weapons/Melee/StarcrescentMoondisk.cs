@@ -1,11 +1,11 @@
-﻿using Eternal.Projectiles.Weapons.Melee;
+﻿using Eternal.Items.Materials;
+using Eternal.Projectiles.Weapons.Melee;
 using Eternal.Tiles;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
-using Eternal.Items.Materials;
 
 namespace Eternal.Items.Weapons.Melee
 {
@@ -14,9 +14,10 @@ namespace Eternal.Items.Weapons.Melee
 
         bool rightClick;
 
-        public override void SetStaticDefaults() {
-             Tooltip.SetDefault("<right> to throw Starcrescent Shards" +
-                              "\n'Free the moonlight!'");
+        public override void SetStaticDefaults()
+        {
+            Tooltip.SetDefault("<right> to throw Starcrescent Shards" +
+                             "\n'Free the moonlight!'");
         }
 
         public override void SetDefaults()

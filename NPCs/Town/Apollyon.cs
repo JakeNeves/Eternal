@@ -1,9 +1,7 @@
-﻿using System;
-using Eternal.Items;
+﻿using Eternal.Items.Accessories;
 using Eternal.Items.Materials;
 using Eternal.Items.Placeable.Torch;
 using Eternal.Items.Summon;
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -88,7 +86,7 @@ namespace Eternal.NPCs.Town
                 {
                     Main.npcChatText = "I would let you have some of my special tokens, however you must find me something that I can use to make them with " + player.name + ", try looking for creatures from deep below in the darkest area of the world.";
                 }*/
-                switch(Main.rand.Next(3))
+                switch (Main.rand.Next(3))
                 {
                     case 0:
                         Main.npcChatText = "Apollyon Coins have a chance to be dropped by creatures within the darkest part of this world.";
@@ -189,6 +187,10 @@ namespace Eternal.NPCs.Town
             nextSlot++;
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<GrimstoneTorch>());
             shop.item[nextSlot].shopCustomPrice = new int?(2);
+            shop.item[nextSlot].shopSpecialCurrency = Eternal.ApollyonCoin;
+            nextSlot++;
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<BootsofBlindingSpeed>());
+            shop.item[nextSlot].shopCustomPrice = new int?(20);
             shop.item[nextSlot].shopSpecialCurrency = Eternal.ApollyonCoin;
             nextSlot++;
             if (EternalWorld.downedArkOfImperious)

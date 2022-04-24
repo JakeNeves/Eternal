@@ -1,8 +1,8 @@
-﻿using Terraria;
+﻿using Eternal.Items.Materials.Elementalblights;
+using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.DataStructures;
-using Eternal.Items.Materials.Elementalblights;
 
 namespace Eternal.Items.Materials
 {

@@ -1,13 +1,12 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ObjectData;
-using Terraria.ModLoader;
-using Eternal.Items.Placeable;
-using Terraria.DataStructures;
+﻿using Eternal.NPCs;
 using Eternal.NPCs.Boss.BionicBosses;
-using Terraria.ID;
-using Eternal.NPCs;
 using Eternal.NPCs.Boss.BionicBosses.Omnicron;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.ObjectData;
 
 namespace Eternal.Tiles.Interactive
 {

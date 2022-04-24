@@ -1,5 +1,4 @@
 ﻿using Eternal.Items.Materials;
-using Eternal.NPCs.Boss;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

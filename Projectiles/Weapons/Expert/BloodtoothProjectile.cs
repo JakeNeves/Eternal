@@ -1,9 +1,8 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using System;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
-using Microsoft.Xna.Framework;
-using System;
 
 namespace Eternal.Projectiles.Weapons.Expert
 {
@@ -65,7 +64,7 @@ namespace Eternal.Projectiles.Weapons.Expert
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            if(projectile.ai[1] != 0)
+            if (projectile.ai[1] != 0)
             {
                 return true;
             }

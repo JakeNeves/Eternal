@@ -1,7 +1,7 @@
-﻿using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
+﻿using Eternal.Items.Materials;
 using Terraria.ID;
-using Eternal.Items.Materials;
+using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace Eternal.Items.Placeable
 {

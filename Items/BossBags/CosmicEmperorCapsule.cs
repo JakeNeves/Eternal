@@ -1,13 +1,9 @@
-﻿using Eternal.Items.Weapons.Melee;
-using Eternal.Items.Weapons.Magic;
-using Eternal.Items.Weapons.Expert;
+﻿using Eternal.Items.Materials;
+using Eternal.Items.Tools;
+using Eternal.Items.Weapons.Melee;
+using Eternal.Items.Weapons.Ranged;
 using Terraria;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
-using Eternal.Items.Armor;
-using Eternal.Items.Accessories.Expert;
-using Eternal.Items.Materials;
-using Eternal.Items.Accessories;
 
 namespace Eternal.Items.BossBags
 {
@@ -15,7 +11,7 @@ namespace Eternal.Items.BossBags
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Treasure Capsule (NYI)");
+            DisplayName.SetDefault("Treasure Capsule");
             Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
         }
 
@@ -38,24 +34,25 @@ namespace Eternal.Items.BossBags
         {
             if (Main.rand.Next(1) == 0)
             {
-                player.QuickSpawnItem(ItemType<NightmareReaperscythe>());
+                player.QuickSpawnItem(ModContent.ItemType<ExosiivaGladiusBlade>());
             }
-
             if (Main.rand.Next(2) == 0)
             {
-                player.QuickSpawnItem(ItemType<Pyroyo>());
+                player.QuickSpawnItem(ModContent.ItemType<TheBigOne>());
             }
-
             if (Main.rand.Next(3) == 0)
             {
-                player.QuickSpawnItem(ItemType<Incinerator>());
+                player.QuickSpawnItem(ModContent.ItemType<Exelodon>());
+            }
+            if (Main.rand.Next(4) == 0)
+            {
+                player.QuickSpawnItem(ModContent.ItemType<FinalBossBlade>());
             }
 
-            player.QuickSpawnItem(ItemType<FlameInfusedJewel>());
-
-            player.QuickSpawnItem(ItemType<ScorchedMetal>(), Main.rand.Next(25, 75));
+            player.QuickSpawnItem(ModContent.ItemType<InterstellarMetal>(), Main.rand.Next(60, 90));
+            player.QuickSpawnItem(ModContent.ItemType<CosmoniumFragment>(), Main.rand.Next(60, 90));
         }
 
-        public override int BossBagNPC => NPCType<NPCs.Boss.CosmicEmperor.CosmicEmperor>();
+        public override int BossBagNPC => ModContent.NPCType<NPCs.Boss.CosmicEmperor.CosmicEmperorP3>();
     }
 }

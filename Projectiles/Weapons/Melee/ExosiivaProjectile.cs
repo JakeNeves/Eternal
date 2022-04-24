@@ -8,7 +8,7 @@ namespace Eternal.Projectiles.Weapons.Melee
 {
     public class ExosiivaProjectile : ModProjectile
     {
-        
+
 
         public override void SetStaticDefaults()
         {

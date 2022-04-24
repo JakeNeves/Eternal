@@ -1,9 +1,9 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using System;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace Eternal.NPCs.Boss.BionicBosses
 {

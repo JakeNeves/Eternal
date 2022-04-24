@@ -1,6 +1,4 @@
-﻿using System;
-using Terraria;
-using Terraria.ModLoader;
+﻿using Terraria.ModLoader;
 
 namespace Eternal.Projectiles.Minions
 {

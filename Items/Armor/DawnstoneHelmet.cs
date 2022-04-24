@@ -1,8 +1,8 @@
-﻿using Terraria;
+﻿using Eternal.Items.Materials;
+using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using Terraria.ID;
-using Eternal.Items.Materials;
 
 namespace Eternal.Items.Armor
 {
@@ -28,7 +28,7 @@ namespace Eternal.Items.Armor
         {
             player.setBonus = "16% increased magic damage\n25% decreased mana cost";
             player.magicDamage += 0.16f;
-	        player.manaCost -= 0.25f;
+            player.manaCost -= 0.25f;
         }
 
         public override void AddRecipes()
