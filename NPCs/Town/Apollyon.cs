@@ -181,31 +181,59 @@ namespace Eternal.NPCs.Town
 
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<SpiritTablet>());
-            shop.item[nextSlot].shopCustomPrice = new int?(12);
-            shop.item[nextSlot].shopSpecialCurrency = Eternal.ApollyonCoin;
-            nextSlot++;
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<GrimstoneTorch>());
-            shop.item[nextSlot].shopCustomPrice = new int?(2);
-            shop.item[nextSlot].shopSpecialCurrency = Eternal.ApollyonCoin;
-            nextSlot++;
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<BootsofBlindingSpeed>());
-            shop.item[nextSlot].shopCustomPrice = new int?(20);
-            shop.item[nextSlot].shopSpecialCurrency = Eternal.ApollyonCoin;
-            nextSlot++;
-            if (EternalWorld.downedArkOfImperious)
+
+            if (!ModContent.GetInstance<EternalConfig>().moneyOverApollyonCoins)
             {
-                shop.item[nextSlot].SetDefaults(ModContent.ItemType<ArkaniumCompound>());
-                shop.item[nextSlot].shopCustomPrice = new int?(24);
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<SpiritTablet>());
+                shop.item[nextSlot].shopCustomPrice = new int?(12);
                 shop.item[nextSlot].shopSpecialCurrency = Eternal.ApollyonCoin;
                 nextSlot++;
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<GrimstoneTorch>());
+                shop.item[nextSlot].shopCustomPrice = new int?(2);
+                shop.item[nextSlot].shopSpecialCurrency = Eternal.ApollyonCoin;
+                nextSlot++;
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<BootsofBlindingSpeed>());
+                shop.item[nextSlot].shopCustomPrice = new int?(20);
+                shop.item[nextSlot].shopSpecialCurrency = Eternal.ApollyonCoin;
+                nextSlot++;
+                if (EternalWorld.downedArkOfImperious)
+                {
+                    shop.item[nextSlot].SetDefaults(ModContent.ItemType<ArkaniumCompound>());
+                    shop.item[nextSlot].shopCustomPrice = new int?(24);
+                    shop.item[nextSlot].shopSpecialCurrency = Eternal.ApollyonCoin;
+                    nextSlot++;
+                }
+                if (EternalWorld.downedIncinerius)
+                {
+                    shop.item[nextSlot].SetDefaults(ModContent.ItemType<ScorchedMetal>());
+                    shop.item[nextSlot].shopCustomPrice = new int?(16);
+                    shop.item[nextSlot].shopSpecialCurrency = Eternal.ApollyonCoin;
+                    nextSlot++;
+                }
             }
-            if (EternalWorld.downedIncinerius)
+            else
             {
-                shop.item[nextSlot].SetDefaults(ModContent.ItemType<ScorchedMetal>());
-                shop.item[nextSlot].shopCustomPrice = new int?(16);
-                shop.item[nextSlot].shopSpecialCurrency = Eternal.ApollyonCoin;
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<SpiritTablet>());
+                shop.item[nextSlot].shopCustomPrice = Item.buyPrice(copper: 6);
                 nextSlot++;
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<GrimstoneTorch>());
+                shop.item[nextSlot].shopCustomPrice = Item.buyPrice(silver: 3);
+                nextSlot++;
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<BootsofBlindingSpeed>());
+                shop.item[nextSlot].shopCustomPrice = Item.buyPrice(gold: 15);
+                nextSlot++;
+                if (EternalWorld.downedArkOfImperious)
+                {
+                    shop.item[nextSlot].SetDefaults(ModContent.ItemType<ArkaniumCompound>());
+                    shop.item[nextSlot].shopCustomPrice = Item.buyPrice(platinum: 3, gold: 12);
+                    nextSlot++;
+                }
+                if (EternalWorld.downedIncinerius)
+                {
+                    shop.item[nextSlot].SetDefaults(ModContent.ItemType<ScorchedMetal>());
+                    shop.item[nextSlot].shopCustomPrice = Item.buyPrice(gold: 10);
+                    nextSlot++;
+                }
             }
         }
 

@@ -5,13 +5,13 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Eternal.NPCs.Boss.BionicBosses.Omnicron
+namespace Eternal.NPCs.Boss.BionicBosses.Omicron
 {
-    public class OmnicronHook : ModNPC
+    public class OmicronNeoxHook : ModNPC
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("XM-2024 Omicron-X8 All-Terrain Grappling Hook");
+            DisplayName.SetDefault("EXM-2324 Omicron-N30X All-Terrain Grappling Hook");
             Main.npcFrameCount[npc.type] = 2;
         }
 
@@ -61,14 +61,14 @@ namespace Eternal.NPCs.Boss.BionicBosses.Omnicron
             bool flag48 = false;
             bool flag49 = false;
 
-            if (!NPC.AnyNPCs(ModContent.NPCType<Omnicron>()))
+            if (!NPC.AnyNPCs(ModContent.NPCType<OmicronNeox>()))
             {
                 npc.active = false;
             }
             NPC parentNPC = Main.npc[0];
             for (int i = 0; i < Main.npc.Length; ++i)
             {
-                if (Main.npc[i].type == ModContent.NPCType<Omnicron>())
+                if (Main.npc[i].type == ModContent.NPCType<OmicronNeox>())
                 {
                     parentNPC = Main.npc[i];
                     break;
@@ -97,10 +97,6 @@ namespace Eternal.NPCs.Boss.BionicBosses.Omnicron
                 }
                 npc.localAI[0] -= 1f;
                 if (parentNPC.life < parentNPC.lifeMax / 2)
-                {
-                    npc.localAI[0] -= 2f;
-                }
-                if (parentNPC.life < parentNPC.lifeMax / 4)
                 {
                     npc.localAI[0] -= 2f;
                 }
@@ -172,10 +168,6 @@ namespace Eternal.NPCs.Boss.BionicBosses.Omnicron
             if (npc.ai[0] > 0f && npc.ai[1] > 0f)
             {
                 float num772 = 10f;
-                if (parentNPC.life < parentNPC.lifeMax / 2)
-                {
-                    num772 = 14f;
-                }
                 if (parentNPC.life < parentNPC.lifeMax / 4)
                 {
                     num772 = 16f;
@@ -221,11 +213,11 @@ namespace Eternal.NPCs.Boss.BionicBosses.Omnicron
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            Texture2D texture = ModContent.GetTexture("Eternal/NPCs/Boss/BionicBosses/Omnicron/Omnicron_Chain");
+            Texture2D texture = ModContent.GetTexture("Eternal/NPCs/Boss/BionicBosses/Omicron/OmicronNeox_Chain");
             NPC parentNPC = Main.npc[0];
             for (int i = 0; i < Main.npc.Length; ++i)
             {
-                if (Main.npc[i].type == ModContent.NPCType<Omnicron>())
+                if (Main.npc[i].type == ModContent.NPCType<OmicronNeox>())
                 {
                     parentNPC = Main.npc[i];
                     break;

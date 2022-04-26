@@ -1,6 +1,6 @@
 ﻿using Eternal.Items.Materials;
 using Eternal.Items.Potions;
-using Eternal.NPCs.Boss.BionicBosses.Omnicron;
+using Eternal.NPCs.Boss.BionicBosses.Omicron;
 using Eternal.Projectiles.Boss;
 using Microsoft.Xna.Framework;
 using System;
@@ -315,7 +315,7 @@ namespace Eternal.NPCs.Boss.BionicBosses
         public override void NPCLoot()
         {
             player = Main.player[npc.target];
-            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<OmnicronNeox>());
+            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<OmicronNeox>());
 
             if (Main.rand.Next(2) == 0)
             {

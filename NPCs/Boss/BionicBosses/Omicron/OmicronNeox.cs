@@ -1,14 +1,16 @@
-﻿using Eternal.Items.Potions;
+﻿using Eternal.Items.Materials;
+using Eternal.Items.Potions;
+using Eternal.Projectiles.Boss;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Eternal.NPCs.Boss.BionicBosses.Omnicron
+namespace Eternal.NPCs.Boss.BionicBosses.Omicron
 {
-    [AutoloadBossHead]
-    public class Omnicron : ModNPC
+    //[AutoloadBossHead]
+    public class OmicronNeox : ModNPC
     {
         private Player player;
 
@@ -17,22 +19,23 @@ namespace Eternal.NPCs.Boss.BionicBosses.Omnicron
 
         int Phase;
         int attackTimer;
+        int frameNum;
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("XM-2024 Omicron-X8");
-            Main.npcFrameCount[npc.type] = 3;
+            DisplayName.SetDefault("EXM-2324 Omicron-N30X");
+            Main.npcFrameCount[npc.type] = 2;
         }
 
         public override void SetDefaults()
         {
             npc.aiStyle = -1;
-            npc.lifeMax = 620000;
+            npc.lifeMax = 1240000;
             npc.damage = 60;
             npc.defense = 30;
             npc.knockBackResist = -1f;
-            npc.width = 146;
-            npc.height = 166;
+            npc.width = 202;
+            npc.height = 186;
             npc.value = Item.buyPrice(platinum: 3, gold: 20);
             npc.lavaImmune = true;
             npc.boss = true;
@@ -40,7 +43,7 @@ namespace Eternal.NPCs.Boss.BionicBosses.Omnicron
             npc.noTileCollide = true;
             npc.HitSound = SoundID.NPCHit4;
             npc.DeathSound = SoundID.NPCDeath14;
-            music = MusicID.Plantera;
+            music = MusicID.LunarBoss;
             npc.buffImmune[BuffID.Poisoned] = true;
             npc.buffImmune[BuffID.OnFire] = true;
             npc.buffImmune[BuffID.Venom] = true;
@@ -54,14 +57,15 @@ namespace Eternal.NPCs.Boss.BionicBosses.Omnicron
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = 1240000;
+            npc.lifeMax = 2530000;
             npc.damage = 120;
-            npc.defense = 60;
+            npc.defense = 85;
 
             if (EternalWorld.hellMode)
             {
-                npc.lifeMax = 2530000;
+                npc.lifeMax = 6060000;
                 npc.damage = 240;
+                npc.defense = 90;
             }
         }
 
@@ -72,6 +76,7 @@ namespace Eternal.NPCs.Boss.BionicBosses.Omnicron
                 //Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/AtlasHead"), 1f);
                 //Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/AtlasJaw"), 1f);
                 //Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/AtlasBody"), 1f);
+                CombatText.NewText(npc.Hitbox, Color.Orange, "SYSTEM FAILIURES DETECTED, CONTACTING MACHINES EXE-3068, EXE-3076 AND EXE-3090...", dramatic: true);
             }
             else
             {
@@ -114,15 +119,7 @@ namespace Eternal.NPCs.Boss.BionicBosses.Omnicron
 
         public override void AI()
         {
-            int amountOfProjectiles;
-            if (Phase == 1)
-            {
-                amountOfProjectiles = 4;
-            }
-            else
-            {
-                amountOfProjectiles = 2;
-            }
+            npc.rotation = npc.velocity.X * 0.06f;
 
             player = Main.player[npc.target];
             npc.TargetClosest(true);
@@ -142,9 +139,21 @@ namespace Eternal.NPCs.Boss.BionicBosses.Omnicron
             if (npc.localAI[0] == 0f && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 npc.localAI[0] = 1f;
-                int omniHook = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<OmnicronHook>(), npc.whoAmI, 0f, 0f, 0f, 0f, 255);
-                omniHook = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<OmnicronHook>(), npc.whoAmI, 0f, 0f, 0f, 0f, 255);
-                omniHook = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<OmnicronHook>(), npc.whoAmI, 0f, 0f, 0f, 0f, 255);
+                int omniHook = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<OmicronNeoxHook>(), npc.whoAmI, 0f, 0f, 0f, 0f, 255);
+                omniHook = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<OmicronNeoxHook>(), npc.whoAmI, 0f, 0f, 0f, 0f, 255);
+                omniHook = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<OmicronNeoxHook>(), npc.whoAmI, 0f, 0f, 0f, 0f, 255);
+            }
+
+            if (npc.life < npc.lifeMax / 2)
+            {
+                Phase = 1;
+                frameNum = 1;
+                Lighting.AddLight(npc.Center, 1.17f, 0.10f, 0.32f);
+            }
+            else
+            {
+                frameNum = 0;
+                Lighting.AddLight(npc.Center, 0f, 0f, 1.90f);
             }
 
             #region Plantera-Like Movement
@@ -154,7 +163,7 @@ namespace Eternal.NPCs.Boss.BionicBosses.Omnicron
             int num732 = 0;
             for (int i = 0; i < Main.npc.Length; ++i)
             {
-                if (Main.npc[i].active && Main.npc[i].type == ModContent.NPCType<OmnicronHook>())
+                if (Main.npc[i].active && Main.npc[i].type == ModContent.NPCType<OmicronNeoxHook>())
                 {
                     num730 += Main.npc[i].Center.X;
                     num731 += Main.npc[i].Center.Y;
@@ -169,8 +178,8 @@ namespace Eternal.NPCs.Boss.BionicBosses.Omnicron
             num730 /= (float)num732;
             num731 /= (float)num732;
             float num734 = 2.5f;
-            float speed = 0.10f;
-            float speedMultiplier = 4f;
+            float speed = 0.15f;
+            float speedMultiplier = 2f;
             if (npc.life < npc.lifeMax / 2)
             {
                 num734 = 5f;
@@ -196,14 +205,14 @@ namespace Eternal.NPCs.Boss.BionicBosses.Omnicron
                 num734 += 8f;
             }
             float num738 = (float)Math.Sqrt((double)(targetX * targetX + targetY * targetY));
-            int num739 = 250;
+            int num739 = 500;
             if (Main.expertMode)
             {
-                num739 += 150;
+                num739 += 100;
             }
             if (EternalWorld.hellMode)
             {
-                num739 += 200;
+                num739 += 150;
             }
             if (num738 >= (float)num739)
             {
@@ -271,6 +280,16 @@ namespace Eternal.NPCs.Boss.BionicBosses.Omnicron
             direction.X *= 8.5f;
             direction.Y *= 8.5f;
 
+            int amountOfProjectiles;
+            if (Phase == 1)
+            {
+                amountOfProjectiles = 4;
+            }
+            else
+            {
+                amountOfProjectiles = 2;
+            }
+
             attackTimer++;
 
             if (Phase == 1)
@@ -283,19 +302,19 @@ namespace Eternal.NPCs.Boss.BionicBosses.Omnicron
                         float B = (float)Main.rand.Next(-200, 200) * 0.01f;
                         int damage = Main.expertMode ? 15 : 17;
                         if (Main.netMode != NetmodeID.MultiplayerClient)
-                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ProjectileID.BombSkeletronPrime, npc.damage, 1, Main.myPlayer, 0, 0);
+                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<OmicronFire>(), npc.damage, 1, Main.myPlayer, 0, 0);
                     }
                 }
                 if (attackTimer == 130 || attackTimer == 135)
                 {
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -8, 0, ProjectileID.PinkLaser, npc.damage, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 8, 0, ProjectileID.PinkLaser, npc.damage, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 8, ProjectileID.PinkLaser, npc.damage, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, -8, ProjectileID.PinkLaser, npc.damage, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -4, 4, ProjectileID.PinkLaser, npc.damage, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -4, -4, ProjectileID.PinkLaser, npc.damage, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4, -4, ProjectileID.PinkLaser, npc.damage, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4, 4, ProjectileID.PinkLaser, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -8, 0, ProjectileID.CultistBossFireBall, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 8, 0, ProjectileID.CultistBossFireBall, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 8, ProjectileID.CultistBossFireBall, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, -8, ProjectileID.CultistBossFireBall, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -4, 4, ProjectileID.CultistBossFireBall, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -4, -4, ProjectileID.CultistBossFireBall, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4, -4, ProjectileID.CultistBossFireBall, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4, 4, ProjectileID.CultistBossFireBall, npc.damage, 0, Main.myPlayer, 0f, 0f);
                 }
                 if (attackTimer == 300)
                 {
@@ -313,36 +332,41 @@ namespace Eternal.NPCs.Boss.BionicBosses.Omnicron
                         float B = (float)Main.rand.Next(-200, 200) * 0.01f;
                         int damage = Main.expertMode ? 15 : 17;
                         if (Main.netMode != NetmodeID.MultiplayerClient)
-                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ProjectileID.DeathLaser, npc.damage, 1, Main.myPlayer, 0, 0);
+                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ProjectileID.CultistBossFireBall, npc.damage, 1, Main.myPlayer, 0, 0);
                     }
                 }
                 if (attackTimer == 200 || attackTimer == 250)
                 {
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -8, 0, ProjectileID.DeathLaser, npc.damage, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 8, 0, ProjectileID.DeathLaser, npc.damage, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 8, ProjectileID.DeathLaser, npc.damage, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, -8, ProjectileID.DeathLaser, npc.damage, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -4, 4, ProjectileID.DeathLaser, npc.damage, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -4, -4, ProjectileID.DeathLaser, npc.damage, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4, -4, ProjectileID.DeathLaser, npc.damage, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4, 4, ProjectileID.DeathLaser, npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -8, 0, ModContent.ProjectileType<OmicronFire>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 8, 0, ModContent.ProjectileType<OmicronFire>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 8, ModContent.ProjectileType<OmicronFire>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, -8, ModContent.ProjectileType<OmicronFire>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -4, 4, ModContent.ProjectileType<OmicronFire>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -4, -4, ModContent.ProjectileType<OmicronFire>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4, -4, ModContent.ProjectileType<OmicronFire>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4, 4, ModContent.ProjectileType<OmicronFire>(), npc.damage, 0, Main.myPlayer, 0f, 0f);
                 }
                 if (attackTimer == 300)
                 {
                     attackTimer = 0;
                 }
             }
+        }
 
+        public override void NPCLoot()
+        {
+            player = Main.player[npc.target];
+            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<OrionNeox>());
+
+            if (Main.rand.Next(2) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<NeoxCore>(), Main.rand.Next(6, 16));
+            }
         }
 
         public override void FindFrame(int frameHeight)
         {
-            //npc.frame.Y = frameNum * frameHeight;
-
-            npc.frameCounter += 0.15f;
-            npc.frameCounter %= Main.npcFrameCount[npc.type];
-            int Frame = (int)npc.frameCounter;
-            npc.frame.Y = Frame * frameHeight;
+            npc.frame.Y = frameNum * frameHeight;
         }
 
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)

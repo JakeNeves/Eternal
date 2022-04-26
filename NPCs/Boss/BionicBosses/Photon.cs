@@ -220,7 +220,7 @@ namespace Eternal.NPCs.Boss.BionicBosses
 
         public override void NPCLoot()
         {
-            if (!NPC.AnyNPCs(ModContent.NPCType<ProtonNeox>()) && !NPC.AnyNPCs(ModContent.NPCType<QuasarNeox>()))
+            if (!NPC.AnyNPCs(ModContent.NPCType<Proton>()) && !NPC.AnyNPCs(ModContent.NPCType<Quasar>()))
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SightCore>(), Main.rand.Next(20, 40));
 
             if (Main.rand.Next(6) == 0)

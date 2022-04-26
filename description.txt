@@ -2,6 +2,7 @@
 
 1.0.8.1  - [c/009933:The Bionic Update]
 
+[c/00B359:---Jake's Lounge Discord Server---]
 Feel free to join my Discord Server and help out with the mod if you want
 https://discord.gg/HUJ8KUSAjC
 
@@ -13,6 +14,7 @@ From what we expect, this mod is not fully finished yet so there is no harm in c
 The music for the mod is now it's seperate addon mod
 Right now you can only download it from the 'EternalMusic'
 GitHub Reopsitory
+https://github.com/JakeNeves/EternalMusic/releases
 
 It currently adds
 2 pre-hardmode bosses
@@ -32,6 +34,10 @@ JakeTEM - Literally most of enerything
 [c/00b359:---Changelog---]
 
 1.0.8.1
+* Added a configuration option that let's the Apollyon use money instead of Apollyon Coins
+
+* Omicron now drops Cores of Might
+
 * Beacon recipes now use hallowed bars instead of dirt
 
 * Added the Final Boss Blade

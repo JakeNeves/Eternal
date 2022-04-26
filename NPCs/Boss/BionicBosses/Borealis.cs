@@ -13,6 +13,8 @@ namespace Eternal.NPCs.Boss.BionicBosses
     {
         private Player player;
 
+        int attackTimer;
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("XR-2003 Borealis-X1");
@@ -140,6 +142,78 @@ namespace Eternal.NPCs.Boss.BionicBosses
             DespawnHandler();
 
             return true;
+        }
+
+        public override void AI()
+        {
+            Vector2 direction = Main.player[npc.target].Center - npc.Center;
+            direction.Normalize();
+            direction.X *= 8.5f;
+            direction.Y *= 8.5f;
+
+            attackTimer++;
+            if (npc.life < npc.lifeMax / 2)
+            {
+                if ((attackTimer == 185 || attackTimer == 200 || attackTimer == 225))
+                {
+                    
+
+                    int amountOfProjectiles = 4;
+                    for (int i = 0; i < amountOfProjectiles; ++i)
+                    {
+                        float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ProjectileID.MartianTurretBolt, npc.damage / 2, 1, Main.myPlayer, 0, 0);
+                    }
+                }
+                if (attackTimer == 250 || attackTimer == 275 || attackTimer == 300 || attackTimer == 325 || attackTimer == 350 || attackTimer == 375 || attackTimer == 400 || attackTimer == 425 || attackTimer == 450 || attackTimer == 475 || attackTimer == 500 || attackTimer == 525)
+                {
+                    for (int i = 0; i < 8; ++i)
+                    {
+                        float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        int damage = Main.expertMode ? 15 : 17;
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ProjectileID.EyeLaser, npc.damage, 1, Main.myPlayer, 0, 0);
+                    }
+                }
+            }
+            else
+            {
+                if ((attackTimer == 200 || attackTimer == 400 && npc.life >= (npc.lifeMax / 2)))
+                {
+
+                    int amountOfProjectiles = Main.rand.Next(8, 11);
+                    for (int i = 0; i < amountOfProjectiles; ++i)
+                    {
+                        float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        int damage = Main.expertMode ? 15 : 17;
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X + A, direction.Y + B, ProjectileID.PinkLaser, npc.damage, 1, Main.myPlayer, 0, 0);
+                    }
+                }
+                if ((attackTimer == 600 || attackTimer == 650 || attackTimer == 700 || attackTimer == 800 || attackTimer == 850 || attackTimer == 880))
+                {
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    {
+                        int damage = Main.expertMode ? 15 : 19;
+                        if (EternalWorld.hellMode)
+                        {
+                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X * 14f, direction.Y * 14f, ProjectileID.DeathLaser, npc.damage, 1, Main.myPlayer, 0, 0);
+                        }
+                        else
+                        {
+                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, direction.X * 14f, direction.Y * 14f, ProjectileID.PinkLaser, npc.damage, 1, Main.myPlayer, 0, 0);
+                        }
+                    }
+                }
+            }
+            if (attackTimer == 1000)
+            {
+                attackTimer = 0;
+            }
         }
 
         private void DespawnHandler()

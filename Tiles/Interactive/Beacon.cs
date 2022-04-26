@@ -1,6 +1,6 @@
 ﻿using Eternal.NPCs;
 using Eternal.NPCs.Boss.BionicBosses;
-using Eternal.NPCs.Boss.BionicBosses.Omnicron;
+using Eternal.NPCs.Boss.BionicBosses.Omicron;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -62,7 +62,7 @@ namespace Eternal.Tiles.Interactive
                 Main.PlaySound(SoundID.DD2_BetsySummon, player.position);
                 Main.PlaySound(SoundID.Roar, player.position);
                 Main.NewText("XM-2024 Omicron-X8 has awoken!", 175, 75, 255);
-                NPC.NewNPC((int)player.Center.X, (int)player.Center.Y + 900, ModContent.NPCType<Omnicron>());
+                NPC.NewNPC((int)player.Center.X, (int)player.Center.Y + 900, ModContent.NPCType<Omicron>());
             }
             else if (Main.LocalPlayer.HasItem(ModContent.ItemType<Items.Summon.TripletsCore>()))
             {

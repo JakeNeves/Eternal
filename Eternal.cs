@@ -451,8 +451,8 @@ namespace Eternal
                     GetTexture("BossBars/BionicBossBarMiddle"),
                     GetTexture("BossBars/BionicBossBarEnd"),
                     GetTexture("BossBars/BionicBossBarFill"));
-                FKBossHealthBar.Call("hbSetBossHeadTexture", GetTexture("NPCs/Boss/BionicBosses/Omnicron/Omnicron_Head_Boss"));
-                FKBossHealthBar.Call("hbFinishSingle", ModContent.NPCType<NPCs.Boss.BionicBosses.Omnicron.Omnicron>());
+                FKBossHealthBar.Call("hbSetBossHeadTexture", GetTexture("NPCs/Boss/BionicBosses/Omicron/Omicron_Head_Boss"));
+                FKBossHealthBar.Call("hbFinishSingle", ModContent.NPCType<NPCs.Boss.BionicBosses.Omicron.Omicron>());
                 // AoI
                 FKBossHealthBar.Call("hbStart");
                 FKBossHealthBar.Call("hbSetTexture",
