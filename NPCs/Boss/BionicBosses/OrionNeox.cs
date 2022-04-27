@@ -86,7 +86,7 @@ namespace Eternal.NPCs.Boss.BionicBosses
 
             if (EternalWorld.hellMode)
             {
-                npc.lifeMax = 6060000;
+                npc.lifeMax = 6000000;
                 npc.damage = 136;
                 npc.defense = 95;
             }

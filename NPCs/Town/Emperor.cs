@@ -1,4 +1,5 @@
-﻿using Eternal.Items.Potions;
+﻿using Eternal.Buffs;
+using Eternal.Items.Potions;
 using Eternal.Items.Vanity;
 using Eternal.Projectiles.Weapons.Melee;
 using Terraria;
@@ -39,7 +40,7 @@ namespace Eternal.NPCs.Town
             npc.defense = 30;
             npc.lifeMax = 20000;
             npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
+            npc.DeathSound = SoundID.DD2_GhastlyGlaivePierce;
             npc.knockBackResist = 0.5f;
             animationType = NPCID.Guide;
         }
@@ -62,12 +63,40 @@ namespace Eternal.NPCs.Town
         public override void SetChatButtons(ref string button, ref string button2)
         {
             button = Language.GetTextValue("LegacyInterface.28");
+            button2 = "Empower";
         }
 
         public override void OnChatButtonClicked(bool firstButton, ref bool shop)
         {
             if (firstButton)
                 shop = true;
+            else
+            {
+                Player player = Main.player[Main.myPlayer];
+                Main.PlaySound(SoundID.DD2_BetsysWrathShot);
+                player.AddBuff(ModContent.BuffType<MoonlightEmpoweredWeapon>(), 2040);
+                switch (Main.rand.Next(6))
+                {
+                    case 0:
+                        Main.npcChatText = "Here you go, this empowerment may not last long, but that should do the trick.";
+                        break;
+                    case 1:
+                        Main.npcChatText = "This sould do it, give it a try, see how you like it " + player.name + "!";
+                        break;
+                    case 2:
+                        Main.npcChatText = player.name + ", this will help you get through the toughest enemies easily.";
+                        break;
+                    case 3:
+                        Main.npcChatText = "There, all set. Now good luck out there my friend.";
+                        break;
+                    case 4:
+                        Main.npcChatText = "Thank me later, right now I have to see how my friends back over in Gallahard are doing.";
+                        break;
+                    default:
+                        Main.npcChatText = "Here, have this as a blessing from me, your weapons should deal more damage now.";
+                        break;
+                }
+            }
         }
 
         public override string TownNPCName()
@@ -76,6 +105,33 @@ namespace Eternal.NPCs.Town
             {
                 default:
                     return "Jake";
+            }
+        }
+
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            if (npc.life < 0)
+            {
+                int num = npc.life > 0 ? 1 : 10;
+                for (int k = 0; k < num; k++)
+                {
+                    Dust.NewDust(npc.position, npc.width, npc.height, DustID.BlueTorch);
+                }
+            }
+            else {
+                int num = npc.life > 0 ? 1 : 5;
+                for (int k = 0; k < num; k++)
+                {
+                    Dust.NewDust(npc.position, npc.width, npc.height, DustID.Blood);
+                }
+            }
+
+            if (npc.life < 1)
+            {
+                int emperor = NPC.FindFirstNPC(ModContent.NPCType<Emperor>());
+                npc.life = 1;
+                npc.active = false;
+                Main.NewText(Main.npc[emperor].GivenName + " the Emperor has returned to his world", 255, 0, 0);
             }
         }
 

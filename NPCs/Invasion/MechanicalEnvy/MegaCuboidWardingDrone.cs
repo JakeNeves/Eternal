@@ -101,6 +101,7 @@ namespace Eternal.NPCs.Invasion.MechanicalEnvy
             npc.netUpdate = true;
             npc.TargetClosest(true);
             Player player = Main.player[npc.target];
+            npc.spriteDirection = npc.direction = npc.Center.X < player.Center.X ? -1 : 1;
             if (!player.active || player.dead)
             {
                 npc.TargetClosest(false);
