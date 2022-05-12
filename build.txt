@@ -1,6 +1,8 @@
-displayName = [c/ED0249:Eternal]
+displayName = [c/ED0249:Eternal] (Indev)
 author = JakeTEM
-version = 1.0.8.1
+version = 1.0.9
 homepage = https://discord.gg/HUJ8KUSAjC
+buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*, Old\*
+hideResources = false
 includeSource = true
 includePDB = true
