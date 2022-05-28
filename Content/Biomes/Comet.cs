@@ -1,6 +1,5 @@
 ﻿using Eternal.Common.Systems;
 using Terraria;
-using Terraria.Graphics.Capture;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Biomes
@@ -12,8 +11,19 @@ namespace Eternal.Content.Biomes
             DisplayName.SetDefault("Fallen Comet");
         }
 
-        public override CaptureBiome.TileColorStyle TileColorStyle => CaptureBiome.TileColorStyle.Mushroom;
         public override int Music => MusicLoader.GetMusicSlot(Mod, "Assets/Music/AstralDiscovery");
+
+        public override string BestiaryIcon => "Textures/Bestiary/Comet";
+
+        public override void OnEnter(Player player)
+        {
+            ModContent.GetInstance<ZoneSystem>().zoneComet = true;
+        }
+
+        public override void OnLeave(Player player)
+        {
+            ModContent.GetInstance<ZoneSystem>().zoneComet = false;
+        }
 
         public override bool IsBiomeActive(Player player)
         {

@@ -10,6 +10,7 @@ namespace Eternal.Content.Items.Accessories
         {
             Tooltip.SetDefault("60% increased melee damage" +
                                "\n17% increased melee speed" +
+                               "\nEnables auto swing for melee weapons" +
                                "\n'The comets are now in the palm of your hand'");
         }
 

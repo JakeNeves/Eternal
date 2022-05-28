@@ -8,10 +8,9 @@ namespace Eternal.Common.GlobalNPCs
 {
     public class BossGlobalNPCs : GlobalNPC
     {
-
         public override void ScaleExpertStats(NPC npc, int numPlayers, float bossLifeScale)
         {
-            if (DifficultySystem.hellMode && ModContent.GetInstance<CommonConfig>().hellModeVanillaBosses)
+            if (DifficultySystem.hellMode && ModContent.GetInstance<CommonConfig>().HellModeVanillaBosses)
             {
                 switch (npc.type)
                 {

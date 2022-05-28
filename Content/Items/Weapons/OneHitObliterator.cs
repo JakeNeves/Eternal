@@ -12,7 +12,6 @@ namespace Eternal.Content.Items.Weapons
             DisplayName.SetDefault("One-Hit Obliterator");
             Tooltip.SetDefault("[c/FF0000:Cheat Item]" +
                 "\nCan manipulate anything in a single swing" +
-                "\nItems will not drop from enemies when killed" +
                 "\nAutomatically drains your health to 1 HP");
         }
 
@@ -38,14 +37,15 @@ namespace Eternal.Content.Items.Weapons
 
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
         {
-            target.life = 0;
+            target.life = 1;
+            player.ApplyDamageToNPC(target, 9999, 0f, 0, false);
         }
 
-        /*public override void ModifyTooltips(List<TooltipLine> tooltips)
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             int dmg = tooltips.FindIndex(x => x.Name == "Damage");
             tooltips.RemoveAt(dmg);
-            tooltips.Insert(dmg, new TooltipLine(mod, "Damage", "Infinite Damage"));
-        }*/
+            tooltips.Insert(dmg, new TooltipLine(Mod, "Damage", "Infinite Damage"));
+        }
     }
 }

@@ -1,8 +1,10 @@
 ﻿using Eternal.Common.Systems;
+using Eternal.Content.Items.Accessories.Expert;
 using Eternal.Content.Items.Accessories.Hell;
 using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Weapons.Melee;
 using Eternal.Content.Items.Weapons.Ranged;
+using Eternal.Content.NPCs.Boss.CarminiteAmalgamation;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -40,6 +42,8 @@ namespace Eternal.Content.Items.BossBags
                 player.QuickSpawnItem(entitySource, ModContent.ItemType<CarminiteHeart>());
             }
 
+            player.QuickSpawnItem(entitySource, ModContent.ItemType<Bloodtooth>());
+
             player.QuickSpawnItem(entitySource, ModContent.ItemType<Carminite>(), Main.rand.Next(24, 36));
 
             if (Main.rand.NextBool(1))
@@ -63,6 +67,6 @@ namespace Eternal.Content.Items.BossBags
             }
         }
 
-        public override int BossBagNPC => ModContent.NPCType<NPCs.Boss.CarminiteAmalgamation.CarminiteAmalgamation>();
+        public override int BossBagNPC => ModContent.NPCType<CarminiteAmalgamation>();
     }
 }

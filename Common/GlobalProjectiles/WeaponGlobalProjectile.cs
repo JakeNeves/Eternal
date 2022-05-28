@@ -1,4 +1,5 @@
 ﻿using Eternal.Common.Players;
+using Eternal.Content.Projectiles.Accessories;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -11,6 +12,7 @@ namespace Eternal.Common.GlobalProjectiles
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
         {
             Player Player = Main.player[Main.myPlayer];
+            var entitySource = Entity.GetSource_None();
 
             if (ArmorSystem.IesniumArmor)
             {

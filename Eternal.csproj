@@ -12,5 +12,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Common\GlobalItems\" />
+    <Folder Include="Localization\" />
   </ItemGroup>
 </Project>
