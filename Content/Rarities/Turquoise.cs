@@ -14,6 +14,11 @@ namespace Eternal.Content.Rarities
                 return ModContent.RarityType<Magenta>();
             }
 
+            if (offset > 0)
+            {
+                return ModContent.RarityType<FlamingBlue>();
+            }
+
             return Type;
         }
     }

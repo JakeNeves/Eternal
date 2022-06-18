@@ -22,6 +22,7 @@ namespace Eternal.Content.Items.Weapons.Melee
             Item.shoot = ModContent.ProjectileType<CarminitePurgatoryProjectile>();
             Item.shootSpeed = 2.1f;
             Item.noUseGraphic = true;
+            Item.noMelee = true;
         }
     }
 }

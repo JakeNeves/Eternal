@@ -1,6 +1,9 @@
 ﻿using Eternal.Common.Configurations;
+using Eternal.Common.ItemDropRules.Conditions;
 using Eternal.Common.Systems;
+using Eternal.Content.Items.Misc;
 using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -164,5 +167,16 @@ namespace Eternal.Common.GlobalNPCs
             }
         }
 
+        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        {
+            HellModeDropCondition hellModeDrop = new HellModeDropCondition();
+
+            switch (npc.type)
+            {
+                case NPCID.WallofFlesh:
+                    npcLoot.Add(ItemDropRule.ByCondition(hellModeDrop, ModContent.ItemType<HolyCard>(), 1));
+                    break;
+            }
+        }
     }
 }

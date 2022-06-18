@@ -81,8 +81,6 @@ namespace Eternal.Content.NPCs.Comet
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
 		{
-			DisplayName.SetDefault("Starbelt Seeker");
-
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
 

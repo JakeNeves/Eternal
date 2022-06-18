@@ -102,8 +102,8 @@ namespace Eternal.Common.Systems
 			downedTriplets = false;
 			downedArkofImperious = false;
 			downedNeoxBosses = false;
-			downedCosmicEmperor = false;
 			downedTrinity = false;
+			downedCosmicEmperor = false;
 		}
 		public override void SaveWorldData(TagCompound tag)
 		{
@@ -128,6 +128,10 @@ namespace Eternal.Common.Systems
 			{
 				tag["downedCosmicApparition"] = true;
 			}
+			if (downedArkofImperious)
+			{
+				tag["downedArkofImperious"] = true;
+			}
 		}
 
 		public override void LoadWorldData(TagCompound tag)
@@ -141,6 +145,7 @@ namespace Eternal.Common.Systems
 
 			// post-moon lord bosses
 			downedCosmicApparition = tag.ContainsKey("downedCosmicApparition");
+			downedArkofImperious = tag.ContainsKey("downedArkofImperious");
 		}
 
 		public override void NetSend(BinaryWriter writer)
@@ -155,6 +160,7 @@ namespace Eternal.Common.Systems
 
 			// post-moon lord bosses
 			flags[10] = downedCosmicApparition;
+			flags[20] = downedArkofImperious;
 
 			writer.Write(flags);
 		}
@@ -171,6 +177,7 @@ namespace Eternal.Common.Systems
 
 			// post-moon lord bosses
 			downedCosmicApparition = flags[10];
+			downedArkofImperious = flags[20];
 		}
 	}
 }

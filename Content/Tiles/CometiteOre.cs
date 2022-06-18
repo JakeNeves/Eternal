@@ -25,8 +25,7 @@ namespace Eternal.Content.Tiles
             name.SetDefault("Cometite");
             AddMapEntry(new Color(30, 20, 40), name);
             MinPick = 225;
-            SoundType = SoundID.Tink;
-            SoundStyle = 1;
+            HitSound = SoundID.Tink;
             MineResist = 5f;
         }
 

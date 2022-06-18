@@ -1,4 +1,6 @@
 ﻿using Eternal.Common.Systems;
+using Eternal.Content.BossBars;
+using Eternal.Content.Projectiles.Boss;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -21,13 +23,11 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
         }
 
         #region Fundementals
-        const int ShootDamage = 9;
-        const float ShootKnockback = 0f;
-        const int ShootDirection = 5;
+        const float Speed = 10f;
+        const float Acceleration = 4f;
 
-        const float Speed = 6f;
-        const float Acceleration = 2f;
         int Timer;
+        int attackTimer;
         #endregion
 
         public override void SetDefaults()
@@ -39,7 +39,7 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
             NPC.aiStyle = -1;
             NPC.damage = 12;
             NPC.defense = 20;
-            NPC.lifeMax = 480000;
+            NPC.lifeMax = 48000;
             NPC.buffImmune[BuffID.OnFire] = true;
             NPC.buffImmune[BuffID.Poisoned] = true;
             NPC.buffImmune[BuffID.Venom] = true;
@@ -50,6 +50,7 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
             NPC.noTileCollide = true;
             NPC.HitSound = null;
             NPC.DeathSound = SoundID.NPCDeath42;
+            NPC.BossBar = ModContent.GetInstance<Notched2BossBar>();
         }
 
         public Vector2 bossCenter
@@ -60,14 +61,7 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
 
         public override void BossLoot(ref string name, ref int potionType)
         {
-            if (!NPC.downedMoonlord)
-            {
-                potionType = ItemID.GreaterHealingPotion;
-            }
-            else
-            {
-                potionType = ItemID.None;
-            }
+            potionType = ItemID.GreaterHealingPotion;
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -103,11 +97,9 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
 
         private Player player;
 
-        public override void AI()
+        public override bool PreAI()
         {
             NPC.spriteDirection = NPC.direction;
-
-            Lighting.AddLight(NPC.position, 2.15f, 0.95f, 0f);
 
             NPC.TargetClosest(true);
             NPC.spriteDirection = NPC.direction;
@@ -161,6 +153,17 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
                 }
             }
 
+            return true;
+        }
+
+        public override void AI()
+        {
+            Player player = Main.player[NPC.target];
+
+            Lighting.AddLight(NPC.position, 2.15f, 0.95f, 0f);
+
+            var entitySource = NPC.GetSource_FromAI();
+
             #region Death Dialogue
             if (player.dead)
             {
@@ -191,6 +194,105 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
                 NPC.active = false;
             }
             #endregion
+
+            attackTimer++;
+
+            Vector2 direction = Main.player[NPC.target].Center - NPC.Center;
+            direction.Normalize();
+            direction.X *= 8.5f;
+            direction.Y *= 8.5f;
+
+            if (NPC.life < NPC.lifeMax / 1.25f)
+            {
+                
+            }
+            if (NPC.life < NPC.lifeMax / 2)
+            {
+                if (attackTimer == 100 || attackTimer == 105 || attackTimer == 110 || attackTimer == 115 || attackTimer == 120 || attackTimer == 125)
+                {
+                    int amountOfProjectiles = 2 + Main.rand.Next(2);
+                    for (int i = 0; i < amountOfProjectiles; ++i)
+                    {
+                        float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                            Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ProjectileID.CultistBossFireBall, NPC.damage / 2, 1, Main.myPlayer, 0, 0);
+                    }
+                }
+                if (attackTimer == 200 || attackTimer == 205 || attackTimer == 210 || attackTimer == 215 || attackTimer == 220 || attackTimer == 235)
+                {
+                    int amountOfProjectiles = 4 + Main.rand.Next(2);
+                    for (int i = 0; i < amountOfProjectiles; ++i)
+                    {
+                        float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                            Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<FlamingSoul>(), NPC.damage, 1, Main.myPlayer, 0, 0);
+                    }
+                }
+                if (attackTimer >= 300)
+                {
+                    attackTimer = 0;
+                }
+            }
+            if (NPC.life < NPC.lifeMax / 2.5f)
+            {
+                if (attackTimer == 310 || attackTimer == 315 || attackTimer == 320 || attackTimer == 325 || attackTimer == 330 || attackTimer == 335)
+                {
+                    int amountOfProjectiles = 2 + Main.rand.Next(2);
+                    for (int i = 0; i < amountOfProjectiles; ++i)
+                    {
+                        float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                            Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ProjectileID.CultistBossFireBall, NPC.damage / 2, 1, Main.myPlayer, 0, 0);
+                    }
+                }
+                if (attackTimer == 410 || attackTimer == 415 || attackTimer == 420 || attackTimer == 425 || attackTimer == 430 || attackTimer == 435)
+                {
+                    int amountOfProjectiles = 4 + Main.rand.Next(2);
+                    for (int i = 0; i < amountOfProjectiles; ++i)
+                    {
+                        float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                            Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<FlamingSoul>(), NPC.damage, 1, Main.myPlayer, 0, 0);
+                    }
+                }
+                if (attackTimer >= 500)
+                {
+                    attackTimer = 0;
+                }
+            }
+            else
+            {
+                if (attackTimer == 110 || attackTimer == 115 || attackTimer == 120 || attackTimer == 125 || attackTimer == 130 || attackTimer == 135)
+                {
+                    int amountOfProjectiles = 2 + Main.rand.Next(2);
+                    for (int i = 0; i < amountOfProjectiles; ++i)
+                    {
+                        float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                            Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ProjectileID.CultistBossFireBall, NPC.damage / 2, 1, Main.myPlayer, 0, 0);
+                    }
+                }
+                if (attackTimer == 210 || attackTimer == 215 || attackTimer == 220 || attackTimer == 225 || attackTimer == 230 || attackTimer == 235)
+                {
+                    int amountOfProjectiles = 4 + Main.rand.Next(2);
+                    for (int i = 0; i < amountOfProjectiles; ++i)
+                    {
+                        float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                            Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<FlamingSoul>(), NPC.damage, 1, Main.myPlayer, 0, 0);
+                    }
+                }
+                if (attackTimer >= 300)
+                {
+                    attackTimer = 0;
+                }
+            }
         }
 
         public override void FindFrame(int frameHeight)
@@ -203,7 +305,7 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color lightColor)
         {
-            Main.instance.LoadProjectile(NPC.type);
+            Main.instance.LoadNPC(NPC.type);
             Texture2D texture = ModContent.Request<Texture2D>("Eternal/Content/NPCs/Boss/Incinerius/Incinerius_Shadow").Value;
 
             Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, NPC.height * 0.5f);

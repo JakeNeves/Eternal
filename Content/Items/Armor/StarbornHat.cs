@@ -1,4 +1,5 @@
-﻿using Eternal.Content.Rarities;
+﻿using Eternal.Common.Players;
+using Eternal.Content.Rarities;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -37,6 +38,7 @@ namespace Eternal.Content.Items.Armor
             player.GetDamage(DamageClass.Magic) += 0.20f;
             player.statManaMax2 += 60;
             player.manaCost -= 0.25f;
+            ArmorSystem.StarbornArmor = true;
 
             Dust dust;
             Vector2 position = Main.LocalPlayer.Center;

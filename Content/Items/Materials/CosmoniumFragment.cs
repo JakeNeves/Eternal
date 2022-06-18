@@ -1,0 +1,31 @@
+﻿using Eternal.Content.Rarities;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace Eternal.Content.Items.Materials
+{
+    public class CosmoniumFragment : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            Tooltip.SetDefault("One is required for every known powerful item" +
+                             "\n'A shard of the emperor's promise'");
+
+            ItemID.Sets.ItemIconPulse[Item.type] = true;
+            ItemID.Sets.ItemNoGravity[Item.type] = true;
+
+            Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(6, 4));
+        }
+
+        public override void SetDefaults()
+        {
+            Item.width = 34;
+            Item.height = 34;
+            Item.value = Item.buyPrice(platinum: 1, gold: 25, silver: 50);
+            Item.rare = ModContent.RarityType<Turquoise>();
+            Item.maxStack = 999;
+        }
+    }
+}

@@ -1,6 +1,4 @@
-﻿using Eternal.Common.Systems;
-using Eternal.Content.Items.Accessories.Expert;
-using Eternal.Content.Items.Accessories.Hell;
+﻿using Eternal.Content.Items.Accessories.Expert;
 using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Weapons.Melee;
 using Eternal.Content.Items.Weapons.Ranged;
@@ -36,11 +34,6 @@ namespace Eternal.Content.Items.BossBags
         public override void OpenBossBag(Player player)
         {
             var entitySource = player.GetSource_OpenItem(Type);
-
-            if (DifficultySystem.hellMode)
-            {
-                player.QuickSpawnItem(entitySource, ModContent.ItemType<CarminiteHeart>());
-            }
 
             player.QuickSpawnItem(entitySource, ModContent.ItemType<Bloodtooth>());
 

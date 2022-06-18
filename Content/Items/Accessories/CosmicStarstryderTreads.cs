@@ -1,6 +1,8 @@
-﻿using Eternal.Content.Items.Materials;
+﻿using Eternal.Common.Players;
+using Eternal.Content.Items.Materials;
 using Eternal.Content.Rarities;
 using Eternal.Content.Tiles.CraftingStations;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -21,6 +23,7 @@ namespace Eternal.Content.Items.Accessories
                                "\nLava Waders effects" +
                                "\nMaster Ninja Gear effects" +
                                "\nImmunity to lava" +
+                               "\nDouble tap a direction to dash, even vertically" +
                                "\n'Ascendance beyond your comprehension!'");
 
             ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(360, 16, 4.6f);
@@ -52,7 +55,6 @@ namespace Eternal.Content.Items.Accessories
                         player.armor[i].type == ItemID.LightningBoots ||
                         player.armor[i].type == ItemID.FrostsparkBoots ||
                         player.armor[i].type == ItemID.TerrasparkBoots
-                        //player.armor[i].type == ModContent.ItemType<BootsofBlindingSpeed>()
                         ))
                     {
                         return false;
@@ -64,23 +66,48 @@ namespace Eternal.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            /*EternalPlayer modPlayer = player.GetModPlayer<EternalPlayer>();
-            EternalDashPlayer modDashPlayer = player.GetModPlayer<EternalDashPlayer>();
+            player.accRunSpeed = 9.75f;
+            player.rocketBoots = player.vanityRocketBoots = ArmorIDs.RocketBoots.SpectreBoots;
+            player.moveSpeed += 0.20f;
+            player.iceSkate = true;
+            player.desertBoots = true;
+
+            player.jumpBoost = true;
+            player.noFallDmg = true;
+
+            player.waterWalk = true;
+            player.fireWalk = true;
+            player.lavaImmune = true;
+
+            player.dash = 1;
+
+            player.blackBelt = true;
+            player.spikedBoots = 1;
+            player.spikedBoots = 2;
+
+            player.wingTimeMax = 300;
+
+            CosmicStarstryderTreadsPlayer modDashPlayer = player.GetModPlayer<CosmicStarstryderTreadsPlayer>();
 
             #region Dash Effect
-            /*if (!modDashPlayer.DashActive)
+            if (!modDashPlayer.DashActive)
                 return;
 
             player.eocDash = modDashPlayer.DashTimer;
             player.armorEffectDrawShadowEOCShield = true;
 
-            if (modDashPlayer.DashTimer == EternalDashPlayer.MAX_DASH_TIMER)
+            if (modDashPlayer.DashTimer == CosmicStarstryderTreadsPlayer.MAX_DASH_TIMER)
             {
                 Vector2 newVelocity = player.velocity;
 
-                if ((modDashPlayer.DashDir == EternalDashPlayer.DashLeft && player.velocity.X > -modDashPlayer.DashVelocity) || (modDashPlayer.DashDir == EternalDashPlayer.DashRight && player.velocity.X < modDashPlayer.DashVelocity))
+                if ((modDashPlayer.DashDir == CosmicStarstryderTreadsPlayer.DashUp && player.velocity.Y > -modDashPlayer.DashVelocity) || (modDashPlayer.DashDir == CosmicStarstryderTreadsPlayer.DashDown && player.velocity.Y < modDashPlayer.DashVelocity))
                 {
-                    int dashDirection = modDashPlayer.DashDir == EternalDashPlayer.DashRight ? 1 : -1;
+                    float dashDirection = modDashPlayer.DashDir == CosmicStarstryderTreadsPlayer.DashDown ? 1 : -1.3f;
+                    newVelocity.Y = dashDirection * modDashPlayer.DashVelocity;
+                }
+                else if ((modDashPlayer.DashDir == CosmicStarstryderTreadsPlayer.DashLeft && player.velocity.X > -modDashPlayer.DashVelocity) || (modDashPlayer.DashDir == CosmicStarstryderTreadsPlayer.DashRight && player.velocity.X < modDashPlayer.DashVelocity))
+                {
+                    int dashDirection = modDashPlayer.DashDir == CosmicStarstryderTreadsPlayer.DashRight ? 1 : -1;
                     newVelocity.X = dashDirection * modDashPlayer.DashVelocity;
                 }
 
@@ -92,29 +119,15 @@ namespace Eternal.Content.Items.Accessories
 
             if (modDashPlayer.DashDelay == 0)
             {
-                modDashPlayer.DashDelay = EternalDashPlayer.MAX_DASH_DELAY;
-                modDashPlayer.DashTimer = EternalDashPlayer.MAX_DASH_TIMER;
+                modDashPlayer.DashDelay = CosmicStarstryderTreadsPlayer.MAX_DASH_DELAY;
+                modDashPlayer.DashTimer = CosmicStarstryderTreadsPlayer.MAX_DASH_TIMER;
                 modDashPlayer.DashActive = false;
             }
-            #endregion*/
-
-            player.accRunSpeed = 9.0f;
-            player.rocketBoots = 4;
-            player.moveSpeed += 0.20f;
-            player.iceSkate = true;
-            player.jumpBoost = true;
-            player.noFallDmg = true;
-            player.waterWalk = true;
-            player.fireWalk = true;
-            player.lavaImmune = true;
-            player.dash = 1;
-            player.blackBelt = true;
-            player.spikedBoots = 1;
-            player.spikedBoots = 2;
-            player.wingTimeMax = 300;
+            modDashPlayer.DashActive = false;
+            #endregion
         }
 
-        public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising, ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)
+    public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising, ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)
         {
             ascentWhenFalling = 0.32f;
             ascentWhenRising = 0.32f;

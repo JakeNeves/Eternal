@@ -60,8 +60,6 @@ namespace Eternal.Content.NPCs.Boss.Igneopede
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
 		{
-			DisplayName.SetDefault("The Igneopede");
-
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheUnderworld,
 
@@ -304,8 +302,8 @@ namespace Eternal.Content.NPCs.Boss.Igneopede
 
 		public override void Init()
 		{
-			minLength = 24;
-			maxLength = 48;
+			minLength = 12;
+			maxLength = 12;
 			tailType = ModContent.NPCType<IgneopedeTail>();
 			bodyType = ModContent.NPCType<IgneopedeBody>();
 			headType = ModContent.NPCType<IgneopedeHead>();

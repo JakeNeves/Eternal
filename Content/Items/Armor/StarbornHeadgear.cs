@@ -1,4 +1,5 @@
-﻿using Eternal.Content.Rarities;
+﻿using Eternal.Common.Players;
+using Eternal.Content.Rarities;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -37,6 +38,7 @@ namespace Eternal.Content.Items.Armor
             player.rocketDamage += 0.20f;
             player.arrowDamage += 0.20f;
             player.bulletDamage += 0.20f;
+            ArmorSystem.StarbornArmor = true;
 
             //EternalGlobalProjectile.starbornArmor = true;
 

@@ -5,6 +5,7 @@ using Eternal.Content.Items.Weapons.Melee;
 using Eternal.Content.Tiles;
 using System.Linq;
 using Terraria;
+using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -44,6 +45,15 @@ namespace Eternal.Content.NPCs.Comet
             {
                 return SpawnCondition.Overworld.Chance * 0f;
             }
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
+
+                new FlavorTextBestiaryInfoElement("A compact lifeform detector that was used to search for otherworldly lifeforms, created by Dr. Sebastion Kox, a cosmic spirit possessed the roller entirely")
+            });
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)

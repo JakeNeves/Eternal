@@ -58,7 +58,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
 
             if (NPC.life < 0)
             {
-                SoundEngine.PlaySound(SoundID.Roar, (int)NPC.position.X, (int)NPC.position.Y, 2);
+                SoundEngine.PlaySound(SoundID.NPCDeath10, NPC.position);
                 Main.NewText("Shrieks echo as the soul angers...", 175, 75, 255);
                 NPC.NewNPC(entitySource, (int)NPC.Center.X - 20, (int)NPC.Center.Y, ModContent.NPCType<CosmicApparition>());
             }
@@ -155,7 +155,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
                     }
                     if (teleportTimer >= 200)
                     {
-                        SoundEngine.PlaySound(SoundID.Item8, Main.myPlayer);
+                        SoundEngine.PlaySound(SoundID.Item8, NPC.position);
                         for (int k = 0; k < 5; k++)
                         {
                             Dust.NewDust(NPC.position + NPC.velocity, NPC.width, NPC.height, DustID.Shadowflame, NPC.oldVelocity.X * 0.5f, NPC.oldVelocity.Y * 0.5f);

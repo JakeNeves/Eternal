@@ -8,6 +8,8 @@ using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Eternal.Common.Systems;
+using Terraria.GameContent.ItemDropRules;
+using Eternal.Content.Items.Materials;
 
 namespace Eternal.Content.NPCs.Boss.Mechapede
 {
@@ -77,8 +79,6 @@ namespace Eternal.Content.NPCs.Boss.Mechapede
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
 		{
-			DisplayName.SetDefault("Exo-Vlitch Mechapede");
-
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
 
@@ -86,7 +86,14 @@ namespace Eternal.Content.NPCs.Boss.Mechapede
 			});
 		}
 
-		public override void CustomBehavior()
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+			LeadingConditionRule notExpertRule = new(new Conditions.NotExpert());
+
+			notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<WeatheredPlating>(), minimumDropped: 16, maximumDropped: 20));
+		}
+
+        public override void CustomBehavior()
 		{
 			Lighting.AddLight(NPC.position, 1.30f, 0.30f, 0.42f);
 
@@ -242,8 +249,8 @@ namespace Eternal.Content.NPCs.Boss.Mechapede
 
 		public override void Init()
 		{
-			minLength = 12;
-			maxLength = 12;
+			minLength = 16;
+			maxLength = 16;
 			tailType = ModContent.NPCType<MechapedeTail>();
 			bodyType = ModContent.NPCType<MechapedeBody>();
 			headType = ModContent.NPCType<MechapedeHead>();

@@ -16,6 +16,8 @@ using Eternal.Content.Items.Weapons.Melee;
 using Eternal.Content.Items.Weapons.Ranged;
 using Eternal.Content.Projectiles.Explosion;
 using Eternal.Content.BossBars;
+using Eternal.Common.ItemDropRules.Conditions;
+using Eternal.Content.Items.Accessories.Hell;
 
 namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
 {
@@ -33,6 +35,8 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
 
         bool isDead = false;
         bool dontKillyet = false;
+
+        bool phase2Init = false;
 
         public override void SetStaticDefaults()
         {
@@ -121,8 +125,11 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             LeadingConditionRule notExpertRule = new(new Conditions.NotExpert());
+            HellModeDropCondition hellModeDrop = new HellModeDropCondition();
 
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<CarminiteAmalgamationBag>()));
+
+            npcLoot.Add(ItemDropRule.ByCondition(hellModeDrop, ModContent.ItemType<CarminiteHeart>(), 1));
 
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Carminite>(), minimumDropped: 12, maximumDropped: 18));
 
@@ -149,14 +156,57 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
                 {
                     Move(new Vector2(0, 0f));
                 }
-                if (Timer == 100 || Timer == 105 || Timer == 110 || Timer == 115 || Timer == 120 || Timer == 125 || Timer == 130)
+                if (phase2Init)
                 {
-                    SoundEngine.PlaySound(SoundID.NPCDeath1, NPC.Center);
-                    Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<CarminiteSludge>(), NPC.damage, 0f, Main.myPlayer);
+                    if (Timer == 200)
+                    {
+                        Timer = 0;
+                    }
                 }
-                if (Timer == 200)
+                else
                 {
-                    Timer = 0;
+                    if (Timer == 100 || Timer == 105 || Timer == 110 || Timer == 115 || Timer == 120 || Timer == 125 || Timer == 130)
+                    {
+                        SoundEngine.PlaySound(SoundID.NPCDeath1, NPC.Center);
+                        Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<CarminiteSludge>(), NPC.damage, 0f, Main.myPlayer);
+                    }
+                    if (Timer == 200)
+                    {
+                        Timer = 0;
+                    }
+                }
+                
+                if(NPC.life < NPC.lifeMax / 2)
+                {
+                    if (!phase2Init)
+                    {
+                        if (DifficultySystem.hellMode)
+                        {
+                            int amountOfTenticles = Main.rand.Next(4, 8);
+                            for (int i = 0; i < amountOfTenticles; ++i)
+                            {
+                                NPC.NewNPC(entitySource, (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<CarminiteAmalgamationTenticle>());
+                            }
+                        }
+                        else if (Main.expertMode)
+                        {
+                            int amountOfTenticles = Main.rand.Next(3, 6);
+                            for (int i = 0; i < amountOfTenticles; ++i)
+                            {
+                                NPC.NewNPC(entitySource, (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<CarminiteAmalgamationTenticle>());
+                            }
+                        }
+                        else
+                        {
+                            int amountOfTenticles = Main.rand.Next(2, 4);
+                            for (int i = 0; i < amountOfTenticles; ++i)
+                            {
+                                NPC.NewNPC(entitySource, (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<CarminiteAmalgamationTenticle>());
+                            }
+                        }
+
+                        phase2Init = true;
+                    }
                 }
             }
             else

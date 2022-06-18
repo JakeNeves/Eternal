@@ -19,5 +19,14 @@ namespace Eternal.Common.Configurations
         [Label("Hell Mode Stat Buffs for Vanilla Bosses")]
         [Tooltip("Determines when to increase the stats of vanilla terraia bosses in hell mode...\n(Default: On)")]
         public bool HellModeVanillaBosses = true;
+
+        /// <summary>
+        /// Makes Hell Mode Cruel
+        /// </summary>
+        [DefaultValue(true)]
+        [BackgroundColor(138, 29, 29)]
+        [Label("Brutal Hell (Hell Mode+) Augmentations")]
+        [Tooltip("Makes Hell Mode Cruel. Adds a temperature system, makes the night extremely dark, etc.\n(Default: Off)")]
+        public bool BrutalHellMode = false;
     }
 }

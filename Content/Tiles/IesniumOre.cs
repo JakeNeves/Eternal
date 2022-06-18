@@ -28,8 +28,7 @@ namespace Eternal.Content.Tiles
             name.SetDefault("Iesnium");
             AddMapEntry(new Color(22, 71, 73), name);
             MinPick = 100;
-            SoundType = SoundID.Tink;
-            SoundStyle = 1;
+            HitSound = SoundID.Tink;
             MineResist = 2f;
         }
 

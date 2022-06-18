@@ -20,6 +20,11 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             Main.npcFrameCount[NPC.type] = 4;
             NPCID.Sets.TrailCacheLength[NPC.type] = 14;
             NPCID.Sets.TrailingMode[NPC.type] = 0;
+
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            {
+                Hide = true
+            };
         }
 
         public override void HitEffect(int hitDirection, double damage)

@@ -54,14 +54,14 @@ namespace Eternal.Content.Items.Misc
                 {
                     if (DifficultySystem.hellMode == false)
                     {
-                        SoundEngine.PlaySound(SoundID.ForceRoar, player.position, 0);
+                        SoundEngine.PlaySound(SoundID.ForceRoar, player.position);
                         DifficultySystem.hellMode = true;
                         Main.NewText("Hell Mode is Active, witness the unspeakable menace!", 236, 0, 100);
                         //Main.NewText("Hell Mode is Active, enjoy the fun!", 210, 0, 220);
                     }
                     else if (DifficultySystem.hellMode == true)
                     {
-                        SoundEngine.PlaySound(SoundID.ForceRoar, player.position, 0);
+                        SoundEngine.PlaySound(SoundID.ForceRoar, player.position);
                         DifficultySystem.hellMode = false;
                         Main.NewText("Hell Mode is no longer Active, breathe easy...", 236, 0, 100);
                         //Main.NewText("Hell Mode is no longer Active, not enough fun for you!", 210, 0, 220);

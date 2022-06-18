@@ -32,7 +32,7 @@ namespace Eternal.Common.Players
 
         public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
         {
-            var entitySource = Entity.GetSource_None();
+            var entitySource = NPC.GetSource_None();
 
             if (Dreadheart)
             {

@@ -1,4 +1,5 @@
-﻿using Eternal.Content.Rarities;
+﻿using Eternal.Common.Players;
+using Eternal.Content.Rarities;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -36,9 +37,7 @@ namespace Eternal.Content.Items.Armor
                             "\n15% increased damage when below half health";
             player.GetDamage(DamageClass.Melee) += 0.20f;
             player.GetAttackSpeed(DamageClass.Melee) += 0.17f;
-
-            //EternalGlobalProjectile.starbornArmor = true;
-            //EternalPlayer.StarbornArmorMeleeBonus = true;
+            ArmorSystem.StarbornArmor = true;
 
             Dust dust;
             Vector2 position = Main.LocalPlayer.Center;

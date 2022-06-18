@@ -2,6 +2,7 @@
 using Eternal.Content.BossBars;
 using Eternal.Content.Items.BossBags;
 using Eternal.Content.Items.Materials;
+using Eternal.Content.Items.Pets;
 using Eternal.Content.Items.Potions;
 using Eternal.Content.Projectiles.Boss;
 using Eternal.Content.Projectiles.Explosion;
@@ -94,6 +95,8 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             LeadingConditionRule notExpertRule = new(new Conditions.NotExpert());
+
+            npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<ReminantHead>(), 4));
 
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<CosmicApparitionBag>()));
 
@@ -263,7 +266,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
 
                     if (!phase2Warn)
                     {
-                        SoundEngine.PlaySound(SoundID.NPCDeath10, (int)NPC.position.X, (int)NPC.position.Y);
+                        SoundEngine.PlaySound(SoundID.NPCDeath10, NPC.position);
                         phase2Warn = true;
                     }
 
@@ -279,7 +282,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
                 }
                 if (teleportTimer == 250)
                 {
-                    SoundEngine.PlaySound(SoundID.DD2_DarkMageCastHeal, Main.myPlayer);
+                    SoundEngine.PlaySound(SoundID.DD2_DarkMageCastHeal, NPC.position);
                     NPC.position.X = targetPosition.X + Main.rand.Next(-400, 400);
                     for (int k = 0; k < 5; k++)
                     {
@@ -315,8 +318,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
                     dontKillyet = true;
                     player.ApplyDamageToNPC(NPC, 9999, 0, 0, false);
 
-                    SoundEngine.PlaySound(SoundID.Roar, (int)NPC.position.X, (int)NPC.position.Y, 2);
-                    SoundEngine.PlaySound(SoundID.NPCDeath10, (int)NPC.position.X, (int)NPC.position.Y);
+                    SoundEngine.PlaySound(SoundID.NPCDeath10, NPC.position);
 
                     if (!DownedBossSystem.downedCosmicApparition)
                     {

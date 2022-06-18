@@ -1,4 +1,6 @@
 ﻿using Eternal.Content.Items.Materials;
+using Eternal.Content.Items.Weapons.Melee;
+using Eternal.Content.Items.Weapons.Ranged;
 using Eternal.Content.NPCs.Boss.CosmicApparition;
 using Terraria;
 using Terraria.ModLoader;
@@ -33,6 +35,19 @@ namespace Eternal.Content.Items.BossBags
             var entitySource = player.GetSource_OpenItem(Type);
 
             player.QuickSpawnItem(entitySource, ModContent.ItemType<ApparitionalMatter>(), Main.rand.Next(30, 60));
+
+            if (Main.rand.NextBool(1))
+            {
+                player.QuickSpawnItem(entitySource, ModContent.ItemType<Vexation>());
+            }
+            if (Main.rand.NextBool(2))
+            {
+                player.QuickSpawnItem(entitySource, ModContent.ItemType<Starfall>());
+            }
+            if (Main.rand.NextBool(3))
+            {
+                player.QuickSpawnItem(entitySource, ModContent.ItemType<SerpentKiller>());
+            }
         }
 
         public override int BossBagNPC => ModContent.NPCType<CosmicApparition>();

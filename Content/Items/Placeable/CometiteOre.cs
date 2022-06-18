@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -9,6 +10,8 @@ namespace Eternal.Content.Items.Placeable
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("A shard of cosmic debris\n'Pure starpower radiates from this cluster'");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
         }
 
         public override void SetDefaults()

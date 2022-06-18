@@ -34,7 +34,7 @@ namespace Eternal.Content.Items.Summon
         public override bool? UseItem(Player player)
         {
             NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<IgneopedeHead>());
-            SoundEngine.PlaySound(SoundID.Roar, player.position, 0);
+            SoundEngine.PlaySound(SoundID.Roar, player.position);
             return true;
         }
 

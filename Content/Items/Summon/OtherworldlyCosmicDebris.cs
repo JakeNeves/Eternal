@@ -37,7 +37,7 @@ namespace Eternal.Content.Items.Summon
             var entitySource = player.GetSource_FromThis();
 
             NPC.NewNPC(entitySource, (int)player.Center.X, (int)player.Center.Y - 900, ModContent.NPCType<WanderingSoul>());
-            SoundEngine.PlaySound(SoundID.Roar, player.position, 0);
+            SoundEngine.PlaySound(SoundID.Roar, player.position);
             return true;
         }
 
