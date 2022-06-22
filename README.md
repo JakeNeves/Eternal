@@ -13,11 +13,23 @@ from each boss (not all rewards are available yet...), and even some post-Moon L
 content to make things a bit more fun with a chance of sudden randomness from out of
 complete nowhere!
 
+## tModLoader 1.4 Port
+
+-----------------------
+
+The Eternal mod is currently being ported to 1.4, the 1.3 version is no longer receiving support.
+Everything will be ported, but does this really mean everything? technically no, but there is a who bunch
+of new content coming to the 1.4 port fortunatley, most of the content will be returning and some of it
+will be either removed or replaced.
+
+### The Content port to 1.4
+
+Most of the content will be ported over to 1.4, however some of it will look and/or work completely different.
+Some of the content will also be renamed to something else (e.g., Imperious Cohort -> Arkrystal Blade, Shooting Starbow -> Starfall, etc.).
+
 ## Developers
 
-[Jake 'JakeTEM' Neves (Me)](https://www.youtube.com/channel/UCaPYj8aYX30iDGOP7B9HUIQ) * Creator * Spriting (for most of the mod) * Music
-
-[Jaer Hend (Sometimes)](https://www.youtube.com/channel/UCV-N3n_v9wFc8cbSh-0FwUA) * Spriting (for some of the mod)
+[Jake 'JakeTEM' Neves (Me)](https://www.youtube.com/channel/UCaPYj8aYX30iDGOP7B9HUIQ) * Creator * Mostly Everything
 
 -----------------------
 
