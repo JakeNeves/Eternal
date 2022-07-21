@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Eternal.Content.NPCs.Boss.CarminiteAmalgamation;
+using Terraria.GameContent.Creative;
 
 namespace Eternal.Content.Items.Summon
 {
@@ -13,6 +14,8 @@ namespace Eternal.Content.Items.Summon
         {
             Tooltip.SetDefault("Summons the Carminite Amalgamation" +
                                "\n'Looks rather tasty...'");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
         }
 
         public override void SetDefaults()

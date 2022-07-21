@@ -11,7 +11,7 @@ namespace Eternal.Content.Buffs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Holy Mantle");
-            Description.SetDefault("The Holy Mantle is protecting you, this will last until you get hit");
+            Description.SetDefault("A Holy Shield is protecting you, this will last until you get hit");
             Main.buffNoSave[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
         }

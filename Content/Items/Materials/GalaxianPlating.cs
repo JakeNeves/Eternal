@@ -1,5 +1,6 @@
 ﻿using Eternal.Content.Rarities;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -10,7 +11,10 @@ namespace Eternal.Content.Items.Materials
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("'Durable plating from cosmic entities'");
+
             ItemID.Sets.ItemNoGravity[Item.type] = true;
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
         }
 
         public override void SetDefaults()

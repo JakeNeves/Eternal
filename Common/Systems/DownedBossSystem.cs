@@ -17,15 +17,15 @@ namespace Eternal.Common.Systems
 		public static bool downedSubzeroElemental = false;
 		public static bool downedDuneworm = false;
 		public static bool downedEmpraynia = false;
-		public static bool downedExoVlitchRipper = false;
+		public static bool downedRipper = false;
 		public static bool downedDroxOverlord = false;
 
 		// post-moon lord bosses
 		public static bool downedFrostKing = false;
 		public static bool downedCosmicApparition = false;
-		public static bool downedExoVlitchMechapede = false;
-		public static bool downedExoVlitchThanatophane = false;
-		public static bool downedExoVlitchArkasama = false;
+		public static bool downedMechapede = false;
+		public static bool downedThanatophane = false;
+		public static bool downedArkasama = false;
         #region bionic bosses
         public static bool downedBionicBossAny = false;
 		public static bool downedAtlas = false;
@@ -52,15 +52,15 @@ namespace Eternal.Common.Systems
 			downedSubzeroElemental = false;
 			downedDuneworm = false;
 			downedEmpraynia = false;
-			downedExoVlitchRipper = false;
+			downedRipper = false;
 			downedDroxOverlord = false;
 
 			// post-moon lord bosses
 			downedFrostKing = false;
 			downedCosmicApparition = false;
-			downedExoVlitchMechapede = false;
-			downedExoVlitchThanatophane = false;
-			downedExoVlitchArkasama = false;
+			downedMechapede = false;
+			downedThanatophane = false;
+			downedArkasama = false;
 			downedAtlas	= false;
 			downedBorealis = false;
 			downedCeres = false;
@@ -85,15 +85,15 @@ namespace Eternal.Common.Systems
 			downedSubzeroElemental = false;
 			downedDuneworm = false;
 			downedEmpraynia = false;
-			downedExoVlitchRipper = false;
+			downedRipper = false;
 			downedDroxOverlord = false;
 
 			// post-moon lord bosses
 			downedFrostKing = false;
 			downedCosmicApparition = false;
-			downedExoVlitchMechapede = false;
-			downedExoVlitchThanatophane = false;
-			downedExoVlitchArkasama = false;
+			downedMechapede = false;
+			downedThanatophane = false;
+			downedArkasama = false;
 			downedAtlas = false;
 			downedBorealis = false;
 			downedCeres = false;

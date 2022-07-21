@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -11,6 +12,8 @@ namespace Eternal.Content.Items.Misc
             Tooltip.SetDefault("Creates a portable floating dummy at your cursor" +
                              "\nDespawns when a boss is alive" +
                              "\n<right> to despawn all portadummies");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()

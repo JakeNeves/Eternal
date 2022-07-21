@@ -1,4 +1,5 @@
-﻿using Eternal.Content.Projectiles.Accessories;
+﻿using Eternal.Common.Systems;
+using Eternal.Content.Projectiles.Accessories;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -10,24 +11,29 @@ namespace Eternal.Common.Players
     {
         // hell mode
         public static bool Dreadheart = false;
+        public static bool BlackCandle = false;
 
         // expert mode
         public static bool Bloodtooth = false;
         public static bool DuneCore = false;
+        public static bool GiftofTheSwordGod = false;
 
         // misc
+        public static bool BlackLantern = false;
 
         public override void ResetEffects()
         {
             // hell mode
             Dreadheart = false;
+            BlackCandle = false;
 
             // expert mode
             Bloodtooth = false;
             DuneCore = false;
+            GiftofTheSwordGod = false;
 
             // misc
-
+            BlackLantern = false;
         }
 
         public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
@@ -51,6 +57,21 @@ namespace Eternal.Common.Players
                 for (int i = 0; i < Main.rand.Next(8, 16); i++)
                     Projectile.NewProjectile(entitySource, Player.Center.X, Player.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<DuneSparkFriendly>(), (int)damage, 0f, Main.myPlayer);
             }
+        }
+
+        public override void PostUpdate()
+        {
+            if (BlackLantern)
+                if (ModContent.GetInstance<ZoneSystem>().zoneBeneath)
+                    Player.buffImmune[BuffID.Obstructed] = true;
+
+            if (BlackCandle)
+                if (ModContent.GetInstance<ZoneSystem>().zoneBeneath)
+                {
+                    Player.buffImmune[BuffID.Obstructed] = true;
+                    Player.buffImmune[BuffID.Blackout] = true;
+                    Player.buffImmune[BuffID.Darkness] = true;
+                }
         }
     }
 }

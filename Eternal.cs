@@ -20,16 +20,18 @@ namespace Eternal
 {
 	public class Eternal : Mod
 	{
-		public const string AssetPath = $"{nameof(Eternal)}/Assets/";
+        internal static Eternal instance;
 
-		public override void Load()
+        public const string AssetPath = $"{nameof(Eternal)}/Assets/";
+
+        public override void Load()
         {
-
+            instance = this;
         }
 
 		public override void Unload()
         {
-
+            instance = null;
         }
 
         public override void PostSetupContent()

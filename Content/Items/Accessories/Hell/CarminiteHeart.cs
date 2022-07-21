@@ -1,5 +1,6 @@
 ﻿using Eternal.Content.Rarities;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Accessories.Hell
@@ -11,6 +12,8 @@ namespace Eternal.Content.Items.Accessories.Hell
             DisplayName.SetDefault("Heart of Carminite");
             Tooltip.SetDefault("Increased melee damage By 25%" +
                              "\nHell Mode drop");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()
@@ -24,7 +27,7 @@ namespace Eternal.Content.Items.Accessories.Hell
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Melee) += 0.25f;
+            player.GetDamage(DamageClass.Melee) += 1.25f;
         }
     }
 }

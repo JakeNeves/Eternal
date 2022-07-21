@@ -1,5 +1,6 @@
 ﻿using Eternal.Content.Projectiles.Weapons.Melee;
 using Eternal.Content.Rarities;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -10,6 +11,8 @@ namespace Eternal.Content.Items.Weapons.Melee
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("Not to be confused with 'Soul Sythe'");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()

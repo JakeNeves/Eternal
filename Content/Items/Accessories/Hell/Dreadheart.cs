@@ -3,6 +3,7 @@ using Eternal.Content.Rarities;
 using Eternal.Content.Tiles.CraftingStations;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -18,6 +19,8 @@ namespace Eternal.Content.Items.Accessories.Hell
                              "\nTaking damage can heal you by 6 to 12 HP" +
                              "\nHell Mode upgrade");
 
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(5, 4));
         }
 
@@ -32,8 +35,8 @@ namespace Eternal.Content.Items.Accessories.Hell
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Melee) += 0.45f;
-            player.GetAttackSpeed(DamageClass.Melee) += 0.15f;
+            player.GetDamage(DamageClass.Melee) += 1.45f;
+            player.GetAttackSpeed(DamageClass.Melee) += 1.15f;
             player.statLifeMax2 += 100;
             AccessorySystem.Dreadheart = true;
         }

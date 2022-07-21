@@ -1,5 +1,6 @@
 ﻿using Eternal.Content.Rarities;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -12,6 +13,8 @@ namespace Eternal.Content.Items.Armor
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("+25 increased max life");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()

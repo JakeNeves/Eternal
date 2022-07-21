@@ -1,6 +1,7 @@
 ﻿using Eternal.Content.Rarities;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -12,6 +13,8 @@ namespace Eternal.Content.Items.Materials
         {
             Tooltip.SetDefault("One is required for every known powerful item" +
                              "\n'A shard of the emperor's promise'");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
 
             ItemID.Sets.ItemIconPulse[Item.type] = true;
             ItemID.Sets.ItemNoGravity[Item.type] = true;

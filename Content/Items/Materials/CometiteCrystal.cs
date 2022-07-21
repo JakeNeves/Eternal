@@ -2,6 +2,7 @@
 using Eternal.Content.Tiles.CraftingStations;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Materials
@@ -11,6 +12,8 @@ namespace Eternal.Content.Items.Materials
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("'A crystaline shard of pristine starpower'");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
 
             Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(5, 10));
         }

@@ -1,6 +1,7 @@
 ﻿using Eternal.Content.Items.Materials;
 using Eternal.Content.Projectiles.Weapons.Ranged;
 using Eternal.Content.Tiles.CraftingStations;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -12,6 +13,8 @@ namespace Eternal.Content.Items.Ammo
         {
             Tooltip.SetDefault("Unlimited Ammo" +
                             "\n'Let's hope that these would work against anything...'");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()

@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -22,6 +23,8 @@ namespace Eternal.Content.Items.Misc
                 "\nSome Bosses will have diffrent and unique attack patterns" +
                 "\nBosses will drop unique Items, accesories, and weapons exclusive to this difficulty" +
                 "\n'You're playing with chaos'");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()

@@ -2,6 +2,7 @@
 using Eternal.Content.Rarities;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -13,6 +14,8 @@ namespace Eternal.Content.Items.Armor
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("17% increased ranged damage");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()
@@ -32,6 +35,7 @@ namespace Eternal.Content.Items.Armor
         public override void UpdateArmorSet(Player player)
         {
             player.setBonus = "20% increased ranged damage and shroomite armor effects" +
+                            "\nSome weapons receive special abilities" +
                             "\nWeapon projectiles heal the player by 15% when below half healt upon hitting any enemy" +
                             "\n15% increased damage when below half health";
             player.GetDamage(DamageClass.Ranged) += 0.20f;

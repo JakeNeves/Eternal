@@ -81,7 +81,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
             NPC.boss = true;
             Music = MusicID.Boss3;
             NPC.defense = 70;
-            NPC.damage = 60;
+            NPC.damage = 30;
             NPC.lavaImmune = true;
             NPC.noTileCollide = true;
             NPC.noGravity = true;
@@ -94,6 +94,28 @@ namespace Eternal.Content.NPCs.Boss.AoI
             NPC.buffImmune[BuffID.Frostburn] = true;
             NPC.buffImmune[BuffID.Frozen] = true;
             NPC.buffImmune[BuffID.Chilled] = true;
+        }
+
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            if (Main.masterMode)
+            {
+                NPC.lifeMax = 360000;
+                NPC.defense = 74;
+                NPC.damage = 40;
+            }
+            else if (DifficultySystem.hellMode)
+            {
+                NPC.lifeMax = 480000;
+                NPC.defense = 76;
+                NPC.damage = 45;
+            }
+            else
+            {
+                NPC.lifeMax = 240000;
+                NPC.defense = 72;
+                NPC.damage = 35;
+            }
         }
 
         public override void OnKill()
@@ -161,28 +183,6 @@ namespace Eternal.Content.NPCs.Boss.AoI
             if (DifficultySystem.hellMode && ModContent.GetInstance<CommonConfig>().BrutalHellMode)
             {
                 player.AddBuff(BuffID.Cursed, 180, false);
-            }
-        }
-
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
-        {
-            if (Main.masterMode)
-            {
-                NPC.lifeMax = 360000;
-                NPC.defense = 74;
-                NPC.damage = 70;
-            }
-            else if (DifficultySystem.hellMode)
-            {
-                NPC.lifeMax = 480000;
-                NPC.defense = 76;
-                NPC.damage = 75;
-            }
-            else
-            {
-                NPC.lifeMax = 240000;
-                NPC.defense = 72;
-                NPC.damage = 65;
             }
         }
 
@@ -361,7 +361,6 @@ namespace Eternal.Content.NPCs.Boss.AoI
                         dust.noLight = false;
                         dust.fadeIn = 1f;
                     }
-                    Main.NewText("A barrier starts forming around the Ark of Imperious", 0, 168, 79);
                     phase3Init = true;
                 }
             }
@@ -585,6 +584,5 @@ namespace Eternal.Content.NPCs.Boss.AoI
             scale = 1.5f;
             return null;
         }
-
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Eternal.Content.Projectiles.Weapons.Ranged;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -6,6 +7,11 @@ namespace Eternal.Content.Items.Weapons.Throwing
 {
     public class MoonstabKunai : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
+
         public override void SetDefaults()
         {
             Item.width = 10;

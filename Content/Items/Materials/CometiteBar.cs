@@ -2,6 +2,7 @@
 using Eternal.Content.Tiles.CraftingStations;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -14,6 +15,8 @@ namespace Eternal.Content.Items.Materials
             Tooltip.SetDefault("'A metallic alloy of pure starpower'");
 
             ItemID.Sets.ItemNoGravity[Item.type] = true;
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
 
             Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(5, 6));
         }

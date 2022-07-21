@@ -1,5 +1,6 @@
 ﻿using Eternal.Content.Buffs;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -11,6 +12,8 @@ namespace Eternal.Content.Items.Accessories
         {
             Tooltip.SetDefault("[c/20E354:Environmental Protection Pack (EPP)]" +
                              "\nProvides Immunity to Hyperthermia in Brutal Hell Mode");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()

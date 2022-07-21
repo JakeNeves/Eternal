@@ -3,6 +3,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Eternal.Content.NPCs.Boss.Igneopede;
+using Terraria.GameContent.Creative;
 
 namespace Eternal.Content.Items.Summon
 {
@@ -12,6 +13,8 @@ namespace Eternal.Content.Items.Summon
         {
             Tooltip.SetDefault("Attracts a giant lava centipede" +
                                "\n'This is not food'");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
         }
 
         public override void SetDefaults()
@@ -28,7 +31,7 @@ namespace Eternal.Content.Items.Summon
 
         public override bool CanUseItem(Player player)
         {
-            return !NPC.AnyNPCs(ModContent.NPCType<IgneopedeHead>());
+            return !NPC.AnyNPCs(ModContent.NPCType<IgneopedeHead>()) && player.ZoneUnderworldHeight;
         }
 
         public override bool? UseItem(Player player)

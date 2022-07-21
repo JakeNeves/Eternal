@@ -3,6 +3,7 @@ using Eternal.Content.Projectiles.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -14,7 +15,10 @@ namespace Eternal.Content.Items.Weapons.Melee
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("<right> to throw and leave a trail of bombs" +
+                             "\nMore Starspears spawn while wearing Starborn Armor or better" +
                              "\n'A Starsharp Spear'");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()
@@ -71,7 +75,6 @@ namespace Eternal.Content.Items.Weapons.Melee
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             float numberProjectiles = 6 + Main.rand.Next(4);
-            float rotation = MathHelper.ToRadians(15);
 
             position += Vector2.Normalize(velocity) * 15f;
 
@@ -79,15 +82,14 @@ namespace Eternal.Content.Items.Weapons.Melee
             {
                 if (player.altFunctionUse == 2)
                 {
-                    for (int i = 0; i < 3; i++)
+                    for (int i = 0; i < numberProjectiles; i++)
                     {
-                        Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f;
-                        Projectile.NewProjectile(source, position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, type, damage, knockback, player.whoAmI);
+                        Projectile.NewProjectile(source, position.X + Main.rand.NextFloat(-200, 200), position.Y + Main.rand.NextFloat(-200, 200), velocity.X, velocity.Y, type, damage, knockback, player.whoAmI);
                     }
                 }
                 else
                 {
-                    Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI);
+                    Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, type, damage, knockback, player.whoAmI);
                 }
 
             }

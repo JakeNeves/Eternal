@@ -1,6 +1,7 @@
 ﻿using Eternal.Content.Rarities;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Materials
@@ -10,6 +11,8 @@ namespace Eternal.Content.Items.Materials
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("'A Cosmic Bar That is Very Sturdy and Durable...'");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
 
             Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(5, 4));
         }

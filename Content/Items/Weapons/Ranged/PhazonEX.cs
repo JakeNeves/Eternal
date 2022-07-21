@@ -5,6 +5,7 @@ using Eternal.Content.Tiles.CraftingStations;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -15,13 +16,15 @@ namespace Eternal.Content.Items.Weapons.Ranged
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Phazon EX");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()
         {
             Item.width = 64;
             Item.height = 96;
-            Item.damage = 20000;
+            Item.damage = 1000;
             Item.knockBack = 4f;
             Item.noMelee = true;
             Item.DamageType = DamageClass.Ranged;

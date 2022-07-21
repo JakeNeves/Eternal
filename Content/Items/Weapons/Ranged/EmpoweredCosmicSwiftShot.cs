@@ -5,6 +5,7 @@ using Eternal.Content.Tiles.CraftingStations;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -16,6 +17,8 @@ namespace Eternal.Content.Items.Weapons.Ranged
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("'How good can it be?'");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()

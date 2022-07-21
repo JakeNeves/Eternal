@@ -2,6 +2,7 @@
 using Eternal.Content.Rarities;
 using Eternal.Content.Tiles.CraftingStations;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -13,6 +14,8 @@ namespace Eternal.Content.Items.Placeable.Interactive
         {
             DisplayName.SetDefault("Altar of Cosmic Desire");
             Tooltip.SetDefault("Used to worship the Cosmic Emperor");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()

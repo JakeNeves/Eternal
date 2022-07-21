@@ -4,6 +4,7 @@ using Eternal.Content.Rarities;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -15,6 +16,8 @@ namespace Eternal.Content.Items.Weapons.Melee
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("'Can you feel the light?'");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()
@@ -43,10 +46,10 @@ namespace Eternal.Content.Items.Weapons.Melee
         {
             if (Main.rand.NextBool(Main.rand.Next(1, 4)))
             {
-                Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<SunshineBomb>(), damage, knockback, player.whoAmI);
+                Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, ModContent.ProjectileType<SunshineBomb>(), damage, knockback, player.whoAmI);
             }
 
-            Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI);
+            Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, type, damage, knockback, player.whoAmI);
 
             return true;
         }

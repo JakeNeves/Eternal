@@ -1,4 +1,5 @@
-﻿using Terraria.ID;
+﻿using Terraria.GameContent.Creative;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Weapons.Ranged
@@ -9,6 +10,8 @@ namespace Eternal.Content.Items.Weapons.Ranged
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("'Feels fleshy...'");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()

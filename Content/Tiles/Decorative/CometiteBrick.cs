@@ -9,7 +9,6 @@ namespace Eternal.Content.Tiles.Decorative
     {
         public override void SetStaticDefaults()
         {
-            TileID.Sets.Ore[Type] = true;
             Main.tileShine2[Type] = true;
             Main.tileShine[Type] = 800;
             Main.tileSolid[Type] = true;

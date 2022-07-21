@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -9,6 +10,8 @@ namespace Eternal.Content.Items.Placeable.CraftingStations
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("Used to craft starmetal and cometite-teir items");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()

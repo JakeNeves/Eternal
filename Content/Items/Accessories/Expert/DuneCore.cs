@@ -1,5 +1,6 @@
 ﻿using Eternal.Common.Players;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -10,6 +11,8 @@ namespace Eternal.Content.Items.Accessories.Expert
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("Causes sparks to fly upon geeting hit");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         
         public override void SetDefaults()

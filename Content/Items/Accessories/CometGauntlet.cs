@@ -1,5 +1,6 @@
 ﻿using Eternal.Content.Rarities;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Accessories
@@ -12,6 +13,8 @@ namespace Eternal.Content.Items.Accessories
                                "\n17% increased melee speed" +
                                "\nEnables auto swing for melee weapons" +
                                "\n'The comets are now in the palm of your hand'");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()

@@ -13,7 +13,7 @@ namespace Eternal.Content.Biomes
 
         public override int Music => MusicLoader.GetMusicSlot(Mod, "Assets/Music/AstralDiscovery");
 
-        public override string BestiaryIcon => "Textures/Bestiary/Comet";
+        public override string BestiaryIcon => "Assets/Textures/Bestiary/Comet";
 
         public override void OnEnter(Player player)
         {

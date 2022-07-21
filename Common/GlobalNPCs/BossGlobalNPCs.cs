@@ -1,6 +1,7 @@
 ﻿using Eternal.Common.Configurations;
 using Eternal.Common.ItemDropRules.Conditions;
 using Eternal.Common.Systems;
+using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Misc;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
@@ -175,6 +176,10 @@ namespace Eternal.Common.GlobalNPCs
             {
                 case NPCID.WallofFlesh:
                     npcLoot.Add(ItemDropRule.ByCondition(hellModeDrop, ModContent.ItemType<HolyCard>(), 1));
+                    break;
+
+                case NPCID.Skeleton:
+                    npcLoot.Add(ItemDropRule.ByCondition(hellModeDrop, ModContent.ItemType<ShadowSkull>(), 1));
                     break;
             }
         }

@@ -51,8 +51,8 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
         {
             NPC.width = 54;
             NPC.height = 56;
-            NPC.lifeMax = 3000000;
-            NPC.defense = 120;
+            NPC.lifeMax = 2000000;
+            NPC.defense = 50;
             NPC.damage = 30;
             NPC.noGravity = true;
             NPC.noTileCollide = true;
@@ -68,20 +68,20 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
         {
             if (Main.masterMode)
             {
-                NPC.lifeMax = 9000000;
-                NPC.defense = 120;
-                NPC.damage = 90;
+                NPC.lifeMax = 2400000;
+                NPC.defense = 54;
+                NPC.damage = 70;
             }
             else if (DifficultySystem.hellMode)
             {
-                NPC.lifeMax = 12000000;
-                NPC.defense = 125;
-                NPC.damage = 120;
+                NPC.lifeMax = 2600000;
+                NPC.defense = 206;
+                NPC.damage = 80;
             }
             else
             {
-                NPC.lifeMax = 6000000;
-                NPC.defense = 115;
+                NPC.lifeMax = 2200000;
+                NPC.defense = 52;
                 NPC.damage = 60;
             }
         }
@@ -258,10 +258,10 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
                 {
                     for (int i = 0; i < 4; ++i)
                     {
-                        Projectile.NewProjectile(entitySource, player.position.X, player.position.Y - 800, 4, 0, ModContent.ProjectileType<CosmicFireball>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                        Projectile.NewProjectile(entitySource, player.position.X, player.position.Y + 800, -4, 0, ModContent.ProjectileType<CosmicFireball>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                        Projectile.NewProjectile(entitySource, player.position.X - 800, player.position.Y, 0, 4, ModContent.ProjectileType<CosmicFireball>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                        Projectile.NewProjectile(entitySource, player.position.X + 800, player.position.Y, 0, -4, ModContent.ProjectileType<CosmicFireball>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(entitySource, player.position.X + Main.rand.Next(-600, 600), player.position.Y - 800, 4, 0, ModContent.ProjectileType<CosmicFireball>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(entitySource, player.position.X + Main.rand.Next(-600, 600), player.position.Y + 800, -4, 0, ModContent.ProjectileType<CosmicFireball>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(entitySource, player.position.X - 800, player.position.Y + Main.rand.Next(-600, 600), 0, 4, ModContent.ProjectileType<CosmicFireball>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(entitySource, player.position.X + 800, player.position.Y + Main.rand.Next(-600, 600), 0, -4, ModContent.ProjectileType<CosmicFireball>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
                     }
                 }
                 if (attackTimer == 575 || attackTimer == 600)
@@ -275,6 +275,12 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
                     attackTimer = 0;
                 }
             }
+        }
+
+        public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
+        {
+            scale = 1.5f;
+            return null;
         }
     }
 }

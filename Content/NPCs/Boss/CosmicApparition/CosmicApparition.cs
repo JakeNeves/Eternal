@@ -322,14 +322,22 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
 
                     if (!DownedBossSystem.downedCosmicApparition)
                     {
-                        //Main.NewText("The cosmic entities have been empowered...", 120, 160, 240);
-
-                        //Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, 0, 0, ModContent.ProjectileType<CosmicApparitionSoul>(), 0, 0f, Main.myPlayer);
-
                         DownedBossSystem.downedCosmicApparition = true;
                     }
 
                     entitySource = NPC.GetSource_Death();
+
+                    int gore1 = Mod.Find<ModGore>("CosmicApparitionHead").Type;
+                    int gore2 = Mod.Find<ModGore>("CosmicApparitionBody").Type;
+                    int gore3 = Mod.Find<ModGore>("CosmicApparitionArm").Type;
+
+                    Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore1);
+                    Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore2);
+
+                    for (int i = 0; i < 2; i++)
+                    {
+                        Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore3);
+                    }
                 }
             }
 

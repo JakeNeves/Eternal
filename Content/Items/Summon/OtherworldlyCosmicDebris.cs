@@ -2,6 +2,7 @@
 using Eternal.Content.NPCs.Boss.CosmicApparition;
 using Terraria;
 using Terraria.Audio;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -14,6 +15,8 @@ namespace Eternal.Content.Items.Summon
         {
             Tooltip.SetDefault("Attracts a wandering soul" +
                              "\n'A mysteriously devious chunk of paranormal essance'");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()

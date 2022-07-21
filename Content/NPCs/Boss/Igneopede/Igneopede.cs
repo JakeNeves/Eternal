@@ -48,6 +48,29 @@ namespace Eternal.Content.NPCs.Boss.Igneopede
 			Music = MusicID.Boss3;
 		}
 
+		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+		{
+			if (Main.masterMode)
+			{
+				NPC.lifeMax = 640000;
+				NPC.damage = 30;
+				NPC.defense = 25;
+
+			}
+			else if (DifficultySystem.hellMode)
+			{
+				NPC.lifeMax = 1280000;
+				NPC.damage = 40;
+				NPC.defense = 30;
+			}
+			else
+			{
+				NPC.lifeMax = 320000;
+				NPC.damage = 20;
+				NPC.defense = 20;
+			}
+		}
+
 		public override void OnKill()
 		{
 			NPC.SetEventFlagCleared(ref DownedBossSystem.downedIgneopede, -1);
@@ -211,15 +234,26 @@ namespace Eternal.Content.NPCs.Boss.Igneopede
 			NPC.damage = 15;
 		}
 
-        public override void CustomBehavior()
-        {
-			var entitySource = NPC.GetSource_FromAI();
+		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+		{
+			if (Main.masterMode)
+			{
+				NPC.lifeMax = 640000;
+				NPC.damage = 30;
+				NPC.defense = 25;
 
-			Lighting.AddLight(NPC.position, 2.15f, 0.95f, 0f);
-
-			if (IgneopedeHead.attackTimer == 15 || IgneopedeHead.attackTimer == 25 || IgneopedeHead.attackTimer == 35 || IgneopedeHead.attackTimer == 45)
-            {
-				Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<IgneopedeFire>(), NPC.damage, 1, Main.myPlayer, 0, 0);
+			}
+			else if (DifficultySystem.hellMode)
+			{
+				NPC.lifeMax = 1280000;
+				NPC.damage = 40;
+				NPC.defense = 30;
+			}
+			else
+			{
+				NPC.lifeMax = 320000;
+				NPC.damage = 20;
+				NPC.defense = 20;
 			}
 		}
 
@@ -265,6 +299,29 @@ namespace Eternal.Content.NPCs.Boss.Igneopede
 			NPC.width = 58;
 			NPC.height = 76;
 			NPC.damage = 15;
+		}
+
+		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+		{
+			if (Main.masterMode)
+			{
+				NPC.lifeMax = 640000;
+				NPC.damage = 30;
+				NPC.defense = 25;
+
+			}
+			else if (DifficultySystem.hellMode)
+			{
+				NPC.lifeMax = 1280000;
+				NPC.damage = 40;
+				NPC.defense = 30;
+			}
+			else
+			{
+				NPC.lifeMax = 320000;
+				NPC.damage = 20;
+				NPC.defense = 20;
+			}
 		}
 
 		public override void CustomBehavior()

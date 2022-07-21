@@ -4,6 +4,7 @@ using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Weapons.Hell;
 using Eternal.Content.NPCs.Boss.DuneGolem;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.BossBags
@@ -12,8 +13,10 @@ namespace Eternal.Content.Items.BossBags
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Treasure Bag");
+            DisplayName.SetDefault("Treasure Bag (Dune Golem)");
             Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
         }
 
         public override void SetDefaults()

@@ -3,6 +3,7 @@ using Eternal.Content.Items.Weapons.Melee;
 using Eternal.Content.Items.Weapons.Ranged;
 using Eternal.Content.NPCs.Boss.CosmicApparition;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.BossBags
@@ -11,8 +12,10 @@ namespace Eternal.Content.Items.BossBags
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Treasure Bag");
+            DisplayName.SetDefault("Treasure Bag (Cosmic Apparition)");
             Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
         }
 
         public override void SetDefaults()
@@ -35,6 +38,8 @@ namespace Eternal.Content.Items.BossBags
             var entitySource = player.GetSource_OpenItem(Type);
 
             player.QuickSpawnItem(entitySource, ModContent.ItemType<ApparitionalMatter>(), Main.rand.Next(30, 60));
+            player.QuickSpawnItem(entitySource, ModContent.ItemType<StarmetalBar>(), Main.rand.Next(30, 60));
+            player.QuickSpawnItem(entitySource, ModContent.ItemType<InterstellarSingularity>(), Main.rand.Next(30, 60));
 
             if (Main.rand.NextBool(1))
             {
@@ -47,6 +52,10 @@ namespace Eternal.Content.Items.BossBags
             if (Main.rand.NextBool(3))
             {
                 player.QuickSpawnItem(entitySource, ModContent.ItemType<SerpentKiller>());
+            }
+            if (Main.rand.NextBool(4))
+            {
+                player.QuickSpawnItem(entitySource, ModContent.ItemType<ApparitionalDisk>());
             }
         }
 

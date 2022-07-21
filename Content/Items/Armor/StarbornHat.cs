@@ -2,6 +2,7 @@
 using Eternal.Content.Rarities;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -13,6 +14,8 @@ namespace Eternal.Content.Items.Armor
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("17% increased magic damage");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()
@@ -32,6 +35,7 @@ namespace Eternal.Content.Items.Armor
         public override void UpdateArmorSet(Player player)
         {
             player.setBonus = "+60 mana, 25% decreased mana cost and 20% increased magic damage" +
+                            "\nSome weapons receive special abilities" +
                             "\nWeapon projectiles heal the player by 15% when below half health upon hitting any enemy" +
                             "\nStarborn weapons cost 0 mana" +
                             "\n15% increased damage when below half health";

@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Eternal.Content.NPCs.Boss.DuneGolem;
+using Terraria.GameContent.Creative;
 
 namespace Eternal.Content.Items.Summon
 {
@@ -13,6 +14,8 @@ namespace Eternal.Content.Items.Summon
         {
             Tooltip.SetDefault("Summons a possessed desert idol" +
                                "\n'Throw it in the air, watch it attract an idol'");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()
@@ -31,7 +34,7 @@ namespace Eternal.Content.Items.Summon
 
         public override bool CanUseItem(Player player)
         {
-            return !NPC.AnyNPCs(ModContent.NPCType<DuneGolem>()) && player.ownedProjectileCounts[Item.shoot] < 1;
+            return !NPC.AnyNPCs(ModContent.NPCType<DuneGolem>()) && player.ownedProjectileCounts[Item.shoot] < 1 && player.ZoneDesert;
         }
 
         public override void AddRecipes()

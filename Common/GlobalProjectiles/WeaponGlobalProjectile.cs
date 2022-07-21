@@ -21,6 +21,14 @@ namespace Eternal.Common.GlobalProjectiles
                     Player.HealEffect(Main.rand.Next(10, 20), false);
                 }
             }
+
+            if (ArmorSystem.StarbornArmor)
+            {
+                if (Player.statLifeMax < Player.statLifeMax2 / 2)
+                {
+                    Player.HealEffect(Main.rand.Next(20, 40), false);
+                }
+            }
         }
     }
 }

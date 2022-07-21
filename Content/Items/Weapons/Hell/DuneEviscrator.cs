@@ -1,5 +1,6 @@
 ﻿using Eternal.Content.Projectiles.Weapons.Hell;
 using Eternal.Content.Rarities;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -10,6 +11,8 @@ namespace Eternal.Content.Items.Weapons.Hell
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("Hell Mode drop");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()

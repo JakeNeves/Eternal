@@ -1,5 +1,6 @@
 ﻿using Eternal.Content.Rarities;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Materials
@@ -10,6 +11,8 @@ namespace Eternal.Content.Items.Materials
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("'It pulses very faintly'");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
         }
 
         public override void SetDefaults()

@@ -41,7 +41,7 @@ namespace Eternal.Content.NPCs.Comet
 			NPC.CloneDefaults(NPCID.DiggerHead);
 			NPC.aiStyle = -1;
 			NPC.lavaImmune = true;
-			NPC.HitSound = SoundID.NPCHit4;
+			NPC.HitSound = SoundID.DD2_SkeletonHurt;
 			NPC.DeathSound = SoundID.NPCDeath5;
 			NPC.lifeMax = 3200;
 			NPC.defense = 10;
@@ -106,7 +106,7 @@ namespace Eternal.Content.NPCs.Comet
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
 			Main.instance.LoadNPC(NPC.type);
-			Texture2D texture = TextureAssets.Projectile[NPC.type].Value;
+			Texture2D texture = ModContent.Request<Texture2D>("Eternal/Content/NPCs/Comet/StarbeltSeekerHead_Shadow").Value;
 
 			Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, NPC.height * 0.5f);
 			for (int k = 0; k < NPC.oldPos.Length; k++)
@@ -158,7 +158,7 @@ namespace Eternal.Content.NPCs.Comet
 			NPC.CloneDefaults(NPCID.DiggerBody);
 			NPC.aiStyle = -1;
 			NPC.lavaImmune = true;
-			NPC.HitSound = SoundID.NPCHit4;
+			NPC.HitSound = SoundID.DD2_SkeletonHurt;
 			NPC.DeathSound = SoundID.NPCDeath5;
 			NPC.lifeMax = 3200;
 			NPC.defense = 10;
@@ -173,7 +173,7 @@ namespace Eternal.Content.NPCs.Comet
 		public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
 		{
 			Main.instance.LoadNPC(NPC.type);
-			Texture2D texture = TextureAssets.Projectile[NPC.type].Value;
+			Texture2D texture = ModContent.Request<Texture2D>("Eternal/Content/NPCs/Comet/StarbeltSeekerBody_Shadow").Value;
 
 			Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, NPC.height * 0.5f);
 			for (int k = 0; k < NPC.oldPos.Length; k++)
@@ -208,7 +208,7 @@ namespace Eternal.Content.NPCs.Comet
 			NPC.CloneDefaults(NPCID.DiggerTail);
 			NPC.aiStyle = -1;
 			NPC.lavaImmune = true;
-			NPC.HitSound = SoundID.NPCHit4;
+			NPC.HitSound = SoundID.DD2_SkeletonHurt;
 			NPC.DeathSound = SoundID.NPCDeath5;
 			NPC.lifeMax = 3200;
 			NPC.defense = 10;
@@ -223,7 +223,7 @@ namespace Eternal.Content.NPCs.Comet
 		public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
 		{
 			Main.instance.LoadNPC(NPC.type);
-			Texture2D texture = TextureAssets.Projectile[NPC.type].Value;
+			Texture2D texture = ModContent.Request<Texture2D>("Eternal/Content/NPCs/Comet/StarbeltSeekerTail_Shadow").Value;
 
 			Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, NPC.height * 0.5f);
 			for (int k = 0; k < NPC.oldPos.Length; k++)

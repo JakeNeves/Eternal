@@ -1,7 +1,6 @@
 ﻿using Eternal.Content.Items.Materials;
-using Eternal.Content.Rarities;
-using Eternal.Content.Tiles.CraftingStations;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -9,6 +8,10 @@ namespace Eternal.Content.Items.Tools
 {
     public class MachaliteHamaxe : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
 
         public override void SetDefaults()
         {

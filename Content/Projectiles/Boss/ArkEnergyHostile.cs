@@ -62,6 +62,5 @@ namespace Eternal.Content.Projectiles.Boss
             hitbox.Width += size * 2;
             hitbox.Height += size * 2;
         }
-
     }
 }

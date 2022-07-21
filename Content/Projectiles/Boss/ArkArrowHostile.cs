@@ -10,7 +10,6 @@ namespace Eternal.Content.Projectiles.Boss
 {
     public class ArkArrowHostile : ModProjectile
     {
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Ark Arrow");
@@ -66,6 +65,5 @@ namespace Eternal.Content.Projectiles.Boss
 
             Projectile.stepSpeed += 2.5f;
         }
-
     }
 }

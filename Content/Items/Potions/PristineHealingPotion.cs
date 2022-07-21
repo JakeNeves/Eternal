@@ -2,6 +2,7 @@
 using Eternal.Content.Rarities;
 using Eternal.Content.Tiles.CraftingStations;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -9,6 +10,11 @@ namespace Eternal.Content.Items.Potions
 {
     public class PristineHealingPotion : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 30;
+        }
+
         public override void SetDefaults()
         {
             Item.width = 28;

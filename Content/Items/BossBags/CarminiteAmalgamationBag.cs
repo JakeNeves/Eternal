@@ -4,6 +4,7 @@ using Eternal.Content.Items.Weapons.Melee;
 using Eternal.Content.Items.Weapons.Ranged;
 using Eternal.Content.NPCs.Boss.CarminiteAmalgamation;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.BossBags
@@ -12,8 +13,10 @@ namespace Eternal.Content.Items.BossBags
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Treasure Bag");
+            DisplayName.SetDefault("Treasure Bag (Carminite Amalgamation)");
             Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
         }
 
         public override void SetDefaults()

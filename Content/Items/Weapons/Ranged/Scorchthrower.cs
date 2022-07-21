@@ -5,6 +5,7 @@ using Eternal.Content.Tiles.CraftingStations;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -16,11 +17,13 @@ namespace Eternal.Content.Items.Weapons.Ranged
         {
             Tooltip.SetDefault("Fires a long superheated flame bar" +
                              "\n'KILL IT WITH FIRE!'");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()
         {
-            Item.damage = 660;
+            Item.damage = 420;
             Item.DamageType = DamageClass.Ranged;
             Item.width = 64;
             Item.height = 22;
@@ -62,6 +65,7 @@ namespace Eternal.Content.Items.Weapons.Ranged
             }
             return true;
         }
+
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(0, -2);

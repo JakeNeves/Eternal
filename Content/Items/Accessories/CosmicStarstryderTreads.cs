@@ -5,6 +5,7 @@ using Eternal.Content.Tiles.CraftingStations;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -25,6 +26,8 @@ namespace Eternal.Content.Items.Accessories
                                "\nImmunity to lava" +
                                "\nDouble tap a direction to dash, even vertically" +
                                "\n'Ascendance beyond your comprehension!'");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
             ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(360, 16, 4.6f);
         }

@@ -441,8 +441,6 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
             scale = 1.5f;
             return null;
         }
-
     }
-
 }
 

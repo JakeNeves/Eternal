@@ -68,6 +68,5 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
             return true;
         }
-
     }
 }

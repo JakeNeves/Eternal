@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -11,18 +12,25 @@ namespace Eternal.Content.Items.Pets
 		{
 			DisplayName.SetDefault("Reminant Head");
 			Tooltip.SetDefault("Summons a Cosmic Reminant to emit light" +
-							 "\n'yeah dude this is pretty spooky...'");
+							 "\n'Yeah dude this is pretty spooky...'");
+
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()
 		{
-			Item.CloneDefaults(ItemID.WispinaBottle);
-
 			Item.width = 20;
 			Item.height = 18;
 			Item.rare = ItemRarityID.Master;
 			Item.master = true;
+			Item.damage = 0;
+			Item.useStyle = ItemUseStyleID.Swing;
 			Item.shoot = ModContent.ProjectileType<Projectiles.Pets.CosmicReminant>();
+			Item.UseSound = SoundID.Item2;
+			Item.useAnimation = 20;
+			Item.useTime = 20;
+			Item.noMelee = true;
+			Item.value = Item.sellPrice(0, 5, 50);
 			Item.buffType = ModContent.BuffType<Buffs.Pets.CosmicReminant>();
 		}
 

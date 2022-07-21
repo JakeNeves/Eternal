@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -8,7 +9,12 @@ namespace Eternal.Content.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Grants 5% increased melee damage\n[c/008060:Ancient Artifact] \nA mysterious emblem, you have never seen this before... \nRumors believed that it was passed down from leader to leader of an unknown group... \nMaybe it was passed down to you because you were going to be the next leader of that group, who knows... \nThis dorminant emblem has something to do with empowering a dormant sword, gifted from the sword god himself.");
+            Tooltip.SetDefault("Grants 5% increased melee damage\n[c/008060:Ancient Artifact] \nA mysterious emblem, you have never seen this before..." +
+                             "\nRumors believed that it was passed down from leader to leader of an unknown group..." +
+                             "\nMaybe it was passed down to you because you were going to be the next leader of that group, who knows..." +
+                             "\nThis dormant emblem has something to do with empowering a dormant sword, gifted from the sword god himself.");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()
@@ -23,7 +29,7 @@ namespace Eternal.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Melee) += 0.05f;
+            player.GetDamage(DamageClass.Melee) += 1.05f;
         }
 
         public override void AddRecipes()
