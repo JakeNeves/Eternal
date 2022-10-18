@@ -97,7 +97,7 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
 
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<DuneGolemBag>()));
 
-            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<MachaliteShard>(), minimumDropped: 30, maximumDropped: 60));
+            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<MalachiteShard>(), minimumDropped: 30, maximumDropped: 60));
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)

@@ -40,7 +40,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
             var entitySource = Projectile.GetSource_FromAI();
 
-            if (ringTimer >= 15)
+            if (ringTimer > 10)
             {
                 Projectile.NewProjectile(entitySource, Projectile.Center.X, Projectile.Center.Y, 0, 0, ModContent.ProjectileType<FinalBossBladeProjectileRing>(), Projectile.damage, 0, Main.myPlayer, 0f, 0f);
                 ringTimer = 0;

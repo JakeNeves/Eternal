@@ -39,7 +39,7 @@ namespace Eternal.Content.Items.Accessories
             CreateRecipe()
                 .AddTile(TileID.MythrilAnvil)
                 .AddIngredient(ItemID.AvengerEmblem)
-                .AddIngredient(ModContent.ItemType<MachaliteSheets>(), 4)
+                .AddIngredient(ModContent.ItemType<MalachiteSheets>(), 4)
                 .AddIngredient(ModContent.ItemType<IesniumBar>(), 16)
                 .Register();
         }

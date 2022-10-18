@@ -25,6 +25,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             {
                 Hide = true
             };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
         }
 
         public override void HitEffect(int hitDirection, double damage)

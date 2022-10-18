@@ -19,7 +19,7 @@ namespace Eternal.Content.Items.Weapons.Melee
         {
             Item.width = 34;
             Item.height = 44;
-            Item.damage = 440;
+            Item.damage = 300;
             Item.knockBack = 3.5f;
             Item.value = Item.buyPrice(platinum: 1, gold: 3);
             Item.useTime = 16;

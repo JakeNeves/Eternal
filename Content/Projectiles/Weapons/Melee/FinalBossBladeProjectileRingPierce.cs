@@ -42,17 +42,18 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
         public override void AI()
         {
+            Projectile.spriteDirection = Projectile.direction;
+
+            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(45f);
+
             float maxDetectRadius = 420f;
             float projSpeed = 18f;
-
-            Projectile.spriteDirection = Projectile.direction;
 
             NPC closestNPC = FindClosestNPC(maxDetectRadius);
             if (closestNPC == null)
                 return;
 
             Projectile.velocity = (closestNPC.Center - Projectile.Center).SafeNormalize(Vector2.Zero) * projSpeed;
-            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(45f);
         }
 
         public NPC FindClosestNPC(float maxDetectDistance)

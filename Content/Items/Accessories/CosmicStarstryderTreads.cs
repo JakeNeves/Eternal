@@ -24,7 +24,7 @@ namespace Eternal.Content.Items.Accessories
                                "\nLava Waders effects" +
                                "\nMaster Ninja Gear effects" +
                                "\nImmunity to lava" +
-                               "\nDouble tap a direction to dash, even vertically" +
+                               "\nDouble tap a direction to dash, even vertically (NYI)" +
                                "\n'Ascendance beyond your comprehension!'");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -132,24 +132,23 @@ namespace Eternal.Content.Items.Accessories
 
     public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising, ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)
         {
-            ascentWhenFalling = 0.32f;
-            ascentWhenRising = 0.32f;
+            ascentWhenFalling = 0.16f;
+            ascentWhenRising = 0.16f;
             maxCanAscendMultiplier = 2.2f;
-            maxAscentMultiplier = 4.2f;
-            constantAscend = 0.136f;
+            maxAscentMultiplier = 2.2f;
+            constantAscend = 0.112f;
         }
 
         public override void HorizontalWingSpeeds(Player player, ref float speed, ref float acceleration)
         {
-            speed = 18.5f;
-            acceleration *= 4.6f;
+            speed = 9.5f;
+            acceleration *= 2.3f;
         }
 
         public override void AddRecipes()
         {
             CreateRecipe()
                 .AddIngredient(ItemID.TerrasparkBoots)
-                .AddIngredient(ItemID.MasterNinjaGear)
                 .AddIngredient(ItemID.LunarBar, 6)
                 .AddIngredient(ModContent.ItemType<CometiteBar>(), 20)
                 .AddIngredient(ModContent.ItemType<CometiteCrystal>(), 12)

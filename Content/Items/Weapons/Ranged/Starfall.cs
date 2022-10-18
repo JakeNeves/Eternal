@@ -21,7 +21,7 @@ namespace Eternal.Content.Items.Weapons.Ranged
         {
             Item.width = 40;
             Item.height = 58;
-            Item.damage = 440;
+            Item.damage = 300;
             Item.DamageType = DamageClass.Ranged;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.knockBack = 5;

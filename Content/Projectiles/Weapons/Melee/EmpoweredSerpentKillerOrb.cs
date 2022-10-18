@@ -36,19 +36,6 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
         {
             Lighting.AddLight(Projectile.position, 0.24f, 0.22f, 1.90f);
 
-            float maxDetectRadius = 400f;
-            float projSpeed = 16f;
-
-            if (Projectile.timeLeft < 280)
-            {
-                NPC closestNPC = FindClosestNPC(maxDetectRadius);
-                if (closestNPC == null)
-                    return;
-
-                Projectile.velocity = (closestNPC.Center - Projectile.Center).SafeNormalize(Vector2.Zero) * projSpeed;
-                Projectile.rotation = Projectile.velocity.ToRotation();
-            }
-
             float dustScale = 1f;
             if (Projectile.ai[0] == 0f)
                 dustScale = 0.05f;
@@ -107,30 +94,6 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
             hitbox.Y -= size;
             hitbox.Width += size * 2;
             hitbox.Height += size * 2;
-        }
-
-        public NPC FindClosestNPC(float maxDetectDistance)
-        {
-            NPC closestNPC = null;
-
-            float sqrMaxDetectDistance = maxDetectDistance * maxDetectDistance;
-
-            for (int k = 0; k < Main.maxNPCs; k++)
-            {
-                NPC target = Main.npc[k];
-                if (target.CanBeChasedBy())
-                {
-                    float sqrDistanceToTarget = Vector2.DistanceSquared(target.Center, Projectile.Center);
-
-                    if (sqrDistanceToTarget < sqrMaxDetectDistance)
-                    {
-                        sqrMaxDetectDistance = sqrDistanceToTarget;
-                        closestNPC = target;
-                    }
-                }
-            }
-
-            return closestNPC;
         }
 
         public override bool PreDraw(ref Color lightColor)

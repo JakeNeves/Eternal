@@ -1,7 +1,9 @@
 ﻿using Eternal.Common.Systems;
 using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 using Terraria;
+using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -46,6 +48,15 @@ namespace Eternal.Content.NPCs.Boss.AoI
                     Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.GreenTorch, hitDirection, 0f, 0, default(Color), 0.7f);
                 }
             }
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
+
+                new FlavorTextBestiaryInfoElement("The Ark of Imperious' servant, they aid there master in combat")
+            });
         }
 
         public override void AI()

@@ -22,8 +22,6 @@ namespace Eternal.Content.NPCs.Comet
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Starbelt Seeker");
-			NPCID.Sets.TrailCacheLength[NPC.type] = 40;
-			NPCID.Sets.TrailingMode[NPC.type] = 0;
 
 
 			var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
@@ -103,22 +101,6 @@ namespace Eternal.Content.NPCs.Comet
 			return !player.active || player.dead;
 		}
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
-        {
-			Main.instance.LoadNPC(NPC.type);
-			Texture2D texture = ModContent.Request<Texture2D>("Eternal/Content/NPCs/Comet/StarbeltSeekerHead_Shadow").Value;
-
-			Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, NPC.height * 0.5f);
-			for (int k = 0; k < NPC.oldPos.Length; k++)
-			{
-				Vector2 drawPos = (NPC.oldPos[k] - Main.screenPosition) + drawOrigin + new Vector2(0f, NPC.gfxOffY);
-				Color color = NPC.GetAlpha(drawColor) * ((NPC.oldPos.Length - k) / (float)NPC.oldPos.Length);
-				Main.EntitySpriteDraw(texture, drawPos, null, color, NPC.rotation, drawOrigin, NPC.scale, SpriteEffects.None, 0);
-			}
-
-			return true;
-		}
-
 		public override void Init()
 		{
 			base.Init();
@@ -148,9 +130,6 @@ namespace Eternal.Content.NPCs.Comet
 				Hide = true
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
-
-			NPCID.Sets.TrailCacheLength[NPC.type] = 40;
-			NPCID.Sets.TrailingMode[NPC.type] = 0;
 		}
 
 		public override void SetDefaults()
@@ -169,22 +148,6 @@ namespace Eternal.Content.NPCs.Comet
         {
 			Lighting.AddLight(NPC.position, 0.75f, 0f, 0.75f);
 		}
-
-		public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
-		{
-			Main.instance.LoadNPC(NPC.type);
-			Texture2D texture = ModContent.Request<Texture2D>("Eternal/Content/NPCs/Comet/StarbeltSeekerBody_Shadow").Value;
-
-			Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, NPC.height * 0.5f);
-			for (int k = 0; k < NPC.oldPos.Length; k++)
-			{
-				Vector2 drawPos = (NPC.oldPos[k] - Main.screenPosition) + drawOrigin + new Vector2(0f, NPC.gfxOffY);
-				Color color = NPC.GetAlpha(drawColor) * ((NPC.oldPos.Length - k) / (float)NPC.oldPos.Length);
-				Main.EntitySpriteDraw(texture, drawPos, null, color, NPC.rotation, drawOrigin, NPC.scale, SpriteEffects.None, 0);
-			}
-
-			return true;
-		}
 	}
 
 	internal class StarbeltSeekerTail : StarbeltSeeker
@@ -198,9 +161,6 @@ namespace Eternal.Content.NPCs.Comet
 				Hide = true
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
-
-			NPCID.Sets.TrailCacheLength[NPC.type] = 40;
-			NPCID.Sets.TrailingMode[NPC.type] = 0;
 		}
 
 		public override void SetDefaults()
@@ -218,22 +178,6 @@ namespace Eternal.Content.NPCs.Comet
 		public override void CustomBehavior()
 		{
 			Lighting.AddLight(NPC.position, 0.75f, 0f, 0.75f);
-		}
-
-		public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
-		{
-			Main.instance.LoadNPC(NPC.type);
-			Texture2D texture = ModContent.Request<Texture2D>("Eternal/Content/NPCs/Comet/StarbeltSeekerTail_Shadow").Value;
-
-			Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, NPC.height * 0.5f);
-			for (int k = 0; k < NPC.oldPos.Length; k++)
-			{
-				Vector2 drawPos = (NPC.oldPos[k] - Main.screenPosition) + drawOrigin + new Vector2(0f, NPC.gfxOffY);
-				Color color = NPC.GetAlpha(drawColor) * ((NPC.oldPos.Length - k) / (float)NPC.oldPos.Length);
-				Main.EntitySpriteDraw(texture, drawPos, null, color, NPC.rotation, drawOrigin, NPC.scale, SpriteEffects.None, 0);
-			}
-
-			return true;
 		}
 
 		public override void Init()

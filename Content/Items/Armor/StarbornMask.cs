@@ -1,5 +1,7 @@
 ﻿using Eternal.Common.Players;
+using Eternal.Content.Items.Materials;
 using Eternal.Content.Rarities;
+using Eternal.Content.Tiles.CraftingStations;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Creative;
@@ -36,9 +38,10 @@ namespace Eternal.Content.Items.Armor
         {
             player.setBonus = "20% increased melee damage and 17% increased melee speed" +
                             "\nSome weapons receive special abilities" +
-                            "\nWeapon projectiles heal the player by 15% when below half healt upon hitting any enemy" +
-                            "\nSome melee weapons recieve special modifiers" +
-                            "\n15% increased damage when below half health";
+                            "\nWeapon projectiles heal the player by 15 HP when below half healt upon hitting any enemy" +
+                            "\n15% increased damage when below half health" +
+                            "\n[c/FCA5033:Starborn Mask Bonus]" +
+                            "\nSome melee weapons recieve special modifiers";
             player.GetDamage(DamageClass.Melee) += 0.20f;
             player.GetAttackSpeed(DamageClass.Melee) += 0.17f;
             ArmorSystem.StarbornArmor = true;
@@ -54,17 +57,15 @@ namespace Eternal.Content.Items.Armor
             player.GetDamage(DamageClass.Melee) += 0.17f;
         }
 
-        /*public override void AddRecipes()
+        public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddTile(ModContent.TileType<Starforge>());
-            recipe.AddIngredient(ModContent.ItemType<StarmetalBar>(), 5);
-            recipe.AddIngredient(ModContent.ItemType<CometiteBar>(), 16);
-            recipe.AddIngredient(ModContent.ItemType<GalaxianPlating>(), 4);
-            recipe.AddIngredient(ModContent.ItemType<CometiteCrystal>(), 6);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }*/
-
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<StarmetalBar>(), 5)
+                .AddIngredient(ModContent.ItemType<CometiteBar>(), 16)
+                .AddIngredient(ModContent.ItemType<GalaxianPlating>(), 4)
+                .AddIngredient(ModContent.ItemType<CometiteCrystal>(), 6)
+                .AddTile(ModContent.TileType<Starforge>())
+                .Register();
+        }
     }
 }

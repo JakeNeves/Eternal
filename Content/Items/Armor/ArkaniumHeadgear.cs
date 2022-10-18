@@ -38,8 +38,9 @@ namespace Eternal.Content.Items.Armor
         public override void UpdateArmorSet(Player player)
         {
             player.setBonus = "30% increased ranged damage" +
-                            "\nSwords rain down on you upon getting hit";
-            player.GetDamage(DamageClass.Ranged) += 0.30f;
+                            "\nSwords rain down on you upon getting hit" +
+                            "\nStarborn Armor Effects";
+            player.GetDamage(DamageClass.Ranged) += 1.30f;
 
             Dust dust;
             Vector2 position = Main.LocalPlayer.Center;
@@ -52,7 +53,7 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.GetDamage(DamageClass.Ranged) += 0.20f;
+            player.GetDamage(DamageClass.Ranged) += 1.20f;
         }
     }
 }

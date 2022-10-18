@@ -1,5 +1,6 @@
 ﻿using Eternal.Common.Systems;
 using Eternal.Content.Projectiles.Accessories;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -21,6 +22,12 @@ namespace Eternal.Common.Players
         // misc
         public static bool BlackLantern = false;
 
+        // cursors
+        public static bool hasVoidCursor = false;
+        public static bool hasCursorofTheCosmos = false;
+        public static bool hasSpiritArkCursor = false;
+        public static bool hasTheEternalCursor = false;
+
         public override void ResetEffects()
         {
             // hell mode
@@ -34,6 +41,12 @@ namespace Eternal.Common.Players
 
             // misc
             BlackLantern = false;
+
+            // cursor
+            hasVoidCursor = false;
+            hasCursorofTheCosmos = false;
+            hasSpiritArkCursor = false;
+            hasTheEternalCursor = false;
         }
 
         public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
@@ -72,6 +85,26 @@ namespace Eternal.Common.Players
                     Player.buffImmune[BuffID.Blackout] = true;
                     Player.buffImmune[BuffID.Darkness] = true;
                 }
+
+            if (hasVoidCursor)
+            {
+                Main.cursorColor = EternalCommonUtils.MultiLerpColor(Main.LocalPlayer.miscCounter % 100 / 100f, Color.Black, Color.Red, Color.Black);
+            }
+
+            if (hasCursorofTheCosmos)
+            {
+                Main.cursorColor = EternalCommonUtils.MultiLerpColor(Main.LocalPlayer.miscCounter % 100 / 100f, Color.Purple, Color.Magenta, Color.Purple);
+            }
+
+            if (hasSpiritArkCursor)
+            {
+                Main.cursorColor = EternalCommonUtils.MultiLerpColor(Main.LocalPlayer.miscCounter % 100 / 100f, Color.Teal, Color.Green, Color.Teal);
+            }
+
+            if (hasTheEternalCursor)
+            {
+                Main.cursorColor = EternalCommonUtils.MultiLerpColor(Main.LocalPlayer.miscCounter % 100 / 100f, Color.DarkRed, Color.PaleVioletRed, Color.DarkRed);
+            }
         }
     }
 }

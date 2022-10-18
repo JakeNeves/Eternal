@@ -28,6 +28,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             {
                 Hide = true
             };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
         }
 
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)

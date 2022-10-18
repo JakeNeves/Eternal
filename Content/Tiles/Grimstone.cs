@@ -1,10 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
-using Terraria.IO;
 using Terraria.ModLoader;
-using Terraria.WorldBuilding;
 
 namespace Eternal.Content.Tiles
 {
@@ -19,10 +17,14 @@ namespace Eternal.Content.Tiles
             Main.tileLighted[Type] = true;
             DustType = DustID.Stone;
             ItemDrop = ModContent.ItemType<Items.Placeable.Grimstone>();
-            ModTranslation name = CreateMapEntryName();
             AddMapEntry(new Color(24, 24, 24));
             MinPick = 50;
-            HitSound = SoundID.DD2_CrystalCartImpact;
+            HitSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/GrimstoneBreak")
+            {
+                Volume = 0.8f,
+                PitchVariance = Main.rand.NextFloat(0.2f, 0.9f),
+                MaxInstances = 0,
+            };
             MineResist = 6f;
         }
     }

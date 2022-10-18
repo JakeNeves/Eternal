@@ -41,7 +41,7 @@ namespace Eternal.Content.Items.Summon
         {
             CreateRecipe()
                 .AddTile(ModContent.TileType<Starforge>())
-                .AddIngredient(ModContent.ItemType<MachaliteSheets>(), 16)
+                .AddIngredient(ModContent.ItemType<MalachiteSheets>(), 16)
                 .AddIngredient(ModContent.ItemType<IesniumBar>(), 12)
                 .AddIngredient(ModContent.ItemType<WeatheredPlating>(), 3)
                 .AddIngredient(ModContent.ItemType<CometiteBar>(), 10)

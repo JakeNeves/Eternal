@@ -21,7 +21,7 @@ namespace Eternal.Content.Items.Weapons.Melee
         {
             Item.width = 58;
             Item.height = 58;
-            Item.damage = 230;
+            Item.damage = 200;
             Item.DamageType = DamageClass.Melee;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.knockBack = 3.5f;
@@ -36,8 +36,8 @@ namespace Eternal.Content.Items.Weapons.Melee
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            float numberProjectiles = 6 + Main.rand.Next(4);
-            float rotation = MathHelper.ToRadians(30);
+            float numberProjectiles = 2 + Main.rand.Next(3);
+            float rotation = MathHelper.ToRadians(15);
 
             position += Vector2.Normalize(velocity) * 15f;
 

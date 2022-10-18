@@ -13,20 +13,19 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Arkrystal Bolt");
-            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 80;
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 12;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }
 
         public override void SetDefaults()
         {
-            Projectile.width = 46;
-            Projectile.height = 46;
+            Projectile.width = 28;
+            Projectile.height = 28;
             Projectile.aiStyle = 1;
             Projectile.friendly = true;
             Projectile.hostile = false;
-            Projectile.penetrate = 10;
-            Projectile.timeLeft = 300;
-            Projectile.light = 1.0f;
+            Projectile.penetrate = 1;
+            Projectile.timeLeft = 450;
             Projectile.DamageType = DamageClass.Melee;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
@@ -37,20 +36,22 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
         {
             Lighting.AddLight(Projectile.position, 0.24f, 0.32f, 0.32f);
 
-            for (int k = 0; k < 5; k++)
-            {
-                Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, DustID.BlueTorch, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);
-            }
+            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(45f);
         }
 
         public override void Kill(int timeLeft)
         {
             for (int k = 0; k < 5; k++)
             {
-                Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, DustID.BlueCrystalShard, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);
+                Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, DustID.GreenTorch, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);
             }
             Collision.HitTiles(Projectile.position + Projectile.velocity, Projectile.velocity, Projectile.width, Projectile.height);
-            SoundEngine.PlaySound(SoundID.Tink, Projectile.position);
+            SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/ArkrystalBoltHit")
+            {
+                Volume = 0.8f,
+                PitchVariance = Main.rand.NextFloat(0.2f, 0.9f),
+                MaxInstances = 0,
+            }, Projectile.position);
         }
 
         public override bool PreDraw(ref Color lightColor)

@@ -1,6 +1,11 @@
-﻿using Eternal.Content.Projectiles.Weapons.Melee;
+﻿using Eternal.Common.Systems;
+using Eternal.Content.Items.Misc;
+using Eternal.Content.Items.Potions;
+using Eternal.Content.Items.Weapons.Throwing;
+using Eternal.Content.Projectiles.Weapons.Melee;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.Personalities;
 using Terraria.ID;
 using Terraria.Localization;
@@ -89,6 +94,15 @@ namespace Eternal.Content.NPCs.Town
             };
         }
 
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
+
+                new FlavorTextBestiaryInfoElement("Hier to the throne of Gallahard, he is the highest of the Gallahard Empire's monarchy. With his trust, he will call upon one of his emissaries to settle the very land."),
+            });
+        }
+
         public override void HitEffect(int hitDirection, double damage)
         {
             if (NPC.life < 0)
@@ -148,7 +162,7 @@ namespace Eternal.Content.NPCs.Town
                 case 2:
                     return "I rule an empire, that's all I do...";
                 case 3:
-                    return "Dr. Sebaston Kox does lead a really good space entity resarch team, am I right?";
+                    return "In case if your curious, how I like to throw parties sometimes, is with some fresh bread, baked by one of my favourite emissaries and some fine red wine.";
                 case 4:
                     return "I know what you're thinking, do I look like I am ready for a russian winter? Yes, I do!";
                 case 5:
@@ -157,8 +171,8 @@ namespace Eternal.Content.NPCs.Town
                     else
                         return "Honestly, I feel that this place could use some winter wonders...";
                 case 6:
-                    if (player.ZoneSnow || player.ZoneDesert)
-                        return "Why is it so hot down here, I wasn't built for places like this!";
+                    if (player.ZoneUnderworldHeight || player.ZoneDesert)
+                        return "Why is it so hot here, I wasn't built for places like this!";
                     else if (player.ZoneDesert && !Main.dayTime || player.ZoneSnow)
                         return "Okay to be honest, it's quite cold and I like it...";
                     else
@@ -180,19 +194,25 @@ namespace Eternal.Content.NPCs.Town
             }
         }
 
-        /*public override void SetupShop(Chest shop, ref int nextSlot)
+        public override void SetupShop(Chest shop, ref int nextSlot)
         {
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<JakesHat>());
+            Player player = Main.player[Main.myPlayer];
+
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<RoyalGaladianBread>());
             nextSlot++;
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<JakesCoat>());
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<FineRedWine>());
             nextSlot++;
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<JakesKicks>());
-            nextSlot++;
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<JakesCosmicWings>());
-            nextSlot++;
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<PristineHealingPotion>());
-            nextSlot++;
-        }*/
+
+            if (DownedBossSystem.downedCosmicApparition)
+            {
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<EmperorsTrust>());
+            }
+
+            if (player.name == "Jake" || player.name == "JakeTEM")
+            {
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<PocketJake>());
+            }
+        }
 
         public override bool CanGoToStatue(bool toKingStatue)
         {
@@ -209,7 +229,6 @@ namespace Eternal.Content.NPCs.Town
         {
             Main.NewText("How did I even get here?", 24, 96, 210);
         }
-
 
         public override void TownNPCAttackCooldown(ref int cooldown, ref int randExtraCooldown)
         {

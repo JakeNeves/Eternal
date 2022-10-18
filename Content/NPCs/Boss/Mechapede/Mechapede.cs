@@ -46,7 +46,7 @@ namespace Eternal.Content.NPCs.Boss.Mechapede
 			NPC.height = 68;
 			NPC.boss = true;
 			NPC.damage = 60;
-			Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/MechanicalEchosofTheVlitch");
+			Music = MusicID.Boss3;
 		}
 
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)

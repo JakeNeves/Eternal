@@ -37,10 +37,11 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "30% increased minion damage, 50% decreased mana cost and +16 minion slots" +
-                            "\nSwords rain down on you upon getting hit";
-            player.GetDamage(DamageClass.Summon) += 0.30f;
-            player.manaCost -= 0.50f;
+            player.setBonus = "30% increased minion damage, 25% decreased mana cost and +16 minion slots" +
+                            "\nSwords rain down on you upon getting hit" +
+                            "\nStarborn Armor Effects";
+            player.GetDamage(DamageClass.Summon) += 1.30f;
+            player.manaCost -= 1.25f;
             player.maxMinions += 16;
 
             Dust dust;
@@ -54,7 +55,7 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.GetDamage(DamageClass.Summon) += 0.20f;
+            player.GetDamage(DamageClass.Summon) += 1.20f;
         }
     }
 }

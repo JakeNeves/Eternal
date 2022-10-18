@@ -15,7 +15,7 @@ namespace Eternal.Content.Items.Weapons.Summon
         public override void SetDefaults()
         {
             Item.width = 28;
-            Item.height = 24;
+            Item.height = 20;
             Item.damage = 60;
             Item.DamageType = DamageClass.SummonMeleeSpeed;
             Item.useAnimation = 30;
@@ -28,6 +28,12 @@ namespace Eternal.Content.Items.Weapons.Summon
             Item.rare = ItemRarityID.Orange;
             Item.UseSound = SoundID.Item152;
             Item.autoReuse = false;
+            Item.channel = true;
+        }
+
+        public override bool MeleePrefix()
+        {
+            return true;
         }
     }
 }

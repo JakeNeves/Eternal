@@ -1,5 +1,7 @@
 ﻿using Eternal.Common.Configurations;
 using Eternal.Common.Systems;
+using Eternal.Content.Items.BossBags;
+using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Potions;
 using Eternal.Content.Projectiles.Boss;
 using Microsoft.Xna.Framework;
@@ -9,6 +11,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -17,20 +20,23 @@ namespace Eternal.Content.NPCs.Boss.AoI
     [AutoloadBossHead]
     public class ArkofImperious : ModNPC
     {
-        private Player player;
 
         bool isDashing = false;
         bool phase2Init = false;
         bool phase3Init = false;
         bool justSpawnedCircle = false;
+        bool isDead = false;
+        bool dontKillyet = false;
 
-        #region Fundimentals
         float speed = 16;
+        float acceleration = 0.2f;
+
         int Phase = 0;
         int AttackTimer = 0;
         int moveTimer;
-        float acceleration = 0.2f;
-        #endregion
+        int DeathTimer;
+
+        private Player player;
 
         public bool SpawnedShield
         {
@@ -48,7 +54,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
             }
             else if (DifficultySystem.hellMode)
             {
-                if (ModContent.GetInstance<CommonConfig>().BrutalHellMode)
+                if (ModContent.GetInstance<ServerConfig>().BrutalHellMode)
                 {
                     count += 10;
                 }
@@ -73,19 +79,25 @@ namespace Eternal.Content.NPCs.Boss.AoI
         public override void SetDefaults()
         {
             NPC.aiStyle = -1;
-            NPC.width = 68;
-            NPC.height = 230;
-            NPC.lifeMax = 120000;
-            NPC.HitSound = SoundID.NPCHit4;
-            NPC.DeathSound = SoundID.DD2_DarkMageHealImpact;
+            NPC.width = 170;
+            NPC.height = 418;
+            NPC.lifeMax = 2400000;
+            NPC.HitSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCHit/AoIHit")
+            {
+                Volume = 0.8f,
+                PitchVariance = Main.rand.NextFloat(0.2f, 0.9f),
+                MaxInstances = 0,
+            };
+            NPC.DeathSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCDeath/AoIDeath");
             NPC.boss = true;
             Music = MusicID.Boss3;
-            NPC.defense = 70;
-            NPC.damage = 30;
+            NPC.defense = 80;
+            NPC.damage = 40;
             NPC.lavaImmune = true;
             NPC.noTileCollide = true;
             NPC.noGravity = true;
             NPC.knockBackResist = 0f;
+            NPC.alpha = 0;
             NPC.buffImmune[BuffID.Poisoned] = true;
             NPC.buffImmune[BuffID.OnFire] = true;
             NPC.buffImmune[BuffID.Venom] = true;
@@ -100,21 +112,18 @@ namespace Eternal.Content.NPCs.Boss.AoI
         {
             if (Main.masterMode)
             {
-                NPC.lifeMax = 360000;
-                NPC.defense = 74;
-                NPC.damage = 40;
+                NPC.lifeMax = 4800000;
+                NPC.damage = 44;
             }
             else if (DifficultySystem.hellMode)
             {
-                NPC.lifeMax = 480000;
-                NPC.defense = 76;
-                NPC.damage = 45;
+                NPC.lifeMax = 9600000;
+                NPC.damage = 46;
             }
             else
             {
-                NPC.lifeMax = 240000;
-                NPC.defense = 72;
-                NPC.damage = 35;
+                NPC.lifeMax = 3600000;
+                NPC.damage = 42;
             }
         }
 
@@ -149,6 +158,15 @@ namespace Eternal.Content.NPCs.Boss.AoI
 
         public override void HitEffect(int hitDirection, double damage)
         {
+            if (!dontKillyet)
+            {
+                if (NPC.life < 0)
+                {
+                    NPC.life = 1;
+                    isDead = true;
+                }
+            }
+
             if (NPC.life <= 0)
             {
                 for (int i = 0; i < 25; i++)
@@ -156,7 +174,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
                     Vector2 position = NPC.Center + Vector2.UnitX.RotatedBy(MathHelper.ToRadians(360f / 25 * i)) * 15;
                     Dust dust = Dust.NewDustPerfect(NPC.position, DustID.GreenTorch);
                     dust.noGravity = true;
-                    dust.velocity = Vector2.Normalize(position - NPC.Center) * 4;
+                    dust.velocity = Vector2.Normalize(position - NPC.position);
                     dust.noLight = false;
                     dust.fadeIn = 1f;
                 }
@@ -180,7 +198,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
         {
             player.AddBuff(BuffID.Bleeding, 180, false);
             player.AddBuff(BuffID.BrokenArmor, 180, false);
-            if (DifficultySystem.hellMode && ModContent.GetInstance<CommonConfig>().BrutalHellMode)
+            if (DifficultySystem.hellMode && ModContent.GetInstance<ServerConfig>().BrutalHellMode)
             {
                 player.AddBuff(BuffID.Cursed, 180, false);
             }
@@ -317,122 +335,184 @@ namespace Eternal.Content.NPCs.Boss.AoI
 
         }
 
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            LeadingConditionRule notExpertRule = new(new Conditions.NotExpert());
+
+            npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<AoIBag>()));
+
+            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<WeatheredPlating>(), minimumDropped: 6, maximumDropped: 8));
+            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<RawArkaniumDebris>(), minimumDropped: 10, maximumDropped: 20));
+            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<RawArkrystal>(), minimumDropped: 10, maximumDropped: 20));
+        }
+
         public override void AI()
         {
             var entitySource = NPC.GetSource_FromAI();
+
+            Player target = Main.player[NPC.target];
 
             Vector2 vector2 = new Vector2(NPC.position.X + (float)NPC.width * 0.5f, NPC.position.Y + (float)NPC.height * 0.5f);
             float xDir = Main.player[NPC.target].position.X + (float)(Main.player[NPC.target].width / 2) - vector2.X;
             float yDir = (float)(Main.player[NPC.target].position.Y + (Main.player[NPC.target].height / 2) - 120) - vector2.Y;
             float length = (float)Math.Sqrt(xDir * xDir + yDir * yDir);
 
-            if (NPC.life < NPC.lifeMax / 2)
+            if (!isDead)
             {
-                Phase = 1;
-                if (!phase2Init)
+                if (NPC.life < NPC.lifeMax / 2)
                 {
-                    AttackTimer = 0;
-                    for (int i = 0; i < 25; i++)
+                    Phase = 1;
+                    if (!phase2Init)
                     {
-                        Vector2 position = NPC.Center + Vector2.UnitX.RotatedBy(MathHelper.ToRadians(360f / 25 * i)) * 15;
-                        Dust dust = Dust.NewDustPerfect(NPC.position, DustID.GreenTorch);
-                        dust.noGravity = true;
-                        dust.velocity = Vector2.Normalize(position - NPC.Center) * 4;
-                        dust.noLight = false;
-                        dust.fadeIn = 1f;
-                    }
-                    SoundEngine.PlaySound(SoundID.DD2_SkeletonSummoned, NPC.position);
-                    SpawnShield();
-                    phase2Init = true;
-                }
-            }
-            if (NPC.life < NPC.lifeMax / 3)
-            {
-                Phase = 2;
-                if (!phase3Init)
-                {
-                    AttackTimer = 0;
-                    for (int i = 0; i < 25; i++)
-                    {
-                        Vector2 position = NPC.Center + Vector2.UnitX.RotatedBy(MathHelper.ToRadians(360f / 25 * i)) * 15;
-                        Dust dust = Dust.NewDustPerfect(NPC.position, DustID.JungleTorch);
-                        dust.noGravity = true;
-                        dust.velocity = Vector2.Normalize(position - NPC.Center) * 4;
-                        dust.noLight = false;
-                        dust.fadeIn = 1f;
-                    }
-                    phase3Init = true;
-                }
-            }
-
-            AttackTimer++;
-
-            if (Phase == 1)
-            {
-                if (!justSpawnedCircle)
-                {
-                    Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, 0, 0, ModContent.ProjectileType<AoICircle>(), NPC.damage, 0, 0, 0f, NPC.whoAmI);
-                    justSpawnedCircle = true;
-                }
-            }
-            DoAttacks();
-
-            if (Phase == 2)
-            {
-                int maxDist;
-
-                if (Main.expertMode)
-                {
-                    maxDist = 1000;
-                }
-                else if (DifficultySystem.hellMode)
-                {
-                    maxDist = 900;
-                }
-                else
-                {
-                    maxDist = 2000;
-                }
-
-                // ripped from another mod, credit to the person who wrote this
-                for (int i = 0; i < 120; i++)
-                {
-                    double angle = Main.rand.NextDouble() * 2d * Math.PI;
-                    Vector2 offset = new Vector2((float)Math.Sin(angle) * maxDist, (float)Math.Cos(angle) * maxDist);
-                    Dust dust = Main.dust[Dust.NewDust(NPC.Center + offset, 0, 0, DustID.GreenTorch, 0, 0, 100)];
-                    dust.noGravity = true;
-                }
-                for (int i = 0; i < Main.player.Length; i++)
-                {
-                    Player player = Main.player[i];
-                    if (player.active && !player.dead && Vector2.Distance(player.Center, NPC.Center) > maxDist)
-                    {
-                        Vector2 toTarget = new Vector2(NPC.Center.X - player.Center.X, NPC.Center.Y - player.Center.Y);
-                        toTarget.Normalize();
-                        float speed = Vector2.Distance(player.Center, NPC.Center) > maxDist + 500 ? 1f : 0.5f;
-                        player.velocity += toTarget * 0.5f;
-
-                        player.dashDelay = 2;
-                        player.grappling[0] = -1;
-                        player.grapCount = 0;
-                        for (int p = 0; p < Main.projectile.Length; p++)
+                        AttackTimer = 0;
+                        for (int i = 0; i < 25; i++)
                         {
-                            if (Main.projectile[p].active && Main.projectile[p].owner == player.whoAmI && Main.projectile[p].aiStyle == 7)
+                            Vector2 position = NPC.Center + Vector2.UnitX.RotatedBy(MathHelper.ToRadians(360f / 25 * i)) * 15;
+                           Dust dust = Dust.NewDustPerfect(NPC.position, DustID.GreenTorch);
+                           dust.noGravity = true;
+                           dust.velocity = Vector2.Normalize(position - NPC.Center) * 4;
+                           dust.noLight = false;
+                            dust.fadeIn = 1f;
+                        }
+                         SoundEngine.PlaySound(SoundID.DD2_SkeletonSummoned, NPC.position);
+                         SpawnShield();
+                         phase2Init = true;
+                    }
+                }
+                if (NPC.life < NPC.lifeMax / 3)
+                {
+                    Phase = 2;
+                    if (!phase3Init)
+                    {
+                        AttackTimer = 0;
+                        for (int i = 0; i < 25; i++)
+                        {
+                            Vector2 position = NPC.Center + Vector2.UnitX.RotatedBy(MathHelper.ToRadians(360f / 25 * i)) * 15;
+                            Dust dust = Dust.NewDustPerfect(NPC.position, DustID.JungleTorch);
+                            dust.noGravity = true;
+                            dust.velocity = Vector2.Normalize(position - NPC.Center) * 4;
+                            dust.noLight = false;
+                            dust.fadeIn = 1f;
+                        }
+                        phase3Init = true;
+                    }
+                }
+
+            
+                AttackTimer++;
+
+                if (Phase == 1)
+                {
+                    if (!justSpawnedCircle)
+                    {
+                        Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, 0, 0, ModContent.ProjectileType<AoICircle>(), NPC.damage, 0, 0, 0f, NPC.whoAmI);
+                        justSpawnedCircle = true;
+                    }
+                }
+                DoAttacks();
+
+                if (Phase == 2)
+                {
+                    int maxDist;
+
+                    if (Main.expertMode)
+                    {
+                        maxDist = 1000;
+                    }
+                    else if (DifficultySystem.hellMode)
+                    {
+                        maxDist = 900;
+                    }
+                    else
+                    {
+                        maxDist = 2000;
+                    }
+
+                    // ripped from another mod, credit to the person who wrote this
+                    for (int i = 0; i < 120; i++)
+                    {
+                        double angle = Main.rand.NextDouble() * 2d * Math.PI;
+                        Vector2 offset = new Vector2((float)Math.Sin(angle) * maxDist, (float)Math.Cos(angle) * maxDist);
+                        Dust dust = Main.dust[Dust.NewDust(NPC.Center + offset, 0, 0, DustID.GreenTorch, 0, 0, 100)];
+                        dust.noGravity = true;
+                    }
+                    for (int i = 0; i < Main.player.Length; i++)
+                    {
+                        Player player = Main.player[i];
+                        if (player.active && !player.dead && Vector2.Distance(player.Center, NPC.Center) > maxDist)
+                        {
+                            Vector2 toTarget = new Vector2(NPC.Center.X - player.Center.X, NPC.Center.Y - player.Center.Y);
+                            toTarget.Normalize();
+                            float speed = Vector2.Distance(player.Center, NPC.Center) > maxDist + 500 ? 1f : 0.5f;
+                            player.velocity += toTarget * 0.5f;
+
+                            player.dashDelay = 2;
+                            player.grappling[0] = -1;
+                            player.grapCount = 0;
+                            for (int p = 0; p < Main.projectile.Length; p++)
                             {
-                                Main.projectile[p].Kill();
+                                if (Main.projectile[p].active && Main.projectile[p].owner == player.whoAmI && Main.projectile[p].aiStyle == 7)
+                                {
+                                    Main.projectile[p].Kill();
+                                }
                             }
                         }
                     }
+                    int maxdusts = 6;
+                    for (int i = 0; i < maxdusts; i++)
+                    {
+                        float dustDistance = 200;
+                        float dustSpeed = 8;
+                        Vector2 offset = Vector2.UnitX.RotateRandom(MathHelper.Pi) * dustDistance;
+                        Vector2 velocity = -offset.SafeNormalize(-Vector2.UnitY) * dustSpeed;
+                        Dust vortex = Dust.NewDustPerfect(new Vector2(NPC.Center.X, NPC.Center.Y) + offset, DustID.GreenTorch, velocity, 0, default(Color), 1.5f);
+                        vortex.noGravity = true;
+                    }
                 }
-                int maxdusts = 6;
-                for (int i = 0; i < maxdusts; i++)
+            }
+            else
+            {
+                DeathTimer++;
+                if (DeathTimer > 1)
                 {
-                    float dustDistance = 200;
-                    float dustSpeed = 8;
-                    Vector2 offset = Vector2.UnitX.RotateRandom(MathHelper.Pi) * dustDistance;
-                    Vector2 velocity = -offset.SafeNormalize(-Vector2.UnitY) * dustSpeed;
-                    Dust vortex = Dust.NewDustPerfect(new Vector2(NPC.Center.X, NPC.Center.Y) + offset, DustID.GreenTorch, velocity, 0, default(Color), 1.5f);
-                    vortex.noGravity = true;
+                    NPC.velocity.X = 0;
+                    NPC.velocity.Y = 0;
+                    NPC.life = 1;
+                    NPC.dontTakeDamage = true;
+                    NPC.alpha++;
+                }
+                if (DeathTimer >= 100)
+                {
+                    NPC.dontTakeDamage = false;
+                    dontKillyet = true;
+                    NPC.alpha = 0;
+                    target.ApplyDamageToNPC(NPC, 9999, 0, 0, false);
+
+                    for (int i = 0; i < 50; i++)
+                    {
+                        Vector2 position = NPC.Center + Vector2.UnitX.RotatedBy(MathHelper.ToRadians(360f / 50 * i)) * 30;
+                        Dust dust = Dust.NewDustPerfect(NPC.position, DustID.GreenTorch);
+                        dust.velocity = Vector2.Normalize(position - NPC.position);
+                        dust.noLight = false;
+                        dust.fadeIn = 1f;
+                    }
+
+                    if (!DownedBossSystem.downedArkofImperious)
+                    {
+                        DownedBossSystem.downedArkofImperious = true;
+                    }
+                }
+            }
+
+            if (!target.active || target.dead)
+            {
+                NPC.TargetClosest(false);
+                NPC.direction = 1;
+                NPC.velocity.Y = NPC.velocity.Y - 0.1f;
+                if (NPC.timeLeft > 5)
+                {
+                    NPC.timeLeft = 5;
+                    return;
                 }
             }
         }
@@ -583,6 +663,11 @@ namespace Eternal.Content.NPCs.Boss.AoI
         {
             scale = 1.5f;
             return null;
+        }
+
+        public override void BossHeadRotation(ref float rotation)
+        {
+            rotation = NPC.rotation;
         }
     }
 }

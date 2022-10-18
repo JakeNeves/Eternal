@@ -64,6 +64,49 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
             NPC.knockBackResist = -1f;
         }
 
+        public override bool StrikeNPC(ref double damage, int defense, ref float knockback, int hitDirection, ref bool crit)
+        {
+            if (damage > NPC.lifeMax / 2)
+            {
+                SoundEngine.PlaySound(SoundID.DD2_BallistaTowerShot);
+                if (Main.rand.NextBool(1))
+                {
+                    Main.NewText("No!", 150, 36, 120);
+                }
+                if (Main.rand.NextBool(2))
+                {
+                    Main.NewText("I shall not tolerate such action...", 150, 36, 120);
+                }
+                if (Main.rand.NextBool(3))
+                {
+                    Main.NewText("What is wrong with you?", 150, 36, 120);
+                }
+                if (Main.rand.NextBool(4))
+                {
+                    Main.NewText("You think your black magic can withstand my potental?", 150, 36, 120);
+                }
+                if (Main.rand.NextBool(5))
+                {
+                    Main.NewText("What an absolute cheater you are.", 150, 36, 120);
+                }
+                if (Main.rand.NextBool(6))
+                {
+                    Main.NewText("Don't you butcher me with your nonsense!", 150, 36, 120);
+                }
+                if (Main.rand.NextBool(7))
+                {
+                    Main.NewText("That did not penetrate me...", 150, 36, 120);
+                }
+                if (Main.rand.NextBool(8))
+                {
+                    Main.NewText("Maybe you should go butcher someone else, not me!", 150, 36, 120);
+                }
+
+                damage = 0;
+            }
+            return false;
+        }
+
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             if (Main.masterMode)

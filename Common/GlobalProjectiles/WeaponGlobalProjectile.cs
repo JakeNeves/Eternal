@@ -1,14 +1,23 @@
-﻿using Eternal.Common.Players;
-using Eternal.Content.Projectiles.Accessories;
-using System.Collections.Generic;
+﻿using Eternal.Common.Lists;
+using Eternal.Common.Players;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Eternal.Common.GlobalProjectiles
 {
     public class WeaponGlobalProjectile : GlobalProjectile
     {
+        public override bool InstancePerEntity => true;
+
+        public bool useMeleeFunctionality;
+
+        public override void SetDefaults(Projectile projectile)
+        {
+            if (ProjectileLists.canUseMeleeFunctionality.Contains(projectile.type))
+                useMeleeFunctionality = true;
+        }
+
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
         {
             Player Player = Main.player[Main.myPlayer];
@@ -29,6 +38,13 @@ namespace Eternal.Common.GlobalProjectiles
                     Player.HealEffect(Main.rand.Next(20, 40), false);
                 }
             }
+        }
+
+        public static Projectile NewProjectileDirectSafe(Vector2 pos, Vector2 vel, int type, int damage, float knockback, int owner = 255, float ai0 = 0f, float ai1 = 0f)
+        {
+            var entitySource = Projectile.GetSource_None();
+            int pro = Projectile.NewProjectile(entitySource, pos, vel, type, damage, knockback, owner, ai0, ai1);
+            return (pro < 1000) ? Main.projectile[pro] : null;
         }
     }
 }

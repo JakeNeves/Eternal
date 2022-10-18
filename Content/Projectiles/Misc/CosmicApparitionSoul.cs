@@ -63,5 +63,14 @@ namespace Eternal.Content.Projectiles.Misc
                     break;
             }
         }
+
+        public override void Kill(int timeLeft)
+        {
+            Main.NewText("The tundra crackles restless...", 7, 28, 224);
+            Main.NewText("You hear lightning strike the dunes...", 0, 95, 215);
+            Main.NewText("The ancient spirits of the underworld starts blazing furiously...", 215, 95, 0);
+            Main.NewText("The seal of the cosmic entities has been broken, newfound materials can be gathered from them...", 220, 0, 210);
+            Main.NewText("A faint etherial hum can be heard from the shrine...", 48, 255, 179);
+        }
     }
 }

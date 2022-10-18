@@ -74,8 +74,8 @@ namespace Eternal.Content.Projectiles.Weapons.Melee.Shortsword
 
 		private void SetVisualOffsets()
 		{
-			const int HalfSpriteWidth = 32 / 2;
-			const int HalfSpriteHeight = 32 / 2;
+			const int HalfSpriteWidth = 34 / 2;
+			const int HalfSpriteHeight = 34 / 2;
 
 			int HalfProjWidth = Projectile.width / 2;
 			int HalfProjHeight = Projectile.height / 2;

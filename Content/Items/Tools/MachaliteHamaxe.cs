@@ -34,7 +34,7 @@ namespace Eternal.Content.Items.Tools
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<MachaliteSheets>(), 9)
+                .AddIngredient(ModContent.ItemType<MalachiteSheets>(), 9)
                 .AddIngredient(ModContent.ItemType<IesniumBar>(), 12)
                 .AddTile(TileID.Anvils)
                 .Register();

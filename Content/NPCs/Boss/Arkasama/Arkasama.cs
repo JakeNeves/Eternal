@@ -49,7 +49,7 @@ namespace Eternal.Content.NPCs.Boss.Arkasama
             }
             else if (DifficultySystem.hellMode)
             {
-                if (ModContent.GetInstance<CommonConfig>().BrutalHellMode)
+                if (ModContent.GetInstance<ServerConfig>().BrutalHellMode)
                 {
                     count += 12;
                 }
@@ -83,7 +83,7 @@ namespace Eternal.Content.NPCs.Boss.Arkasama
             NPC.noGravity = true;
             NPC.noTileCollide = true;
             NPC.knockBackResist = -1f;
-            Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/MechanicalEchosofTheVlitch");
+            Music = MusicID.Boss3;
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)

@@ -13,6 +13,8 @@ namespace Eternal.Content.Items.Weapons.Melee
 {
     public class FinalBossBlade : ModItem
     {
+        int FBBMode = 0;
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Final Boss Blade");
@@ -35,11 +37,83 @@ namespace Eternal.Content.Items.Weapons.Melee
             Item.knockBack = 4f;
             Item.useAnimation = 24;
             Item.useTime = 24;
-            Item.shoot = ModContent.ProjectileType<FinalBossBladeProjectile1Shoot>();
+            if (FBBMode == 1)
+            {
+                Item.shoot = ModContent.ProjectileType<FinalBossBladeProjectile2Shoot>();
+            }
+            if (FBBMode == 2)
+            {
+                Item.shoot = ModContent.ProjectileType<FinalBossBladeProjectile1Shoot>();
+            }
+            else
+            {
+                Item.shoot = ModContent.ProjectileType<FinalBossBladeProjectile1Shoot>();
+            }
             Item.shootSpeed = 30f;
             Item.UseSound = SoundID.Item1;
             Item.rare = ModContent.RarityType<Turquoise>();
             Item.autoReuse = true;
+        }
+
+        public override bool AltFunctionUse(Player player)
+        {
+            return true;
+        }
+
+        public override bool CanUseItem(Player player)
+        {
+            if (player.altFunctionUse == 2)
+            {
+                Item.shoot = ProjectileID.None;
+                Item.shootSpeed = 0f;
+                Item.UseSound = SoundID.DD2_GhastlyGlaivePierce;
+
+                FBBMode += 1;
+
+                if (FBBMode > 2)
+                {
+                    FBBMode = 0;
+                }
+
+                if (FBBMode == 2)
+                {
+                    Item.useStyle = ItemUseStyleID.Shoot;
+                }
+                else
+                {
+                    Item.useStyle = ItemUseStyleID.Swing;
+                }
+
+                if (FBBMode == 1 || FBBMode == 2)
+                {
+                    Item.noUseGraphic = true;
+                    Item.autoReuse = false;
+                }
+                else
+                {
+                    Item.noUseGraphic = false;
+                    Item.autoReuse = true;
+                }
+
+                if (FBBMode == 0)
+                {
+                    CombatText.NewText(player.Hitbox, Color.MediumBlue, "Starspear", dramatic: true);
+                }
+                if (FBBMode == 1)
+                {
+                    CombatText.NewText(player.Hitbox, Color.MediumBlue, "Charging Buster", dramatic: true);
+                }
+                if (FBBMode == 2)
+                {
+                    CombatText.NewText(player.Hitbox, Color.MediumBlue, "Holdable Control Sword", dramatic: true);
+                }
+            }
+            else
+            {
+                Item.shootSpeed = 30f;
+                Item.UseSound = SoundID.Item1;
+            }
+            return base.CanUseItem(player);
         }
     }
 }

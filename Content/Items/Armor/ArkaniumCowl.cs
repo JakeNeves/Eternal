@@ -37,10 +37,11 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "30% increased magic damage and 50% decreased mana cost" +
-                            "\nSwords rain down on you upon getting hit";
-            player.GetDamage(DamageClass.Magic) += 0.30f;
-            player.manaCost -= 0.50f;
+            player.setBonus = "30% increased magic damage and 25% decreased mana cost" +
+                            "\nSwords rain down on you upon getting hit" +
+                            "\nStarborn Armor Effects";
+            player.GetDamage(DamageClass.Magic) += 1.30f;
+            player.manaCost -= 1.25f;
 
             Dust dust;
             Vector2 position = Main.LocalPlayer.Center;
@@ -53,7 +54,7 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.GetDamage(DamageClass.Magic) += 0.20f;
+            player.GetDamage(DamageClass.Magic) += 1.20f;
         }
     }
 }

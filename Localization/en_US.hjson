@@ -2,6 +2,7 @@ Mods: {
 	Eternal: {
 		BiomeName: {
 			Comet: Fallen Comet
+			Beneath: The Beneath
 		}
 
 		TownNPCMod: {
@@ -19,6 +20,14 @@ Mods: {
 				LoveNPC: I feel like I did what she does on a daily basis before, but that was some years ago...
 				DislikeNPC: I know what I am doing, I've been through situations like this before...
 				HateNPC: I hate children...
+			}
+			Emissary: {
+				Content: I am very well settled in this town, I might as well socialize with some new faces around here!
+				NoHome: I would like to settle on this land, however I feel a sudden urge to find some sort of shelter.
+				LoveSpace: I am very well astounished on what this place in particular has to offer.
+				FarFromHome: I have traveled miles away from the palace in the Gallahard Empire before, surely I can make my way home no problem.
+				LikeBiome: This place is nice and all, but I feel like there is a better place that I know of...
+				LoveBiome: Isn't this place great, I could live here for days!
 			}
 		}
 	}

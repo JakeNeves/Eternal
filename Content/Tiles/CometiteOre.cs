@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -25,8 +26,13 @@ namespace Eternal.Content.Tiles
             name.SetDefault("Cometite");
             AddMapEntry(new Color(30, 20, 40), name);
             MinPick = 225;
-            HitSound = SoundID.Tink;
-            MineResist = 5f;
+            HitSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/CometiteOreBreak")
+            {
+                Volume = 0.8f,
+                PitchVariance = Main.rand.NextFloat(0.2f, 0.9f),
+                MaxInstances = 0,
+            };
+            MineResist = 10f;
         }
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)

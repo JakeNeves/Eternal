@@ -52,7 +52,7 @@ namespace Eternal.Content.NPCs.Slimes
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MachaliteShard>(), minimumDropped: 6, maximumDropped: 12));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MalachiteShard>(), minimumDropped: 6, maximumDropped: 12));
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

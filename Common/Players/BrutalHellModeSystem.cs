@@ -23,7 +23,7 @@ namespace Eternal.Common.Players
 
         public override void PostUpdate()
         {
-            if (DifficultySystem.hellMode && ModContent.GetInstance<CommonConfig>().BrutalHellMode)
+            if (DifficultySystem.hellMode && ModContent.GetInstance<ServerConfig>().BrutalHellMode)
             {
                 if (Player.ZoneDesert && Main.dayTime)
                 {

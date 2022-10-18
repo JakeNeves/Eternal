@@ -20,12 +20,12 @@ namespace Eternal.Content.Projectiles.Armor
 
         public override void SetDefaults()
         {
-            Projectile.width = 26;
-            Projectile.height = 46;
+            Projectile.width = 30;
+            Projectile.height = 30;
             Projectile.friendly = true;
             Projectile.tileCollide = false;
             Projectile.ignoreWater = true;
-            Projectile.penetrate = 3;
+            Projectile.penetrate = -1;
             Projectile.timeLeft = 150;
         }
 

@@ -1,4 +1,6 @@
-﻿using Eternal.Content.Rarities;
+﻿using Eternal.Content.Items.Materials;
+using Eternal.Content.Rarities;
+using Eternal.Content.Tiles.CraftingStations;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -31,16 +33,14 @@ namespace Eternal.Content.Items.Armor
             player.statLifeMax2 += 50;
         }
 
-        /*public override void AddRecipes()
+        public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddTile(ModContent.TileType<Starforge>());
-            recipe.AddIngredient(ModContent.ItemType<StarmetalBar>(), 16);
-            recipe.AddIngredient(ModContent.ItemType<CometiteBar>(), 24);
-            recipe.AddIngredient(ModContent.ItemType<GalaxianPlating>(), 12);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }*/
-
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<StarmetalBar>(), 16)
+                .AddIngredient(ModContent.ItemType<CometiteBar>(), 24)
+                .AddIngredient(ModContent.ItemType<GalaxianPlating>(), 12)
+                .AddTile(ModContent.TileType<Starforge>())
+                .Register();
+        }
     }
 }

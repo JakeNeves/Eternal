@@ -1,4 +1,6 @@
-﻿using Terraria;
+﻿using Eternal.Content.Items.Materials;
+using Eternal.Content.Rarities;
+using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -23,11 +25,34 @@ namespace Eternal.Content.Items.Placeable.CraftingStations
             Item.autoReuse = true;
             Item.useAnimation = 15;
             Item.useTime = 10;
-            Item.rare = ItemRarityID.Red;
+            Item.rare = ModContent.RarityType<Teal>();
             Item.useStyle = ItemUseStyleID.Swing;
             Item.consumable = true;
             Item.value = Item.buyPrice(gold: 20);
             Item.createTile = ModContent.TileType<Content.Tiles.CraftingStations.Starforge>();
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<StarmetalBar>(), 60)
+                .AddIngredient(ModContent.ItemType<GalaxianPlating>(), 90)
+                .AddIngredient(ModContent.ItemType<Astragel>(), 120)
+                .AddIngredient(ModContent.ItemType<InterstellarSingularity>(), 48)
+                .AddIngredient(ItemID.LunarBar, 4)
+                .AddIngredient(ItemID.MythrilAnvil)
+                .AddTile(TileID.CrystalBall)
+                .Register();
+
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<StarmetalBar>(), 60)
+                .AddIngredient(ModContent.ItemType<GalaxianPlating>(), 90)
+                .AddIngredient(ModContent.ItemType<Astragel>(), 120)
+                .AddIngredient(ModContent.ItemType<InterstellarSingularity>(), 48)
+                .AddIngredient(ItemID.LunarBar, 4)
+                .AddIngredient(ItemID.OrichalcumAnvil)
+                .AddTile(TileID.CrystalBall)
+                .Register();
         }
     }
 }

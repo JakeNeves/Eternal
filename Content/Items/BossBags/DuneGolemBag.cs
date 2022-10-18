@@ -5,6 +5,7 @@ using Eternal.Content.Items.Weapons.Hell;
 using Eternal.Content.NPCs.Boss.DuneGolem;
 using Terraria;
 using Terraria.GameContent.Creative;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.BossBags
@@ -34,20 +35,10 @@ namespace Eternal.Content.Items.BossBags
             return true;
         }
 
-        public override void OpenBossBag(Player player)
+        public override void ModifyItemLoot(ItemLoot itemLoot)
         {
-            var entitySource = player.GetSource_OpenItem(Type);
-
-            if (DifficultySystem.hellMode)
-            {
-                player.QuickSpawnItem(entitySource, ModContent.ItemType<DuneEviscrator>());
-            }
-
-            player.QuickSpawnItem(entitySource, ModContent.ItemType<DuneCore>());
-
-            player.QuickSpawnItem(entitySource, ModContent.ItemType<MachaliteShard>(), Main.rand.Next(60, 90));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<MalachiteShard>(), minimumDropped: 16, maximumDropped: 20));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<DuneCore>()));
         }
-
-        public override int BossBagNPC => ModContent.NPCType<DuneGolem>();
     }
 }

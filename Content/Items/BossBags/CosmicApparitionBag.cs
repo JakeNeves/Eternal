@@ -1,9 +1,12 @@
-﻿using Eternal.Content.Items.Materials;
+﻿using Eternal.Common.ItemDropRules.Conditions;
+using Eternal.Content.Items.Accessories;
+using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Weapons.Melee;
 using Eternal.Content.Items.Weapons.Ranged;
-using Eternal.Content.NPCs.Boss.CosmicApparition;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent.Creative;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.BossBags
@@ -33,32 +36,27 @@ namespace Eternal.Content.Items.BossBags
             return true;
         }
 
-        public override void OpenBossBag(Player player)
+        public override void ModifyItemLoot(ItemLoot itemLoot)
         {
-            var entitySource = player.GetSource_OpenItem(Type);
+            AbsoluteRNGDropCondition absoluteRNG = new AbsoluteRNGDropCondition();
 
-            player.QuickSpawnItem(entitySource, ModContent.ItemType<ApparitionalMatter>(), Main.rand.Next(30, 60));
-            player.QuickSpawnItem(entitySource, ModContent.ItemType<StarmetalBar>(), Main.rand.Next(30, 60));
-            player.QuickSpawnItem(entitySource, ModContent.ItemType<InterstellarSingularity>(), Main.rand.Next(30, 60));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<ApparitionalMatter>(), minimumDropped: 30, maximumDropped: 60));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<InterstellarSingularity>(), minimumDropped: 30, maximumDropped: 60));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<StarmetalBar>(), minimumDropped: 30, maximumDropped: 60));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Vexation>(), 1));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Starfall>(), 2));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<ApparitionalDisk>(), 3));
 
-            if (Main.rand.NextBool(1))
-            {
-                player.QuickSpawnItem(entitySource, ModContent.ItemType<Vexation>());
-            }
-            if (Main.rand.NextBool(2))
-            {
-                player.QuickSpawnItem(entitySource, ModContent.ItemType<Starfall>());
-            }
-            if (Main.rand.NextBool(3))
-            {
-                player.QuickSpawnItem(entitySource, ModContent.ItemType<SerpentKiller>());
-            }
-            if (Main.rand.NextBool(4))
-            {
-                player.QuickSpawnItem(entitySource, ModContent.ItemType<ApparitionalDisk>());
-            }
+            ItemDropRule.ByCondition(absoluteRNG, ModContent.ItemType<ApparitionalViscara>(), 60);
         }
 
-        public override int BossBagNPC => ModContent.NPCType<CosmicApparition>();
+        public override void OnConsumeItem(Player player)
+        {
+            if (Main.LocalPlayer.HasItem(ModContent.ItemType<ApparitionalViscara>()))
+            {
+                Main.NewText(player.name + " has obtained the Apparitional Viscara, a crazy rare drop from the Absolute RNG pool!", 247, 47, 154);
+                SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/AbsoluteRNGDrop"), player.position);
+            }
+        }
     }
 }

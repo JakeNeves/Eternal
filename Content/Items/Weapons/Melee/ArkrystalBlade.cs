@@ -1,5 +1,7 @@
-﻿using Eternal.Content.Projectiles.Weapons.Melee;
+﻿using Eternal.Content.Items.Materials;
+using Eternal.Content.Projectiles.Weapons.Melee;
 using Eternal.Content.Rarities;
+using Eternal.Content.Tiles.CraftingStations;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -11,24 +13,24 @@ namespace Eternal.Content.Items.Weapons.Melee
 {
     public class ArkrystalBlade : ModItem
     {
-
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("<right> for True Melee");
+            Tooltip.SetDefault("<right> for True Melee" +
+                             "\n'Formally known as The Imperious Cohort...'");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()
         {
-            Item.width = 76;
-            Item.height = 76;
-            Item.damage = 2600;
+            Item.width = 68;
+            Item.height = 68;
+            Item.damage = 600;
             Item.DamageType = DamageClass.Melee;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.knockBack = 5;
-            Item.useAnimation = 22;
-            Item.useTime = 22;
+            Item.useAnimation = 26;
+            Item.useTime = 26;
             Item.shoot = ModContent.ProjectileType<ArkrystalBolt>();
             Item.shootSpeed = 18.2f;
             Item.UseSound = SoundID.Item1;
@@ -56,6 +58,16 @@ namespace Eternal.Content.Items.Weapons.Melee
             return base.CanUseItem(player);
         }
 
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<RefinedArkrystalSheets>(), 48)
+                .AddIngredient(ModContent.ItemType<ArkaniumCompoundSheets>(), 30)
+                .AddIngredient(ModContent.ItemType<WeatheredPlating>(), 4)
+                .AddTile(ModContent.TileType<AncientForge>())
+                .Register();
+        }
+
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             Vector2 target = Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY);
@@ -65,7 +77,7 @@ namespace Eternal.Content.Items.Weapons.Melee
                 ceilingLimit = player.Center.Y - 200f;
             }
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 2; i++)
             {
                 position = player.Center - new Vector2(Main.rand.NextFloat(401) * player.direction, 600f);
                 position.Y -= 100 * i;
@@ -85,6 +97,11 @@ namespace Eternal.Content.Items.Weapons.Melee
                 heading *= velocity.Length();
                 heading.Y += Main.rand.Next(-40, 41) * 0.02f;
                 Projectile.NewProjectile(source, position, heading, type, damage * 2, knockback, player.whoAmI, 0f, ceilingLimit);
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                Projectile.NewProjectile(source, player.Center.X + Main.rand.NextFloat(-36, 36), player.Center.Y + Main.rand.NextFloat(-36, 36), velocity.X, velocity.Y, type, damage, knockback, player.whoAmI);
             }
 
             return false;

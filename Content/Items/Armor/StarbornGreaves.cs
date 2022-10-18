@@ -1,4 +1,6 @@
-﻿using Eternal.Content.Rarities;
+﻿using Eternal.Content.Items.Materials;
+using Eternal.Content.Rarities;
+using Eternal.Content.Tiles.CraftingStations;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ModLoader;
@@ -40,6 +42,14 @@ namespace Eternal.Content.Items.Armor
             recipe.SetResult(this);
             recipe.AddRecipe();
         }*/
-
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<StarmetalBar>(), 8)
+                .AddIngredient(ModContent.ItemType<CometiteBar>(), 12)
+                .AddIngredient(ModContent.ItemType<GalaxianPlating>(), 8)
+                .AddTile(ModContent.TileType<Starforge>())
+                .Register();
+        }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using Eternal.Common.Players;
+using Eternal.Content.Items.Materials;
 using Eternal.Content.Rarities;
+using Eternal.Content.Tiles.CraftingStations;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Creative;
@@ -36,7 +38,7 @@ namespace Eternal.Content.Items.Armor
         {
             player.setBonus = "+8 minion slots and 20% increased minion damage" +
                             "\nSome weapons receive special abilities" +
-                            "\nWeapon projectiles heal the player by 15% when below half healt upon hitting any enemy" +
+                            "\nWeapon projectiles heal the player by 15 HP when below half healt upon hitting any enemy" +
                             "\n15% increased damage when below half health";
             player.GetDamage(DamageClass.Summon) += 0.20f;
             player.maxMinions += 8;
@@ -53,17 +55,15 @@ namespace Eternal.Content.Items.Armor
             player.GetDamage(DamageClass.Summon) += 0.17f;
         }
 
-        /*public override void AddRecipes()
+        public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddTile(ModContent.TileType<Starforge>());
-            recipe.AddIngredient(ModContent.ItemType<StarmetalBar>(), 5);
-            recipe.AddIngredient(ModContent.ItemType<CometiteBar>(), 16);
-            recipe.AddIngredient(ModContent.ItemType<GalaxianPlating>(), 4);
-            recipe.AddIngredient(ModContent.ItemType<CometiteCrystal>(), 6);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }*/
-
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<StarmetalBar>(), 5)
+                .AddIngredient(ModContent.ItemType<CometiteBar>(), 16)
+                .AddIngredient(ModContent.ItemType<GalaxianPlating>(), 4)
+                .AddIngredient(ModContent.ItemType<CometiteCrystal>(), 6)
+                .AddTile(ModContent.TileType<Starforge>())
+                .Register();
+        }
     }
 }

@@ -24,8 +24,8 @@ namespace Eternal.Content.Items.Weapons.Ranged
             Item.damage = 220;
             Item.noMelee = true;
             Item.DamageType = DamageClass.Ranged;
-            Item.useTime = 12;
-            Item.useAnimation = 12;
+            Item.useTime = 8;
+            Item.useAnimation = 8;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.UseSound = SoundID.Item11;
             Item.autoReuse = true;

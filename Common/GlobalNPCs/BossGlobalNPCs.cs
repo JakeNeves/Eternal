@@ -14,7 +14,7 @@ namespace Eternal.Common.GlobalNPCs
     {
         public override void ScaleExpertStats(NPC npc, int numPlayers, float bossLifeScale)
         {
-            if (DifficultySystem.hellMode && ModContent.GetInstance<CommonConfig>().HellModeVanillaBosses)
+            if (DifficultySystem.hellMode && ModContent.GetInstance<ServerConfig>().HellModeVanillaBosses)
             {
                 switch (npc.type)
                 {

@@ -93,7 +93,7 @@ namespace Eternal
                 // post-moon lord
                 bossChecklist.Call(
                     "AddBoss",
-                    17.5f,
+                    19.5f,
                     ModContent.NPCType<CosmicApparition>(),
                     this,
                     "Cosmic Apparition",

@@ -1,5 +1,6 @@
 ﻿using Eternal.Common.Systems;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Biomes
@@ -11,7 +12,7 @@ namespace Eternal.Content.Biomes
             DisplayName.SetDefault("Fallen Comet");
         }
 
-        public override int Music => MusicLoader.GetMusicSlot(Mod, "Assets/Music/AstralDiscovery");
+        public override int Music => MusicID.Eerie;
 
         public override string BestiaryIcon => "Assets/Textures/Bestiary/Comet";
 

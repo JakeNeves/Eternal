@@ -41,6 +41,7 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 3;
+
             NPCID.Sets.ShouldBeCountedAsBoss[Type] = true;
         }
 

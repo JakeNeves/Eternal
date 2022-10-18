@@ -5,6 +5,7 @@ using Eternal.Content.Items.Weapons.Ranged;
 using Eternal.Content.NPCs.Boss.CarminiteAmalgamation;
 using Terraria;
 using Terraria.GameContent.Creative;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.BossBags
@@ -34,35 +35,15 @@ namespace Eternal.Content.Items.BossBags
             return true;
         }
 
-        public override void OpenBossBag(Player player)
+        public override void ModifyItemLoot(ItemLoot itemLoot)
         {
-            var entitySource = player.GetSource_OpenItem(Type);
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Carminite>(), minimumDropped: 24, maximumDropped: 36));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Bloodtooth>()));
 
-            player.QuickSpawnItem(entitySource, ModContent.ItemType<Bloodtooth>());
-
-            player.QuickSpawnItem(entitySource, ModContent.ItemType<Carminite>(), Main.rand.Next(24, 36));
-
-            if (Main.rand.NextBool(1))
-            {
-                player.QuickSpawnItem(entitySource, ModContent.ItemType<CarminiteBane>());
-            }
-
-            if (Main.rand.NextBool(2))
-            {
-                player.QuickSpawnItem(entitySource, ModContent.ItemType<CarminitePurgatory>());
-            }
-
-            if (Main.rand.NextBool(3))
-            {
-                player.QuickSpawnItem(entitySource, ModContent.ItemType<CarminiteRipperClaws>());
-            }
-
-            if (Main.rand.NextBool(4))
-            {
-                player.QuickSpawnItem(entitySource, ModContent.ItemType<CarminiteDeadshot>());
-            }
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<CarminiteBane>(), 1));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<CarminitePurgatory>(), 2));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<CarminiteRipperClaws>(), 3));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<CarminiteDeadshot>(), 4));
         }
-
-        public override int BossBagNPC => ModContent.NPCType<CarminiteAmalgamation>();
     }
 }

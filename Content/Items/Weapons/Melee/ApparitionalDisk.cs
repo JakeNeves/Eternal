@@ -25,7 +25,6 @@ namespace Eternal.Content.Items.Weapons.Melee
             Item.useAnimation = 16;
             Item.useTime = 16;
             Item.useStyle = ItemUseStyleID.Swing;
-            Item.knockBack = 2f;
             Item.autoReuse = true;
             Item.UseSound = SoundID.Item1;
             Item.shoot = ModContent.ProjectileType<ApparitionalDiskProjectile>();

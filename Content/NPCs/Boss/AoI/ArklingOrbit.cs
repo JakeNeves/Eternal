@@ -10,6 +10,8 @@ namespace Eternal.Content.NPCs.Boss.AoI
 {
     public class ArklingOrbit : ModNPC
     {
+        public override string Texture => "Eternal/Content/NPCs/Boss/AoI/Arkling";
+
         public int ParentIndex
         {
             get => (int)NPC.ai[0] - 1;
@@ -37,6 +39,12 @@ namespace Eternal.Content.NPCs.Boss.AoI
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Arkling");
+
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            {
+                Hide = true
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
         }
 
         public override void SetDefaults()

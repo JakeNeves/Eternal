@@ -7,10 +7,12 @@ namespace Eternal.Common.Systems
     public class BiomeTileCount : ModSystem
     {
         public int cometCount;
+        public int grimstoneCount;
 
         public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts)
         {
             cometCount = tileCounts[ModContent.TileType<CometiteOre>()];
+            grimstoneCount = tileCounts[ModContent.TileType<Grimstone>()];
         }
     }
 }

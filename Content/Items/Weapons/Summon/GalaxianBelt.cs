@@ -31,6 +31,7 @@ namespace Eternal.Content.Items.Weapons.Summon
             Item.rare = ItemRarityID.Red;
             Item.UseSound = SoundID.Item152;
             Item.autoReuse = false;
+            Item.channel = true;
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -47,6 +48,11 @@ namespace Eternal.Content.Items.Weapons.Summon
             }
 
             return false;
+        }
+
+        public override bool MeleePrefix()
+        {
+            return true;
         }
     }
 }

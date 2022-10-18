@@ -9,7 +9,7 @@ namespace Eternal.Content.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("60% increased melee damage" +
+            Tooltip.SetDefault("35% increased melee damage" +
                                "\n17% increased melee speed" +
                                "\nEnables auto swing for melee weapons" +
                                "\n'The comets are now in the palm of your hand'");
@@ -20,7 +20,7 @@ namespace Eternal.Content.Items.Accessories
         public override void SetDefaults()
         {
             Item.width = 26;
-            Item.height = 24;
+            Item.height = 26;
             Item.accessory = true;
             Item.value = Item.sellPrice(gold: 30);
             Item.rare = ModContent.RarityType<Teal>();
@@ -30,8 +30,8 @@ namespace Eternal.Content.Items.Accessories
         {
             //EternalGlobalProjectile.cometGauntlet = true;
 
-            player.GetDamage(DamageClass.Melee) += 0.6f;
-            player.GetAttackSpeed(DamageClass.Melee) += 0.17f;
+            player.GetDamage(DamageClass.Melee) += 1.35f;
+            player.GetAttackSpeed(DamageClass.Melee) += 1.17f;
             player.autoReuseGlove = true;
         }
     }

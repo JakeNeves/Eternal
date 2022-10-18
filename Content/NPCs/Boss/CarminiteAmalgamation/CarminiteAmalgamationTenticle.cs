@@ -21,6 +21,7 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
             {
                 Hide = true
             };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
         }
 
         int moveTimer;

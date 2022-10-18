@@ -14,10 +14,33 @@ namespace Eternal.Common.Players
     public class BuffSystem : ModPlayer
     {
         public bool holyMantle = false;
+        public bool fidget = false;
+
+        public int fidgetTimer;
 
         public override void ResetEffects()
         {
             holyMantle = false;
+            fidget = false;
+
+            fidgetTimer = 0;
+        }
+
+        public override void PreUpdateBuffs()
+        {
+            if (fidget)
+            {
+                fidgetTimer++;
+
+                if (fidgetTimer > 30)
+                {
+                    Player.velocity.X = Main.rand.NextFloat(-1f, 1f);
+                } 
+                else if (fidgetTimer == 45)
+                {
+                    fidgetTimer = 0;
+                }
+            }
         }
 
         public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)

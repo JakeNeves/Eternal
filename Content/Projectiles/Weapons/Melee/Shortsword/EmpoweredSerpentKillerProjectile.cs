@@ -24,7 +24,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee.Shortsword
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Serpent Killer");
+			DisplayName.SetDefault("Empowered Serpent Killer");
 		}
 
 		public override void SetDefaults()
@@ -53,7 +53,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee.Shortsword
 			{
 				for (int i = 0; i < 3; i++)
 				{
-					Projectile.NewProjectile(entitySource, Projectile.Center.X, Projectile.Center.Y, Projectile.velocity.X, Projectile.velocity.Y, ModContent.ProjectileType<EmpoweredSerpentKillerOrb>(), Projectile.damage, 0, Main.myPlayer, 0f, 0f);
+					Projectile.NewProjectile(entitySource, player.Center.X + Main.rand.Next(-48, 48), player.Center.Y + Main.rand.Next(-48, 48), Projectile.velocity.X, Projectile.velocity.Y, ModContent.ProjectileType<EmpoweredSerpentKillerOrb>(), Projectile.damage, 0, Main.myPlayer, 0f, 0f);
 				}
 				Projectile.Kill();
 				return;
@@ -77,8 +77,8 @@ namespace Eternal.Content.Projectiles.Weapons.Melee.Shortsword
 
 		private void SetVisualOffsets()
 		{
-			const int HalfSpriteWidth = 32 / 2;
-			const int HalfSpriteHeight = 32 / 2;
+			const int HalfSpriteWidth = 44 / 2;
+			const int HalfSpriteHeight = 44 / 2;
 
 			int HalfProjWidth = Projectile.width / 2;
 			int HalfProjHeight = Projectile.height / 2;

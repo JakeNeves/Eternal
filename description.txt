@@ -1,6 +1,6 @@
-[c/1EC9E3:Eternal] (Indev) - By [c/008CFF:Jake][c/0204CFF:TEM]!
+[c/1EC9E3:Eternal] (Alpha) - By [c/008CFF:Jake][c/0204CFF:TEM]!
 
-1.0.9  - [c/009933:Indev/Beta]
+1.0.9  - [c/009933:Alpha]
 
 [c/00B359:---Jake's Lounge Discord Server---]
 Feel free to join my Discord Server and help out with the mod if you want
@@ -12,4 +12,4 @@ From what we expect, this mod is not fully finished yet so
 there is no harm in cheating in anything from the mod via HERO's and/or Cheat Sheet...
 
 [c/ED0249:---NOTICE---]
-This is a Beta build of the 1.4 port of Eternal, bugs and other sketchy things may arise!
+This is a public alpha build of the 1.4 port of Eternal, bugs and other sketchy things may arise!

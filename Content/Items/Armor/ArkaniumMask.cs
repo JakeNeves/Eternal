@@ -38,9 +38,10 @@ namespace Eternal.Content.Items.Armor
         public override void UpdateArmorSet(Player player)
         {
             player.setBonus = "30% increased melee damage and 20% increased melee speed" +
-                            "\nSwords rain down on you upon getting hit";
-            player.GetDamage(DamageClass.Melee) += 0.30f;
-            player.GetAttackSpeed(DamageClass.Melee) += 0.20f;
+                            "\nSwords rain down on you upon getting hit" +
+                            "\nStarborn Armor Effects";
+            player.GetDamage(DamageClass.Melee) += 1.30f;
+            player.GetAttackSpeed(DamageClass.Melee) += 1.20f;
 
             Dust dust;
             Vector2 position = Main.LocalPlayer.Center;
@@ -53,7 +54,7 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.GetDamage(DamageClass.Melee) += 0.20f;
+            player.GetDamage(DamageClass.Melee) += 1.20f;
         }
     }
 }

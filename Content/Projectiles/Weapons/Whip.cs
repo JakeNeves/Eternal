@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Eternal.Common.Misc;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,7 @@ namespace Eternal.Content.Projectiles.Weapons
 			Projectile.usesLocalNPCImmunity = true;
 			Projectile.localNPCHitCooldown = -1;
 			Projectile.DamageType = DamageClass.Summon;
+			Projectile.Eternal().useMeleeFunctionality = true;
 			WhipDefaults();
 		}
 		public virtual void WhipDefaults()
