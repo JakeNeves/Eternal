@@ -1,4 +1,5 @@
 ﻿using Eternal.Common.Systems;
+using Eternal.Content.Buffs;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -92,6 +93,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
         {
             SoundEngine.PlaySound(SoundID.NPCDeath14, NPC.position);
             target.ApplyDamageToNPC(NPC, 1, 0, 0, false);
+            target.AddBuff(ModContent.BuffType<ApparitionalWither>(), 1 * 60 * 60, false);
         }
 
         private void Move(Vector2 offset)

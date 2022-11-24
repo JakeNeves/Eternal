@@ -25,6 +25,7 @@ namespace Eternal.Content.Items.Accessories.Vanity
             Item.rare = ModContent.RarityType<Teal>();
             Item.accessory = true;
             Item.vanity = true;
+            Item.canBePlacedInVanityRegardlessOfConditions = true;
         }
 
         public override void UpdateVanity(Player player)

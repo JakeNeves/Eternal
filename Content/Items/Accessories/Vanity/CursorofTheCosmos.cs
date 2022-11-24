@@ -11,7 +11,7 @@ namespace Eternal.Content.Items.Accessories.Vanity
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cursor of the Cosmos");
-            Tooltip.SetDefault("Causes your mouse cursor to shift from black to red");
+            Tooltip.SetDefault("Causes your mouse cursor to shift from various shades of purple");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
@@ -24,6 +24,7 @@ namespace Eternal.Content.Items.Accessories.Vanity
             Item.rare = ModContent.RarityType<Turquoise>();
             Item.accessory = true;
             Item.vanity = true;
+            Item.canBePlacedInVanityRegardlessOfConditions = true;
         }
 
         public override void UpdateVanity(Player player)

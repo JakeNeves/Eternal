@@ -1,5 +1,4 @@
-﻿using Eternal.Common.Lists;
-using Eternal.Common.Players;
+﻿using Eternal.Common.Players;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -9,14 +8,6 @@ namespace Eternal.Common.GlobalProjectiles
     public class WeaponGlobalProjectile : GlobalProjectile
     {
         public override bool InstancePerEntity => true;
-
-        public bool useMeleeFunctionality;
-
-        public override void SetDefaults(Projectile projectile)
-        {
-            if (ProjectileLists.canUseMeleeFunctionality.Contains(projectile.type))
-                useMeleeFunctionality = true;
-        }
 
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
         {

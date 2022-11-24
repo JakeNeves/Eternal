@@ -3,6 +3,7 @@ using Eternal.Common.ItemDropRules.Conditions;
 using Eternal.Common.Systems;
 using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Misc;
+using Terraria.Audio;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -12,6 +13,22 @@ namespace Eternal.Common.GlobalNPCs
 {
     public class BossGlobalNPCs : GlobalNPC
     {
+        public override void HitEffect(NPC npc, int hitDirection, double damage)
+        {
+            Player player = Main.player[Main.myPlayer];
+
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                if (npc.boss && ModContent.GetInstance<ClientConfig>().playDefeatSound)
+                {
+                    if (npc.life <= 0)
+                    {
+                        SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/BossDefeated"), player.position);
+                    }
+                }
+            }
+        }
+
         public override void ScaleExpertStats(NPC npc, int numPlayers, float bossLifeScale)
         {
             if (DifficultySystem.hellMode && ModContent.GetInstance<ServerConfig>().HellModeVanillaBosses)
@@ -178,7 +195,7 @@ namespace Eternal.Common.GlobalNPCs
                     npcLoot.Add(ItemDropRule.ByCondition(hellModeDrop, ModContent.ItemType<HolyCard>(), 1));
                     break;
 
-                case NPCID.Skeleton:
+                case NPCID.SkeletronHead:
                     npcLoot.Add(ItemDropRule.ByCondition(hellModeDrop, ModContent.ItemType<ShadowSkull>(), 1));
                     break;
             }

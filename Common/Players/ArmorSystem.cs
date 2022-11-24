@@ -80,7 +80,7 @@ namespace Eternal.Common.Players
             }
         }
 
-        public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
+        public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit, int cooldownCounter)
         {
             var entitySource = Player.GetSource_None();
 

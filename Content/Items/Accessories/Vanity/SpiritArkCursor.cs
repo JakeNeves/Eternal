@@ -12,7 +12,7 @@ namespace Eternal.Content.Items.Accessories.Vanity
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Causes your mouse cursor to shift from black to red");
+            Tooltip.SetDefault("Causes your mouse cursor to shift from various shades of green");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
@@ -25,6 +25,7 @@ namespace Eternal.Content.Items.Accessories.Vanity
             Item.rare = ModContent.RarityType<Magenta>();
             Item.accessory = true;
             Item.vanity = true;
+            Item.canBePlacedInVanityRegardlessOfConditions = true;
         }
 
         public override void UpdateVanity(Player player)

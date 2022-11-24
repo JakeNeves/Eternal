@@ -1,4 +1,5 @@
-﻿using Eternal.Content.Items.Placeable;
+﻿using Eternal.Common.Systems;
+using Eternal.Content.Items.Placeable;
 using Eternal.Content.NPCs.Boss.CosmicApparition;
 using Terraria;
 using Terraria.Audio;
@@ -10,7 +11,6 @@ namespace Eternal.Content.Items.Summon
 {
     public class OtherworldlyCosmicDebris : ModItem
     {
-
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("Attracts a wandering soul" +
@@ -21,8 +21,8 @@ namespace Eternal.Content.Items.Summon
 
         public override void SetDefaults()
         {
-            Item.width = 30;
-            Item.height = 22;
+            Item.width = 32;
+            Item.height = 26;
             Item.rare = ItemRarityID.Red;
             Item.useAnimation = 45;
             Item.useTime = 45;
@@ -32,7 +32,7 @@ namespace Eternal.Content.Items.Summon
         public override bool CanUseItem(Player player)
         {
             Main.NewText("Something gazes upon you...", 220, 0, 210);
-            return !NPC.AnyNPCs(ModContent.NPCType<WanderingSoul>());
+            return !NPC.AnyNPCs(ModContent.NPCType<WanderingSoul>()) && !NPC.AnyNPCs(ModContent.NPCType<CosmicApparition>()) && ModContent.GetInstance<ZoneSystem>().zoneComet;
         }
 
         public override bool? UseItem(Player player)
@@ -47,9 +47,8 @@ namespace Eternal.Content.Items.Summon
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<CometiteOre>(), 6)
+                .AddIngredient(ModContent.ItemType<CometiteOre>(), 8)
                 .AddIngredient(ItemID.Ectoplasm, 16)
-                .AddIngredient(ItemID.SpectreBar, 8)
                 .AddIngredient(ItemID.LunarBar, 4)
                 .AddTile(TileID.LunarCraftingStation)
                 .Register();

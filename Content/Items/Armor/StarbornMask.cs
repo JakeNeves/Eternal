@@ -52,6 +52,12 @@ namespace Eternal.Content.Items.Armor
             dust.fadeIn = 0.3f;
         }
 
+        public override void ArmorSetShadows(Player player)
+        {
+            player.armorEffectDrawOutlines = true;
+            player.armorEffectDrawShadow = true;
+        }
+
         public override void UpdateEquip(Player player)
         {
             player.GetDamage(DamageClass.Melee) += 0.17f;

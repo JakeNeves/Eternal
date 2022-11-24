@@ -44,6 +44,5 @@ namespace Eternal.Content.Items.Summon
                 .AddTile(TileID.Anvils)
                 .Register();
         }
-
     }
 }

@@ -19,5 +19,13 @@ namespace Eternal.Common.Configurations
         [Label("Show Welcome Message")]
         [Tooltip("Show the welcome message uppon entering the world\n(Default: On)")]
         public bool showWelcomeMessage = true;
+
+        [SeparatePage]
+        [Header("QoL Features")]
+        [DefaultValue(true)]
+        [BackgroundColor(138, 29, 29)]
+        [Label("Boss Defeated Sound")]
+        [Tooltip("Plays a sound to notify that a boss has been defeated\n(Default: On)")]
+        public bool playDefeatSound = true;
     }
 }

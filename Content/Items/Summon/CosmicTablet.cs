@@ -1,4 +1,6 @@
-﻿using Eternal.Content.Rarities;
+﻿using Eternal.Content.Items.Materials;
+using Eternal.Content.Rarities;
+using Eternal.Content.Tiles.CraftingStations;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ModLoader;
@@ -22,6 +24,16 @@ namespace Eternal.Content.Items.Summon
             Item.width = 36;
             Item.height = 52;
             Item.rare = ModContent.RarityType<Magenta>();
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<CoreofEternal>(), 12)
+                .AddIngredient(ModContent.ItemType<CometiteBar>(), 16)
+                .AddIngredient(ModContent.ItemType<CometiteCrystal>(), 20)
+                .AddTile(ModContent.TileType<Starforge>())
+                .Register();
         }
     }
 }

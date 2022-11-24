@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace Eternal.Content.Projectiles.Weapons.Melee
 {
-    public class StarofNihilionProjectile : Flail
+    public class StarofNihilionProjectile : ModProjectile
     {
         public bool flailSpawn = false;
 
@@ -30,19 +30,11 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
             Projectile.penetrate = -1;
             Projectile.timeLeft = 600;
             Projectile.tileCollide = false;
-            Projectile.Eternal().useMeleeFunctionality = true;
+            Projectile.aiStyle = ProjAIStyleID.Flail;
+            AIType = ProjectileID.BlueMoon;
         }
 
-        public override void SetStats(ref int throwTime, ref float throwSpeed, ref float recoverDistance, ref float recoverDistance2, ref int attackCooldown)
-        {
-            throwTime = 30;
-            throwSpeed = 45f;
-            recoverDistance = 275f;
-            recoverDistance2 = 277f;
-            attackCooldown = 2;
-        }
-
-        public override void ExtraAI()
+        public override void AI()
         {
             Projectile.rotation += Projectile.velocity.X * 0.1f;
 

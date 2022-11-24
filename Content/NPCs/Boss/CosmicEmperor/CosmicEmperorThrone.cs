@@ -26,9 +26,10 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
     {
         int tohouTimer = 0;
         int attackTimer = 0;
+        int dialogueTimer = 0;
 
         bool tohouAttack = false;
-
+        bool dontKillyet = false;
         bool firstAttack = false;
 
         public override void SetStaticDefaults()
@@ -51,9 +52,9 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
         {
             NPC.width = 54;
             NPC.height = 56;
-            NPC.lifeMax = 2000000;
-            NPC.defense = 50;
-            NPC.damage = 30;
+            NPC.lifeMax = 20000000;
+            NPC.defense = 90;
+            NPC.damage = 40;
             NPC.noGravity = true;
             NPC.noTileCollide = true;
             NPC.lavaImmune = true;
@@ -62,6 +63,19 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
             NPC.boss = true;
             Music = MusicID.OtherworldlyLunarBoss;
             NPC.knockBackResist = -1f;
+        }
+
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            if (!dontKillyet)
+            {
+                if (NPC.life < 0)
+                {
+                    NPC.life = 1;
+                    NPC.dontTakeDamage = true;
+                    dontKillyet = true;
+                }
+            }
         }
 
         public override bool StrikeNPC(ref double damage, int defense, ref float knockback, int hitDirection, ref bool crit)
@@ -111,20 +125,20 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
         {
             if (Main.masterMode)
             {
-                NPC.lifeMax = 2400000;
-                NPC.defense = 54;
-                NPC.damage = 70;
+                NPC.lifeMax = 24000000;
+                NPC.defense = 182;
+                NPC.damage = 80;
             }
             else if (DifficultySystem.hellMode)
             {
-                NPC.lifeMax = 2600000;
-                NPC.defense = 206;
-                NPC.damage = 80;
+                NPC.lifeMax = 26000000;
+                NPC.defense = 184;
+                NPC.damage = 86;
             }
             else
             {
-                NPC.lifeMax = 2200000;
-                NPC.defense = 52;
+                NPC.lifeMax = 22000000;
+                NPC.defense = 180;
                 NPC.damage = 60;
             }
         }
@@ -197,125 +211,156 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
             direction.X *= 8.5f;
             direction.Y *= 8.5f;
 
-            if (tohouAttack)
+            
+            if (dontKillyet)
             {
-                NPC.dontTakeDamage = true;
-
-                tohouTimer++;
-
-                if (DifficultySystem.hellMode)
+                dialogueTimer++;
+                switch (dialogueTimer)
                 {
-                    if (attackTimer == 50 || attackTimer == 55 || attackTimer == 60 || attackTimer == 65 || attackTimer == 70)
-                    {
-                        for (int i = 0; i < 2; ++i)
-                        {
-                            Projectile.NewProjectile(entitySource, player.position.X - 800, player.position.Y + Main.rand.Next(-600, 600), Main.rand.Next(4, 16), 0, ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                            Projectile.NewProjectile(entitySource, player.position.X + 800, player.position.Y + Main.rand.Next(-600, 600), Main.rand.Next(-16, -4), 0, ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                        }
-                    }
-                    if (attackTimer == 75 || attackTimer == 180 || attackTimer == 85 || attackTimer == 90 || attackTimer == 95)
-                    {
-                        for (int i = 0; i < 2; ++i)
-                        {
-                            Projectile.NewProjectile(entitySource, player.position.X + Main.rand.Next(-600, 600), player.position.Y - 800, 0, Main.rand.Next(4, 16), ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                            Projectile.NewProjectile(entitySource, player.position.X + Main.rand.Next(-600, 600), player.position.Y + 800, 0, Main.rand.Next(-16, -4), ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                        }
-                    }
-                    if (attackTimer == 100 || attackTimer == 105 || attackTimer == 110 || attackTimer == 115 || attackTimer == 120)
-                    {
-                        for (int i = 0; i < 2; ++i)
-                        {
-                            Projectile.NewProjectile(entitySource, player.position.X + Main.rand.Next(-600, 600), player.position.Y - 800, Main.rand.Next(4, 16), 0, ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                            Projectile.NewProjectile(entitySource, player.position.X + Main.rand.Next(-600, 600), player.position.Y + 800, Main.rand.Next(-16, -4), 0, ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                            Projectile.NewProjectile(entitySource, player.position.X - 800, player.position.Y + Main.rand.Next(-600, 600), 0, Main.rand.Next(4, 16), ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                            Projectile.NewProjectile(entitySource, player.position.X + 800, player.position.Y + Main.rand.Next(-600, 600), 0, Main.rand.Next(-16, -4), ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                        }
-                    }
-                }
-                else
-                {
-                    if (attackTimer == 50 || attackTimer == 55 || attackTimer == 60 || attackTimer == 65 || attackTimer == 70)
-                    {
-                        for (int i = 0; i < 2; ++i)
-                        {
-                            Projectile.NewProjectile(entitySource, player.position.X - 800, player.position.Y + Main.rand.Next(-600, 600), 4, 0, ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                            Projectile.NewProjectile(entitySource, player.position.X + 800, player.position.Y + Main.rand.Next(-600, 600), -4, 0, ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                        }
-                    }
-                    if (attackTimer == 75 || attackTimer == 180 || attackTimer == 85 || attackTimer == 90 || attackTimer == 95)
-                    {
-                        for (int i = 0; i < 2; ++i)
-                        {
-                            Projectile.NewProjectile(entitySource, player.position.X + Main.rand.Next(-600, 600), player.position.Y - 800, 0, 4, ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                            Projectile.NewProjectile(entitySource, player.position.X + Main.rand.Next(-600, 600), player.position.Y + 800, 0, -4, ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                        }
-                    }
-                    if (attackTimer == 100 || attackTimer == 105 || attackTimer == 110 || attackTimer == 115 || attackTimer == 120)
-                    {
-                        for (int i = 0; i < 2; ++i)
-                        {
-                            Projectile.NewProjectile(entitySource, player.position.X + Main.rand.Next(-600, 600), player.position.Y - 800, 4, 0, ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                            Projectile.NewProjectile(entitySource, player.position.X + Main.rand.Next(-600, 600), player.position.Y + 800, -4, 0, ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                            Projectile.NewProjectile(entitySource, player.position.X - 800, player.position.Y + Main.rand.Next(-600, 600), 0, 4, ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                            Projectile.NewProjectile(entitySource, player.position.X + 800, player.position.Y + Main.rand.Next(-600, 600), 0, -4, ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                        }
-                    }
-                }
-                if (attackTimer >= 121)
-                {
-                    attackTimer = 0;
-                }
-
-                if (tohouTimer == 2000)
-                {
-                    NPC.dontTakeDamage = false;
-                    tohouAttack = false;
-                    tohouTimer = 0;
+                    case 0:
+                        Main.NewText("...", 150, 36, 120);
+                        break;
+                    case 150:
+                        Main.NewText("Well, it looks like you're pretty good...", 150, 36, 120);
+                        break;
+                    case 290:
+                        Main.NewText("However, this is the end of your journey, because guess what...", 150, 36, 120);
+                        break;
+                    case 450:
+                        Main.NewText("IT'S DOOM O' CLOCK!", 150, 36, 120);
+                        break;
+                    case 690:
+                        Main.NewText("AND I AM ONLY JUST GETTING STARTED!", 150, 36, 120);
+                        break;
+                    case 850:
+                        Main.NewText("THIS BATTLE WILL BE PAINFUL, AND YOU'RE GONNA LIKE IT!", 150, 36, 120);
+                        NPC.NewNPC(entitySource, (int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<CosmicEmperorFly>());
+                        NPC.active = false;
+                        break;
                 }
             }
             else
             {
-                if (attackTimer == 75 || attackTimer == 100 || attackTimer == 125 || attackTimer == 150 || attackTimer == 175 || attackTimer == 200)
+                if (tohouAttack)
                 {
-                    for (int i = 0; i < 3 + Main.rand.Next(3); ++i)
-                    {
-                        SoundEngine.PlaySound(SoundID.NPCHit3, NPC.Center);
-                        float A = (float)Main.rand.Next(-200, 200) * 0.01f;
-                        float B = (float)Main.rand.Next(-200, 200) * 0.01f;
-                        if (Main.netMode != NetmodeID.MultiplayerClient)
-                            Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<CosmicFireball>(), NPC.damage, 1, Main.myPlayer, 0, 0);
-                    }
-                }
-                if (attackTimer == 375 || attackTimer == 400 || attackTimer == 425 || attackTimer == 450 || attackTimer == 475 || attackTimer == 500)
-                {
-                    for (int i = 0; i < 4 + Main.rand.Next(4); ++i)
-                    {
-                        SoundEngine.PlaySound(SoundID.NPCHit3, NPC.Center);
-                        float A = (float)Main.rand.Next(-200, 200) * 0.01f;
-                        float B = (float)Main.rand.Next(-200, 200) * 0.01f;
-                        if (Main.netMode != NetmodeID.MultiplayerClient)
-                            Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<CosmicFireball>(), NPC.damage, 1, Main.myPlayer, 0, 0);
-                    }
-                }
-                if (attackTimer == 525 || attackTimer == 550)
-                {
-                    for (int i = 0; i < 4; ++i)
-                    {
-                        Projectile.NewProjectile(entitySource, player.position.X + Main.rand.Next(-600, 600), player.position.Y - 800, 4, 0, ModContent.ProjectileType<CosmicFireball>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                        Projectile.NewProjectile(entitySource, player.position.X + Main.rand.Next(-600, 600), player.position.Y + 800, -4, 0, ModContent.ProjectileType<CosmicFireball>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                        Projectile.NewProjectile(entitySource, player.position.X - 800, player.position.Y + Main.rand.Next(-600, 600), 0, 4, ModContent.ProjectileType<CosmicFireball>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                        Projectile.NewProjectile(entitySource, player.position.X + 800, player.position.Y + Main.rand.Next(-600, 600), 0, -4, ModContent.ProjectileType<CosmicFireball>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                    }
-                }
-                if (attackTimer == 575 || attackTimer == 600)
-                {
-                    
-                }
-                if (attackTimer == 1000)
-                {
-                    Projectile.NewProjectile(entitySource, player.position.X, player.position.Y, 0, 0, ModContent.ProjectileType<EmperorBlade>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+                    NPC.dontTakeDamage = true;
 
-                    attackTimer = 0;
+                    tohouTimer++;
+
+                    if (DifficultySystem.hellMode)
+                    {
+                        if (attackTimer == 50 || attackTimer == 55 || attackTimer == 60 || attackTimer == 65 || attackTimer == 70)
+                        {
+                            for (int i = 0; i < 2; ++i)
+                            {
+                                Projectile.NewProjectile(entitySource, player.position.X - 800, player.position.Y + Main.rand.Next(-600, 600), Main.rand.Next(2, 4), 0, ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+                                Projectile.NewProjectile(entitySource, player.position.X + 800, player.position.Y + Main.rand.Next(-600, 600), Main.rand.Next(-4, -2), 0, ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+                            }
+                        }
+                        if (attackTimer == 75 || attackTimer == 180 || attackTimer == 85 || attackTimer == 90 || attackTimer == 95)
+                        {
+                            for (int i = 0; i < 2; ++i)
+                            {
+                                Projectile.NewProjectile(entitySource, player.position.X + Main.rand.Next(-600, 600), player.position.Y - 800, 0, Main.rand.Next(2, 14), ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+                                Projectile.NewProjectile(entitySource, player.position.X + Main.rand.Next(-600, 600), player.position.Y + 800, 0, Main.rand.Next(-4, -2), ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+                            }
+                        }
+                        if (attackTimer == 100 || attackTimer == 105 || attackTimer == 110 || attackTimer == 115 || attackTimer == 120)
+                        {
+                            for (int i = 0; i < 2; ++i)
+                            {
+                                Projectile.NewProjectile(entitySource, player.position.X + Main.rand.Next(-600, 600), player.position.Y - 800, Main.rand.Next(2, 4), 0, ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+                                Projectile.NewProjectile(entitySource, player.position.X + Main.rand.Next(-600, 600), player.position.Y + 800, Main.rand.Next(-4, -2), 0, ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+                                Projectile.NewProjectile(entitySource, player.position.X - 800, player.position.Y + Main.rand.Next(-600, 600), 0, Main.rand.Next(2, 4), ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+                                Projectile.NewProjectile(entitySource, player.position.X + 800, player.position.Y + Main.rand.Next(-600, 600), 0, Main.rand.Next(-4, -2), ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (attackTimer == 50 || attackTimer == 55 || attackTimer == 60 || attackTimer == 65 || attackTimer == 70)
+                        {
+                            for (int i = 0; i < 2; ++i)
+                            {
+                                Projectile.NewProjectile(entitySource, player.position.X - 800, player.position.Y + Main.rand.Next(-600, 600), 2, 0, ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+                                Projectile.NewProjectile(entitySource, player.position.X + 800, player.position.Y + Main.rand.Next(-600, 600), -2, 0, ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+                            }
+                        }
+                        if (attackTimer == 75 || attackTimer == 180 || attackTimer == 85 || attackTimer == 90 || attackTimer == 95)
+                        {
+                            for (int i = 0; i < 2; ++i)
+                            {
+                                Projectile.NewProjectile(entitySource, player.position.X + Main.rand.Next(-600, 600), player.position.Y - 800, 0, 2, ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+                                Projectile.NewProjectile(entitySource, player.position.X + Main.rand.Next(-600, 600), player.position.Y + 800, 0, -2, ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+                            }
+                        }
+                        if (attackTimer == 100 || attackTimer == 105 || attackTimer == 110 || attackTimer == 115 || attackTimer == 120)
+                        {
+                            for (int i = 0; i < 2; ++i)
+                            {
+                                Projectile.NewProjectile(entitySource, player.position.X + Main.rand.Next(-600, 600), player.position.Y - 800, 2, 0, ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+                                Projectile.NewProjectile(entitySource, player.position.X + Main.rand.Next(-600, 600), player.position.Y + 800, -2, 0, ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+                                Projectile.NewProjectile(entitySource, player.position.X - 800, player.position.Y + Main.rand.Next(-600, 600), 0, 2, ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+                                Projectile.NewProjectile(entitySource, player.position.X + 800, player.position.Y + Main.rand.Next(-600, 600), 0, -2, ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+                            }
+                        }
+                    }
+                    if (attackTimer > 120)
+                    {
+                        attackTimer = 0;
+                    }
+
+                    if (tohouTimer == 1500)
+                    {
+                        NPC.dontTakeDamage = false;
+                        tohouAttack = false;
+                        tohouTimer = 0;
+                    }
+                }
+                else
+                {
+                    if (attackTimer == 75 || attackTimer == 100 || attackTimer == 125 || attackTimer == 150 || attackTimer == 175 || attackTimer == 200)
+                    {
+                        for (int i = 0; i < 3 + Main.rand.Next(3); ++i)
+                        {
+                            SoundEngine.PlaySound(SoundID.NPCHit3, NPC.Center);
+                            float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                            float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+                            if (Main.netMode != NetmodeID.MultiplayerClient)
+                                Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<CosmicFireball>(), NPC.damage, 1, Main.myPlayer, 0, 0);
+                        }
+                    }
+                    if (attackTimer == 375 || attackTimer == 400 || attackTimer == 425 || attackTimer == 450 || attackTimer == 475 || attackTimer == 500)
+                    {
+                        for (int i = 0; i < 4 + Main.rand.Next(4); ++i)
+                        {
+                            SoundEngine.PlaySound(SoundID.NPCHit3, NPC.Center);
+                            float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                            float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+                            if (Main.netMode != NetmodeID.MultiplayerClient)
+                                Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<CosmicFireball>(), NPC.damage, 1, Main.myPlayer, 0, 0);
+                        }
+                    }
+                    if (attackTimer == 525 || attackTimer == 550)
+                    {
+                        for (int i = 0; i < 4; ++i)
+                        {
+                            Projectile.NewProjectile(entitySource, player.position.X + Main.rand.Next(-600, 600), player.position.Y - 800, 4, 0, ModContent.ProjectileType<CosmicFireball>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+                            Projectile.NewProjectile(entitySource, player.position.X + Main.rand.Next(-600, 600), player.position.Y + 800, -4, 0, ModContent.ProjectileType<CosmicFireball>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+                            Projectile.NewProjectile(entitySource, player.position.X - 800, player.position.Y + Main.rand.Next(-600, 600), 0, 4, ModContent.ProjectileType<CosmicFireball>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+                            Projectile.NewProjectile(entitySource, player.position.X + 800, player.position.Y + Main.rand.Next(-600, 600), 0, -4, ModContent.ProjectileType<CosmicFireball>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+                        }
+                    }
+                    if (attackTimer == 575 || attackTimer == 600)
+                    {
+
+                    }
+                    if (attackTimer == 1000)
+                    {
+                        Projectile.NewProjectile(entitySource, player.position.X, player.position.Y, 0, 0, ModContent.ProjectileType<EmperorBlade>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+
+                        attackTimer = 0;
+                    }
                 }
             }
         }

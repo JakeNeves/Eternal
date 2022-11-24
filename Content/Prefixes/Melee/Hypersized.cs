@@ -19,8 +19,8 @@ public class Hypersized : ModPrefix
 
     public override void SetStats(ref float damageMult, ref float knockbackMult, ref float useTimeMult, ref float scaleMult, ref float shootSpeedMult, ref float manaMult, ref int critBonus)
     {
-        scaleMult = 2f;
-        damageMult = 1.75f;
-        knockbackMult = 2.5f;
+        scaleMult = 3f;
+        damageMult = 1.2f;
+        knockbackMult = 1.75f;
     }
 }

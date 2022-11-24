@@ -6,6 +6,7 @@ using Eternal.Content.Items.Pets;
 using Eternal.Content.Items.Potions;
 using Eternal.Content.Items.Weapons.Melee;
 using Eternal.Content.Items.Weapons.Ranged;
+using Eternal.Content.Items.Weapons.Summon;
 using Eternal.Content.Projectiles.Boss;
 using Eternal.Content.Projectiles.Explosion;
 using Eternal.Content.Projectiles.Misc;
@@ -82,6 +83,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             NPC.buffImmune[BuffID.Frostburn] = true;
             NPC.buffImmune[BuffID.Frozen] = true;
             NPC.buffImmune[BuffID.Chilled] = true;
+            NPC.alpha = 0;
         }
 
         public override void OnKill()
@@ -109,6 +111,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<ApparitionalMatter>(), minimumDropped: 15, maximumDropped: 45));
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<StarmetalBar>(), minimumDropped: 15, maximumDropped: 45));
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<InterstellarSingularity>(), minimumDropped: 15, maximumDropped: 45));
+            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<ApparitionalStave>(), 4));
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<ApparitionalDisk>(), 3));
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Starfall>(), 2));
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Vexation>(), 1));
@@ -145,11 +148,6 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
                 phase = 1;
                 attackTimer++;
             }
-
-            //for (int k = 0; k < 5; k++)
-            //{
-            //    Dust.NewDust(NPC.position + NPC.velocity, NPC.width, NPC.height, ModContent.DustType<Starmetal>(), NPC.oldVelocity.X * 0.5f, NPC.oldVelocity.Y * 0.5f);
-            //}
 
             #region Flying
             NPC.TargetClosest(true);
@@ -218,22 +216,23 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
                         for (int i = 0; i < amountOfClones; ++i)
                         {
                             NPC.NewNPC(entitySource, (int)NPC.Center.X + Main.rand.Next(-30, 30), (int)NPC.Center.Y + Main.rand.Next(-30, 30), ModContent.NPCType<CosmicDecoy>());
+
+                            for (int k = 0; k < 10; k++)
+                            {
+                                Dust.NewDust(NPC.position + NPC.velocity, NPC.width, NPC.height, DustID.Shadowflame, NPC.oldVelocity.X * 0.5f, NPC.oldVelocity.Y * 0.5f);
+                            }
+
+                            if (DifficultySystem.hellMode)
+                            {
+                                NPC.alpha = 255;
+                            }
                         }
                     }
 
                 }
                 else if (attackTimer == 200 || attackTimer == 225 || attackTimer == 250 || attackTimer == 275)
                 {
-                    /*Projectile.NewProjectile(entitySource, NPC.position.X + 80, NPC.position.Y + 80, -12, 0, ModContent.ProjectileType<CosmicPierce>(), NPC.damage / 2, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(entitySource, NPC.position.X + 80, NPC.position.Y + 80, 12, 0, ModContent.ProjectileType<CosmicPierce>(), NPC.damage / 2, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(entitySource, NPC.position.X + 80, NPC.position.Y + 80, 0, 12, ModContent.ProjectileType<CosmicPierce>(), NPC.damage / 2, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(entitySource, NPC.position.X + 80, NPC.position.Y + 80, 0, -12, ModContent.ProjectileType<CosmicPierce>(), NPC.damage / 2, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(entitySource, NPC.position.X + 40, NPC.position.Y + 40, -8, -8, ModContent.ProjectileType<CosmicPierce>(), NPC.damage / 2, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(entitySource, NPC.position.X + 40, NPC.position.Y + 40, 8, -8, ModContent.ProjectileType<CosmicPierce>(), NPC.damage / 2, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(entitySource, NPC.position.X + 40, NPC.position.Y + 40, -8, 8, ModContent.ProjectileType<CosmicPierce>(), NPC.damage / 2, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(entitySource, NPC.position.X + 40, NPC.position.Y + 40, 8, 8, ModContent.ProjectileType<CosmicPierce>(), NPC.damage / 2, 0, Main.myPlayer, 0f, 0f);*/
-
-                    int wisps = Main.rand.Next(6, 9);
+                    int wisps = Main.rand.Next(2, 4);
                     for (int i = 0; i < wisps; ++i)
                     {
                         NPC.NewNPC(entitySource, (int)NPC.Center.X + Main.rand.Next(-200, 200), (int)NPC.Center.Y + Main.rand.Next(-200, 200), ModContent.NPCType<CosmicApex>());
@@ -280,7 +279,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
                 }
                 if (generalAttackTimer == 300 || generalAttackTimer == 350)
                 {
-                    int wisps = Main.rand.Next(3, 6);
+                    int wisps = Main.rand.Next(2, 4);
                     for (int i = 0; i < wisps; ++i)
                     {
                         NPC.NewNPC(entitySource, (int)NPC.Center.X + Main.rand.Next(-400, 400), (int)NPC.Center.Y + Main.rand.Next(-400, 400), ModContent.NPCType<CosmicApex>());
@@ -302,6 +301,10 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
                         if (!NPC.AnyNPCs(ModContent.NPCType<CosmicDecoy>()))
                         {
                             NPC.dontTakeDamage = false;
+                            while (NPC.alpha > 0)
+                            {
+                                NPC.alpha -= 15;
+                            }
                         }
                     }
 
@@ -324,17 +327,14 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
                 if (teleportTimer == 250)
                 {
                     SoundEngine.PlaySound(SoundID.DD2_DarkMageCastHeal, NPC.position);
+                    SoundEngine.PlaySound(SoundID.DD2_GhastlyGlaivePierce, NPC.position);
+
                     NPC.position.X = targetPosition.X + Main.rand.Next(-400, 400);
                     for (int k = 0; k < 5; k++)
                     {
                         Dust.NewDust(NPC.position + NPC.velocity, NPC.width, NPC.height, DustID.Shadowflame, NPC.oldVelocity.X * 0.5f, NPC.oldVelocity.Y * 0.5f);
                     }
                     teleportTimer = 0;
-
-                    /*Projectile.NewProjectile(entitySource, NPC.position.X + 80, NPC.position.Y + 80, -12, 0, ModContent.ProjectileType<ApparitionalDiskHostile>(), NPC.damage / 3, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(entitySource, NPC.position.X + 80, NPC.position.Y + 80, 12, 0, ModContent.ProjectileType<ApparitionalDiskHostile>(), NPC.damage / 3, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(entitySource, NPC.position.X + 80, NPC.position.Y + 80, 0, 12, ModContent.ProjectileType<ApparitionalDiskHostile>(), NPC.damage / 3, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(entitySource, NPC.position.X + 80, NPC.position.Y + 80, 0, -12, ModContent.ProjectileType<ApparitionalDiskHostile>(), NPC.damage / 3, 0, Main.myPlayer, 0f, 0f);*/
                     if (phase == 1)
                     {
                         Projectile.NewProjectile(entitySource, NPC.position.X + 40, NPC.position.Y + 40, -8, -8, ModContent.ProjectileType<ApparitionalWisp>(), NPC.damage / 2, 0, Main.myPlayer, 0f, 0f);
@@ -354,6 +354,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             }
             else
             {
+                NPC.alpha += 15;
                 DeathTimer++;
                 if (DeathTimer == 5 || DeathTimer == 10 || DeathTimer == 15 || DeathTimer == 20 || DeathTimer == 25 || DeathTimer == 30 || DeathTimer == 35 || DeathTimer == 40 || DeathTimer == 45 || DeathTimer == 50 || DeathTimer == 55 || DeathTimer == 60 || DeathTimer == 65 || DeathTimer == 70 || DeathTimer == 75 || DeathTimer == 80 || DeathTimer == 85 || DeathTimer == 90 || DeathTimer == 95)
                 {

@@ -19,6 +19,6 @@ public class Micro : ModPrefix
 
     public override void SetStats(ref float damageMult, ref float knockbackMult, ref float useTimeMult, ref float scaleMult, ref float shootSpeedMult, ref float manaMult, ref int critBonus)
     {
-        scaleMult = -0.75f;
+        scaleMult = -0.12f;
     }
 }

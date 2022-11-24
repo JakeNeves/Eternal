@@ -1,6 +1,7 @@
 ﻿using Eternal.Common.ItemDropRules.Conditions;
 using Eternal.Common.Systems;
 using Eternal.Content.Dusts;
+using Eternal.Content.Items.Armor;
 using Eternal.Content.Items.Materials;
 using Eternal.Content.Tiles;
 using Microsoft.Xna.Framework;
@@ -79,7 +80,6 @@ namespace Eternal.Content.NPCs.Comet
             if (player.dead || !player.active)
             {
                 NPC.TargetClosest(false);
-                NPC.active = false;
             }
 
             float speed = 12.5f;
@@ -139,6 +139,13 @@ namespace Eternal.Content.NPCs.Comet
             npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<ApparitionalMatter>(), 1, 12, 24));
             npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<Astragel>(), 1, 12, 24));
             npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<InterstellarSingularity>(), 1, 12, 24));
+
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientStarbornMask>(), 12));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientStarbornHelmet>(), 12));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientStarbornHat>(), 12));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientStarbornHeadgear>(), 12));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientStarbornScalePlate>(), 12));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientStarbornGreaves>(), 12));
         }
 
         public override void HitEffect(int hitDirection, double damage)

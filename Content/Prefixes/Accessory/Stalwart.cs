@@ -17,11 +17,15 @@ public class Stalwart : ModPrefix
         return true;
     }
 
+    public override void Apply(Item item)
+    {
+        Main.player[Main.myPlayer].statDefense += 10;
+    }
+
     public override void SetStats(ref float damageMult, ref float knockbackMult, ref float useTimeMult, ref float scaleMult, ref float shootSpeedMult, ref float manaMult, ref int critBonus)
     {
-        damageMult = 1.5f;
-        critBonus = 1;
-
-        Main.player[Main.myPlayer].statDefense += 10;
+        damageMult = 1.10f;
+        critBonus = 75;
+        knockbackMult = 1.5f;
     }
 }

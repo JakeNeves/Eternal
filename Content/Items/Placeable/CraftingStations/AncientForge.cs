@@ -41,17 +41,7 @@ namespace Eternal.Content.Items.Placeable.CraftingStations
                 .AddIngredient(ModContent.ItemType<InterstellarSingularity>(), 15)
                 .AddIngredient(ModContent.ItemType<Starforge>())
                 .AddIngredient(ItemID.LunarCraftingStation)
-                .AddIngredient(ItemID.AdamantiteForge)
-                .Register();
-
-            CreateRecipe()
-                .AddIngredient(ModContent.ItemType<CometiteBar>(), 10)
-                .AddIngredient(ModContent.ItemType<StarmetalBar>(), 200)
-                .AddIngredient(ModContent.ItemType<Astragel>(), 30)
-                .AddIngredient(ModContent.ItemType<InterstellarSingularity>(), 15)
-                .AddIngredient(ModContent.ItemType<Starforge>())
-                .AddIngredient(ItemID.LunarCraftingStation)
-                .AddIngredient(ItemID.TitaniumForge)
+                .AddRecipeGroup("eternal:adamantiteForges")
                 .Register();
         }
     }

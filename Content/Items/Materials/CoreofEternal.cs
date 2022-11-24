@@ -1,4 +1,5 @@
 ﻿using Eternal.Content.Rarities;
+using Eternal.Content.Tiles.CraftingStations;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
@@ -14,7 +15,6 @@ namespace Eternal.Content.Items.Materials
             DisplayName.SetDefault("Core of Eternal");
             Tooltip.SetDefault("'A mere fragment of the Eternal Primordials'");
 
-            ItemID.Sets.ItemIconPulse[Item.type] = true;
             ItemID.Sets.ItemNoGravity[Item.type] = true;
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
@@ -24,11 +24,22 @@ namespace Eternal.Content.Items.Materials
 
         public override void SetDefaults()
         {
-            Item.width = 34;
-            Item.height = 34;
+            Item.width = 50;
+            Item.height = 58;
             Item.value = Item.buyPrice(platinum: 1);
             Item.rare = ModContent.RarityType<Turquoise>();
             Item.maxStack = 999;
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddTile(ModContent.TileType<AncientForge>())
+                .AddIngredient(ModContent.ItemType<FrostblightCore>())
+                .AddIngredient(ModContent.ItemType<InfernoblightCore>())
+                .AddIngredient(ModContent.ItemType<ThunderblightCore>())
+                .AddIngredient(ModContent.ItemType<CometiteCrystal>(), 12)
+                .Register();
         }
     }
 }

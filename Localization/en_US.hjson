@@ -3,6 +3,7 @@ Mods: {
 		BiomeName: {
 			Comet: Fallen Comet
 			Beneath: The Beneath
+			Shrine: The Shrine
 		}
 
 		TownNPCMod: {
@@ -29,6 +30,13 @@ Mods: {
 				LikeBiome: This place is nice and all, but I feel like there is a better place that I know of...
 				LoveBiome: Isn't this place great, I could live here for days!
 			}
+		}
+		GameTips: {
+			HellMode: Wish to ramp up the difficulty a bit? Try Hell Mode, works in both Expert and Master mode.
+			EmperorNPC: The Emperor will move upon defeating the moon lord, he sells the Emperor's Trust which allows the Emissary to move in.
+			CometBiome: The Comet is a one of a kind star, be careful as there are powerful enemies that lie near it.
+			CosmicApparition: Uppon defeating the Cosmic Apparition, lots of oppertunities begin to open up for post-Moon Lord progression
+			TheBeneath: The Beneath is a very dark place, torches wont work unless you have a Black Lantern or a Black Candle
 		}
 	}
 }

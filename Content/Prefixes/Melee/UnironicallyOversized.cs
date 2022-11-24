@@ -24,7 +24,7 @@ public class UnironicallyOversized : ModPrefix
 
     public override void SetStats(ref float damageMult, ref float knockbackMult, ref float useTimeMult, ref float scaleMult, ref float shootSpeedMult, ref float manaMult, ref int critBonus)
     {
-        scaleMult = 3f;
+        scaleMult = 2.5f;
         damageMult = 1.75f;
         knockbackMult = 2.5f;
     }

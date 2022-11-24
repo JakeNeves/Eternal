@@ -16,16 +16,15 @@ namespace Eternal.Content.Items.Materials
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
 
-            ItemID.Sets.ItemIconPulse[Item.type] = true;
             ItemID.Sets.ItemNoGravity[Item.type] = true;
 
-            Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(6, 4));
+            Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(8, 6));
         }
 
         public override void SetDefaults()
         {
-            Item.width = 34;
-            Item.height = 34;
+            Item.width = 24;
+            Item.height = 20;
             Item.value = Item.buyPrice(platinum: 1, gold: 25, silver: 50);
             Item.rare = ModContent.RarityType<Turquoise>();
             Item.maxStack = 999;

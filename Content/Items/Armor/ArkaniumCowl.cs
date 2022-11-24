@@ -23,7 +23,7 @@ namespace Eternal.Content.Items.Armor
 
         public override void SetDefaults()
         {
-            Item.width = 18;
+            Item.width = 24;
             Item.height = 24;
             Item.value = Item.sellPrice(platinum: 6);
             Item.rare = ModContent.RarityType<Magenta>();
@@ -38,8 +38,8 @@ namespace Eternal.Content.Items.Armor
         public override void UpdateArmorSet(Player player)
         {
             player.setBonus = "30% increased magic damage and 25% decreased mana cost" +
-                            "\nSwords rain down on you upon getting hit" +
-                            "\nStarborn Armor Effects";
+                            "\nSwords rain down on you upon getting hit";
+
             player.GetDamage(DamageClass.Magic) += 1.30f;
             player.manaCost -= 1.25f;
 
@@ -52,9 +52,25 @@ namespace Eternal.Content.Items.Armor
             ArmorSystem.ArkaniumArmor = true;
         }
 
+        public override void ArmorSetShadows(Player player)
+        {
+            player.armorEffectDrawOutlinesForbidden = true;
+            player.armorEffectDrawShadow = true;
+        }
+
         public override void UpdateEquip(Player player)
         {
             player.GetDamage(DamageClass.Magic) += 1.20f;
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<ArkaniumCompoundSheets>(), 20)
+                .AddIngredient(ModContent.ItemType<WeatheredPlating>(), 12)
+                .AddIngredient(ModContent.ItemType<RefinedArkrystalSheets>(), 30)
+                .AddTile(ModContent.TileType<AncientForge>())
+                .Register();
         }
     }
 }

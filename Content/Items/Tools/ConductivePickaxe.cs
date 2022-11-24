@@ -39,7 +39,7 @@ namespace Eternal.Content.Items.Tools
         {
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<ElectriteBar>(), 12)
-                .AddIngredient(ModContent.ItemType<MachalitePickaxe>())
+                .AddIngredient(ModContent.ItemType<MalachitePickaxe>())
                 .AddIngredient(ModContent.ItemType<MalachiteSheets>(), 10)
                 .AddTile(ModContent.TileType<AncientForge>())
                 .Register();

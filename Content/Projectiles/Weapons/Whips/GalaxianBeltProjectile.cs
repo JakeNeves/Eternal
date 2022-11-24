@@ -20,17 +20,9 @@ namespace Eternal.Content.Projectiles.Weapons.Whips
 
 		public override void SetDefaults()
 		{
-			Projectile.width = 18;
-			Projectile.height = 18;
-			Projectile.friendly = true;
-			Projectile.penetrate = -1;
-			Projectile.tileCollide = false;
-			Projectile.ownerHitCheck = true;
-			Projectile.extraUpdates = 1;
-			Projectile.usesLocalNPCImmunity = true;
-			Projectile.localNPCHitCooldown = -1;
+			Projectile.DefaultToWhip();
+
 			Projectile.WhipSettings.Segments = 36;
-			Projectile.WhipSettings.RangeMultiplier = 1.5f;
 		}
 
 		private float Timer

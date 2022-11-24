@@ -40,17 +40,7 @@ namespace Eternal.Content.Items.Placeable.CraftingStations
                 .AddIngredient(ModContent.ItemType<Astragel>(), 120)
                 .AddIngredient(ModContent.ItemType<InterstellarSingularity>(), 48)
                 .AddIngredient(ItemID.LunarBar, 4)
-                .AddIngredient(ItemID.MythrilAnvil)
-                .AddTile(TileID.CrystalBall)
-                .Register();
-
-            CreateRecipe()
-                .AddIngredient(ModContent.ItemType<StarmetalBar>(), 60)
-                .AddIngredient(ModContent.ItemType<GalaxianPlating>(), 90)
-                .AddIngredient(ModContent.ItemType<Astragel>(), 120)
-                .AddIngredient(ModContent.ItemType<InterstellarSingularity>(), 48)
-                .AddIngredient(ItemID.LunarBar, 4)
-                .AddIngredient(ItemID.OrichalcumAnvil)
+                .AddRecipeGroup("eternal:mythrilAnvils")
                 .AddTile(TileID.CrystalBall)
                 .Register();
         }

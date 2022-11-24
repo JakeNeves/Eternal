@@ -8,7 +8,6 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
 {
     public class CosmicApex : ModNPC
     {
-
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 4;
@@ -20,12 +19,6 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
                 Hide = true
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
-        }
-
-        public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
-        {
-            scale = 1.5f;
-            return null;
         }
 
         public override void SetDefaults()

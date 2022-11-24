@@ -1,49 +1,32 @@
-﻿using Eternal.Content.Projectiles.Accessories;
-using Terraria;
+﻿using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Eternal.Common.Configurations;
-using Eternal.Common.Systems;
-using Terraria.DataStructures;
 using Eternal.Content.Buffs;
 using Microsoft.Xna.Framework;
+using Terraria.DataStructures;
 
 namespace Eternal.Common.Players
 {
     public class BuffSystem : ModPlayer
     {
         public bool holyMantle = false;
-        public bool fidget = false;
+        public bool chaosCardCooldown = false;
 
-        public int fidgetTimer;
+        public bool apparitionalWither = false;
 
         public override void ResetEffects()
         {
             holyMantle = false;
-            fidget = false;
-
-            fidgetTimer = 0;
+            chaosCardCooldown = false;
         }
 
-        public override void PreUpdateBuffs()
+        public override void UpdateDead()
         {
-            if (fidget)
-            {
-                fidgetTimer++;
-
-                if (fidgetTimer > 30)
-                {
-                    Player.velocity.X = Main.rand.NextFloat(-1f, 1f);
-                } 
-                else if (fidgetTimer == 45)
-                {
-                    fidgetTimer = 0;
-                }
-            }
+            apparitionalWither = false;
         }
 
-        public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
+        public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit, int cooldownCounter)
         {
             if (holyMantle)
             {
@@ -62,6 +45,22 @@ namespace Eternal.Common.Players
                 }
 
                 Player.ClearBuff(ModContent.BuffType<HolyMantle>());
+            }
+        }
+
+        public override void UpdateBadLifeRegen()
+        {
+            if (apparitionalWither)
+            {
+                if (Player.lifeRegen > 0)
+                    Player.lifeRegen = 0;
+                Player.lifeRegenTime = 0;
+                Player.lifeRegen -= 25;
+
+                if (Player.statLifeMax < 0)
+                {
+                    Player.KillMe(PlayerDeathReason.ByCustomReason(Player.name + "'s body withered away"), 10000, 1, false);
+                }
             }
         }
     }

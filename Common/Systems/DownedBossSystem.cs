@@ -17,24 +17,15 @@ namespace Eternal.Common.Systems
 		public static bool downedSubzeroElemental = false;
 		public static bool downedDuneworm = false;
 		public static bool downedEmpraynia = false;
-		public static bool downedRipper = false;
-		public static bool downedDroxOverlord = false;
+		public static bool downedArmageddonGolem = false;
+		public static bool downedArmageddonElemental = false;
 
 		// post-moon lord bosses
 		public static bool downedFrostKing = false;
 		public static bool downedCosmicApparition = false;
-		public static bool downedMechapede = false;
-		public static bool downedThanatophane = false;
-		public static bool downedArkasama = false;
-        #region bionic bosses
-        public static bool downedBionicBossAny = false;
-		public static bool downedAtlas = false;
-		public static bool downedBorealis = false;
-		public static bool downedCeres = false;
-		public static bool downedOrion = false;
-		public static bool downedPolarus = false;
-		public static bool downedTriplets = false;
-        #endregion
+		public static bool downedArmageddonMechapede = false;
+		public static bool downedArmageddonChampion = false;
+		public static bool downedArmageddonOverlord = false;
         public static bool downedArkofImperious = false;
 		public static bool downedNeoxBosses = false;
 		public static bool downedCosmicEmperor = false;
@@ -52,21 +43,15 @@ namespace Eternal.Common.Systems
 			downedSubzeroElemental = false;
 			downedDuneworm = false;
 			downedEmpraynia = false;
-			downedRipper = false;
-			downedDroxOverlord = false;
+			downedArmageddonGolem = false;
+			downedArmageddonElemental = false;
 
 			// post-moon lord bosses
 			downedFrostKing = false;
 			downedCosmicApparition = false;
-			downedMechapede = false;
-			downedThanatophane = false;
-			downedArkasama = false;
-			downedAtlas	= false;
-			downedBorealis = false;
-			downedCeres = false;
-			downedOrion = false;
-			downedPolarus = false;
-			downedTriplets = false;
+			downedArmageddonMechapede = false;
+			downedArmageddonChampion = false;
+			downedArmageddonOverlord = false;
 			downedArkofImperious = false;
 			downedNeoxBosses = false;
 			downedCosmicEmperor = false;
@@ -85,21 +70,15 @@ namespace Eternal.Common.Systems
 			downedSubzeroElemental = false;
 			downedDuneworm = false;
 			downedEmpraynia = false;
-			downedRipper = false;
-			downedDroxOverlord = false;
+			downedArmageddonGolem = false;
+			downedArmageddonElemental = false;
 
 			// post-moon lord bosses
 			downedFrostKing = false;
 			downedCosmicApparition = false;
-			downedMechapede = false;
-			downedThanatophane = false;
-			downedArkasama = false;
-			downedAtlas = false;
-			downedBorealis = false;
-			downedCeres = false;
-			downedOrion = false;
-			downedPolarus = false;
-			downedTriplets = false;
+			downedArmageddonMechapede = false;
+			downedArmageddonChampion = false;
+			downedArmageddonOverlord = false;
 			downedArkofImperious = false;
 			downedNeoxBosses = false;
 			downedTrinity = false;

@@ -31,5 +31,14 @@ namespace Eternal.Content.Items.Armor
         {
             player.moveSpeed += 0.27f;
         }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<ArkaniumCompoundSheets>(), 12)
+                .AddIngredient(ModContent.ItemType<RefinedArkrystalSheets>(), 18)
+                .AddTile(ModContent.TileType<AncientForge>())
+                .Register();
+        }
     }
 }

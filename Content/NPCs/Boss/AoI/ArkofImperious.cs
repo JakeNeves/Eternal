@@ -181,7 +181,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
 
                 if (!DownedBossSystem.downedArkofImperious)
                 {
-                    Main.NewText("The seal of the Cosmic Tablet has broken, the stars above are calling upon you...", 100, 24, 60);
+                    Main.NewText("The seal of the Cosmic Tablet has broken, the stars above are calling upon you...", 200, 48, 120);
                     DownedBossSystem.downedArkofImperious = true;
                 }
             }
@@ -344,6 +344,8 @@ namespace Eternal.Content.NPCs.Boss.AoI
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<WeatheredPlating>(), minimumDropped: 6, maximumDropped: 8));
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<RawArkaniumDebris>(), minimumDropped: 10, maximumDropped: 20));
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<RawArkrystal>(), minimumDropped: 10, maximumDropped: 20));
+
+            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<UnrefinedHeroSword>(), 20));
         }
 
         public override void AI()

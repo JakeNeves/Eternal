@@ -1,5 +1,6 @@
 ﻿using Eternal.Common.Systems;
 using Eternal.Content.Items.Materials;
+using Eternal.Content.Tiles;
 using Microsoft.Xna.Framework;
 using System;
 using System.Linq;
@@ -32,7 +33,8 @@ namespace Eternal.Content.NPCs.Shrine
             NPC.noGravity = true;
             NPC.noTileCollide = true;
             NPC.HitSound = SoundID.NPCHit4;
-            NPC.DeathSound = SoundID.DD2_DarkMageHealImpact;
+            NPC.DeathSound = SoundID.DD2_ExplosiveTrapExplode;
+            SpawnModBiomes = new int[1] { ModContent.GetInstance<Biomes.Shrine>().Type };
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -115,14 +117,13 @@ namespace Eternal.Content.NPCs.Shrine
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<WeatheredPlating>(), 2, 2, 10));
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RawArkaniumDebris>(), 2, 12, 36));
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<WeatheredPlating>(), 2, 8, 14));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<WeatheredPlating>(), 2, 2, 6));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RawArkaniumDebris>(), 2, 2, 12));
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            int[] shrineTileArray = { TileID.GrayBrick, TileID.Grass, TileID.Sand, TileID.Stone, TileID.SnowBlock, TileID.IceBlock, TileID.Dirt };
+            int[] shrineTileArray = { ModContent.TileType<ShrineBrick>(), TileID.Grass, TileID.Sand, TileID.Stone, TileID.SnowBlock, TileID.IceBlock, TileID.Dirt };
 
             float baseChance = SpawnCondition.Overworld.Chance;
             float multiplier = shrineTileArray.Contains(Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY].TileType) ? 0.5f : 1f;

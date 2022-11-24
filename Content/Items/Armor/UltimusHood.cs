@@ -54,9 +54,10 @@ namespace Eternal.Content.Items.Armor
         {
             CreateRecipe()
                 .AddTile(ModContent.TileType<AncientForge>())
-                .AddIngredient(ModContent.ItemType<ArkaniumHeadgear>())
+                .AddIngredient(ModContent.ItemType<ArkaniumHood>())
                 .AddIngredient(ModContent.ItemType<StarbornHeadgear>())
                 .AddIngredient(ModContent.ItemType<CoreofEternal>(), 8)
+                .AddIngredient(ModContent.ItemType<StargloomCometiteBar>(), 12)
                 .Register();
         }
     }

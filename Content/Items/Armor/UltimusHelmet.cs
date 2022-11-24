@@ -61,6 +61,7 @@ namespace Eternal.Content.Items.Armor
                 .AddIngredient(ModContent.ItemType<ArkaniumHelmet>())
                 .AddIngredient(ModContent.ItemType<StarbornHelmet>())
                 .AddIngredient(ModContent.ItemType<CoreofEternal>(), 8)
+                .AddIngredient(ModContent.ItemType<StargloomCometiteBar>(), 12)
                 .Register();
         }
     }

@@ -1,11 +1,5 @@
-﻿using Eternal.Common.ItemDropRules.Conditions;
-using Eternal.Content.Items.Accessories;
-using Eternal.Content.Items.Materials;
-using Eternal.Content.Items.Weapons.Melee;
-using Eternal.Content.Items.Weapons.Ranged;
-using Eternal.Content.NPCs.Boss.CosmicApparition;
+﻿using Eternal.Content.Items.Materials;
 using Terraria;
-using Terraria.Audio;
 using Terraria.GameContent.Creative;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
@@ -42,6 +36,8 @@ namespace Eternal.Content.Items.BossBags
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<WeatheredPlating>(), minimumDropped: 12, maximumDropped: 16));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<RawArkaniumDebris>(), minimumDropped: 20, maximumDropped: 40));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<RawArkrystal>(), minimumDropped: 20, maximumDropped: 40));
+
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<UnrefinedHeroSword>(), 10));
         }
     }
 }

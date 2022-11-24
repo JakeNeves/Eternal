@@ -22,8 +22,8 @@ namespace Eternal.Content.Items.Armor
 
         public override void SetDefaults()
         {
-            Item.width = 26;
-            Item.height = 20;
+            Item.width = 22;
+            Item.height = 22;
             Item.value = Item.sellPrice(gold: 15);
             Item.rare = ModContent.RarityType<Teal>();
             Item.defense = 16;
@@ -48,6 +48,12 @@ namespace Eternal.Content.Items.Armor
             Vector2 position = Main.LocalPlayer.Center;
             dust = Main.dust[Dust.NewDust(player.position, (int)player.width, (int)player.height, DustID.PurpleTorch, 0f, 0f, 0, new Color(255, 255, 255), 1f)];
             dust.fadeIn = 0.3f;
+        }
+
+        public override void ArmorSetShadows(Player player)
+        {
+            player.armorEffectDrawOutlines = true;
+            player.armorEffectDrawShadow = true;
         }
 
         public override void UpdateEquip(Player player)

@@ -73,11 +73,6 @@ namespace Eternal.Content.Projectiles.Boss
             }
         }
 
-        public override void ModifyHitPlayer(Player target, ref int damage, ref bool crit)
-        {
-            target.AddBuff(ModContent.BuffType<Fidget>(), 5600);
-        }
-
         public override void Kill(int timeLeft)
         {
             SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);

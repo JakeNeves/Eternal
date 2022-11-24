@@ -35,6 +35,7 @@ namespace Eternal.Content.Items.Armor
                 .AddIngredient(ModContent.ItemType<ArkaniumChestplate>())
                 .AddIngredient(ModContent.ItemType<StarbornScalePlate>())
                 .AddIngredient(ModContent.ItemType<CoreofEternal>(), 24)
+                .AddIngredient(ModContent.ItemType<StargloomCometiteBar>(), 36)
                 .Register();
         }
     }

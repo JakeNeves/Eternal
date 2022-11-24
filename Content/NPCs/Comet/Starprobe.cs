@@ -1,6 +1,7 @@
 ﻿using Eternal.Common.ItemDropRules.Conditions;
 using Eternal.Common.Systems;
 using Eternal.Content.Dusts;
+using Eternal.Content.Items.Armor;
 using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Weapons.Ranged;
 using Eternal.Content.Tiles;
@@ -8,6 +9,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Linq;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -21,6 +23,7 @@ namespace Eternal.Content.NPCs.Comet
         private Player player;
 
         int attackTimer = 0;
+        int teleportTimer;
 
         public override void SetStaticDefaults()
         {
@@ -81,6 +84,25 @@ namespace Eternal.Content.NPCs.Comet
 
         public override void AI()
         {
+            Vector2 targetPosition = Main.player[NPC.target].position;
+
+            if (DownedBossSystem.downedCosmicApparition)
+            {
+                teleportTimer++;
+
+                if (teleportTimer > 250)
+                {
+                    SoundEngine.PlaySound(SoundID.Item8, NPC.position);
+                    NPC.position.X = targetPosition.X + Main.rand.Next(-400, 400);
+                    NPC.position.Y = targetPosition.Y + Main.rand.Next(-400, 400);
+                    for (int k = 0; k < 10; k++)
+                    {
+                        Dust.NewDust(NPC.position + NPC.velocity, NPC.width, NPC.height, DustID.DemonTorch, NPC.oldVelocity.X * 0.5f, NPC.oldVelocity.Y * 0.5f);
+                    }
+                    teleportTimer = 0;
+                }
+            }
+
             var entitySource = NPC.GetSource_FromAI();
 
             Vector2 direction = Main.player[NPC.target].Center - NPC.Center;
@@ -146,7 +168,13 @@ namespace Eternal.Content.NPCs.Comet
             npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<Astragel>(), 1, 12, 24));
             npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<InterstellarSingularity>(), 1, 12, 24));
 
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Meganovae>(), 3, 1, 1));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Meganovae>(), 3));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientStarbornMask>(), 12));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientStarbornHelmet>(), 12));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientStarbornHat>(), 12));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientStarbornHeadgear>(), 12));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientStarbornScalePlate>(), 12));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientStarbornGreaves>(), 12));
         }
 
         public override void HitEffect(int hitDirection, double damage)

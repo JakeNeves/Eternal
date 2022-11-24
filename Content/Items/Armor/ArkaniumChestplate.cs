@@ -1,7 +1,6 @@
 ﻿using Eternal.Content.Rarities;
 using Eternal.Content.Items.Materials;
 using Eternal.Content.Tiles.CraftingStations;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
@@ -22,7 +21,7 @@ namespace Eternal.Content.Items.Armor
         public override void SetDefaults()
         {
             Item.width = 34;
-            Item.height = 22;
+            Item.height = 28;
             Item.value = Item.sellPrice(platinum: 2);
             Item.rare = ModContent.RarityType<Magenta>();
             Item.defense = 48;
@@ -31,6 +30,16 @@ namespace Eternal.Content.Items.Armor
         public override void UpdateEquip(Player player)
         {
             player.statLifeMax2 += 160;
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<ArkaniumCompoundSheets>(), 60)
+                .AddIngredient(ModContent.ItemType<WeatheredPlating>(), 20)
+                .AddIngredient(ModContent.ItemType<RefinedArkrystalSheets>(), 96)
+                .AddTile(ModContent.TileType<AncientForge>())
+                .Register();
         }
     }
 }

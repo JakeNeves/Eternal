@@ -42,7 +42,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
             if (Projectile.owner == Main.myPlayer)
             {
                 //rotating mf
-                float distanceFromPlayer = 20;
+                float distanceFromPlayer = 30;
 
                 Projectile.position = proj.Center + new Vector2(distanceFromPlayer, 0f).RotatedBy(Projectile.ai[1]);
                 Projectile.position.X -= Projectile.width / 2;

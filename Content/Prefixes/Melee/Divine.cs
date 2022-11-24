@@ -19,8 +19,8 @@ public class Divine : ModPrefix
 
     public override void SetStats(ref float damageMult, ref float knockbackMult, ref float useTimeMult, ref float scaleMult, ref float shootSpeedMult, ref float manaMult, ref int critBonus)
     {
-        scaleMult = 3.5f;
-        damageMult = 2.5f;
-        knockbackMult = 2.75f;
+        scaleMult = 1.05f;
+        damageMult = 1.25f;
+        knockbackMult = 1.1f;
     }
 }

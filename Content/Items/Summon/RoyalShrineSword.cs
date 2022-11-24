@@ -14,15 +14,15 @@ namespace Eternal.Content.Items.Summon
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Swing this sword to summon the Ark of Imperious upon swinging, the god of living swords");
+            Tooltip.SetDefault("Swing this sword to summon the Ark of Imperious, the god of swords");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()
         {
-            Item.width = 50;
-            Item.height = 50;
+            Item.width = 44;
+            Item.height = 44;
             Item.rare = ModContent.RarityType<Teal>();
             Item.useAnimation = 15;
             Item.useTime = 15;
