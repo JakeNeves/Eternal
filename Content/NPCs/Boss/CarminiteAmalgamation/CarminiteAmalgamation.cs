@@ -59,7 +59,7 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
             NPC.boss = true;
             NPC.noGravity = true;
             NPC.noTileCollide = true;
-            NPC.HitSound = SoundID.NPCHit1;
+            NPC.HitSound = SoundID.NPCHit13;
             NPC.DeathSound = SoundID.NPCDeath12;
             Music = MusicID.Boss5;
             if (DifficultySystem.hellMode)
@@ -170,6 +170,7 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
                     {
                         SoundEngine.PlaySound(SoundID.NPCDeath1, NPC.Center);
                         Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<CarminiteSludge>(), NPC.damage, 0f, Main.myPlayer);
+                        Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<CarminiteTooth>(), NPC.damage, 0f, Main.myPlayer);
                     }
                     if (Timer == 200)
                     {

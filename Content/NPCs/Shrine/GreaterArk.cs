@@ -22,7 +22,7 @@ namespace Eternal.Content.NPCs.Shrine
         public override void SetDefaults()
         {
             NPC.aiStyle = -1;
-            NPC.lifeMax = 3200;
+            NPC.lifeMax = 42000;
             NPC.damage = 40;
             NPC.defense = 30;
             NPC.knockBackResist = 0f;

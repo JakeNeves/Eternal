@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -28,30 +29,15 @@ namespace Eternal.Content.Projectiles.Boss
 
         public override void AI()
         {
-            float dustScale = 1f;
-            if (Projectile.ai[0] == 0f)
-                dustScale = 0.25f;
-            else if (Projectile.ai[0] == 1f)
-                dustScale = 0.5f;
-            else if (Projectile.ai[0] == 2f)
-                dustScale = 0.75f;
-
-            if (Main.rand.NextBool(2))
+            for (int k = 0; k < 5; k++)
             {
-                Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.GreenTorch, Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 100);
-                if (Main.rand.NextBool(3))
-                {
-                    dust.noGravity = true;
-                    dust.scale *= 3f;
-                    dust.velocity.X *= 2f;
-                    dust.velocity.Y *= 2f;
-                }
-
-                dust.scale *= 1.5f;
-                dust.velocity *= 1.2f;
-                dust.scale *= dustScale;
+                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.GreenTorch, Projectile.oldVelocity.X * 1f, Projectile.oldVelocity.Y * 1f);
             }
-            Projectile.ai[0] += 1f;
+        }
+
+        public override void Kill(int timeLeft)
+        {
+            SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
         }
 
         public override void ModifyDamageHitbox(ref Rectangle hitbox)

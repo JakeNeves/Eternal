@@ -40,7 +40,7 @@ namespace Eternal.Content.NPCs.Comet
 			NPC.lavaImmune = true;
 			NPC.HitSound = SoundID.DD2_SkeletonHurt;
 			NPC.DeathSound = SoundID.NPCDeath5;
-			NPC.lifeMax = 3200;
+			NPC.lifeMax = 2200;
 			NPC.defense = 10;
 			NPC.damage = 20;
 			NPC.value = Item.sellPrice(platinum: 3, gold: 30, silver: 60);

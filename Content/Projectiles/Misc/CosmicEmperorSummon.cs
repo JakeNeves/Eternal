@@ -84,7 +84,7 @@ namespace Eternal.Content.Projectiles.Misc
 
             var entitySource = Projectile.GetSource_Death();
 
-            NPC.NewNPC(entitySource, (int)Projectile.position.X, (int)Projectile.position.Y, ModContent.NPCType<CosmicEmperorThrone>());
+            NPC.NewNPC(entitySource, (int)Projectile.position.X, (int)Projectile.position.Y, ModContent.NPCType<CosmicEmperor>());
         }
     }
 }

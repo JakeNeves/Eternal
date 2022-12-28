@@ -48,7 +48,6 @@ namespace Eternal.Content.NPCs.Boss.NeoxMechs
             NPC.buffImmune[BuffID.Frostburn] = true;
             NPC.buffImmune[BuffID.Frozen] = true;
             NPC.buffImmune[BuffID.Chilled] = true;
-            //bossBag = ItemType<CarmaniteScouterBag>();
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -114,7 +113,7 @@ namespace Eternal.Content.NPCs.Boss.NeoxMechs
             NPC.netUpdate = true;
             player = Main.player[NPC.target];
             NPC.dontTakeDamage = false;
-            float speed = 36.25f;
+            float speed = 24.25f;
             float acceleration = 0.4f;
             Vector2 vector2 = new Vector2(NPC.position.X + (float)NPC.width * 0.5f, NPC.position.Y + (float)NPC.height * 0.5f);
             float xDir = Main.player[NPC.target].position.X + (float)(Main.player[NPC.target].width / 2) - vector2.X;

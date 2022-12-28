@@ -1,5 +1,4 @@
-﻿using Eternal.Content.Rarities;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
@@ -14,14 +13,12 @@ namespace Eternal.Content.Items.SebastionsEntries
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("[c/2EA5BF:---Entry No. 3---]" +
-                "\nAfter hearing something stuck the world miles away from the research lab, I figured" +
-                "\nit was just a meteorite. However, upon approaching it, I could see a purple light" +
-                "\nwithin a vast distance, only to see that it was a comet that had fallen and strucked" +
-                "\nthe plain of the earth... I went to take a closer look, only to be greeted by a ghostly" +
-                "\nimage of someone with an unreconizable face, wandering this feld of where this comet has" +
-                "\nstrucked. I had a sudden feeling it would haunt me in my sleep, I quickly ran back to the" +
-                "\nlab before I noticed I was being followed by the entity, I didn't want to do anthing with it," +
-                "\nsuddenly the entity started attacking after letting out an eerie shriek across the lab!" +
+                "\nOur team has decided to explore the caves of this world, they do hold quite" +
+                "\nthe potential wonders of what the world has to offer uppon exploration, we have" +
+                "\ndiscovered what could be an ancient civilization, inventions and other strange" +
+                "\nmachinery made from crude and rudementary materials, yet most of these however" +
+                "\nstood the test of time. It has come to my conclusion that there could be some" +
+                "\nsort of autonomus gimmicks this place could have that we may still use today..." +
                 "\n-Dr. Sebastion Kox");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

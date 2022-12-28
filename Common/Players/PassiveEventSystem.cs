@@ -36,45 +36,49 @@ namespace Eternal.Common.Players
         {
             Main.NewText("Thanks for playing the Eternal " + Eternal.instance.Version.ToString() + ", this is a public alpha build, expect things to change overtime." +
                     "\nFor updates, join the Jake's Lounge discord server", 125, 45, 60);
-            Main.NewText("https://discord.gg/HUJ8KUSAjC", 220, 0, 210);
+            Main.NewText("https://discord.gg/HUJ8KUSAjC", 100, 0, 210);
         }
 
         public override void PreUpdate()
         {
             var entitySource = Player.GetSource_NaturalSpawn();
 
-            if (DifficultySystem.hellMode && ModContent.GetInstance<ServerConfig>().cosmicApparitionNaturalSpawn)
+            if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                if (!DownedBossSystem.downedCosmicApparition && NPC.downedMoonlord && !NPC.AnyNPCs(ModContent.NPCType<CosmicApparition>()))
+                if (DifficultySystem.hellMode && ModContent.GetInstance<ServerConfig>().cosmicApparitionNaturalSpawn)
                 {
-                    cosmicApparitionPresence++;
-                    switch (cosmicApparitionPresence)
+                    if (!DownedBossSystem.downedCosmicApparition && NPC.downedMoonlord && !NPC.AnyNPCs(ModContent.NPCType<CosmicApparition>()))
                     {
-                        case 4000:
-                            Main.NewText("You feel something is following you...", 220, 0, 210);
-                            break;
-                        case 8000:
-                            Main.NewText("Shrieks start to echo around you...", 220, 0, 210);
-                            break;
-                        case 12000:
-                            Main.NewText("A chill goes down your spine as something approaches from a vast distance...", 220, 0, 210);
-                            break;
-                        case 16000:
-                            NPC.NewNPC(entitySource, (int)Player.Center.X, (int)Player.Center.Y - 900, ModContent.NPCType<CosmicApparition>());
-                            SoundEngine.PlaySound(SoundID.NPCDeath10, Player.position);
-                            Main.NewText("A Cosmic Apparition has awoken!", 175, 75, 255);
-                            cosmicApparitionPresence = 0;
-                            break;
+                        cosmicApparitionPresence++;
+                        switch (cosmicApparitionPresence)
+                        {
+                            case 4000:
+                                Main.NewText("You feel something follow you...", 220, 0, 210);
+                                break;
+                            case 8000:
+                                Main.NewText("Shrieks start to echo around you...", 220, 0, 210);
+                                break;
+                            case 12000:
+                                Main.NewText("A chill goes down your spine as something approaches from a vast distance...", 220, 0, 210);
+                                break;
+                            case 16000:
+                                NPC.NewNPC(entitySource, (int)Player.Center.X, (int)Player.Center.Y - 900, ModContent.NPCType<CosmicApparition>());
+                                SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/CosmicApparitionAnger"));
+                                //SoundEngine.PlaySound(SoundID.NPCDeath10, Player.position);
+                                Main.NewText("A Cosmic Apparition has awoken!", 175, 75, 255);
+                                cosmicApparitionPresence = 0;
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        cosmicApparitionPresence = 0;
                     }
                 }
                 else
                 {
                     cosmicApparitionPresence = 0;
                 }
-            }
-            else
-            {
-                cosmicApparitionPresence = 0;
             }
         }
     }

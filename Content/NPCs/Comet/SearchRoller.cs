@@ -24,7 +24,7 @@ namespace Eternal.Content.NPCs.Comet
             NPC.damage = 90;
             NPC.defense = 15;
             NPC.knockBackResist = 0f;
-            NPC.lifeMax = 1100;
+            NPC.lifeMax = 2200;
             NPC.HitSound = SoundID.DD2_SkeletonHurt;
             NPC.DeathSound = SoundID.NPCDeath5;
             NPC.value = Item.sellPrice(gold: 30);

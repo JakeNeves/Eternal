@@ -13,7 +13,7 @@ namespace Eternal.Content.Items.SebastionsEntries
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("[c/2EA5BF:---Entry No. 6---]" +
-                "\nAfter hearing something stuck the world miles away from the research lab, I figured" +
+                "\nAfter hearing something struck the world miles away from the research lab, I figured" +
                 "\nit was just a meteorite. However, upon approaching it, I could see a purple light" +
                 "\nwithin a vast distance, only to see that it was a comet that had fallen and strucked" +
                 "\nthe plain of the earth... I went to take a closer look, only to be greeted by a ghostly" +

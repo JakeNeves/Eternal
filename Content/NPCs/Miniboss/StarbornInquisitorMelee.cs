@@ -1,6 +1,6 @@
 ﻿using Eternal.Common.ItemDropRules.Conditions;
 using Eternal.Common.Systems;
-using Eternal.Content.Items.Materials;
+using Eternal.Content.Items.Misc;
 using Eternal.Content.Tiles;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -28,7 +28,7 @@ namespace Eternal.Content.NPCs.Miniboss
             NPC.height = 50;
             NPC.damage = 100;
             NPC.defense = 80;
-            NPC.lifeMax = 25000;
+            NPC.lifeMax = 100000;
             NPC.value = Item.sellPrice(platinum: 6);
             NPC.knockBackResist = -1f;
             NPC.aiStyle = 3;
@@ -109,6 +109,9 @@ namespace Eternal.Content.NPCs.Miniboss
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
+            EmperorNPCDropCondition emperorNPCDropCondition = new EmperorNPCDropCondition();
+            npcLoot.Add(ItemDropRule.ByCondition(emperorNPCDropCondition, ModContent.ItemType<MysteriousNote>(), 1));
+
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Placeable.CometiteOre>(), 6, 4, 8));
         }
     }

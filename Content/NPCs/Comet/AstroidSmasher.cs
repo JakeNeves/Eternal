@@ -20,7 +20,7 @@ namespace Eternal.Content.NPCs.Comet
     {
         public override void SetDefaults()
         {
-            NPC.lifeMax = 20000;
+            NPC.lifeMax = 22000;
             NPC.damage = 120;
             NPC.defense = 30;
             NPC.knockBackResist = 0f;

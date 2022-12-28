@@ -1,9 +1,11 @@
-﻿using Eternal.Common.Systems;
+﻿using Eternal.Common.Players;
+using Eternal.Common.Systems;
 using Eternal.Content.Items.Misc;
 using Eternal.Content.Items.Potions;
 using Eternal.Content.Items.Summon;
 using Eternal.Content.Items.Weapons.Throwing;
-using Eternal.Content.Projectiles.Weapons.Melee;
+using Eternal.Content.Projectiles.Weapons.Ranged;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.Bestiary;
@@ -40,7 +42,7 @@ namespace Eternal.Content.NPCs.Town
                 .SetBiomeAffection<ForestBiome>(AffectionLevel.Like)
                 .SetBiomeAffection<DesertBiome>(AffectionLevel.Dislike)
                 .SetBiomeAffection<UndergroundBiome>(AffectionLevel.Hate)
-                .SetNPCAffection(NPCID.Mechanic, AffectionLevel.Like)
+                .SetNPCAffection(ModContent.NPCType<Emissary>(), AffectionLevel.Love)
                 .SetNPCAffection(NPCID.Guide, AffectionLevel.Dislike)
                 .SetNPCAffection(NPCID.Angler, AffectionLevel.Hate)
             ;
@@ -84,6 +86,33 @@ namespace Eternal.Content.NPCs.Town
             {
                 button2 = "The Cosmic Emperor";
             }
+            else if (Main.LocalPlayer.HasItem(ModContent.ItemType<EmperorsTrust>()))
+            {
+                button2 = "Reputation";
+            }
+            else if (Main.LocalPlayer.HasItem(ModContent.ItemType<LetterofRecommendation>()))
+            {
+                button2 = "Letter of Recommendation";
+            }
+        }
+
+        public override bool CheckDead()
+        {
+            int num = NPC.life > 0 ? 1 : 10;
+            int emperor = NPC.FindFirstNPC(ModContent.NPCType<Emperor>());
+            
+            Main.NewText(Main.npc[emperor].GivenName + " the Emperor has returned to his world...", 255, 0, 0);
+            for (int k = 0; k < num; k++)
+            {
+                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.BlueTorch);
+            }
+            NPC.life = 1;
+            NPC.active = false;
+
+            if (Main.netMode == NetmodeID.Server)
+                NetMessage.SendData(MessageID.WorldData);
+
+            return false;
         }
 
         public override void OnChatButtonClicked(bool firstButton, ref bool shop)
@@ -105,7 +134,10 @@ namespace Eternal.Content.NPCs.Town
                                 Main.npcChatText = "You're here to talk about the Cosmic Emperor? Great, he needs to be overthrown, however it won't be easy fighting against someone as powerful as him. Get yourself some better armor and such before we call to action.";
                                 break;
                             case 1:
-                                Main.npcChatText = "We must confront the Cosmic Emperor for his doings, he can't go any further. " + player.name + ", I want you to lead me into battle, together we can overthrow and defeat him.";
+                                if (NPC.AnyNPCs(ModContent.NPCType<Emissary>()))
+                                    Main.npcChatText = "We must confront the Cosmic Emperor for his doings, he can't go any further. " + player.name + ", I want you to lead us into battle, together we can overthrow and defeat him.";
+                                else
+                                    Main.npcChatText = "We must confront the Cosmic Emperor for his doings, he can't go any further. " + player.name + ", I want you to lead me into battle, together we can overthrow and defeat him.";
                                 break;
                             case 2:
                                 Main.npcChatText = player.name + ", I am counting on you to lead me into battle to help overthrow and defeat the Cosmic Emperor, once in for all. It won't be easy trying to fight him, you will need a stronger arsenal to fight him!";
@@ -120,6 +152,30 @@ namespace Eternal.Content.NPCs.Town
                         Main.npcChatText = player.name + ", I honor you for all of your hard work, therefore you shall be titled 'Minister' for successfully defeating him and leading us to victory.";
                     }
                 }
+            }
+            else if (Main.LocalPlayer.HasItem(ModContent.ItemType<EmperorsTrust>()))
+            {
+                Player player = Main.player[Main.myPlayer];
+                if (ReputationSystem.ReputationPoints >= 100)
+                {
+                    Main.npcChatText = $"Based on your current reputation, I have trusted you {player.name}.";
+                }
+                else if (ReputationSystem.ReputationPoints >= 500)
+                {
+                    Main.npcChatText = $"Based on your current reputation, I would like to honor you based on how you have left an impact in our hearts {player.name}.";
+                }
+                else if (ReputationSystem.ReputationPoints >= 1000)
+                {
+                    Main.npcChatText = $"Based on your current reputation, I see you as a hero to us and to our people, please do one day, our our empire {player.name}.";
+                }
+                else if (ReputationSystem.ReputationPoints >= 5000)
+                {
+                    Main.npcChatText = $"Based on your current reputation, I shall declare you a saviour to our people. Congratulations {player.name}, you've shown your excellence before our very eyes!";
+                }
+            }
+            else if (Main.LocalPlayer.HasItem(ModContent.ItemType<LetterofRecommendation>()))
+            {
+                Main.npcChatText = "A Letter of Recommendation? I must say that you my friend, should happily have this gift to honor your saviour rank as well as great reputation and other great things you have done since I have first arrived here in your world, although I wish to return to my world however, I think I'll stay here for the time being!";
             }
         }
 
@@ -141,28 +197,10 @@ namespace Eternal.Content.NPCs.Town
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            if (NPC.life < 0)
+            int num = NPC.life > 0 ? 1 : 5;
+            for (int k = 0; k < num; k++)
             {
-                int num = NPC.life > 0 ? 1 : 10;
-                for (int k = 0; k < num; k++)
-                {
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.BlueTorch);
-                }
-            }
-            else {
-                int num = NPC.life > 0 ? 1 : 5;
-                for (int k = 0; k < num; k++)
-                {
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood);
-                }
-            }
-
-            if (NPC.life < 1)
-            {
-                int emperor = NPC.FindFirstNPC(ModContent.NPCType<Emperor>());
-                NPC.life = 1;
-                NPC.active = false;
-                Main.NewText(Main.npc[emperor].GivenName + " the Emperor has returned to his world", 255, 0, 0);
+                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood);
             }
         }
 
@@ -274,7 +312,7 @@ namespace Eternal.Content.NPCs.Town
 
         public override void TownNPCAttackProj(ref int projType, ref int attackDelay)
         {
-            projType = ModContent.ProjectileType<StarspearProjectileThrown>();
+            projType = ModContent.ProjectileType<PocketJakeProjectile>();
             attackDelay = 1;
         }
 

@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Linq;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -27,7 +28,7 @@ namespace Eternal.Content.NPCs.Comet
 
         public override void SetDefaults()
         {
-            NPC.lifeMax = 7500;
+            NPC.lifeMax = 22000;
             NPC.damage = 100;
             NPC.defense = 15;
             NPC.knockBackResist = 0f;
@@ -36,8 +37,15 @@ namespace Eternal.Content.NPCs.Comet
             NPC.aiStyle = -1;
             NPC.noGravity = true;
             NPC.noTileCollide = true;
-            NPC.HitSound = SoundID.NPCHit52;
-            NPC.DeathSound = SoundID.NPCDeath55;
+            NPC.HitSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCHit/ApparitionalReminantHit")
+            {
+                Volume = 0.8f,
+                PitchVariance = Main.rand.NextFloat(0.2f, 0.9f),
+                MaxInstances = 0,
+            };
+            //NPC.HitSound = SoundID.NPCHit52;
+            NPC.DeathSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCDeath/ApparitionalReminantDeath");
+            //NPC.DeathSound = SoundID.NPCDeath55;
             NPC.value = Item.sellPrice(gold: 26, silver: 15);
             NPC.buffImmune[BuffID.Poisoned] = true;
             NPC.buffImmune[BuffID.OnFire] = true;

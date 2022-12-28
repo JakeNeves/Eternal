@@ -45,6 +45,13 @@ namespace Eternal.Content.Items.Armor
             ArmorSystem.StarbornArmor = true;
         }
 
+        public override void ArmorSetShadows(Player player)
+        {
+            player.armorEffectDrawOutlinesForbidden = true;
+            player.armorEffectDrawOutlines = true;
+            player.armorEffectDrawShadowLokis = true;
+        }
+
         public override void UpdateEquip(Player player)
         {
             player.GetDamage(DamageClass.Ranged) += 0.30f;

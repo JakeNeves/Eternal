@@ -1,7 +1,4 @@
-﻿using Eternal.Content.Projectiles.Accessories;
-using Terraria;
-using Terraria.Audio;
-using Terraria.ID;
+﻿using Terraria;
 using Terraria.ModLoader;
 using Eternal.Common.Configurations;
 using Eternal.Common.Systems;
@@ -60,7 +57,7 @@ namespace Eternal.Common.Players
                 Player.lifeRegenTime = 0;
                 Player.lifeRegen -= 10;
 
-                if (Player.statLifeMax < 0)
+                if (Player.statLifeMax < 1)
                 {
                     Player.KillMe(PlayerDeathReason.ByCustomReason(Player.name + " was dehydrated"), 10000, 1, false);
                 }
@@ -73,7 +70,7 @@ namespace Eternal.Common.Players
                 Player.lifeRegenTime = 0;
                 Player.lifeRegen -= 5;
 
-                if (Player.statLifeMax < 0)
+                if (Player.statLifeMax < 1)
                 {
                     Player.KillMe(PlayerDeathReason.ByCustomReason(Player.name + " froze to death"), 10000, 1, false);
                 }

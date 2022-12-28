@@ -8,6 +8,9 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.GameContent.Bestiary;
 using Eternal.Content.Items.Misc;
+using Eternal.Content.Items.Potions;
+using Eternal.Common.Players;
+using Eternal.Content.Items.Summon;
 
 namespace Eternal.Content.NPCs.Town
 {
@@ -72,22 +75,47 @@ namespace Eternal.Content.NPCs.Town
         public override void SetChatButtons(ref string button, ref string button2)
         {
             button = Language.GetTextValue("LegacyInterface.28");
+            if (Main.LocalPlayer.HasItem(ModContent.ItemType<EmperorsTrust>()))
+            {
+                button2 = "Reputation";
+            }
         }
 
         public override void OnChatButtonClicked(bool firstButton, ref bool shop)
         {
             if (firstButton)
                 shop = true;
+            else if (Main.LocalPlayer.HasItem(ModContent.ItemType<EmperorsTrust>()))
+            {
+                Player player = Main.player[Main.myPlayer];
+                if (ReputationSystem.ReputationPoints >= 100)
+                {
+                    Main.npcChatText = $"Based on your current reputation, our highness has trusted you in our eyes {player.name}.";
+                }
+                else if (ReputationSystem.ReputationPoints >= 500)
+                {
+                    Main.npcChatText = $"Based on your current reputation, our highness would like to honor you based on how you have left an impact in our hearts {player.name}.";
+                }
+                else if (ReputationSystem.ReputationPoints >= 1000)
+                {
+                    Main.npcChatText = $"Based on your current reputation, our highness would see you as a hero to us and to our people, please do one day, visit our empire {player.name}.";
+                }
+                else if (ReputationSystem.ReputationPoints >= 5000)
+                {
+                    Main.npcChatText = $"Based on your current reputation, our highness shall declare you a saviour to our people. Congratulations {player.name}, you've shown your excellence before our very eyes!";
+                }
+            }
         }
 
         public override List<string> SetNPCNameList()
         {
             return new List<string>() {
-                "Sirius",
+                "Sirus",
                 "Alastor",
                 "Rupert",
                 "Maddox",
                 "Corelone",
+                "Corleone",
                 "Ivor",
                 "Samual",
                 "Drew",
@@ -151,25 +179,31 @@ namespace Eternal.Content.NPCs.Town
                 case 9:
                     return "Trying to face great colossal enemies right before you should, what kind of tomfoolery do you even deal with...";
                 case 10:
-                    return "Make this quick, I have some commissons from our emperor to finish...";
+                    if (ReputationSystem.ReputationPoints >= 25)
+                        return "How can I help you at this time my friend.";
+                    else
+                        return "Make this quick, I have some commissons from our emperor to finish...";
                 default:
-                    return "Hello " + player.name + ". I am an emissary of the emperor, one of his favourite emissaries!";
+                    if (ReputationSystem.ReputationPoints >= 100)
+                        return $"Hello {player.name}, how is business going?";
+                    else
+                        return "I am a little busy right now, but I don't mind visitors.";
             }
         }
 
-        /*public override void SetupShop(Chest shop, ref int nextSlot)
+        public override void SetupShop(Chest shop, ref int nextSlot)
         {
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<JakesHat>());
-            nextSlot++;
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<JakesCoat>());
-            nextSlot++;
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<JakesKicks>());
-            nextSlot++;
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<JakesCosmicWings>());
-            nextSlot++;
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<PristineHealingPotion>());
-            nextSlot++;
-        }*/
+            if (ReputationSystem.ReputationPoints == 50)
+            {
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<PristineHealingPotion>());
+                nextSlot++;
+            }
+            if (ReputationSystem.ReputationPoints == 100)
+            {
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<PerfectHealingPotion>());
+                nextSlot++;
+            }
+        }
 
         public override bool CanGoToStatue(bool toKingStatue)
         {

@@ -5,6 +5,7 @@ using Eternal.Content.Projectiles.Boss;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -73,8 +74,15 @@ namespace Eternal.Content.NPCs.Boss.Trinity
             NPC.damage = 110;
             NPC.aiStyle = -1;
             NPC.knockBackResist = -1f;
-            NPC.HitSound = SoundID.NPCHit41;
-            NPC.DeathSound = SoundID.NPCDeath44;
+            NPC.HitSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCHit/TrinityHit")
+            {
+                Volume = 0.8f,
+                PitchVariance = Main.rand.NextFloat(0.2f, 0.9f),
+                MaxInstances = 0,
+            };
+            //NPC.HitSound = SoundID.NPCHit41;
+            NPC.DeathSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCDeath/TrinityDeath");
+            //NPC.DeathSound = SoundID.NPCDeath44;
             NPC.noGravity = true;
             NPC.noTileCollide = true;
             NPC.boss = true;

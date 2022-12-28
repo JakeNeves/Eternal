@@ -43,7 +43,13 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             NPC.height = 46;
             NPC.lifeMax = 12800;
             NPC.defense = 18;
-            NPC.HitSound = SoundID.NPCHit52;
+            NPC.HitSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCHit/CosmicApparitionHit")
+            {
+                Volume = 0.8f,
+                PitchVariance = Main.rand.NextFloat(0.2f, 0.9f),
+                MaxInstances = 0,
+            };
+            //NPC.HitSound = SoundID.NPCHit52;
             NPC.DeathSound = null;
             Music = 0;
             NPC.damage = 200;
@@ -59,7 +65,8 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
 
             if (NPC.life < 0)
             {
-                SoundEngine.PlaySound(SoundID.NPCDeath10, NPC.position);
+                SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/CosmicApparitionAnger"));
+                //SoundEngine.PlaySound(SoundID.NPCDeath10, NPC.position);
                 Main.NewText("Shrieks echo as the soul angers...", 175, 75, 255);
                 NPC.NewNPC(entitySource, (int)NPC.Center.X - 20, (int)NPC.Center.Y, ModContent.NPCType<CosmicApparition>());
             }

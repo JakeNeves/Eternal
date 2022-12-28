@@ -44,7 +44,7 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
             NPC.noGravity = true;
             NPC.noTileCollide = true;
 
-            NPC.HitSound = SoundID.NPCHit1;
+            NPC.HitSound = SoundID.NPCHit13;
             NPC.DeathSound = SoundID.NPCDeath12;
         }
 
@@ -191,7 +191,7 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
                 float A = (float)Main.rand.Next(-200, 200) * 0.01f;
                 float B = (float)Main.rand.Next(-200, 200) * 0.01f;
                 if (Main.netMode != NetmodeID.MultiplayerClient)
-                    Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<CarminiteTooth>(), NPC.damage, 1, Main.myPlayer, 0, 0);
+                    Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<CarminiteSludge>(), NPC.damage, 1, Main.myPlayer, 0, 0);
             }
             if (attackTimer >= 200)
             {

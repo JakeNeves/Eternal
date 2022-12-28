@@ -71,8 +71,15 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             NPC.knockBackResist = -1f;
             NPC.boss = true;
             Music = MusicID.Boss2;
-            NPC.HitSound = SoundID.NPCHit52;
-            NPC.DeathSound = SoundID.NPCDeath55;
+            NPC.HitSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCHit/CosmicApparitionHit")
+            {
+                Volume = 0.8f,
+                PitchVariance = Main.rand.NextFloat(0.2f, 0.9f),
+                MaxInstances = 0,
+            };
+            //NPC.HitSound = SoundID.NPCHit52;
+            NPC.DeathSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCDeath/CosmicApparitionDeath");
+            //NPC.DeathSound = SoundID.NPCDeath55;
             NPC.noTileCollide = true;
             NPC.noGravity = true;
             NPC.buffImmune[BuffID.Poisoned] = true;
@@ -370,7 +377,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
                     dontKillyet = true;
                     player.ApplyDamageToNPC(NPC, 9999, 0, 0, false);
 
-                    SoundEngine.PlaySound(SoundID.NPCDeath10, NPC.position);
+                    //SoundEngine.PlaySound(SoundID.NPCDeath10, NPC.position);
 
                     if (!DownedBossSystem.downedCosmicApparition)
                     {

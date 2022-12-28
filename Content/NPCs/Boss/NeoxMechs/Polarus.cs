@@ -116,7 +116,6 @@ namespace Eternal.Content.NPCs.Boss.NeoxMechs
             NPC.buffImmune[BuffID.Frostburn] = true;
             NPC.buffImmune[BuffID.Frozen] = true;
             NPC.buffImmune[BuffID.Chilled] = true;
-            //bossBag = ItemType<CarmaniteScouterBag>();
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)

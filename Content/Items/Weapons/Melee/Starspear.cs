@@ -2,6 +2,7 @@
 using Eternal.Content.Projectiles.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -11,7 +12,6 @@ namespace Eternal.Content.Items.Weapons.Melee
 {
     public class Starspear : ModItem
     {
-
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("<right> to throw and leave a trail of bombs" +
@@ -74,7 +74,7 @@ namespace Eternal.Content.Items.Weapons.Melee
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            float numberProjectiles = 6 + Main.rand.Next(4);
+            float numberProjectiles = 2 + Main.rand.Next(2);
 
             position += Vector2.Normalize(velocity) * 15f;
 
@@ -82,9 +82,11 @@ namespace Eternal.Content.Items.Weapons.Melee
             {
                 if (player.altFunctionUse == 2)
                 {
+                    SoundEngine.PlaySound(SoundID.Item71, player.position);
+
                     for (int i = 0; i < numberProjectiles; i++)
                     {
-                        Projectile.NewProjectile(source, position.X + Main.rand.NextFloat(-200, 200), position.Y + Main.rand.NextFloat(-200, 200), velocity.X, velocity.Y, type, damage, knockback, player.whoAmI);
+                        Projectile.NewProjectile(source, position.X + Main.rand.NextFloat(-150, 150), position.Y + Main.rand.NextFloat(-150, 150), velocity.X, velocity.Y, type, damage, knockback, player.whoAmI);
                     }
                 }
                 else
@@ -95,6 +97,5 @@ namespace Eternal.Content.Items.Weapons.Melee
             }
             return true;
         }
-
     }
 }

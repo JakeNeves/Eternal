@@ -47,14 +47,20 @@ namespace Eternal.Content.NPCs.Boss.Trinity
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cryota's Sentry");
+
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            {
+                Hide = true
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
         }
 
         public override void SetDefaults()
         {
             NPC.lavaImmune = true;
-            NPC.HitSound = null;
+            NPC.HitSound = SoundID.NPCHit41;
             NPC.DeathSound = SoundID.NPCDeath14;
-            NPC.lifeMax = 60000;
+            NPC.lifeMax = 600000;
             NPC.defense = 95;
             NPC.width = 46;
             NPC.height = 56;

@@ -57,7 +57,7 @@ namespace Eternal.Common.Players
                 Player.lifeRegenTime = 0;
                 Player.lifeRegen -= 25;
 
-                if (Player.statLifeMax < 0)
+                if (Player.statLifeMax < 1)
                 {
                     Player.KillMe(PlayerDeathReason.ByCustomReason(Player.name + "'s body withered away"), 10000, 1, false);
                 }

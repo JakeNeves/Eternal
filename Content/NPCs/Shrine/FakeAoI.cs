@@ -27,7 +27,7 @@ namespace Eternal.Content.NPCs.Shrine
             NPC.height = 184;
             NPC.aiStyle = -1;
             NPC.defense = 10;
-            NPC.lifeMax = 18000;
+            NPC.lifeMax = 150000;
             NPC.value = Item.buyPrice(gold: 10);
             NPC.HitSound = SoundID.NPCHit4;
             NPC.DeathSound = SoundID.DD2_ExplosiveTrapExplode;

@@ -11,7 +11,7 @@ namespace Eternal.Content.Items.Materials
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("Blood Droplets, Petrified and Bewiched in a bizzare form" +
-                             "\n'Essance of Carminite Creatures'");
+                             "\n'Both sticky and gooey substance scrapped off a flesh horror'");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
         }
@@ -19,7 +19,7 @@ namespace Eternal.Content.Items.Materials
         public override void SetDefaults()
         {
             Item.width = 20;
-            Item.height = 28;
+            Item.height = 22;
             Item.rare = ItemRarityID.Green;
             Item.value = Item.sellPrice(silver: 1);
             Item.maxStack = 999;

@@ -132,7 +132,7 @@ namespace Eternal.Common.Systems
 			#region The Cosmic Emperor
 			string CEName = "The Cosmic Emperor";
 
-			int CEType = ModContent.NPCType<Content.NPCs.Boss.CosmicEmperor.CosmicEmperorThrone>();
+			int CEType = ModContent.NPCType<Content.NPCs.Boss.CosmicEmperor.CosmicEmperor>();
 
 			float CEweight = 32.5f;
 

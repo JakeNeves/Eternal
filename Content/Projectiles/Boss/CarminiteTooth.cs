@@ -11,8 +11,8 @@ namespace Eternal.Content.Projectiles.Boss
 
         public override void SetDefaults()
         {
-            Projectile.width = 14;
-            Projectile.height = 26;
+            Projectile.width = 24;
+            Projectile.height = 24;
             Projectile.hostile = true;
             Projectile.friendly = false;
             Projectile.ignoreWater = true;

@@ -19,12 +19,12 @@ namespace Eternal.Content.Projectiles.Boss
 
         public override void SetDefaults()
         {
-            Projectile.width = 26;
-            Projectile.height = 46;
+            Projectile.width = 30;
+            Projectile.height = 60;
             Projectile.friendly = false;
             Projectile.hostile = true;
             Projectile.ignoreWater = true;
-            Projectile.penetrate = 3;
+            Projectile.penetrate = -1;
             Projectile.timeLeft = 400;
         }
 
@@ -38,7 +38,11 @@ namespace Eternal.Content.Projectiles.Boss
         }
         public override void Kill(int timeLeft)
         {
-            SoundEngine.PlaySound(SoundID.DD2_DarkMageHealImpact, Projectile.position);
+            SoundEngine.PlaySound(SoundID.DD2_ExplosiveTrapExplode, Projectile.position);
+            for (int k = 0; k < 5; k++)
+            {
+                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.GreenTorch, Projectile.oldVelocity.X * 1f, Projectile.oldVelocity.Y * 1f);
+            }
             Vector2 usePos = Projectile.position;
             Vector2 rotVector = (Projectile.rotation - MathHelper.ToRadians(90f)).ToRotationVector2();
         }
@@ -62,8 +66,6 @@ namespace Eternal.Content.Projectiles.Boss
         public override void AI()
         {
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);
-
-            Projectile.stepSpeed += 2.5f;
         }
     }
 }

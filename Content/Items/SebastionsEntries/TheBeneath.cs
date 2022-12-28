@@ -1,5 +1,4 @@
-﻿using Eternal.Content.Rarities;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
@@ -14,14 +13,15 @@ namespace Eternal.Content.Items.SebastionsEntries
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("[c/2EA5BF:---Entry No. 4---]" +
-                "\nAfter hearing something stuck the world miles away from the research lab, I figured" +
-                "\nit was just a meteorite. However, upon approaching it, I could see a purple light" +
-                "\nwithin a vast distance, only to see that it was a comet that had fallen and strucked" +
-                "\nthe plain of the earth... I went to take a closer look, only to be greeted by a ghostly" +
-                "\nimage of someone with an unreconizable face, wandering this feld of where this comet has" +
-                "\nstrucked. I had a sudden feeling it would haunt me in my sleep, I quickly ran back to the" +
-                "\nlab before I noticed I was being followed by the entity, I didn't want to do anthing with it," +
-                "\nsuddenly the entity started attacking after letting out an eerie shriek across the lab!" +
+                "\nUppon exploring the deepest depths of this world's caverns, we noticed" +
+                "\nsome black rock that is as durable as the materials used to make those" +
+                "\nmachines as discovered in the Precursor Temple, however this hardened" +
+                "\nrock is much tougher than regular stone, uppon deeper exploration into" +
+                "\nsuch dark cave, all the lights went out followed by some thick fog, not" +
+                "\neven something simple as torches will work, our team and I were left with" +
+                "\nnothing but anxiety slowly getting to us, it's horrendous, we had to make" +
+                "\nour escape as fast as we could, otherwise we could be consumed by what could" +
+                "\nbe a potential monster that lurks in the darkness of this cave." +
                 "\n-Dr. Sebastion Kox");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
