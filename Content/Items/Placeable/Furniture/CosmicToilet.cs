@@ -2,6 +2,8 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Eternal.Content.Rarities;
+using Eternal.Content.Items.Materials;
+using Eternal.Content.Tiles.CraftingStations;
 
 namespace Eternal.Content.Items.Placeable.Furniture
 {
@@ -27,6 +29,16 @@ namespace Eternal.Content.Items.Placeable.Furniture
             Item.consumable = true;
             Item.value = Item.buyPrice(platinum: 1);
             Item.createTile = ModContent.TileType<Tiles.Furniture.CosmicToilet>();
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddTile(ModContent.TileType<AncientForge>())
+                .AddIngredient(ItemID.Toilet)
+                .AddIngredient(ModContent.ItemType<CometiteBar>(), 16)
+                .AddIngredient(ModContent.ItemType<CosmoniumFragment>())
+                .Register();
         }
     }
 }

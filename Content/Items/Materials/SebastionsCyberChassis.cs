@@ -31,6 +31,7 @@ namespace Eternal.Content.Items.Materials
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<GalaciteGemstone>(), 25)
                 .AddIngredient(ModContent.ItemType<WeatheredPlating>(), 100)
+                .AddIngredient(ModContent.ItemType<ConcintratedHardStone>(), 20)
                 .AddRecipeGroup("eternal:copperBars", 75)
                 .AddTile(ModContent.TileType<Reconstructatorium>())
                 .Register();

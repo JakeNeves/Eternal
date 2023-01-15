@@ -1,5 +1,6 @@
 ﻿using Eternal.Common.Systems;
 using Terraria;
+using Terraria.Graphics.Capture;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -13,8 +14,9 @@ namespace Eternal.Content.Biomes
         }
 
         public override int Music => MusicID.Eerie;
+        public override CaptureBiome.TileColorStyle TileColorStyle => CaptureBiome.TileColorStyle.Corrupt;
 
-        public override string BestiaryIcon => "Assets/Textures/Bestiary/Comet";
+        public override string BestiaryIcon => "Assets/Textures/Bestiary/Comet_Icon";
 
         public override void OnEnter(Player player)
         {

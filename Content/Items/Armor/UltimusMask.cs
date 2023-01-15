@@ -38,7 +38,7 @@ namespace Eternal.Content.Items.Armor
                             "\nStarborn and Arkanium Armor Effects";
 
             player.GetDamage(DamageClass.Melee) += 1.42f;
-            player.GetAttackSpeed(DamageClass.Melee) += 1.25f;
+            player.GetAttackSpeed(DamageClass.Melee) += 0.25f;
 
             Lighting.AddLight(player.Center, 1.14f, 0.22f, 1.43f);
 

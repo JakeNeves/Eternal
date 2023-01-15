@@ -36,7 +36,7 @@ namespace Eternal.Content.Items.Accessories.Hell
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetDamage(DamageClass.Melee) += 1.45f;
-            player.GetAttackSpeed(DamageClass.Melee) += 1.15f;
+            player.GetAttackSpeed(DamageClass.Melee) += 0.15f;
             player.statLifeMax2 += 100;
             AccessorySystem.Dreadheart = true;
         }

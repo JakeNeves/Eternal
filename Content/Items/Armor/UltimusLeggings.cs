@@ -33,10 +33,10 @@ namespace Eternal.Content.Items.Armor
         {
             CreateRecipe()
                 .AddTile(ModContent.TileType<AncientForge>())
-                .AddIngredient(ModContent.ItemType<ArkaniumChestplate>())
-                .AddIngredient(ModContent.ItemType<StarbornScalePlate>())
-                .AddIngredient(ModContent.ItemType<CoreofEternal>(), 16)
-                .AddIngredient(ModContent.ItemType<StargloomCometiteBar>(), 24)
+                .AddIngredient(ModContent.ItemType<ArkaniumGreaves>())
+                .AddIngredient(ModContent.ItemType<StarbornGreaves>())
+                .AddIngredient(ModContent.ItemType<CoreofEternal>(), 8)
+                .AddIngredient(ModContent.ItemType<StargloomCometiteBar>(), 12)
                 .Register();
         }
     }

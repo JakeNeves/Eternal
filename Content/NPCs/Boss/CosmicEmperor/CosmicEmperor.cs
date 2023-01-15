@@ -5,19 +5,12 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Eternal.Content.Items.Materials;
-using Terraria.GameContent.ItemDropRules;
 using Eternal.Content.Projectiles.Boss;
-using Eternal.Content.Items.BossBags;
 using Terraria.GameContent.Bestiary;
 using System.Collections.Generic;
-using Eternal.Content.Tiles;
-using Eternal.Content.Items.Weapons.Melee;
-using Eternal.Content.Items.Weapons.Ranged;
-using Eternal.Content.Projectiles.Explosion;
-using Eternal.Content.BossBars;
-using Eternal.Common.ItemDropRules.Conditions;
-using Eternal.Content.Items.Accessories.Hell;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria.Graphics.Shaders;
+using Terraria.DataStructures;
 
 namespace Eternal.Content.NPCs.Boss.CosmicEmperor
 {
@@ -28,6 +21,8 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
         int attackTimer = 0;
         int dialogueTimer = 0;
 
+        bool spawnedClones = false;
+        bool dialogue = false;
         bool tohouAttack = false;
         bool dontKillyet = false;
         bool firstAttack = false;
@@ -35,8 +30,11 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cosmic Emperor");
-
-            NPCID.Sets.ShouldBeCountedAsBoss[Type] = true;
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            {
+                Hide = true
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -52,7 +50,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
         {
             NPC.width = 54;
             NPC.height = 56;
-            NPC.lifeMax = 20000000;
+            NPC.lifeMax = 4000000;
             NPC.defense = 90;
             NPC.damage = 40;
             NPC.noGravity = true;
@@ -125,19 +123,19 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
         {
             if (Main.masterMode)
             {
-                NPC.lifeMax = 24000000;
+                NPC.lifeMax = 12000000;
                 NPC.defense = 182;
                 NPC.damage = 80;
             }
             else if (DifficultySystem.hellMode)
             {
-                NPC.lifeMax = 26000000;
+                NPC.lifeMax = 16000000;
                 NPC.defense = 184;
                 NPC.damage = 86;
             }
             else
             {
-                NPC.lifeMax = 22000000;
+                NPC.lifeMax = 8000000;
                 NPC.defense = 180;
                 NPC.damage = 60;
             }
@@ -214,12 +212,14 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
             
             if (dontKillyet)
             {
-                dialogueTimer++;
+                if (!dialogue)
+                    dialogueTimer++;
+                else
+                {
+                    dialogueTimer = 0;
+                }
                 switch (dialogueTimer)
                 {
-                    case 0:
-                        Main.NewText("...", 150, 36, 120);
-                        break;
                     case 150:
                         Main.NewText("Well, it looks like you're pretty good...", 150, 36, 120);
                         break;
@@ -227,16 +227,29 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
                         Main.NewText("However, this is the end of your journey, because guess what...", 150, 36, 120);
                         break;
                     case 450:
-                        Main.NewText("IT'S DOOM O' CLOCK!", 150, 36, 120);
+                        Main.NewText("YOUR RESISTANCE ENDS NOW!", 150, 36, 120);
                         break;
                     case 690:
-                        Main.NewText("AND I AM ONLY JUST GETTING STARTED!", 150, 36, 120);
+                        Main.NewText("I CAN ALREADY HEAR THE MARCHING OF A THOUSAND ANTS APPROACHING!", 150, 36, 120);
                         break;
                     case 850:
-                        Main.NewText("THIS BATTLE WILL BE PAINFUL, AND YOU'RE GONNA LIKE IT!", 150, 36, 120);
-                        NPC.NewNPC(entitySource, (int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<CosmicEmperorFly>());
-                        NPC.active = false;
+                        Main.NewText("CLONES, PUNISH THEM!", 150, 36, 120);
+                        spawnedClones = true;
+                        for (int i = 0; i < 12; ++i)
+                        {
+                            NPC.NewNPC(entitySource, (int)NPC.position.X + Main.rand.Next(-120, 120), (int)NPC.position.Y + Main.rand.Next(-120, 120), ModContent.NPCType<CosmicEmperorClone>());
+                        }
+                        dialogue = true;
                         break;
+                }
+                if (spawnedClones)
+                {
+                    if (!NPC.AnyNPCs(ModContent.NPCType<CosmicEmperorClone>()))
+                    {
+                        Main.NewText("THESE CLONES ARE USELESS, I WILL HAVE TO TAKE MATTER INTO MY OWN HANDS NOW!", 150, 36, 120);
+                        NPC.NewNPC(entitySource, (int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<CosmicEmperorP2>());
+                        NPC.active = false;
+                    }
                 }
             }
             else

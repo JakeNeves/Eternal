@@ -15,7 +15,6 @@ using Eternal.Content.Tiles;
 using Eternal.Content.Items.Weapons.Melee;
 using Eternal.Content.Items.Weapons.Ranged;
 using Eternal.Content.Projectiles.Explosion;
-using Eternal.Content.BossBars;
 using Eternal.Common.ItemDropRules.Conditions;
 using Eternal.Content.Items.Accessories.Hell;
 
@@ -66,7 +65,6 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
                 NPC.scale = 0.75f;
             else
                 NPC.scale = 1f;
-            NPC.BossBar = ModContent.GetInstance<Notched2BossBar>();
         }
 
         public override void OnKill()

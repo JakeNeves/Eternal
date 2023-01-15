@@ -40,6 +40,7 @@ namespace Eternal.Content.Items.Placeable.CraftingStations
                 .AddIngredient(ModContent.ItemType<Astragel>(), 120)
                 .AddIngredient(ModContent.ItemType<InterstellarSingularity>(), 48)
                 .AddIngredient(ItemID.LunarBar, 4)
+                .AddRecipeGroup("eternal:celestialFragments", 8)
                 .AddRecipeGroup("eternal:mythrilAnvils")
                 .AddTile(TileID.CrystalBall)
                 .Register();

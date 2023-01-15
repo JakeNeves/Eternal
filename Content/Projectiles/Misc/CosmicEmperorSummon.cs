@@ -1,4 +1,5 @@
-﻿using Eternal.Common.Systems;
+﻿using Eternal.Common.Players;
+using Eternal.Common.Systems;
 using Eternal.Content.NPCs.Boss.CosmicEmperor;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -60,20 +61,41 @@ namespace Eternal.Content.Projectiles.Misc
             }
             else
             {
-                switch (Projectile.timeLeft)
+                if (ReputationSystem.ReputationPoints >= 100)
                 {
-                    case 690:
-                        Main.NewText("To you, who has proven your strength...", 150, 36, 120);
-                        break;
-                    case 450:
-                        Main.NewText("I have been watching you, ever since you have slayed the one, banished to the moon...", 150, 36, 120);
-                        break;
-                    case 290:
-                        Main.NewText("Now, your journey ends here, you've come along way since I first witnessed you, " + player.name + ".", 150, 36, 120);
-                        break;
-                    case 150:
-                        Main.NewText("Let the battle begin!", 150, 36, 120);
-                        break;
+                    switch (Projectile.timeLeft)
+                    {
+                        case 690:
+                            Main.NewText("I KNEW IT!", 150, 36, 120);
+                            break;
+                        case 450:
+                            Main.NewText("You have been following that emperor haven't you " + player.name + " ?", 150, 36, 120);
+                            break;
+                        case 290:
+                            Main.NewText("Do NOT follow that lead, he is a DANGEROUS individual!", 150, 36, 120);
+                            break;
+                        case 150:
+                            Main.NewText("This troublesome resistance of your's won't get through me, this battle will be bloodier with our hands alone, Time to repent!", 150, 36, 120);
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (Projectile.timeLeft)
+                    {
+                        case 690:
+                            Main.NewText("To you, who has proven your strength...", 150, 36, 120);
+                            break;
+                        case 450:
+                            Main.NewText("I have been watching you, ever since you have slayed the one, banished to the moon...", 150, 36, 120);
+                            break;
+                        case 290:
+                            Main.NewText("Now, your journey ends here, you've come along way since I first witnessed you, " + player.name + ".", 150, 36, 120);
+                            break;
+                        case 150:
+                            Main.NewText("Let the battle begin!", 150, 36, 120);
+                            break;
+                    }
                 }
             }
         }

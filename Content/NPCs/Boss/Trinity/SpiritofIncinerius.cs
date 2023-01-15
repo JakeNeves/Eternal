@@ -1,5 +1,4 @@
 ﻿using Eternal.Common.Systems;
-using Eternal.Content.BossBars;
 using Eternal.Content.Projectiles.Boss;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -47,8 +46,15 @@ namespace Eternal.Content.NPCs.Boss.Trinity
             NPC.knockBackResist = 0f;
             NPC.noGravity = true;
             NPC.noTileCollide = true;
-            NPC.HitSound = SoundID.NPCHit3;
-            NPC.DeathSound = SoundID.NPCDeath3;
+            NPC.HitSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCHit/TrinitySpiritHit")
+            {
+                Volume = 0.8f,
+                PitchVariance = Main.rand.NextFloat(0.2f, 0.9f),
+                MaxInstances = 0,
+            };
+            //NPC.HitSound = SoundID.NPCHit3;
+            NPC.DeathSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCDeath/TrinitySpiritDeath");
+            //NPC.DeathSound = SoundID.NPCDeath3;
         }
 
         public Vector2 bossCenter

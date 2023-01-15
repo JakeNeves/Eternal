@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Eternal.Content.Dusts;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -20,7 +21,7 @@ namespace Eternal.Content.Tiles
             Main.tileMergeDirt[Type] = false;
             Main.tileBlockLight[Type] = true;
             Main.tileLighted[Type] = true;
-            DustType = DustID.PurpleTorch;
+            DustType = ModContent.DustType<CosmicSpirit>();
             ItemDrop = ModContent.ItemType<Content.Items.Placeable.CometiteOre>();
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Cometite");
@@ -37,10 +38,9 @@ namespace Eternal.Content.Tiles
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
-            r = 1.25f;
-            g = 0.75f;
-            b = 1.5f;
+            r = 1.20f;
+            g = 0.50f;
+            b = 1.90f;
         }
-
     }
 }

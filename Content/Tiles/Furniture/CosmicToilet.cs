@@ -16,6 +16,9 @@ namespace Eternal.Content.Tiles.Furniture
             Main.tileFrameImportant[Type] = true;
             Main.tileNoAttach[Type] = true;
             Main.tileLavaDeath[Type] = true;
+            TileID.Sets.HasOutlines[Type] = false;
+            TileID.Sets.CanBeSatOnForNPCs[Type] = false;
+            TileID.Sets.CanBeSatOnForPlayers[Type] = false;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style1x2);
             TileObjectData.newTile.CoordinateHeights = new[] { 16, 18 };
             TileObjectData.newTile.Direction = TileObjectDirection.PlaceLeft;
@@ -26,7 +29,6 @@ namespace Eternal.Content.Tiles.Furniture
             TileObjectData.newAlternate.Direction = TileObjectDirection.PlaceRight;
             TileObjectData.addAlternate(1);
             TileObjectData.addTile(Type);
-            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsChair);
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("The Cosmic Toilet");
             AddMapEntry(new Color(97, 36, 173), name);

@@ -1,5 +1,4 @@
 ﻿using Eternal.Common.Systems;
-using Eternal.Content.BossBars;
 using Eternal.Content.Items.BossBags;
 using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Pets;

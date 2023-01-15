@@ -1,5 +1,4 @@
 ﻿using Eternal.Common.Systems;
-using Eternal.Content.BossBars;
 using Eternal.Content.Projectiles.Boss;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -50,7 +49,6 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
             NPC.noTileCollide = true;
             NPC.HitSound = null;
             NPC.DeathSound = SoundID.NPCDeath42;
-            NPC.BossBar = ModContent.GetInstance<Notched2BossBar>();
         }
 
         public Vector2 bossCenter

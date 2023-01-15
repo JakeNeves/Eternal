@@ -33,7 +33,7 @@ namespace Eternal.Content.Items.Weapons.Melee
             Item.autoReuse = true;
             Item.UseSound = SoundID.Item1;
             Item.shoot = ModContent.ProjectileType<EmpoweredApparitionalDiskProjectile>();
-            Item.shootSpeed = 18f;
+            Item.shootSpeed = 9f;
             Item.noUseGraphic = true;
             Item.knockBack = 3f;
         }

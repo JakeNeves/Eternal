@@ -3,6 +3,7 @@ using Eternal.Common.Systems;
 using Eternal.Content.Dusts;
 using Eternal.Content.Items.Armor;
 using Eternal.Content.Items.Materials;
+using Eternal.Content.Items.Weapons.Magic;
 using Eternal.Content.Tiles;
 using Microsoft.Xna.Framework;
 using System;
@@ -140,6 +141,7 @@ namespace Eternal.Content.NPCs.Comet
             npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<Astragel>(), 1, 12, 24));
             npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<InterstellarSingularity>(), 1, 12, 24));
 
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<StarstaveEin>(), 3));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientStarbornMask>(), 12));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientStarbornHelmet>(), 12));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientStarbornHat>(), 12));

@@ -19,7 +19,7 @@ public class Ascendant : ModPrefix
 
     public override void SetStats(ref float damageMult, ref float knockbackMult, ref float useTimeMult, ref float scaleMult, ref float shootSpeedMult, ref float manaMult, ref int critBonus)
     {
-        damageMult = 0.5f;
+        damageMult = 1.25f;
         manaMult -= 1.05f;
     }
 }
