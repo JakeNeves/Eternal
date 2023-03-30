@@ -25,7 +25,7 @@ namespace Eternal.Content.NPCs.Slimes
             NPC.height = 64;
             NPC.aiStyle = 1;
             NPC.HitSound = SoundID.NPCHit1;
-            NPC.DeathSound = SoundID.NPCHit2;
+            NPC.DeathSound = SoundID.NPCDeath1;
             AIType = NPCID.BlueSlime;
             NPC.damage = 6;
             NPC.defense = 8;

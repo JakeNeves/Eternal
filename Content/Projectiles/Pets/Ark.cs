@@ -16,8 +16,8 @@ namespace Eternal.Content.Projectiles.Pets
 		public override void SetDefaults()
 		{
 			Projectile.CloneDefaults(ProjectileID.ZephyrFish);
-			Projectile.width = 38;
-			Projectile.height = 72;
+			Projectile.width = 76;
+			Projectile.height = 144;
 
 			AIType = ProjectileID.ZephyrFish;
 		}

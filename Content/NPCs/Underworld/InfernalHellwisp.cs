@@ -61,14 +61,10 @@ namespace Eternal.Content.NPCs.Underworld
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (DownedBossSystem.downedCosmicApparition)
-            {
+            if (!DownedBossSystem.downedCosmicApparition)
                 return SpawnCondition.Underworld.Chance * 0f;
-            }
             else
-            {
                 return SpawnCondition.Underworld.Chance * 0.9f;
-            }
         }
 
         public override void AI()
@@ -127,11 +123,15 @@ namespace Eternal.Content.NPCs.Underworld
 
             if (attackTimer == 200 || attackTimer == 215 || attackTimer == 230)
             {
+                SoundEngine.PlaySound(SoundID.DD2_FlameburstTowerShot, NPC.position);
                 float A = (float)Main.rand.Next(-200, 200) * 0.01f;
                 float B = (float)Main.rand.Next(-200, 200) * 0.01f;
                 if (Main.netMode != NetmodeID.MultiplayerClient)
-                    Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ProjectileID.CultistBossFireBall, NPC.damage, 1, Main.myPlayer, 0, 0);
+                    Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ProjectileID.InfernoHostileBolt, NPC.damage, 1, Main.myPlayer, 0, 0);
+            }
 
+            if (attackTimer > 240)
+            {
                 attackTimer = 0;
             }
         }

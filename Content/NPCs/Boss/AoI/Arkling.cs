@@ -20,7 +20,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
             NPC.damage = 60;
             NPC.defense = 40;
             NPC.HitSound = SoundID.NPCHit4;
-            NPC.DeathSound = SoundID.DD2_DarkMageHealImpact;
+            NPC.DeathSound = SoundID.DD2_ExplosiveTrapExplode;
             NPC.knockBackResist = 0f;
             NPC.noGravity = true;
             NPC.lavaImmune = true;
@@ -62,15 +62,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
         public override void AI()
         {
             NPC.rotation = NPC.velocity.X * 0.08f;
-            float speed;
-            if (DifficultySystem.hellMode)
-            {
-                speed = 18f;
-            }
-            else
-            {
-                speed = 14f;
-            }
+            float speed = 20;
             float acceleration = 0.10f;
             Vector2 vector2 = new Vector2(NPC.position.X + (float)NPC.width * 0.5f, NPC.position.Y + (float)NPC.height * 0.5f);
             float xDir = Main.player[NPC.target].position.X + (float)(Main.player[NPC.target].width / 2) - vector2.X;

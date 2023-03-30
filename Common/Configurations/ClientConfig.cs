@@ -25,7 +25,7 @@ namespace Eternal.Common.Configurations
         [DefaultValue(true)]
         [BackgroundColor(138, 29, 29)]
         [Label("Boss Defeated Sound")]
-        [Tooltip("Plays a sound to notify that a boss has been defeated\n(Default: On)")]
-        public bool playDefeatSound = true;
+        [Tooltip("Plays a sound to notify that a boss has been defeated\n(Default: Off)")]
+        public bool playDefeatSound = false;
     }
 }

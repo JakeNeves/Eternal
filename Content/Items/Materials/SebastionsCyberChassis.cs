@@ -22,7 +22,7 @@ namespace Eternal.Content.Items.Materials
         {
             Item.width = 48;
             Item.height = 30;
-            Item.value = Item.buyPrice(platinum: 1);
+            Item.value = Item.buyPrice(platinum: 25);
             Item.rare = ModContent.RarityType<Turquoise>();
         }
 
@@ -32,6 +32,7 @@ namespace Eternal.Content.Items.Materials
                 .AddIngredient(ModContent.ItemType<GalaciteGemstone>(), 25)
                 .AddIngredient(ModContent.ItemType<WeatheredPlating>(), 100)
                 .AddIngredient(ModContent.ItemType<ConcintratedHardStone>(), 20)
+                .AddIngredient(ModContent.ItemType<NaquadahBar>(), 5)
                 .AddRecipeGroup("eternal:copperBars", 75)
                 .AddTile(ModContent.TileType<Reconstructatorium>())
                 .Register();

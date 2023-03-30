@@ -1,11 +1,8 @@
 ﻿using Eternal.Content.Projectiles.Boss;
 using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
-using Terraria.DataStructures;
-using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -60,7 +57,7 @@ namespace Eternal.Content.NPCs.Boss.Trinity
             NPC.lavaImmune = true;
             NPC.HitSound = SoundID.NPCHit41;
             NPC.DeathSound = SoundID.NPCDeath14;
-            NPC.lifeMax = 600000;
+            NPC.lifeMax = 60000;
             NPC.defense = 95;
             NPC.width = 46;
             NPC.height = 56;

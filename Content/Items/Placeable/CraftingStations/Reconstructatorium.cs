@@ -39,6 +39,7 @@ namespace Eternal.Content.Items.Placeable.CraftingStations
                 .AddIngredient(ModContent.ItemType<RefinedArkrystalSheets>(), 48)
                 .AddIngredient(ModContent.ItemType<WeatheredPlating>(), 26)
                 .AddIngredient(ModContent.ItemType<CometiteBar>(), 100)
+                .AddIngredient(ModContent.ItemType<NaquadahBar>(), 30)
                 .AddIngredient(ModContent.ItemType<ArkaniumCompoundSheets>(), 250)
                 .Register();
         }

@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.GameContent.ItemDropRules;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.BossBags
@@ -12,6 +13,8 @@ namespace Eternal.Content.Items.BossBags
         {
             DisplayName.SetDefault("Treasure Bag (Ark of Imperious)");
             Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
+
+            ItemID.Sets.BossBag[Type] = true;
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
         }

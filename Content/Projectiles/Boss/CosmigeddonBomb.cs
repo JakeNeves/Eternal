@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using System;
 
 namespace Eternal.Content.Projectiles.Boss
 {
@@ -102,9 +103,9 @@ namespace Eternal.Content.Projectiles.Boss
                 Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, DustID.DemonTorch, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);
             }
 
-            for (int i = 0; i < Main.rand.Next(3, 4); i++)
+            for (int i = 0; i < Main.rand.Next(12, 24); i++)
             {
-                Projectile.NewProjectile(entitySource, (int)Projectile.position.X, (int)Projectile.position.Y, Main.rand.NextFloat(-4, 4), Main.rand.NextFloat(-4, 4), ModContent.ProjectileType<CosmicFireball>(), 60, 0);
+                Projectile.NewProjectile(entitySource, Projectile.Center, Utils.RotatedBy(new Vector2(10f, 0.0f), (double)MathHelper.ToRadians((i * 30 + Main.rand.Next(30))), new Vector2()), ModContent.ProjectileType<CosmicFireball>(), Projectile.damage, 0.0f, Main.myPlayer, 0.0f, 0.0f);
             }
         }
     }

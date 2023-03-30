@@ -5,7 +5,6 @@ using Eternal.Content.Items.Potions;
 using Eternal.Content.Items.Summon;
 using Eternal.Content.Items.Weapons.Throwing;
 using Eternal.Content.Projectiles.Weapons.Ranged;
-using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.Bestiary;
@@ -73,7 +72,7 @@ namespace Eternal.Content.NPCs.Town
                 {
                     continue;
                 }
-                if (NPC.downedMoonlord)
+                if (NPC.downedMoonlord || SeedSystem.emperorSeed)
                     return true;
             }
             return false;

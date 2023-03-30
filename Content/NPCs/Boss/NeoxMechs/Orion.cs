@@ -70,20 +70,26 @@ namespace Eternal.Content.NPCs.Boss.NeoxMechs
             if (Main.masterMode)
             {
                 NPC.lifeMax = 4800000;
-                NPC.damage = 160;
-                NPC.defense = 70;
+                NPC.damage = 120;
+                NPC.defense = 60;
             }
             else if (DifficultySystem.hellMode)
             {
                 NPC.lifeMax = 9600000;
-                NPC.damage = 240;
+                NPC.damage = 140;
+                NPC.defense = 75;
+            }
+            else if (DifficultySystem.sinstormMode)
+            {
+                NPC.lifeMax = 18000000;
+                NPC.damage = 140;
                 NPC.defense = 90;
             }
             else
             {
                 NPC.lifeMax = 3600000;
-                NPC.damage = 120;
-                NPC.defense = 50;
+                NPC.damage = 100;
+                NPC.defense = 45;
             }
         }
 
@@ -109,8 +115,8 @@ namespace Eternal.Content.NPCs.Boss.NeoxMechs
             NPC.netUpdate = true;
             player = Main.player[NPC.target];
             NPC.dontTakeDamage = false;
-            float speed = 40f;
-            float acceleration = 0.8f;
+            float speed = 26.75f;
+            float acceleration = 0.15f;
             Vector2 vector2 = new Vector2(NPC.position.X + (float)NPC.width * 0.5f, NPC.position.Y + (float)NPC.height * 0.5f);
             float xDir = Main.player[NPC.target].position.X + (float)(Main.player[NPC.target].width / 2) - vector2.X;
             float yDir = (float)(Main.player[NPC.target].position.Y + (Main.player[NPC.target].height / 2) - 120) - vector2.Y;

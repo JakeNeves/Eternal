@@ -1,6 +1,6 @@
 Eternal (Alpha) - By JakeTEM!
 
-1.0.9 - Public Alpha
+1.1 - Public Alpha
 
 ---Jake's Lounge Discord Server---
 Feel free to join my Discord Server and help out with the mod if you want
@@ -11,9 +11,21 @@ possible, including a new difficulty!
 From what we expect, this mod is not fully finished yet so
 there is no harm in cheating in anything from the mod via HERO's and/or Cheat Sheet...
 
----Hell Mode (WIP)---
-Hell Mode is a new difficulty that can be toggles in Expert/Master Mode, you can get
+---Hell Mode---
+Hell Mode is a new difficulty that can be toggled in Expert/Master Mode, you can get
 special drops from bosses! (not all hell-mode drops and content are fully fleshed out yet...)
+
+---Sinstorm Mode (WIP)---
+Sinstorm Mode is a new difficulty that is harder than Hell Mode, can be toggled only when
+Hell Mode is Active. (no sinstorn exclusive drops have been added yet...)
 
 ---NOTICE---
 This is a public alpha build of the 1.4 port of Eternal, bugs and other sketchy things may arise!
+
+--CONTENT BREAKDOWN--
+5/32 Bosses (some bosses are in the game, however they may not be finished, but could be in the future)
+230+ Items, materials, tools, weapons and armor
+2 new biomes (WIP)
+1 new structure (WIP)
+22+ Enemies
+3 Town NPCs (one of them is a WIP)

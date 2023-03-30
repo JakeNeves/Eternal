@@ -120,6 +120,11 @@ namespace Eternal.Content.NPCs.Boss.AoI
                 NPC.lifeMax = 9600000;
                 NPC.damage = 46;
             }
+            else if (DifficultySystem.sinstormMode)
+            {
+                NPC.lifeMax = 10800000;
+                NPC.damage = 50;
+            }
             else
             {
                 NPC.lifeMax = 3600000;
@@ -271,8 +276,16 @@ namespace Eternal.Content.NPCs.Boss.AoI
 
             if (isDashing)
             {
-                speed = 48f;
-                acceleration = 0.20f;
+                if (DifficultySystem.hellMode)
+                {
+                    speed = 60f;
+                    acceleration = 0.40f;
+                }
+                else
+                {
+                    speed = 48f;
+                    acceleration = 0.20f;
+                }
                 NPC.rotation = NPC.velocity.ToRotation() + MathHelper.ToRadians(90f);
             }
             else
@@ -359,8 +372,6 @@ namespace Eternal.Content.NPCs.Boss.AoI
             float yDir = (float)(Main.player[NPC.target].position.Y + (Main.player[NPC.target].height / 2) - 120) - vector2.Y;
             float length = (float)Math.Sqrt(xDir * xDir + yDir * yDir);
 
-            if (!isDead)
-            {
                 if (NPC.life < NPC.lifeMax / 2)
                 {
                     Phase = 1;
@@ -413,66 +424,67 @@ namespace Eternal.Content.NPCs.Boss.AoI
                 }
                 DoAttacks();
 
-                if (Phase == 2)
+            if (Phase == 2)
+            {
+                int maxDist;
+
+                if (Main.expertMode)
                 {
-                    int maxDist;
+                    maxDist = 1000;
+                }
+                else if (DifficultySystem.hellMode)
+                {
+                    maxDist = 900;
+                }
+                else
+                {
+                    maxDist = 2000;
+                }
 
-                    if (Main.expertMode)
+                // ripped from another mod, credit to the person who wrote this
+                for (int i = 0; i < 120; i++)
+                {
+                    double angle = Main.rand.NextDouble() * 2d * Math.PI;
+                    Vector2 offset = new Vector2((float)Math.Sin(angle) * maxDist, (float)Math.Cos(angle) * maxDist);
+                    Dust dust = Main.dust[Dust.NewDust(NPC.Center + offset, 0, 0, DustID.GreenTorch, 0, 0, 100)];
+                    dust.noGravity = true;
+                }
+                for (int i = 0; i < Main.player.Length; i++)
+                {
+                    Player player = Main.player[i];
+                    if (player.active && !player.dead && Vector2.Distance(player.Center, NPC.Center) > maxDist)
                     {
-                        maxDist = 1000;
-                    }
-                    else if (DifficultySystem.hellMode)
-                    {
-                        maxDist = 900;
-                    }
-                    else
-                    {
-                        maxDist = 2000;
-                    }
+                        Vector2 toTarget = new Vector2(NPC.Center.X - player.Center.X, NPC.Center.Y - player.Center.Y);
+                        toTarget.Normalize();
+                        float speed = Vector2.Distance(player.Center, NPC.Center) > maxDist + 500 ? 1f : 0.5f;
+                        player.velocity += toTarget * 0.5f;
 
-                    // ripped from another mod, credit to the person who wrote this
-                    for (int i = 0; i < 120; i++)
-                    {
-                        double angle = Main.rand.NextDouble() * 2d * Math.PI;
-                        Vector2 offset = new Vector2((float)Math.Sin(angle) * maxDist, (float)Math.Cos(angle) * maxDist);
-                        Dust dust = Main.dust[Dust.NewDust(NPC.Center + offset, 0, 0, DustID.GreenTorch, 0, 0, 100)];
-                        dust.noGravity = true;
-                    }
-                    for (int i = 0; i < Main.player.Length; i++)
-                    {
-                        Player player = Main.player[i];
-                        if (player.active && !player.dead && Vector2.Distance(player.Center, NPC.Center) > maxDist)
+                        player.dashDelay = 2;
+                        player.grappling[0] = -1;
+                        player.grapCount = 0;
+                        for (int p = 0; p < Main.projectile.Length; p++)
                         {
-                            Vector2 toTarget = new Vector2(NPC.Center.X - player.Center.X, NPC.Center.Y - player.Center.Y);
-                            toTarget.Normalize();
-                            float speed = Vector2.Distance(player.Center, NPC.Center) > maxDist + 500 ? 1f : 0.5f;
-                            player.velocity += toTarget * 0.5f;
-
-                            player.dashDelay = 2;
-                            player.grappling[0] = -1;
-                            player.grapCount = 0;
-                            for (int p = 0; p < Main.projectile.Length; p++)
+                            if (Main.projectile[p].active && Main.projectile[p].owner == player.whoAmI && Main.projectile[p].aiStyle == 7)
                             {
-                                if (Main.projectile[p].active && Main.projectile[p].owner == player.whoAmI && Main.projectile[p].aiStyle == 7)
-                                {
-                                    Main.projectile[p].Kill();
-                                }
+                                Main.projectile[p].Kill();
                             }
                         }
                     }
-                    int maxdusts = 6;
-                    for (int i = 0; i < maxdusts; i++)
-                    {
-                        float dustDistance = 200;
-                        float dustSpeed = 8;
-                        Vector2 offset = Vector2.UnitX.RotateRandom(MathHelper.Pi) * dustDistance;
-                        Vector2 velocity = -offset.SafeNormalize(-Vector2.UnitY) * dustSpeed;
-                        Dust vortex = Dust.NewDustPerfect(new Vector2(NPC.Center.X, NPC.Center.Y) + offset, DustID.GreenTorch, velocity, 0, default(Color), 1.5f);
-                        vortex.noGravity = true;
-                    }
+                }
+
+                int maxdusts = 6;
+                for (int i = 0; i < maxdusts; i++)
+                {
+                    float dustDistance = 200;
+                    float dustSpeed = 8;
+                    Vector2 offset = Vector2.UnitX.RotateRandom(MathHelper.Pi) * dustDistance;
+                    Vector2 velocity = -offset.SafeNormalize(-Vector2.UnitY) * dustSpeed;
+                    Dust vortex = Dust.NewDustPerfect(new Vector2(NPC.Center.X, NPC.Center.Y) + offset, DustID.GreenTorch, velocity, 0, default(Color), 1.5f);
+                    vortex.noGravity = true;
                 }
             }
-            else
+
+            if (isDead)
             {
                 DeathTimer++;
                 if (DeathTimer > 1)
@@ -653,7 +665,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
                 {
                     isDashing = true;
                 }
-                else if (AttackTimer == 475)
+                else if (AttackTimer >= 475)
                 {
                     isDashing = false;
                     AttackTimer = 0;

@@ -55,20 +55,26 @@ namespace Eternal.Content.NPCs.Boss.NeoxMechs
             if (Main.masterMode)
             {
                 NPC.lifeMax = 4800000;
-                NPC.damage = 160;
-                NPC.defense = 70;
+                NPC.damage = 120;
+                NPC.defense = 60;
             }
             else if (DifficultySystem.hellMode)
             {
                 NPC.lifeMax = 9600000;
-                NPC.damage = 240;
+                NPC.damage = 140;
+                NPC.defense = 75;
+            }
+            else if (DifficultySystem.sinstormMode)
+            {
+                NPC.lifeMax = 18000000;
+                NPC.damage = 140;
                 NPC.defense = 90;
             }
             else
             {
                 NPC.lifeMax = 3600000;
-                NPC.damage = 120;
-                NPC.defense = 50;
+                NPC.damage = 100;
+                NPC.defense = 45;
             }
         }
 

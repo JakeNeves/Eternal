@@ -68,15 +68,58 @@ namespace Eternal.Common.Systems
 			string DGspawnInfo = $"Spawn by using a [i:{DGsummonItem}]";
 
 			string DGdespawnInfo = "The Dune Golem disapears into the dunes...";
-			#endregion
+            #endregion
 
-			// hardmode bosses
-			#region Igneopede
-			#endregion
+            // hardmode bosses
+            #region Igneopede
+            string IgneoName = "The Igneopede";
 
-			// post-moon lord bosses
-			#region Cosmic Apparition
-			string CosAppName = "The Cosmic Apparition";
+            int IgneoType = ModContent.NPCType<Content.NPCs.Boss.Igneopede.IgneopedeHead>();
+
+            float IgneoWeight = 7.5f;
+
+            Func<bool> IgneoDowned = () => DownedBossSystem.downedIgneopede;
+
+            Func<bool> IgneoAvailable = () => true;
+
+            List<int> IgneoCollection = new List<int>()
+            {
+				// TODO: Igneopede Loot
+            };
+
+            int IgneoSummonItem = ModContent.ItemType<Content.Items.Summon.MoltenBait>();
+
+            string IgneoSpawnInfo = $"Spawn by using [i:{IgneoSummonItem}]";
+
+            string IgneoDespawnInfo = "The Igneopede burrows deep into the underworld...";
+            #endregion
+            #region Incinerius
+            string IncName = "Incinerius";
+
+            int IncType = ModContent.NPCType<Content.NPCs.Boss.Incinerius.Incinerius>();
+
+            float IncWeight = 12.25f;
+
+            Func<bool> IncDowned = () => DownedBossSystem.downedIncinerius;
+
+            Func<bool> IncAvailable = () => true;
+
+            List<int> IncCollection = new List<int>()
+            {
+                ModContent.ItemType<Content.Items.Materials.MagmaticAlloy>(),
+                ModContent.ItemType<Content.Items.Materials.InfernalAshes>()
+            };
+
+            int IncSummonItem = ModContent.ItemType<Content.Items.Summon.ObsidianLantern>();
+
+            string IncSpawnInfo = $"Spawn by using an [i:{IncSummonItem}] (Break open the Basalt Prison, if not yet defeated)";
+
+            string IncDespawnInfo = "Incerius returns to the Inferno Sepulture...";
+            #endregion
+
+            // post-moon lord bosses
+            #region Cosmic Apparition
+            string CosAppName = "The Cosmic Apparition";
 
 			int CosAppType = ModContent.NPCType<Content.NPCs.Boss.CosmicApparition.CosmicApparition>();
 
@@ -183,18 +226,44 @@ namespace Eternal.Common.Systems
 				DGdespawnInfo
 			);
 
-			// hardmode
-			// Igneopede
-			// Incinerius
-			// Subzero Elemental
-			// Duneworm
-			// Empraynia
-			// Armageddon Golem
-			// Armageddon Elemental
+            // hardmode
+            bossChecklistMod.Call(
+                "AddBoss",
+                Mod,
+                // The Igneopede
+                IgneoName,
+                IgneoType,
+                IgneoWeight,
+                IgneoDowned,
+                IgneoAvailable,
+                IgneoAvailable,
+                IgneoSummonItem,
+                IgneoSpawnInfo,
+                IgneoDespawnInfo
+            );
+            bossChecklistMod.Call(
+                "AddBoss",
+                Mod,
+                // Incinerius
+                IncName,
+                IncType,
+                IncWeight,
+                IncDowned,
+                IncAvailable,
+                IncAvailable,
+                IncSummonItem,
+                IncSpawnInfo,
+                IncDespawnInfo
+            );
+            // Subzero Elemental
+            // Duneworm
+            // Empraynia
+            // Armageddon Golem
+            // Armageddon Elemental
 
-			// post-moon lord
-			// Frost King
-			bossChecklistMod.Call(
+            // post-moon lord
+            // Frost King
+            bossChecklistMod.Call(
 				"AddBoss",
 				Mod,
 				// Cosmic Apparition

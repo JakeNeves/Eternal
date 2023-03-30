@@ -31,10 +31,10 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
 
         int Timer;
         int DeathTimer;
+        int deathExplosionTimer = 0;
 
         bool isDead = false;
         bool dontKillyet = false;
-
         bool phase2Init = false;
 
         public override void SetStaticDefaults()
@@ -113,6 +113,12 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
                 NPC.damage = 22;
                 NPC.defense = 16;
             }
+            else if (DifficultySystem.sinstormMode)
+            {
+                NPC.lifeMax = 15000;
+                NPC.damage = 40;
+                NPC.defense = 18;
+            }
             else
             {
                 NPC.lifeMax = 6000;
@@ -149,76 +155,80 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
             RotateNPCToTarget();
             DespawnHandler();
 
-            if (!isDead)
+            if (Timer >= 0)
             {
-                if (Timer >= 0)
+                Move(new Vector2(0, 0f));
+            }
+            if (phase2Init)
+            {
+                if (Timer == 200)
                 {
-                    Move(new Vector2(0, 0f));
-                }
-                if (phase2Init)
-                {
-                    if (Timer == 200)
-                    {
-                        Timer = 0;
-                    }
-                }
-                else
-                {
-                    if (Timer == 100 || Timer == 105 || Timer == 110 || Timer == 115 || Timer == 120 || Timer == 125 || Timer == 130)
-                    {
-                        SoundEngine.PlaySound(SoundID.NPCDeath1, NPC.Center);
-                        Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<CarminiteSludge>(), NPC.damage, 0f, Main.myPlayer);
-                        Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<CarminiteTooth>(), NPC.damage, 0f, Main.myPlayer);
-                    }
-                    if (Timer == 200)
-                    {
-                        Timer = 0;
-                    }
-                }
-                
-                if(NPC.life < NPC.lifeMax / 2)
-                {
-                    if (!phase2Init)
-                    {
-                        if (DifficultySystem.hellMode)
-                        {
-                            int amountOfTenticles = Main.rand.Next(4, 8);
-                            for (int i = 0; i < amountOfTenticles; ++i)
-                            {
-                                NPC.NewNPC(entitySource, (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<CarminiteAmalgamationTenticle>());
-                            }
-                        }
-                        else if (Main.expertMode)
-                        {
-                            int amountOfTenticles = Main.rand.Next(3, 6);
-                            for (int i = 0; i < amountOfTenticles; ++i)
-                            {
-                                NPC.NewNPC(entitySource, (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<CarminiteAmalgamationTenticle>());
-                            }
-                        }
-                        else
-                        {
-                            int amountOfTenticles = Main.rand.Next(2, 4);
-                            for (int i = 0; i < amountOfTenticles; ++i)
-                            {
-                                NPC.NewNPC(entitySource, (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<CarminiteAmalgamationTenticle>());
-                            }
-                        }
-
-                        phase2Init = true;
-                    }
+                    Timer = 0;
                 }
             }
             else
             {
-                DeathTimer++;
-                if (DeathTimer == 5 || DeathTimer == 10 || DeathTimer == 15 || DeathTimer == 20 || DeathTimer == 25 || DeathTimer == 30 || DeathTimer == 35 || DeathTimer == 40 || DeathTimer == 45 || DeathTimer == 50 || DeathTimer == 55 || DeathTimer == 60 || DeathTimer == 65 || DeathTimer == 70 || DeathTimer == 75 || DeathTimer == 80 || DeathTimer == 85 || DeathTimer == 90 || DeathTimer == 95)
+                if (Timer == 100 || Timer == 105 || Timer == 110 || Timer == 115 || Timer == 120 || Timer == 125 || Timer == 130)
                 {
-                    NPC.velocity.X = 0;
-                    NPC.velocity.Y = 0;
-                    NPC.life = 1;
-                    NPC.dontTakeDamage = true;
+                    SoundEngine.PlaySound(SoundID.NPCDeath1, NPC.Center);
+                    Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<CarminiteSludge>(), NPC.damage, 0f, Main.myPlayer);
+                    Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<CarminiteTooth>(), NPC.damage, 0f, Main.myPlayer);
+                }
+                if (Timer == 200)
+                {
+                    Timer = 0;
+                }
+            }
+                
+            if(NPC.life < NPC.lifeMax / 2)
+            {
+                if (!phase2Init)
+                {
+                    if (DifficultySystem.hellMode)
+                    {
+                        int amountOfTenticles = Main.rand.Next(4, 8);
+                        for (int i = 0; i < amountOfTenticles; ++i)
+                        {
+                            NPC.NewNPC(entitySource, (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<CarminiteAmalgamationTenticle>());
+                        }
+                    }
+                    else if (Main.expertMode)
+                    {
+                        int amountOfTenticles = Main.rand.Next(3, 6);
+                        for (int i = 0; i < amountOfTenticles; ++i)
+                        {
+                            NPC.NewNPC(entitySource, (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<CarminiteAmalgamationTenticle>());
+                        }
+                    }
+                    else
+                    {
+                        int amountOfTenticles = Main.rand.Next(2, 4);
+                        for (int i = 0; i < amountOfTenticles; ++i)
+                        {
+                            NPC.NewNPC(entitySource, (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<CarminiteAmalgamationTenticle>());
+                        }
+                    }
+                    phase2Init = true;
+                }
+            }
+
+            if (isDead)
+            {
+                entitySource = NPC.GetSource_Death();
+
+                NPC.velocity = new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 2f));
+
+                deathExplosionTimer++;
+                if (deathExplosionTimer == 4)
+                {
                     Projectile.NewProjectile(entitySource, NPC.Center.X + Main.rand.Next(-20, 20), NPC.Center.Y + Main.rand.Next(-20, 20), 0, 0, ModContent.ProjectileType<BloodBurst>(), 0, 0f, Main.myPlayer);
+                    deathExplosionTimer = 0;
+                }
+
+                DeathTimer++;
+                if (DeathTimer >= 5 && DeathTimer <= 95)
+                {
+                    NPC.dontTakeDamage = true;
                 }
                 if (DeathTimer >= 100)
                 {

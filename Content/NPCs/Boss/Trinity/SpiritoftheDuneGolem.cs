@@ -94,15 +94,6 @@ namespace Eternal.Content.NPCs.Boss.Trinity
             }
         }
 
-        public override void ModifyNPCLoot(NPCLoot npcLoot)
-        {
-            LeadingConditionRule notExpertRule = new(new Conditions.NotExpert());
-
-            npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<DuneGolemBag>()));
-
-            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<MalachiteShard>(), minimumDropped: 30, maximumDropped: 60));
-        }
-
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             if (Main.masterMode)
@@ -363,11 +354,6 @@ namespace Eternal.Content.NPCs.Boss.Trinity
                         float B = (float)Main.rand.Next(-200, 200) * 0.01f;
                         if (Main.netMode != NetmodeID.MultiplayerClient)
                             Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<DuneSpark>(), NPC.damage, 1, Main.myPlayer, 0, 0);
-                    }
-
-                    if (!DownedBossSystem.downedDuneGolem)
-                    {
-                        DownedBossSystem.downedDuneGolem = true;
                     }
                 }
             }

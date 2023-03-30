@@ -1,6 +1,6 @@
 [c/1EC9E3:Eternal] (Alpha) - By [c/008CFF:Jake][c/0204CFF:TEM]!
 
-1.0.9  - [c/009933:Alpha]
+1.1  - [c/009933:Alpha] (The Sinstorm Update)
 
 [c/00B359:---Jake's Lounge Discord Server---]
 Feel free to join my Discord Server and help out with the mod if you want
@@ -13,3 +13,11 @@ there is no harm in cheating in anything from the mod via HERO's and/or Cheat Sh
 
 [c/ED0249:---NOTICE---]
 This is a public alpha build of the 1.4 port of Eternal, bugs and other sketchy things may arise!
+
+[c/009933:--CONTENT BREAKDOWN--]
+5/32 Bosses (some bosses are in the game, however they may not be finished, but could be in the future)
+230+ Items, materials, tools, weapons and armor
+2 new biomes (WIP)
+1 new structure (WIP)
+22+ Enemies
+3 Town NPCs (one of them is a WIP)

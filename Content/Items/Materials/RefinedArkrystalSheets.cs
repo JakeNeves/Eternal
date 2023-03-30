@@ -1,6 +1,5 @@
 ﻿using Terraria;
 using Terraria.GameContent.Creative;
-using Terraria.ID;
 using Terraria.ModLoader;
 using Eternal.Content.Rarities;
 using Eternal.Content.Tiles.CraftingStations;
@@ -28,7 +27,7 @@ namespace Eternal.Content.Items.Materials
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<RawArkrystal>(), 6)
+                .AddIngredient(ModContent.ItemType<RawArkrystal>())
                 .AddTile(ModContent.TileType<AncientForge>())
                 .Register();
         }

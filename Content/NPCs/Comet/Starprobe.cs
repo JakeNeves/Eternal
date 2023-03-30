@@ -120,10 +120,10 @@ namespace Eternal.Content.NPCs.Comet
 
             if (attackTimer == 200)
             {
-                    float A = (float)Main.rand.Next(-200, 200) * 0.01f;
-                    float B = (float)Main.rand.Next(-200, 200) * 0.01f;
-                    if (Main.netMode != NetmodeID.MultiplayerClient)
-                        Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ProjectileID.PinkLaser, NPC.damage, 1, Main.myPlayer, 0, 0);
+                float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                    Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ProjectileID.PinkLaser, NPC.damage, 1, Main.myPlayer, 0, 0);
 
                 attackTimer = 0;
             }

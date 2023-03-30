@@ -26,13 +26,12 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
         int frameNum;
         int DeathTimer;
 
-        bool isDead = false;
-        bool dontKillyet = false;
-
         const float Speed = 12f;
         const float Acceleration = 0.2f;
         #endregion
 
+        bool isDead = false;
+        bool dontKillyet = false;
         bool phase2Init = false;
 
         public override void SetStaticDefaults()
@@ -276,135 +275,136 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
                 NPC.velocity.X = 0;
                 NPC.velocity.Y = 0;
             }
-            else if (!NPC.AnyNPCs(ModContent.NPCType<DunePylon>()) && !isDead && !dontKillyet)
+            else if (!NPC.AnyNPCs(ModContent.NPCType<DunePylon>()))
             {
                 NPC.dontTakeDamage = false;
             }
 
-            if (!isDead)
+            #region attacks
+            attackTimer++;
+
+            if (NPC.life < NPC.lifeMax / 2)
             {
-                #region attacks
-                attackTimer++;
-
-                if (NPC.life < NPC.lifeMax / 2)
-                {
-                    Phase = 1;
-                    frameNum = 1;
-                    NPC.rotation += NPC.velocity.X * 0.1f;
-                }
-                else
-                {
-                    NPC.rotation = NPC.velocity.X * 0.03f;
-                }
-
-                if (Phase == 1)
-                {
-
-                    if (attackTimer == 100 || attackTimer == 105 || attackTimer == 110 || attackTimer == 115 || attackTimer == 120 || attackTimer == 125 || attackTimer == 130 || attackTimer == 135 || attackTimer == 140 || attackTimer == 145 || attackTimer == 150)
-                    {
-                        for (int i = 0; i < 2; ++i)
-                        {
-                            SoundEngine.PlaySound(SoundID.NPCHit3, NPC.Center);
-                            float A = (float)Main.rand.Next(-200, 200) * 0.01f;
-                            float B = (float)Main.rand.Next(-200, 200) * 0.01f;
-                            if (Main.netMode != NetmodeID.MultiplayerClient)
-                                Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<DuneSpike>(), NPC.damage, 1, Main.myPlayer, 0, 0);
-                        }
-                    }
-                    if (attackTimer == 200 || attackTimer == 205 || attackTimer == 210 || attackTimer == 215 || attackTimer == 220 || attackTimer == 225 || attackTimer == 230 || attackTimer == 235 || attackTimer == 240 || attackTimer == 245 || attackTimer == 250 || attackTimer == 260 || attackTimer == 265 || attackTimer == 270 || attackTimer == 275 || attackTimer == 280 || attackTimer == 285 || attackTimer == 290 || attackTimer == 295 || attackTimer == 300)
-                    {
-                        SoundEngine.PlaySound(SoundID.DD2_LightningAuraZap, NPC.Center);
-                        Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<DuneSpark>(), NPC.damage, 0f, Main.myPlayer);
-                    }
-                    if (attackTimer == 300)
-                    {
-                        if (!NPC.AnyNPCs(ModContent.NPCType<DunePylon>()))
-                        {
-                            if (DifficultySystem.hellMode)
-                            {
-                                int amountOfPylons = Main.rand.Next(6, 10);
-                                for (int i = 0; i < amountOfPylons; ++i)
-                                {
-                                    NPC.NewNPC(entitySource, (int)NPC.Center.X + Main.rand.Next(-200, 200), (int)NPC.Center.Y + Main.rand.Next(-200, 200), ModContent.NPCType<DunePylon>());
-                                }
-                            }
-                            else
-                            {
-                                int amountOfPylons = Main.rand.Next(4, 8);
-                                for (int i = 0; i < amountOfPylons; ++i)
-                                {
-                                    NPC.NewNPC(entitySource, (int)NPC.Center.X + Main.rand.Next(-200, 200), (int)NPC.Center.Y + Main.rand.Next(-200, 200), ModContent.NPCType<DunePylon>());
-                                }
-                            }
-                        }
-                    }
-                    if (attackTimer == 500)
-                    {
-                        attackTimer = 0;
-                    }
-                }
-                else
-                {
-
-                    if (attackTimer == 100 || attackTimer == 105 || attackTimer == 110 || attackTimer == 115 || attackTimer == 120 || attackTimer == 125)
-                    {
-                        for (int i = 0; i < 1; ++i)
-                        {
-                            SoundEngine.PlaySound(SoundID.NPCHit3, NPC.Center);
-                            float A = (float)Main.rand.Next(-200, 200) * 0.01f;
-                            float B = (float)Main.rand.Next(-200, 200) * 0.01f;
-                            if (Main.netMode != NetmodeID.MultiplayerClient)
-                                Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<DuneSpike>(), NPC.damage, 1, Main.myPlayer, 0, 0);
-                        }
-                    }
-                    if (attackTimer == 200 || attackTimer == 205 || attackTimer == 210 || attackTimer == 215 || attackTimer == 220 || attackTimer == 225 || attackTimer == 230 || attackTimer == 235 || attackTimer == 240 || attackTimer == 245 || attackTimer == 250)
-                    {
-                        float A = (float)Main.rand.Next(-200, 200) * 0.01f;
-                        float B = (float)Main.rand.Next(-200, 200) * 0.01f;
-                        if (Main.netMode != NetmodeID.MultiplayerClient)
-                            Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<DuneSpark>(), NPC.damage, 1, Main.myPlayer, 0, 0);
-                    }
-                    if (attackTimer == 300)
-                    {
-                        if (!NPC.AnyNPCs(ModContent.NPCType<DunePylon>()))
-                        {
-                            if (DifficultySystem.hellMode)
-                            {
-                                int amountOfPylons = Main.rand.Next(3, 6);
-                                for (int i = 0; i < amountOfPylons; ++i)
-                                {
-                                    NPC.NewNPC(entitySource, (int)NPC.Center.X + Main.rand.Next(-200, 200), (int)NPC.Center.Y + Main.rand.Next(-200, 200), ModContent.NPCType<DunePylon>());
-                                }
-                            }
-                            else
-                            {
-                                int amountOfPylons = Main.rand.Next(2, 4);
-                                for (int i = 0; i < amountOfPylons; ++i)
-                                {
-                                    NPC.NewNPC(entitySource, (int)NPC.Center.X + Main.rand.Next(-200, 200), (int)NPC.Center.Y + Main.rand.Next(-200, 200), ModContent.NPCType<DunePylon>());
-                                }
-                            }
-                        }
-                    }
-                    if (attackTimer == 500)
-                    {
-                        attackTimer = 0;
-                    }
-                }
-                #endregion
+                Phase = 1;
+                frameNum = 1;
+                NPC.rotation += NPC.velocity.X * 0.1f;
             }
             else
             {
+                NPC.rotation = NPC.velocity.X * 0.03f;
+            }
+
+            if (Phase == 1)
+            {
+
+                if (attackTimer == 100 || attackTimer == 105 || attackTimer == 110 || attackTimer == 115 || attackTimer == 120 || attackTimer == 125 || attackTimer == 130 || attackTimer == 135 || attackTimer == 140 || attackTimer == 145 || attackTimer == 150)
+                {
+                    for (int i = 0; i < 2; ++i)
+                    {
+                        SoundEngine.PlaySound(SoundID.NPCHit3, NPC.Center);
+                        float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                            Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<DuneSpike>(), NPC.damage, 1, Main.myPlayer, 0, 0);
+                    }
+                }
+                if (attackTimer == 200 || attackTimer == 205 || attackTimer == 210 || attackTimer == 215 || attackTimer == 220 || attackTimer == 225 || attackTimer == 230 || attackTimer == 235 || attackTimer == 240 || attackTimer == 245 || attackTimer == 250 || attackTimer == 260 || attackTimer == 265 || attackTimer == 270 || attackTimer == 275 || attackTimer == 280 || attackTimer == 285 || attackTimer == 290 || attackTimer == 295 || attackTimer == 300)
+                {
+                    SoundEngine.PlaySound(SoundID.DD2_LightningAuraZap, NPC.Center);
+                    Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<DuneSpark>(), NPC.damage, 0f, Main.myPlayer);
+                }
+                if (attackTimer == 300)
+                {
+                    if (!NPC.AnyNPCs(ModContent.NPCType<DunePylon>()))
+                    {
+                        if (DifficultySystem.hellMode)
+                        {
+                            int amountOfPylons = Main.rand.Next(6, 10);
+                            for (int i = 0; i < amountOfPylons; ++i)
+                            {
+                                NPC.NewNPC(entitySource, (int)NPC.Center.X + Main.rand.Next(-200, 200), (int)NPC.Center.Y + Main.rand.Next(-200, 200), ModContent.NPCType<DunePylon>());
+                            }
+                        }
+                        else
+                        {
+                            int amountOfPylons = Main.rand.Next(4, 8);
+                            for (int i = 0; i < amountOfPylons; ++i)
+                            {
+                                NPC.NewNPC(entitySource, (int)NPC.Center.X + Main.rand.Next(-200, 200), (int)NPC.Center.Y + Main.rand.Next(-200, 200), ModContent.NPCType<DunePylon>());
+                            }
+                        }
+                    }
+                }
+                if (attackTimer == 500)
+                {
+                    attackTimer = 0;
+                }
+            }
+            else
+            {
+
+                if (attackTimer == 100 || attackTimer == 105 || attackTimer == 110 || attackTimer == 115 || attackTimer == 120 || attackTimer == 125)
+                {
+                    for (int i = 0; i < 1; ++i)
+                    {
+                        SoundEngine.PlaySound(SoundID.NPCHit3, NPC.Center);
+                        float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                            Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<DuneSpike>(), NPC.damage, 1, Main.myPlayer, 0, 0);
+                    }
+                }
+                if (attackTimer == 200 || attackTimer == 205 || attackTimer == 210 || attackTimer == 215 || attackTimer == 220 || attackTimer == 225 || attackTimer == 230 || attackTimer == 235 || attackTimer == 240 || attackTimer == 245 || attackTimer == 250)
+                {
+                    float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                    float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                        Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<DuneSpark>(), NPC.damage, 1, Main.myPlayer, 0, 0);
+                }
+                if (attackTimer == 300)
+                {
+                    if (!NPC.AnyNPCs(ModContent.NPCType<DunePylon>()))
+                        {
+                        if (DifficultySystem.hellMode)
+                        {
+                            int amountOfPylons = Main.rand.Next(3, 6);
+                            for (int i = 0; i < amountOfPylons; ++i)
+                            {
+                                NPC.NewNPC(entitySource, (int)NPC.Center.X + Main.rand.Next(-200, 200), (int)NPC.Center.Y + Main.rand.Next(-200, 200), ModContent.NPCType<DunePylon>());
+                            }
+                        }
+                        else
+                        {
+                            int amountOfPylons = Main.rand.Next(2, 4);
+                            for (int i = 0; i < amountOfPylons; ++i)
+                            {
+                                NPC.NewNPC(entitySource, (int)NPC.Center.X + Main.rand.Next(-200, 200), (int)NPC.Center.Y + Main.rand.Next(-200, 200), ModContent.NPCType<DunePylon>());
+                            }
+                        }
+                    }
+                }
+                if (attackTimer == 500)
+                {
+                    attackTimer = 0;
+                }
+            }
+            #endregion
+
+            if (isDead)
+            {
+                entitySource = NPC.GetSource_Death();
+
+                NPC.velocity = new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 2f));
+
                 DeathTimer++;
                 if (DeathTimer > 5)
                 {
                     NPC.velocity.X = 0;
                     NPC.velocity.Y = 0;
-                    NPC.life = 1;
                     NPC.dontTakeDamage = true;
-                    NPC.rotation = DeathTimer;
+                    NPC.rotation += 0.1f;
                 }
-                if (DeathTimer >= 100)
+                if (DeathTimer >= 200)
                 {
                     NPC.dontTakeDamage = false;
                     dontKillyet = true;

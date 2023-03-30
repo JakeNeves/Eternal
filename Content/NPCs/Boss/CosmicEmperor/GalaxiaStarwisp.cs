@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Eternal.Content.Projectiles.Boss;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -9,6 +10,8 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
     public class GalaxiaStarwisp : ModNPC
     {
         int attackTimer = 0;
+
+        Vector2 CircleDirc = new Vector2(0.0f, 16f);
 
         public override void SetStaticDefaults()
         {
@@ -99,7 +102,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
             direction.X *= 8.5f;
             direction.Y *= 8.5f;
 
-            if (attackTimer >= 200 && attackTimer <= 230)
+            if (attackTimer > 200 && attackTimer < 230)
             {
                 float A = (float)Main.rand.Next(-200, 200) * 0.01f;
                 float B = (float)Main.rand.Next(-200, 200) * 0.01f;
@@ -107,7 +110,16 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
                     Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ProjectileID.EyeLaser, NPC.damage, 1, Main.myPlayer, 0, 0);
 
             }
-            if (attackTimer > 230) {
+            if (attackTimer > 300 && attackTimer < 430)
+            {
+                CircleDirc = Utils.RotatedBy(CircleDirc, 0.10000000149011612, new Vector2());
+                int index5 = Projectile.NewProjectile(entitySource, NPC.Center, CircleDirc, ProjectileID.EyeLaser, NPC.damage / 4, 0.0f, Main.myPlayer, 0.0f, 0.0f);
+                Main.projectile[index5].tileCollide = false;
+                Main.projectile[index5].timeLeft = 300;
+            }
+
+            if (attackTimer > 430)
+            {
                 attackTimer = 0;
             }
         }

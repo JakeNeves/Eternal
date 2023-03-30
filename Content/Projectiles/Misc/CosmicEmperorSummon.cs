@@ -1,7 +1,6 @@
 ﻿using Eternal.Common.Players;
 using Eternal.Common.Systems;
 using Eternal.Content.NPCs.Boss.CosmicEmperor;
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -43,20 +42,41 @@ namespace Eternal.Content.Projectiles.Misc
 
             if (DownedBossSystem.downedCosmicEmperor)
             {
-                switch (Projectile.timeLeft)
+                if (ReputationSystem.ReputationPoints == 5000)
                 {
-                    case 690:
-                        Main.NewText("...", 150, 36, 120);
-                        break;
-                    case 450:
-                        Main.NewText("You again?", 150, 36, 120);
-                        break;
-                    case 290:
-                        Main.NewText("If you come here looking for a test dummy, you've came to the wrong place!", 150, 36, 120);
-                        break;
-                    case 150:
-                        Main.NewText("Anywho, let the battle begin.", 150, 36, 120);
-                        break;
+                    switch (Projectile.timeLeft)
+                    {
+                        case 690:
+                            Main.NewText($"I have seen you and your evil schemes, {player.name}!", 150, 36, 120);
+                            break;
+                        case 450:
+                            Main.NewText("You've really pushed my limits!", 150, 36, 120);
+                            break;
+                        case 290:
+                            Main.NewText("With whitty little ants, Scheming behind my back!", 150, 36, 120);
+                            break;
+                        case 150:
+                            Main.NewText("Time to be punished for the greater good!", 150, 36, 120);
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (Projectile.timeLeft)
+                    {
+                        case 690:
+                            Main.NewText("...", 150, 36, 120);
+                            break;
+                        case 450:
+                            Main.NewText("You again?", 150, 36, 120);
+                            break;
+                        case 290:
+                            Main.NewText("If you come here looking for a test dummy, you've came to the wrong place!", 150, 36, 120);
+                            break;
+                        case 150:
+                            Main.NewText("Anywho, let the battle begin.", 150, 36, 120);
+                            break;
+                    }
                 }
             }
             else
@@ -69,13 +89,13 @@ namespace Eternal.Content.Projectiles.Misc
                             Main.NewText("I KNEW IT!", 150, 36, 120);
                             break;
                         case 450:
-                            Main.NewText("You have been following that emperor haven't you " + player.name + " ?", 150, 36, 120);
+                            Main.NewText($"You have been following that emperor haven't you {player.name}?", 150, 36, 120);
                             break;
                         case 290:
-                            Main.NewText("Do NOT follow that lead, he is a DANGEROUS individual!", 150, 36, 120);
+                            Main.NewText("Do NOT follow his lead, he is a DANGEROUS individual!", 150, 36, 120);
                             break;
                         case 150:
-                            Main.NewText("This troublesome resistance of your's won't get through me, this battle will be bloodier with our hands alone, Time to repent!", 150, 36, 120);
+                            Main.NewText("This troublesome resistance of your's won't get through me, this battle will be bloodier within our hands alone, time to repent!", 150, 36, 120);
                             break;
                     }
                 }
@@ -90,7 +110,7 @@ namespace Eternal.Content.Projectiles.Misc
                             Main.NewText("I have been watching you, ever since you have slayed the one, banished to the moon...", 150, 36, 120);
                             break;
                         case 290:
-                            Main.NewText("Now, your journey ends here, you've come along way since I first witnessed you, " + player.name + ".", 150, 36, 120);
+                            Main.NewText($"Now, your journey ends here, you've come along way since I first witnessed you, {player.name}.", 150, 36, 120);
                             break;
                         case 150:
                             Main.NewText("Let the battle begin!", 150, 36, 120);

@@ -27,7 +27,7 @@ namespace Eternal.Content.Items.Materials
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<RawArkaniumDebris>(), 12)
+                .AddIngredient(ModContent.ItemType<RawArkaniumDebris>(), 2)
                 .AddTile(ModContent.TileType<AncientForge>())
                 .Register();
         }

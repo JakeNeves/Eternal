@@ -27,7 +27,7 @@ namespace Eternal.Content.NPCs.Tundra
             NPC.defense = 20;
             NPC.damage = 48;
             NPC.knockBackResist = -1f;
-            NPC.aiStyle = -1;
+            NPC.aiStyle = 14;
             NPC.noGravity = true;
             NPC.noTileCollide = true;
             NPC.buffImmune[BuffID.Poisoned] = true;
@@ -81,13 +81,23 @@ namespace Eternal.Content.NPCs.Tundra
         {
             Player player = Main.player[NPC.target];
 
+            var entitySource = NPC.GetSource_FromAI();
+
+            Vector2 direction = Main.player[NPC.target].Center - NPC.Center;
+            direction.Normalize();
+            direction.X *= 8.5f;
+            direction.Y *= 8.5f;
+
             NPC.spriteDirection = NPC.direction;
             NPC.rotation += NPC.velocity.X * 0.1f;
 
             attackTimer++;
             if (attackTimer == 125 || attackTimer == 150 || attackTimer == 175)
             {
-
+                float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                    Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ProjectileID.FrostBlastHostile, NPC.damage, 1, Main.myPlayer, 0, 0);
             }
             else if (attackTimer == 250)
             {

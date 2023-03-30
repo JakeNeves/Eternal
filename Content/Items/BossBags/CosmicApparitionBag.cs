@@ -7,6 +7,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Creative;
 using Terraria.GameContent.ItemDropRules;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.BossBags
@@ -17,6 +18,8 @@ namespace Eternal.Content.Items.BossBags
         {
             DisplayName.SetDefault("Treasure Bag (Cosmic Apparition)");
             Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
+
+            ItemID.Sets.BossBag[Type] = true;
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
         }

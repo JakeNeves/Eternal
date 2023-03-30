@@ -27,13 +27,19 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
         int deathExplosionTimer = 0;
 
         bool midFightDialogue = true;
-        bool dontKillyet = false;
         bool phase2Init = false;
         bool isDead = false;
+        bool dontKillyet = false;
 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cosmic Emperor");
+
+            var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            {
+                CustomTexturePath = "Eternal/Content/NPCs/Boss/CosmicEmperor/CosmicEmperor"
+            };
+
             NPCID.Sets.ShouldBeCountedAsBoss[Type] = true;
         }
 
@@ -42,7 +48,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
             bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
 
-                new FlavorTextBestiaryInfoElement("Hier to the thone, the Cosmic Emperor was once an innocent person like you who survived the Moon Lord's reckoning.")
+                new FlavorTextBestiaryInfoElement("Hier to the thone, the saviour of the stars. Very well known for his cruel tyranny.")
             });
         }
 
@@ -136,6 +142,12 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
                 NPC.defense = 184;
                 NPC.damage = 86;
             }
+            else if (DifficultySystem.hellMode)
+            {
+                NPC.lifeMax = 20000000;
+                NPC.defense = 186;
+                NPC.damage = 90;
+            }
             else
             {
                 NPC.lifeMax = 8000000;
@@ -150,10 +162,6 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
             {
                 if (NPC.life < 0)
                 {
-                    for (int k = 0; k < damage / NPC.life * 0.05; k++)
-                    {
-                        Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.DemonTorch, hitDirection, 0, 0, default(Color), 1f);
-                    }
                     NPC.life = 1;
                     isDead = true;
                 }
@@ -176,62 +184,60 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
                 NPC.velocity.Y = 50;
             }
             NPC.rotation = NPC.velocity.X * 0.04f;
-            if (!isDead)
+            if (NPC.ai[0] == 0)
             {
-                if (NPC.ai[0] == 0)
+                #region Flying Movement
+                float speed = 80f;
+                float acceleration = 1.15f;
+                Vector2 vector2 = new Vector2(NPC.position.X + (float)NPC.width * 0.5f, NPC.position.Y + (float)NPC.height * 0.5f);
+                float xDir = Main.player[NPC.target].position.X + (float)(Main.player[NPC.target].width / 2) - vector2.X;
+                float yDir = (float)(Main.player[NPC.target].position.Y + (Main.player[NPC.target].height / 2) - 120) - vector2.Y;
+                float length = (float)Math.Sqrt(xDir * xDir + yDir * yDir);
+                if (length > 400 && Main.expertMode)
                 {
-                    #region Flying Movement
-                    float speed = 80f;
-                    float acceleration = 1.15f;
-                    Vector2 vector2 = new Vector2(NPC.position.X + (float)NPC.width * 0.5f, NPC.position.Y + (float)NPC.height * 0.5f);
-                    float xDir = Main.player[NPC.target].position.X + (float)(Main.player[NPC.target].width / 2) - vector2.X;
-                    float yDir = (float)(Main.player[NPC.target].position.Y + (Main.player[NPC.target].height / 2) - 120) - vector2.Y;
-                    float length = (float)Math.Sqrt(xDir * xDir + yDir * yDir);
-                    if (length > 400 && Main.expertMode)
+                    ++speed;
+                    acceleration += 0.05F;
+                    if (length > 600)
                     {
                         ++speed;
-                        acceleration += 0.05F;
-                        if (length > 600)
+                        acceleration += 0.10F;
+                        if (length > 800)
                         {
                             ++speed;
-                            acceleration += 0.10F;
-                            if (length > 800)
-                            {
-                                ++speed;
-                                acceleration += 0.15F;
-                            }
+                            acceleration += 0.15F;
                         }
                     }
-                    float num10 = speed / length;
-                    xDir = xDir * num10;
-                    yDir = yDir * num10;
-                    if (NPC.velocity.X < xDir)
-                    {
-                        NPC.velocity.X = NPC.velocity.X + acceleration;
-                        if (NPC.velocity.X < 0 && xDir > 0)
-                            NPC.velocity.X = NPC.velocity.X + acceleration;
-                    }
-                    else if (NPC.velocity.X > xDir)
-                    {
-                        NPC.velocity.X = NPC.velocity.X - acceleration;
-                        if (NPC.velocity.X > 0 && xDir < 0)
-                            NPC.velocity.X = NPC.velocity.X - acceleration;
-                    }
-                    if (NPC.velocity.Y < yDir)
-                    {
-                        NPC.velocity.Y = NPC.velocity.Y + acceleration;
-                        if (NPC.velocity.Y < 0 && yDir > 0)
-                            NPC.velocity.Y = NPC.velocity.Y + acceleration;
-                    }
-                    else if (NPC.velocity.Y > yDir)
-                    {
-                        NPC.velocity.Y = NPC.velocity.Y - acceleration;
-                        if (NPC.velocity.Y > 0 && yDir < 0)
-                            NPC.velocity.Y = NPC.velocity.Y - acceleration;
-                    }
-                    #endregion
                 }
+                float num10 = speed / length;
+                xDir = xDir * num10;
+                yDir = yDir * num10;
+                if (NPC.velocity.X < xDir)
+                {
+                    NPC.velocity.X = NPC.velocity.X + acceleration;
+                    if (NPC.velocity.X < 0 && xDir > 0)
+                        NPC.velocity.X = NPC.velocity.X + acceleration;
+                }
+                else if (NPC.velocity.X > xDir)
+                {
+                    NPC.velocity.X = NPC.velocity.X - acceleration;
+                    if (NPC.velocity.X > 0 && xDir < 0)
+                        NPC.velocity.X = NPC.velocity.X - acceleration;
+                }
+                if (NPC.velocity.Y < yDir)
+                {
+                    NPC.velocity.Y = NPC.velocity.Y + acceleration;
+                    if (NPC.velocity.Y < 0 && yDir > 0)
+                        NPC.velocity.Y = NPC.velocity.Y + acceleration;
+                }
+                else if (NPC.velocity.Y > yDir)
+                {
+                    NPC.velocity.Y = NPC.velocity.Y - acceleration;
+                    if (NPC.velocity.Y > 0 && yDir < 0)
+                        NPC.velocity.Y = NPC.velocity.Y - acceleration;
+                }
+                #endregion
             }
+
             return true;
         }
 
@@ -243,222 +249,227 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
 
             var entitySource = NPC.GetSource_FromAI();
 
-            if (!isDead)
+            if (NPC.life < NPC.lifeMax / 2)
             {
-                if (NPC.life < NPC.lifeMax / 2)
+                if (!phase2Init)
                 {
-                    if (!phase2Init)
+                    for (int i = 0; i < 24; ++i)
                     {
-                        for (int i = 0; i < 24; ++i)
-                        {
-                            NPC.NewNPC(entitySource, (int)NPC.position.X + Main.rand.Next(-120, 120), (int)NPC.position.Y + Main.rand.Next(-120, 120), ModContent.NPCType<CosmicEmperorClone>());
-                        }
-                        phase2Init = true;
+                        NPC.NewNPC(entitySource, (int)NPC.position.X + Main.rand.Next(-120, 120), (int)NPC.position.Y + Main.rand.Next(-120, 120), ModContent.NPCType<CosmicEmperorClone>());
                     }
-
-                    if (NPC.AnyNPCs(ModContent.NPCType<CosmicEmperorClone>()))
-                    {
-                        NPC.dontTakeDamage = true;
-                        NPC.immortal = true;
-                        midFightDialogue = false;
-                    }
-                    else
-                    {
-                        NPC.dontTakeDamage = false;
-                        NPC.immortal = false;
-                        midFightDialogue = true;
-                    }
+                    phase2Init = true;
                 }
 
-                if (midFightDialogue)
+                if (NPC.AnyNPCs(ModContent.NPCType<CosmicEmperorClone>()))
                 {
-                    dialogueTimer++;
-                    if (NPC.life < NPC.lifeMax / 2)
+                    NPC.dontTakeDamage = true;
+                    NPC.immortal = true;
+                    midFightDialogue = false;
+                }
+                else
+                {
+                    NPC.dontTakeDamage = false;
+                    NPC.immortal = false;
+                    midFightDialogue = true;
+                }
+            }
+
+            #region dialogue
+            if (midFightDialogue)
+            {
+                dialogueTimer++;
+                if (NPC.life < NPC.lifeMax / 2)
+                {
+                    if (dialogueTimer == 1)
                     {
-                        if (dialogueTimer == 1)
-                        {
-                            Main.NewText("I AM THE EMPEROR!", 150, 36, 120);
-                        }
-                        if (dialogueTimer == 200)
-                        {
-                            Main.NewText("MY SPEECH IS THUNDER!", 150, 36, 120);
-                        }
-                        if (dialogueTimer == 400)
-                        {
-                            Main.NewText("NO MORE PEACE!", 150, 36, 120);
-                        }
-                        if (dialogueTimer == 600)
-                        {
-                            Main.NewText("NO MORE TRANQUILITY!", 150, 36, 120);
-                        }
-                        if (dialogueTimer == 800)
-                        {
-                            Main.NewText("EVERYTHING FALLS BEFORE ME!", 150, 36, 120);
-                        }
-                        if (dialogueTimer == 1000)
-                        {
-                            Main.NewText("NOBODY CAN BE TOUGHER THAN ME!", 150, 36, 120);
-                        }
-                        if (dialogueTimer == 1200)
-                        {
-                            Main.NewText("NO TYRANT CAN OUTPOWER ME!", 150, 36, 120);
-                        }
-                        if (dialogueTimer == 1400)
-                        {
-                            Main.NewText("NO MORE RESISTANCE!", 150, 36, 120);
-                        }
-                        if (dialogueTimer == 1600)
-                        {
-                            Main.NewText("SAY GOODBYE TO WHAT SOON, WILL CRUMBLE INTO ASHES!", 150, 36, 120);
-                        }
-                        if (dialogueTimer == 1800)
-                        {
-                            Main.NewText("I AM THE EMPEROR!", 150, 36, 120);
-                        }
-                        if (dialogueTimer == 2000)
-                        {
-                            Main.NewText("SAVIOUR OF THIS WORLD!", 150, 36, 120);
-                        }
-                        if (dialogueTimer == 2200)
-                        {
-                            Main.NewText("YOU WILL WATCH AS EVERYTHING AROUND YOU, LIES TO RUIN!", 150, 36, 120);
-                        }
-                        if (dialogueTimer == 2400)
-                        {
-                            Main.NewText("YOUR POWERLESS HUSK OF A BODY WILL WITHER WITHIN WHAT WILL SOON, BE DEMOLISHED INTO NOTHINGNESS!", 150, 36, 120);
-                        }
-                        if (dialogueTimer == 2600)
-                        {
-                            Main.NewText("YOUR RESISTANCE WILL FALL!", 150, 36, 120);
-                        }
-                        if (dialogueTimer == 2800)
-                        {
-                            Main.NewText("MY POWER IS UNMATCHED BY HELPLESS PEASENTS ALONE!", 150, 36, 120);
-                            dialogueTimer = 0;
-                        }
+                        Main.NewText("I AM THE EMPEROR!", 150, 36, 120);
                     }
-                    else
+                    if (dialogueTimer == 200)
                     {
-                        if (dialogueTimer == 1)
-                        {
-                            Main.NewText("I AM THE EMPEROR!", 150, 36, 120);
-                        }
-                        if (dialogueTimer == 200)
-                        {
-                            Main.NewText("I AM POWER!", 150, 36, 120);
-                        }
-                        if (dialogueTimer == 400)
-                        {
-                            Main.NewText("MY SKIN IS TOUGHER THAN A THOUSAND ARMORS!", 150, 36, 120);
-                        }
-                        if (dialogueTimer == 600)
-                        {
-                            Main.NewText("WARS!", 150, 36, 120);
-                        }
-                        if (dialogueTimer == 800)
-                        {
-                            Main.NewText("POLITICS!", 150, 36, 120);
-                        }
-                        if (dialogueTimer == 1000)
-                        {
-                            Main.NewText("WORTHLESS!", 150, 36, 120);
-                        }
-                        if (dialogueTimer == 1200)
-                        {
-                            Main.NewText("DISTRACTIONS!", 150, 36, 120);
-                        }
-                        if (dialogueTimer == 1400)
-                        {
-                            Main.NewText("I AM THE EMPEROR!", 150, 36, 120);
-                        }
-                        if (dialogueTimer == 1600)
-                        {
-                            Main.NewText("THE WORLD CRUMBLES BEFORE ME!", 150, 36, 120);
-                        }
-                        if (dialogueTimer == 1800)
-                        {
-                            Main.NewText("IT'S DOOM O' CLOCK!", 150, 36, 120);
-                        }
-                        if (dialogueTimer == 2000)
-                        {
-                            if (ReputationSystem.ReputationPoints >= 100)
-                                Main.NewText("THAT FALSE EMPEROR HAS CORRUPTED YOU!", 150, 36, 120);
-                            else
-                                Main.NewText("YOUR RESISTANCE MEANS NOTHING!", 150, 36, 120);
-                        }
-                        if (dialogueTimer == 2200)
-                        {
-                            Main.NewText("CAN'T YOU SEE!?", 150, 36, 120);
-                        }
-                        if (dialogueTimer == 2400)
-                        {
-                            Main.NewText("I AM SUPERIOR!", 150, 36, 120);
-                        }
-                        if (dialogueTimer == 2600)
-                        {
-                            Main.NewText("I AM BUILT DIFFERENT!", 150, 36, 120);
-                        }
-                        if (dialogueTimer == 2800)
-                        {
-                            Main.NewText("I AM A TRUE TYRANT!", 150, 36, 120);
-                        }
-                        if (dialogueTimer == 3000)
-                        {
-                            Main.NewText("TIME TO REPENT!", 150, 36, 120);
-                        }
-                        if (dialogueTimer == 3200)
-                        {
-                            Main.NewText("I AM THE EMPEROR!", 150, 36, 120);
-                        }
-                        if (dialogueTimer == 3400)
-                        {
-                            Main.NewText("THIS IS HOW AN ERA ENDS!", 150, 36, 120);
-                        }
-                        if (dialogueTimer == 3600)
-                        {
-                            Main.NewText("I WILL CRUMBLE THIS WORLD INTO ASHES!", 150, 36, 120);
-                        }
-                        if (dialogueTimer == 3800)
-                        {
-                            Main.NewText("EVERYONE WILL BOW TOWARDS ME!", 150, 36, 120);
-                        }
-                        if (dialogueTimer == 4000)
-                        {
-                            Main.NewText("YOUR REIGN OF UNSPEAKABLE TERROR ENDS HERE!", 150, 36, 120);
-                            dialogueTimer = 0;
-                        }
+                        Main.NewText("MY SPEECH IS THUNDER!", 150, 36, 120);
+                    }
+                    if (dialogueTimer == 400)
+                    {
+                        Main.NewText("NO MORE PEACE!", 150, 36, 120);
+                    }
+                    if (dialogueTimer == 600)
+                    {
+                        Main.NewText("NO MORE TRANQUILITY!", 150, 36, 120);
+                    }
+                    if (dialogueTimer == 800)
+                    {
+                        Main.NewText("EVERYTHING FALLS BEFORE ME!", 150, 36, 120);
+                    }
+                    if (dialogueTimer == 1000)
+                    {
+                        Main.NewText("NOBODY CAN BE TOUGHER THAN ME!", 150, 36, 120);
+                    }
+                    if (dialogueTimer == 1200)
+                    {
+                        Main.NewText("NO TYRANT CAN OUTPOWER ME!", 150, 36, 120);
+                    }
+                    if (dialogueTimer == 1400)
+                    {
+                        Main.NewText("NO MORE RESISTANCE!", 150, 36, 120);
+                    }
+                    if (dialogueTimer == 1600)
+                    {
+                        Main.NewText("SAY GOODBYE TO WHAT SOON, WILL CRUMBLE INTO ASHES!", 150, 36, 120);
+                    }
+                    if (dialogueTimer == 1800)
+                    {
+                        Main.NewText("I AM THE EMPEROR!", 150, 36, 120);
+                    }
+                    if (dialogueTimer == 2000)
+                    {
+                        Main.NewText("SAVIOUR OF THIS WORLD!", 150, 36, 120);
+                    }
+                    if (dialogueTimer == 2200)
+                    {
+                        Main.NewText("YOU WILL WATCH AS EVERYTHING AROUND YOU, LIES TO RUIN!", 150, 36, 120);
+                    }
+                    if (dialogueTimer == 2400)
+                    {
+                        Main.NewText("YOUR POWERLESS HUSK OF A BODY WILL WITHER WITHIN WHAT WILL SOON, BE DEMOLISHED INTO NOTHINGNESS!", 150, 36, 120);
+                    }
+                    if (dialogueTimer == 2600)
+                    {
+                        Main.NewText("YOUR RESISTANCE WILL FALL!", 150, 36, 120);
+                    }
+                    if (dialogueTimer == 2800)
+                    {
+                        Main.NewText("MY POWER IS UNMATCHED BY HELPLESS PEASENTS ALONE!", 150, 36, 120);
+                        dialogueTimer = 0;
                     }
                 }
                 else
                 {
-                    dialogueTimer = 0;
-                }
-
-                timer++;
-                if ((timer == 200 || timer == 400 && NPC.life >= (NPC.lifeMax / 2)))
-                {
-                    for (int i = 0; i < 3; i++)
+                    if (dialogueTimer == 1)
                     {
-                        Projectile.NewProjectile(entitySource, (int)NPC.position.X + Main.rand.Next(-256, 256), (int)NPC.position.Y + Main.rand.Next(-256, 256), 0, 0, ModContent.ProjectileType<CosmigeddonBomb>(), 0, 0);
+                        Main.NewText("I AM THE EMPEROR!", 150, 36, 120);
                     }
-                }
-                else if ((timer == 600 || timer == 650 || timer == 700 || timer == 800 || timer == 850 || timer == 880))
-                {
-                    NPC.NewNPC(entitySource, (int)NPC.position.X + Main.rand.Next(-256, 256), (int)NPC.position.Y + Main.rand.Next(-256, 256), ModContent.NPCType<GalaxiaStarwisp>());
-                }
-                else if ((timer == 900 || timer == 950))
-                {
-                }
-                if (timer == 1000)
-                {
-                    timer = 0;
+                    if (dialogueTimer == 200)
+                    {
+                            Main.NewText("I AM POWER!", 150, 36, 120);
+                    }
+                    if (dialogueTimer == 400)
+                    {
+                        Main.NewText("MY SKIN IS TOUGHER THAN A THOUSAND ARMORS!", 150, 36, 120);
+                    }
+                    if (dialogueTimer == 600)
+                    {
+                        Main.NewText("WARS!", 150, 36, 120);
+                    }
+                    if (dialogueTimer == 800)
+                    {
+                        Main.NewText("POLITICS!", 150, 36, 120);
+                    }
+                    if (dialogueTimer == 1000)
+                    {
+                        Main.NewText("WORTHLESS!", 150, 36, 120);
+                    }
+                    if (dialogueTimer == 1200)
+                    {
+                        Main.NewText("DISTRACTIONS!", 150, 36, 120);
+                    }
+                    if (dialogueTimer == 1400)
+                    {
+                        Main.NewText("I AM THE EMPEROR!", 150, 36, 120);
+                    }
+                    if (dialogueTimer == 1600)
+                    {
+                        Main.NewText("THE WORLD CRUMBLES BEFORE ME!", 150, 36, 120);
+                    }
+                    if (dialogueTimer == 1800)
+                    {
+                        Main.NewText("IT'S DOOM O' CLOCK!", 150, 36, 120);
+                    }
+                    if (dialogueTimer == 2000)
+                    {
+                        if (ReputationSystem.ReputationPoints >= 100)
+                            Main.NewText("THAT FALSE EMPEROR HAS CORRUPTED YOU!", 150, 36, 120);
+                        else
+                            Main.NewText("YOUR RESISTANCE MEANS NOTHING!", 150, 36, 120);
+                    }
+                    if (dialogueTimer == 2200)
+                    {
+                        Main.NewText("CAN'T YOU SEE!?", 150, 36, 120);
+                    }
+                    if (dialogueTimer == 2400)
+                    {
+                        Main.NewText("I AM SUPERIOR!", 150, 36, 120);
+                    }
+                    if (dialogueTimer == 2600)
+                    {
+                        Main.NewText("I AM BUILT DIFFERENT!", 150, 36, 120);
+                    }
+                    if (dialogueTimer == 2800)
+                    {
+                        Main.NewText("I AM A TRUE TYRANT!", 150, 36, 120);
+                    }
+                    if (dialogueTimer == 3000)
+                    {
+                        Main.NewText("TIME TO REPENT!", 150, 36, 120);
+                    }
+                    if (dialogueTimer == 3200)
+                    {
+                        Main.NewText("I AM THE EMPEROR!", 150, 36, 120);
+                    }
+                    if (dialogueTimer == 3400)
+                    {
+                        Main.NewText("THIS IS HOW AN ERA ENDS!", 150, 36, 120);
+                    }
+                    if (dialogueTimer == 3600)
+                    {
+                        Main.NewText("I WILL CRUMBLE THIS WORLD INTO ASHES!", 150, 36, 120);
+                    }
+                    if (dialogueTimer == 3800)
+                    {
+                        Main.NewText("EVERYONE WILL BOW TOWARDS ME!", 150, 36, 120);
+                    }
+                    if (dialogueTimer == 4000)
+                    {
+                        Main.NewText("YOUR REIGN OF UNSPEAKABLE TERROR ENDS HERE!", 150, 36, 120);
+                        dialogueTimer = 0;
+                    }
                 }
             }
             else
             {
-                NPC.velocity = new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 2f));
+                dialogueTimer = 0;
+            }
+            #endregion
+
+            timer++;
+            if ((timer == 200 || timer == 400 && NPC.life >= (NPC.lifeMax / 2)))
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    Projectile.NewProjectile(entitySource, (int)NPC.position.X + Main.rand.Next(-256, 256), (int)NPC.position.Y + Main.rand.Next(-256, 256), 0, 0, ModContent.ProjectileType<CosmigeddonBomb>(), 0, 0);
+                }
+            }
+            else if ((timer == 600 || timer == 650 || timer == 700 || timer == 800 || timer == 850 || timer == 880))
+            {
+                NPC.NewNPC(entitySource, (int)NPC.position.X + Main.rand.Next(-256, 256), (int)NPC.position.Y + Main.rand.Next(-256, 256), ModContent.NPCType<GalaxiaStarwisp>());
+            }
+            else if ((timer == 900 || timer == 950))
+            {
+            }
+            if (timer == 1000)
+            {
+                timer = 0;
+            }
+
+            if (isDead)
+            {
                 NPC.noTileCollide = false;
                 midFightDialogue = false;
+                NPC.dontTakeDamage = true;
+                timer = 0;
+
+                NPC.velocity.Y += 0.05f;
+                NPC.velocity.X = 0;
+
                 DialogueDeathTimer++;
                 deathExplosionTimer++;
 
@@ -472,7 +483,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
 
                 if (!DownedBossSystem.downedCosmicEmperor)
                 {
-                    NPC.dontTakeDamage = true;
+                    
                     switch (DialogueDeathTimer)
                     {
                         case 100:
@@ -502,6 +513,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
                                 Dust.NewDust(NPC.Center, NPC.width, NPC.height, ModContent.DustType<CosmicSpirit>(), Main.rand.NextFloat(-1.75f, 1.75f), Main.rand.NextFloat(-1.75f, 1.75f), 0, default(Color), 1f);
                             }
                             NPC.dontTakeDamage = false;
+                            DownedBossSystem.downedCosmicEmperor = true;
                             dontKillyet = true;
                             player.ApplyDamageToNPC(NPC, 9999, 0, 0, false);
                             break;
@@ -509,7 +521,6 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
                 }
                 else
                 {
-                    NPC.dontTakeDamage = true;
                     switch (DialogueDeathTimer)
                     {
                         case 100:
@@ -568,6 +579,5 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
             }
             return true;
         }
-
     }
 }

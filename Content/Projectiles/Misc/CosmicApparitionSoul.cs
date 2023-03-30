@@ -20,7 +20,7 @@ namespace Eternal.Content.Projectiles.Misc
             Projectile.alpha = 255;
             Projectile.friendly = false;
             Projectile.hostile = false;
-            Projectile.timeLeft = 1600;
+            Projectile.timeLeft = 900;
             Projectile.ignoreWater = false;
             Projectile.tileCollide = true;
         }
@@ -37,22 +37,22 @@ namespace Eternal.Content.Projectiles.Misc
 
             switch (Projectile.timeLeft)
             {
-                case 1490:
+                case 890:
                     Main.NewText("...", 150, 36, 120);
                     break;
-                case 1250:
+                case 750:
                     Main.NewText(player.name + "!", 150, 36, 120);
                     break;
-                case 1090:
+                case 690:
                     Main.NewText("Innocence...", 150, 36, 120);
                     break;
-                case 850:
+                case 550:
                     Main.NewText("Doesn't...", 150, 36, 120);
                     break;
-                case 690:
+                case 490:
                     Main.NewText("Get...", 150, 36, 120);
                     break;
-                case 450:
+                case 350:
                     Main.NewText("You...", 150, 36, 120);
                     break;
                 case 290:

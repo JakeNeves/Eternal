@@ -1,4 +1,5 @@
 ﻿using Eternal.Common.Systems;
+using Eternal.Content.Rarities;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -34,9 +35,8 @@ namespace Eternal.Content.Items.Misc
             Item.useStyle = ItemUseStyleID.HoldUp;
             Item.useAnimation = 15;
             Item.useTime = 15;
-            Item.rare = ItemRarityID.Expert;
+            Item.rare = ModContent.RarityType<HellMode>();
             Item.value = 0;
-            Item.expert = true;
         }
 
         public override bool? UseItem(Player player)
@@ -57,15 +57,16 @@ namespace Eternal.Content.Items.Misc
                 {
                     if (DifficultySystem.hellMode == false)
                     {
-                        SoundEngine.PlaySound(SoundID.ForceRoar, player.position);
+                        SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/DifficultyActivate"), player.position);
                         DifficultySystem.hellMode = true;
                         Main.NewText("Hell Mode is Active, witness the unspeakable menace!", 236, 0, 100);
                         //Main.NewText("Hell Mode is Active, enjoy the fun!", 210, 0, 220);
                     }
                     else if (DifficultySystem.hellMode == true)
                     {
-                        SoundEngine.PlaySound(SoundID.ForceRoar, player.position);
+                        SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/DifficultyDeactivate"), player.position);
                         DifficultySystem.hellMode = false;
+                        DifficultySystem.sinstormMode = false;
                         Main.NewText("Hell Mode is no longer Active, breathe easy...", 236, 0, 100);
                         //Main.NewText("Hell Mode is no longer Active, not enough fun for you!", 210, 0, 220);
                     }
