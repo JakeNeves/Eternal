@@ -1,19 +1,20 @@
 ﻿using Eternal.Content.Rarities;
 using Terraria;
 using Terraria.GameContent.Creative;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Accessories
 {
     public class CometGauntlet : ModItem
     {
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("35% increased melee damage" +
+                                                                            "\n17% increased melee speed" +
+                                                                            "\nEnables auto swing for melee weapons" +
+                                                                            "\n'The comets are now in the palm of your hand'");
+
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("35% increased melee damage" +
-                               "\n17% increased melee speed" +
-                               "\nEnables auto swing for melee weapons" +
-                               "\n'The comets are now in the palm of your hand'");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

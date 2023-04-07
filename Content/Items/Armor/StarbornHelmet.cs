@@ -15,7 +15,7 @@ namespace Eternal.Content.Items.Armor
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("17% increased minion damage");
+            // Tooltip.SetDefault("17% increased minion damage");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

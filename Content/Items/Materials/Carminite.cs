@@ -10,8 +10,8 @@ namespace Eternal.Content.Items.Materials
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Blood Droplets, Petrified and Bewiched in a bizzare form" +
-                             "\n'Both sticky and gooey substance scrapped off a flesh horror'");
+            /* Tooltip.SetDefault("Blood Droplets, Petrified and Bewiched in a bizzare form" +
+                             "\n'Both sticky and gooey substance scrapped off a flesh horror'"); */
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
         }

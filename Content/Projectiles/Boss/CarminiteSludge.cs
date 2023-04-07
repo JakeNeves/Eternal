@@ -10,7 +10,7 @@ namespace Eternal.Content.Projectiles.Boss
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Carminite Sludge");
+            // DisplayName.SetDefault("Carminite Sludge");
         }
 
         public override void SetDefaults()

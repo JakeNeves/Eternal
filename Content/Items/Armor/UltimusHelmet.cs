@@ -13,7 +13,7 @@ namespace Eternal.Content.Items.Armor
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("30% increased minion damage");
+            // Tooltip.SetDefault("30% increased minion damage");
         }
 
         public override void SetDefaults()

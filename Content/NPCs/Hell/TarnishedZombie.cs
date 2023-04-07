@@ -12,7 +12,7 @@ namespace Eternal.Content.NPCs.Hell
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Tarnished Zombie");
+            // DisplayName.SetDefault("Tarnished Zombie");
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Zombie];
         }
 

@@ -16,7 +16,7 @@ namespace Eternal.Content.NPCs.Underworld
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Magmatic Scorcher");
+            // DisplayName.SetDefault("Magmatic Scorcher");
 
             Main.npcFrameCount[NPC.type] = 2;
         }
@@ -119,16 +119,16 @@ namespace Eternal.Content.NPCs.Underworld
             NPC.frame.Y = frameNum * frameHeight;
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (NPC.life <= 0)
             {
-                for (int k = 0; k < damage / NPC.lifeMax * 5; k++)
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Torch, 2.5f * hitDirection, -2.5f, 0, default, 1.7f);
+                for (int k = 0; k < 5; k++)
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Torch, 2.5f, -2.5f, 0, default, 1.7f);
             }
             else
             {
-                Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.Torch, hitDirection, -1f, 0, default(Color), 1f);
+                Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.Torch, 0, -1f, 0, default(Color), 1f);
             }
         }
     }

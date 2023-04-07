@@ -20,7 +20,7 @@ namespace Eternal.Content.Projectiles.Boss
         }
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Orion N30X");
+            // DisplayName.SetDefault("Orion N30X");
         }
 
         public override void AI()

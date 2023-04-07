@@ -14,7 +14,7 @@ namespace Eternal.Content.Items.Tools
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            Tooltip.SetDefault("'The pickaxe of the core'");
+            // Tooltip.SetDefault("'The pickaxe of the core'");
         }
 
         public override void SetDefaults()

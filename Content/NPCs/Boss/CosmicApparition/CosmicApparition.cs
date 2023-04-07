@@ -54,7 +54,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
         {
             Main.npcFrameCount[NPC.type] = 4;
 
-            NPCID.Sets.TrailCacheLength[NPC.type] = 14;
+            NPCID.Sets.TrailCacheLength[NPC.type] = 12;
             NPCID.Sets.TrailingMode[NPC.type] = 0;
 
             NPCID.Sets.ShouldBeCountedAsBoss[Type] = true;
@@ -69,7 +69,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             NPC.defense = 60;
             NPC.knockBackResist = -1f;
             NPC.boss = true;
-            Music = MusicID.Boss2;
+            Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/ApparitionalAccumulation");
             NPC.HitSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCHit/CosmicApparitionHit")
             {
                 Volume = 0.8f,
@@ -123,7 +123,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Vexation>(), 1));
         }
 
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
         {
             if (Main.masterMode) {
                 NPC.lifeMax = 360000;
@@ -422,7 +422,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             NPC.frame.Y = Frame * frameHeight;
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             var entitySource = NPC.GetSource_Death();
 
@@ -443,9 +443,9 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
                 }
             }
 
-            for (int k = 0; k < damage / NPC.lifeMax * 20.0; k++)
+            for (int k = 0; k < 10.0; k++)
             {
-                Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.Shadowflame, hitDirection, -1f, 0, default(Color), 1f);
+                Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.Shadowflame, 0, -1f, 0, default(Color), 1f);
             }
         }
 

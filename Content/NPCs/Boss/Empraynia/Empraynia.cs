@@ -47,7 +47,7 @@ namespace Eternal.Content.NPCs.Boss.Empraynia
             NPC.DeathSound = SoundID.NPCDeath5;
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (NPC.life < 0)
             {
@@ -68,11 +68,11 @@ namespace Eternal.Content.NPCs.Boss.Empraynia
                 }
             }
 
-            for (int k = 0; k < damage / NPC.lifeMax * 50; k++)
-                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Shadowflame, 2.5f * hitDirection, -2.5f, 0, default, 1.7f);
+            for (int k = 0; k < 50; k++)
+                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Shadowflame, 2.5f, -2.5f, 0, default, 1.7f);
         }
 
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
         {
             if (Main.masterMode)
             {

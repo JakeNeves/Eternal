@@ -2,16 +2,17 @@
 using Eternal.Content.Tiles.CraftingStations;
 using Terraria;
 using Terraria.GameContent.Creative;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Materials
 {
     public class NaquadahBar : ModItem
     {
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("'A material made of otherworldly rift-like scrap...'");
+
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'A material made of otherworldly rift-like scrap...'");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
         }
 

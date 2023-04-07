@@ -10,8 +10,8 @@ namespace Eternal.Content.Buffs
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Froststruck");
-            Description.SetDefault("The freezing tempuratures make you body brittle");
+            // DisplayName.SetDefault("Froststruck");
+            // Description.SetDefault("The freezing tempuratures make you body brittle");
             Main.debuff[Type] = true;
             BuffID.Sets.LongerExpertDebuff[Type] = true;
         }

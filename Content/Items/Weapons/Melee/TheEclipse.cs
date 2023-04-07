@@ -11,7 +11,7 @@ namespace Eternal.Content.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Fires a yoyo that resembles a dog sun");
+            // Tooltip.SetDefault("Fires a yoyo that resembles a dog sun");
         }
 
         public override void SetDefaults()

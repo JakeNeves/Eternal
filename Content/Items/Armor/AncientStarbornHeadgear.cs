@@ -15,7 +15,7 @@ namespace Eternal.Content.Items.Armor
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("7% increased ranged damage");
+            // Tooltip.SetDefault("7% increased ranged damage");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

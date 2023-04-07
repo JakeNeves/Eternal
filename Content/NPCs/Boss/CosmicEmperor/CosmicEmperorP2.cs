@@ -13,6 +13,7 @@ using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.NPCs.Boss.CosmicEmperor
@@ -31,10 +32,10 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
         bool isDead = false;
         bool dontKillyet = false;
 
+        public override LocalizedText DisplayName => base.DisplayName.WithFormatArgs("Cosmic Emperor");
+
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cosmic Emperor");
-
             var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
                 CustomTexturePath = "Eternal/Content/NPCs/Boss/CosmicEmperor/CosmicEmperor"
@@ -85,7 +86,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
             NPC.SetEventFlagCleared(ref DownedBossSystem.downedCosmicEmperor, -1);
         }
 
-        public override bool StrikeNPC(ref double damage, int defense, ref float knockback, int hitDirection, ref bool crit)
+        /*public override void ModifyIncomingHit(ref NPC.HitModifiers modifiers)
         {
             if (damage > NPC.lifeMax / 2)
             {
@@ -125,10 +126,9 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
 
                 damage = 0;
             }
-            return false;
-        }
+        }*/
 
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
         {
             if (Main.masterMode)
             {
@@ -156,7 +156,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
             }
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (!dontKillyet)
             {
@@ -167,9 +167,9 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
                 }
             }
 
-            for (int k = 0; k < damage / NPC.life * 0.25; k++)
+            for (int k = 0; k < 0.25; k++)
             {
-                Dust.NewDust(NPC.Center, NPC.width, NPC.height, ModContent.DustType<CosmicSpirit>(), hitDirection, 0, 0, default(Color), 1f);
+                Dust.NewDust(NPC.Center, NPC.width, NPC.height, ModContent.DustType<CosmicSpirit>(), 0, 0, 0, default(Color), 1f);
             }
         }
 

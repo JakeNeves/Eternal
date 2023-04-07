@@ -10,7 +10,7 @@ namespace Eternal.Content.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'Feels like concrete'");
+            // Tooltip.SetDefault("'Feels like concrete'");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
         }

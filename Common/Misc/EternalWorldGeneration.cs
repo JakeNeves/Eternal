@@ -7,7 +7,7 @@ namespace Eternal.Common.Misc
 {
     public class EternalWorldGeneration : ModSystem
     {
-        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
+        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight)
         {
             int GraniteIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Granite"));
             if (GraniteIndex > -1)

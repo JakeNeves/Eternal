@@ -69,7 +69,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Ark of Imperious");
+            // DisplayName.SetDefault("Ark of Imperious");
             NPCID.Sets.TrailCacheLength[NPC.type] = 12;
             NPCID.Sets.TrailingMode[NPC.type] = 0;
 
@@ -90,7 +90,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
             };
             NPC.DeathSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCDeath/AoIDeath");
             NPC.boss = true;
-            Music = MusicID.Boss3;
+            Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/ImperiousStrike");
             NPC.defense = 80;
             NPC.damage = 40;
             NPC.lavaImmune = true;
@@ -108,7 +108,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
             NPC.buffImmune[BuffID.Chilled] = true;
         }
 
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
         {
             if (Main.masterMode)
             {
@@ -161,7 +161,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
             return true;
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (!dontKillyet)
             {
@@ -190,16 +190,9 @@ namespace Eternal.Content.NPCs.Boss.AoI
                     DownedBossSystem.downedArkofImperious = true;
                 }
             }
-            else
-            {
-                for (int k = 0; k < damage / NPC.lifeMax * 20.0; k++)
-                {
-                    Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.GreenTorch, hitDirection, 0f, 0, default(Color), 0.7f);
-                }
-            }
         }
 
-        public override void OnHitPlayer(Player player, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
         {
             player.AddBuff(BuffID.Bleeding, 180, false);
             player.AddBuff(BuffID.BrokenArmor, 180, false);

@@ -11,7 +11,7 @@ namespace Eternal.Content.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'A mere fragment of the Eternal infernoborn spirits'");
+            // Tooltip.SetDefault("'A mere fragment of the Eternal infernoborn spirits'");
 
             ItemID.Sets.ItemNoGravity[Item.type] = true;
 

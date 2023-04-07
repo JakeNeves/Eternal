@@ -10,10 +10,10 @@ namespace Eternal.Content.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("[c/F72F9A:Guaranteed Rare Boss Drop]" + 
+            /* Tooltip.SetDefault("[c/F72F9A:Guaranteed Rare Boss Drop]" + 
                              "\n'It looks rather rough, yet it's valuable, however something seems to be missing here'" +
                              "\n[c/008060:Ancient Artifact]" +
-                             "\nWhatever this is, it remains unknown...");
+                             "\nWhatever this is, it remains unknown..."); */
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

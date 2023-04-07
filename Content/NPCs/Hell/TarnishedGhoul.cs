@@ -12,7 +12,7 @@ namespace Eternal.Content.NPCs.Hell
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Tarnished Ghoul");
+            // DisplayName.SetDefault("Tarnished Ghoul");
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.DesertGhoul];
         }
 

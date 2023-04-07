@@ -18,7 +18,7 @@ namespace Eternal.Content.NPCs.Tundra
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Glacer Walker");
+            // DisplayName.SetDefault("Glacer Walker");
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.GoblinWarrior];
         }
 
@@ -51,7 +51,7 @@ namespace Eternal.Content.NPCs.Tundra
             });
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             var entitySource = NPC.GetSource_Death();
 
@@ -70,9 +70,9 @@ namespace Eternal.Content.NPCs.Tundra
             }
             else
             {
-                for (int k = 0; k < damage / NPC.lifeMax * 20.0; k++)
+                for (int k = 0; k < 20.0; k++)
                 {
-                    Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.Ice, hitDirection, 0, 0, default(Color), 1f);
+                    Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.Ice, 0, 0, 0, default(Color), 1f);
                 }
             }
         }

@@ -38,7 +38,7 @@ namespace Eternal.Content.NPCs.Boss.NeoxMechs
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Polarus' Shield Laser Turret");
+            // DisplayName.SetDefault("Polarus' Shield Laser Turret");
         }
 
         public override void SetDefaults()

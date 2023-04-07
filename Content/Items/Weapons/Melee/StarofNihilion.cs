@@ -11,8 +11,8 @@ namespace Eternal.Content.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Star of Nihilion");
-            Tooltip.SetDefault("'Named after the silent nihiliophane demon, Nihilion'");
+            // DisplayName.SetDefault("Star of Nihilion");
+            // Tooltip.SetDefault("'Named after the silent nihiliophane demon, Nihilion'");
 
             ItemID.Sets.ToolTipDamageMultiplier[Type] = 2f;
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

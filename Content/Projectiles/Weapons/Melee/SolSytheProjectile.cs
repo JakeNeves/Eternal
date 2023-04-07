@@ -11,7 +11,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Sol Sythe");
+            // DisplayName.SetDefault("Sol Sythe");
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 24;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }
@@ -36,7 +36,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
             Projectile.rotation += Projectile.velocity.X * 0.1f;
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(BuffID.OnFire, 480);
             target.AddBuff(BuffID.Daybreak, 480);

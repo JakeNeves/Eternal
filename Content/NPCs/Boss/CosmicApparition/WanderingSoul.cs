@@ -22,7 +22,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 4;
-            DisplayName.SetDefault("Wandering Soul");
+            // DisplayName.SetDefault("Wandering Soul");
 
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
@@ -59,7 +59,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             NPC.BossBar = Main.BigBossProgressBar.NeverValid;
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             var entitySource = NPC.GetSource_Death();
 

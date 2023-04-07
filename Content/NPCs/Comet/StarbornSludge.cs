@@ -45,11 +45,11 @@ namespace Eternal.Content.NPCs.Comet
             SpawnModBiomes = new int[1] { ModContent.GetInstance<Biomes.Comet>().Type };
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
-            for (int k = 0; k < damage / NPC.lifeMax * 20.0; k++)
+            for (int k = 0; k < 10.0; k++)
             {
-                Dust.NewDust(NPC.Center, NPC.width, NPC.height, ModContent.DustType<Machalite>(), hitDirection, 0, 0, default(Color), 1f);
+                Dust.NewDust(NPC.Center, NPC.width, NPC.height, ModContent.DustType<Machalite>(), 0, 0, 0, default(Color), 1f);
             }
         }
 

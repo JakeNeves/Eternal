@@ -7,7 +7,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Empowered Machalite Edge");
+            // DisplayName.SetDefault("Empowered Machalite Edge");
         }
 
         public override void SetDefaults()

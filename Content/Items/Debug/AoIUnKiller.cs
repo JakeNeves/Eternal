@@ -9,8 +9,8 @@ namespace Eternal.Content.Items.Debug
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Ark of Imperious Un-Killer");
-            Tooltip.SetDefault("[c/FF0000:Debug Item]\nMakes the Ark of Imperious no longer a downed boss\nkilling it will grant the ability to summon the Cosmic Emperor, via the Cosmic Tablet at the Altar of Cosmic Desire");
+            // DisplayName.SetDefault("Ark of Imperious Un-Killer");
+            // Tooltip.SetDefault("[c/FF0000:Debug Item]\nMakes the Ark of Imperious no longer a downed boss\nkilling it will grant the ability to summon the Cosmic Emperor, via the Cosmic Tablet at the Altar of Cosmic Desire");
         }
 
         public override void SetDefaults()

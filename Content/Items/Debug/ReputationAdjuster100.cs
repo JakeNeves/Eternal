@@ -12,8 +12,8 @@ namespace Eternal.Content.Items.Debug
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Reputation Adjuster 100");
-            Tooltip.SetDefault("[c/FF0000:Debug Item]\nRight Click to change Reputation Points by -100\nLeft Click to change Reputation Points by +100");
+            // DisplayName.SetDefault("Reputation Adjuster 100");
+            // Tooltip.SetDefault("[c/FF0000:Debug Item]\nRight Click to change Reputation Points by -100\nLeft Click to change Reputation Points by +100");
         }
 
         public override void SetDefaults()

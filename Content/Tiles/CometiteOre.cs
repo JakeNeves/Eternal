@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Tiles
@@ -23,8 +24,8 @@ namespace Eternal.Content.Tiles
             Main.tileLighted[Type] = true;
             DustType = ModContent.DustType<CosmicSpirit>();
             ItemDrop = ModContent.ItemType<Content.Items.Placeable.CometiteOre>();
-            ModTranslation name = CreateMapEntryName();
-            name.SetDefault("Cometite");
+            LocalizedText name = CreateMapEntryName();
+            // name.SetDefault("Cometite");
             AddMapEntry(new Color(30, 20, 40), name);
             MinPick = 225;
             HitSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/CometiteOreBreak")

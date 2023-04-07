@@ -20,7 +20,7 @@ namespace Eternal.Content.NPCs.Comet
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Starbelt Seeker");
+			// DisplayName.SetDefault("Starbelt Seeker");
 
 
 			var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
@@ -128,7 +128,7 @@ namespace Eternal.Content.NPCs.Comet
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Starbelt Seeker");
+			// DisplayName.SetDefault("Starbelt Seeker");
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
 			{
@@ -159,7 +159,7 @@ namespace Eternal.Content.NPCs.Comet
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Starbelt Seeker");
+			// DisplayName.SetDefault("Starbelt Seeker");
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
 			{
@@ -196,7 +196,7 @@ namespace Eternal.Content.NPCs.Comet
     {
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Starbelt Seeker");
+			// DisplayName.SetDefault("Starbelt Seeker");
 		}
 
 		public override void Init()

@@ -10,10 +10,10 @@ namespace Eternal.Content.Biomes
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Fallen Comet");
+            // DisplayName.SetDefault("Fallen Comet");
         }
 
-        public override int Music => MusicID.Eerie;
+        public override int Music => MusicLoader.GetMusicSlot(Mod, "Assets/Music/AstralDiscovery");
         public override CaptureBiome.TileColorStyle TileColorStyle => CaptureBiome.TileColorStyle.Corrupt;
 
         public override string BestiaryIcon => "Assets/Textures/Bestiary/Comet_Icon";

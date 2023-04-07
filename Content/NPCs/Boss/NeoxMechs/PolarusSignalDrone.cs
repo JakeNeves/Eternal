@@ -13,7 +13,7 @@ namespace Eternal.Content.NPCs.Boss.NeoxMechs
         private Player player;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Polarus' Signal Drone");
+            // DisplayName.SetDefault("Polarus' Signal Drone");
         }
 
         int attackTimer = 0;

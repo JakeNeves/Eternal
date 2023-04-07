@@ -22,7 +22,7 @@ namespace Eternal.Content.NPCs.Comet
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Apparitional Reminant");
+            // DisplayName.SetDefault("Apparitional Reminant");
             Main.npcFrameCount[NPC.type] = 4;
         }
 
@@ -85,7 +85,7 @@ namespace Eternal.Content.NPCs.Comet
             }
         }
 
-        public override void OnHitPlayer(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
         {
             target.AddBuff(ModContent.BuffType<ApparitionalWither>(), 1 * 60 * 60, false);
         }
@@ -169,16 +169,16 @@ namespace Eternal.Content.NPCs.Comet
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientStarbornGreaves>(), 12));
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (NPC.life <= 0)
             {
-                Dust.NewDust(NPC.Center, NPC.width, NPC.height, ModContent.DustType<CosmicSpirit>(), hitDirection, -1f, 0, default(Color), 1f);
+                Dust.NewDust(NPC.Center, NPC.width, NPC.height, ModContent.DustType<CosmicSpirit>(), 0, -1f, 0, default(Color), 1f);
             }
             else
             {
-                for (int k = 0; k < damage / NPC.lifeMax * 50; k++)
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.PurpleTorch, 2.5f * hitDirection, -2.5f, 0, default, 1.7f);
+                for (int k = 0; k < 25; k++)
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.PurpleTorch, 2.5f, -2.5f, 0, default, 1.7f);
             }
         }
 

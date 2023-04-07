@@ -11,8 +11,8 @@ namespace Eternal.Content.Items.BossBags
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Treasure Bag (Ark of Imperious)");
-            Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
+            // DisplayName.SetDefault("Treasure Bag (Ark of Imperious)");
+            // Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
 
             ItemID.Sets.BossBag[Type] = true;
 

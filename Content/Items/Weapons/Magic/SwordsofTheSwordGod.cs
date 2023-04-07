@@ -13,9 +13,9 @@ namespace Eternal.Content.Items.Weapons.Magic
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Swords of The Sword God");
-            Tooltip.SetDefault("Fires a barrage of swords" +
-                             "\n'How about we do a little sword dance!'");
+            // DisplayName.SetDefault("Swords of The Sword God");
+            /* Tooltip.SetDefault("Fires a barrage of swords" +
+                             "\n'How about we do a little sword dance!'"); */
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

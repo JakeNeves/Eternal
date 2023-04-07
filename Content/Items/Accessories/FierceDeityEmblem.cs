@@ -2,20 +2,21 @@
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Accessories
 {
     public class FierceDeityEmblem : ModItem
     {
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("20% increased damage" +
+                                                                            "\n10% critical strike chance" +
+                                                                            "\n[c/008060:Ancient Artifact]" +
+                                                                            "\nAn emblem empowered with a godly radiance" +
+                                                                            "\nLegends say this was used to empower the guardians of the dunes, aiding them in combat and allowing them to become reststant to any weakness they had");
+
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("20% increased damage" +
-                             "\n10% critical strike chance" +
-                             "\n[c/008060:Ancient Artifact]" +
-                             "\nAn emblem empowered with a godly radiance" +
-                             "\nLegends say this was used to empower the guardians of the dunes, aiding them in combat and allowing them to become reststant to any weakness they had");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

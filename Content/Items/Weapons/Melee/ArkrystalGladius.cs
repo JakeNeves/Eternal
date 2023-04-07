@@ -12,7 +12,7 @@ namespace Eternal.Content.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'The Arkrystal Blade's short counterpart'");
+            // Tooltip.SetDefault("'The Arkrystal Blade's short counterpart'");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

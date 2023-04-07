@@ -13,7 +13,7 @@ namespace Eternal.Content.Items.Armor
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("+160 max life");
+            // Tooltip.SetDefault("+160 max life");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

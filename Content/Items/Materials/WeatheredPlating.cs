@@ -8,7 +8,7 @@ namespace Eternal.Content.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'It's weathered and well worn'");
+            // Tooltip.SetDefault("'It's weathered and well worn'");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
         }

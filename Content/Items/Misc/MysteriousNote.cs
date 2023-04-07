@@ -9,15 +9,15 @@ namespace Eternal.Content.Items.Misc
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Mysterious Note");
-            Tooltip.SetDefault("[c/FF0000:---ATTENTION READER!---]" +
+            // DisplayName.SetDefault("Mysterious Note");
+            /* Tooltip.SetDefault("[c/FF0000:---ATTENTION READER!---]" +
                 "\nI am hearing word that another emperor has arrived here, as well as one of their emissaries." +
                 "\nPlease take note of my benefits of me being your ruler." +
                 "\nPeace" +
                 "\nProtection" +
                 "\nTranquility" +
                 "\nDo not fall victim to false hopes and such and do not take part of that emperor's doings!" +
-                "\n-Your royal highness, the Cosmic Emperor");
+                "\n-Your royal highness, the Cosmic Emperor"); */
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

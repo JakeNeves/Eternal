@@ -12,7 +12,7 @@ namespace Eternal.Content.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'Where's the climax?'");
+            // Tooltip.SetDefault("'Where's the climax?'");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

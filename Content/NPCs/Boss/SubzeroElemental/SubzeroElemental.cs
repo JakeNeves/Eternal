@@ -55,7 +55,7 @@ namespace Eternal.Content.NPCs.Boss.SubzeroElemental
             Music = MusicID.Boss3;
         }
 
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
         {
             if (Main.masterMode)
             {
@@ -79,7 +79,7 @@ namespace Eternal.Content.NPCs.Boss.SubzeroElemental
             }
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             var entitySource = NPC.GetSource_Death();
 
@@ -103,7 +103,7 @@ namespace Eternal.Content.NPCs.Boss.SubzeroElemental
             }
             else
             {
-                for (int k = 0; k < damage / NPC.lifeMax * 25; k++)
+                for (int k = 0; k < 0.25; k++)
                     Dust.NewDust(new Vector2(NPC.position.X, NPC.position.Y), NPC.width, NPC.height, DustID.Frost);
             }
         }

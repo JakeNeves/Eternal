@@ -17,12 +17,12 @@ namespace Eternal.Content.Items.Weapons.Melee
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Final Boss Blade");
-            Tooltip.SetDefault("<right> to change attack modes" +
+            // DisplayName.SetDefault("Final Boss Blade");
+            /* Tooltip.SetDefault("<right> to change attack modes" +
                              "\nMode 1 [c/35bce6:Starspear] - Fires a projectile that leaves a trail of piercing spike rings behind" +
                              "\nMode 2 [c/35bce6:Charging Buster] - Allows the player to ram into enemies" +
                              "\nMode 3 [c/35bce6:Holdable Control Sword] - Fires a sword controlled by the cursor" +
-                             "\n'How good can it be?'");
+                             "\n'How good can it be?'"); */
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

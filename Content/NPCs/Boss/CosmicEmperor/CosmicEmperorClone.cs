@@ -5,16 +5,14 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.NPCs.Boss.CosmicEmperor
 {
     public class CosmicEmperorClone : ModNPC
     {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cosmic Emperor's Shadow Clone");
-        }
+        public override LocalizedText DisplayName => base.DisplayName.WithFormatArgs("Cosmic Emperor's Shadow Clone");
 
         public override void SetDefaults()
         {
@@ -119,16 +117,16 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
             }
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (NPC.life <= 0)
             {
-                Dust.NewDust(NPC.Center, NPC.width, NPC.height, ModContent.DustType<CosmicSpirit>(), hitDirection, -1f, 0, default(Color), 1f);
+                Dust.NewDust(NPC.Center, NPC.width, NPC.height, ModContent.DustType<CosmicSpirit>(), 0, -1f, 0, default(Color), 1f);
             }
             else
             {
-                for (int k = 0; k < damage / NPC.lifeMax * 50; k++)
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.PurpleTorch, 2.5f * hitDirection, -2.5f, 0, default, 1.7f);
+                for (int k = 0; k < 25; k++)
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.PurpleTorch, 2.5f, -2.5f, 0, default, 1.7f);
             }
         }
     }

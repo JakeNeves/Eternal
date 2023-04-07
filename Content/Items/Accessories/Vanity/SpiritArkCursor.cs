@@ -5,15 +5,16 @@ using Eternal.Content.Tiles.CraftingStations;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace Eternal.Content.Items.Accessories.Vanity
 {
     public class SpiritArkCursor : ModItem
     {
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("Causes your mouse cursor to shift from various shades of green");
+
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Causes your mouse cursor to shift from various shades of green");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -25,7 +26,6 @@ namespace Eternal.Content.Items.Accessories.Vanity
             Item.rare = ModContent.RarityType<Magenta>();
             Item.accessory = true;
             Item.vanity = true;
-            Item.canBePlacedInVanityRegardlessOfConditions = true;
         }
 
         public override void UpdateVanity(Player player)

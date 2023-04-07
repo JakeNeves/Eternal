@@ -11,7 +11,7 @@ namespace Eternal.Content.Projectiles.Accessories
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Bloodtooth");
+            // DisplayName.SetDefault("Bloodtooth");
         }
 
         public override void SetDefaults()

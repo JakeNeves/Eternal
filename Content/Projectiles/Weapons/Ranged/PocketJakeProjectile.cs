@@ -9,7 +9,7 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Pocket Jake");
+            // DisplayName.SetDefault("Pocket Jake");
         }
 
         public override void SetDefaults()

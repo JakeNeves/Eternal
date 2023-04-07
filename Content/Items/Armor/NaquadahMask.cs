@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Armor
@@ -13,10 +14,10 @@ namespace Eternal.Content.Items.Armor
     [AutoloadEquip(EquipType.Head)]
     public class NaquadahMask : ModItem
     {
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("20% increased melee damage");
+
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("20% increased melee damage");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -24,7 +25,7 @@ namespace Eternal.Content.Items.Armor
         {
             Item.width = 24;
             Item.height = 22;
-            Item.value = Item.sellPrice(gold: 15);
+            Item.value = Item.sellPrice(platinum: 15);
             Item.rare = ModContent.RarityType<Turquoise>();
             Item.defense = 40;
         }
@@ -46,6 +47,8 @@ namespace Eternal.Content.Items.Armor
             ArmorSystem.StarbornArmor = true;
             ArmorSystem.ArkaniumArmor = true;
             ArmorSystem.UltimusArmor = true;
+
+            Lighting.AddLight(player.Center, 0.25f, 0.50f, 0.75f);
 
             Dust dust;
             Vector2 position = Main.LocalPlayer.Center;

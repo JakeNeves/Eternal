@@ -11,7 +11,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Bifrost Prisimdisk");
+            // DisplayName.SetDefault("Bifrost Prisimdisk");
         }
 
         public override void SetDefaults()

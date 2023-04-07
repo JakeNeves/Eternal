@@ -10,9 +10,9 @@ namespace Eternal.Content.Items.Pets
     {
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Reminant Head");
-			Tooltip.SetDefault("Summons a Cosmic Reminant to emit light" +
-							 "\n'Yeah dude this is pretty spooky...'");
+			// DisplayName.SetDefault("Reminant Head");
+			/* Tooltip.SetDefault("Summons a Cosmic Reminant to emit light" +
+							 "\n'Yeah dude this is pretty spooky...'"); */
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}

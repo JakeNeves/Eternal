@@ -14,7 +14,7 @@ public class Emperors : ModPrefix
 
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Emperor's");
+        // DisplayName.SetDefault("Emperor's");
     }
 
     public override bool CanRoll(Item item)

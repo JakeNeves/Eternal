@@ -8,9 +8,9 @@ namespace Eternal.Content.Items.Placeable
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Shrine Stone");
-            Tooltip.SetDefault("Mined with a Lunar Pickaxe or Higher..." +
-                "\n'Those were the days...'");
+            // DisplayName.SetDefault("Shrine Stone");
+            /* Tooltip.SetDefault("Mined with a Lunar Pickaxe or Higher..." +
+                "\n'Those were the days...'"); */
         }
 
         public override void SetDefaults()

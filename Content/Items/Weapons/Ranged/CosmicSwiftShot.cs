@@ -13,7 +13,7 @@ namespace Eternal.Content.Items.Weapons.Ranged
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Converts arrows to Swift Shot Starbusters\n'The Triple-Shot Bow of The Cosmos'");
+            // Tooltip.SetDefault("Converts arrows to Swift Shot Starbusters\n'The Triple-Shot Bow of The Cosmos'");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

@@ -14,7 +14,7 @@ public class UnironicallyOversized : ModPrefix
 
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Unironically Oversized");
+        // DisplayName.SetDefault("Unironically Oversized");
     }
 
     public override bool CanRoll(Item item)

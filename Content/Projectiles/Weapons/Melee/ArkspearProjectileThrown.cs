@@ -12,7 +12,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Arkspear");
+            // DisplayName.SetDefault("Arkspear");
 
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 12;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;

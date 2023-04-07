@@ -13,7 +13,7 @@ namespace Eternal.Content.Items.Armor
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("+100 increased max life");
+            // Tooltip.SetDefault("+100 increased max life");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
@@ -29,7 +29,7 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.statLifeMax2 += 100;
+            player.statLifeMax2 += 200;
         }
 
         public override void AddRecipes()

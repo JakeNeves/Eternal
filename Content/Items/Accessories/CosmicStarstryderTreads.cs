@@ -5,6 +5,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Accessories
@@ -12,17 +13,17 @@ namespace Eternal.Content.Items.Accessories
     [AutoloadEquip(EquipType.Wings)]
     public class CosmicStarstryderTreads : ModItem
     {
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("Counts as Wings" +
+                                                                            "\nAllows flight and slow fall" +
+                                                                            "\nAllows the wearer to run at ludicrous speed!" +
+                                                                            "\nProvides mobility on ice" +
+                                                                            "\nLava Waders effects" +
+                                                                            "\nMaster Ninja Gear effects" +
+                                                                            "\nImmunity to lava" +
+                                                                            "\n'Ascendance beyond your comprehension!'");
+
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Counts as Wings" +
-                               "\nAllows flight and slow fall" +
-                               "\nAllows the wearer to run at ludicrous speed!" +
-                               "\nProvides mobility on ice" +
-                               "\nLava Waders effects" +
-                               "\nMaster Ninja Gear effects" +
-                               "\nImmunity to lava" +
-                               "\n'Ascendance beyond your comprehension!'");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
             ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(360, 16, 4f);

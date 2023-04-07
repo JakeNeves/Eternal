@@ -14,8 +14,8 @@ namespace Eternal.Content.Items.Weapons.Summon
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Creates a cosmic decoy to haunt your enemies" +
-                             "\n'The strangest halucinations you will ever witness...'");
+            /* Tooltip.SetDefault("Creates a cosmic decoy to haunt your enemies" +
+                             "\n'The strangest halucinations you will ever witness...'"); */
 
             ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true;
             ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;

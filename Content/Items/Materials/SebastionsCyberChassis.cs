@@ -12,8 +12,8 @@ namespace Eternal.Content.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Sebastion's Cyber Chassis");
-            Tooltip.SetDefault("'It looks rather hollow and empty on the inside...'");
+            // DisplayName.SetDefault("Sebastion's Cyber Chassis");
+            // Tooltip.SetDefault("'It looks rather hollow and empty on the inside...'");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
@@ -32,7 +32,7 @@ namespace Eternal.Content.Items.Materials
                 .AddIngredient(ModContent.ItemType<GalaciteGemstone>(), 25)
                 .AddIngredient(ModContent.ItemType<WeatheredPlating>(), 100)
                 .AddIngredient(ModContent.ItemType<ConcintratedHardStone>(), 20)
-                .AddIngredient(ModContent.ItemType<NaquadahBar>(), 5)
+                // .AddIngredient(ModContent.ItemType<NaquadahBar>(), 5)
                 .AddRecipeGroup("eternal:copperBars", 75)
                 .AddTile(ModContent.TileType<Reconstructatorium>())
                 .Register();

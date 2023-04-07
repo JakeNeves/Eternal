@@ -84,7 +84,7 @@ namespace Eternal.Content.NPCs.Boss.NeoxMechs
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Polarus' Shield");
+            // DisplayName.SetDefault("Polarus' Shield");
         }
 
         public override void SetDefaults()

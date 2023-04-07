@@ -12,7 +12,7 @@ namespace Eternal.Content.Projectiles.Boss
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cosmic Emperor's Knife");
+            // DisplayName.SetDefault("Cosmic Emperor's Knife");
         }
 
         public override void SetDefaults()
@@ -26,7 +26,7 @@ namespace Eternal.Content.Projectiles.Boss
             Projectile.timeLeft = 600;
         }
 
-        public override void OnHitPlayer(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
             Projectile.timeLeft = 0;
             Projectile.Kill();

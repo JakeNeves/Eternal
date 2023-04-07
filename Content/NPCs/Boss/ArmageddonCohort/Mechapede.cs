@@ -18,7 +18,7 @@ namespace Eternal.Content.NPCs.Boss.ArmageddonCohort
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Armageddon Mechapede");
+			// DisplayName.SetDefault("Armageddon Mechapede");
 
 			var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
 			{
@@ -48,7 +48,7 @@ namespace Eternal.Content.NPCs.Boss.ArmageddonCohort
 			Music = MusicID.Boss3;
 		}
 
-		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
 		{
 			if (Main.masterMode)
 			{
@@ -177,7 +177,7 @@ namespace Eternal.Content.NPCs.Boss.ArmageddonCohort
 
         public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Armageddon Mechapede");
+			// DisplayName.SetDefault("Armageddon Mechapede");
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
 			{
@@ -200,7 +200,7 @@ namespace Eternal.Content.NPCs.Boss.ArmageddonCohort
 			NPC.damage = 30;
 		}
 
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
         {
             if (Main.masterMode)
             {
@@ -264,7 +264,7 @@ namespace Eternal.Content.NPCs.Boss.ArmageddonCohort
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Armageddon Mechapede");
+			// DisplayName.SetDefault("Armageddon Mechapede");
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
 			{
@@ -287,7 +287,7 @@ namespace Eternal.Content.NPCs.Boss.ArmageddonCohort
 			NPC.damage = 30;
 		}
 
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
         {
             if (Main.masterMode)
             {
@@ -332,7 +332,7 @@ namespace Eternal.Content.NPCs.Boss.ArmageddonCohort
     {
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Armageddon Mechapede");
+			// DisplayName.SetDefault("Armageddon Mechapede");
 		}
 
 		public override void Init()

@@ -12,7 +12,7 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cosmic Ninja Star");
+            // DisplayName.SetDefault("Cosmic Ninja Star");
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 12;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }

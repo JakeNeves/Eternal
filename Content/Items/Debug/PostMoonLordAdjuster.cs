@@ -8,8 +8,8 @@ namespace Eternal.Content.Items.Debug
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Post-Moon Lord Adjuster");
-            Tooltip.SetDefault("[c/FF0000:Debug Item]\n<right> to enable post-moon lord\nLeft Click to disable post-moon lord");
+            // DisplayName.SetDefault("Post-Moon Lord Adjuster");
+            // Tooltip.SetDefault("[c/FF0000:Debug Item]\n<right> to enable post-moon lord\nLeft Click to disable post-moon lord");
         }
 
         public override void SetDefaults()

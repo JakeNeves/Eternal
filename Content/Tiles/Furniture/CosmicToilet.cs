@@ -4,6 +4,7 @@ using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
@@ -29,8 +30,8 @@ namespace Eternal.Content.Tiles.Furniture
             TileObjectData.newAlternate.Direction = TileObjectDirection.PlaceRight;
             TileObjectData.addAlternate(1);
             TileObjectData.addTile(Type);
-            ModTranslation name = CreateMapEntryName();
-            name.SetDefault("The Cosmic Toilet");
+            LocalizedText name = CreateMapEntryName();
+            // name.SetDefault("The Cosmic Toilet");
             AddMapEntry(new Color(97, 36, 173), name);
             DustType = DustID.PurpleTorch;
             AdjTiles = new int[] { TileID.Toilets };

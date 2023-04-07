@@ -81,10 +81,10 @@ namespace Eternal.Content.NPCs.Comet
             NPC.rotation += NPC.velocity.X * 0.1f;
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
-            for (int k = 0; k < damage / NPC.lifeMax * 50; k++)
-                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Shadowflame, 2.5f * hitDirection, -2.5f, 0, default, 1.7f);
+            for (int k = 0; k < 0.50; k++)
+                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Shadowflame, 2.5f, -2.5f, 0, default, 1.7f);
         }
     }
 }

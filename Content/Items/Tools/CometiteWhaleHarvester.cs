@@ -13,10 +13,10 @@ namespace Eternal.Content.Items.Tools
     {
 		public override void SetStaticDefaults()
 		{
-			Tooltip.SetDefault("Fires multiple lines at once." +
+			/* Tooltip.SetDefault("Fires multiple lines at once." +
 							 "\nCan fish in lava." +
 							 "\nThe fishing line never snaps." +
-							 "\n'Just don't use truffle worms with this, or even bloodworms...'");
+							 "\n'Just don't use truffle worms with this, or even bloodworms...'"); */
 
 			ItemID.Sets.CanFishInLava[Item.type] = true;
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

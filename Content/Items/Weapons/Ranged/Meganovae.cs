@@ -12,7 +12,7 @@ namespace Eternal.Content.Items.Weapons.Ranged
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'For when things get out of hand and start to cause chaos...'");
+            // Tooltip.SetDefault("'For when things get out of hand and start to cause chaos...'");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

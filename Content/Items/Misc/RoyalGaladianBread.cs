@@ -9,8 +9,8 @@ namespace Eternal.Content.Items.Misc
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Major improvements to all stats" +
-                             "\n'Freshly baked by one of the emperor's favourite emissaries!'");
+            /* Tooltip.SetDefault("Major improvements to all stats" +
+                             "\n'Freshly baked by one of the emperor's favourite emissaries!'"); */
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 5;
         }

@@ -39,7 +39,7 @@ namespace Eternal.Content.NPCs.Tundra
             NPC.DeathSound = SoundID.Shatter;
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (NPC.life <= 0)
             {

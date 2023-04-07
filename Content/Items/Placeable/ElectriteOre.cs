@@ -10,7 +10,7 @@ namespace Eternal.Content.Items.Placeable
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("A fragment of electrifying energy\n'Shocking to the touch'");
+            // Tooltip.SetDefault("A fragment of electrifying energy\n'Shocking to the touch'");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
         }

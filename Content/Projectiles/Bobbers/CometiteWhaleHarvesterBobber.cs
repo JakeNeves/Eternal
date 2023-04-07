@@ -21,7 +21,7 @@ namespace Eternal.Content.Projectiles.Bobbers
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Cosmic Whale Harvester Bobber");
+			// DisplayName.SetDefault("Cosmic Whale Harvester Bobber");
 		}
 
 		public override void SetDefaults()

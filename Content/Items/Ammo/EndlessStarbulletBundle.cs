@@ -3,17 +3,18 @@ using Eternal.Content.Projectiles.Weapons.Ranged;
 using Eternal.Content.Tiles.CraftingStations;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Ammo
 {
     public class EndlessStarbulletBundle : ModItem
     {
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("Unlimited Ammo" +
+                                                                            "\n'Let's hope that these would work against anything...'");
+
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Unlimited Ammo" +
-                            "\n'Let's hope that these would work against anything...'");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

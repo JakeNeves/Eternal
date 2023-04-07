@@ -13,8 +13,8 @@ namespace Eternal.Content.Items.Weapons.Radiant
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("[c/ff0000:WARNING] - Having several bombs detonate at once like this can cause lag spikes!" +
-                "\n'The unapologetically \"charming\" super bomb!'");
+            /* Tooltip.SetDefault("[c/ff0000:WARNING] - Having several bombs detonate at once like this can cause lag spikes!" +
+                "\n'The unapologetically \"charming\" super bomb!'"); */
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

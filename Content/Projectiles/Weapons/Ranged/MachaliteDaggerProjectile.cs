@@ -11,7 +11,7 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Machalite Dagger");
+            // DisplayName.SetDefault("Machalite Dagger");
         }
 
         public override void SetDefaults()

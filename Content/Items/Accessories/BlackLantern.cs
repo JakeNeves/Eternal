@@ -3,16 +3,17 @@ using Eternal.Content.Items.Placeable;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Accessories
 {
     public class BlackLantern : ModItem
     {
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("Allows you to see while in The Beneath");
+
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Allows you to see while in The Beneath");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

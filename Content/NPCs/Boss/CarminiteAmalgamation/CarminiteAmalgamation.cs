@@ -81,7 +81,7 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
             });
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (!dontKillyet)
             {
@@ -92,13 +92,13 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
                 }
             }
 
-            for (int k = 0; k < damage / NPC.lifeMax * 20.0; k++)
+            for (int k = 0; k < 15.0; k++)
             {
-                Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.Blood, hitDirection, 0, 0, default(Color), 1f);
+                Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.Blood, 0, 0, 0, default(Color), 1f);
             }
         }
 
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
         {
             if (Main.masterMode)
             {
@@ -243,7 +243,7 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
                         for (int k = 0; k < (int)(Main.maxTilesX * Main.maxTilesY * 6E-05); k++)
                         {
                             int x = WorldGen.genRand.Next(0, Main.maxTilesX);
-                            int y = WorldGen.genRand.Next((int)WorldGen.worldSurfaceLow, Main.maxTilesY);
+                            int y = WorldGen.genRand.Next((int)Terraria.WorldBuilding.GenVars.worldSurfaceLow, Main.maxTilesY);
                             WorldGen.TileRunner(x, y, WorldGen.genRand.Next(4, 6), WorldGen.genRand.Next(4, 12), ModContent.TileType<IesniumOre>());
                         }
 

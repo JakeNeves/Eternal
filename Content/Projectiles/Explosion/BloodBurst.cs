@@ -10,7 +10,7 @@ namespace Eternal.Content.Projectiles.Explosion
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Blood");
+            // DisplayName.SetDefault("Blood");
         }
 
         public override void SetDefaults()

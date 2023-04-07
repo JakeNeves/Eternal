@@ -13,7 +13,7 @@ namespace Eternal.Content.Items.Armor
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("+25% increased movement speed");
+            // Tooltip.SetDefault("+25% increased movement speed");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

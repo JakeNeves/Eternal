@@ -13,7 +13,7 @@ namespace Eternal.Content.Items.Weapons.Melee
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Fires a barrage of blades that return to the player");
+            // Tooltip.SetDefault("Fires a barrage of blades that return to the player");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

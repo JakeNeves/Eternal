@@ -10,7 +10,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
     {
 	    public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("The Eclipse");
+            // DisplayName.SetDefault("The Eclipse");
 
             ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
         }

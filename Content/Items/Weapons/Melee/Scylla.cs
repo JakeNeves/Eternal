@@ -12,8 +12,8 @@ namespace Eternal.Content.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("\n[c/008060:Ancient Artifact]" +
-                               "\nThis sword was weilded by the frostborn warriors of the tundra");
+            /* Tooltip.SetDefault("\n[c/008060:Ancient Artifact]" +
+                               "\nThis sword was weilded by the frostborn warriors of the tundra"); */
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

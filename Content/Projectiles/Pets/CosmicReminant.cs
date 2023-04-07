@@ -8,7 +8,7 @@ namespace Eternal.Content.Projectiles.Pets
     {
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Cosmic Reminant");
+			// DisplayName.SetDefault("Cosmic Reminant");
 
 			Main.projFrames[Projectile.type] = 4;
 			Main.projPet[Projectile.type] = true;

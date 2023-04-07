@@ -11,7 +11,7 @@ namespace Eternal.Content.Items.Armor
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("+200 max life");
+            // Tooltip.SetDefault("+200 max life");
         }
 
         public override void SetDefaults()

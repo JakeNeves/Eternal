@@ -13,8 +13,8 @@ namespace Eternal.Content.Items.Weapons.Ranged
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("S.W.M.G");
-            Tooltip.SetDefault("'It came from The Edge of Tremor'");
+            // DisplayName.SetDefault("S.W.M.G");
+            // Tooltip.SetDefault("'It came from The Edge of Tremor'");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

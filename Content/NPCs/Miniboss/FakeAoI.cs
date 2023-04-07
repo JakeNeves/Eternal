@@ -17,7 +17,7 @@ namespace Eternal.Content.NPCs.Miniboss
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Fake Ark of Imperious");
+            // DisplayName.SetDefault("Fake Ark of Imperious");
         }
 
         public override void SetDefaults()
@@ -46,7 +46,7 @@ namespace Eternal.Content.NPCs.Miniboss
             });
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (NPC.life <= 0)
             {
@@ -62,9 +62,9 @@ namespace Eternal.Content.NPCs.Miniboss
             }
             else
             {
-                for (int k = 0; k < damage / NPC.lifeMax * 20.0; k++)
+                for (int k = 0; k < 10.0; k++)
                 {
-                    Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.GreenTorch, hitDirection, 0f, 0, default(Color), 0.7f);
+                    Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.GreenTorch, 0, 0f, 0, default(Color), 0.7f);
                 }
             }
         }

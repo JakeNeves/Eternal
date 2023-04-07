@@ -43,7 +43,7 @@ namespace Eternal.Content.NPCs.Boss.Trinity
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cryota's Sentry");
+            // DisplayName.SetDefault("Cryota's Sentry");
 
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
@@ -129,7 +129,7 @@ namespace Eternal.Content.NPCs.Boss.Trinity
             NPC.rotation = rotation + ((float)Math.PI * 0.5f);
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             SoundEngine.PlaySound(SoundID.Tink, NPC.position);
             if (NPC.life <= 0)

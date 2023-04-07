@@ -8,7 +8,7 @@ namespace Eternal.Content.Items.Placeable
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'Hardened rock, formed from giant clusters of many minerals'");
+            // Tooltip.SetDefault("'Hardened rock, formed from giant clusters of many minerals'");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
         }

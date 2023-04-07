@@ -5,6 +5,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Accessories
@@ -12,20 +13,20 @@ namespace Eternal.Content.Items.Accessories
     [AutoloadEquip(EquipType.Wings)]
     public class RoyalKeepersTreads : ModItem
     {
+        public override LocalizedText DisplayName => base.DisplayName.WithFormatArgs("Royal Keeper's Treads");
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("Counts as Wings" +
+                                                                            "\nAllows flight and slow fall" +
+                                                                            "\nPress Down to toggle hover" +
+                                                                            "\nPress Up to deactivate hover" +
+                                                                            "\nAllows the wearer to run at crazy speed!" +
+                                                                            "\nProvides mobility on ice" +
+                                                                            "\nLava Waders effects" +
+                                                                            "\nMaster Ninja Gear effects" +
+                                                                            "\nImmunity to lava" +
+                                                                            "\n'The Cosmic Emperor's Reward for finding such incredibly rare alloy'");
+
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Royal Keeper's Treads");
-            Tooltip.SetDefault("Counts as Wings" +
-                               "\nAllows flight and slow fall" +
-                               "\nPress Down to toggle hover" +
-                               "\nPress Up to deactivate hover" +
-                               "\nAllows the wearer to run at crazy speed!" +
-                               "\nProvides mobility on ice" +
-                               "\nLava Waders effects" +
-                               "\nMaster Ninja Gear effects" +
-                               "\nImmunity to lava" +
-                               "\n'The Cosmic Emperor's Reward for finding such incredibly rare alloy'");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
             ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(720, 18, 4f, true, 1, 1.5f);

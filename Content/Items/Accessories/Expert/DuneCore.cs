@@ -2,16 +2,17 @@
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Accessories.Expert
 {
     public class DuneCore : ModItem
     {
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("Causes sparks to fly upon geeting hit");
+
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Causes sparks to fly upon geeting hit");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         

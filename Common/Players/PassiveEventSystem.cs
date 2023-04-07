@@ -32,7 +32,7 @@ namespace Eternal.Common.Players
             };
         }
 
-        public override void OnEnterWorld(Player player)
+        public override void OnEnterWorld()
         {
             Main.NewText("Thanks for playing the Eternal " + Eternal.instance.Version.ToString() + ", this is a public alpha build, expect things to change overtime." +
                     "\nFor updates, join the Jake's Lounge discord server", 125, 45, 60);

@@ -10,7 +10,7 @@ namespace Eternal.Content.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Heals you upon striking an enemy");
+            // Tooltip.SetDefault("Heals you upon striking an enemy");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
@@ -31,7 +31,7 @@ namespace Eternal.Content.Items.Weapons.Melee
             Item.DamageType = DamageClass.Melee;
         }
 
-        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
             player.HealEffect(Main.rand.Next(3, 6), false);
         }

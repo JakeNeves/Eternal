@@ -9,7 +9,7 @@ namespace Eternal.Content.Items.Placeable
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("A fragment of otherworldly energy\n'Etherial energy radiates from the cluster'");
+            // Tooltip.SetDefault("A fragment of otherworldly energy\n'Etherial energy radiates from the cluster'");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
         }

@@ -11,7 +11,7 @@ namespace Eternal.Content.Projectiles.Misc
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Yog");
+            // DisplayName.SetDefault("Yog");
         }
 
         public override void SetDefaults()

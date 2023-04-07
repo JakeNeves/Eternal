@@ -13,7 +13,7 @@ namespace Eternal.Content.Projectiles.Weapons.Radiant
         {
             Main.projFrames[Projectile.type] = 4;
 
-            DisplayName.SetDefault("Exocosmic Bomb");
+            // DisplayName.SetDefault("Exocosmic Bomb");
         }
 
         public override void SetDefaults()

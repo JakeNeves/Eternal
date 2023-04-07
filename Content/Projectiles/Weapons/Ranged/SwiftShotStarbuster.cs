@@ -10,7 +10,7 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
     {
 	    public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Swift Shot Starbuster");
+            // DisplayName.SetDefault("Swift Shot Starbuster");
 
             ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
         }
@@ -99,7 +99,7 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
             hitbox.Height += size * 2;
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             Player player = Main.player[Projectile.owner];
 

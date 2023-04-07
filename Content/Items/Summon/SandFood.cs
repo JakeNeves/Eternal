@@ -11,8 +11,8 @@ namespace Eternal.Content.Items.Summon
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Attracts a giant sandworm" +
-                               "\n'Not to be confused with Worm Food'");
+            /* Tooltip.SetDefault("Attracts a giant sandworm" +
+                               "\n'Not to be confused with Worm Food'"); */
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
         }

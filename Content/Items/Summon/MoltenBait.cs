@@ -11,8 +11,8 @@ namespace Eternal.Content.Items.Summon
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Attracts a giant lava centipede" +
-                               "\n'This is not food'");
+            /* Tooltip.SetDefault("Attracts a giant lava centipede" +
+                               "\n'This is not food'"); */
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
         }

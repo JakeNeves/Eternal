@@ -9,7 +9,7 @@ namespace Eternal.Common.GlobalProjectiles
     {
         public override bool InstancePerEntity => true;
 
-        public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
             Player Player = Main.player[Main.myPlayer];
             var entitySource = Entity.GetSource_None();

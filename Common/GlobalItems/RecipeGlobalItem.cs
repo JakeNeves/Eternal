@@ -22,7 +22,7 @@ namespace Eternal.Common.GlobalItems
                 .AddIngredient(ItemID.UnicornHorn, 2)
                 .AddIngredient(ItemID.SoulofLight, 10)
                 .AddIngredient(ItemID.HallowedBar, 15)
-                .AddCondition(Recipe.Condition.InHallow)
+                .AddCondition(Condition.InHallow)
                 .Register();
 
             for (int i = 0; i < Recipe.numRecipes; i++)

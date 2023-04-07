@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
@@ -24,8 +25,8 @@ namespace Eternal.Content.Tiles.CraftingStations
             TileObjectData.newTile.StyleWrapLimit = 2;
             TileObjectData.newTile.StyleMultiplier = 2;
             TileObjectData.addTile(Type);
-            ModTranslation name = CreateMapEntryName();
-            name.SetDefault("Ancient Forge");
+            LocalizedText name = CreateMapEntryName();
+            // name.SetDefault("Ancient Forge");
             AddMapEntry(new Color(80, 170, 195), name);
             //The List of Tiles it Functions As
             AdjTiles = new int[]

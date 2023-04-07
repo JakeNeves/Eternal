@@ -5,20 +5,21 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Accessories.Hell
 {
     public class Dreadheart : ModItem
     {
+        public override LocalizedText DisplayName => base.DisplayName.WithFormatArgs("The Dreadheart");
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("Increased melee damage By 45%" +
+                                                                            "\nIncreased life by 100" +
+                                                                            "\nTaking damage can heal you by 6 to 12 HP" +
+                                                                            "\nHell Mode upgrade");
+
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("The Dreadheart");
-            Tooltip.SetDefault("Increased melee damage By 45%" +
-                             "\nIncreased life by 100" +
-                             "\nTaking damage can heal you by 6 to 12 HP" +
-                             "\nHell Mode upgrade");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
             Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(5, 4));

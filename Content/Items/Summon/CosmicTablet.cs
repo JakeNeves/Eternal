@@ -12,9 +12,9 @@ namespace Eternal.Content.Items.Summon
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Used at the Altar of Cosmic Desire" +
+            /* Tooltip.SetDefault("Used at the Altar of Cosmic Desire" +
                              "\nSummons the Cosmic Emperor" +
-                             "\n'Used to worship the emperor, many times to your heart's desire!'");
+                             "\n'Used to worship the emperor, many times to your heart's desire!'"); */
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

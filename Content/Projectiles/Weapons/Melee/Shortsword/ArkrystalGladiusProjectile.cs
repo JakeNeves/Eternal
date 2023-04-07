@@ -23,7 +23,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee.Shortsword
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Arkrystal Gladius");
+			// DisplayName.SetDefault("Arkrystal Gladius");
 		}
 
 		public override void SetDefaults()

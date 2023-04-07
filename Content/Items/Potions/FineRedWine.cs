@@ -12,7 +12,7 @@ namespace Eternal.Content.Items.Potions
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'Some of the emissaries say, this is refered as the 'blood' of the emperor...'");
+            // Tooltip.SetDefault("'Some of the emissaries say, this is refered as the 'blood' of the emperor...'");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 30;
         }

@@ -14,7 +14,7 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Starbullet");
+            // DisplayName.SetDefault("Starbullet");
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 12;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }
@@ -59,7 +59,7 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (!justCollided)
             {

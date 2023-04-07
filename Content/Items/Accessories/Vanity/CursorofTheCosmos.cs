@@ -2,17 +2,18 @@
 using Eternal.Content.Rarities;
 using Terraria;
 using Terraria.GameContent.Creative;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Accessories.Vanity
 {
     public class CursorofTheCosmos : ModItem
     {
+        public override LocalizedText DisplayName => base.DisplayName.WithFormatArgs("Cursor of the Cosmos");
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("Causes your mouse cursor to shift from various shades of purple");
+
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cursor of the Cosmos");
-            Tooltip.SetDefault("Causes your mouse cursor to shift from various shades of purple");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -24,7 +25,6 @@ namespace Eternal.Content.Items.Accessories.Vanity
             Item.rare = ModContent.RarityType<Turquoise>();
             Item.accessory = true;
             Item.vanity = true;
-            Item.canBePlacedInVanityRegardlessOfConditions = true;
         }
 
         public override void UpdateVanity(Player player)

@@ -14,8 +14,8 @@ namespace Eternal.Content.Items.Misc
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Charm of Death");
-            Tooltip.SetDefault("Activates Hell Mode" +
+            // DisplayName.SetDefault("Charm of Death");
+            /* Tooltip.SetDefault("Activates Hell Mode" +
                 "\n[c/ED0249:This difficulty may require some experience in expert/master mode]" +
                 "\nCan be toggled on and off" +
                 "\nCan only be used in Expert and Master mode" +
@@ -23,7 +23,7 @@ namespace Eternal.Content.Items.Misc
                 "\nGives Bosses Increaced Health, Defense, and Damage" +
                 "\nSome Bosses will have diffrent and unique attack patterns" +
                 "\nBosses will drop unique Items, accesories, and weapons exclusive to this difficulty" +
-                "\n'You're playing with chaos'");
+                "\n'You're playing with chaos'"); */
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

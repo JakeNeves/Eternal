@@ -12,8 +12,8 @@ namespace Eternal.Content.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("\n[c/008060:Ancient Artifact]" +
-                               "\nThis sword was weilded by the unknown warriors of the shrine");
+            /* Tooltip.SetDefault("\n[c/008060:Ancient Artifact]" +
+                               "\nThis sword was weilded by the unknown warriors of the shrine"); */
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

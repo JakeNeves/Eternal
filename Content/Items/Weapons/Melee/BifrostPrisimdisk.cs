@@ -10,7 +10,7 @@ namespace Eternal.Content.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("\n'I know, it looks bland but it's really cool and colorful when you throw it, trust me!'");
+            // Tooltip.SetDefault("\n'I know, it looks bland but it's really cool and colorful when you throw it, trust me!'");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

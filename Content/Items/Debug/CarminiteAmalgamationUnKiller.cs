@@ -9,8 +9,8 @@ namespace Eternal.Content.Items.Debug
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Carminite Amalgamation Un-Killer");
-            Tooltip.SetDefault("[c/FF0000:Debug Item]\nMakes the Carminite Amalgamation no longer a downed boss\nKilling it again will make it spawn Iesnium Ore");
+            // DisplayName.SetDefault("Carminite Amalgamation Un-Killer");
+            // Tooltip.SetDefault("[c/FF0000:Debug Item]\nMakes the Carminite Amalgamation no longer a downed boss\nKilling it again will make it spawn Iesnium Ore");
         }
 
         public override void SetDefaults()

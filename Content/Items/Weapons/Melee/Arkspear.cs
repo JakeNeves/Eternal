@@ -15,8 +15,8 @@ namespace Eternal.Content.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("<right> to throw" +
-                             "\n'This little ark was unfortunatley turned into a spear...'");
+            /* Tooltip.SetDefault("<right> to throw" +
+                             "\n'This little ark was unfortunatley turned into a spear...'"); */
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

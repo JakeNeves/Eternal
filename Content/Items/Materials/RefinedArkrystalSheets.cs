@@ -10,7 +10,7 @@ namespace Eternal.Content.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'Durable, yet so shiny...'");
+            // Tooltip.SetDefault("'Durable, yet so shiny...'");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
         }

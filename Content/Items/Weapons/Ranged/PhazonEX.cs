@@ -15,7 +15,7 @@ namespace Eternal.Content.Items.Weapons.Ranged
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Phazon EX");
+            // DisplayName.SetDefault("Phazon EX");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

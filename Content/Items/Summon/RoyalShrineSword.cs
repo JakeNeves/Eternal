@@ -14,7 +14,7 @@ namespace Eternal.Content.Items.Summon
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Swing this sword to summon the Ark of Imperious, the god of swords");
+            // Tooltip.SetDefault("Swing this sword to summon the Ark of Imperious, the god of swords");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

@@ -13,8 +13,8 @@ namespace Eternal.Content.Items.Summon
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Attracts a wandering soul" +
-                             "\n'A mysteriously devious chunk of paranormal essance'");
+            /* Tooltip.SetDefault("Attracts a wandering soul" +
+                             "\n'A mysteriously devious chunk of paranormal essance'"); */
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

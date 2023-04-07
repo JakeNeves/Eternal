@@ -12,7 +12,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("The Big One");
+            // DisplayName.SetDefault("The Big One");
         }
 
         public override void SetDefaults()

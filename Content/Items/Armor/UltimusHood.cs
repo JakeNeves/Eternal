@@ -13,7 +13,7 @@ namespace Eternal.Content.Items.Armor
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("30% increased ranged damage");
+            // Tooltip.SetDefault("30% increased ranged damage");
         }
 
         public override void SetDefaults()

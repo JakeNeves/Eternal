@@ -9,8 +9,8 @@ namespace Eternal.Content.Buffs.Minions
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cosmic Decoy");
-            Description.SetDefault("The Cosmic Apparition's decoys will haunt your enemies in combat");
+            // DisplayName.SetDefault("Cosmic Decoy");
+            // Description.SetDefault("The Cosmic Apparition's decoys will haunt your enemies in combat");
             Main.buffNoSave[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
         }

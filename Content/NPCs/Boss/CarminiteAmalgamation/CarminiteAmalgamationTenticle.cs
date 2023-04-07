@@ -15,7 +15,7 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Carminite Tenticle");
+            // DisplayName.SetDefault("Carminite Tenticle");
 
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {

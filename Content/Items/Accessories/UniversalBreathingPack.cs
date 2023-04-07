@@ -2,17 +2,18 @@
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Accessories
 {
     public class UniversalBreathingPack : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            Tooltip.SetDefault("[c/20E354:Environmental Protection Pack (EPP)]" +
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("[c/20E354:Environmental Protection Pack (EPP)]" +
                              "\nProvides Immunity to both Hypothermia and Hyperthermia in Brutal Hell Mode");
 
+        public override void SetStaticDefaults()
+        {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

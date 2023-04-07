@@ -104,7 +104,7 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
             potionType = ItemID.GreaterHealingPotion;
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (!dontKillyet)
             {

@@ -2,17 +2,18 @@
 using Eternal.Content.Projectiles.Weapons.Ranged;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Ammo
 {
     public class EndlessBasaltShellBundle : ModItem
     {
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("Unlimited Ammo" +
+                                                                            "\n'Hot bullets made of hot materials!'");
+
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Unlimited Ammo" +
-                            "\n'Hot bullets made of hot materials!'");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

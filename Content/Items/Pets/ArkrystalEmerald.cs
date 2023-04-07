@@ -10,9 +10,9 @@ namespace Eternal.Content.Items.Pets
     {
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Arkrystal Emerald");
-			Tooltip.SetDefault("Summons an Ark that is loayal and follows you" +
-							 "\n'Is it a weapon or a pet? Well, doesn't matter...'");
+			// DisplayName.SetDefault("Arkrystal Emerald");
+			/* Tooltip.SetDefault("Summons an Ark that is loayal and follows you" +
+							 "\n'Is it a weapon or a pet? Well, doesn't matter...'"); */
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}

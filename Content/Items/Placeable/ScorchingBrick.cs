@@ -8,8 +8,8 @@ namespace Eternal.Content.Items.Placeable
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Shrine Stone");
-            Tooltip.SetDefault("\n'Hot'");
+            // DisplayName.SetDefault("Shrine Stone");
+            // Tooltip.SetDefault("\n'Hot'");
         }
 
         public override void SetDefaults()

@@ -9,7 +9,7 @@ namespace Eternal.Content.Items.Weapons.Ranged
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'Feels fleshy...'");
+            // Tooltip.SetDefault("'Feels fleshy...'");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

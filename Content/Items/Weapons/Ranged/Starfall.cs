@@ -12,7 +12,7 @@ namespace Eternal.Content.Items.Weapons.Ranged
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'Okay so basically, Daedalus Stormbow...'");
+            // Tooltip.SetDefault("'Okay so basically, Daedalus Stormbow...'");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

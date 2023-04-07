@@ -8,10 +8,10 @@ namespace Eternal.Content.Items.Debug
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("[c/FF0000:Debug Item]" +
+            /* Tooltip.SetDefault("[c/FF0000:Debug Item]" +
                 "\nRemoves 20 HP from the Players Health" +
                 "\nDoes not work with other mods" +
-                "\nConsume Life Crystals and/or Life Fruit to Regain the Effects");
+                "\nConsume Life Crystals and/or Life Fruit to Regain the Effects"); */
         }
 
         public override void SetDefaults()

@@ -11,7 +11,7 @@ namespace Eternal.Content.Projectiles.Misc
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Spark of Imperious");
+            // DisplayName.SetDefault("Spark of Imperious");
         }
 
         public override void SetDefaults()

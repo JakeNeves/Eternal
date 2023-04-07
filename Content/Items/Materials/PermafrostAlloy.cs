@@ -9,7 +9,7 @@ namespace Eternal.Content.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'Formed by many blue ice chunks'");
+            // Tooltip.SetDefault("'Formed by many blue ice chunks'");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
         }

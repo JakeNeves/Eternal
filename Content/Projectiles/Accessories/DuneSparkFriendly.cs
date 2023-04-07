@@ -10,7 +10,7 @@ namespace Eternal.Content.Projectiles.Accessories
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Dune Spark");
+            // DisplayName.SetDefault("Dune Spark");
         }
 
         public override void SetDefaults()

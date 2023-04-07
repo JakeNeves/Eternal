@@ -13,7 +13,7 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Basalt Shell");
+            // DisplayName.SetDefault("Basalt Shell");
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 6;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }
@@ -42,12 +42,12 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(BuffID.OnFire, 480);
         }
 
-        public override void OnHitPlayer(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
             target.AddBuff(BuffID.OnFire, 480);
         }

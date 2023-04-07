@@ -18,6 +18,8 @@ namespace Eternal.Content.NPCs.Town
     [AutoloadHead]
     public class Emperor : ModNPC
     {
+        public string ShopName = "Shop";
+
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 25;
@@ -63,7 +65,7 @@ namespace Eternal.Content.NPCs.Town
             AnimationType = NPCID.Guide;
         }
 
-        public override bool CanTownNPCSpawn(int numTownNPCs, int money)
+        public override bool CanTownNPCSpawn(int numTownNPCs)/* tModPorter Suggestion: Copy the implementation of NPC.SpawnAllowed_Merchant in vanilla if you to count money, and be sure to set a flag when unlocked, so you don't count every tick. */
         {
             for (int k = 0; k < 255; k++)
             {
@@ -114,10 +116,10 @@ namespace Eternal.Content.NPCs.Town
             return false;
         }
 
-        public override void OnChatButtonClicked(bool firstButton, ref bool shop)
+        public override void OnChatButtonClicked(bool firstButton, ref string shopName)
         {
             if (firstButton)
-                shop = true;
+                shopName = ShopName;
             else if (Main.LocalPlayer.HasItem(ModContent.ItemType<CosmicTablet>()))
             {
                 if (!DownedBossSystem.downedArkofImperious)
@@ -194,7 +196,7 @@ namespace Eternal.Content.NPCs.Town
             });
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             int num = NPC.life > 0 ? 1 : 5;
             for (int k = 0; k < num; k++)
@@ -267,23 +269,39 @@ namespace Eternal.Content.NPCs.Town
             }
         }
 
-        public override void SetupShop(Chest shop, ref int nextSlot)
+        public override void AddShops()
         {
             Player player = Main.player[Main.myPlayer];
 
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<RoyalGaladianBread>());
-            nextSlot++;
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<FineRedWine>());
-            nextSlot++;
+            var emperorShop = new NPCShop(Type, ShopName)
+                .Add<RoyalGaladianBread>()
+                .Add<FineRedWine>();
 
             if (DownedBossSystem.downedCosmicApparition)
             {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<EmperorsTrust>());
+                emperorShop.Add<EmperorsTrust>();
             }
 
             if (player.name == "Jake" || player.name == "JakeTEM")
             {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<PocketJake>());
+                emperorShop.Add<PocketJake>();
+            }
+        }
+
+        public override void ModifyActiveShop(string shopName, Item[] items)
+        {
+            foreach (Item item in items)
+            {
+                if (item == null || item.type == ItemID.None)
+                {
+                    continue;
+                }
+
+                /*if (NPC.IsShimmerVariant)
+                {
+                    int value = item.shopCustomPrice ?? item.value;
+                    item.shopCustomPrice = value / 2;
+                }*/
             }
         }
 
@@ -320,6 +338,5 @@ namespace Eternal.Content.NPCs.Town
             multiplier = 6.75f;
             randomOffset = 1.5f;
         }
-
     }
 }

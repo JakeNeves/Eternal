@@ -11,7 +11,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Hyperion");
+            // DisplayName.SetDefault("Hyperion");
 
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 8;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
@@ -28,7 +28,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
             Projectile.alpha = 0;
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             Projectile.Kill();
         }

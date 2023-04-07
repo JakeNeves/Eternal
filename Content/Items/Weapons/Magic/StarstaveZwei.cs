@@ -16,8 +16,8 @@ namespace Eternal.Content.Items.Weapons.Magic
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Starstave Zwei");
-            Tooltip.SetDefault("Fires multiple Starstave Bolts");
+            // DisplayName.SetDefault("Starstave Zwei");
+            // Tooltip.SetDefault("Fires multiple Starstave Bolts");
             Item.staff[Item.type] = true;
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

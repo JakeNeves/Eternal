@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Tiles
@@ -21,8 +22,8 @@ namespace Eternal.Content.Tiles
             Main.tileLighted[Type] = true;
             DustType = DustID.Torch;
             ItemDrop = ModContent.ItemType<Content.Items.Placeable.IgniumOre>();
-            ModTranslation name = CreateMapEntryName();
-            name.SetDefault("Ignium");
+            LocalizedText name = CreateMapEntryName();
+            // name.SetDefault("Ignium");
             AddMapEntry(new Color(233, 67, 43), name);
             MinPick = 230;
             HitSound = SoundID.Tink;

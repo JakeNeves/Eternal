@@ -13,15 +13,15 @@ namespace Eternal.Content.Items.Misc
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Goblet of Sinful Blood");
-            Tooltip.SetDefault("Activates Sinstorm Mode" +
+            // DisplayName.SetDefault("Goblet of Sinful Blood");
+            /* Tooltip.SetDefault("Activates Sinstorm Mode" +
                 "\n[c/ED0249:This difficulty may require some experience in expert/master mode]" +
                 "\nCan be toggled on and off" +
                 "\nCan only be used in Hell mode" +
                 "\nCannot be used when a Boss is Alive" +
                 "\nGives Bosses Increaced Health and Damage" +
                 "\nBosses will drop unique Items exclusive to this difficulty" +
-                "\n'You have raised the bar far enough...'");
+                "\n'You have raised the bar far enough...'"); */
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

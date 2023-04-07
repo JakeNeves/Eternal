@@ -11,7 +11,7 @@ namespace Eternal.Content.Projectiles.Misc
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Iesnium Beacon");
+            // DisplayName.SetDefault("Iesnium Beacon");
         }
 
         public override void SetDefaults()

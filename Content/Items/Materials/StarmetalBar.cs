@@ -10,7 +10,7 @@ namespace Eternal.Content.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'A Cosmic Bar That is Very Sturdy and Durable...'");
+            // Tooltip.SetDefault("'A Cosmic Bar That is Very Sturdy and Durable...'");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
 

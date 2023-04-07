@@ -10,8 +10,8 @@ namespace Eternal.Content.Items.Weapons.Magic
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Starstave Ein");
-            Tooltip.SetDefault("'Stave? Staff? You decide...'");
+            // DisplayName.SetDefault("Starstave Ein");
+            // Tooltip.SetDefault("'Stave? Staff? You decide...'");
             Item.staff[Item.type] = true;
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

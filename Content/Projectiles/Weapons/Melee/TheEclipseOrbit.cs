@@ -14,7 +14,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("The Eclipse");
+            // DisplayName.SetDefault("The Eclipse");
 
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 16;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
@@ -78,7 +78,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
             Projectile.knockBack = proj.knockBack;
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(BuffID.OnFire, 1024); // placeholder buff
         }

@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -53,7 +52,7 @@ namespace Eternal.Content.NPCs.Misc
             {
                 NPC.life = 0;
                 NPC.HitEffect();
-                NPC.StrikeNPCNoInteraction(int.MaxValue, 0, 0, false, false, false);
+                // NPC.StrikeNPCNoInteraction(int.MaxValue, 0, 0, false, false, false);
                 NPC.active = false;
             }
         }

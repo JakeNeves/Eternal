@@ -3,16 +3,16 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Eternal.Content.DamageClasses;
 using Terraria.GameContent.Creative;
+using Terraria.Localization;
 
 namespace Eternal.Content.Items.Accessories
 {
     public class EvocationerEmblem : ModItem
     {
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("15% increased radiant damage");
+
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Evocation Emblem");
-            Tooltip.SetDefault("15% increased radiant damage");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()

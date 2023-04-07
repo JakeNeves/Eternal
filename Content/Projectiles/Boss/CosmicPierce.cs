@@ -20,7 +20,7 @@ namespace Eternal.Content.Projectiles.Boss
             Projectile.timeLeft = 120;
         }
 
-        public override void OnHitPlayer(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
             //Working on Debuff
 

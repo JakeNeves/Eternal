@@ -18,7 +18,7 @@ namespace Eternal.Content.NPCs.Comet
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Small Starborn Sludge");
+            // DisplayName.SetDefault("Small Starborn Sludge");
 
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.BlueSlime];
         }
@@ -46,11 +46,11 @@ namespace Eternal.Content.NPCs.Comet
             SpawnModBiomes = new int[1] { ModContent.GetInstance<Biomes.Comet>().Type };
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
-            for (int k = 0; k < damage / NPC.lifeMax * 20.0; k++)
+            for (int k = 0; k < 20.0; k++)
             {
-                Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.DemonTorch, hitDirection, 0, 0, default(Color), 1f);
+                Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.DemonTorch, 0, 0, 0, default(Color), 1f);
             }
         }
 

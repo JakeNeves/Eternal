@@ -87,7 +87,7 @@ namespace Eternal.Content.NPCs.Boss.NeoxMechs
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Polarus N30X");
+            // DisplayName.SetDefault("Polarus N30X");
         }
 
         public override void SetDefaults()
@@ -107,7 +107,7 @@ namespace Eternal.Content.NPCs.Boss.NeoxMechs
             NPC.HitSound = SoundID.NPCHit4;
             NPC.DeathSound = SoundID.NPCDeath14;
             NPC.alpha = 0;
-            Music = MusicID.LunarBoss;
+            Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/NeoxPower");
             NPC.buffImmune[BuffID.Poisoned] = true;
             NPC.buffImmune[BuffID.OnFire] = true;
             NPC.buffImmune[BuffID.Venom] = true;
@@ -127,7 +127,7 @@ namespace Eternal.Content.NPCs.Boss.NeoxMechs
             });
         }
 
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
         {
             if (Main.masterMode)
             {
@@ -155,7 +155,7 @@ namespace Eternal.Content.NPCs.Boss.NeoxMechs
             }
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (NPC.life <= 0)
             {
@@ -163,10 +163,10 @@ namespace Eternal.Content.NPCs.Boss.NeoxMechs
             }
             else
             {
-                for (int k = 0; k < damage / NPC.lifeMax * 20.0; k++)
+                for (int k = 0; k < 20.0; k++)
                 {
-                    Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.Electric, hitDirection, -2f, 0, default(Color), 1f);
-                    Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.PurpleTorch, hitDirection, -1f, 0, default(Color), 1f);
+                    Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.Electric, 0, -2f, 0, default(Color), 1f);
+                    Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.PurpleTorch, 0, -1f, 0, default(Color), 1f);
                 }
             }
         }

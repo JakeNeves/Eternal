@@ -19,7 +19,7 @@ namespace Eternal.Content.NPCs.Boss.Igneopede
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("The Igneopede");
+			// DisplayName.SetDefault("The Igneopede");
 
 			var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
 			{
@@ -48,7 +48,7 @@ namespace Eternal.Content.NPCs.Boss.Igneopede
 			Music = MusicID.Boss3;
 		}
 
-		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
 		{
 			if (Main.masterMode)
 			{
@@ -190,7 +190,7 @@ namespace Eternal.Content.NPCs.Boss.Igneopede
 			attackCounter = reader.ReadInt32();
 		}
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			SoundEngine.PlaySound(SoundID.Tink, NPC.position);
 
@@ -211,7 +211,7 @@ namespace Eternal.Content.NPCs.Boss.Igneopede
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("The Igneopede");
+			// DisplayName.SetDefault("The Igneopede");
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
 			{
@@ -234,7 +234,7 @@ namespace Eternal.Content.NPCs.Boss.Igneopede
 			NPC.damage = 15;
 		}
 
-		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
 		{
 			if (Main.masterMode)
 			{
@@ -257,7 +257,7 @@ namespace Eternal.Content.NPCs.Boss.Igneopede
 			}
 		}
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
 		{
 			SoundEngine.PlaySound(SoundID.Tink, NPC.position);
 
@@ -278,7 +278,7 @@ namespace Eternal.Content.NPCs.Boss.Igneopede
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("The Igneopede");
+			// DisplayName.SetDefault("The Igneopede");
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
 			{
@@ -301,7 +301,7 @@ namespace Eternal.Content.NPCs.Boss.Igneopede
 			NPC.damage = 15;
 		}
 
-		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
 		{
 			if (Main.masterMode)
 			{
@@ -329,7 +329,7 @@ namespace Eternal.Content.NPCs.Boss.Igneopede
 			Lighting.AddLight(NPC.position, 2.15f, 0.95f, 0f);
 		}
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			SoundEngine.PlaySound(SoundID.Tink, NPC.position);
 
@@ -354,7 +354,7 @@ namespace Eternal.Content.NPCs.Boss.Igneopede
     {
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("The Igneopede");
+			// DisplayName.SetDefault("The Igneopede");
 		}
 
 		public override void Init()

@@ -9,7 +9,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Star of Nihilion");
+            // DisplayName.SetDefault("Star of Nihilion");
         }
 
         public override void SetDefaults()

@@ -16,8 +16,8 @@ namespace Eternal.Content.Items.Weapons.Ranged
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Converts arrows to Arkrystal Shards" +
-                             "\n'I guess you can consider this a bit of a machine gun bow...'");
+            /* Tooltip.SetDefault("Converts arrows to Arkrystal Shards" +
+                             "\n'I guess you can consider this a bit of a machine gun bow...'"); */
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

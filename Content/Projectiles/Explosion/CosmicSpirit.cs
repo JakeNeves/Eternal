@@ -10,7 +10,7 @@ namespace Eternal.Content.Projectiles.Explosion
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cosmic Spirit Burst");
+            // DisplayName.SetDefault("Cosmic Spirit Burst");
         }
 
         public override void SetDefaults()

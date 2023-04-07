@@ -9,10 +9,10 @@ namespace Eternal.Content.Items.Weapons
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("One-Hit Obliterator");
-            Tooltip.SetDefault("[c/FF0000:Cheat Item]" +
+            // DisplayName.SetDefault("One-Hit Obliterator");
+            /* Tooltip.SetDefault("[c/FF0000:Cheat Item]" +
                 "\nCan manipulate anything in a single swing" +
-                "\nAutomatically drains your health to 1 HP");
+                "\nAutomatically drains your health to 1 HP"); */
         }
 
         public override void SetDefaults()
@@ -35,7 +35,7 @@ namespace Eternal.Content.Items.Weapons
             player.statLife = 1;
         }
 
-        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.life = 1;
             player.ApplyDamageToNPC(target, 9999, 0f, 0, false);

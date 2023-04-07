@@ -12,7 +12,7 @@ namespace Eternal.Content.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'The strongest starmetal that withstands a field of asteriods'");
+            // Tooltip.SetDefault("'The strongest starmetal that withstands a field of asteriods'");
 
             ItemID.Sets.ItemNoGravity[Item.type] = true;
 

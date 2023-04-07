@@ -13,9 +13,9 @@ namespace Eternal.Content.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'Now where have I seen this before?'" +
+            /* Tooltip.SetDefault("'Now where have I seen this before?'" +
                              "\n[c/FC036B:Developer Item]" +
-                             "\nDedicated to [c/038CFC:JakeTEM]");
+                             "\nDedicated to [c/038CFC:JakeTEM]"); */
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

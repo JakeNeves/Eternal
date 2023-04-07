@@ -9,7 +9,7 @@ namespace Eternal.Content.Projectiles.Boss
     {
 	    public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Igneopede Fire");
+            // DisplayName.SetDefault("Igneopede Fire");
         }
         public override void SetDefaults()
         {
@@ -25,7 +25,7 @@ namespace Eternal.Content.Projectiles.Boss
             Projectile.extraUpdates = 2;
         }
 
-        public override void OnHitPlayer(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
             target.AddBuff(BuffID.OnFire, 480, false);
         }

@@ -12,7 +12,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Nekodisk");
+            // DisplayName.SetDefault("Nekodisk");
         }
 
         public override void SetDefaults()

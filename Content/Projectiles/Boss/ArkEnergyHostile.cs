@@ -10,7 +10,7 @@ namespace Eternal.Content.Projectiles.Boss
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Ark Energy");
+            // DisplayName.SetDefault("Ark Energy");
         }
 
         public override void SetDefaults()

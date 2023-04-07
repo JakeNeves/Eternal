@@ -2,16 +2,17 @@
 using Eternal.Content.Projectiles.Weapons.Ranged;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Ammo
 {
     public class BasaltShell : ModItem
     {
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("'Hot bullets made of hot materials!'");
+
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'Hot bullets made of hot materials!'");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }
 

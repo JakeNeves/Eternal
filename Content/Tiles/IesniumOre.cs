@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.IO;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
 
@@ -24,8 +25,8 @@ namespace Eternal.Content.Tiles
             Main.tileLighted[Type] = true;
             DustType = DustID.BlueTorch;
             ItemDrop = ModContent.ItemType<Content.Items.Placeable.IesniumOre>();
-            ModTranslation name = CreateMapEntryName();
-            name.SetDefault("Iesnium");
+            LocalizedText name = CreateMapEntryName();
+            // name.SetDefault("Iesnium");
             AddMapEntry(new Color(22, 71, 73), name);
             MinPick = 100;
             HitSound = SoundID.Tink;

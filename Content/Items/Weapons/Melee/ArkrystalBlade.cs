@@ -15,8 +15,8 @@ namespace Eternal.Content.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("<right> for True Melee" +
-                             "\n'Formally known as The Imperious Cohort...'");
+            /* Tooltip.SetDefault("<right> for True Melee" +
+                             "\n'Formally known as The Imperious Cohort...'"); */
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

@@ -3,17 +3,18 @@ using Eternal.Content.Rarities;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Accessories
 {
     public class ApparitionalViscara : ModItem
     {
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("[c/F72F9A:Absolute RNG Drop]" +
+                                                                            "\nIt does nothing for now");
+
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("[c/F72F9A:Absolute RNG Drop]" +
-                             "\nIt does nothing for now");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

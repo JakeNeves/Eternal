@@ -2,16 +2,17 @@
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Accessories.Expert
 {
     public class Bloodtooth : ModItem
     {
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("Causes bloodteeth to spew out upon getting hit.");
+
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Causes bloodteeth to spew out upon getting hit.");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         

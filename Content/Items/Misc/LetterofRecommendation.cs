@@ -9,9 +9,9 @@ namespace Eternal.Content.Items.Misc
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Letter of Recommendation");
-            Tooltip.SetDefault("Give this letter to the Emperor" +
-                "\n'Signed by the emissary.'");
+            // DisplayName.SetDefault("Letter of Recommendation");
+            /* Tooltip.SetDefault("Give this letter to the Emperor" +
+                "\n'Signed by the emissary.'"); */
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

@@ -12,9 +12,9 @@ namespace Eternal.Content.Items.Misc
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Holy Card");
-            Tooltip.SetDefault("Creates a Holy Mantle to protect you" +
-                             "\nHell Mode drop");
+            // DisplayName.SetDefault("Holy Card");
+            /* Tooltip.SetDefault("Creates a Holy Mantle to protect you" +
+                             "\nHell Mode drop"); */
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

@@ -12,7 +12,7 @@ namespace Eternal.Content.Items.Debug
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("[c/FF0000:Debug Item]\nRight Click to change Reputation Points by -1\nLeft Click to change Reputation Points by +1");
+            // Tooltip.SetDefault("[c/FF0000:Debug Item]\nRight Click to change Reputation Points by -1\nLeft Click to change Reputation Points by +1");
         }
 
         public override void SetDefaults()

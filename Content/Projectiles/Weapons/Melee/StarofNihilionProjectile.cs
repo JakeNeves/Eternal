@@ -16,7 +16,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Star of Nihilion");
+            // DisplayName.SetDefault("Star of Nihilion");
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 5;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }

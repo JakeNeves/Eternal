@@ -73,7 +73,7 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
             potionType = ItemID.GreaterHealingPotion;
         }
 
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
         {
             if (Main.masterMode)
             {
@@ -101,7 +101,7 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
             }
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (NPC.life <= 0)
             {

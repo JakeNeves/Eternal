@@ -12,7 +12,7 @@ namespace Eternal.Content.Items.SebastionsEntries
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("[c/2EA5BF:---Entry No. 2---]" +
+            /* Tooltip.SetDefault("[c/2EA5BF:---Entry No. 2---]" +
                 "\nAfter creating the Reconstructatorium, My team and I were sent out to find some" +
                 "\nvaluable treasures, I stumbled upon a mysterious structure along with two of my" +
                 "\nmembers, none of us had any clue on what this structure could be... Eventually, a" +
@@ -24,7 +24,7 @@ namespace Eternal.Content.Items.SebastionsEntries
                 "\nimpaled me through the skull, luckly before even worse things happened, most of the" +
                 "\nflying swords retreated, we used a C4 and detonated it, destroying the sword that got" +
                 "\nstuck in the ground, nearly trying to brutally impal us, at least we were still alive." +
-                "\n-Dr. Sebastion Kox");
+                "\n-Dr. Sebastion Kox"); */
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 

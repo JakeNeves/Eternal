@@ -1,20 +1,11 @@
-﻿using Eternal.Common.ItemDropRules.Conditions;
-using Eternal.Common.Systems;
-using Eternal.Content.Items.Materials;
-using Eternal.Content.Items.Weapons.Melee;
-using Eternal.Content.Tiles;
+﻿using Eternal.Common.Systems;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System.IO;
-using System.Linq;
 using Terraria;
 using Terraria.Audio;
-using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
-using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.Utilities;
 
 namespace Eternal.Content.NPCs.Boss.Duneworm
 {
@@ -23,7 +14,7 @@ namespace Eternal.Content.NPCs.Boss.Duneworm
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Duneworm");
+			// DisplayName.SetDefault("Duneworm");
 
 			var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
 			{
@@ -49,7 +40,7 @@ namespace Eternal.Content.NPCs.Boss.Duneworm
 			NPC.boss = true;
 		}
 
-		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
 		{
 			if (Main.masterMode)
 			{
@@ -150,7 +141,7 @@ namespace Eternal.Content.NPCs.Boss.Duneworm
 			return null;
 		}
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (NPC.life < 0)
             {
@@ -160,9 +151,9 @@ namespace Eternal.Content.NPCs.Boss.Duneworm
             {
 				SoundEngine.PlaySound(SoundID.DD2_BetsyHurt, NPC.position);
 
-				for (int k = 0; k < damage / NPC.lifeMax * 20.0; k++)
+				for (int k = 0; k < 10.0; k++)
 				{
-					Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.Blood, hitDirection, 0, 0, default(Color), 1f);
+					Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.Blood, 0, 0, 0, default(Color), 1f);
 				}
 			}
         }
@@ -172,7 +163,7 @@ namespace Eternal.Content.NPCs.Boss.Duneworm
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Duneworm");
+			// DisplayName.SetDefault("Duneworm");
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
 			{
@@ -193,7 +184,7 @@ namespace Eternal.Content.NPCs.Boss.Duneworm
 			NPC.damage = 80;
 		}
 
-		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
 		{
 			if (Main.masterMode)
 			{
@@ -246,7 +237,7 @@ namespace Eternal.Content.NPCs.Boss.Duneworm
 			}
 		}
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			if (NPC.life < 0)
 			{
@@ -256,9 +247,9 @@ namespace Eternal.Content.NPCs.Boss.Duneworm
 			{
 				SoundEngine.PlaySound(SoundID.DD2_BetsyHurt, NPC.position);
 
-				for (int k = 0; k < damage / NPC.lifeMax * 20.0; k++)
+				for (int k = 0; k < 10.0; k++)
 				{
-					Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.Blood, hitDirection, 0, 0, default(Color), 1f);
+					Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.Blood, 0, 0, 0, default(Color), 1f);
 				}
 			}
 		}
@@ -268,7 +259,7 @@ namespace Eternal.Content.NPCs.Boss.Duneworm
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Duneworm");
+			// DisplayName.SetDefault("Duneworm");
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
 			{
@@ -289,7 +280,7 @@ namespace Eternal.Content.NPCs.Boss.Duneworm
 			NPC.damage = 80;
 		}
 
-		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
 		{
 			if (Main.masterMode)
 			{
@@ -348,7 +339,7 @@ namespace Eternal.Content.NPCs.Boss.Duneworm
 			tail = true;
 		}
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			if (NPC.life < 0)
 			{
@@ -358,9 +349,9 @@ namespace Eternal.Content.NPCs.Boss.Duneworm
 			{
 				SoundEngine.PlaySound(SoundID.DD2_BetsyHurt, NPC.position);
 
-				for (int k = 0; k < damage / NPC.lifeMax * 20.0; k++)
+				for (int k = 0; k < 10.0; k++)
 				{
-					Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.Blood, hitDirection, 0, 0, default(Color), 1f);
+					Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.Blood, 0, 0, 0, default(Color), 1f);
 				}
 			}
 		}
@@ -370,7 +361,7 @@ namespace Eternal.Content.NPCs.Boss.Duneworm
     {
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Duneworm");
+			// DisplayName.SetDefault("Duneworm");
 		}
 
 		public override void Init()

@@ -10,7 +10,7 @@ namespace Eternal.Content.Projectiles.Weapons.Magic
     {
 	    public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Nuclear Kamikaze");
+            // DisplayName.SetDefault("Nuclear Kamikaze");
 
             ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
         }
@@ -92,7 +92,7 @@ namespace Eternal.Content.Projectiles.Weapons.Magic
             hitbox.Height += size * 2;
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
 

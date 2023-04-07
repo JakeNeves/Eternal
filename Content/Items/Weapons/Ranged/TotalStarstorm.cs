@@ -13,7 +13,7 @@ namespace Eternal.Content.Items.Weapons.Ranged
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'Are you the storm that is approaching?'");
+            // Tooltip.SetDefault("'Are you the storm that is approaching?'");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

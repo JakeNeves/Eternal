@@ -27,7 +27,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cosmic Emperor");
+            // DisplayName.SetDefault("Cosmic Emperor");
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
                 Hide = true
@@ -52,7 +52,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
             NPC.knockBackResist = -1f;
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (!dontKillyet)
             {
@@ -64,7 +64,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
             }
         }
 
-        public override bool StrikeNPC(ref double damage, int defense, ref float knockback, int hitDirection, ref bool crit)
+        /*public override void ModifyIncomingHit(ref NPC.HitModifiers modifiers)
         {
             if (damage > NPC.lifeMax / 2)
             {
@@ -104,10 +104,9 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
 
                 damage = 0;
             }
-            return false;
-        }
+        }*/
 
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
         {
             if (Main.masterMode)
             {

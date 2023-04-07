@@ -9,8 +9,8 @@ namespace Eternal.Content.Items.Debug
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cosmic Apparition Un-Killer");
-            Tooltip.SetDefault("[c/FF0000:Debug Item]\nMakes the Cosmic Apparition no longer a downed boss\nkilling it will make enemies in the comet biome drop cometite materials again...");
+            // DisplayName.SetDefault("Cosmic Apparition Un-Killer");
+            // Tooltip.SetDefault("[c/FF0000:Debug Item]\nMakes the Cosmic Apparition no longer a downed boss\nkilling it will make enemies in the comet biome drop cometite materials again...");
         }
 
         public override void SetDefaults()

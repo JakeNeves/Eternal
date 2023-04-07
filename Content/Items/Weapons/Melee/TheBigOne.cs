@@ -13,9 +13,9 @@ namespace Eternal.Content.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'The mighty forest felling axe of eternity!'" +
+            /* Tooltip.SetDefault("'The mighty forest felling axe of eternity!'" +
                              "\n[c/FC036B:Dedicated Content]" +
-                             "\nDedicated to [c/038CFC:Jaer Hend]");
+                             "\nDedicated to [c/038CFC:Jaer Hend]"); */
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

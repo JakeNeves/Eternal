@@ -9,8 +9,8 @@ namespace Eternal.Content.Buffs.Pets
     {
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Ark");
-			Description.SetDefault("A loyal ark follows you");
+			// DisplayName.SetDefault("Ark");
+			// Description.SetDefault("A loyal ark follows you");
 
 			Main.buffNoTimeDisplay[Type] = true;
 			Main.vanityPet[Type] = true;

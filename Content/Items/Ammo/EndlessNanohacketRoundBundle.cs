@@ -4,15 +4,18 @@ using Eternal.Content.Rarities;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace Eternal.Content.Items.Ammo
 {
     public class EndlessNanohacketRoundBundle : ModItem
     {
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("Unlimited Ammo" +
+                                                                            "\n'For slicing and dicing!'");
+
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Unlimited Ammo" +
-                            "\n'For slicing and dicing!'");
+            // Tooltip.SetDefault("");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

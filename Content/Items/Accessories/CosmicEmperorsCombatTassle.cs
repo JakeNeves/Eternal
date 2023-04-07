@@ -4,20 +4,22 @@ using Terraria.ModLoader;
 using Eternal.Content.Rarities;
 using Eternal.Content.Tiles.CraftingStations;
 using Eternal.Content.Items.Materials;
+using Terraria.Localization;
 
 namespace Eternal.Content.Items.Accessories
 {
     public class CosmicEmperorsCombatTassle : ModItem
     {
+        public override LocalizedText DisplayName => base.DisplayName.WithFormatArgs("Cosmic Emperor's Combat Tassle");
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("40% increased damage" +
+                                                                            "\n20% critical strike chance" +
+                                                                            "\n[c/008060:Ancient Artifact]" +
+                                                                            "\nThis relic of the Cosmic Emperor was weaved with the stardust of comets and moonlight" +
+                                                                            "\nWith such power harvested to create such tassle will empower whoever wears this to honor and prase the Cosmic Emperor");
+
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cosmic Emperor's Combat Tassle");
-            Tooltip.SetDefault("40% increased damage" +
-                             "\n20% critical strike chance" +
-                             "\n[c/008060:Ancient Artifact]" +
-                             "\nThis relic of the Cosmic Emperor was weaved with the stardust of comets and moonlight" +
-                             "\nWith such power harvested to create such tassle will empower whoever wears this to honor and prase the Cosmic Emperor");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

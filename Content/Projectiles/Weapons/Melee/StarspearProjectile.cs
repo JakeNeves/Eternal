@@ -10,7 +10,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Starspear");
+            // DisplayName.SetDefault("Starspear");
         }
 
         public override void SetDefaults()

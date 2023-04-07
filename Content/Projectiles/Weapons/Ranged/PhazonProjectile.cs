@@ -9,7 +9,7 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Phazon");
+            // DisplayName.SetDefault("Phazon");
 
             ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
         }
@@ -78,7 +78,7 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
             hitbox.Height += size * 2;
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             Projectile.Kill();
         }

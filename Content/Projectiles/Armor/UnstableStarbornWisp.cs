@@ -10,7 +10,7 @@ namespace Eternal.Content.Projectiles.Armor
     {
 	    public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Unstable Starborn Wisp");
+            // DisplayName.SetDefault("Unstable Starborn Wisp");
 
             ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
         }

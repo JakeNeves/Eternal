@@ -12,8 +12,8 @@ namespace Eternal.Content.Items.Placeable.Interactive
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Altar of Cosmic Desire");
-            Tooltip.SetDefault("Used to worship the Cosmic Emperor");
+            // DisplayName.SetDefault("Altar of Cosmic Desire");
+            // Tooltip.SetDefault("Used to worship the Cosmic Emperor");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

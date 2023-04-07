@@ -16,8 +16,8 @@ namespace Eternal.Content.Items.BossBags
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Treasure Capsule (Cosmic Emperor)");
-            Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
+            // DisplayName.SetDefault("Treasure Capsule (Cosmic Emperor)");
+            // Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
 
             ItemID.Sets.BossBag[Type] = true;
 

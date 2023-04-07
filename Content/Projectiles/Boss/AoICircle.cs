@@ -21,7 +21,7 @@ namespace Eternal.Content.Projectiles.Boss
         }
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Ark of Imperious");
+            // DisplayName.SetDefault("Ark of Imperious");
         }
 
         public override void AI()

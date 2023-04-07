@@ -14,9 +14,9 @@ namespace Eternal.Content.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("<right> to throw and leave a trail of bombs" +
+            /* Tooltip.SetDefault("<right> to throw and leave a trail of bombs" +
                              "\nMore Starspears spawn while wearing Starborn Armor or better" +
-                             "\n'A Starsharp Spear'");
+                             "\n'A Starsharp Spear'"); */
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

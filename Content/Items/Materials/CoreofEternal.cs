@@ -12,8 +12,8 @@ namespace Eternal.Content.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Core of Eternal");
-            Tooltip.SetDefault("'A mere fragment of the Eternal Primordials'");
+            // DisplayName.SetDefault("Core of Eternal");
+            // Tooltip.SetDefault("'A mere fragment of the Eternal Primordials'");
 
             ItemID.Sets.ItemNoGravity[Item.type] = true;
 

@@ -12,8 +12,8 @@ namespace Eternal.Content.Items.Summon
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Summons Incinerius, the Blazeborn Construct" +
-                             "\n'May cause a prison of basalt to form if used anywhere in the underworld, unless if the prison is destroyed...'");
+            /* Tooltip.SetDefault("Summons Incinerius, the Blazeborn Construct" +
+                             "\n'May cause a prison of basalt to form if used anywhere in the underworld, unless if the prison is destroyed...'"); */
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

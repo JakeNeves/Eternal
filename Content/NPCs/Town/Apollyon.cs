@@ -52,7 +52,7 @@ namespace Eternal.Content.NPCs.Town
             AnimationType = NPCID.Guide;
         }
 
-        public override bool CanTownNPCSpawn(int numTownNPCs, int money)
+        public override bool CanTownNPCSpawn(int numTownNPCs)/* tModPorter Suggestion: Copy the implementation of NPC.SpawnAllowed_Merchant in vanilla if you to count money, and be sure to set a flag when unlocked, so you don't count every tick. */
         {
             for (int k = 0; k < 255; k++)
             {
@@ -72,7 +72,7 @@ namespace Eternal.Content.NPCs.Town
             button = "Salvage";
         }
 
-        public override void OnChatButtonClicked(bool firstButton, ref bool shop)
+        public override void OnChatButtonClicked(bool firstButton, ref string shopName)
         {
             if (firstButton)
             {
@@ -139,7 +139,7 @@ namespace Eternal.Content.NPCs.Town
             };
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             int num = NPC.life > 0 ? 1 : 5;
             for (int k = 0; k < num; k++)

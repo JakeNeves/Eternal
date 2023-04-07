@@ -9,10 +9,10 @@ namespace Eternal.Content.Biomes
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("The Beneath");
+            // DisplayName.SetDefault("The Beneath");
         }
 
-        public override int Music => MusicID.Eerie;
+        public override int Music => MusicLoader.GetMusicSlot(Mod, "Assets/Music/DarknessFromDeepBelow");
 
         public override string BestiaryIcon => "Assets/Textures/Bestiary/Beneath";
 

@@ -10,13 +10,15 @@ using Terraria.GameContent.Bestiary;
 using Eternal.Content.Items.Misc;
 using Eternal.Content.Items.Potions;
 using Eternal.Common.Players;
-using Eternal.Content.Items.Summon;
+using Eternal.Content.Items.Weapons.Throwing;
 
 namespace Eternal.Content.NPCs.Town
 {
     [AutoloadHead]
     public class Emissary : ModNPC
     {
+        public string ShopName = "Shop";
+
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 25;
@@ -57,7 +59,7 @@ namespace Eternal.Content.NPCs.Town
             AnimationType = NPCID.Guide;
         }
 
-        public override bool CanTownNPCSpawn(int numTownNPCs, int money)
+        public override bool CanTownNPCSpawn(int numTownNPCs)/* tModPorter Suggestion: Copy the implementation of NPC.SpawnAllowed_Merchant in vanilla if you to count money, and be sure to set a flag when unlocked, so you don't count every tick. */
         {
             for (int k = 0; k < 255; k++)
             {
@@ -81,10 +83,10 @@ namespace Eternal.Content.NPCs.Town
             }
         }
 
-        public override void OnChatButtonClicked(bool firstButton, ref bool shop)
+        public override void OnChatButtonClicked(bool firstButton, ref string shopName)
         {
             if (firstButton)
-                shop = true;
+                shopName = ShopName;
             else if (Main.LocalPlayer.HasItem(ModContent.ItemType<EmperorsTrust>()))
             {
                 Player player = Main.player[Main.myPlayer];
@@ -114,7 +116,6 @@ namespace Eternal.Content.NPCs.Town
                 "Alastor",
                 "Rupert",
                 "Maddox",
-                "Corelone",
                 "Corleone",
                 "Ivor",
                 "Samual",
@@ -135,7 +136,7 @@ namespace Eternal.Content.NPCs.Town
             });
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             int num = NPC.life > 0 ? 1 : 5;
             for (int k = 0; k < num; k++)
@@ -191,17 +192,37 @@ namespace Eternal.Content.NPCs.Town
             }
         }
 
-        public override void SetupShop(Chest shop, ref int nextSlot)
+        public override void AddShops()
         {
+            Player player = Main.player[Main.myPlayer];
+
+            var emmissaryShop = new NPCShop(Type, ShopName);
+
             if (ReputationSystem.ReputationPoints == 50)
             {
-                shop.item[nextSlot].SetDefaults(ModContent.ItemType<PristineHealingPotion>());
-                nextSlot++;
+                emmissaryShop.Add<PristineHealingPotion>();
             }
+
             if (ReputationSystem.ReputationPoints == 100)
             {
-                shop.item[nextSlot].SetDefaults(ModContent.ItemType<PerfectHealingPotion>());
-                nextSlot++;
+                emmissaryShop.Add<PerfectHealingPotion>();
+            }
+        }
+
+        public override void ModifyActiveShop(string shopName, Item[] items)
+        {
+            foreach (Item item in items)
+            {
+                if (item == null || item.type == ItemID.None)
+                {
+                    continue;
+                }
+
+                /*if (NPC.IsShimmerVariant)
+                {
+                    int value = item.shopCustomPrice ?? item.value;
+                    item.shopCustomPrice = value / 2;
+                }*/
             }
         }
 

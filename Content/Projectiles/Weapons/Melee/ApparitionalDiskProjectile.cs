@@ -14,7 +14,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Apparitional Disk");
+            // DisplayName.SetDefault("Apparitional Disk");
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 6;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }

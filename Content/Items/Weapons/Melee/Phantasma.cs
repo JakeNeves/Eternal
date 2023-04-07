@@ -11,7 +11,7 @@ namespace Eternal.Content.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Can phase through tiles");
+            // Tooltip.SetDefault("Can phase through tiles");
         }
 
         public override void SetDefaults()

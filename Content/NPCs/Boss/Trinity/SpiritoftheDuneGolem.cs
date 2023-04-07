@@ -37,7 +37,7 @@ namespace Eternal.Content.NPCs.Boss.Trinity
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Spirit of the Dune Golem");
+            // DisplayName.SetDefault("Spirit of the Dune Golem");
 
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
@@ -77,7 +77,7 @@ namespace Eternal.Content.NPCs.Boss.Trinity
             potionType = ItemID.None;
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (!dontKillyet)
             {
@@ -94,7 +94,7 @@ namespace Eternal.Content.NPCs.Boss.Trinity
             }
         }
 
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
         {
             if (Main.masterMode)
             {

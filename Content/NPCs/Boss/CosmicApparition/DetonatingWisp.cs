@@ -15,7 +15,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 4;
-            DisplayName.SetDefault("Detonating Wisp");
+            // DisplayName.SetDefault("Detonating Wisp");
 
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
@@ -45,7 +45,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             NPCID.Sets.ProjectileNPC[NPC.type] = true;
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             SoundEngine.PlaySound(SoundID.NPCDeath14, NPC.position);
             if (NPC.life < 0)
@@ -89,7 +89,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             Target();
         }
 
-        public override void OnHitPlayer(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
         {
             SoundEngine.PlaySound(SoundID.NPCDeath14, NPC.position);
             target.ApplyDamageToNPC(NPC, 1, 0, 0, false);

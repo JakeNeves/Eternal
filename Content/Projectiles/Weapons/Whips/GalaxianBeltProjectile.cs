@@ -13,7 +13,7 @@ namespace Eternal.Content.Projectiles.Weapons.Whips
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Galaxian Belt");
+            // DisplayName.SetDefault("Galaxian Belt");
 
             ProjectileID.Sets.IsAWhip[Type] = true;
         }
@@ -93,10 +93,10 @@ namespace Eternal.Content.Projectiles.Weapons.Whips
 			return false;
 		}
 
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
-			Projectile.damage = (int)(damage * 0.7f);
+			Projectile.damage = (int)(damageDone * 0.7f);
 		}
 
 		private void DrawLine(List<Vector2> list)

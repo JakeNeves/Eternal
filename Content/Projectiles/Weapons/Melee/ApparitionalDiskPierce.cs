@@ -10,7 +10,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("ApparitionalDisk");
+            // DisplayName.SetDefault("ApparitionalDisk");
         }
 
         public override void SetDefaults()
@@ -23,7 +23,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
             Projectile.timeLeft = 450;
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
 

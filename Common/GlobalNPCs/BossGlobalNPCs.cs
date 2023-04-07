@@ -13,7 +13,7 @@ namespace Eternal.Common.GlobalNPCs
 {
     public class BossGlobalNPCs : GlobalNPC
     {
-        public override void HitEffect(NPC npc, int hitDirection, double damage)
+        public override void HitEffect(NPC npc, NPC.HitInfo hit)
         {
             Player player = Main.player[Main.myPlayer];
 
@@ -29,7 +29,7 @@ namespace Eternal.Common.GlobalNPCs
             }
         }
 
-        public override void ScaleExpertStats(NPC npc, int numPlayers, float bossLifeScale)
+        public override void ApplyDifficultyAndPlayerScaling(NPC npc, int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
         {
             if (DifficultySystem.hellMode && ModContent.GetInstance<ServerConfig>().HellModeVanillaBosses)
             {

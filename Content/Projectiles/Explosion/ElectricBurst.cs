@@ -10,7 +10,7 @@ namespace Eternal.Content.Projectiles.Explosion
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Electricity Spark");
+            // DisplayName.SetDefault("Electricity Spark");
         }
 
         public override void SetDefaults()

@@ -10,7 +10,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
     {
 	    public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Vivid Milky Way Climax");
+            // DisplayName.SetDefault("Vivid Milky Way Climax");
         }
         public override void SetDefaults()
         {

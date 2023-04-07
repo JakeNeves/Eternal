@@ -15,8 +15,8 @@ namespace Eternal.Content.Items.Weapons.Magic
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Starstave Vier");
-            Tooltip.SetDefault("Fires a small barage of starstave bolts that indulges in mitosis");
+            // DisplayName.SetDefault("Starstave Vier");
+            // Tooltip.SetDefault("Fires a small barage of starstave bolts that indulges in mitosis");
             Item.staff[Item.type] = true;
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

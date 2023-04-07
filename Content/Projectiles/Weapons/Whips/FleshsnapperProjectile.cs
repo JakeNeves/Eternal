@@ -12,7 +12,7 @@ namespace Eternal.Content.Projectiles.Weapons.Whips
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Fleshsnapper");
+            // DisplayName.SetDefault("Fleshsnapper");
 
             ProjectileID.Sets.IsAWhip[Type] = true;
         }
@@ -56,7 +56,7 @@ namespace Eternal.Content.Projectiles.Weapons.Whips
 			return false;
 		}
 
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
 		}

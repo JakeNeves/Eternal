@@ -7,7 +7,7 @@ namespace Eternal.Content.DamageClasses
     {
 		public override void SetStaticDefaults()
 		{
-			ClassName.SetDefault("radiant damage");
+			// DisplayName.SetDefault("radiant damage");
 		}
 
 		public override StatInheritanceData GetModifierInheritance(DamageClass damageClass)

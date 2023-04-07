@@ -10,7 +10,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Final Boss Blade");
+            // DisplayName.SetDefault("Final Boss Blade");
         }
 
         public override void SetDefaults()
@@ -23,7 +23,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
             Projectile.timeLeft = 300;
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             Projectile.Kill();
         }

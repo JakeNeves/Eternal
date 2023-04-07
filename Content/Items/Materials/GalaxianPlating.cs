@@ -10,7 +10,7 @@ namespace Eternal.Content.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'Durable plating from cosmic entities'");
+            // Tooltip.SetDefault("'Durable plating from cosmic entities'");
 
             ItemID.Sets.ItemNoGravity[Item.type] = true;
 

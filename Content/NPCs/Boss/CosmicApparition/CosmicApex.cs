@@ -12,7 +12,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
         {
             Main.npcFrameCount[NPC.type] = 4;
             NPCID.Sets.MustAlwaysDraw[NPC.type] = true;
-            DisplayName.SetDefault("Cosmic Apex");
+            // DisplayName.SetDefault("Cosmic Apex");
 
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
@@ -36,7 +36,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             NPC.knockBackResist = -1f;
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (NPC.life < 0)
             {

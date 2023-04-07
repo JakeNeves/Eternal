@@ -11,7 +11,7 @@ namespace Eternal.Content.Items.Weapons.Radiant
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Shoots a pebble that shoots small pebbles");
+            // Tooltip.SetDefault("Shoots a pebble that shoots small pebbles");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

@@ -14,7 +14,7 @@ namespace Eternal.Content.Items.Weapons.Ranged
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Shoots a random assortment of arrows");
+            // Tooltip.SetDefault("Shoots a random assortment of arrows");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

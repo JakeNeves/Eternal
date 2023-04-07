@@ -13,7 +13,7 @@ namespace Eternal.Content.Projectiles.Minions
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cosmic Decoy");
+            // DisplayName.SetDefault("Cosmic Decoy");
 
             Main.projFrames[Projectile.type] = 4;
 
@@ -34,7 +34,7 @@ namespace Eternal.Content.Projectiles.Minions
             Projectile.penetrate = -1;
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             for (int k = 0; k < 5; k++)
             {

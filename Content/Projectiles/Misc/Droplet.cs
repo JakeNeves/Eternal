@@ -11,7 +11,7 @@ namespace Eternal.Content.Projectiles.Misc
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Droplet of Blood");
+            // DisplayName.SetDefault("Droplet of Blood");
         }
 
         public override void SetDefaults()

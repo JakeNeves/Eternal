@@ -13,7 +13,7 @@ namespace Eternal.Content.Projectiles.Weapons.Hell
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Dune Eviscrator");
+            // DisplayName.SetDefault("Dune Eviscrator");
 
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 20;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;

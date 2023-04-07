@@ -5,16 +5,16 @@ using Eternal.Content.Rarities;
 using Eternal.Content.Tiles.CraftingStations;
 using Eternal.Content.Items.Materials;
 using Terraria.GameContent.Creative;
+using Terraria.Localization;
 
 namespace Eternal.Content.Items.Accessories
 {
     public class FierceDominatorEmblem : ModItem
     {
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("45% increased melee damage");
+
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Fierce Dominator Emblem");
-            Tooltip.SetDefault("45% increased melee damage");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()

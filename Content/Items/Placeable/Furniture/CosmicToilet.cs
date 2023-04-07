@@ -11,8 +11,8 @@ namespace Eternal.Content.Items.Placeable.Furniture
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Seriously? THIS is what you used the Cosmonium Fragments for?" +
-                             "\n'This was used by the Cosmic Emperor, sitting on this would be very unacceptable...'");
+            /* Tooltip.SetDefault("Seriously? THIS is what you used the Cosmonium Fragments for?" +
+                             "\n'This was used by the Cosmic Emperor, sitting on this would be very unacceptable...'"); */
         }
 
         public override void SetDefaults()

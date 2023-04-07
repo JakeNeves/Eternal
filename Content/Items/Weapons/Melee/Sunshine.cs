@@ -15,7 +15,7 @@ namespace Eternal.Content.Items.Weapons.Melee
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'Can you feel the light?'");
+            // Tooltip.SetDefault("'Can you feel the light?'");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

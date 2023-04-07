@@ -5,16 +5,16 @@ using Eternal.Content.Rarities;
 using Eternal.Content.Items.Materials;
 using Eternal.Content.Tiles.CraftingStations;
 using Terraria.GameContent.Creative;
+using Terraria.Localization;
 
 namespace Eternal.Content.Items.Accessories
 {
     public class FierceArcherEmblem : ModItem
     {
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("45% increased ranged damage");
+
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Fierce Archer Emblem");
-            Tooltip.SetDefault("45% increased ranged damage");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()

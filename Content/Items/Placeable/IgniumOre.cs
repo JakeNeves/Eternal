@@ -10,7 +10,7 @@ namespace Eternal.Content.Items.Placeable
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("A fragment of igneous energy\n'Searing to the touch'");
+            // Tooltip.SetDefault("A fragment of igneous energy\n'Searing to the touch'");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
         }

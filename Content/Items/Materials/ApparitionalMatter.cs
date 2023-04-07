@@ -11,7 +11,7 @@ namespace Eternal.Content.Items.Materials
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'Paranormal energy emmits from it's very core'");
+            // Tooltip.SetDefault("'Paranormal energy emmits from it's very core'");
 
             ItemID.Sets.ItemNoGravity[Item.type] = true;
 

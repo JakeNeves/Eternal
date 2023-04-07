@@ -73,7 +73,7 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
             });
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (!dontKillyet)
             {
@@ -99,7 +99,7 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<MalachiteShard>(), minimumDropped: 30, maximumDropped: 60));
         }
 
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
         {
             if (Main.masterMode)
             {

@@ -11,7 +11,7 @@ namespace Eternal.Content.Items.Placeable.CraftingStations
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Used to craft starmetal and cometite-teir items");
+            // Tooltip.SetDefault("Used to craft starmetal and cometite-teir items");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

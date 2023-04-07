@@ -72,7 +72,7 @@ namespace Eternal.Content.NPCs.Boss.ArmageddonCohort
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Armageddon Arkasama");
+            // DisplayName.SetDefault("Armageddon Arkasama");
 
             NPCID.Sets.ShouldBeCountedAsBoss[Type] = true;
         }
@@ -101,7 +101,7 @@ namespace Eternal.Content.NPCs.Boss.ArmageddonCohort
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<WeatheredPlating>(), minimumDropped: 16, maximumDropped: 20));
         }
 
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
         {
             if (Main.masterMode)
             {

@@ -1,18 +1,19 @@
 ﻿using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Misc
 {
     public class Portadummy : ModItem
     {
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("Creates a portable floating dummy at your cursor" +
+                                                                            "\nDespawns when a boss is alive" +
+                                                                            "\n<right> to despawn all portadummies");
+
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Creates a portable floating dummy at your cursor" +
-                             "\nDespawns when a boss is alive" +
-                             "\n<right> to despawn all portadummies");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -47,7 +48,7 @@ namespace Eternal.Content.Items.Misc
                             NPC npc = Main.npc[i];
                             npc.life = 0;
                             npc.HitEffect();
-                            Main.npc[i].StrikeNPCNoInteraction(int.MaxValue, 0, 0, false, false, false);
+                            // Main.npc[i].StrikeNPCNoInteraction(int.MaxValue, 0, 0, false, false, false);
                         }
                     }
                 }

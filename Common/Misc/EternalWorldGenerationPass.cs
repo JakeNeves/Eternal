@@ -209,7 +209,7 @@ namespace Eternal.Common.Misc
             while (true)
             {
                 int benX = WorldGen.genRand.Next(400, Main.maxTilesX - 1200);
-                int benY = WorldGen.genRand.Next((int)WorldGen.rockLayerHigh, Main.maxTilesY);
+                int benY = WorldGen.genRand.Next((int)GenVars.rockLayerHigh, Main.maxTilesY);
                 WorldGen.TileRunner(benX, benY, WorldGen.genRand.Next(400, 750), 80, ModContent.TileType<Grimstone>(), false, WorldGen.genRand.Next(9, 20), WorldGen.genRand.Next(-4, 4));
                 WorldGen.TileRunner(benX, benY, WorldGen.genRand.Next(400, 750), 80, ModContent.TileType<Grimstone>(), false, WorldGen.genRand.Next(-20, -9), WorldGen.genRand.Next(-4, 4));
 
@@ -226,7 +226,7 @@ namespace Eternal.Common.Misc
             while (true)
             {
                 int comX = WorldGen.genRand.Next(Main.rand.Next(-450, 450), Main.maxTilesX - 1200);
-                int comY = WorldGen.genRand.Next((int)WorldGen.worldSurface, Main.maxTilesY);
+                int comY = WorldGen.genRand.Next((int)GenVars.worldSurface, Main.maxTilesY);
                 WorldGen.TileRunner(comX, comY, WorldGen.genRand.Next(20, 45), 80, ModContent.TileType<CometiteOre>(), false, WorldGen.genRand.Next(4, 8), WorldGen.genRand.Next(-2, 2));
                 //WorldGen.TileRunner(comX, comY, WorldGen.genRand.Next(20, 45), 80, ModContent.TileType<CometiteOre>(), false, WorldGen.genRand.Next(-4, -8), WorldGen.genRand.Next(-2, 2));
 

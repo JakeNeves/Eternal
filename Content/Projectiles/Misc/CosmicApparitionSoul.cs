@@ -10,7 +10,7 @@ namespace Eternal.Content.Projectiles.Misc
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Soul of the Cosmic Apparition");
+            // DisplayName.SetDefault("Soul of the Cosmic Apparition");
         }
 
         public override void SetDefaults()

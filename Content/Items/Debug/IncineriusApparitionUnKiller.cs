@@ -9,8 +9,8 @@ namespace Eternal.Content.Items.Debug
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Incinerius Un-Killer");
-            Tooltip.SetDefault("[c/FF0000:Debug Item]\nMakes Incinerius no longer a downed boss\nkilling him will skip the Basalt Prison...");
+            // DisplayName.SetDefault("Incinerius Un-Killer");
+            // Tooltip.SetDefault("[c/FF0000:Debug Item]\nMakes Incinerius no longer a downed boss\nkilling him will skip the Basalt Prison...");
         }
 
         public override void SetDefaults()

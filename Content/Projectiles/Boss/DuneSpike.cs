@@ -11,7 +11,7 @@ namespace Eternal.Content.Projectiles.Boss
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Dune Spike");
+            // DisplayName.SetDefault("Dune Spike");
             Main.projFrames[Projectile.type] = 2;
         }
 

@@ -20,7 +20,7 @@ namespace Eternal.Content.NPCs.Miniboss
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Starborn Inquisitor");
+            // DisplayName.SetDefault("Starborn Inquisitor");
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.PossessedArmor];
         }
 
@@ -96,11 +96,11 @@ namespace Eternal.Content.NPCs.Miniboss
             }
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
-            for (int k = 0; k < damage / NPC.lifeMax * 20.0; k++)
+            for (int k = 0; k < 20.0; k++)
             {
-                Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.PurpleTorch, hitDirection, 0, 0, default(Color), 1f);
+                Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.PurpleTorch, 0, 0, 0, default(Color), 1f);
             }
         }
 

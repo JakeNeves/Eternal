@@ -9,7 +9,7 @@ namespace Eternal.Content.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'Think of this as hot sand'");
+            // Tooltip.SetDefault("'Think of this as hot sand'");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
         }

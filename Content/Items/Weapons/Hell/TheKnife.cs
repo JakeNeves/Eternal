@@ -12,8 +12,8 @@ namespace Eternal.Content.Items.Weapons.Hell
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'Stab stab stab!'" +
-                             "\nHell Mode drop");
+            /* Tooltip.SetDefault("'Stab stab stab!'" +
+                             "\nHell Mode drop"); */
         }
 
         public override void SetDefaults()

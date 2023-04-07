@@ -13,8 +13,8 @@ namespace Eternal.Content.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Calls the Ark of Imperious to strike enemies from above" +
-                             "\n'There's a sword...'");
+            /* Tooltip.SetDefault("Calls the Ark of Imperious to strike enemies from above" +
+                             "\n'There's a sword...'"); */
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

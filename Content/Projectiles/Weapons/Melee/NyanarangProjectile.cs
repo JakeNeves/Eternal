@@ -10,7 +10,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Nyanarang");
+            // DisplayName.SetDefault("Nyanarang");
         }
 
         public override void SetDefaults()

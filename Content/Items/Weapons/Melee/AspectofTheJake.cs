@@ -10,10 +10,10 @@ namespace Eternal.Content.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Aspect of the Jake");
+            // DisplayName.SetDefault("Aspect of the Jake");
 
-            Tooltip.SetDefault("Inflicts confusion upon striking an enemy" +
-                             "\n'The power of Jake is within you!'");
+            /* Tooltip.SetDefault("Inflicts confusion upon striking an enemy" +
+                             "\n'The power of Jake is within you!'"); */
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
@@ -34,7 +34,7 @@ namespace Eternal.Content.Items.Weapons.Melee
             Item.crit = 75;
         }
 
-        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(BuffID.Confused, 1500);
 

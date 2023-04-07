@@ -5,15 +5,16 @@ using Eternal.Content.Rarities;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace Eternal.Content.Items.Ammo
 {
     public class NanohacketRound : ModItem
     {
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("'For slicing and dicing!'");
+
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'For slicing and dicing!'");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }
 

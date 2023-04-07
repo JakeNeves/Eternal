@@ -38,7 +38,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Arkling");
+            // DisplayName.SetDefault("Arkling");
 
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {

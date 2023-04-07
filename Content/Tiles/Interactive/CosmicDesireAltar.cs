@@ -7,6 +7,7 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
@@ -28,8 +29,8 @@ namespace Eternal.Content.Tiles.Interactive
             TileObjectData.newTile.StyleWrapLimit = 2;
             TileObjectData.newTile.StyleMultiplier = 2;
             TileObjectData.addTile(Type);
-            ModTranslation name = CreateMapEntryName();
-            name.SetDefault("Altar of Cosmic Desire");
+            LocalizedText name = CreateMapEntryName();
+            // name.SetDefault("Altar of Cosmic Desire");
             AddMapEntry(new Color(100, 25, 75), name);
         }
 

@@ -69,7 +69,7 @@ namespace Eternal.Common.Players
             }
         }
 
-        public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone)/* tModPorter If you don't need the Item, consider using OnHitNPC instead */
         {
             if (StarbornArmor)
             {
@@ -80,14 +80,14 @@ namespace Eternal.Common.Players
             }
         }
 
-        public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit, int cooldownCounter)
+        public override void OnHurt(Player.HurtInfo info)
         {
             var entitySource = Player.GetSource_None();
 
             if (ArkaniumArmor)
             {
                 for (int i = 0; i < Main.rand.Next(8, 16); i++)
-                    Projectile.NewProjectile(entitySource, Player.position.X + Main.rand.Next(-200, 200), Player.position.Y - 600, Main.rand.Next(-4, 4), 16, ModContent.ProjectileType<ArkaniumSword>(), (int)damage * 2, 0, Player.whoAmI);
+                    Projectile.NewProjectile(entitySource, Player.position.X + Main.rand.Next(-200, 200), Player.position.Y - 600, Main.rand.Next(-4, 4), 16, ModContent.ProjectileType<ArkaniumSword>(), 200 * 2, 0, Player.whoAmI);
             }
         }
     }

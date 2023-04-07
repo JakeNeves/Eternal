@@ -14,7 +14,7 @@ namespace Eternal.Content.Items.Tools
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            Tooltip.SetDefault("Capable of Mining Ignium, Electrite and Galacite");
+            // Tooltip.SetDefault("Capable of Mining Ignium, Electrite and Galacite");
         }
 
         public override void SetDefaults()

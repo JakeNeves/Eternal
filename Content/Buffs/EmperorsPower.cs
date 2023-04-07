@@ -10,8 +10,8 @@ namespace Eternal.Content.Buffs
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Emperor's Power");
-            Description.SetDefault("From a whole loaf of Royal Galadian Bread, you feel your power getting stronger");
+            // DisplayName.SetDefault("Emperor's Power");
+            // Description.SetDefault("From a whole loaf of Royal Galadian Bread, you feel your power getting stronger");
             Main.buffNoSave[Type] = true;
         }
 

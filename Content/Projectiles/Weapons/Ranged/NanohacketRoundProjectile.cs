@@ -10,7 +10,7 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Nanohacket Round");
+            // DisplayName.SetDefault("Nanohacket Round");
 
             ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
         }

@@ -10,7 +10,7 @@ namespace Eternal.Content.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Not to be confused with 'Soul Sythe'");
+            // Tooltip.SetDefault("Not to be confused with 'Soul Sythe'");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

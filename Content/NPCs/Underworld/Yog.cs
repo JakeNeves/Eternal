@@ -43,13 +43,13 @@ namespace Eternal.Content.NPCs.Underworld
             NPC.buffImmune[BuffID.DryadsWardDebuff] = true;
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             var entitySource = NPC.GetSource_Death();
 
-            for (int k = 0; k < damage / NPC.lifeMax * 20.0; k++)
+            for (int k = 0; k < 15.0; k++)
             {
-                Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.Torch, hitDirection, 0, 0, default(Color), 1f);
+                Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.Torch, 0, 0, 0, default(Color), 1f);
             }
             if (NPC.life < 0)
             {

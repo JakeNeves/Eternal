@@ -11,7 +11,7 @@ namespace Eternal.Content.Items.Materials
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'Not actual gel'");
+            // Tooltip.SetDefault("'Not actual gel'");
 
             ItemID.Sets.ItemNoGravity[Item.type] = true;
 

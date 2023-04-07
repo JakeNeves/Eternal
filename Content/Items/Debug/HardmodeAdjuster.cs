@@ -8,7 +8,7 @@ namespace Eternal.Content.Items.Debug
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("[c/FF0000:Debug Item]\n<right> to enable hardmode\nLeft Click to disable hardmode");
+            // Tooltip.SetDefault("[c/FF0000:Debug Item]\n<right> to enable hardmode\nLeft Click to disable hardmode");
         }
 
         public override void SetDefaults()

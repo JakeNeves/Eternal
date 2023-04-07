@@ -11,7 +11,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Machalite Chakram");
+            // DisplayName.SetDefault("Machalite Chakram");
         }
 
         public override void SetDefaults()

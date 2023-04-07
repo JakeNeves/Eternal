@@ -4,18 +4,19 @@ using Eternal.Content.Rarities;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Accessories.Hell
 {
     public class BlackCandle : ModItem
     {
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("Allows you to see while in The Beneath" +
+                                                                            "\nProvides a brighter source of light" +
+                                                                            "\nHell Mode upgrade");
+
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Allows you to see while in The Beneath" +
-                             "\nProvides a brighter source of light" +
-                             "\nHell Mode upgrade");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

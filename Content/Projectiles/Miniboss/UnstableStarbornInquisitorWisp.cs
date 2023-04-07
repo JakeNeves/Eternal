@@ -9,7 +9,7 @@ namespace Eternal.Content.Projectiles.Miniboss
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Unstable Starborn Wisp");
+            // DisplayName.SetDefault("Unstable Starborn Wisp");
         }
 
         public override void SetDefaults()

@@ -15,8 +15,8 @@ namespace Eternal.Content.Items.Weapons.Ranged
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Fires a long superheated flame bar" +
-                             "\n'KILL IT WITH FIRE!'");
+            /* Tooltip.SetDefault("Fires a long superheated flame bar" +
+                             "\n'KILL IT WITH FIRE!'"); */
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

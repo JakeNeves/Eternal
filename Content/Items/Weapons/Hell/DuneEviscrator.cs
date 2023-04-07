@@ -10,7 +10,7 @@ namespace Eternal.Content.Items.Weapons.Hell
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Hell Mode drop");
+            // Tooltip.SetDefault("Hell Mode drop");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

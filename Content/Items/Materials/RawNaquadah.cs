@@ -10,7 +10,7 @@ namespace Eternal.Content.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'Otherworldly substance, mostly found in an unknown rift...'");
+            // Tooltip.SetDefault("'Otherworldly substance, mostly found in an unknown rift...'");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
         }

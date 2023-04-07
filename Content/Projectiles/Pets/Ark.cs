@@ -8,7 +8,7 @@ namespace Eternal.Content.Projectiles.Pets
     {
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Ark");
+			// DisplayName.SetDefault("Ark");
 
 			Main.projPet[Projectile.type] = true;
 		}

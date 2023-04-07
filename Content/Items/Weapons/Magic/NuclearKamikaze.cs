@@ -15,9 +15,9 @@ namespace Eternal.Content.Items.Weapons.Magic
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Nuclear Kamikaze");
-            Tooltip.SetDefault("Casts fast moving razorblades, similar to the Razorblade Typhoon" +
-                             "\n'Not to be confused with the Nuclear Fury...'");
+            // DisplayName.SetDefault("Nuclear Kamikaze");
+            /* Tooltip.SetDefault("Casts fast moving razorblades, similar to the Razorblade Typhoon" +
+                             "\n'Not to be confused with the Nuclear Fury...'"); */
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

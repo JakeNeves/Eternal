@@ -12,7 +12,7 @@ namespace Eternal.Content.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'A metallic alloy of pure starpower'");
+            // Tooltip.SetDefault("'A metallic alloy of pure starpower'");
 
             ItemID.Sets.ItemNoGravity[Item.type] = true;
 

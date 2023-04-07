@@ -11,7 +11,7 @@ namespace Eternal.Content.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'A mere fragment of the dune's creatures'");
+            // Tooltip.SetDefault("'A mere fragment of the dune's creatures'");
 
             ItemID.Sets.ItemNoGravity[Item.type] = true;
 

@@ -12,7 +12,7 @@ namespace Eternal.Content.Items.Armor
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("+40% increased movement speed");
+            // Tooltip.SetDefault("+40% increased movement speed");
         }
 
         public override void SetDefaults()

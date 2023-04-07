@@ -38,7 +38,7 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
             });
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             for (int k = 0; k < 5; k++)
             {
@@ -46,7 +46,7 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
             }
         }
 
-        public override void OnHitPlayer(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
         {
             target.AddBuff(BuffID.Electrified, 360, false);
         }

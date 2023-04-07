@@ -8,7 +8,7 @@ namespace Eternal.Content.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'Holding it in your hands for too long could burn your flesh off'");
+            // Tooltip.SetDefault("'Holding it in your hands for too long could burn your flesh off'");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
         }

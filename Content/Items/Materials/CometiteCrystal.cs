@@ -11,7 +11,7 @@ namespace Eternal.Content.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'A crystaline shard of pristine starpower'");
+            // Tooltip.SetDefault("'A crystaline shard of pristine starpower'");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
 

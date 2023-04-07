@@ -9,7 +9,7 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Scorchthrower");
+            // DisplayName.SetDefault("Scorchthrower");
         }
 
         public override void SetDefaults()
@@ -60,12 +60,12 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
             Projectile.ai[0] += 1f;
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(BuffID.OnFire, 480);
         }
 
-        public override void OnHitPlayer(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
             target.AddBuff(BuffID.OnFire, 480, false);
         }

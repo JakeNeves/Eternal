@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Tiles
@@ -21,8 +22,8 @@ namespace Eternal.Content.Tiles
             Main.tileLighted[Type] = true;
             DustType = DustID.Electric;
             ItemDrop = ModContent.ItemType<Content.Items.Placeable.ElectriteOre>();
-            ModTranslation name = CreateMapEntryName();
-            name.SetDefault("Electrite");
+            LocalizedText name = CreateMapEntryName();
+            // name.SetDefault("Electrite");
             AddMapEntry(new Color(35, 200, 254), name);
             MinPick = 230;
             HitSound = SoundID.Tink;

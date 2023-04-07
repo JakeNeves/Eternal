@@ -8,7 +8,7 @@ namespace Eternal.Content.Items.Placeable
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'Dark...'");
+            // Tooltip.SetDefault("'Dark...'");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
         }

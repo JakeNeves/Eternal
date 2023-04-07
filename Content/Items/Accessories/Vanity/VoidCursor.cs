@@ -4,16 +4,17 @@ using Eternal.Content.Tiles.CraftingStations;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Accessories.Vanity
 {
     public class VoidCursor : ModItem
     {
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("Causes your mouse cursor to shift from black to red");
+
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Causes your mouse cursor to shift from black to red");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -25,7 +26,6 @@ namespace Eternal.Content.Items.Accessories.Vanity
             Item.rare = ModContent.RarityType<Teal>();
             Item.accessory = true;
             Item.vanity = true;
-            Item.canBePlacedInVanityRegardlessOfConditions = true;
         }
 
         public override void UpdateVanity(Player player)

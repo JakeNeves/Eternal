@@ -1,18 +1,20 @@
 ﻿using Eternal.Content.Rarities;
 using Terraria;
 using Terraria.GameContent.Creative;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Accessories.Hell
 {
     public class CarminiteHeart : ModItem
     {
+        public override LocalizedText DisplayName => base.DisplayName.WithFormatArgs("Heart of Carminite");
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("Increased melee damage By 25%" +
+                                                                            "\nHell Mode drop");
+
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Heart of Carminite");
-            Tooltip.SetDefault("Increased melee damage By 25%" +
-                             "\nHell Mode drop");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

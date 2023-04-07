@@ -12,7 +12,7 @@ namespace Eternal.Content.Items.Summon
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Unleashes The Trinity\n'Reality Trembles...'");
+            // Tooltip.SetDefault("Unleashes The Trinity\n'Reality Trembles...'");
         }
 
         public override void SetDefaults()

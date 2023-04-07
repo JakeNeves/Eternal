@@ -13,7 +13,7 @@ namespace Eternal.Content.Projectiles.Boss
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Apparitional Wisp");
+            // DisplayName.SetDefault("Apparitional Wisp");
 
             Main.projFrames[Projectile.type] = 4;
         }
@@ -30,7 +30,7 @@ namespace Eternal.Content.Projectiles.Boss
             AIType = ProjectileID.CultistBossFireBall;
         }
 
-        public override void OnHitPlayer(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
             Projectile.timeLeft = 0;
             Projectile.Kill();

@@ -9,12 +9,12 @@ namespace Eternal.Content.Biomes
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("The Shrine");
+            // DisplayName.SetDefault("The Shrine");
         }
 
-        public override int Music => MusicID.OtherworldlyDungeon;
+        public override int Music => MusicLoader.GetMusicSlot(Mod, "Assets/Music/ImperiousShrine");
 
-        public override string BestiaryIcon => "Assets/Textures/Bestiary/Beneath";
+        public override string BestiaryIcon => "Assets/Textures/Bestiary/Shrine";
 
         public override void OnEnter(Player player)
         {

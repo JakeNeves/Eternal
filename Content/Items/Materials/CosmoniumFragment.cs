@@ -11,8 +11,8 @@ namespace Eternal.Content.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("One is required for every known powerful item" +
-                             "\n'A shard of the emperor's promise'");
+            /* Tooltip.SetDefault("One is required for every known powerful item" +
+                             "\n'A shard of the emperor's promise'"); */
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
 

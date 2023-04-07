@@ -11,7 +11,7 @@ namespace Eternal.Content.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'The heaviest form of rock, formed with impossibly heavy pressure...'");
+            // Tooltip.SetDefault("'The heaviest form of rock, formed with impossibly heavy pressure...'");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
         }

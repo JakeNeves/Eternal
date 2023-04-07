@@ -10,7 +10,7 @@ namespace Eternal.Content.Projectiles.Weapons.Hell
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("The Knife");
+            // DisplayName.SetDefault("The Knife");
         }
 
         public override void SetDefaults()
@@ -39,7 +39,7 @@ namespace Eternal.Content.Projectiles.Weapons.Hell
             return true;
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             for (int k = 0; k < 15; k++)
             {

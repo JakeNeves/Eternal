@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Tiles
@@ -21,8 +22,8 @@ namespace Eternal.Content.Tiles
             Main.tileLighted[Type] = true;
             DustType = DustID.Ice;
             ItemDrop = ModContent.ItemType<Content.Items.Placeable.GalaciteOre>();
-            ModTranslation name = CreateMapEntryName();
-            name.SetDefault("Galacite");
+            LocalizedText name = CreateMapEntryName();
+            // name.SetDefault("Galacite");
             AddMapEntry(new Color(107, 160, 255), name);
             MinPick = 230;
             HitSound = SoundID.Tink;

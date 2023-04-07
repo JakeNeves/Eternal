@@ -9,7 +9,7 @@ namespace Eternal.Content.Items.Placeable
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("A shard of cosmic debris\n'Pure starpower radiates from this cluster'");
+            // Tooltip.SetDefault("A shard of cosmic debris\n'Pure starpower radiates from this cluster'");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
         }

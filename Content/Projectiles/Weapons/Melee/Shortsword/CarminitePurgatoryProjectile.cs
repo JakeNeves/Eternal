@@ -23,7 +23,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee.Shortsword
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Carminite Purgatory");
+			// DisplayName.SetDefault("Carminite Purgatory");
 		}
 
 		public override void SetDefaults()

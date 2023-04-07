@@ -11,7 +11,7 @@ namespace Eternal.Common.Systems
     {
         public static bool emperorSeed = false;
 
-        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
+        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight)
         {
             if (!(WorldGen.currentWorldSeed == "emperor" || WorldGen.currentWorldSeed == "03232004" || WorldGen.currentWorldSeed == "jake" || WorldGen.currentWorldSeed == "praise the jake"))
             {

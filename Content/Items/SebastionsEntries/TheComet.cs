@@ -12,7 +12,7 @@ namespace Eternal.Content.Items.SebastionsEntries
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("[c/2EA5BF:---Entry No. 6---]" +
+            /* Tooltip.SetDefault("[c/2EA5BF:---Entry No. 6---]" +
                 "\nAfter hearing something struck the world miles away from the research lab, I figured" +
                 "\nit was just a meteorite. However, upon approaching it, I could see a purple light" +
                 "\nwithin a vast distance, only to see that it was a comet that had fallen and strucked" +
@@ -21,7 +21,7 @@ namespace Eternal.Content.Items.SebastionsEntries
                 "\nstrucked. I had a sudden feeling it would haunt me in my sleep, I quickly ran back to the" +
                 "\nlab before I noticed I was being followed by the entity, I didn't want to do anthing with it," +
                 "\nsuddenly the entity started attacking after letting out an eerie shriek across the lab!" +
-                "\n-Dr. Sebastion Kox");
+                "\n-Dr. Sebastion Kox"); */
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 

@@ -13,8 +13,8 @@ namespace Eternal.Content.Items.Weapons.Ranged
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("DX-7060");
-            Tooltip.SetDefault("'You have no ideas what it does!'");
+            // DisplayName.SetDefault("DX-7060");
+            // Tooltip.SetDefault("'You have no ideas what it does!'");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

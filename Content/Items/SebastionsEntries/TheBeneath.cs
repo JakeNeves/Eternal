@@ -12,7 +12,7 @@ namespace Eternal.Content.Items.SebastionsEntries
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("[c/2EA5BF:---Entry No. 4---]" +
+            /* Tooltip.SetDefault("[c/2EA5BF:---Entry No. 4---]" +
                 "\nUppon exploring the deepest depths of this world's caverns, we noticed" +
                 "\nsome black rock that is as durable as the materials used to make those" +
                 "\nmachines as discovered in the Precursor Temple, however this hardened" +
@@ -22,7 +22,7 @@ namespace Eternal.Content.Items.SebastionsEntries
                 "\nnothing but anxiety slowly getting to us, it's horrendous, we had to make" +
                 "\nour escape as fast as we could, otherwise we could be consumed by what could" +
                 "\nbe a potential monster that lurks in the darkness of this cave." +
-                "\n-Dr. Sebastion Kox");
+                "\n-Dr. Sebastion Kox"); */
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 

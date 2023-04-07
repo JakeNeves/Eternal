@@ -12,9 +12,9 @@ namespace Eternal.Content.Items.SebastionsEntries
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("The N30X Mechs");
+            // DisplayName.SetDefault("The N30X Mechs");
 
-            Tooltip.SetDefault("[c/2EA5BF:---Entry No. 12---]" +
+            /* Tooltip.SetDefault("[c/2EA5BF:---Entry No. 12---]" +
                 "\nThey have mysteriously gone rouge, my creations!" +
                 "\nThe prototypes have destroyed nearly half of the facility." +
                 "\nWe have managed to evacuate before nearly risking our very" +
@@ -23,7 +23,7 @@ namespace Eternal.Content.Items.SebastionsEntries
                 "\nfor 6 months due to unsafe percautions of my creations... They must be destroyed" +
                 "\nas soon as possible, whatever has possession of these creations, should immediately" +
                 "\nbe punished for their reign of chaotic destruction of our facility." +
-                "\n-Dr. Sebastion Kox");
+                "\n-Dr. Sebastion Kox"); */
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 

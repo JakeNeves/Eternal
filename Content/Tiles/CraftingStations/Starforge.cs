@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
@@ -25,8 +26,8 @@ namespace Eternal.Content.Tiles.CraftingStations
             TileObjectData.newTile.StyleWrapLimit = 2;
             TileObjectData.newTile.StyleMultiplier = 2;
             TileObjectData.addTile(Type);
-            ModTranslation name = CreateMapEntryName();
-            name.SetDefault("Starforge");
+            LocalizedText name = CreateMapEntryName();
+            // name.SetDefault("Starforge");
             AddMapEntry(new Color(50, 0, 25), name);
         }
 

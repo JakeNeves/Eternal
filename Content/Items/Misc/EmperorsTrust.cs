@@ -12,11 +12,11 @@ namespace Eternal.Content.Items.Misc
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Emperor's Trust");
-            Tooltip.SetDefault("Allows the emperor's Emissaries to settle in your town" +
+            // DisplayName.SetDefault("Emperor's Trust");
+            /* Tooltip.SetDefault("Allows the emperor's Emissaries to settle in your town" +
                 "\nAllows you to earn Reputation which allows you to buy items from the Emissary" +
                 "\nSome weapons receive special buffs when in your inventory" +
-                "\n'In the eyes of the emperor, as long as you have his trust within your reach, he will let his emissaries settle on your land.'");
+                "\n'In the eyes of the emperor, as long as you have his trust within your reach, he will let his emissaries settle on your land.'"); */
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

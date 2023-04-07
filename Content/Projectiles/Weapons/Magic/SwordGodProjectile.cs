@@ -14,7 +14,7 @@ namespace Eternal.Content.Projectiles.Weapons.Magic
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Sword of The Sword God");
+            // DisplayName.SetDefault("Sword of The Sword God");
 
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 6;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;

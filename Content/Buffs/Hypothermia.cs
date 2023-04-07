@@ -10,8 +10,8 @@ namespace Eternal.Content.Buffs
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Hypothermia");
-            Description.SetDefault("You are shivering");
+            // DisplayName.SetDefault("Hypothermia");
+            // Description.SetDefault("You are shivering");
             Main.debuff[Type] = true;
             BuffID.Sets.LongerExpertDebuff[Type] = true;
         }

@@ -32,7 +32,7 @@ namespace Eternal.Content.NPCs.Surface
             AnimationType = NPCID.DemonEye;
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (NPC.life <= 0) {
                 var entitySource = NPC.GetSource_Death();
@@ -44,9 +44,9 @@ namespace Eternal.Content.NPCs.Surface
                 Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore2);
             }
 
-            for (int k = 0; k < damage / NPC.lifeMax * 5.0; k++)
+            for (int k = 0; k < 5.0; k++)
             {
-                Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.Blood, hitDirection, 0, 0, default(Color), 1f);
+                Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.Blood, 0, 0, 0, default(Color), 1f);
             }
         }
 

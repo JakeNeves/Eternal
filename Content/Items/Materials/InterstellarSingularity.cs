@@ -11,7 +11,7 @@ namespace Eternal.Content.Items.Materials
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'The Essance of Cosmic Beings'");
+            // Tooltip.SetDefault("'The Essance of Cosmic Beings'");
 
             ItemID.Sets.ItemNoGravity[Item.type] = true;
 

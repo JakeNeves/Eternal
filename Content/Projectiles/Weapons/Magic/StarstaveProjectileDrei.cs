@@ -11,7 +11,7 @@ namespace Eternal.Content.Projectiles.Weapons.Magic
     {
 	    public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Starstave Bolt Drei");
+            // DisplayName.SetDefault("Starstave Bolt Drei");
 
             ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
         }
@@ -116,7 +116,7 @@ namespace Eternal.Content.Projectiles.Weapons.Magic
             return false;
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             Player player = Main.player[Projectile.owner];
 

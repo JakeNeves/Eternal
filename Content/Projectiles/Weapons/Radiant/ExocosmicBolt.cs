@@ -10,7 +10,7 @@ namespace Eternal.Content.Projectiles.Weapons.Radiant
     {
 	    public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Exocosmic Bolt");
+            // DisplayName.SetDefault("Exocosmic Bolt");
 
             ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
         }
@@ -71,7 +71,7 @@ namespace Eternal.Content.Projectiles.Weapons.Radiant
             hitbox.Height += size * 2;
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             Player player = Main.player[Projectile.owner];
 

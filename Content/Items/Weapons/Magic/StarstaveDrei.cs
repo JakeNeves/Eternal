@@ -13,8 +13,8 @@ namespace Eternal.Content.Items.Weapons.Magic
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Starstave Drei");
-            Tooltip.SetDefault("Fires a bouncing bolt that explodes into four");
+            // DisplayName.SetDefault("Starstave Drei");
+            // Tooltip.SetDefault("Fires a bouncing bolt that explodes into four");
             Item.staff[Item.type] = true;
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

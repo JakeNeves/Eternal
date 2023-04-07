@@ -9,8 +9,8 @@ namespace Eternal.Content.Buffs.Pets
     {
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Cosmic Reminant");
-			Description.SetDefault("A reminant is following you");
+			// DisplayName.SetDefault("Cosmic Reminant");
+			// Description.SetDefault("A reminant is following you");
 
 			Main.buffNoTimeDisplay[Type] = true;
 			Main.vanityPet[Type] = true;

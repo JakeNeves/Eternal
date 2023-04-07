@@ -29,7 +29,7 @@ namespace Eternal.Content.Projectiles.Boss
         private const float maxTicks = 80f;
         private const int alphaReducation = 25;
 
-        public override void OnHitPlayer(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
             target.AddBuff(BuffID.OnFire, 160);
         }

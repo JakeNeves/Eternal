@@ -10,7 +10,7 @@ namespace Eternal.Content.Projectiles.Boss
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Dune Golem's Spark");
+            // DisplayName.SetDefault("Dune Golem's Spark");
         }
 
         public override void SetDefaults()
