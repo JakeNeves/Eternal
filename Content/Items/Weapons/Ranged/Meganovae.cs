@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -27,7 +28,7 @@ namespace Eternal.Content.Items.Weapons.Ranged
             Item.useTime = 8;
             Item.useAnimation = 8;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.UseSound = SoundID.Item11;
+            Item.UseSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/MeganovaeFire");
             Item.autoReuse = true;
             Item.shootSpeed = 5f;
             Item.shoot = AmmoID.Bullet;

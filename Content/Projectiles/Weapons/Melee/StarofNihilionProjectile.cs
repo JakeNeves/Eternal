@@ -1,5 +1,4 @@
 ﻿using Eternal.Common.GlobalProjectiles;
-using Eternal.Common.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -31,7 +30,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
             Projectile.timeLeft = 600;
             Projectile.tileCollide = false;
             Projectile.aiStyle = ProjAIStyleID.Flail;
-            AIType = ProjectileID.BlueMoon;
+            // AIType = ProjectileID.BlueMoon;
         }
 
         public override void AI()

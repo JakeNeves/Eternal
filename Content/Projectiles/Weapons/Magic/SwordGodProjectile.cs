@@ -48,7 +48,7 @@ namespace Eternal.Content.Projectiles.Weapons.Magic
             for (int i = 0; i < 50; i++)
             {
                 Vector2 position = Projectile.Center + Vector2.UnitX.RotatedBy(MathHelper.ToRadians(360f / 50 * i)) * 30;
-                Dust dust = Dust.NewDustPerfect(Projectile.position, DustID.JungleTorch);
+                Dust dust = Dust.NewDustPerfect(Projectile.Center, DustID.JungleTorch);
                 dust.noGravity = true;
                 dust.velocity = Vector2.Normalize(position - Projectile.Center) * 4;
                 dust.noLight = false;
@@ -58,7 +58,7 @@ namespace Eternal.Content.Projectiles.Weapons.Magic
             for (int i = 0; i < 25; i++)
             {
                 Vector2 position = Projectile.Center + Vector2.UnitX.RotatedBy(MathHelper.ToRadians(360f / 25 * i)) * 15;
-                Dust dust = Dust.NewDustPerfect(Projectile.position, DustID.GreenTorch);
+                Dust dust = Dust.NewDustPerfect(Projectile.Center, DustID.GreenTorch);
                 dust.noGravity = true;
                 dust.velocity = Vector2.Normalize(position - Projectile.Center) * 2;
                 dust.noLight = false;
@@ -73,7 +73,7 @@ namespace Eternal.Content.Projectiles.Weapons.Magic
                 for (int i = 0; i < 50; i++)
                 {
                     Vector2 position = Projectile.Center + Vector2.UnitX.RotatedBy(MathHelper.ToRadians(360f / 50 * i)) * 30;
-                    Dust dust = Dust.NewDustPerfect(Projectile.position, DustID.JungleTorch);
+                    Dust dust = Dust.NewDustPerfect(Projectile.Center, DustID.JungleTorch);
                     dust.noGravity = true;
                     dust.velocity = Vector2.Normalize(position - Projectile.Center) * 4;
                     dust.noLight = false;
@@ -83,7 +83,7 @@ namespace Eternal.Content.Projectiles.Weapons.Magic
                 for (int i = 0; i < 25; i++)
                 {
                     Vector2 position = Projectile.Center + Vector2.UnitX.RotatedBy(MathHelper.ToRadians(360f / 25 * i)) * 15;
-                    Dust dust = Dust.NewDustPerfect(Projectile.position, DustID.GreenTorch);
+                    Dust dust = Dust.NewDustPerfect(Projectile.Center, DustID.GreenTorch);
                     dust.noGravity = true;
                     dust.velocity = Vector2.Normalize(position - Projectile.Center) * 2;
                     dust.noLight = false;

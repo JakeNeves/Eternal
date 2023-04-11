@@ -53,7 +53,7 @@ namespace Eternal.Content.NPCs.Miniboss
                 for (int i = 0; i < 25; i++)
                 {
                     Vector2 position = NPC.Center + Vector2.UnitX.RotatedBy(MathHelper.ToRadians(360f / 25 * i)) * 15;
-                    Dust dust = Dust.NewDustPerfect(NPC.position, DustID.JungleTorch);
+                    Dust dust = Dust.NewDustPerfect(NPC.Center, DustID.JungleTorch);
                     dust.noGravity = true;
                     dust.velocity = Vector2.Normalize(position - NPC.Center) * 4;
                     dust.noLight = false;

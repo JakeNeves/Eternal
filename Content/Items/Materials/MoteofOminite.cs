@@ -16,7 +16,7 @@ namespace Eternal.Content.Items.Materials
             Item.width = 18;
             Item.height = 26;
             Item.rare = ModContent.RarityType<Teal>();
-            Item.maxStack = 999;
+            Item.maxStack = 9999;
         }
     }
 }

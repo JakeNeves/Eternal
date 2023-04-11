@@ -24,7 +24,7 @@ namespace Eternal.Content.Items.Ammo
             Item.DamageType = DamageClass.Ranged;
             Item.width = 18;
             Item.height = 18;
-            Item.maxStack = 999;
+            Item.maxStack = 9999;
             Item.consumable = true;
             Item.knockBack = 2f;
             Item.rare = ModContent.RarityType<Turquoise>();

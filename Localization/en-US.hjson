@@ -1776,6 +1776,16 @@ Mods: {
 				DisplayName: Naquadah Helmet
 				Tooltip: ""
 			}
+
+			AdamantriteBar: {
+				DisplayName: Adamantrite Bar
+				Tooltip: ""
+			}
+
+			TritaniumBar: {
+				DisplayName: Tritanium Bar
+				Tooltip: ""
+			}
 		}
 
 		Buffs: {

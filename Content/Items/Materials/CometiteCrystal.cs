@@ -24,7 +24,7 @@ namespace Eternal.Content.Items.Materials
             Item.height = 22;
             Item.value = Item.sellPrice(gold: 5);
             Item.rare = ModContent.RarityType<Teal>();
-            Item.maxStack = 999;
+            Item.maxStack = 9999;
         }
 
         public override void AddRecipes()

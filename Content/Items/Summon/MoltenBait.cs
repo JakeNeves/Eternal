@@ -21,7 +21,7 @@ namespace Eternal.Content.Items.Summon
         {
             Item.width = 20;
             Item.height = 10;
-            Item.maxStack = 999;
+            Item.maxStack = 9999;
             Item.rare = ItemRarityID.Pink;
             Item.useAnimation = 45;
             Item.useTime = 45;

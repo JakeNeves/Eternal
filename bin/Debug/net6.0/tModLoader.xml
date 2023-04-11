@@ -2465,6 +2465,7 @@
             If <c>&gt; 0</c> for a given item type (<see cref="F:Terraria.Item.type"/>), then that item will transform into the retrieved item type when dropped into shimmer (<see cref="F:Terraria.Entity.shimmerWet"/>).
             <br/> If <c>&lt;= 0</c> for a given item type, then that item will attempt to decraft itself.
             <br/> Defaults to <c>-1</c>.
+            <br/> This takes precedence over both critter items (<c><see cref="F:Terraria.Item.makeNPC"/> &gt; 0</c>) transforming into NPCs and items decrafting into the ingredients used to craft the item.
             </summary>
         </member>
         <member name="F:Terraria.ID.ItemID.Sets.ShimmerCountsAsItem">
@@ -4203,6 +4204,7 @@
             Associates an NPC type (<see cref="F:Terraria.NPC.type"/>) with the NPC type it will turn into when submerged in shimmer.
             <br/> A value of<c>-1</c> means the given NPC won't transform.
             <br/> Defaults to <c>-1</c>.
+            <br/> Also applies to transforming critter items (<c><see cref="F:Terraria.Item.makeNPC"/> &gt; 0</c>) into NPC.
             </summary>
         </member>
         <member name="F:Terraria.ID.NPCID.Sets.AttackTime">
@@ -6932,6 +6934,23 @@
             Clears the overriden value of <see cref="P:Terraria.Item.Name"/>.
             </summary>
         </member>
+        <member name="M:Terraria.Item.GetGlobalItem``1">
+            <summary> Gets the instance of the specified GlobalItem type. This will throw exceptions on failure. </summary>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException"/>
+            <exception cref="T:System.IndexOutOfRangeException"/>
+        </member>
+        <member name="M:Terraria.Item.GetGlobalItem``1(``0)">
+            <summary> Gets the local instance of the type of the specified GlobalItem instance. This will throw exceptions on failure. </summary>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException"/>
+            <exception cref="T:System.NullReferenceException"/>
+        </member>
+        <member name="M:Terraria.Item.TryGetGlobalItem``1(``0@)">
+            <summary> Gets the instance of the specified GlobalItem type. </summary>
+        </member>
+        <member name="M:Terraria.Item.TryGetGlobalItem``1(``0,``0@)">
+            <summary> Safely attempts to get the local instance of the type of the specified GlobalItem instance. </summary>
+            <returns> Whether or not the requested instance has been found. </returns>
+        </member>
         <member name="P:Terraria.Item.NetStateVersion">
             <summary>
             An additional identifier 
@@ -7006,23 +7025,6 @@
             <summary>
             The number of defense points that this item can ignore on its own. Cannot be set to negative values. Defaults to 0.
             </summary>
-        </member>
-        <member name="M:Terraria.Item.GetGlobalItem``1">
-            <summary> Gets the instance of the specified GlobalItem type. This will throw exceptions on failure. </summary>
-            <exception cref="T:System.Collections.Generic.KeyNotFoundException"/>
-            <exception cref="T:System.IndexOutOfRangeException"/>
-        </member>
-        <member name="M:Terraria.Item.GetGlobalItem``1(``0)">
-            <summary> Gets the local instance of the type of the specified GlobalItem instance. This will throw exceptions on failure. </summary>
-            <exception cref="T:System.Collections.Generic.KeyNotFoundException"/>
-            <exception cref="T:System.NullReferenceException"/>
-        </member>
-        <member name="M:Terraria.Item.TryGetGlobalItem``1(``0@)">
-            <summary> Gets the instance of the specified GlobalItem type. </summary>
-        </member>
-        <member name="M:Terraria.Item.TryGetGlobalItem``1(``0,``0@)">
-            <summary> Safely attempts to get the local instance of the type of the specified GlobalItem instance. </summary>
-            <returns> Whether or not the requested instance has been found. </returns>
         </member>
         <member name="M:Terraria.Item.CountsAsClass``1">
             <inheritdoc cref="M:Terraria.Item.CountsAsClass(Terraria.ModLoader.DamageClass)"/>
@@ -9260,11 +9262,6 @@
             This class allows you to modify and use hooks for all items, including vanilla items. Create an instance of an overriding class then call Mod.AddGlobalItem to use this.
             </summary>
         </member>
-        <member name="M:Terraria.ModLoader.GlobalItem.SetDefaults(Terraria.Item)">
-            <summary>
-            Allows you to set the properties of any and every item that gets created.
-            </summary>
-        </member>
         <member name="M:Terraria.ModLoader.GlobalItem.OnSpawn(Terraria.Item,Terraria.DataStructures.IEntitySource)">
             <summary>
             Gets called when any item spawns in world
@@ -10105,6 +10102,21 @@
         </member>
         <member name="M:Terraria.ModLoader.GlobalItem.NetReceive(Terraria.Item,System.IO.BinaryReader)">
             <inheritdoc cref="M:Terraria.ModLoader.ModItem.NetReceive(System.IO.BinaryReader)"/>
+        </member>
+        <member name="P:Terraria.ModLoader.GlobalList`1.Globals">
+            <summary>
+            All registered globals. Empty until all globals have loaded
+            </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.GlobalList`1.FinishLoading(System.Int32)">
+            <summary>
+            Call during <see cref="M:Terraria.ModLoader.ILoader.ResizeArrays"/>. Which runs after all <see cref="M:Terraria.ModLoader.ILoadable.Load(Terraria.ModLoader.Mod)"/> calls, but before any <see cref="M:Terraria.ModLoader.ModType.SetupContent"/> calls
+            </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.GlobalList`1.Reset">
+            <summary>
+            Call during unloading, to clear the globals list
+            </summary>
         </member>
         <member name="T:Terraria.ModLoader.GlobalLoot">
             <summary> This readonly struct is a simple shortcut for modifying global drop rules in an <see cref="T:Terraria.GameContent.ItemDropRules.ItemDropDatabase"/>. </summary>
@@ -11323,11 +11335,34 @@
             <returns></returns>
         </member>
         <!-- Badly formed XML comment ignored for member "M:Terraria.ModLoader.GlobalTile.PostSetupTileMerge" -->
-        <member name="P:Terraria.ModLoader.GlobalType.InstancePerEntity">
+        <member name="P:Terraria.ModLoader.GlobalType`1.StaticIndex">
+            <summary>
+            Index of this global in the list of all globals of the same type, in registration order
+            </summary>
+        </member>
+        <member name="P:Terraria.ModLoader.GlobalType`1.PerEntityIndex">
+            <summary>
+            Index of this global in a <see cref="P:Terraria.ModLoader.IEntityWithGlobals`1.EntityGlobals"/> array <br/>
+            -1 if this global does not have a <see cref="P:Terraria.ModLoader.GlobalType`1.SlotPerEntity"/>
+            </summary>
+        </member>
+        <member name="P:Terraria.ModLoader.GlobalType`1.SlotPerEntity">
+            <summary>
+            Whether this global has <see cref="P:Terraria.ModLoader.GlobalType`1.InstancePerEntity"/> or can be conditionally applied (overrides <see cref="M:Terraria.ModLoader.GlobalType`2.AppliesToEntity(`0,System.Boolean)"/>) <br/>
+            If true, the global will be assigned a <see cref="P:Terraria.ModLoader.GlobalType`1.PerEntityIndex"/> at load time, which can be used to access the instance in the <see cref="P:Terraria.ModLoader.IEntityWithGlobals`1.EntityGlobals"/> array. <br/>
+            If false, the global will be a singleton applying to all entities
+            </summary>
+        </member>
+        <member name="P:Terraria.ModLoader.GlobalType`1.InstancePerEntity">
             <summary>
             Whether to create a new instance of this Global for every entity that exists.
             Useful for storing information on an entity. Defaults to false.
             Return true if you need to store information (have non-static fields).
+            </summary>
+        </member>
+        <member name="P:Terraria.ModLoader.GlobalType`1.ConditionallyAppliesToEntities">
+            <summary>
+            Whether this global applies to some entities but not others
             </summary>
         </member>
         <member name="P:Terraria.ModLoader.GlobalType`2.IsCloneable">
@@ -11342,9 +11377,15 @@
             Defaults to false (default constructor).
             </summary>
         </member>
+        <member name="P:Terraria.ModLoader.GlobalType`2.ConditionallyAppliesToEntities">
+            <summary>
+            Whether this global applies to some entities but not others. <br/>
+            True if the type overrides <see cref="M:Terraria.ModLoader.GlobalType`2.AppliesToEntity(`0,System.Boolean)"/>
+            </summary>
+        </member>
         <member name="M:Terraria.ModLoader.GlobalType`2.AppliesToEntity(`0,System.Boolean)">
             <summary>
-            Use this to control whether or not this global should be associated with the provided entity instance.
+            Use this to control whether or not this global should be run on the provided entity instance. <br/>
             </summary>
             <param name="entity"> The entity for which the global instantion is being checked. </param>
             <param name="lateInstantiation">
@@ -11352,6 +11393,11 @@
             <br/> If you're relying on entity values that can be changed by that call, you should likely prefix your return value with the following:
             <code> lateInstantiation &amp;&amp; ... </code>
             </param>
+        </member>
+        <member name="M:Terraria.ModLoader.GlobalType`2.SetDefaults(`0)">
+            <summary>
+            Allows you to set the properties of any and every instance that gets created.
+            </summary>
         </member>
         <member name="M:Terraria.ModLoader.GlobalType`2.Clone(`0,`0)">
             <summary>
@@ -11363,7 +11409,7 @@
         </member>
         <member name="M:Terraria.ModLoader.GlobalType`2.NewInstance(`0)">
             <summary>
-            Only called if <see cref="P:Terraria.ModLoader.GlobalType.InstancePerEntity"/> and <see cref="M:Terraria.ModLoader.GlobalType`2.AppliesToEntity(`0,System.Boolean)"/>(<paramref name="target"/>, ...) are both true
+            Only called if <see cref="P:Terraria.ModLoader.GlobalType`1.InstancePerEntity"/> and <see cref="M:Terraria.ModLoader.GlobalType`2.AppliesToEntity(`0,System.Boolean)"/>(<paramref name="target"/>, ...) are both true
             </summary>
             <param name="target">The entity instance the global is being instantiated for</param>
             <returns></returns>
@@ -11461,9 +11507,6 @@
             <br/>Set <paramref name="displayColor"/> to <see cref="P:Terraria.ModLoader.InfoDisplay.InactiveInfoTextColor"/> if your display value is "zero"/shows no valuable information.
             </summary>
             <param name="displayColor">The color the text is displayed as.</param>
-        </member>
-        <member name="T:Terraria.ModLoader.Instanced`1">
-            <summary> The purpose of this struct is to micro-optimize lookups of GlobalX indices by providing these associations without additional retrievals from the heap. </summary>
         </member>
         <member name="M:Terraria.ModLoader.BackupIO.RunArchiving(System.Action{Ionic.Zip.ZipFile,System.Boolean,System.String},System.Boolean,System.String,System.String,System.String)">
             <summary>
@@ -17767,6 +17810,20 @@
             Allows you to determine the color multiplier acting on waterfalls of this style. Useful for waterfalls whose colors change over time.
             </summary>
         </member>
+        <member name="M:Terraria.ModLoader.MonoModHooks.Add(System.Reflection.MethodBase,System.Delegate)">
+            <summary>
+            Adds a hook (implemented by <paramref name="hookDelegate"/>) to <paramref name="method"/>.
+            </summary>
+            <param name="method">The method to hook.</param>
+            <param name="hookDelegate">The hook delegate to use.</param>
+        </member>
+        <member name="M:Terraria.ModLoader.MonoModHooks.Modify(System.Reflection.MethodBase,MonoMod.Cil.ILContext.Manipulator)">
+            <summary>
+            Adds an IL hook (implemented by <paramref name="callback"/>) to <paramref name="method"/>.
+            </summary>
+            <param name="method">The method to hook.</param>
+            <param name="callback">The hook delegate to use.</param>
+        </member>
         <member name="M:Terraria.ModLoader.MonoModHooks.DumpILHooks">
             <summary>
             Dumps the list of currently registered IL hooks to the console. Useful for checking if a hook has been correctly added.
@@ -19128,6 +19185,23 @@
             </summary>
             <param name="buffIndex">The index of the buff to remove.</param>
         </member>
+        <member name="M:Terraria.NPC.GetGlobalNPC``1">
+            <summary> Gets the instance of the specified GlobalNPC type. This will throw exceptions on failure. </summary>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException"/>
+            <exception cref="T:System.IndexOutOfRangeException"/>
+        </member>
+        <member name="M:Terraria.NPC.GetGlobalNPC``1(``0)">
+            <summary> Gets the local instance of the type of the specified GlobalNPC instance. This will throw exceptions on failure. </summary>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException"/>
+            <exception cref="T:System.NullReferenceException"/>
+        </member>
+        <member name="M:Terraria.NPC.TryGetGlobalNPC``1(``0@)">
+            <summary> Gets the instance of the specified GlobalNPC type. </summary>
+        </member>
+        <member name="M:Terraria.NPC.TryGetGlobalNPC``1(``0,``0@)">
+            <summary> Safely attempts to get the local instance of the type of the specified GlobalNPC instance. </summary>
+            <returns> Whether or not the requested instance has been found. </returns>
+        </member>
         <member name="P:Terraria.NPC.Happiness">
             <summary> Provides access to (static) happiness data associated with this NPC's type. </summary>
         </member>
@@ -19156,23 +19230,6 @@
         </member>
         <member name="M:Terraria.NPC.HasBuff``1">
             <inheritdoc cref="M:Terraria.NPC.HasBuff(System.Int32)" />
-        </member>
-        <member name="M:Terraria.NPC.GetGlobalNPC``1">
-            <summary> Gets the instance of the specified GlobalNPC type. This will throw exceptions on failure. </summary>
-            <exception cref="T:System.Collections.Generic.KeyNotFoundException"/>
-            <exception cref="T:System.IndexOutOfRangeException"/>
-        </member>
-        <member name="M:Terraria.NPC.GetGlobalNPC``1(``0)">
-            <summary> Gets the local instance of the type of the specified GlobalNPC instance. This will throw exceptions on failure. </summary>
-            <exception cref="T:System.Collections.Generic.KeyNotFoundException"/>
-            <exception cref="T:System.NullReferenceException"/>
-        </member>
-        <member name="M:Terraria.NPC.TryGetGlobalNPC``1(``0@,System.Boolean)">
-            <summary> Gets the instance of the specified GlobalNPC type. </summary>
-        </member>
-        <member name="M:Terraria.NPC.TryGetGlobalNPC``1(``0,``0@)">
-            <summary> Safely attempts to get the local instance of the type of the specified GlobalNPC instance. </summary>
-            <returns> Whether or not the requested instance has been found. </returns>
         </member>
         <member name="M:Terraria.NPC.NewNPCDirect(Terraria.DataStructures.IEntitySource,System.Int32,System.Int32,System.Int32,System.Int32,System.Single,System.Single,System.Single,System.Single,System.Int32)">
             <summary>
@@ -20910,6 +20967,23 @@
             The ModProjectile instance that controls the behavior of this projectile. This property is null if this is not a modded projectile.
             </summary>
         </member>
+        <member name="M:Terraria.Projectile.GetGlobalProjectile``1">
+            <summary> Gets the instance of the specified GlobalProjectile type. This will throw exceptions on failure. </summary>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException"/>
+            <exception cref="T:System.IndexOutOfRangeException"/>
+        </member>
+        <member name="M:Terraria.Projectile.GetGlobalProjectile``1(``0)">
+            <summary> Gets the local instance of the type of the specified GlobalProjectile instance. This will throw exceptions on failure. </summary>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException"/>
+            <exception cref="T:System.NullReferenceException"/>
+        </member>
+        <member name="M:Terraria.Projectile.TryGetGlobalProjectile``1(``0@)">
+            <summary> Gets the instance of the specified GlobalProjectile type. </summary>
+        </member>
+        <member name="M:Terraria.Projectile.TryGetGlobalProjectile``1(``0,``0@)">
+            <summary> Safely attempts to get the local instance of the type of the specified GlobalProjectile instance. </summary>
+            <returns> Whether or not the requested instance has been found. </returns>
+        </member>
         <member name="M:Terraria.Projectile.NewProjectileDirect(Terraria.DataStructures.IEntitySource,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,System.Single,System.Int32,System.Single,System.Single,System.Single)">
             <summary>
             <inheritdoc cref="M:Terraria.Projectile.NewProjectile(Terraria.DataStructures.IEntitySource,System.Single,System.Single,System.Single,System.Single,System.Int32,System.Int32,System.Single,System.Int32,System.Single,System.Single,System.Single)"/>
@@ -20948,23 +21022,6 @@
             Will drop loot the same way as when <see cref="F:Terraria.ID.ProjectileID.Geode"/> is cracked open.
             </summary>
             <param name="entity">The entity the loot originates from</param>
-        </member>
-        <member name="M:Terraria.Projectile.GetGlobalProjectile``1">
-            <summary> Gets the instance of the specified GlobalProjectile type. This will throw exceptions on failure. </summary>
-            <exception cref="T:System.Collections.Generic.KeyNotFoundException"/>
-            <exception cref="T:System.IndexOutOfRangeException"/>
-        </member>
-        <member name="M:Terraria.Projectile.GetGlobalProjectile``1(``0)">
-            <summary> Gets the local instance of the type of the specified GlobalProjectile instance. This will throw exceptions on failure. </summary>
-            <exception cref="T:System.Collections.Generic.KeyNotFoundException"/>
-            <exception cref="T:System.NullReferenceException"/>
-        </member>
-        <member name="M:Terraria.Projectile.TryGetGlobalProjectile``1(``0@)">
-            <summary> Gets the instance of the specified GlobalProjectile type. </summary>
-        </member>
-        <member name="M:Terraria.Projectile.TryGetGlobalProjectile``1(``0,``0@)">
-            <summary> Safely attempts to get the local instance of the type of the specified GlobalProjectile instance. </summary>
-            <returns> Whether or not the requested instance has been found. </returns>
         </member>
         <member name="M:Terraria.Projectile.CountsAsClass``1">
             <inheritdoc cref="M:Terraria.Projectile.CountsAsClass(Terraria.ModLoader.DamageClass)"/>

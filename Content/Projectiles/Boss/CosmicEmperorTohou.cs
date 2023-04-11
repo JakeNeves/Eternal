@@ -52,7 +52,7 @@ namespace Eternal.Content.Projectiles.Boss
                 for (int i = 0; i < 25; i++)
                 {
                     Vector2 position = Projectile.Center + Vector2.UnitX.RotatedBy(MathHelper.ToRadians(360f / 25 * i)) * 30;
-                    Dust dust = Dust.NewDustPerfect(Projectile.position, DustID.Shadowflame);
+                    Dust dust = Dust.NewDustPerfect(Projectile.Center, DustID.Shadowflame);
                     dust.noGravity = true;
                     dust.velocity = Vector2.Normalize(position - Projectile.Center) * 4;
                     dust.noLight = false;
@@ -62,7 +62,7 @@ namespace Eternal.Content.Projectiles.Boss
                 for (int i = 0; i < 25; i++)
                 {
                     Vector2 position = Projectile.Center + Vector2.UnitX.RotatedBy(MathHelper.ToRadians(360f / 25 * i)) * 15;
-                    Dust dust = Dust.NewDustPerfect(Projectile.position, DustID.DemonTorch);
+                    Dust dust = Dust.NewDustPerfect(Projectile.Center, DustID.DemonTorch);
                     dust.noGravity = true;
                     dust.velocity = Vector2.Normalize(position - Projectile.Center) * 2;
                     dust.noLight = false;

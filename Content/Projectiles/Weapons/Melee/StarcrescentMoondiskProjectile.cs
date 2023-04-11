@@ -1,10 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.PlayerDrawLayer;
 
 namespace Eternal.Content.Projectiles.Weapons.Melee
 {
@@ -33,11 +33,18 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
         public override void AI()
         {
             Projectile.rotation += Projectile.velocity.X * 0.1f;
+
+            for (int k = 0; k < 5; k++)
+            {
+                Dust dust = Dust.NewDustPerfect(Projectile.Center, DustID.BlueFlare);
+                dust.noGravity = true;
+                dust.velocity = new Vector2(Main.rand.NextFloat(0.5f, 1f), Main.rand.NextFloat(0.5f, 1f));
+            }
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            for (int k = 0; k < 5; k++)
+            for (int k = 0; k < 10; k++)
             {
                 Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, DustID.Electric, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);
             }

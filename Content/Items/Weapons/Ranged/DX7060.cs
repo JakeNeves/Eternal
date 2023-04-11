@@ -1,7 +1,7 @@
-﻿using Eternal.Content.Projectiles.Weapons.Ranged;
-using Eternal.Content.Rarities;
+﻿using Eternal.Content.Rarities;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -27,10 +27,10 @@ namespace Eternal.Content.Items.Weapons.Ranged
             Item.knockBack = 4f;
             Item.noMelee = true;
             Item.DamageType = DamageClass.Ranged;
-            Item.useTime = 2;
-            Item.useAnimation = 2;
+            Item.useTime = 5;
+            Item.useAnimation = 5;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.UseSound = SoundID.Item11;
+            Item.UseSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/DX7060Fire");
             Item.autoReuse = true;
             Item.shootSpeed = 24f;
             Item.shoot = AmmoID.Bullet;

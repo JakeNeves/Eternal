@@ -31,6 +31,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
         bool phase2Init = false;
         bool isDead = false;
         bool dontKillyet = false;
+        bool doAttacks = true;
 
         public override LocalizedText DisplayName => base.DisplayName.WithFormatArgs("Cosmic Emperor");
 
@@ -440,7 +441,9 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
             }
             #endregion
 
-            timer++;
+            if (doAttacks)
+                timer++;
+
             if ((timer == 200 || timer == 400 && NPC.life >= (NPC.lifeMax / 2)))
             {
                 for (int i = 0; i < 3; i++)
@@ -465,6 +468,8 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
                 NPC.noTileCollide = false;
                 midFightDialogue = false;
                 NPC.dontTakeDamage = true;
+                doAttacks = false;
+                dialogueTimer = 0;
                 timer = 0;
 
                 NPC.velocity.Y += 0.05f;

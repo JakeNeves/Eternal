@@ -45,7 +45,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
                 for (int i = 0; i < 50; i++)
                 {
                     Vector2 position = Projectile.Center + Vector2.UnitX.RotatedBy(MathHelper.ToRadians(360f / 50 * i)) * 60;
-                    Dust dust = Dust.NewDustPerfect(Projectile.position, DustID.DemonTorch);
+                    Dust dust = Dust.NewDustPerfect(Projectile.Center, DustID.DemonTorch);
                     dust.noGravity = true;
                     dust.velocity = Vector2.Normalize(position - Projectile.Center) * 8;
                     dust.noLight = false;

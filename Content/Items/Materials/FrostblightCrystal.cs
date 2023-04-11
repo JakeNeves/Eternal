@@ -24,7 +24,7 @@ namespace Eternal.Content.Items.Materials
             Item.height = 34;
             Item.value = Item.buyPrice(platinum: 1);
             Item.rare = ModContent.RarityType<Teal>();
-            Item.maxStack = 999;
+            Item.maxStack = 9999;
         }
     }
 }

@@ -78,7 +78,7 @@ namespace Eternal.Content.Projectiles.Weapons.Radiant
             for (int i = 0; i < 50; i++)
             {
                 Vector2 position = Projectile.Center + Vector2.UnitX.RotatedBy(MathHelper.ToRadians(360f / 25 * i)) * 30;
-                Dust dust = Dust.NewDustPerfect(Projectile.position, DustID.PinkTorch);
+                Dust dust = Dust.NewDustPerfect(Projectile.Center, DustID.PinkTorch);
                 dust.noGravity = true;
                 dust.velocity = Vector2.Normalize(position - Projectile.Center) * 4;
                 dust.noLight = false;

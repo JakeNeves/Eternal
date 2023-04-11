@@ -19,7 +19,7 @@ namespace Eternal.Content.Items.Materials
             Item.height = 10;
             Item.rare = ItemRarityID.Blue;
             Item.value = Item.sellPrice(copper: 6);
-            Item.maxStack = 999;
+            Item.maxStack = 9999;
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Eternal.Content.Items.Materials
             Item.height = 22;
             Item.rare = ItemRarityID.Green;
             Item.value = Item.sellPrice(silver: 1);
-            Item.maxStack = 999;
+            Item.maxStack = 9999;
         }
 
     }
