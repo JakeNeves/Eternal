@@ -6386,6 +6386,7 @@
             The numerical ID of the special currency this item is bought using.<br/>
             To make an item bought using Defender Medals, set this to <see cref="F:Terraria.ID.CustomCurrencyID.DefenderMedals"/>.<br/>
             See <see href="https://github.com/tModLoader/tModLoader/search?q=ExampleCustomCurrencyId">ExampleCustomCurrencyId</see> for an example of creating and using a custom currency.<br/>
+            Must be used with <see cref="F:Terraria.Item.shopCustomPrice"/> assigning the price in terms of this custom currency.<br/>
             Defaults to -1, which means an item is bought using coins.<br/>
             </summary>
         </member>
@@ -6393,6 +6394,7 @@
             <summary>
             If not <see langword="null"/>, the custom value of the given item when being bought from a shop.<br/>
             Used for assigning a non-default price to an item in shops.<br/>
+            Can be used with <see cref="F:Terraria.Item.shopSpecialCurrency"/> to assign a price in terms of a custom currency instead of coins.<br/>
             To get the raw price of an item, use <see cref="M:Terraria.Item.GetStoreValue"/>.<br/>
             To get the price of an item after discounts, use <see cref="M:Terraria.Player.GetItemExpectedPrice(Terraria.Item,System.Int64@,System.Int64@)"/>.<br/>
             Defaults to <see langword="null"/>.<br/>
@@ -10126,11 +10128,6 @@
             This class allows you to modify and use hooks for all NPCs, including vanilla mobs. Create an instance of an overriding class then call Mod.AddGlobalNPC to use this.
             </summary>
         </member>
-        <member name="M:Terraria.ModLoader.GlobalNPC.SetDefaults(Terraria.NPC)">
-            <summary>
-            Allows you to set the properties of any and every NPC that gets created.
-            </summary>
-        </member>
         <member name="M:Terraria.ModLoader.GlobalNPC.OnSpawn(Terraria.NPC,Terraria.DataStructures.IEntitySource)">
             <summary>
             Gets called when any NPC spawns in world
@@ -10732,12 +10729,6 @@
             <summary>
             This class allows you to modify and use hooks for all projectiles, including vanilla projectiles. Create an instance of an overriding class then call Mod.AddGlobalProjectile to use this.
             </summary>
-        </member>
-        <member name="M:Terraria.ModLoader.GlobalProjectile.SetDefaults(Terraria.Projectile)">
-            <summary>
-            Allows you to set the properties of any and every projectile that gets created.
-            </summary>
-            <param name="projectile"></param>
         </member>
         <member name="M:Terraria.ModLoader.GlobalProjectile.OnSpawn(Terraria.Projectile,Terraria.DataStructures.IEntitySource)">
             <summary>
@@ -19368,6 +19359,12 @@
             Use of <see cref="F:Terraria.ModLoader.StatModifier.Base"/> also not recommended. <br/>
             </summary>
         </member>
+        <member name="F:Terraria.NPC.HitModifiers.NonCritDamage">
+            <summary>
+            Applied to damage after defense and before <see cref="F:Terraria.NPC.HitModifiers.FinalDamage"/> when the hit is _not_ a crit. <br/>
+            Effectively a compliment for <see cref="F:Terraria.NPC.HitModifiers.CritDamage"/>
+            </summary>
+        </member>
         <member name="F:Terraria.NPC.HitModifiers.FinalDamage">
             <summary>
             Applied to the final damage result. <br/>
@@ -19756,6 +19753,14 @@
             If not <see langword="null"/>, this player will create damaging bee projectiles when taking damage.
             </summary>
         </member>
+        <member name="F:Terraria.Player.ownedProjectileCounts">
+            <summary>
+            Provides efficient access to the number of projectiles of the specified type owned by this player currently active in the game world.<br/>
+            Can be used to prevent spawning additional projectiles when a limit is reached.<br/>
+            Updated each game update right before Player.UpdateBuffs.<br/>
+            For example, <c>return player.ownedProjectileCounts[Item.shoot] &lt; 1;</c> in <see cref="M:Terraria.ModLoader.ModItem.CanUseItem(Terraria.Player)"/> could prevent a player using the item if the projectile the item spawns is already in the game world for the player.
+            </summary>
+        </member>
         <member name="P:Terraria.Player.MountedCenter">
             <summary>
             Returns the player's center adjusted for mount and step stool usage. Typically used in conjuction with <see cref="M:Terraria.Player.RotatedRelativePoint(Microsoft.Xna.Framework.Vector2,System.Boolean,System.Boolean)"/> to retrieve a suitable position for positioning items and effects originating from the player.
@@ -19871,6 +19876,16 @@
             <param name="reverseOrder">If true, the search for the item will start at the end of the player inventory</param>
             <param name="includeVoidBag">If true, the void bag, if open, will also be considered for finding an item to consume</param>
             <returns>True if the item was found and attempted to be consumed</returns>
+        </member>
+        <member name="M:Terraria.Player.BuffHandle_SpawnPetIfNeededAndSetTime(System.Int32,System.Boolean@,System.Int32,System.Int32)">
+            <summary>
+            A helper method that handles code common to pet buffs. Can be used during the buff update code.<br/>
+            Sets the buff time to the value and spawns the corresponding pet projectile for the player if not yet spawned.<br/>
+            </summary>
+            <param name="buffIndex"></param>
+            <param name="petBool"></param>
+            <param name="petProjID"></param>
+            <param name="buffTimeToGive"></param>
         </member>
         <member name="M:Terraria.Player.ApplyDamageToNPC(Terraria.NPC,System.Int32,System.Single,System.Int32,System.Boolean,Terraria.ModLoader.DamageClass,System.Boolean)">
             <summary>

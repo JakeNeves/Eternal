@@ -194,11 +194,11 @@ namespace Eternal.Content.NPCs.Boss.AoI
 
         public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
         {
-            player.AddBuff(BuffID.Bleeding, 180, false);
-            player.AddBuff(BuffID.BrokenArmor, 180, false);
+            target.AddBuff(BuffID.Bleeding, 180, false);
+            target.AddBuff(BuffID.BrokenArmor, 180, false);
             if (DifficultySystem.hellMode && ModContent.GetInstance<ServerConfig>().BrutalHellMode)
             {
-                player.AddBuff(BuffID.Cursed, 180, false);
+                target.AddBuff(BuffID.Cursed, 180, false);
             }
         }
 

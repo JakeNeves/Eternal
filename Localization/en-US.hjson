@@ -1506,17 +1506,6 @@ Mods: {
 					'''
 			}
 
-			FinalBossBlade: {
-				DisplayName: Final Boss Blade
-				Tooltip:
-					'''
-					<right> to change attack modes
-					Mode 1 [c/35bce6:Starspear] - Fires a projectile that leaves a trail of piercing spike rings behind
-					Mode 2 [c/35bce6:Charging Buster] - Allows the player to ram into enemies
-					Mode 3 [c/35bce6:Holdable Control Sword] - Fires a sword controlled by the cursor
-					'''
-			}
-
 			GiantFireChakram: {
 				DisplayName: Giant Fire Chakram
 				Tooltip: ""
@@ -1779,12 +1768,12 @@ Mods: {
 
 			AdamantriteBar: {
 				DisplayName: Adamantrite Bar
-				Tooltip: ""
+				Tooltip: "'Not to be confused with Adamantite...'"
 			}
 
 			TritaniumBar: {
 				DisplayName: Tritanium Bar
-				Tooltip: ""
+				Tooltip: "'Not to be confused with Titanium...'"
 			}
 		}
 
