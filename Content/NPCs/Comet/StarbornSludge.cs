@@ -81,7 +81,7 @@ namespace Eternal.Content.NPCs.Comet
 
             if (DownedBossSystem.downedCosmicApparition && ModContent.GetInstance<ZoneSystem>().zoneComet)
             {
-                return baseChance * multiplier;
+                return SpawnCondition.Overworld.Chance * 1.5f;
             }
             else
             {

@@ -72,7 +72,7 @@ namespace Eternal.Content.Items.Armor
                 .AddIngredient(ModContent.ItemType<NaquadahBar>(), 5)
                 .AddIngredient(ModContent.ItemType<StarbornHelmet>())
                 .AddIngredient(ModContent.ItemType<UltimusHelmet>())
-                .AddTile(ModContent.TileType<AncientForge>())
+                .AddTile(ModContent.TileType<RotaryHearthForge>())
                 .Register();
         }
     }

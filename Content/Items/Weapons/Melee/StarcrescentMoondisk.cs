@@ -43,7 +43,7 @@ namespace Eternal.Content.Items.Weapons.Melee
                 .AddIngredient(ModContent.ItemType<CosmoniumFragment>())
                 .AddIngredient(ModContent.ItemType<StargloomCometiteBar>(), 30)
                 .AddIngredient(ModContent.ItemType<EmpoweredApparitionalDisk>())
-                .AddTile(ModContent.TileType<Reconstructatorium>())
+                .AddTile(ModContent.TileType<Nanoforge>())
                 .Register();
         }
     }

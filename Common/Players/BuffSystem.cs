@@ -30,8 +30,6 @@ namespace Eternal.Common.Players
         {
             if (holyMantle)
             {
-                Player.endurance += 10f;
-
                 SoundEngine.PlaySound(SoundID.NPCDeath14, Player.position);
 
                 for (int i = 0; i < 25; i++)
@@ -45,6 +43,14 @@ namespace Eternal.Common.Players
                 }
 
                 Player.ClearBuff(ModContent.BuffType<HolyMantle>());
+            }
+        }
+
+        public override void PostUpdateBuffs()
+        {
+            if (holyMantle)
+            {
+                Player.endurance += 15f;
             }
         }
 

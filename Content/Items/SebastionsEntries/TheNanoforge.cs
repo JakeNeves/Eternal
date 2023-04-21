@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.SebastionsEntries
 {
-    public class TheReconstructatorium : ModItem
+    public class TheNanoforge : ModItem
     {
         public override string Texture => "Eternal/Content/Items/SebastionsEntries/EntryLog";
 

@@ -23,7 +23,7 @@ namespace Eternal.Content.Items.Materials
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<MoteofOminite>(), 36)
+                .AddIngredient(ModContent.ItemType<MoteofOminite>(), 2)
                 .AddTile(ModContent.TileType<AncientForge>())
                 .Register();
         }

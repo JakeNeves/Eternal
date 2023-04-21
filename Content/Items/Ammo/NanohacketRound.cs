@@ -36,7 +36,7 @@ namespace Eternal.Content.Items.Ammo
         public override void AddRecipes()
         {
             CreateRecipe(333)
-                .AddTile(ModContent.TileType<Reconstructatorium>())
+                .AddTile(ModContent.TileType<Nanoforge>())
                 .AddIngredient(ModContent.ItemType<ConcintratedHardStone>())
                 .Register();
         }

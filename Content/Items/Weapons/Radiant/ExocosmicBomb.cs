@@ -44,7 +44,7 @@ namespace Eternal.Content.Items.Weapons.Radiant
                 .AddIngredient(ModContent.ItemType<CosmoniumFragment>())
                 .AddIngredient(ModContent.ItemType<StargloomCometiteBar>(), 12)
                 .AddIngredient(ModContent.ItemType<CoreofEternal>(), 6)
-                .AddTile(ModContent.TileType<Reconstructatorium>())
+                .AddTile(ModContent.TileType<Nanoforge>())
                 .Register();
         }
     }

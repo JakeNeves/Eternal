@@ -69,7 +69,6 @@ namespace Eternal.Content.NPCs.Boss.AoI
 
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Ark of Imperious");
             NPCID.Sets.TrailCacheLength[NPC.type] = 12;
             NPCID.Sets.TrailingMode[NPC.type] = 0;
 
@@ -90,7 +89,10 @@ namespace Eternal.Content.NPCs.Boss.AoI
             };
             NPC.DeathSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCDeath/AoIDeath");
             NPC.boss = true;
-            Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/ImperiousStrike");
+            if (RiftSystem.isRiftOpen)
+                Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/SwordGodsBalladofTheRift");
+            else
+                Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/ImperiousStrike");
             NPC.defense = 80;
             NPC.damage = 40;
             NPC.lavaImmune = true;
@@ -541,6 +543,15 @@ namespace Eternal.Content.NPCs.Boss.AoI
 
             if (NPC.life < NPC.lifeMax / 2)
             {
+                if (RiftSystem.isRiftOpen)
+                {
+                    if (AttackTimer == 180 || AttackTimer == 200)
+                    {
+                        Projectile.NewProjectile(entitySource, player.position.X, player.position.Y, 16, 0, ModContent.ProjectileType<AoIGhost>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(entitySource, player.position.X, player.position.Y, -16, 0, ModContent.ProjectileType<AoIGhost>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+                    }
+                }
+
                 isDashing = false;
 
                 if ((AttackTimer == 120 || AttackTimer == 145 || AttackTimer == 160))
@@ -581,6 +592,17 @@ namespace Eternal.Content.NPCs.Boss.AoI
             }
             if (NPC.life < NPC.lifeMax / 3)
             {
+                if (RiftSystem.isRiftOpen)
+                {
+                    if (AttackTimer == 180 || AttackTimer == 200)
+                    {
+                        Projectile.NewProjectile(entitySource, player.position.X, player.position.Y - 800, 0, 16, ModContent.ProjectileType<AoIGhost>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(entitySource, player.position.X, player.position.Y + 800, 0, -16, ModContent.ProjectileType<AoIGhost>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(entitySource, player.position.X - 800, player.position.Y, 16, 0, ModContent.ProjectileType<AoIGhost>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(entitySource, player.position.X + 800, player.position.Y, -16, 0, ModContent.ProjectileType<AoIGhost>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+                    }
+                }
+
                 if (AttackTimer == 50 || AttackTimer == 65 || AttackTimer == 70 || AttackTimer == 85 || AttackTimer == 90 || AttackTimer == 105 || AttackTimer == 115 || AttackTimer == 130)
                 {
                     Vector2 direction = Main.player[NPC.target].Center - NPC.Center;
@@ -628,6 +650,15 @@ namespace Eternal.Content.NPCs.Boss.AoI
             }
             else
             {
+                if (RiftSystem.isRiftOpen)
+                {
+                    if (AttackTimer == 180 || AttackTimer == 200)
+                    {
+                        Projectile.NewProjectile(entitySource, player.position.X, player.position.Y - 800, 0, 16, ModContent.ProjectileType<AoIGhost>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(entitySource, player.position.X, player.position.Y + 800, 0, -16, ModContent.ProjectileType<AoIGhost>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+                    }
+                }
+
                 if ((AttackTimer == 100 || AttackTimer == 150 || AttackTimer == 175))
                 {
                     Projectile.NewProjectile(entitySource, NPC.position.X + 80, NPC.position.Y + 80, -12, 0, ModContent.ProjectileType<ArkArrowHostile>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);

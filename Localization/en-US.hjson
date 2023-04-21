@@ -1,10 +1,10 @@
-
 Mods: {
 	Eternal: {
 		BiomeName: {
 			Comet: Fallen Comet
 			Beneath: The Beneath
 			Shrine: The Shrine
+			Rift: The Rift
 		}
 
 		TownNPCMod: {
@@ -114,7 +114,7 @@ Mods: {
 				Tooltip:
 					'''
 					[c/2EA5BF:---Entry No. 2---]
-					After creating the Reconstructatorium, My team and I were sent out to find some
+					After creating the Nanoforge, My team and I were sent out to find some
 					valuable treasures, I stumbled upon a mysterious structure along with two of my
 					members, none of us had any clue on what this structure could be... Eventually, a
 					voice from above, said to us... "You are not to be within the area of our shrine,
@@ -130,18 +130,18 @@ Mods: {
 				DisplayName: The Shrine
 			}
 
-			TheReconstructatorium: {
+			TheNanoforge: {
 				Tooltip:
 					'''
 					[c/2EA5BF:---Entry No. 1---]
 					My first ever successful reconstructing matrix, it's really impressive that
 					such machine like this can be used to create almost everything in an instant.
-					I have yet, to see how I can go beyond the limits of the Reconstructatorium.
+					I have yet, to see how I can go beyond the limits of the Nanoforge.
 					By creating some of the most otherworldly technology with a machine like this,
 					I can almost do anything I want! However, only time will tell...
 					-Dr. Sebastion Kox
 					'''
-				DisplayName: The Reconstructatorium
+				DisplayName: The Nanoforge
 			}
 
 			ThePrecursorTemple: {
@@ -304,9 +304,13 @@ Mods: {
 				DisplayName: Starforge
 			}
 
-			Reconstructatorium: {
-				Tooltip: Used to craft divine-teir items
-				DisplayName: Reconstructatorium
+			Nanoforge: {
+				Tooltip:
+					'''
+					Used to craft divine-teir items
+					Can process Ominite and Naquadah
+					'''
+				DisplayName: Nanoforge
 			}
 
 			AncientForge: {
@@ -342,8 +346,7 @@ Mods: {
 					'''
 					Unleashes a rift that shifts the world into an alternate reality
 					[c/ED0249:Warning]: Very powerful creatures lie within the rift!
-					'Just wait until I turn this world upside down!
-					This item has features that are not yet implimented'
+					'Just wait until I turn this world upside down!'
 					'''
 				DisplayName: Star Spiral
 			}
@@ -1775,6 +1778,16 @@ Mods: {
 				DisplayName: Tritanium Bar
 				Tooltip: "'Not to be confused with Titanium...'"
 			}
+
+			RotaryHearthForge: {
+				DisplayName: Rotary Hearth Forge
+				Tooltip: Used to process Ominite and Naquadah
+			}
+
+			OminiteTippedNaquadahPickaxe: {
+				DisplayName: Ominite-Tipped Naquadah Pickaxe
+				Tooltip: "'Capable of mining some sort of powerful ore...'"
+			}
 		}
 
 		Buffs: {
@@ -1832,15 +1845,22 @@ Mods: {
 			CosmicToilet.MapEntry: Cosmic Toilet
 			ElectriteOre.MapEntry: Electrite
 			Starforge.MapEntry: Starforge
-			Reconstructatorium.MapEntry: Reconstructatorium
+			Nanoforge.MapEntry: Nanoforge
 			AncientForge.MapEntry: Ancient Forge
 			CometiteOre.MapEntry: Cometite
+			RotaryHerathForge.DisplayName: Rotary Hearth Forge
+			RotaryHearthForge.MapEntry: Rotary Hearth Forge
 		}
 
 		Biomes: {
 			Shrine.DisplayName: The Shrine
 			Comet.DisplayName: Fallen Comet
 			Beneath.DisplayName: The Beneath
+			Rift.DisplayName: Rift
+			SnowRift.DisplayName: Snow Rift
+			SpaceRift.DisplayName: Space Rift
+			UndergroundRift.DisplayName: Underground Rift
+			UnderworldRift.DisplayName: Underworld Rift
 		}
 
 		NPCs: {
@@ -1892,11 +1912,14 @@ Mods: {
 			AstroidSmasher.DisplayName: Astroid Smasher
 			InterstellarTumbler.DisplayName: Interstellar Tumbler
 			SearchRoller.DisplayName: Search Roller
-			StarbeltSeekerBody.DisplayName: Starbelt Seeker Body
-			StarbeltSeekerHead.DisplayName: Starbelt Seeker Head
-			StarbeltSeekerTail.DisplayName: Starbelt Seeker Tail
+			StarbeltSeekerBody.DisplayName: Starbelt Seeker
+			StarbeltSeekerHead.DisplayName: Starbelt Seeker
+			StarbeltSeekerTail.DisplayName: Starbelt Seeker
+			RiftSerpentBody.DisplayName: Rift Serpent
+			RiftSerpentHead.DisplayName: Rift Serpent
+			RiftSerpentTail.DisplayName: Rift Serpent
 			StarbornSludge.DisplayName: Starborn Sludge
-			StarbornSludgeSmall.DisplayName: Starborn Sludge Small
+			StarbornSludgeSmall.DisplayName: Starborn Sludge
 			Starprobe.DisplayName: Starprobe
 			TarnishedGhoul.DisplayName: Tarnished Ghoul
 			TarnishedSkeleton.DisplayName: Tarnished Skeleton
@@ -1919,6 +1942,15 @@ Mods: {
 			InfernalHellwisp.DisplayName: Infernal Hellwisp
 			MagmaticScorcher.DisplayName: Magmatic Scorcher
 			Yog.DisplayName: Yog
+			UnstableEnergyStorm.DisplayName: Unstable Energy Storm
+			UnstableOminiteTippedNaquadahSword.DisplayName: Unstable Ominite Tipped Naquadah Sword
+			NaquadahBurrowerBody.DisplayName: Naquadah Burrower
+			NaquadahBurrowerHead.DisplayName: Naquadah Burrower
+			NaquadahBurrowerTail.DisplayName: Naquadah Burrower
+			CometSlime.DisplayName: Comet Slime
+			NaquadahInfusedSlime.DisplayName: Naquadah Infused Slime
+			UnstableHellwisp.DisplayName: Unstable Hellwisp
+			DisfiguredIceConstruct.DisplayName: Disfigured Ice Construct
 		}
 
 		Prefixes: {
@@ -1969,7 +2001,7 @@ Mods: {
 			CosmicSpirit.DisplayName: Cosmic Spirit
 			ElectricBurst.DisplayName: Electric Burst
 			UnstableStarbornInquisitorWisp.DisplayName: Unstable Starborn Inquisitor Wisp
-			CosmicDecoyMinion.DisplayName: Cosmic Decoy Minion
+			CosmicDecoyMinion.DisplayName: Cosmic Decoy
 			AoISpark.DisplayName: Spark of Imperious
 			CosmicApparitionSoul.DisplayName: Cosmic Apparition's Soul
 			CosmicEmperorSummon.DisplayName: Cosmic Emperor
@@ -2047,6 +2079,7 @@ Mods: {
 			SwiftShotStarbuster.DisplayName: Swift Shot Starbuster
 			FleshsnapperProjectile.DisplayName: Fleshsnapper
 			GalaxianBeltProjectile.DisplayName: Galaxian Belt
+			AoIGhost.DisplayName: Ark of Imperious' Ghost Blade
 		}
 	}
 }

@@ -112,7 +112,7 @@ namespace Eternal.Content.Items.Accessories
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<CosmicStarstryderTreads>())
                 .AddIngredient(ModContent.ItemType<CosmicEmperorsInterstellarAlloy>())
-                .AddTile(ModContent.TileType<Reconstructatorium>())
+                .AddTile(ModContent.TileType<Nanoforge>())
                 .Register();
         }
     }

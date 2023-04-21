@@ -44,7 +44,7 @@ namespace Eternal.Content.Items.Weapons.Melee
                 .AddIngredient(ModContent.ItemType<StargloomCometiteBar>(), 24)
                 .AddIngredient(ModContent.ItemType<RefinedArkrystalSheets>(), 16)
                 .AddIngredient(ModContent.ItemType<ApparitionalMatter>(), 16)
-                .AddTile(ModContent.TileType<Reconstructatorium>())
+                .AddTile(ModContent.TileType<Nanoforge>())
                 .Register();
         }
     }

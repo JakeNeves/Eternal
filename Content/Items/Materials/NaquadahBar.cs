@@ -29,7 +29,7 @@ namespace Eternal.Content.Items.Materials
         {
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<RawNaquadah>(), 2)
-                .AddTile(ModContent.TileType<AncientForge>())
+                .AddTile(ModContent.TileType<RotaryHearthForge>())
                 .Register();
         }
     }

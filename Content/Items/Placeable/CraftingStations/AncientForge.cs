@@ -20,7 +20,7 @@ namespace Eternal.Content.Items.Placeable.CraftingStations
         {
             Item.width = 80;
             Item.height = 60;
-            Item.maxStack = 999;
+            Item.maxStack = 9999;
             Item.useTurn = false;
             Item.autoReuse = true;
             Item.useAnimation = 15;

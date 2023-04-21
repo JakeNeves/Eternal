@@ -90,7 +90,8 @@ namespace Eternal.Content.Items.Misc
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddTile(TileID.DemonAltar);
+                .AddTile(TileID.DemonAltar)
+            .Register();
         }
     }
 }

@@ -31,11 +31,6 @@ namespace Eternal.Content.Tiles.CraftingStations
             AddMapEntry(new Color(50, 0, 25), name);
         }
 
-        public override void KillMultiTile(int x, int y, int frameX, int frameY)
-        {
-            Item.NewItem(new EntitySource_TileBreak(x, y), x * 16, y * 16, 32, 16, ModContent.ItemType<Items.Placeable.CraftingStations.Starforge>());
-        }
-
         public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
         {
             Tile tile = Main.tile[i, j];

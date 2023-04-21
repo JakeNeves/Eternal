@@ -33,14 +33,9 @@ namespace Eternal.Content.NPCs.Comet
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            int[] cometTileArray = { ModContent.TileType<CometiteOre>(), TileID.Grass, TileID.Sand, TileID.Stone, TileID.SnowBlock, TileID.IceBlock, TileID.Dirt };
-
-            float baseChance = SpawnCondition.Overworld.Chance;
-            float multiplier = cometTileArray.Contains(Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY].TileType) ? 0.15f : 0.5f;
-
             if (ModContent.GetInstance<ZoneSystem>().zoneComet)
             {
-                return baseChance * multiplier;
+                return SpawnCondition.Overworld.Chance * 1.5f;
             }
             else
             {
