@@ -17,7 +17,7 @@ namespace Eternal.Content.NPCs.Rift
 		{
 			var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
 			{
-				CustomTexturePath = "Eternal/Content/NPCs/Comet/NaquadahBurrower_Preview",
+				CustomTexturePath = "Eternal/Content/NPCs/Rift/NaquadahBurrower_Preview",
 				Position = new Vector2(0f, 24f),
 				PortraitPositionXOverride = 0f,
 				PortraitPositionYOverride = 12f
@@ -36,7 +36,7 @@ namespace Eternal.Content.NPCs.Rift
 			NPC.defense = 20;
 			NPC.damage = 40;
 			NPC.value = Item.sellPrice(platinum: 3, gold: 30, silver: 60);
-			SpawnModBiomes = new int[1] { ModContent.GetInstance<Biomes.UndergroundRift>().Type };
+			SpawnModBiomes = new int[1] { ModContent.GetInstance<Biomes.Rift>().Type };
 		}
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)

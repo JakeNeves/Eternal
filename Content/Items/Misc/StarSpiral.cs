@@ -29,8 +29,8 @@ namespace Eternal.Content.Items.Misc
             Item.height = 26;
             Item.rare = ModContent.RarityType<Teal>();
             Item.useStyle = ItemUseStyleID.HoldUp;
-            Item.useAnimation = 50;
-            Item.useTime = 50;
+            Item.useAnimation = 60;
+            Item.useTime = 60;
         }
 
         public override bool? UseItem(Player player)

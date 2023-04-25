@@ -3,6 +3,8 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Eternal.Content.Rarities;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 
 namespace Eternal.Content.Items.Placeable
 {
@@ -28,7 +30,12 @@ namespace Eternal.Content.Items.Placeable
             Item.autoReuse = true;
             Item.consumable = true;
             Item.createTile = ModContent.TileType<Tiles.GalaciteOre>();
-            Item.maxStack = 999;
+            Item.maxStack = 9999;
+        }
+
+        public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
+        {
+            Lighting.AddLight(Item.Center, 1.07f, 2.24f, 2.55f);
         }
     }
 }

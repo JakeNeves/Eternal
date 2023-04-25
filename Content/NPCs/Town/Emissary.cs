@@ -196,17 +196,19 @@ namespace Eternal.Content.NPCs.Town
         {
             Player player = Main.player[Main.myPlayer];
 
-            var emmissaryShop = new NPCShop(Type, ShopName);
+            var emissaryShop = new NPCShop(Type, ShopName);
 
             if (ReputationSystem.ReputationPoints == 50)
             {
-                emmissaryShop.Add<PristineHealingPotion>();
+                emissaryShop.Add<PristineHealingPotion>();
             }
 
             if (ReputationSystem.ReputationPoints == 100)
             {
-                emmissaryShop.Add<PerfectHealingPotion>();
+                emissaryShop.Add<PerfectHealingPotion>();
             }
+
+            emissaryShop.Register();
         }
 
         public override void ModifyActiveShop(string shopName, Item[] items)

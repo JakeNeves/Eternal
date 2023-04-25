@@ -18,7 +18,7 @@ namespace Eternal.Content.NPCs.Rift
 		{
 			var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
 			{
-				CustomTexturePath = "Eternal/Content/NPCs/Comet/RiftSerpent_Preview",
+				CustomTexturePath = "Eternal/Content/NPCs/Rift/RiftSerpent_Preview",
 				Position = new Vector2(0f, 24f),
 				PortraitPositionXOverride = 0f,
 				PortraitPositionYOverride = 12f

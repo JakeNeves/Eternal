@@ -53,7 +53,7 @@ namespace Eternal.Common.Players
                         switch (cosmicApparitionPresence)
                         {
                             case 4000:
-                                Main.NewText("You feel something follow you...", 220, 0, 210);
+                                Main.NewText("You feel a ghostly figure is following you...", 220, 0, 210);
                                 break;
                             case 8000:
                                 Main.NewText("Shrieks start to echo around you...", 220, 0, 210);

@@ -95,6 +95,10 @@ namespace Eternal.Content.NPCs.Town
             {
                 button2 = "Letter of Recommendation";
             }
+            else if (RiftSystem.isRiftOpen)
+            {
+                button2 = "Help";
+            }
         }
 
         public override bool CheckDead()
@@ -118,6 +122,7 @@ namespace Eternal.Content.NPCs.Town
 
         public override void OnChatButtonClicked(bool firstButton, ref string shopName)
         {
+            Player player = Main.player[Main.myPlayer];
             if (firstButton)
                 shopName = ShopName;
             else if (Main.LocalPlayer.HasItem(ModContent.ItemType<CosmicTablet>()))
@@ -126,7 +131,6 @@ namespace Eternal.Content.NPCs.Town
                     Main.npcChatText = "Talk to me later for information about the Cosmic Emperor";
                 else
                 {
-                    Player player = Main.player[Main.myPlayer];
                     if (!DownedBossSystem.downedCosmicEmperor)
                     {
                         switch (Main.rand.Next(4))
@@ -156,10 +160,9 @@ namespace Eternal.Content.NPCs.Town
             }
             else if (Main.LocalPlayer.HasItem(ModContent.ItemType<EmperorsTrust>()))
             {
-                Player player = Main.player[Main.myPlayer];
                 if (ReputationSystem.ReputationPoints >= 100)
                 {
-                    Main.npcChatText = $"Based on your current reputation, I have trusted you {player.name}.";
+                    Main.npcChatText = $"Based on your current reputation, I trust {player.name}.";
                 }
                 else if (ReputationSystem.ReputationPoints >= 500)
                 {
@@ -177,6 +180,24 @@ namespace Eternal.Content.NPCs.Town
             else if (Main.LocalPlayer.HasItem(ModContent.ItemType<LetterofRecommendation>()))
             {
                 Main.npcChatText = "A Letter of Recommendation? I must say that you my friend, should happily have this gift to honor your saviour rank as well as great reputation and other great things you have done since I have first arrived here in your world, although I wish to return to my world however, I think I'll stay here for the time being!";
+            }
+            else if (RiftSystem.isRiftOpen)
+            {
+                switch (Main.rand.Next(4))
+                {
+                    case 0:
+                        Main.npcChatText = "Whatever situation this is, I can't guide you through this otherworldly reign of chaos!";
+                        break;
+                    case 1:
+                        Main.npcChatText = "What you used to turn this world into an apocalypse, is highly dangerous! I suggest you turn back or face the consinquences within the altered reality...";
+                        break;
+                    case 2:
+                        Main.npcChatText = "Are you sure you're prepared for this kind of mess? Let me tell you right now, you're on your own! No help, no nonthing... I am very concerned about this shifted reign of terror!";
+                        break;
+                    case 3:
+                        Main.npcChatText = "From my point of view, It's best to take as much action as possible to insure everyone is safe within their household, it's simply too dangerous for everyone! Let's hope you have some sort of wits to survive this nightmare...";
+                        break;
+                }
             }
         }
 
@@ -208,64 +229,89 @@ namespace Eternal.Content.NPCs.Town
         public override string GetChat()
         {
             Player player = Main.player[Main.myPlayer];
-            int wizard = NPC.FindFirstNPC(NPCID.Wizard);
-            if (wizard >= 0 && Main.rand.NextBool(18))
+            if (RiftSystem.isRiftOpen)
             {
-                return "I like how " + Main.npc[wizard].GivenName + " has some kind of powers, personally I do too... However, I am afraid that my powers are unbareablely destructive on most occations.";
+                switch (Main.rand.Next(8))
+                {
+                    case 0:
+                        return "I don't know what kind of item you have in your pocket that turned the world upside down!";
+                    case 1:
+                        return "Talk to me later when the world goes back to normal.";
+                    case 2:
+                        return "I am starting to see some distorted figures around here...";
+                    case 3:
+                        return "Do I look like I have a general idea on what you've done here? I don't want to have to see this world shift into a state of pure chaos!";
+                    case 4:
+                        return "Please tell me you're going end all of this...";
+                    case 5:
+                        return "Welp... If anything strange and destructive approaches here, we're dead!";
+                    case 6:
+                        return "I don't know if it's just me, but I am starting to see some warping within the fabric of reality...";
+                    default:
+                        return "You opened a rift? YOU, opened a RIFT!?";
+                }
             }
-            int nurse = NPC.FindFirstNPC(NPCID.Nurse);
-            if (nurse >= 0 && Main.rand.NextBool(18))
+            else
             {
-                return "I had a friend who was a medic, but things went terribly... He nearly ended up losing his medical licinse! I have no idea what he has done to deserve that...";
-            }
-            int partyGirl = NPC.FindFirstNPC(NPCID.PartyGirl);
-            if (partyGirl >= 0 && Main.rand.NextBool(18))
-            {
-                return "I like partys and all, but some people like me, perfer to have there party like a late-night sit back and relax kinda situation...";
-            }
-            int merchant = NPC.FindFirstNPC(NPCID.Merchant);
-            if (merchant >= 0 && Main.rand.NextBool(18))
-            {
-                return "That " + Main.npc[merchant].GivenName + " guy, I don't know about you, but he likes to sell angel statues... Everyone knows they do nothing!";
-            }
-            switch (Main.rand.Next(16))
-            {
-                case 0:
-                    return "What am I even doing here?";
-                case 1:
-                    return "I suppose this place feel really wacky to me.";
-                case 2:
-                    return "I rule an empire, that's all I do...";
-                case 3:
-                    return "In case if your curious, how I like to throw parties sometimes, is with some fresh bread, baked by one of my favourite emissaries and some fine red wine.";
-                case 4:
-                    return "I know what you're thinking, do I look like I am ready for a russian winter? Yes, I do!";
-                case 5:
-                    if (player.ZoneSnow)
-                        return "Wow, this winter wonderland is just like the same winter feeling I get over in the Gallahard Empire!";
-                    else
-                        return "Honestly, I feel that this place could use some winter wonders...";
-                case 6:
-                    if (player.ZoneUnderworldHeight || player.ZoneDesert)
-                        return "Why is it so hot here, I wasn't built for places like this!";
-                    else if (player.ZoneDesert && !Main.dayTime || player.ZoneSnow)
-                        return "Okay to be honest, it's quite cold and I like it...";
-                    else
-                        return "Mmmm... Oh, sorry this place isn't good enough.";
-                case 7:
-                    return "I can only imagine someday, people around here are loyal to me, even though I don't rule this place.";
-                case 8:
-                    return "What...";
-                case 9:
-                    return "Me? Powerful? What are you talking about, I'm not that powerful.";
-                case 10:
-                    return "Can I finish my food after this?";
-                case 11:
-                    return "Trying to fight some big colossal enemies right before you should, what kind of sourcery are you playing with?";
-                case 12:
-                    return "I could teach you how to harvest godly powers like me, but it's going to take years before you can perfect and control your own source of power.";
-                default:
-                    return "Do you have an idea where I am right now?";
+                int wizard = NPC.FindFirstNPC(NPCID.Wizard);
+                if (wizard >= 0 && Main.rand.NextBool(18))
+                {
+                    return "I like how " + Main.npc[wizard].GivenName + " has some kind of powers, personally I do too... However, I am afraid that my powers are unbareablely destructive on most occations.";
+                }
+                int nurse = NPC.FindFirstNPC(NPCID.Nurse);
+                if (nurse >= 0 && Main.rand.NextBool(18))
+                {
+                    return "I had a friend who was a medic, but things went terribly... He nearly ended up losing his medical licinse! I have no idea what he has done to deserve that...";
+                }
+                int partyGirl = NPC.FindFirstNPC(NPCID.PartyGirl);
+                if (partyGirl >= 0 && Main.rand.NextBool(18))
+                {
+                    return "I like parties and all, but some people like me, perfer to have there party like a late-night sit back and relax kinda situation...";
+                }
+                int merchant = NPC.FindFirstNPC(NPCID.Merchant);
+                if (merchant >= 0 && Main.rand.NextBool(18))
+                {
+                    return "That " + Main.npc[merchant].GivenName + " guy, I don't know about you, but he likes to sell angel statues... Everyone knows they do nothing!";
+                }
+                switch (Main.rand.Next(16))
+                {
+                    case 0:
+                        return "What am I even doing here?";
+                    case 1:
+                        return "I suppose this place feel really wacky to me.";
+                    case 2:
+                        return "I rule an empire, that's all I do...";
+                    case 3:
+                        return "In case if your curious, how I like to throw parties sometimes, is with some fresh bread, baked by one of my favourite emissaries and some fine red wine.";
+                    case 4:
+                        return "I know what you're thinking, do I look like I am ready for a russian winter? Yes, I do!";
+                    case 5:
+                        if (player.ZoneSnow)
+                            return "Wow, this winter wonderland is just like the same winter feeling I get over in the Gallahard Empire!";
+                        else
+                            return "Honestly, I feel that this place could use some winter wonders...";
+                    case 6:
+                        if (player.ZoneUnderworldHeight || player.ZoneDesert)
+                            return "Why is it so hot here, I wasn't built for places like this!";
+                        else if (player.ZoneDesert && !Main.dayTime || player.ZoneSnow)
+                            return "Okay to be honest, it's quite cold and I like it...";
+                        else
+                            return "Mmmm... Oh, sorry this place isn't good enough.";
+                    case 7:
+                        return "I can only imagine someday, people around here are loyal to me, even though I don't rule this place.";
+                    case 8:
+                        return "What...";
+                    case 9:
+                        return "Me? Powerful? What are you talking about, I'm not that powerful.";
+                    case 10:
+                        return "Can I finish my food after this?";
+                    case 11:
+                        return "Trying to fight some big colossal enemies right before you should, what kind of sourcery are you playing with?";
+                    case 12:
+                        return "I could teach you how to harvest godly powers like me, but it's going to take years before you can perfect and control your own source of power.";
+                    default:
+                        return "Do you have an idea where I am right now?";
+                }
             }
         }
 
@@ -286,6 +332,8 @@ namespace Eternal.Content.NPCs.Town
             {
                 emperorShop.Add<PocketJake>();
             }
+
+            emperorShop.Register();
         }
 
         public override void ModifyActiveShop(string shopName, Item[] items)

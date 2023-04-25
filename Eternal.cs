@@ -1,19 +1,6 @@
-using Eternal.Common.Systems;
-using Eternal.Content.Items.Accessories.Expert;
-using Eternal.Content.Items.BossBags;
-using Eternal.Content.Items.Materials;
-using Eternal.Content.Items.Potions;
-using Eternal.Content.Items.Summon;
-using Eternal.Content.Items.Weapons.Melee;
-using Eternal.Content.Items.Weapons.Ranged;
-using Eternal.Content.NPCs.Boss.CarminiteAmalgamation;
-using Eternal.Content.NPCs.Boss.CosmicApparition;
-using Eternal.Content.NPCs.Boss.DuneGolem;
-using Eternal.Content.NPCs.Boss.Igneopede;
-using System;
-using System.Collections.Generic;
-using Terraria;
-using Terraria.ID;
+using Eternal.Content.Skies;
+using Terraria.Graphics.Effects;
+using Terraria.Graphics.Shaders;
 using Terraria.ModLoader;
 
 namespace Eternal
@@ -27,6 +14,9 @@ namespace Eternal
         public override void Load()
         {
             instance = this;
+
+            Filters.Scene["Eternal:Rift"] = new Filter(new ScreenShaderData("FilterMiniTower").UseColor(0.75f, 0f, 0.75f).UseOpacity(0.75f), EffectPriority.High);
+            SkyManager.Instance["Eternal:Rift"] = new RiftSky();
         }
 
 		public override void Unload()

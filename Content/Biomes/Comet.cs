@@ -1,7 +1,6 @@
 ﻿using Eternal.Common.Systems;
 using Terraria;
 using Terraria.Graphics.Capture;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Biomes
@@ -16,7 +15,7 @@ namespace Eternal.Content.Biomes
         public override int Music => MusicLoader.GetMusicSlot(Mod, "Assets/Music/AstralDiscovery");
         public override CaptureBiome.TileColorStyle TileColorStyle => CaptureBiome.TileColorStyle.Corrupt;
 
-        public override string BestiaryIcon => "Assets/Textures/Bestiary/Comet_Icon";
+        public override string BestiaryIcon => base.BestiaryIcon;
 
         public override void OnEnter(Player player)
         {
@@ -34,5 +33,7 @@ namespace Eternal.Content.Biomes
 
             return b1;
         }
+
+        public override SceneEffectPriority Priority => SceneEffectPriority.BiomeMedium;
     }
 }

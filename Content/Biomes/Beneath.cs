@@ -14,7 +14,7 @@ namespace Eternal.Content.Biomes
 
         public override int Music => MusicLoader.GetMusicSlot(Mod, "Assets/Music/DarknessFromDeepBelow");
 
-        public override string BestiaryIcon => "Assets/Textures/Bestiary/Beneath";
+        public override string BestiaryIcon => base.BestiaryIcon;
 
         public override void OnEnter(Player player)
         {

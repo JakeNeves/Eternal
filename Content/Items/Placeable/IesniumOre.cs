@@ -1,4 +1,6 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -27,7 +29,12 @@ namespace Eternal.Content.Items.Placeable
             Item.autoReuse = true;
             Item.consumable = true;
             Item.createTile = ModContent.TileType<Tiles.IesniumOre>();
-            Item.maxStack = 999;
+            Item.maxStack = 9999;
+        }
+
+        public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
+        {
+            Lighting.AddLight(Item.Center, 0.58f, 1.59f, 1.64f);
         }
     }
 }

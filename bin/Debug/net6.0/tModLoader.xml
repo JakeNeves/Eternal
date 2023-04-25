@@ -1569,7 +1569,7 @@
         </member>
         <member name="F:Terraria.ID.ArmorIDs.Head.Sets.DrawsBackHairWithoutHeadgear">
             <summary>
-            If <see langword="true"/> for a given <see cref="T:Terraria.ID.ArmorIDs.Head"/>, then that equip will allow back hair (<see cref="!:DrawBackHair"/>) to draw in full when equipped.
+            If <see langword="true"/> for a given <see cref="T:Terraria.ID.ArmorIDs.Head"/>, then that equip will allow back hair (<see cref="F:Terraria.ID.HairID.Sets.DrawBackHair"/>) to draw in full when equipped.
             <br/> Defaults to <see langword="false"/>.
             </summary>
         </member>
@@ -19034,7 +19034,7 @@
         </member>
         <member name="F:Terraria.NPC.immune">
             <summary>
-            This determines if an NPC can be hit by a item or projectile owned by a particular player (it is an array, each slot corresponds to different players (whoAmI)). It is decremented towards 0 every update. Melee items set immune[Player.whoAmI] to Player.itemAnimation, which starts at item.useAnimation and decrements towards 0. Penetrating projectiles usually set immune to 10, while non-penetrating projectiles do not set immune. <see href="https://github.com/tModLoader/tModLoader/blob/1.4/ExampleMod/Content/Projectiles/ExamplePiercingProjectile.cs">ExamplePiercingProjectile.cs</see> explains more about options for npc and projectile immunity.
+            This determines if an NPC can be hit by an item or projectile owned by a particular player (it is an array, each slot corresponds to different player's (whoAmI)). It is decremented towards 0 every update. Melee items set immune[Player.whoAmI] to Player.itemAnimation, which starts at item.useAnimation and decrements towards 0. Penetrating projectiles usually set immune to 10, while non-penetrating and some special projectiles do not set immune. <see href="https://github.com/tModLoader/tModLoader/blob/1.4/ExampleMod/Content/Projectiles/ExamplePiercingProjectile.cs">ExamplePiercingProjectile.cs</see> explains more about options for npc and projectile immunity.
             </summary>
         </member>
         <member name="F:Terraria.NPC.aiStyle">
@@ -19704,6 +19704,17 @@
         <member name="F:Terraria.Player.maxMinions">
             <summary>
             The maximum value of minions this player can have summoned at once.
+            <br/> A minion's value is stored as <see cref="F:Terraria.Projectile.minionSlots"/>.
+            </summary>
+        </member>
+        <member name="F:Terraria.Player.numMinions">
+            <summary>
+            The current number of minions this player has summoned. Note that <see cref="F:Terraria.Player.slotsMinions"/> is how the minion limit is tracked, not this.
+            </summary>
+        </member>
+        <member name="F:Terraria.Player.slotsMinions">
+            <summary>
+            The current total value of minions this player has summoned. Used to limit active minions to <see cref="F:Terraria.Player.maxMinions"/>
             <br/> A minion's value is stored as <see cref="F:Terraria.Projectile.minionSlots"/>.
             </summary>
         </member>
@@ -20966,6 +20977,25 @@
             <br/> Defaults to 1. Used to automatically assigned a value to <see cref="F:Terraria.Projectile.maxPenetrate"/> at the end of SetDefaults.
             </summary>
         </member>
+        <member name="F:Terraria.Projectile.usesLocalNPCImmunity">
+            <summary>
+            If true, this projectile manages it's own immunity timers for each npc.<br/>
+            Use this rather than <see cref="F:Terraria.Projectile.usesIDStaticNPCImmunity"/> if you want multiple projectiles of the same type to have a chance to attack rapidly, but don't want a single projectile to hit rapidly.<br/>
+            <see cref="F:Terraria.Projectile.localNPCHitCooldown"/> controls the cooldown timing and must be assigned a suitable value to work properly.<br/>
+            </summary>
+        </member>
+        <member name="F:Terraria.Projectile.usesIDStaticNPCImmunity">
+            <summary>
+            If true, all projectiles of this type share an immunity cooldown for each npc.<br/>
+            Use this rather than <see cref="F:Terraria.Projectile.usesLocalNPCImmunity"/> if you want other projectile types a chance to attack the npc, but don't want projectile of the same projectile type to hit an npc rapidly.<br/>
+            <see cref="F:Terraria.Projectile.idStaticNPCHitCooldown"/> controls the cooldown timing and must be assigned a suitable value to work properly.<br/>
+            </summary>
+        </member>
+        <member name="F:Terraria.Projectile.appliesImmunityTimeOnSingleHits">
+            <summary>
+            If true, this projectile will apply immunity to an npc despite having a <see cref="F:Terraria.Projectile.penetrate"/> value of 1. Used only for firework rockets in Terraria content.
+            </summary>
+        </member>
         <member name="F:Terraria.Projectile.maxPenetrate">
             <summary>
             How many npc can this projectile hit before dying. (Or tile bounces)
@@ -21022,6 +21052,11 @@
             <br/> Defaults to 0f.
             </summary>
         </member>
+        <member name="F:Terraria.Projectile.minionPos">
+            <summary>
+            A number indicating the order of minions. Minion AI code typically uses this value to determine a suitable idle position that results in minions lining up neatly in relation to the player without bunching up.
+            </summary>
+        </member>
         <member name="F:Terraria.Projectile.tileCollide">
             <summary>
             If true, the projectile will collide with tiles, usually bouncing or killing the tile depending on <see cref="M:Terraria.ModLoader.ModProjectile.OnTileCollide(Microsoft.Xna.Framework.Vector2)"/>. <see href="https://github.com/tModLoader/tModLoader/blob/1.4/ExampleMod/Content/Projectiles/ExampleBullet.cs#L38">ExampleBullet</see> shows how to implemtent bounce.
@@ -21075,6 +21110,16 @@
             <br/> Example: projectile has 4 frames, then frame can have values between 0 and 3
             <br/> The <see href="https://github.com/tModLoader/tModLoader/wiki/Basic-Projectile#animationmultiple-frames">Basic Projectile Guide</see> teaches how to animate projectiles.
             <br/> Defaults to 0.
+            </summary>
+        </member>
+        <member name="F:Terraria.Projectile.localNPCHitCooldown">
+            <summary>
+            When used in conjunction with <see cref="F:Terraria.Projectile.usesLocalNPCImmunity"/>, determines how many ticks must pass before this projectile can deal damage again to the same npc. A value of -1 indicates that it can only hit a specific npc once. The default value of -2 has no effect, so this must be assigned if usesLocalNPCImmunity is true.
+            </summary>
+        </member>
+        <member name="F:Terraria.Projectile.idStaticNPCHitCooldown">
+            <summary>
+            When used in conjunction with <see cref="F:Terraria.Projectile.usesIDStaticNPCImmunity"/>, determines how many ticks must pass before any projectile of the same type can deal damage again to the same npc. This must be assigned a suitable value if usesIDStaticNPCImmunity is true.
             </summary>
         </member>
         <member name="M:Terraria.Projectile.NewProjectile(Terraria.DataStructures.IEntitySource,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,System.Single,System.Int32,System.Single,System.Single,System.Single)">

@@ -14,7 +14,7 @@ namespace Eternal.Content.Biomes
 
         public override int Music => MusicLoader.GetMusicSlot(Mod, "Assets/Music/ImperiousShrine");
 
-        public override string BestiaryIcon => "Assets/Textures/Bestiary/Shrine";
+        public override string BestiaryIcon => base.BestiaryIcon;
 
         public override void OnEnter(Player player)
         {

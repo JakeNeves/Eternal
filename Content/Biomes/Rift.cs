@@ -10,11 +10,18 @@ namespace Eternal.Content.Biomes
         public override int Music => MusicLoader.GetMusicSlot(Mod, "Assets/Music/AcrossADisfiguredReality");
         public override CaptureBiome.TileColorStyle TileColorStyle => CaptureBiome.TileColorStyle.Corrupt;
 
-        public override string BestiaryIcon => "Assets/Textures/Bestiary/Rift";
+        public override string BestiaryIcon => base.BestiaryIcon;
 
         public override bool IsBiomeActive(Player player)
         {
             return RiftSystem.isRiftOpen;
         }
+
+        public override void OnInBiome(Player player)
+        {
+            player.ManageSpecialBiomeVisuals("Eternal:Rift", true);
+        }
+
+        public override SceneEffectPriority Priority => SceneEffectPriority.BiomeMedium;
     }
 }

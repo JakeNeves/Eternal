@@ -1,5 +1,8 @@
 ﻿using Eternal.Content.Rarities;
 using Eternal.Content.Tiles.CraftingStations;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ModLoader;
 
@@ -26,6 +29,11 @@ namespace Eternal.Content.Items.Materials
                 .AddIngredient(ModContent.ItemType<MoteofOminite>(), 2)
                 .AddTile(ModContent.TileType<AncientForge>())
                 .Register();
+        }
+
+        public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
+        {
+            Lighting.AddLight(Item.Center, 0.75f, 0f, 0.75f);
         }
     }
 }

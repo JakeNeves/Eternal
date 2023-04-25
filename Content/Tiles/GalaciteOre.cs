@@ -36,6 +36,5 @@ namespace Eternal.Content.Tiles
             g = 2.24f;
             b = 2.55f;
         }
-
     }
 }

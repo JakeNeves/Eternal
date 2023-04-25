@@ -2,6 +2,7 @@
 using Eternal.Content.Items.Materials;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -31,7 +32,16 @@ namespace Eternal.Content.NPCs.Rift
             NPC.buffImmune[BuffID.Chilled] = true;
             NPC.HitSound = SoundID.Tink;
             NPC.DeathSound = SoundID.Shatter;
-            SpawnModBiomes = new int[1] { ModContent.GetInstance<Biomes.SnowRift>().Type };
+            SpawnModBiomes = new int[1] { ModContent.GetInstance<Biomes.Rift>().Type };
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Snow,
+
+                new FlavorTextBestiaryInfoElement("A heavily damaged ice construct, with crystal-like growths and naquadah embossed all over itself")
+            });
         }
 
         public override void HitEffect(NPC.HitInfo hit)

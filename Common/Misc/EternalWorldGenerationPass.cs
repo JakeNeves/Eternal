@@ -27,12 +27,27 @@ namespace Eternal.Common.Misc
                 break;
             }
         }
+
+        public static void GenPrecursorHollows(GenerationProgress progress, GameConfiguration config)
+        {
+            int attempts = 0;
+
+            while (true)
+            {
+                attempts++;
+                if (attempts > 20)
+                    break;
+
+                progress.Message = "Generating Precursor Hollows";
+                GenPrecursorHollows();
+
+                break;
+            }
+        }
         #endregion
 
         public static void GenerateStructures(GenerationProgress progress, GameConfiguration config)
         {
-            // TODO: Inferno Sepulture (Most likely 1.1 update)
-
             progress.Message = "Placing Shrine";
             GenerateShrine();
         }
@@ -203,7 +218,7 @@ namespace Eternal.Common.Misc
         }
         #endregion
 
-        #region The Beneath
+        #region Mini Biomes
         private static void GenBeneath()
         {
             while (true)
@@ -212,6 +227,19 @@ namespace Eternal.Common.Misc
                 int benY = WorldGen.genRand.Next((int)GenVars.rockLayerHigh, Main.maxTilesY);
                 WorldGen.TileRunner(benX, benY, WorldGen.genRand.Next(400, 750), 80, ModContent.TileType<Grimstone>(), false, WorldGen.genRand.Next(9, 20), WorldGen.genRand.Next(-4, 4));
                 WorldGen.TileRunner(benX, benY, WorldGen.genRand.Next(400, 750), 80, ModContent.TileType<Grimstone>(), false, WorldGen.genRand.Next(-20, -9), WorldGen.genRand.Next(-4, 4));
+
+                break;
+            }
+        }
+
+        private static void GenPrecursorHollows()
+        {
+            while (true)
+            {
+                int hollowX = WorldGen.genRand.Next(200, Main.maxTilesX - 1600);
+                int hollowY = WorldGen.genRand.Next((int)GenVars.rockLayerLow, Main.maxTilesY);
+                WorldGen.TileRunner(hollowX, hollowY, WorldGen.genRand.Next(200, 250), 25, ModContent.TileType<HardStone>(), false, WorldGen.genRand.Next(3, 10), WorldGen.genRand.Next(-2, 2));
+                WorldGen.TileRunner(hollowX, hollowY, WorldGen.genRand.Next(200, 250), 25, ModContent.TileType<HardStone>(), false, WorldGen.genRand.Next(-10, -3), WorldGen.genRand.Next(-2, 2));
 
                 break;
             }

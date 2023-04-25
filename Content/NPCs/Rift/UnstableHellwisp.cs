@@ -47,13 +47,13 @@ namespace Eternal.Content.NPCs.Rift
             NPC.buffImmune[BuffID.Frostburn] = true;
             NPC.buffImmune[BuffID.Frozen] = true;
             NPC.buffImmune[BuffID.Chilled] = true;
-            SpawnModBiomes = new int[1] { ModContent.GetInstance<Biomes.UnderworldRift>().Type };
+            SpawnModBiomes = new int[1] { ModContent.GetInstance<Biomes.Rift>().Type };
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky,
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheUnderworld,
 
                 new FlavorTextBestiaryInfoElement("Upon opening the rift, some of the Hellwisps absorbed the unstability of the underworld's rift potential.")
             });
