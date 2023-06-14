@@ -1,6 +1,9 @@
-displayName = [c/ED0249:Eternal]
+displayName = [c/ED0249:Eternal] (Alpha)
 author = JakeTEM
-version = 1.0.8.1
+version = 1.2
 homepage = https://discord.gg/HUJ8KUSAjC
+hideCode = false
+hideResources = false
 includeSource = true
 includePDB = true
+buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*

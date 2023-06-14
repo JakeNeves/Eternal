@@ -1,0 +1,50 @@
+Mods: {
+	Eternal: {
+		BiomeName: {
+			Comet: Fallen Comet
+			Beneath: The Beneath
+			Shrine: The Shrine
+		}
+
+		TownNPCMod: {
+			Emperor: {
+				Content: I do feel like home, just like back in the Gallahard Empire...
+				NoHome: I am here, in the wilderness, and I feel like either you can give me a home, or I can make one myself, but I would have to gather what this place has to offer...
+				LoveSpace: I love how there is so much space here to code tModLoader mods!
+				FarFromHome: There is no way, I could be considered, far from home... I traveled miles outside my home land before. So why ask...
+				DislikeCrowded: You can already see the anxiety on my face, when it comes to big crowds like this...
+				HateCrowded: All of these people around here... Don't they know I'm claustrophobic!
+				LikeBiome: This place is nice and all, but I feel like there is a better place that I know of...
+				LoveBiome: Isn't this place great, I could live here for days!
+				DislikeBiome: I am sweating here, I would hate to inclimatize myself to places like these...
+				HateBiome: I could sense some sort of tremor any moment now...
+				LoveNPC: Emissary {NPCName} has to be one of my most favorite ones, despite the fact I sometimes ignore them, but everyone knows that in Gallahard, the emissaries represent me.
+				DislikeNPC: I know what I am doing, I've been through situations like this before...
+				HateNPC: I hate children...
+			}
+			Emissary: {
+				Content: I am very well settled in this town, I might as well socialize with some new faces around here!
+				NoHome: I would like to settle on this land, however I feel a sudden urge to find some sort of shelter.
+				LoveSpace: I am very well astounished on what this place in particular has to offer.
+				FarFromHome: I have traveled miles away from the palace in the Gallahard Empire before, surely I can make my way home no problem.
+				LikeBiome: This place is nice and all, but I feel like there is a better place that I know of...
+				LoveBiome: Isn't this place great, I could live here for days!
+			}
+			Apollyon: {
+				Content: I am very pleased with everything around me, it's almost as it hits home for me really well!
+				NoHome: Normally without a house or place of residence, I'm fine on my own but I think I could use a place to live for the time being...
+				LoveSpace: This feels like home, I am very pleased on how much effort you have dedicated into this!
+				FarFromHome: I would get home super easy, but without pure darkness my powers are very little and limited, any directions?
+				LikeBiome: Honestly, I'd settle here along with some new faces, I just wish people could hopefully one day, overcome their fears baing around me, but I'm pretty sure most people have around here.
+				LoveBiome: Settling in a place like this feels unironically perfect in my opinion!
+			}
+		}
+		GameTips: {
+			HellMode: Wish to ramp up the difficulty a bit? Try Hell Mode, works in both Expert and Master mode.
+			EmperorNPC: The Emperor will move upon defeating the moon lord, he sells the Emperor's Trust which allows the Emissary to move in.
+			CometBiome: The Comet is a one of a kind star, be careful as there are powerful enemies that lie near it.
+			CosmicApparition: Uppon defeating the Cosmic Apparition, lots of oppertunities begin to open up for post-Moon Lord progression
+			TheBeneath: The Beneath is a very dark place, torches wont work unless you have a Black Lantern or a Black Candle
+		}
+	}
+}

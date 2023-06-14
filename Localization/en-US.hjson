@@ -1,0 +1,2369 @@
+Mods: {
+	Eternal: {
+		BiomeName: {
+			Comet: Fallen Comet
+			Beneath: The Beneath
+			Shrine: The Shrine
+			Rift: The Rift
+		}
+
+		TownNPCMod: {
+			Emperor: {
+				Content: I do feel like home, just like back in the Gallahard Empire...
+				NoHome: I am here, in the wilderness, and I feel like either you can give me a home, or I can make one myself, but I would have to gather what this place has to offer...
+				LoveSpace: I love how there is so much space here to code tModLoader mods!
+				FarFromHome: There is no way, I could be considered, far from home... I traveled miles outside my home land before. So why ask...
+				DislikeCrowded: You can already see the anxiety on my face, when it comes to big crowds like this...
+				HateCrowded: All of these people around here... Don't they know I'm claustrophobic!
+				LikeBiome: This place is nice and all, but I feel like there is a better place that I know of...
+				LoveBiome: Isn't this place great, I could live here for days!
+				DislikeBiome: I am sweating here, I would hate to inclimatize myself to places like these...
+				HateBiome: I could sense some sort of tremor any moment now...
+				LoveNPC: Emissary {NPCName} has to be one of my most favorite ones, despite the fact I sometimes ignore them, but everyone knows that in Gallahard, the emissaries represent me.
+				DislikeNPC: I know what I am doing, I've been through situations like this before...
+				HateNPC: I hate children...
+			}
+
+			Emissary: {
+				Content: I am very well settled in this town, I might as well socialize with some new faces around here!
+				NoHome: I would like to settle on this land, however I feel a sudden urge to find some sort of shelter.
+				LoveSpace: I am very well astounished on what this place in particular has to offer.
+				FarFromHome: I have traveled miles away from the palace in the Gallahard Empire before, surely I can make my way home no problem.
+				LikeBiome: This place is nice and all, but I feel like there is a better place that I know of...
+				LoveBiome: Isn't this place great, I could live here for days!
+			}
+
+			Apollyon: {
+				Content: I am very pleased with everything around me, it's almost as it hits home for me really well!
+				NoHome: Normally without a house or place of residence, I'm fine on my own but I think I could use a place to live for the time being...
+				LoveSpace: This feels like home, I am very pleased on how much effort you have dedicated into this!
+				FarFromHome: I would get home super easy, but without pure darkness my powers are very little and limited, any directions?
+				LikeBiome: Honestly, I'd settle here along with some new faces, I just wish people could hopefully one day, overcome their fears baing around me, but I'm pretty sure most people have around here.
+				LoveBiome: Settling in a place like this feels unironically perfect in my opinion!
+			}
+		}
+
+		GameTips: {
+			HellMode: Wish to ramp up the difficulty a bit? Try Hell Mode, works in both Expert and Master mode.
+			EmperorNPC: The Emperor will move upon defeating the moon lord, he sells the Emperor's Trust which allows the Emissary to move in.
+			CometBiome: The Comet is a one of a kind star, be careful as there are powerful enemies that lie near it.
+			CosmicApparition: Uppon defeating the Cosmic Apparition, lots of oppertunities begin to open up for post-Moon Lord progression.
+			CosmicApparitionHellMode: The Cosmic Apparition does not spawn on it own, unless you're playing in Hell Mode of course once the Mood Lord is defeated!
+			TheBeneath: The Beneath is a very dark place, torches won't work, unless you have a Black Lantern or a Black Candle.
+			TheRift: Be careful when inside The Rift, dangerous entities and such lie within it! Also, try not to get yelled at by the Emperor for opening it.
+		}
+
+		DamageClasses.Radiant.DisplayName: radiant damage
+
+		Items: {
+			PrimordialRelic: {
+				Tooltip:
+					'''
+					Unleashes The Trinity
+					'Reality Trembles...'
+					'''
+				DisplayName: Primordial Relic
+			}
+
+			OtherworldlyCosmicDebris: {
+				Tooltip:
+					'''
+					Attracts a wandering soul
+					'A mysterious chunk of paranormal essance'
+					'''
+				DisplayName: Otherworldly Cosmic Debris
+			}
+
+			ObsidianLantern: {
+				Tooltip:
+					'''
+					Summons Incinerius, the Blazeborn Construct
+					'May cause a prison of basalt to form if used anywhere in the underworld, unless if the prison is destroyed...'
+					'''
+				DisplayName: Obsidian Lantern
+			}
+
+			MoltenBait: {
+				Tooltip:
+					'''
+					Attracts a giant lava centipede
+					'This is not food
+					'''
+				DisplayName: Molten Bait
+			}
+
+			IesniumBeacon: {
+				Tooltip:
+					'''
+					Summons a possessed desert idol
+					'Throw it in the air, watch it attract an idol
+					'''
+				DisplayName: Iesnium Beacon
+			}
+
+			CosmicTablet: {
+				Tooltip:
+					'''
+					Used at the Altar of Cosmic Desire
+					Summons the Cosmic Emperor
+					'Used to worship the emperor, many times to your heart's desire!
+					'''
+				DisplayName: Cosmic Tablet
+			}
+
+			TheShrine: {
+				Tooltip:
+					'''
+					[c/2EA5BF:---Entry No. 2---]
+					After creating the Nanoforge, My team and I were sent out to find some
+					valuable treasures, I stumbled upon a mysterious structure along with two of my
+					members, none of us had any clue on what this structure could be... Eventually, a
+					voice from above, said to us... "You are not to be within the area of our shrine,
+					leave immidiately!" Later, we were encountered by a group of what is supposedly
+					swords of various sizes! "Arks, mind of you take care of our intruders, I don't
+					accept invites from strangers..." At that moment, we fleed as fast as we can, yet
+					the swords were chasing us for miles, eventually one of them went over us and nearly
+					impaled me through the skull, luckly before even worse things happened, most of the
+					flying swords retreated, we used a C4 and detonated it, destroying the sword that got
+					stuck in the ground, nearly trying to brutally impal us, at least we were still alive.
+					-Dr. Sebastion Kox
+					'''
+				DisplayName: The Shrine
+			}
+
+			TheNanoforge: {
+				Tooltip:
+					'''
+					[c/2EA5BF:---Entry No. 1---]
+					My first ever successful reconstructing matrix, it's really impressive that
+					such machine like this can be used to create almost everything in an instant.
+					I have yet, to see how I can go beyond the limits of the Nanoforge.
+					By creating some of the most otherworldly technology with a machine like this,
+					I can almost do anything I want! However, only time will tell...
+					-Dr. Sebastion Kox
+					'''
+				DisplayName: The Nanoforge
+			}
+
+			ThePrecursorTemple: {
+				Tooltip:
+					'''
+					[c/2EA5BF:---Entry No. 3---]
+					Our team has decided to explore the caves of this world, they do hold quite
+					the potential wonders of what the world has to offer uppon exploration, we have
+					discovered what could be an ancient civilization, inventions and other strange
+					machinery made from crude and rudementary materials, yet most of these however
+					stood the test of time. It has come to my conclusion that there could be some
+					sort of autonomus gimmicks this place could have that we may still use today...
+					-Dr. Sebastion Kox
+					'''
+				DisplayName: The Precursor Temple
+			}
+
+			TheNeoxMechs: {
+				Tooltip:
+					'''
+					[c/2EA5BF:---Entry No. 12---]
+					They have mysteriously gone rouge, my creations!
+					The prototypes have destroyed nearly half of the facility.
+					We have managed to evacuate before nearly risking our very
+					lives to our unspeakable, yet undesireable death! If our highness
+					hears about the wreckage of the facility, he could revoke our research permits
+					for 6 months for unsafe percautions of my creations... They must be destroyed
+					as soon as possible, whatever has possession of these creations, should immediately
+					be punished for their reign of chaotic destruction of our facility.
+					-Dr. Sebastion Kox
+					'''
+				DisplayName: The N30X Mechs
+			}
+
+			TheComet: {
+				Tooltip:
+					'''
+					[c/2EA5BF:---Entry No. 6---]
+					After hearing something struck the world miles away from the research lab, I figured
+					it was just a meteorite. However, upon approaching it, I could see a purple light
+					within a vast distance, only to see that it was a comet that had fallen and strucked
+					the plain of the earth... I went to take a closer look, only to be greeted by a ghostly
+					image of someone with an unreconizable face, wandering this feld of where this comet has
+					strucked. I had a sudden feeling it would haunt me in my sleep, I quickly ran back to the
+					lab before I noticed I was being followed by the entity, I didn't want to do anthing with it,
+					suddenly the entity started attacking after letting out an eerie shriek across the lab!
+					-Dr. Sebastion Kox
+					'''
+				DisplayName: The Comet
+			}
+
+			TheBeneath: {
+				Tooltip:
+					'''
+					[c/2EA5BF:---Entry No. 4---]
+					Uppon exploring the deepest depths of this world's caverns, we noticed
+					some black rock that is as durable as the materials used to make those
+					machines as discovered in the Precursor Temple, however this hardened
+					rock is much tougher than regular stone, uppon deeper exploration into
+					such dark cave, all the lights went out followed by some thick fog, not
+					even something simple as torches will work, our team and I were left with
+					nothing but anxiety slowly getting to us, it's horrendous, we had to make
+					our escape as fast as we could, otherwise we could be consumed by what could
+					be a potential monster that lurks in the darkness of this cave.
+					-Dr. Sebastion Kox
+					'''
+				DisplayName: The Beneath
+			}
+
+			PristineHealingPotion: {
+				DisplayName: Pristine Healing Potion
+				Tooltip: ""
+			}
+
+			PerfectHealingPotion: {
+				DisplayName: Perfect Healing Potion
+				Tooltip: ""
+			}
+
+			FineRedWine: {
+				Tooltip: "'Some of the emissaries say, this is refered to as the 'blood' of the emperor...'"
+				DisplayName: Fine Red Wine
+			}
+
+			ShrineBrickWall: {
+				DisplayName: Shrine Brick Wall
+				Tooltip: ""
+			}
+
+			ShrineBrick: {
+				Tooltip:
+					'''
+					Mined with a Lunar Pickaxe or Higher...
+					'Those were the days...'
+					'''
+				DisplayName: Shrine Brick
+			}
+
+			ScorchingBrick: {
+				Tooltip: "'Hot'"
+				DisplayName: Scorching Brick
+			}
+
+			CosmicDesireAltar: {
+				Tooltip: Used to worship the Cosmic Emperor
+				DisplayName: Altar of Cosmic Desire
+			}
+
+			IgniumOre: {
+				Tooltip: "'Searing to the touch'"
+				DisplayName: Ignium Ore
+			}
+
+			IesniumOre: {
+				Tooltip: "'Etherial energy radiates from the cluster'"
+				DisplayName: Iesnium Ore
+			}
+
+			HardStone: {
+				Tooltip: "'Hardened rock, formed from giant clusters of many minerals'"
+				DisplayName: Hard Stone
+			}
+
+			Grimstone: {
+				Tooltip: "'Dark...'"
+				DisplayName: Grimstone
+			}
+
+			GalaciteOre: {
+				Tooltip: "'Cold to the touch'"
+				DisplayName: Galacite Ore
+			}
+
+			CosmicToilet: {
+				Tooltip:
+					'''
+					Seriously? THIS is what you used the Cosmonium Fragments for?
+					'This was used by the Cosmic Emperor, sitting on this would be very unacceptable...
+					'''
+				DisplayName: Cosmic Toilet
+			}
+
+			ElectriteOre: {
+				Tooltip: "'Shocking to the touch'"
+				DisplayName: Electrite Ore
+			}
+
+			SolidifiedAstragel: {
+				DisplayName: Solidified Astragel
+				Tooltip: ""
+			}
+
+			CometiteBrick: {
+				DisplayName: Cometite Brick
+				Tooltip: ""
+			}
+
+			Starforge: {
+				Tooltip: Used to craft extreme-teir items
+				DisplayName: Starforge
+			}
+
+			Nanoforge: {
+				Tooltip:
+					'''
+					Used to craft divine-teir items
+					Can process Ominite and Naquadah
+					'''
+				DisplayName: Nanoforge
+			}
+
+			AncientForge: {
+				Tooltip: Used to craft hyper-teir items
+				DisplayName: Ancient Forge
+			}
+
+			CometiteOre: {
+				Tooltip: "'Pure starpower radiates from this cluster'"
+				DisplayName: Cometite Ore
+			}
+
+			ReminantHead: {
+				Tooltip:
+					'''
+					Summons a Cosmic Reminant to emit light
+					'Yeah dude this is pretty spooky...'
+					'''
+				DisplayName: Reminant Head
+			}
+
+			ArkrystalEmerald: {
+				Tooltip:
+					'''
+					Summons an Ark that is loayal and follows you
+					'Is it a weapon or a pet? Well, doesn't matter...'
+					'''
+				DisplayName: Arkrystal Emerald
+			}
+
+			StarSpiral: {
+				Tooltip:
+					'''
+					Unleashes a rift that shifts the world into an alternate reality
+					[c/ED0249:Warning]: Very powerful creatures lie within the rift!
+					'Just wait until I turn this world upside down!'
+					'''
+				DisplayName: Star Spiral
+			}
+
+			RoyalGaladianBread: {
+				Tooltip:
+					'''
+					Major improvements to all stats
+					'Freshly baked by one of the emperor's favourite emissaries!'
+					'''
+				DisplayName: Royal Galadian Bread
+			}
+
+			Portadummy: {
+				Tooltip:
+					'''
+					Creates a portable floating dummy at your cursor
+					Despawns when a boss is alive
+					<right> to despawn all portadummies
+					'''
+				DisplayName: Portadummy
+			}
+
+			MysteriousNote: {
+				Tooltip:
+					'''
+					[c/FF0000:---ATTENTION READER!---]
+					I am hearing word that another emperor has arrived here, as well as one of his emissaries.
+					Please take note of my benefits of me being your ruler.
+					Peace
+					Protection
+					Tranquility
+					Do not fall victim to false hopes and such and do not take part of that emperor's doings!
+					-Your royal highness, the Cosmic Emperor
+					'''
+				DisplayName: Mysterious Note
+			}
+
+			LetterofRecommendation: {
+				Tooltip:
+					'''
+					Give this letter to the Emperor
+					'Signed by the emissary.'
+					'''
+				DisplayName: Letter of Recommendation
+			}
+
+			HolyCard: {
+				Tooltip:
+					'''
+					Creates a Holy Mantle to protect you
+					Hell Mode drop
+					'''
+				DisplayName: Holy Card
+			}
+
+			GobletofSinfulBlood: {
+				Tooltip:
+					'''
+					Activates Sinstorm Mode
+					[c/ED0249:This difficulty may require some experience in expert/master mode]
+					Can be toggled on and off
+					Can only be used in Hell mode
+					Cannot be used when a Boss is Alive
+					Gives Bosses Increaced Health and Damage
+					Bosses will drop unique Items exclusive to this difficulty
+					'You have raised the bar far enough...'
+					'''
+				DisplayName: Goblet of Sinful Blood
+			}
+
+			EmperorsTrust: {
+				Tooltip:
+					'''
+					Allows the emperor's Emissaries to settle in your town
+					Allows you to earn Reputation which allows you to buy items from the Emissary
+					Some weapons receive special buffs when in your inventory
+					'In the eyes of the emperor, as long as you have his trust within your reach, he will let his emissaries settle on your land.'
+					'''
+				DisplayName: Emperor's Trust
+			}
+
+			DeathCharm: {
+				Tooltip:
+					'''
+					Toggles Hell Mode
+					[c/ED0249:This difficulty may require some experience in expert/master mode]
+					Can be toggled on and off
+					Can only be used in Expert and Master mode
+					Cannot be used when a Boss is Alive
+					Gives Bosses Increaced Health, Defense, and Damage
+					Some Bosses will have diffrent and unique attack patterns
+					Bosses will drop unique Items, accesories, and weapons exclusive to this difficulty
+					'You're playing with chaos'
+					'''
+				DisplayName: Charm of Death
+			}
+
+			YoggieSpotch: {
+				Tooltip: "'Holding it in your hands for too long could burn your flesh off'"
+				DisplayName: Yoggie Spotch
+			}
+
+			WeatheredPlating: {
+				Tooltip: "'It's weathered, yet still durable'"
+				DisplayName: Weathered Plating
+			}
+
+			UnrefinedHeroSword: {
+				Tooltip:
+					'''
+					[c/F72F9A:Guaranteed Rare Boss Drop]
+					'It looks rather rough, yet it's valuable, however something seems to be missing here'
+					[c/008060:Ancient Artifact]
+					Whatever this is, it remains unknown...
+					'''
+				DisplayName: Unrefined Hero Sword
+			}
+
+			ThunderblightCrystal: {
+				Tooltip: "'A mere fragment of the dune's creatures'"
+				DisplayName: Thunderblight Crystal
+			}
+
+			ThunderblightCore: {
+				Tooltip: "'A mere fragment of the Eternal thunderborn spirits'"
+				DisplayName: Thunderblight Core
+			}
+
+			StarmetalBar: {
+				Tooltip: "'A Cosmic Bar That is Very Sturdy and Durable...'"
+				DisplayName: Starmetal Bar
+			}
+
+			StargloomCometiteBar: {
+				Tooltip: "'The strongest starmetal, a material with otherworldly properties when exposed to a rift.'"
+				DisplayName: Stargloom Cometite Bar
+			}
+
+			ShadowSkull: {
+				Tooltip: ???
+				DisplayName: Shadow Skull
+			}
+
+			SebastionsCyberChassis: {
+				Tooltip: "'It looks rather hollow and empty on the inside...'"
+				DisplayName: Sebastian's Cyber Chassis
+			}
+
+			RefinedArkrystalSheets: {
+				Tooltip: "'Durable, yet so shiny...'"
+				DisplayName: Refined Arkrystal Sheets
+			}
+
+			RawNaquadah: {
+				Tooltip: "'Otherworldly substance, mostly found in an unknown rift...'"
+				DisplayName: Raw Naquadah
+			}
+
+			RawArkrystal: {
+				Tooltip: "'Crystalized energy of living swords'"
+				DisplayName: Raw Arkrystal
+			}
+
+			RawArkaniumDebris: {
+				Tooltip: "'A very hard rocky substance'"
+				DisplayName: Raw Arkanium Debris
+			}
+
+			PermafrostAlloy: {
+				Tooltip: "'Formed by many blue ice chunks'"
+				DisplayName: Permafrost Alloy
+			}
+
+			NaquadahBar: {
+				Tooltip: "'A material made of otherworldly rift-like scrap...'"
+				DisplayName: Naquadah Bar
+			}
+
+			MoteofOminite: {
+				DisplayName: Mote of Ominite
+				Tooltip: "'Otherworldly singularity from disfigured entities'"
+			}
+
+			MalachiteSheets: {
+				DisplayName: Malachite Sheets
+				Tooltip: ""
+			}
+
+			MalachiteShard: {
+				Tooltip: "'At least has some value'"
+				DisplayName: Malachite Shard
+			}
+
+			MagmaticAlloy: {
+				Tooltip: "'A very hot basaltic material'"
+				DisplayName: Magmatic Alloy
+			}
+
+			KnifeHandle: {
+				Tooltip: ???
+				DisplayName: Knife Handle
+			}
+
+			KnifeBlade: {
+				Tooltip: ???
+				DisplayName: Knife Blade
+			}
+
+			InterstellarSingularity: {
+				Tooltip: "'The Essence of Cosmic Beings'"
+				DisplayName: Interstellar Singularity
+			}
+
+			InterstellarMetal: {
+				Tooltip: "'It pulses very faintly'"
+				DisplayName: Interstellar Metal
+			}
+
+			InfernoblightCrystal: {
+				Tooltip: "'A mere fragment of the underworld's creatures'"
+				DisplayName: Infernoblight Crystal
+			}
+
+			InfernoblightCore: {
+				Tooltip: "'A mere fragment of the Eternal infernoborn spirits'"
+				DisplayName: Infernoblight Core
+			}
+
+			InfernalAshes: {
+				Tooltip: "'Think of this as hot sand'"
+				DisplayName: Infernal Ashes
+			}
+
+			IgniumBar: {
+				DisplayName: Ignium Bar
+				Tooltip: ""
+			}
+
+			IesniumBar: {
+				DisplayName: Iesnium Bar
+				Tooltip: ""
+			}
+
+			HardStoneFragment: {
+				DisplayName: Hard Stone Fragment
+				Tooltip: ""
+			}
+
+			GlacerWalkerHead: {
+				Tooltip: "'The head of a Glacer Walker'"
+				DisplayName: Glacer Walker Head
+			}
+
+			GlacerWalkerGreaves: {
+				Tooltip: "'The armored leggings of a Glacer Walker'"
+				DisplayName: Glacer Walker Greaves
+			}
+
+			GlacerWalkerChestplate: {
+				Tooltip: "'The body of a Glacer Walker'"
+				DisplayName: Glacer Walker Chestplate
+			}
+
+			GalaxianPlating: {
+				Tooltip: "'Durable plating from cosmic entities'"
+				DisplayName: Galaxian Plating
+			}
+
+			GalaciteGemstone: {
+				DisplayName: Galacite Gemstone
+				Tooltip: ""
+			}
+
+			GalaciteBar: {
+				DisplayName: Galacite Bar
+				Tooltip: ""
+			}
+
+			FrostblightCrystal: {
+				Tooltip: "'A mere fragment of the tundra's creatures'"
+				DisplayName: Frostblight Crystal
+			}
+
+			FrostblightCore: {
+				Tooltip: "'A mere fragment of the Eternal frostborn spirits'"
+				DisplayName: Frostblight Core
+			}
+
+			ElectriteBar: {
+				DisplayName: Electrite Bar
+				Tooltip: ""
+			}
+
+			CosmoniumFragment: {
+				Tooltip: "'A shard of the Cosmic Emperor's soul'"
+				DisplayName: Cosmonium Fragment
+			}
+
+			CrystalizedOminite: {
+				Tooltip: ""
+				DisplayName: Crystalized Ominite
+			}
+
+			CosmicEmperorsInterstellarAlloy: {
+				Tooltip:
+					'''
+					'Precious, vaulable, otherworldly and a one of a kind material'
+					[c/008060:Ancient Artifact]
+					The Cosmic Emperor has explored the stars that linger across the night sky...
+					One day, after hours of exploration, he returned to his palace with this incredibly rare and one of a kind alloy!
+					'''
+				DisplayName: Cosmic Emperor's Interstellar Alloy
+			}
+
+			CoreofEternal: {
+				Tooltip: "'A mere fragment of Reality'"
+				DisplayName: Core of Eternal
+			}
+
+			ConcintratedHardStone: {
+				Tooltip: "'The heaviest form of rock, formed with impossibly heavy pressure...'"
+				DisplayName: Concentrated Hard Stone
+			}
+
+			CometiteCrystal: {
+				Tooltip: "'A crystaline singularity of pristine starpower'"
+				DisplayName: Cometite Crystal
+			}
+
+			CometiteBar: {
+				Tooltip: "'A metallic alloy of pure starpower'"
+				DisplayName: Cometite Bar
+			}
+
+			Carminite: {
+				Tooltip: "'Slimey substance scrapped off a fleshbound horror'"
+				DisplayName: Carminite
+			}
+
+			Astragel: {
+				Tooltip: "'Not actual gel'"
+				DisplayName: Astragel
+			}
+
+			ArkaniumCompoundSheets: {
+				Tooltip: ""
+				DisplayName: Arkanium Compound Sheets
+			}
+
+			ApparitionalMatter: {
+				Tooltip: "'Paranormal energy emmits from it's very core'"
+				DisplayName: Apparitional Matter
+			}
+
+			SarosFragment: {
+				Tooltip: "'A shard of the black sun'"
+				DisplayName: Saros Fragment
+			}
+
+			LuminousQuartz: {
+				Tooltip: "'A crystal of pure moonlight'"
+				DisplayName: Luminous Quartz
+			}
+
+			ReverseLifeContainer: {
+				Tooltip:
+					'''
+					[c/FF0000:Debug Item]
+					Removes 20 HP from the Players Health
+					Does not work with other mods
+					Consume Life Crystals/Life Fruit to Regain the Effects
+					'''
+				DisplayName: Reverse Life Container
+			}
+
+			ReputationAdjuster1000: {
+				Tooltip:
+					'''
+					[c/FF0000:Debug Item]
+					Right Click to change Reputation Points by -1000
+					Left Click to change Reputation Points by +1000
+					'''
+				DisplayName: Reputation Adjuster 1000
+			}
+
+			ReputationAdjuster100: {
+				Tooltip:
+					'''
+					[c/FF0000:Debug Item]
+					Right Click to change Reputation Points by -100
+					Left Click to change Reputation Points by +100
+					'''
+				DisplayName: Reputation Adjuster 100
+			}
+
+			ReputationAdjuster: {
+				Tooltip:
+					'''
+					[c/FF0000:Debug Item]
+					Right Click to change Reputation Points by -1
+					Left Click to change Reputation Points by +1
+					'''
+				DisplayName: Reputation Adjuster
+			}
+
+			PostMoonLordAdjuster: {
+				Tooltip:
+					'''
+					[c/FF0000:Debug Item]
+					<right> to enable post-moon lord
+					Left Click to disable post-moon lord
+					'''
+				DisplayName: Post-Moon Lord Adjuster
+			}
+
+			IncineriusUnKiller: {
+				Tooltip:
+					'''
+					[c/FF0000:Debug Item]
+					Makes Incinerius no longer a downed boss
+					killing him will skip the Basalt Prison...
+					'''
+				DisplayName: Incinerius Un Killer
+			}
+
+			HardmodeAdjuster: {
+				Tooltip:
+					'''
+					[c/FF0000:Debug Item]
+					<right> to enable hardmode
+					Left Click to disable hardmode
+					'''
+				DisplayName: Hardmode Adjuster
+			}
+
+			CosmicApparitionUnKiller: {
+				Tooltip:
+					'''
+					[c/FF0000:Debug Item]
+					Makes the Cosmic Apparition no longer a downed boss
+					killing it will make enemies in the comet biome drop cometite materials again...
+					<right> to undo the Rift effect
+					'''
+				DisplayName: Cosmic Apparition Un-Killer
+			}
+
+			CarminiteAmalgamationUnKiller: {
+				Tooltip:
+					'''
+					[c/FF0000:Debug Item]
+					Makes the Carminite Amalgamation no longer a downed boss
+					Killing it again will make it spawn Iesnium Ore
+					'''
+				DisplayName: Carminite Amalgamation Un-Killer
+			}
+
+			AoIUnKiller: {
+				Tooltip:
+					'''
+					[c/FF0000:Debug Item]
+					Makes the Ark of Imperious no longer a downed boss
+					killing it will grant the ability to summon the Cosmic Emperor, via the Cosmic Tablet at the Altar of Cosmic Desire
+					<right> to undo the Rift effect
+					'''
+				DisplayName: Ark of Imperious Un-Killer
+			}
+
+			IncineriusBag: {
+				Tooltip: <right> to Open
+				DisplayName: Treasure Bag (Incinerius)
+			}
+
+			DuneGolemBag: {
+				Tooltip: <right> to Open
+				DisplayName: Treasure Bag (Dune Golem)
+			}
+
+			CosmicEmperorCapsule: {
+				Tooltip: <right> to Open
+				DisplayName: Treasure Capsule (Cosmic Emperor)
+			}
+
+			CosmicApparitionBag: {
+				Tooltip: <right> to Open
+				DisplayName: Treasure Bag (Cosmic Apparition)
+			}
+
+			CarminiteAmalgamationBag: {
+				Tooltip: <right> to Open
+				DisplayName: Treasure Bag (Carminite Amalgamation)
+			}
+
+			AoIBag: {
+				Tooltip: <right> to Open
+				DisplayName: Treasure Bag (Ark of Imperious)
+			}
+
+			UltimusPlateMail: {
+				Tooltip: +200 max life
+				DisplayName: Ultimus Plate Mail
+			}
+
+			UltimusMask: {
+				Tooltip: 30% increased melee damage
+				DisplayName: Ultimus Mask
+			}
+
+			UltimusLeggings: {
+				Tooltip: +40% increased movement speed
+				DisplayName: Ultimus Leggings
+			}
+
+			UltimusHood: {
+				Tooltip: 30% increased ranged damage
+				DisplayName: Ultimus Hood
+			}
+
+			UltimusHelmet: {
+				Tooltip: 30% increased minion damage
+				DisplayName: Ultimus Helmet
+			}
+
+			UltimusHeadgear: {
+				Tooltip: 30% increased magic damage
+				DisplayName: Ultimus Headgear
+			}
+
+			StarbornScalePlate: {
+				Tooltip: +25 increased max life
+				DisplayName: Starborn Scale Plate
+			}
+
+			StarbornMask: {
+				Tooltip: 17% increased melee damage
+				DisplayName: Starborn Mask
+			}
+
+			StarbornHood: {
+				Tooltip: 17% increased magic damage
+				DisplayName: Starborn Hood
+			}
+
+			StarbornHelmet: {
+				Tooltip: 17% increased minion damage
+				DisplayName: Starborn Helmet
+			}
+
+			StarbornHeadgear: {
+				Tooltip: 17% increased ranged damage
+				DisplayName: Starborn Headgear
+			}
+
+			StarbornGreaves: {
+				Tooltip: +18% increased movement speed
+				DisplayName: Starborn Greaves
+			}
+
+			NaquadahMask: {
+				Tooltip: 20% increased melee damage
+				DisplayName: Naquadah Mask
+			}
+
+			NaquadahGreaves: {
+				Tooltip: +25% increased movement speed
+				DisplayName: Naquadah Greaves
+			}
+
+			NaquadahChestplate: {
+				Tooltip: +200 increased max life
+				DisplayName: Naquadah Chestplate
+			}
+
+			InfernomancerRobe: {
+				Tooltip: ""
+				DisplayName: Infernomancer Robe
+			}
+
+			InfernomancerHood: {
+				Tooltip: ""
+				DisplayName: Infernomancer Hood
+			}
+
+			InfernomancerGreaves: {
+				Tooltip: +10% increased movement speed
+				DisplayName: Infernomancer Greaves
+			}
+
+			IesniumLeggings: {
+				Tooltip: +20% increased movement speed
+				DisplayName: Iesnium Leggings
+			}
+
+			IesniumHelmet: {
+				Tooltip: ""
+				DisplayName: Iesnium Helmet
+			}
+
+			IesniumChestplate: {
+				Tooltip: ""
+				DisplayName: Iesnium Chestplate
+			}
+
+			ArkaniumMask: {
+				Tooltip: 20% increased melee damage
+				DisplayName: Arkanium Mask
+			}
+
+			ArkaniumHood: {
+				Tooltip: 20% increased ranged damage
+				DisplayName: Arkanium Hood
+			}
+
+			ArkaniumHelmet: {
+				Tooltip: 20% increased minion damage
+				DisplayName: Arkanium Helmet
+			}
+
+			ArkaniumGreaves: {
+				Tooltip: +27% increased movement speed
+				DisplayName: Arkanium Greaves
+			}
+
+			ArkaniumCowl: {
+				Tooltip: 20% increased magic damage
+				DisplayName: Arkanium Cowl
+			}
+
+			ArkaniumChestplate: {
+				Tooltip: +160 max life
+				DisplayName: Arkanium Chestplate
+			}
+
+			AncientStarbornScalePlate: {
+				Tooltip: +10 increased max life
+				DisplayName: Ancient Starborn Scale Plate
+			}
+
+			AncientStarbornMask: {
+				Tooltip: 7% increased melee damage
+				DisplayName: Ancient Starborn Mask
+			}
+
+			AncientStarbornHelmet: {
+				Tooltip: 7% increased minion damage
+				DisplayName: Ancient Starborn Helmet
+			}
+
+			AncientStarbornHeadgear: {
+				Tooltip: 7% increased ranged damage
+				DisplayName: Ancient Starborn Headgear
+			}
+
+			AncientStarbornHat: {
+				Tooltip: 7% increased magic damage
+				DisplayName: Ancient Starborn Hat
+			}
+
+			AncientStarbornGreaves: {
+				Tooltip: +9% increased movement speed
+				DisplayName: Ancient Starborn Greaves
+			}
+
+			Starbullet: {
+				Tooltip: "'Let's hope that these would work against anything...'"
+				DisplayName: Starbullet
+			}
+
+			StarbornArrow: {
+				Tooltip: "'Brittle, but tough!'"
+				DisplayName: Starborn Arrow
+			}
+
+			NanohacketRound: {
+				Tooltip: "'For slicing and dicing!'"
+				DisplayName: Nanohacket Round
+			}
+
+			EndlessStarbulletBundle: {
+				Tooltip:
+					'''
+					Unlimited Ammo
+					'Let's hope that these would work against anything...'
+					'''
+				DisplayName: Endless Starbullet Bundle
+			}
+
+			EndlessNanohacketRoundBundle: {
+				Tooltip:
+					'''
+					Unlimited Ammo
+					'For slicing and dicing!'
+					'''
+				DisplayName: Endless Nanohacket Round Bundle
+			}
+
+			EndlessBasaltShellBundle: {
+				Tooltip:
+					'''
+					Unlimited Ammo
+					'Hot bullets made of hot materials!'
+					'''
+				DisplayName: Endless Basalt Shell Bundle
+			}
+
+			BasaltShell: {
+				Tooltip: "'Hot bullets made of hot materials!'"
+				DisplayName: Basalt Shell
+			}
+
+			VoidCursor: {
+				Tooltip: Causes your mouse cursor to shift from black to red
+				DisplayName: Void Cursor
+			}
+
+			TheEternalCursor: {
+				Tooltip: Causes your mouse cursor to shift from various shades of red
+				DisplayName: The Eternal Cursor
+			}
+
+			SpiritArkCursor: {
+				Tooltip: Causes your mouse cursor to shift from various shades of green
+				DisplayName: Spirit Ark Cursor
+			}
+
+			CursorofTheCosmos: {
+				Tooltip: Causes your mouse cursor to shift from various shades of purple
+				DisplayName: Cursor of The Cosmos
+			}
+
+			UniversalBreathingPack: {
+				Tooltip:
+					'''
+					[c/20E354:Environmental Protection Pack (EPP)]
+					Provides Immunity to both Hypothermia and Hyperthermia in Brutal Hell Mode
+					'''
+				DisplayName: Universal Breathing Pack
+			}
+
+			TankEmblem: {
+				Tooltip: 15% increased health
+				DisplayName: Tank Emblem
+			}
+
+			RoyalKeepersTreads: {
+				Tooltip:
+					'''
+					Counts as Wings
+					Allows flight and slow fall
+					Press Down to toggle hover
+					Press Up to deactivate hover
+					Allows the wearer to run at crazy speed!
+					Provides mobility on ice
+					Lava Waders effects
+					Master Ninja Gear effects
+					Immunity to lava
+					'The Cosmic Emperor's Reward for finding such incredibly rare alloy'
+					'''
+				DisplayName: Royal Keepers' Treads
+			}
+
+			HotEnvironmentBreathingPack: {
+				Tooltip:
+					'''
+					[c/20E354:Environmental Protection Pack (EPP)]
+					Provides Immunity to Hyperthermia in Brutal Hell Mode
+					'''
+				DisplayName: Hot Environment Breathing Pack
+			}
+
+			Dreadheart: {
+				Tooltip:
+					'''
+					Increased melee damage By 45%
+					Increased life by 100
+					Taking damage can heal you by 6 to 12 HP
+					Hell Mode upgrade
+					'''
+				DisplayName: The Dreadheart
+			}
+
+			CarminiteHeart: {
+				Tooltip:
+					'''
+					Increased melee damage By 25%
+					Hell Mode drop
+					'''
+				DisplayName: Carminite Smothered Heart
+			}
+
+			BlackCandle: {
+				Tooltip:
+					'''
+					Allows you to see while in The Beneath
+					Provides a brighter source of light
+					Hell Mode upgrade
+					'''
+				DisplayName: Black Candle
+			}
+
+			FiercePunisherEmblem: {
+				Tooltip: 45% increased damage
+				DisplayName: Fierce Punisher Emblem
+			}
+
+			FierceDruidEmblem: {
+				Tooltip: 45% increased radiant damage
+				DisplayName: Fierce Druid Emblem
+			}
+
+			FierceDominatorEmblem: {
+				Tooltip: 45% increased melee damage
+				DisplayName: Fierce Dominator Emblem
+			}
+
+			FierceDeityEmblem: {
+				Tooltip:
+					'''
+					20% increased damage
+					10% critical strike chance
+					[c/008060:Ancient Artifact]
+					An emblem empowered with a godly radiance
+					Legends say this was used to empower the guardians of the dunes, aiding them in combat and allowing them to become reststant to any weakness they had
+					'''
+				DisplayName: Fierce Deity Emblem
+			}
+
+			FierceCommanderEmblem: {
+				Tooltip: 45% increased summon damage
+				DisplayName: Fierce Commander Emblem
+			}
+
+			FierceArchmageEmblem: {
+				Tooltip: 45% increased magic damage
+				DisplayName: Fierce Archmage Emblem
+			}
+
+			FierceArcherEmblem: {
+				Tooltip: 45% increased ranged damage
+				DisplayName: Fierce Archer Emblem
+			}
+
+			GiftofTheSwordGod: {
+				Tooltip: This has features that are not yet implimented
+				DisplayName: Gift of The Sword God (NYI)
+			}
+
+			DuneCore: {
+				Tooltip: Causes sparks to fly upon geeting hit
+				DisplayName: Dune Core
+			}
+
+			Bloodtooth: {
+				Tooltip: Causes bloodteeth to spew out upon getting hit.
+				DisplayName: Bloodtooth
+			}
+
+			EvocationerEmblem: {
+				Tooltip: 15% increased radiant damage
+				DisplayName: Evocationer Emblem
+			}
+
+			CosmicStarstryderTreads: {
+				Tooltip:
+					'''
+					Counts as Wings
+					Allows flight and slow fall
+					Allows the wearer to run at ludicrous speed!
+					Provides mobility on ice
+					Lava Waders effects
+					Master Ninja Gear effects
+					Immunity to lava
+					'Ascendance beyond your comprehension!'
+					'''
+				DisplayName: Cosmic Starstryder Treads
+			}
+
+			CosmicEmperorsCombatTassle: {
+				Tooltip:
+					'''
+					40% increased damage
+					20% critical strike chance
+					[c/008060:Ancient Artifact]
+					This relic of the Cosmic Emperor was weaved with the stardust of comets and moonlight
+					With such power harvested to create such tassle will empower whoever wears this to honor and prase the Cosmic Emperor
+					'''
+				DisplayName: Cosmic Emperor's Combat Tassle
+			}
+
+			CometGauntlet: {
+				Tooltip:
+					'''
+					35% increased melee damage
+					17% increased melee speed
+					Enables auto swing for melee weapons
+					'The comets are now in the palm of your hand'
+					'''
+				DisplayName: Comet Gauntlet
+			}
+
+			BlackLantern: {
+				Tooltip: Allows you to see while in The Beneath
+				DisplayName: Black Lantern
+			}
+
+			ArcticBreathingPack: {
+				Tooltip:
+					'''
+					[c/20E354:Environmental Protection Pack (EPP)]
+					Provides Immunity to Hypothermia in Brutal Hell Mode
+					'''
+				DisplayName: Arctic Breathing Pack
+			}
+
+			ApparitionalViscara: {
+				Tooltip:
+					'''
+					[c/F72F9A:Absolute RNG Drop]
+					This item has features that are not yet implimented
+					It does nothing for now
+					'''
+				DisplayName: Apparitional Viscara (NYI)
+			}
+
+			AncientEmblem: {
+				Tooltip:
+					'''
+					Grants 5% increased melee damage
+					[c/008060:Ancient Artifact] 
+					A mysterious emblem, you have never seen this before...
+					Rumors believed that it was passed down from leader to leader of an unknown group...
+					Maybe it was passed down to you because you were going to be the next leader of that group, who knows...
+					This dormant emblem has something to do with empowering a dormant sword, gifted from the sword god himself.
+					'''
+				DisplayName: Ancient Emblem
+			}
+
+			RoyalShrineSword: {
+				DisplayName: Royal Shrine Sword
+				Tooltip: Swing this sword to summon the Ark of Imperious, the god of swords
+			}
+
+			SandFood: {
+				DisplayName: Sand Food
+				Tooltip:
+					'''
+					Attracts a giant sandworm
+					'Not to be confused with Worm Food'
+					'''
+			}
+
+			SuspiciousLookingDroplet: {
+				DisplayName: Suspicious Looking Droplet
+				Tooltip: Summons the Carminite Amalgamation
+			}
+
+			ArkaniumHamaxe: {
+				DisplayName: Arkanium Hamaxe
+				Tooltip: ""
+			}
+
+			ArkaniumPickaxe: {
+				DisplayName: Arkanium Pickaxe
+				Tooltip: ""
+			}
+
+			CometiteWhaleHarvester: {
+				DisplayName: Cometite Whale Harvester
+				Tooltip:
+					'''
+					Fires multiple lines at once.
+					Can fish in lava.
+					The fishing line never snaps.
+					'Just don't use truffle worms with this, or even bloodworms...'
+					'''
+			}
+
+			ConductivePickaxe: {
+				DisplayName: Conductive Pickaxe
+				Tooltip: "'The pickaxe of thunder and lightning'"
+			}
+
+			FridgidPickaxe: {
+				DisplayName: Fridgid Pickaxe
+				Tooltip: "'The pickaxe of glacers'"
+			}
+
+			MalachiteHamaxe: {
+				DisplayName: Malachite Hamaxe
+				Tooltip: ""
+			}
+
+			MalachitePickaxe: {
+				DisplayName: Malachite Pickaxe
+				Tooltip: ""
+			}
+
+			ScorchingPickaxe: {
+				DisplayName: Scorching Pickaxe
+				Tooltip: "'The pickaxe of the core'"
+			}
+
+			Starhamaxe: {
+				DisplayName: Starhamaxe
+				Tooltip: ""
+			}
+
+			Starpickaxe: {
+				DisplayName: Starpickaxe
+				Tooltip: Capable of Mining Ignium, Electrite and Galacite
+			}
+
+			DuneEviscrator: {
+				DisplayName: Dune Eviscrator
+				Tooltip: Hell Mode drop
+			}
+
+			TheKnife: {
+				DisplayName: The Knife
+				Tooltip:
+					'''
+					'Stab stab stab!'
+					Hell Mode drop
+					'''
+			}
+
+			NuclearKamikaze: {
+				DisplayName: Nuclear Kamikaze
+				Tooltip:
+					'''
+					Casts fast moving razorblades, similar to the Razorblade Typhoon
+					'Not to be confused with the Nuclear Fury...'
+					'''
+			}
+
+			StarstaveDrei: {
+				DisplayName: Starstave Drei
+				Tooltip: Fires a bouncing bolt that explodes into four
+			}
+
+			StarstaveEin: {
+				DisplayName: Starstave Ein
+				Tooltip: "'Stave? Staff? You decide...'"
+			}
+
+			StarstaveVier: {
+				DisplayName: Starstave Vier
+				Tooltip: Fires a small barage of starstave bolts that indulges in mitosis
+			}
+
+			StarstaveZwei: {
+				DisplayName: Starstave Zwei
+				Tooltip: Fires multiple Starstave Bolts
+			}
+
+			SwordsofTheSwordGod: {
+				DisplayName: Swords of The Sword God
+				Tooltip:
+					'''
+					Fires a barrage of swords
+					'How about we do a little sword dance!'
+					'''
+			}
+
+			ApparitionalDisk: {
+				DisplayName: Apparitional Disk
+				Tooltip: ""
+			}
+
+			Arkleavage: {
+				DisplayName: Arkleavage (WIP)
+				Tooltip:
+					'''
+					Calls the Ark of Imperious to strike enemies from above
+					'There's a sword...'
+					'''
+			}
+
+			ArkrystalBlade: {
+				DisplayName: Arkrystal Blade
+				Tooltip:
+					'''
+					<right> for True Melee
+					'Formally known as The Imperious Cohort...'
+					'''
+			}
+
+			ArkrystalChakram: {
+				DisplayName: Arkrystal Chakram
+				Tooltip: ""
+			}
+
+			ArkrystalGladius: {
+				DisplayName: Arkrystal Gladius
+				Tooltip: "'The Arkrystal Blade's short counterpart'"
+			}
+
+			Arkspear: {
+				DisplayName: Arkspear
+				Tooltip:
+					'''
+					<right> to throw
+					'This little ark was unfortunatley turned into a spear...'
+					'''
+			}
+
+			AspectofTheJake: {
+				DisplayName: Aspect of The Jake
+				Tooltip:
+					'''
+					Inflicts confusion upon striking an enemy
+					'The power of Jake is within you!'
+					'''
+			}
+
+			Astraea: {
+				DisplayName: Astraea (WIP)
+				Tooltip:
+					'''
+					[c/008060:Ancient Artifact]
+					This sword was weilded by the unknown warriors of the shrine
+					'''
+			}
+
+			BasaltKatar: {
+				DisplayName: Basalt Katar
+				Tooltip: ""
+			}
+
+			BifrostPrisimdisk: {
+				DisplayName: Bifrost Prisimdisk
+				Tooltip: "'I know, it looks bland but it's really cool and colorful when you throw it, trust me!"
+			}
+
+			CarminiteBane: {
+				DisplayName: Carminite Bane
+				Tooltip: ""
+			}
+
+			CarminitePurgatory: {
+				DisplayName: Carminite Purgatory
+				Tooltip: ""
+			}
+
+			CarminiteRipperClaws: {
+				DisplayName: Carminite Ripper Claws
+				Tooltip: ""
+			}
+
+			EdgeofTheInferno: {
+				DisplayName: Edge of The Inferno
+				Tooltip: ""
+			}
+
+			EmpoweredApparitionalDisk: {
+				DisplayName: Empowered Apparitional Disk
+				Tooltip: ""
+			}
+
+			EmpoweredMalachiteEdge: {
+				DisplayName: Empowered Malachite Edge
+				Tooltip: Fires a barrage of blades that return to the player
+			}
+
+			ExosiivaGladiusBlade: {
+				DisplayName: Exosiiva Gladius Blade
+				Tooltip:
+					'''
+					'Now where have I seen this before?'
+					[c/FC036B:Developer Item]
+					Dedicated to [c/038CFC:JakeTEM]
+					'''
+			}
+
+			GiantFireChakram: {
+				DisplayName: Giant Fire Chakram
+				Tooltip: ""
+			}
+
+			Hyperion: {
+				DisplayName: Hyperion (WIP)
+				Tooltip:
+					'''
+					[c/008060:Ancient Artifact]
+					This sword was weilded by the thunderborn warriors of the dunes
+					'''
+			}
+
+			MalachiteChakram: {
+				DisplayName: Malachite Chakram
+				Tooltip: ""
+			}
+
+			MalachiteEdge: {
+				DisplayName: Malachite Edge
+				Tooltip: ""
+			}
+
+			Nekodisk: {
+				DisplayName: Nekodisk
+				Tooltip: ""
+			}
+
+			Nyanarang: {
+				DisplayName: Nyanarang
+				Tooltip: ""
+			}
+
+			Phantasma: {
+				DisplayName: Phantasma
+				Tooltip: Can phase through tiles
+			}
+
+			Scylla: {
+				DisplayName: Scylla (WIP)
+				Tooltip:
+					'''
+					[c/008060:Ancient Artifact]
+					This sword was weilded by the frostborn warriors of the tundra
+					'''
+			}
+
+			StarcrescentMoondisk: {
+				DisplayName: Starcrescent Moondisk
+				Tooltip: "'Free the moonlight!'"
+			}
+
+			StarofNihilion: {
+				DisplayName: Star of Nihilion
+				Tooltip: "'Named after the silent nihiliophane demon, Nihilion'"
+			}
+
+			Starspear: {
+				DisplayName: Starspear
+				Tooltip:
+					'''
+					<right> to throw and leave a trail of bombs
+					More Starspears spawn while wearing Starborn Armor or better
+					'A Starsharp Spear'
+					'''
+			}
+
+			Sunshine: {
+				DisplayName: Sunshine
+				Tooltip: "'Can you feel the light?'"
+			}
+
+			Tartaron: {
+				DisplayName: Tartaron (WIP)
+				Tooltip:
+					'''
+					[c/008060:Ancient Artifact]
+					This sword was weilded by the blazeborn warriors of the underworld
+					'''
+			}
+
+			TheBigOne: {
+				DisplayName: The Big One
+				Tooltip:
+					'''
+					'The mighty forest felling axe of eternity!'
+					[c/FC036B:Dedicated Content]
+					Dedicated to [c/038CFC:Jaer Hend]
+					'''
+			}
+
+			TheEclipse: {
+				DisplayName: The Eclipse
+				Tooltip: Fires a yoyo that resembles a dog sun
+			}
+
+			Vexation: {
+				DisplayName: Vexation
+				Tooltip: Heals you upon striking an enemy
+			}
+
+			VividMilkyWayClimax: {
+				DisplayName: Vivid Milky Way Climax
+				Tooltip: "'Where's the climax?'"
+			}
+
+			OneHitObliterator: {
+				DisplayName: One-Hit Obliterator
+				Tooltip:
+					'''
+					[c/FF0000:Cheat Item]
+					Can manipulate anything in a single swing
+					Automatically drains your health to 1 HP
+					'''
+			}
+
+			ExocosmicBomb: {
+				DisplayName: Exocosmic Bomb
+				Tooltip:
+					'''
+					[c/ff0000:WARNING] - Having several bombs detonate at once like this can cause lag spikes!
+					'The unapologetically "charming" super bomb!'
+					'''
+			}
+
+			MagicalCastingPestle: {
+				DisplayName: Magical Casting Pestle
+				Tooltip: Shoots a pebble that shoots small pebbles
+			}
+
+			ArkrystalManbow: {
+				DisplayName: Arkrystal Manbow
+				Tooltip:
+					'''
+					Converts arrows to Arkrystal Shards
+					'I guess you can consider this a bit of a machine gun bow...'
+					'''
+			}
+
+			Bowpocalypse: {
+				DisplayName: Bowpocalypse
+				Tooltip: Shoots a random assortment of arrows
+			}
+
+			CarminiteDeadshot: {
+				DisplayName: Carminite Deadshot
+				Tooltip: ""
+			}
+
+			CosmicSwiftShot: {
+				DisplayName: Cosmic Swift Shot
+				Tooltip:
+					'''
+					Converts arrows to Swift Shot Starbusters
+					'The Triple-Shot Bow of The Cosmos'
+					'''
+			}
+
+			DX7060: {
+				DisplayName: DX-7060
+				Tooltip: "'You have no ideas what it does!'"
+			}
+
+			EmpoweredCosmicSwiftShot: {
+				DisplayName: Empowered Cosmic Swift Shot
+				Tooltip: "'How empowered can it be?'"
+			}
+
+			Meganovae: {
+				DisplayName: Meganovae
+				Tooltip: ""
+			}
+
+			Phazon: {
+				DisplayName: Phazon
+				Tooltip: ""
+			}
+
+			PhazonEX: {
+				DisplayName: Phazon EX
+				Tooltip: ""
+			}
+
+			Scorchthrower: {
+				DisplayName: Scorchthrower
+				Tooltip:
+					'''
+					Fires a long superheated flame bar
+					'KILL IT WITH FIRE!'
+					'''
+			}
+
+			Starfall: {
+				DisplayName: Starfall
+				Tooltip: "'Okay so basically, Daedalus Stormbow...'"
+			}
+
+			SWMG: {
+				DisplayName: S.W.M.G
+				Tooltip: "'It came from The Edge of Tremor'"
+			}
+
+			TotalStarstorm: {
+				DisplayName: Total Starstorm
+				Tooltip: ""
+			}
+
+			ApparitionalStave: {
+				DisplayName: Apparitional Stave
+				Tooltip: Creates Cosmic Decoys to haunt your enemies
+			}
+
+			Fleshsnapper: {
+				DisplayName: Fleshsnapper
+				Tooltip: ""
+			}
+
+			GalaxianBelt: {
+				DisplayName: Galaxian Belt
+				Tooltip: ""
+			}
+
+			CosmicNinjaStar: {
+				DisplayName: Cosmic Ninja Star
+				Tooltip: ""
+			}
+
+			MalachiteDagger: {
+				DisplayName: Malachite Dagger
+				Tooltip: ""
+			}
+
+			MoonstabKunai: {
+				DisplayName: Moonstab Kunai
+				Tooltip: ""
+			}
+
+			PocketJake: {
+				DisplayName: Pocket Jake
+				Tooltip:
+					'''
+					Throws pocket Jakes that explode on impact in a comical way
+					Throw more than one pocket Jake when the Emperor's Trust is in your inventory
+					'Channel your inner Jake!'
+					[c/FC036B:Developer Item]
+					Dedicated to [c/038CFC:JakeTEM]
+					'''
+			}
+
+			NaquadahHelmet: {
+				DisplayName: Naquadah Helmet
+				Tooltip: ""
+			}
+
+			AdamantriteBar: {
+				DisplayName: Adamantrite Bar
+				Tooltip: "'Not to be confused with Adamantite...'"
+			}
+
+			TritaniumBar: {
+				DisplayName: Tritanium Bar
+				Tooltip: "'Not to be confused with Titanium...'"
+			}
+
+			RotaryHearthForge: {
+				DisplayName: Rotary Hearth Forge
+				Tooltip: Used to process Ominite and Naquadah
+			}
+
+			OminiteTippedNaquadahPickaxe: {
+				DisplayName: Ominite-Tipped Naquadah Pickaxe
+				Tooltip: "'Capable of mining some sort of powerful ore...'"
+			}
+
+			ZeroPointModule: {
+				DisplayName: Zero-Point Module
+				Tooltip:
+					'''
+					Doubles your mana capacity
+					'It's a magical maricle'
+					[c/008060:Ancient Artifact]
+					Despite being crafted using a material from another world, this powerful apparatus could mark
+					the beginning of a brand new era of technological manipulation. Maybe even storing massive amounts of pure energy!
+					'''
+			}
+
+			SolScythe: {
+				DisplayName: Sol Scythe
+				Tooltip: Not to be confused with 'Soul Scythe'
+			}
+
+			RawOminaquadite: {
+				DisplayName: Raw Ominaquadite
+				Tooltip: Soak this in liquid shimmer to obtain the Ominaquadite Alloy
+			}
+
+			RodofDistortion: {
+				DisplayName: Rod of Distortion
+				Tooltip:
+					'''
+					Teleports you to the position of your cursor
+					at the cost of being in an unstable state
+					'Rod of Discord, but strange and otherworldly...'
+					[c/C42996:Rift Artifact]
+					The consiquences of weilding this item are unreportedly dangerous.
+					Whatever properties this rod has, it seems to disfigure it's user!
+					'''
+			}
+
+			OminaquaditeBar: {
+				DisplayName: Ominaquadite Bar
+				Tooltip: "'Soaking the raw materials in liquid shimmer caused the mixture to form a crystal-coated metallic alloy!'"
+			}
+
+			RiteofTheSecondDimension: {
+				DisplayName: Rite of The Second Dimension
+				Tooltip:
+					'''
+					'The book of Emperors' law!'
+					[c/C42996:Rift Artifact]
+					While this tome is used to summon spiritual weaponry at the user's will,
+					the unstability of the materials that the tome itself is made out of can
+					fluxuate between varying consiquences!
+					'''
+			}
+
+			NaquadahCowl: {
+				DisplayName: Naquadah Cowl
+				Tooltip: +20% increased summon damage
+			}
+
+			NaquadahHeadgear: {
+				DisplayName: Naquadah Headgear
+				Tooltip: +20% increased ranged damage
+			}
+
+			Unstabow: {
+				DisplayName: Unstabow
+				Tooltip:
+					'''
+					Fires an unstable projectile that rapid teleports to the player
+					'Is this even stable at all?'
+					[c/C42996:Rift Artifact]
+					Upon firing, the projectile's unstability chases it's target and constantly teleports
+					to the original shooter causing partial confusion to the target.
+					'''
+			}
+
+			ZeroPointTransmissionCodex: {
+				DisplayName: Zero-Point Transmission Codex
+				Tooltip: Transmits a signal to Sebastion's rogue creations
+			}
+
+			NaquadariniteMote: {
+				DisplayName: Naquadarinite Mote
+				Tooltip: Used to exchange for valuables from the Rifter
+			}
+
+			NaquadahSlate: {
+				DisplayName: Naquadah Slate
+				Tooltip: ""
+			}
+
+			OminiteBrick: {
+				DisplayName: Ominite Brick
+				Tooltip: ""
+			}
+		}
+
+		Buffs: {
+			CosmicReminant: {
+				Description: A Cosmic Reminant is following you...
+				DisplayName: Cosmic Reminant
+			}
+
+			Ark: {
+				Description: An ark is following you...
+				DisplayName: Ark
+			}
+
+			CosmicDecoy: {
+				Description: The Cosmic Decoy will aid you in combat
+				DisplayName: Cosmic Decoy
+			}
+
+			Hypothermia: {
+				Description: You are freezing to death
+				DisplayName: Hypothermia
+			}
+
+			Hyperthermia: {
+				Description: You are dying of heat
+				DisplayName: Hyperthermia
+			}
+
+			HolyMantle: {
+				Description: A Holy Mantle is protecting you, this lasts until you get hit!
+				DisplayName: Holy Mantle
+			}
+
+			Froststruck: {
+				Description: The freezing tempuratures make you body brittle
+				DisplayName: Froststruck
+			}
+
+			EmperorsPower: {
+				Description: You feel the Emperor's power rush into your veins!
+				DisplayName: Emperor's Power
+			}
+
+			ApparitionalWither: {
+				Description: You're body is massively decaying...
+				DisplayName: Apparitional Wither
+			}
+
+			RiftWithering: {
+				Description: Your defense and damage reduction are halved!
+				DisplayName: Rift Withering
+			}
+
+			UnstableState: {
+				Description: The Rod of Distortion has inflicted you with unstability!
+				DisplayName: Unstable State
+			}
+		}
+
+		Tiles: {
+			CosmicDesireAltar.MapEntry: Altar of Cosmic Desire
+			IgniumOre.MapEntry: Ignium
+			IesniumOre.MapEntry: Iesnium
+			GalaciteOre.MapEntry: Galacite
+			CosmicToilet.MapEntry: Cosmic Toilet
+			ElectriteOre.MapEntry: Electrite
+			Starforge.MapEntry: Starforge
+			Nanoforge.MapEntry: Nanoforge
+			AncientForge.MapEntry: Ancient Forge
+			CometiteOre.MapEntry: Cometite
+			RotaryHerathForge.DisplayName: Rotary Hearth Forge
+			RotaryHearthForge.MapEntry: Rotary Hearth Forge
+		}
+
+		Biomes: {
+			Shrine: {
+				DisplayName: The Shrine
+				TownNPCDialogueName: the Shrine
+			}
+
+			Comet: {
+				DisplayName: Fallen Comet
+				TownNPCDialogueName: the Comet
+			}
+
+			Beneath: {
+				DisplayName: The Beneath
+				TownNPCDialogueName: the Beneath
+			}
+
+			Rift: {
+				DisplayName: Rift
+				TownNPCDialogueName: the Rift
+			}
+		}
+
+		NPCs: {
+			Arkling.DisplayName: Arkling
+			ArklingOrbit.DisplayName: Arkling
+			ArkofImperious.DisplayName: Ark of Imperious
+			Arkasama.DisplayName: Arkasama
+			ArkasamaShield.DisplayName: Arkasama Shield
+			MechapedeBody.DisplayName: Mechapede
+			MechapedeHead.DisplayName: Mechapede
+			MechapedeTail.DisplayName: Mechapede
+			CarminiteAmalgamation.DisplayName: Carminite Amalgamation
+			CarminiteAmalgamationTenticle.DisplayName: Carminite Amalgamation's Tenticle
+			CosmicApex.DisplayName: Cosmic Apex
+			CosmicApparition.DisplayName: Cosmic Apparition
+			CosmicDecoy.DisplayName: Cosmic Decoy
+			DetonatingWisp.DisplayName: Detonating Wisp
+			WanderingSoul.DisplayName: Wandering Soul
+			CosmicEmperor.DisplayName: Cosmic Emperor
+			CosmicEmperorClone.DisplayName: Cosmic Emperor's Shadow Clone
+			CosmicEmperorP2.DisplayName: Cosmic Emperor
+			GalaxiaStarwisp.DisplayName: Galaxia Starwisp
+			DuneGolem.DisplayName: Dune Golem
+			DunePylon.DisplayName: Dune Pylon
+			DunewormBody.DisplayName: Duneworm
+			DunewormHead.DisplayName: Duneworm
+			DunewormTail.DisplayName: Duneworm
+			Empraynia.DisplayName: Empraynia
+			IgneopedeBody.DisplayName: Igneopede
+			IgneopedeHead.DisplayName: Igneopede
+			IgneopedeTail.DisplayName: Igneopede
+			BasaltHead.DisplayName: Basalt Head
+			BasaltPrison.DisplayName: Basalt Prison
+			Incinerius.DisplayName: Incinerius
+			Atlas.DisplayName: Atlas N30X
+			Orion.DisplayName: Orion N30X
+			Polarus.DisplayName: Polarus N30X
+			PolarusLaserTurret.DisplayName: Polarus N30X Laser Turret
+			PolarusShield.DisplayName: Polarus N30X Shield
+			PolarusSignalDrone.DisplayName: Polarus N30X Signal Drone
+			SubzeroElemental.DisplayName: Subzero Elemental
+			Cryota.DisplayName: Cryota
+			CryotasSentry.DisplayName: Cryota's Sentry
+			Flaremutaria.DisplayName: Flaremutaria
+			SpiritofIncinerius.DisplayName: Spirit of Incinerius
+			SpiritoftheDuneGolem.DisplayName: Spirit of the Dune Golem
+			Thunderius.DisplayName: Thunderius
+			ApparitionalReminant.DisplayName: Apparitional Reminant
+			AstroidSmasher.DisplayName: Astroid Smasher
+			InterstellarTumbler.DisplayName: Interstellar Tumbler
+			SearchRoller.DisplayName: Search Roller
+			StarbeltSeekerBody.DisplayName: Starbelt Seeker
+			StarbeltSeekerHead.DisplayName: Starbelt Seeker
+			StarbeltSeekerTail.DisplayName: Starbelt Seeker
+			RiftSerpentBody.DisplayName: Rift Serpent
+			RiftSerpentHead.DisplayName: Rift Serpent
+			RiftSerpentTail.DisplayName: Rift Serpent
+			StarbornSludge.DisplayName: Starborn Sludge
+			StarbornSludgeSmall.DisplayName: Starborn Sludge
+			Starprobe.DisplayName: Starprobe
+			TarnishedGhoul.DisplayName: Tarnished Ghoul
+			TarnishedSkeleton.DisplayName: Tarnished Skeleton
+			TarnishedZombie.DisplayName: Tarnished Zombie
+			TarnishedZombieAlt.DisplayName: Tarnished Zombie
+			FakeAoI.DisplayName: Fake Ark of Imperious
+			StarbornInquisitorMagic.DisplayName: Starborn Inquisitor
+			StarbornInquisitorMelee.DisplayName: Starborn Inquisitor
+			Portadummy.DisplayName: Portadummy
+			GreaterArk.DisplayName: Greater Ark
+			LesserArk.DisplayName: Lesser Ark
+			IesniumSlime.DisplayName: Iesnium Slime
+			MalachiteSlime.DisplayName: Malachite Slime
+			CarminiteInfestedEye.DisplayName: Carminite Infested Eye
+
+			Apollyon: {
+				DisplayName: Apollyon
+
+				TownNPCMood: {
+					Content: I am content.
+					NoHome: I hate not having a home.
+					FarFromHome: I am too far from home.
+					LoveSpace: I love having so much space.
+					DislikeCrowded: I dislike how crowded I am.
+					HateCrowded: I hate how crowded I am.
+					LoveBiome: I love {BiomeName}.
+					LikeBiome: I like {BiomeName}.
+					DislikeBiome: I dislike {BiomeName}.
+					HateBiome: I hate {BiomeName}.
+					LoveNPC: I love {NPCName}.
+					LikeNPC: I like {NPCName}.
+					DislikeNPC: I dislike {NPCName}.
+					HateNPC: I hate {NPCName}.
+					LikeNPC_Princess: I like {NPCName}.
+					Princess_LovesNPC: I like {NPCName}.
+				}
+			}
+
+			Emissary: {
+				DisplayName: Emissary
+
+				TownNPCMood: {
+					Content: I am content.
+					NoHome: I hate not having a home.
+					FarFromHome: I am too far from home.
+					LoveSpace: I love having so much space.
+					DislikeCrowded: I dislike how crowded I am.
+					HateCrowded: I hate how crowded I am.
+					LoveBiome: I love {BiomeName}.
+					LikeBiome: I like {BiomeName}.
+					DislikeBiome: I dislike {BiomeName}.
+					HateBiome: I hate {BiomeName}.
+					LoveNPC: I love {NPCName}.
+					LikeNPC: I like {NPCName}.
+					DislikeNPC: I dislike {NPCName}.
+					HateNPC: I hate {NPCName}.
+					LikeNPC_Princess: I like {NPCName}.
+					Princess_LovesNPC: I like {NPCName}.
+				}
+			}
+
+			Emperor: {
+				DisplayName: Emperor
+
+				TownNPCMood: {
+					Content: I am content.
+					NoHome: I hate not having a home.
+					FarFromHome: I am too far from home.
+					LoveSpace: I love having so much space.
+					DislikeCrowded: I dislike how crowded I am.
+					HateCrowded: I hate how crowded I am.
+					LoveBiome: I love {BiomeName}.
+					LikeBiome: I like {BiomeName}.
+					DislikeBiome: I dislike {BiomeName}.
+					HateBiome: I hate {BiomeName}.
+					LoveNPC: I love {NPCName}.
+					LikeNPC: I like {NPCName}.
+					DislikeNPC: I dislike {NPCName}.
+					HateNPC: I hate {NPCName}.
+					LikeNPC_Princess: I like {NPCName}.
+					Princess_LovesNPC: I like {NPCName}.
+				}
+			}
+
+			GlacerWalker.DisplayName: Glacer Walker
+			IceRoller.DisplayName: Ice Roller
+			InfernalHellwisp.DisplayName: Infernal Hellwisp
+			MagmaticScorcher.DisplayName: Magmatic Scorcher
+			Yog.DisplayName: Yog
+			RiftAnomaly.DisplayName: Rift Anomaly
+			UnstableOminiteTippedNaquadahSword.DisplayName: Unstable Ominite Tipped Naquadah Sword
+			NaquadahBurrowerBody.DisplayName: Naquadah Burrower
+			NaquadahBurrowerHead.DisplayName: Naquadah Burrower
+			NaquadahBurrowerTail.DisplayName: Naquadah Burrower
+			CometSlime.DisplayName: Comet Slime
+			NaquadahInfusedSlime.DisplayName: Naquadah Infused Slime
+			UnstableHellwisp.DisplayName: Unstable Hellwisp
+			DisfiguredIceConstruct.DisplayName: Disfigured Ice Construct
+			SunBlade.DisplayName: Sun Blade
+			NaquadahHead.DisplayName: Naquadah Head
+			UnstablePortal.DisplayName: Unstable Portal
+			Shiftspiral.DisplayName: Shiftspiral
+			ShiftspiralHand.DisplayName: Shiftspiral Hand
+			PhantomConstruct.DisplayName: Phantom Construct
+		}
+
+		Prefixes: {
+			Ancient.DisplayName: Ancient
+			Renowned.DisplayName: Renowned
+			Stalwart.DisplayName: Stalwart
+			Exalted.DisplayName: Exalted
+			Heroic.DisplayName: Heroic
+			Repentant.DisplayName: Repentant
+			Ascendant.DisplayName: Ascendant
+			Unstable.DisplayName: Unstable
+			Barbaric.DisplayName: Barbaric
+			Divine.DisplayName: Divine
+			Emperors.DisplayName: Emperor's
+			Hypersized.DisplayName: Hypersized
+			Micro.DisplayName: Micro
+			UnironicallyOversized.DisplayName: Unironically Oversized
+			Headstrong.DisplayName: Headstrong
+		}
+
+		Projectiles: {
+			BloodtoothProjectile.DisplayName: Bloodtooth
+			DuneSparkFriendly.DisplayName: Dune Spark
+			DuneSpark.DisplayName: Dune Spark
+			ArkaniumSword.DisplayName: Arkanium Sword
+			UnstableStarbornWisp.DisplayName: Unstable Starborn Wisp
+			CometiteWhaleHarvesterBobber.DisplayName: Cometite Whale Harvester Bobber
+			AoICircle.DisplayName: Ark of Imperious' Ritual Circle
+			ApparitionalDiskHostile.DisplayName: Apparitional Disk
+			ApparitionalWisp.DisplayName: Apparitional Wisp
+			ArkArrowHostile.DisplayName: Ark Arrow
+			ArkEnergyHostile.DisplayName: Ark Energy
+			Ark.DisplayName: Ark
+			CarminiteSludge.DisplayName: Carminite Sludge
+			CarminiteTooth.DisplayName: Carminite Tooth
+			CosmicEmperorKnife.DisplayName: Cosmic Emperor
+			CosmicEmperorTohou.DisplayName: Cosmic Emperor
+			CosmicFireball.DisplayName: Cosmic Fireball
+			CosmicPierce.DisplayName: Cosmic Pierce
+			CosmigeddonBomb.DisplayName: Cosmigeddon Bomb
+			DetonatingIceBomb.DisplayName: Detonating Ice Bomb
+			DuneSpike.DisplayName: Dune Spike
+			EmperorBlade.DisplayName: Emperor Blade
+			FlamingSoul.DisplayName: Flaming Soul
+			IgneopedeFire.DisplayName: Igneopede Fire
+			OrionNeoxCircle.DisplayName: Orion Neox Circle
+			BloodBurst.DisplayName: Blood Burst
+			CosmicSpirit.DisplayName: Cosmic Spirit
+			ElectricBurst.DisplayName: Electric Burst
+			UnstableStarbornInquisitorWisp.DisplayName: Unstable Starborn Inquisitor Wisp
+			CosmicDecoyMinion.DisplayName: Cosmic Decoy
+			AoISpark.DisplayName: Spark of Imperious
+			CosmicApparitionSoul.DisplayName: Cosmic Apparition's Soul
+			CosmicEmperorSummon.DisplayName: Cosmic Emperor
+			Droplet.DisplayName: Droplet
+			IesniumBeaconProjectile.DisplayName: Iesnium Beacon
+			SubzeroElementalP2Transition.DisplayName: Subzero Elemental
+			YogExplode.DisplayName: Yog
+			CosmicReminant.DisplayName: Cosmic Reminant
+			DuneEviscratorProjectile.DisplayName: Dune Eviscrator
+			TheKnifeProjectile.DisplayName: The Knife
+			NuclearKamikazeProjectile.DisplayName: Nuclear Kamikaze
+			StarstaveProjectile.DisplayName: Starstave
+			StarstaveProjectileDrei.DisplayName: Starstave Drei
+			StarstaveProjectileVier.DisplayName: Starstave Vier
+			SwordGodProjectile.DisplayName: Sword God's Sword
+			AoIProjectile.DisplayName: Ark of Imperious
+			ApparitionalDiskPierce.DisplayName: Apparitional Disk
+			ApparitionalDiskProjectile.DisplayName: Apparitional Disk
+			ArkrystalBolt.DisplayName: Arkrystal Bolt
+			ArkrystalChakramProjectile.DisplayName: Arkrystal Chakram
+			ArkspearProjectile.DisplayName: Arkspear
+			ArkspearProjectileThrown.DisplayName: Arkspear
+			AstraeaProjectile.DisplayName: Astraea
+			BifrostPrisimdiskProjectile.DisplayName: Bifrost Prisimdisk
+			EdgeofTheInfernoProjectile.DisplayName: Edge of The Inferno
+			EmpoweredApparitionalDiskProjectile.DisplayName: Empowered Apparitional Disk
+			EmpoweredApparitionalDiskProjectileMini.DisplayName: Empowered Apparitional Disk
+			EmpoweredMachaliteEdgeProjectile.DisplayName: Empowered Machalite Edge
+			FinalBossBladeProjectile1Shoot.DisplayName: Final Boss Blade
+			FinalBossBladeProjectile2Shoot.DisplayName: Final Boss Blade
+			FinalBossBladeProjectileRing.DisplayName: Final Boss Blade
+			FinalBossBladeProjectileRingPierce.DisplayName: Final Boss Blade
+			GiantFireChakramProjectile.DisplayName: Giant Fire Chakram
+			HyperionProjectile.DisplayName: Hyperion
+			MachaliteChakramProjectile.DisplayName: Machalite Chakram
+			NekodiskProjectile.DisplayName: Nekodisk
+			NyanarangProjectile.DisplayName: Nyanarang
+			PhantasmaProjectile.DisplayName: Phantasma
+			ScyllaProjectile.DisplayName: Scylla
+			ArkrystalGladiusProjectile.DisplayName: Arkrystal Gladius
+			CarminitePurgatoryProjectile.DisplayName: Carminite Purgatory
+			SolScytheProjectile.DisplayName: Sol Scythe
+			StarcrescentMoondiskProjectile.DisplayName: Starcrescent Moondisk
+			StarofNihilionOrbit.DisplayName: Starof Nihilion
+			StarofNihilionProjectile.DisplayName: Starof Nihilion
+			StarspearBomb.DisplayName: Starspear Bomb
+			StarspearBombPierce.DisplayName: Starspear Bomb
+			StarspearProjectile.DisplayName: Starspear
+			StarspearProjectileThrown.DisplayName: Starspear
+			SunshineBomb.DisplayName: Sunshine
+			SunshineProjectile.DisplayName: Sunshine
+			TartaronProjectile.DisplayName: Tartaron
+			TheBigOneProjectile.DisplayName: The Big One
+			TheEclipseOrbit.DisplayName: The Eclipse
+			TheEclipseProjectile.DisplayName: The Eclipse
+			TheEclipseShoot.DisplayName: The Eclipse
+			VividMilkyWayClimaxProjectile.DisplayName: Vivid Milky Way Climax
+			ExocosmicBolt.DisplayName: Exocosmic Bolt
+			ExocosmicBombProjectile.DisplayName: Exocosmic Bomb
+			Pebble.DisplayName: Pebble
+			PebbleShoot.DisplayName: Pebble
+			ArkrystalShard.DisplayName: Arkrystal Shard
+			BasaltShellProjectile.DisplayName: Basalt Shell
+			CosmicNinjaStarProjectile.DisplayName: Cosmic Ninja Star
+			EmpoweredSwiftShotStarbuster.DisplayName: Empowered Swift Shot Starbuster
+			MachaliteDaggerProjectile.DisplayName: Machalite Dagger
+			MoonstabKunaiProjectile.DisplayName: Moonstab Kunai
+			NanohacketRoundProjectile.DisplayName: Nanohacket Round
+			PhazonEXProjectile.DisplayName: Phazon EX
+			PhazonProjectile.DisplayName: Phazon
+			PocketJakeProjectile.DisplayName: Pocket Jake
+			ScorchthrowerFlame.DisplayName: Scorchthrower Flame
+			StarbornArrowProjectile.DisplayName: Starborn Arrow
+			StarbulletProjectile.DisplayName: Starbullet
+			SwiftShotStarbuster.DisplayName: Swift Shot Starbuster
+			FleshsnapperProjectile.DisplayName: Fleshsnapper
+			GalaxianBeltProjectile.DisplayName: Galaxian Belt
+			AoIGhost.DisplayName: Ark of Imperious' Ghost Blade
+			RoTSProjectile.DisplayName: Rite of The Second Dimension
+			RoTSDProjectile.DisplayName: Ro T S D Projectile
+			SolSytheProjectile.DisplayName: Sol Sythe Projectile
+			UnstabowProjectile.DisplayName: Unstabow Projectile
+		}
+
+		Configs: {
+			ClientConfig: {
+				DisplayName: Eternal Client-Side Configuration
+
+				Headers: {
+					Messages: Messages
+					QoLFeatures: Quality of Life Features
+				}
+			}
+
+			ServerConfig: {
+				DisplayName: Eternal Server-Side Configuration
+
+				Headers: {
+					GameplayTweaks: Gameplay Tweaks
+					HellModeTweaks: Hell Mode Tweaks
+				}
+			}
+		}
+
+		Common: {
+			Configurations: {
+				ClientConfig: {
+					showWelcomeMessage: {
+						DisplayName: Display Welcome Message
+						Tooltip:
+							'''
+							Displays a Welcome message when you enter a world
+							(Default: [c/008080:ON])
+							'''
+					}
+
+					playDefeatSound: {
+						DisplayName: Play Boss Defeated Sound
+						Tooltip:
+							'''
+							Plays a sound when a boss is defeated
+							(Default: [c/008080:OFF])
+							'''
+					}
+				}
+
+				ServerConfig: {
+					recipeChanges: {
+						DisplayName: Recipe Changes (WIP)
+						Tooltip:
+							'''
+							Changes some of the recipes in the game as well as add ones for various items with no recipes
+							This feature requires a reload
+							[c/FF0000:THIS MAY CAUSE ISSUES WITH CALAMITY'S RECIPE CHANGES, BEWARE OF SKETCHY BUGS]
+							(Default: [c/008080:ON])
+							'''
+					}
+
+					cosmicApparitionNaturalSpawn: {
+						DisplayName: Cosmic Apparition Natural Spawnng
+						Tooltip:
+							'''
+							Makes the Cosmic Apparition Spawn naturally if not yet defeated in the world
+							(Default: [c/008080:ON])
+							'''
+					}
+
+					brutalHellMode: {
+						DisplayName: Brutal Hell Mode
+						Tooltip:
+							'''
+							Makes Hell Mode a little more punishing
+							(Default: [c/008080:OFF])
+							'''
+					}
+
+					hellModeVanillaBosses: {
+						DisplayName: Hell Mode Vanilla Bosses
+						Tooltip:
+							'''
+							Buffs the health, damage and defense of vanilla bosses
+							(Default: [c/008080:ON])
+							'''
+					}
+				}
+			}
+		}
+	}
+}
