@@ -28,7 +28,7 @@ namespace Eternal.Content.Items.Weapons.Melee
             Item.knockBack = 2.5f;
             Item.autoReuse = true;
             Item.UseSound = SoundID.Item1;
-            Item.shoot = ModContent.ProjectileType<SolSytheProjectile>();
+            Item.shoot = ModContent.ProjectileType<SolScytheProjectile>();
             Item.shootSpeed = 14f;
             Item.noUseGraphic = true;
             Item.noMelee = true;

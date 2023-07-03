@@ -1,6 +1,8 @@
 ﻿using Eternal.Common.ItemDropRules.Conditions;
 using Eternal.Content.Dusts;
 using Eternal.Content.Items.Materials;
+using Eternal.Content.Items.Weapons.Magic;
+using Eternal.Content.Items.Weapons.Melee;
 using Eternal.Content.NPCs.Boss.CosmicApparition;
 using Eternal.Content.Projectiles.Boss;
 using Microsoft.Xna.Framework;
@@ -251,17 +253,16 @@ namespace Eternal.Content.NPCs.Miniboss
             PostArkofImperiousRiftDropCondition postAoIRiftDrop = new PostArkofImperiousRiftDropCondition();
 
             npcLoot.Add(ItemDropRule.ByCondition(postAoIRiftDrop, ModContent.ItemType<RawOminaquadite>(), 2, 6, 12));
+
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AspectofTheShiftedWarlock>(), 1));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RiftedBlade>(), 2));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Shiftstorm>(), 3));
         }
 
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
         {
             scale = 1.5f;
             return null;
-        }
-
-        public override void BossHeadRotation(ref float rotation)
-        {
-            rotation = NPC.direction;
         }
     }
 }

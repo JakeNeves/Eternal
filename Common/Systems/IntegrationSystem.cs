@@ -1,7 +1,14 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
+﻿using Eternal.Content.Items.Summon;
+using Eternal.Content.NPCs.Boss.AoI;
+using Eternal.Content.NPCs.Boss.CarminiteAmalgamation;
+using Eternal.Content.NPCs.Boss.CosmicApparition;
+using Eternal.Content.NPCs.Boss.CosmicEmperor;
+using Eternal.Content.NPCs.Boss.DuneGolem;
+using Eternal.Content.NPCs.Boss.Duneworm;
+using Eternal.Content.NPCs.Boss.Igneopede;
+using Eternal.Content.NPCs.Boss.Incinerius;
 using System.Collections.Generic;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Common.Systems
@@ -20,293 +27,184 @@ namespace Eternal.Common.Systems
 				return;
 			}
 
-			// pre-hardmode bosses
-			#region Carminite Amalgamation
-			string CAName = "The Carminite Amalgamation";
-
-			int CAType = ModContent.NPCType<Content.NPCs.Boss.CarminiteAmalgamation.CarminiteAmalgamation>();
-
-		    float CAweight = 5.5f;
-
-			Func<bool> CAdowned = () => DownedBossSystem.downedCarminiteAmalgamation;
-
-			Func<bool> CAavailable = () => true;
-
-			List<int> CAcollection = new List<int>()
-			{
-				ModContent.ItemType<Content.Items.Materials.Carminite>(),
-				ModContent.ItemType<Content.Items.Weapons.Melee.CarminiteBane>(),
-				ModContent.ItemType<Content.Items.Weapons.Melee.CarminiteRipperClaws>(),
-				ModContent.ItemType<Content.Items.Weapons.Melee.CarminitePurgatory>(),
-				ModContent.ItemType<Content.Items.Weapons.Ranged.CarminiteDeadshot>()
-			};
-
-			int CAsummonItem = ModContent.ItemType<Content.Items.Summon.SuspiciousLookingDroplet>();
-
-			string CAspawnInfo = $"Spawn by using a [i:{CAsummonItem}]";
-
-			string CAdespawnInfo = null;
-			#endregion
-			#region Dune Golem
-			string DGName = "The Dune Golem";
-
-			int DGType = ModContent.NPCType<Content.NPCs.Boss.DuneGolem.DuneGolem>();
-
-			float DGweight = 5.9f;
-
-			Func<bool> DGdowned = () => DownedBossSystem.downedDuneGolem;
-
-			Func<bool> DGavailable = () => true;
-
-			List<int> DGcollection = new List<int>()
-			{
-				ModContent.ItemType<Content.Items.Materials.MalachiteShard>()
-			};
-
-			int DGsummonItem = ModContent.ItemType<Content.Items.Summon.IesniumBeacon>();
-
-			string DGspawnInfo = $"Spawn by using a [i:{DGsummonItem}]";
-
-			string DGdespawnInfo = "The Dune Golem disapears into the dunes...";
-            #endregion
-
-            // hardmode bosses
-            #region Igneopede
-            string IgneoName = "The Igneopede";
-
-            int IgneoType = ModContent.NPCType<Content.NPCs.Boss.Igneopede.IgneopedeHead>();
-
-            float IgneoWeight = 7.5f;
-
-            Func<bool> IgneoDowned = () => DownedBossSystem.downedIgneopede;
-
-            Func<bool> IgneoAvailable = () => true;
-
-            List<int> IgneoCollection = new List<int>()
-            {
-				// TODO: Igneopede Loot
-            };
-
-            int IgneoSummonItem = ModContent.ItemType<Content.Items.Summon.MoltenBait>();
-
-            string IgneoSpawnInfo = $"Spawn by using [i:{IgneoSummonItem}]";
-
-            string IgneoDespawnInfo = "The Igneopede burrows deep into the underworld...";
-            #endregion
-            #region Incinerius
-            string IncName = "Incinerius";
-
-            int IncType = ModContent.NPCType<Content.NPCs.Boss.Incinerius.Incinerius>();
-
-            float IncWeight = 12.25f;
-
-            Func<bool> IncDowned = () => DownedBossSystem.downedIncinerius;
-
-            Func<bool> IncAvailable = () => true;
-
-            List<int> IncCollection = new List<int>()
-            {
-                ModContent.ItemType<Content.Items.Materials.MagmaticAlloy>(),
-                ModContent.ItemType<Content.Items.Materials.InfernalAshes>()
-            };
-
-            int IncSummonItem = ModContent.ItemType<Content.Items.Summon.ObsidianLantern>();
-
-            string IncSpawnInfo = $"Spawn by using an [i:{IncSummonItem}] (Break open the Basalt Prison, if not yet defeated)";
-
-            string IncDespawnInfo = "Incerius returns to the Inferno Sepulture...";
-            #endregion
-
-            // post-moon lord bosses
-            #region Cosmic Apparition
-            string CosAppName = "The Cosmic Apparition";
-
-			int CosAppType = ModContent.NPCType<Content.NPCs.Boss.CosmicApparition.CosmicApparition>();
-
-			float CosAppweight = 19.5f;
-
-			Func<bool> CosAppdowned = () => DownedBossSystem.downedCosmicApparition;
-
-			Func<bool> CosAppavailable = () => true;
-
-			List<int> CosAppcollection = new List<int>()
-			{
-				ModContent.ItemType<Content.Items.Materials.ApparitionalMatter>(),
-				ModContent.ItemType<Content.Items.Materials.Astragel>(),
-				ModContent.ItemType<Content.Items.Materials.InterstellarSingularity>(),
-				ModContent.ItemType<Content.Items.Materials.StarmetalBar>(),
-				ModContent.ItemType<Content.Items.Weapons.Melee.Vexation>(),
-				ModContent.ItemType<Content.Items.Weapons.Melee.ApparitionalDisk>(),
-				ModContent.ItemType<Content.Items.Weapons.Ranged.Starfall>(),
-				ModContent.ItemType<Content.Items.Pets.ReminantHead>()
-			};
-
-			int CosAppsummonItem = ModContent.ItemType<Content.Items.Summon.OtherworldlyCosmicDebris>();
-
-			string CosAppspawnInfo = $"Spawn by using [i:{CosAppsummonItem}]";
-
-			string CosAppdespawnInfo = "The Cosmic Apparition fades away...";
-			#endregion
-			#region Ark of Imperious
-			string AOIName = "The Ark of Imperious";
-
-			int AOIType = ModContent.NPCType<Content.NPCs.Boss.AoI.ArkofImperious>();
-
-			float AOIweight = 20f;
-
-			Func<bool> AOIdowned = () => DownedBossSystem.downedArkofImperious;
-
-			Func<bool> AOIavailable = () => true;
-
-			List<int> AOIcollection = new List<int>()
-			{
-				ModContent.ItemType<Content.Items.Materials.RawArkrystal>(),
-				ModContent.ItemType<Content.Items.Materials.RawArkaniumDebris>(),
-				ModContent.ItemType<Content.Items.Materials.WeatheredPlating>(),
-				ModContent.ItemType<Content.Items.Materials.UnrefinedHeroSword>(),
-			};
-
-			int AOIsummonItem = ModContent.ItemType<Content.Items.Summon.RoyalShrineSword>();
-
-			string AOIspawnInfo = $"Spawn by using a [i:{AOIsummonItem}]";
-
-			string AOIdespawnInfo = "The Ark of Imperious returns to his domain...";
-			#endregion
-			#region The Cosmic Emperor
-			string CEName = "The Cosmic Emperor";
-
-			int CEType = ModContent.NPCType<Content.NPCs.Boss.CosmicEmperor.CosmicEmperor>();
-
-			float CEweight = 32.5f;
-
-			Func<bool> CEdowned = () => DownedBossSystem.downedCosmicEmperor;
-
-			Func<bool> CEavailable = () => true;
-
-			List<int> CEcollection = new List<int>()
-			{
-
-			};
-
-			int CEsummonItem = ModContent.ItemType<Content.Items.Summon.CosmicTablet>();
-
-			string CEspawnInfo = $"Spawn by using the [i:{CEsummonItem}] at the Altar of Cosmic Desire";
-
-			string CEdespawnInfo = null;
-			#endregion
-
 			// pre hardmode
+			// Carminite Amalgamation
 			bossChecklistMod.Call(
-				"AddBoss",
+				"LogBoss",
 				Mod,
-				// Carminite Amalgamation
-				CAName,
-				CAType,
-				CAweight,
-				CAdowned,
-				CAavailable,
-				CAcollection,
-				CAsummonItem,
-				CAspawnInfo,
-				CAdespawnInfo
+				nameof(CarminiteAmalgamation),
+				5.5f,
+				() => DownedBossSystem.downedCarminiteAmalgamation,
+				ModContent.NPCType<CarminiteAmalgamation>(),
+				new Dictionary<string, object>()
+				{
+					["spawnItems"] = ModContent.ItemType<SuspiciousLookingDroplet>(),
+                    ["displayName"] = Language.GetText("Mods.Eternal.NPCs.CarminiteAmalgamation.DisplayName"),
+					["collectables"] = new List<int>()
+					{
+					    ModContent.ItemType<Content.Items.Materials.Carminite>(),
+					    ModContent.ItemType<Content.Items.Weapons.Melee.CarminiteBane>(),
+					    ModContent.ItemType<Content.Items.Weapons.Melee.CarminiteRipperClaws>(),
+						ModContent.ItemType<Content.Items.Weapons.Melee.CarminitePurgatory>(),
+						ModContent.ItemType<Content.Items.Weapons.Ranged.CarminiteDeadshot>()
+					}
+                }
 			);
 
-			bossChecklistMod.Call(
-				"AddBoss",
+            // Dune Golem
+            bossChecklistMod.Call(
+				"LogBoss",
 				Mod,
-				// Dune Golem
-				DGName,
-				DGType,
-				DGweight,
-				DGdowned,
-				DGavailable,
-				DGcollection,
-				DGsummonItem,
-				DGspawnInfo,
-				DGdespawnInfo
+				nameof(DuneGolem),
+				5.6f,
+				() => DownedBossSystem.downedDuneGolem,
+				ModContent.NPCType<DuneGolem>(),
+				new Dictionary<string, object>()
+				{
+                    ["spawnItems"] = ModContent.ItemType<IesniumBeacon>(),
+                    ["displayName"] = Language.GetText("Mods.Eternal.NPCs.DuneGolem.DisplayName"),
+                    ["collectables"] = new List<int>()
+					{
+						ModContent.ItemType<Content.Items.Materials.MalachiteShard>()
+					}
+                }
 			);
 
             // hardmode
+            // The Igneopede
             bossChecklistMod.Call(
-                "AddBoss",
+                "LogBoss",
                 Mod,
-                // The Igneopede
-                IgneoName,
-                IgneoType,
-                IgneoWeight,
-                IgneoDowned,
-                IgneoAvailable,
-                IgneoAvailable,
-                IgneoSummonItem,
-                IgneoSpawnInfo,
-                IgneoDespawnInfo
+                nameof(IgneopedeHead),
+				7.5f,
+				() => DownedBossSystem.downedIgneopede,
+				ModContent.NPCType<IgneopedeHead>(),
+                new Dictionary<string, object>()
+                {
+                    ["spawnItems"] = ModContent.ItemType<MoltenBait>(),
+                    ["displayName"] = Language.GetText("Mods.Eternal.NPCs.IgneopedeHead.DisplayName")
+                    /*
+                    ["collectables"] = new List<int>()
+                    {
+                        // TODO: Igneopede Loot
+                    }
+					*/
+                }
             );
+            // Incinerius
             bossChecklistMod.Call(
-                "AddBoss",
+                "LogBoss",
                 Mod,
-                // Incinerius
-                IncName,
-                IncType,
-                IncWeight,
-                IncDowned,
-                IncAvailable,
-                IncAvailable,
-                IncSummonItem,
-                IncSpawnInfo,
-                IncDespawnInfo
+                nameof(Incinerius),
+                12.25f,
+                () => DownedBossSystem.downedIncinerius,
+                ModContent.NPCType<Incinerius>(),
+                new Dictionary<string, object>()
+                {
+                    ["spawnItems"] = ModContent.ItemType<ObsidianLantern>(),
+                    ["displayName"] = Language.GetText("Mods.Eternal.NPCs.Incinerius.DisplayName"),
+                    ["collectables"] = new List<int>()
+					{
+						ModContent.ItemType<Content.Items.Materials.MagmaticAlloy>(),
+						ModContent.ItemType<Content.Items.Materials.InfernalAshes>()
+					}
+                }
             );
             // Subzero Elemental
             // Duneworm
+            bossChecklistMod.Call(
+                "LogBoss",
+                Mod,
+                nameof(DunewormHead),
+                13f,
+                () => DownedBossSystem.downedDuneworm,
+                ModContent.NPCType<DunewormHead>(),
+                new Dictionary<string, object>()
+                {
+                    ["spawnItems"] = ModContent.ItemType<SandFood>(),
+                    ["displayName"] = Language.GetText("Mods.Eternal.NPCs.DunewormHead.DisplayName")
+                    /*
+                    ["collectables"] = new List<int>()
+                    {
+                        // TODO: Duneworm Loot
+                    }
+					*/
+                }
+            );
             // Empraynia
             // Armageddon Golem
             // Armageddon Elemental
 
             // post-moon lord
             // Frost King
+            // Cosmic Apparition
             bossChecklistMod.Call(
-				"AddBoss",
+				"LogBoss",
 				Mod,
-				// Cosmic Apparition
-				CosAppName,
-				CosAppType,
-				CosAppweight,
-				CosAppdowned,
-				CosAppavailable,
-				CosAppcollection,
-				CosAppsummonItem,
-				CosAppspawnInfo,
-				CosAppdespawnInfo
-			);
+				nameof(CosmicApparition),
+				19.5f,
+				() => DownedBossSystem.downedCosmicApparition,
+				ModContent.NPCType<CosmicApparition>(),
+                new Dictionary<string, object>()
+				{
+                    ["spawnItems"] = ModContent.ItemType<OtherworldlyCosmicDebris>(),
+                    ["displayName"] = Language.GetText("Mods.Eternal.NPCs.CosmicApparition.DisplayName"),
+                    ["collectables"] = new List<int>()
+					{
+						ModContent.ItemType<Content.Items.Materials.ApparitionalMatter>(),
+						ModContent.ItemType<Content.Items.Materials.Astragel>(),
+						ModContent.ItemType<Content.Items.Materials.InterstellarSingularity>(),
+						ModContent.ItemType<Content.Items.Materials.StarmetalBar>(),
+						ModContent.ItemType<Content.Items.Weapons.Melee.Vexation>(),
+						ModContent.ItemType<Content.Items.Weapons.Melee.ApparitionalDisk>(),
+						ModContent.ItemType<Content.Items.Weapons.Ranged.Starfall>(),
+						ModContent.ItemType<Content.Items.Pets.ReminantHead>()
+					}
+				}
+            );
 
-			bossChecklistMod.Call(
-				"AddBoss",
+            // Ark of Imperious
+            bossChecklistMod.Call(
+				"LogBoss",
 				Mod,
-				// Ark of Imperious
-				AOIName,
-				AOIType,
-				AOIweight,
-				AOIdowned,
-				AOIavailable,
-				AOIcollection,
-				AOIsummonItem,
-				AOIspawnInfo,
-				AOIdespawnInfo
-			);
+				nameof(ArkofImperious),
+				20f,
+				() => DownedBossSystem.downedArkofImperious,
+				ModContent.NPCType<ArkofImperious>(),
+                new Dictionary<string, object>()
+				{
+                    ["spawnItems"] = ModContent.ItemType<RoyalShrineSword>(),
+                    ["displayName"] = Language.GetText("Mods.Eternal.NPCs.ArkofImperious.DisplayName"),
+                    ["collectables"] = new List<int>()
+					{
+						ModContent.ItemType<Content.Items.Materials.RawArkrystal>(),
+						ModContent.ItemType<Content.Items.Materials.RawArkaniumDebris>(),
+						ModContent.ItemType<Content.Items.Materials.WeatheredPlating>(),
+						ModContent.ItemType<Content.Items.Materials.UnrefinedHeroSword>(),
+					}
+				}
+            );
 
-			bossChecklistMod.Call(
-				"AddBoss",
+            // Cosmic Emperor
+            bossChecklistMod.Call(
+				"LogBoss",
 				Mod,
-				// Cosmic Emperor
-				CEName,
-				CEType,
-				CEweight,
-				CEdowned,
-				CEavailable,
-				CEcollection,
-				CEsummonItem,
-				CEspawnInfo,
-				CEdespawnInfo
-			);
+				nameof(CosmicEmperor),
+				32.5f,
+				() => DownedBossSystem.downedCosmicEmperor,
+				ModContent.NPCType<CosmicEmperorP2>(),
+                new Dictionary<string, object>()
+                {
+                    ["spawnItems"] = ModContent.ItemType<CosmicTablet>(),
+                    ["displayName"] = Language.GetText("Mods.Eternal.NPCs.CosmicEmperor.DisplayName"),
+                    ["collectables"] = new List<int>()
+                    {
+                        ModContent.ItemType<Content.Items.Materials.CosmicEmperorsInterstellarAlloy>(),
+						ModContent.ItemType<Content.Items.Materials.InterstellarMetal>(),
+                        ModContent.ItemType<Content.Items.Materials.CosmoniumFragment>(),
+                    }
+                }
+            );
 		}
 	}
 }

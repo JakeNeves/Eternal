@@ -48,14 +48,5 @@ namespace Eternal.Content.Items.BossBags
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Starfall>(), 2));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<ApparitionalDisk>(), 3));
         }
-
-        public override void OnConsumeItem(Player player)
-        {
-            if (Main.LocalPlayer.HasItem(ModContent.ItemType<ApparitionalViscara>()))
-            {
-                Main.NewText(player.name + " has obtained the Apparitional Viscara, a crazy rare drop from the Absolute RNG pool!", 247, 47, 154);
-                SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/AbsoluteRNGDrop"), player.position);
-            }
-        }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using Eternal.Content.Projectiles.Weapons.Melee;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -10,8 +12,6 @@ namespace Eternal.Content.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            // Tooltip.SetDefault("\n'I know, it looks bland but it's really cool and colorful when you throw it, trust me!'");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -32,6 +32,20 @@ namespace Eternal.Content.Items.Weapons.Melee
             Item.shootSpeed = 6f;
             Item.noUseGraphic = true;
             Item.noMelee = true;
+        }
+
+        public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
+        {
+            Item.color = Main.DiscoColor;
+
+            return true;
+        }
+
+        public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
+        {
+            Item.color = Main.DiscoColor;
+
+            return true;
         }
     }
 }

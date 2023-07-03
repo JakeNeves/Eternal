@@ -10,8 +10,6 @@ namespace Eternal.Content.Projectiles.Weapons.Magic
 {
     public class SwordGodProjectile : ModProjectile
     {
-        bool justSpawned = false;
-
         public override void SetStaticDefaults()
         {
             // DisplayName.SetDefault("Sword of The Sword God");
@@ -68,7 +66,7 @@ namespace Eternal.Content.Projectiles.Weapons.Magic
 
         public override void AI()
         {
-            if (!justSpawned)
+            if (Projectile.ai[0] == 0f && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 for (int i = 0; i < 50; i++)
                 {
@@ -90,7 +88,7 @@ namespace Eternal.Content.Projectiles.Weapons.Magic
                     dust.fadeIn = 1f;
                 }
 
-                justSpawned = true;
+                Projectile.ai[0] = 1f;
             }
 
             if (Main.rand.NextBool(4))

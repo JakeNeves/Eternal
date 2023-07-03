@@ -8,7 +8,6 @@ namespace Eternal.Content.Projectiles.Boss
 {
     public class CosmicEmperorTohou : ModProjectile
     {
-        bool justSpawned = false;
 
         public override void SetStaticDefaults()
         {
@@ -47,7 +46,7 @@ namespace Eternal.Content.Projectiles.Boss
 
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(45f);
 
-            if (!justSpawned)
+            if (Projectile.ai[0] == 0f && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 for (int i = 0; i < 25; i++)
                 {
@@ -69,7 +68,7 @@ namespace Eternal.Content.Projectiles.Boss
                     dust.fadeIn = 1f;
                 }
 
-                justSpawned = true;
+                Projectile.ai[0] = 1f;
             }
         }
 

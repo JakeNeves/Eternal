@@ -7,42 +7,6 @@ Mods: {
 			Rift: The Rift
 		}
 
-		TownNPCMod: {
-			Emperor: {
-				Content: I do feel like home, just like back in the Gallahard Empire...
-				NoHome: I am here, in the wilderness, and I feel like either you can give me a home, or I can make one myself, but I would have to gather what this place has to offer...
-				LoveSpace: I love how there is so much space here to code tModLoader mods!
-				FarFromHome: There is no way, I could be considered, far from home... I traveled miles outside my home land before. So why ask...
-				DislikeCrowded: You can already see the anxiety on my face, when it comes to big crowds like this...
-				HateCrowded: All of these people around here... Don't they know I'm claustrophobic!
-				LikeBiome: This place is nice and all, but I feel like there is a better place that I know of...
-				LoveBiome: Isn't this place great, I could live here for days!
-				DislikeBiome: I am sweating here, I would hate to inclimatize myself to places like these...
-				HateBiome: I could sense some sort of tremor any moment now...
-				LoveNPC: Emissary {NPCName} has to be one of my most favorite ones, despite the fact I sometimes ignore them, but everyone knows that in Gallahard, the emissaries represent me.
-				DislikeNPC: I know what I am doing, I've been through situations like this before...
-				HateNPC: I hate children...
-			}
-
-			Emissary: {
-				Content: I am very well settled in this town, I might as well socialize with some new faces around here!
-				NoHome: I would like to settle on this land, however I feel a sudden urge to find some sort of shelter.
-				LoveSpace: I am very well astounished on what this place in particular has to offer.
-				FarFromHome: I have traveled miles away from the palace in the Gallahard Empire before, surely I can make my way home no problem.
-				LikeBiome: This place is nice and all, but I feel like there is a better place that I know of...
-				LoveBiome: Isn't this place great, I could live here for days!
-			}
-
-			Apollyon: {
-				Content: I am very pleased with everything around me, it's almost as it hits home for me really well!
-				NoHome: Normally without a house or place of residence, I'm fine on my own but I think I could use a place to live for the time being...
-				LoveSpace: This feels like home, I am very pleased on how much effort you have dedicated into this!
-				FarFromHome: I would get home super easy, but without pure darkness my powers are very little and limited, any directions?
-				LikeBiome: Honestly, I'd settle here along with some new faces, I just wish people could hopefully one day, overcome their fears baing around me, but I'm pretty sure most people have around here.
-				LoveBiome: Settling in a place like this feels unironically perfect in my opinion!
-			}
-		}
-
 		GameTips: {
 			HellMode: Wish to ramp up the difficulty a bit? Try Hell Mode, works in both Expert and Master mode.
 			EmperorNPC: The Emperor will move upon defeating the moon lord, he sells the Emperor's Trust which allows the Emissary to move in.
@@ -1262,16 +1226,6 @@ Mods: {
 				DisplayName: Arctic Breathing Pack
 			}
 
-			ApparitionalViscara: {
-				Tooltip:
-					'''
-					[c/F72F9A:Absolute RNG Drop]
-					This item has features that are not yet implimented
-					It does nothing for now
-					'''
-				DisplayName: Apparitional Viscara (NYI)
-			}
-
 			AncientEmblem: {
 				Tooltip:
 					'''
@@ -1479,7 +1433,7 @@ Mods: {
 
 			BifrostPrisimdisk: {
 				DisplayName: Bifrost Prisimdisk
-				Tooltip: "'I know, it looks bland but it's really cool and colorful when you throw it, trust me!"
+				Tooltip: ""
 			}
 
 			CarminiteBane: {
@@ -1877,7 +1831,7 @@ Mods: {
 			}
 
 			NaquadariniteMote: {
-				DisplayName: Naquadarinite Mote
+				DisplayName: Naquadarinite Mote (NYI)
 				Tooltip: Used to exchange for valuables from the Rifter
 			}
 
@@ -1889,6 +1843,55 @@ Mods: {
 			OminiteBrick: {
 				DisplayName: Ominite Brick
 				Tooltip: ""
+			}
+
+			Shiftstorm: {
+				DisplayName: Shiftstorm
+				Tooltip:
+					'''
+					Creates an Unstable Portal that rains weapons on enemies
+					'Who needs a rain cloud or two, when you can have four portals raining all kinds of weapons on your foes!'
+					[c/C42996:Rift Artifact]
+					Those who weild this unstable stave-like apparatus can harness the power of manipulating unstable portals
+					to conjure weapons above the weilder's enemies.
+					'''
+			}
+
+			ChaosCard: {
+				DisplayName: Chaos Card
+				Tooltip:
+					'''
+					[c/FF0000:Cheat Item]
+					Instanty kills anything that dares to oppose it
+					'It's just like a throwable One-Hit Obliterator!'
+					'''
+			}
+
+			EthershiftWood: {
+				DisplayName: Ethershift Wood
+				Tooltip: ""
+			}
+
+			RiftedBlade: {
+				DisplayName: Rifted Blade
+				Tooltip:
+					'''
+					Damage is scaled based on your life force
+					[c/C42996:Rift Artifact]
+					This slender scimitar contains mysterious properties nobody has
+					seen before, overtime upon striking an enemy, it will decay the
+					weilder's life.
+					'''
+			}
+
+			AspectofTheShiftedWarlock: {
+				DisplayName: Aspect of The Shifted Warlock
+				Tooltip:
+					'''
+					[c/C42996:Rift Artifact]
+					An otherworldly blade made from Ominite. Upon striking an enemy
+					within The Rift, the weilder's position is shifted around it's enemy.
+					'''
 			}
 		}
 
@@ -1989,35 +1992,75 @@ Mods: {
 		NPCs: {
 			Arkling.DisplayName: Arkling
 			ArklingOrbit.DisplayName: Arkling
-			ArkofImperious.DisplayName: Ark of Imperious
+
+			ArkofImperious: {
+				DisplayName: Ark of Imperious
+				BossChecklistIntegration.SpawnInfo: Spawn by using a [i:Eternal/RoyalShrineSword]
+			}
+
 			Arkasama.DisplayName: Arkasama
 			ArkasamaShield.DisplayName: Arkasama Shield
 			MechapedeBody.DisplayName: Mechapede
 			MechapedeHead.DisplayName: Mechapede
 			MechapedeTail.DisplayName: Mechapede
-			CarminiteAmalgamation.DisplayName: Carminite Amalgamation
 			CarminiteAmalgamationTenticle.DisplayName: Carminite Amalgamation's Tenticle
+
+			CarminiteAmalgamation: {
+				DisplayName: Carminite Amalgamation
+				BossChecklistIntegration.SpawnInfo: Spawn by using a [i:Eternal/SuspiciousLookingDroplet]
+			}
+
 			CosmicApex.DisplayName: Cosmic Apex
-			CosmicApparition.DisplayName: Cosmic Apparition
+
+			CosmicApparition: {
+				DisplayName: Cosmic Apparition
+				BossChecklistIntegration.SpawnInfo: Spawn by using [i:Eternal/OtherworldlyCosmicDebris]
+			}
+
 			CosmicDecoy.DisplayName: Cosmic Decoy
 			DetonatingWisp.DisplayName: Detonating Wisp
 			WanderingSoul.DisplayName: Wandering Soul
-			CosmicEmperor.DisplayName: Cosmic Emperor
+
+			CosmicEmperor: {
+				DisplayName: Cosmic Emperor
+				BossChecklistIntegration.SpawnInfo: Spawn by using a [i:Eternal/CosmicTablet] at an [i:Eternal/CosmicDesireAltar]
+			}
+
 			CosmicEmperorClone.DisplayName: Cosmic Emperor's Shadow Clone
 			CosmicEmperorP2.DisplayName: Cosmic Emperor
 			GalaxiaStarwisp.DisplayName: Galaxia Starwisp
-			DuneGolem.DisplayName: Dune Golem
+
+			DuneGolem: {
+				DisplayName: Dune Golem
+				BossChecklistIntegration.SpawnInfo: Spawn by using an [i:Eternal/IesniumBeacon]
+			}
+
 			DunePylon.DisplayName: Dune Pylon
 			DunewormBody.DisplayName: Duneworm
-			DunewormHead.DisplayName: Duneworm
+
+			DunewormHead: {
+				DisplayName: Duneworm
+				BossChecklistIntegration.SpawnInfo: Spawn by using [i:Eternal/SandFood]
+			}
+
 			DunewormTail.DisplayName: Duneworm
 			Empraynia.DisplayName: Empraynia
 			IgneopedeBody.DisplayName: Igneopede
-			IgneopedeHead.DisplayName: Igneopede
+
+			IgneopedeHead: {
+				DisplayName: Igneopede
+				BossChecklistIntegration.SpawnInfo: Spawn by using [i:Eternal/MoltenBait]
+			}
+
 			IgneopedeTail.DisplayName: Igneopede
 			BasaltHead.DisplayName: Basalt Head
 			BasaltPrison.DisplayName: Basalt Prison
-			Incinerius.DisplayName: Incinerius
+
+			Incinerius: {
+				DisplayName: Incinerius
+				BossChecklistIntegration.SpawnInfo: Spawn by using an [i:Eternal/ObsidianLantern]
+			}
+
 			Atlas.DisplayName: Atlas N30X
 			Orion.DisplayName: Orion N30X
 			Polarus.DisplayName: Polarus N30X
@@ -2062,14 +2105,14 @@ Mods: {
 				DisplayName: Apollyon
 
 				TownNPCMood: {
-					Content: I am content.
-					NoHome: I hate not having a home.
-					FarFromHome: I am too far from home.
-					LoveSpace: I love having so much space.
+					Content: I am very pleased with everything around me, it's almost as it hits home for me really well!
+					NoHome: Normally without a house or place of residence, I'm fine on my own but I think I could use a place to live for the time being...
+					LoveSpace: This feels like home, I am very pleased on how much effort you have dedicated into this!
+					FarFromHome: I would get home super easy, but without pure darkness my powers are very little and limited, any directions?
+					LikeBiome: Honestly, I'd settle here along with some new faces, I just wish people could hopefully one day, overcome their fears baing around me, but I'm pretty sure most people have around here.
+					LoveBiome: Settling in a place like this feels unironically perfect in my opinion!
 					DislikeCrowded: I dislike how crowded I am.
 					HateCrowded: I hate how crowded I am.
-					LoveBiome: I love {BiomeName}.
-					LikeBiome: I like {BiomeName}.
 					DislikeBiome: I dislike {BiomeName}.
 					HateBiome: I hate {BiomeName}.
 					LoveNPC: I love {NPCName}.
@@ -2085,14 +2128,14 @@ Mods: {
 				DisplayName: Emissary
 
 				TownNPCMood: {
-					Content: I am content.
-					NoHome: I hate not having a home.
-					FarFromHome: I am too far from home.
-					LoveSpace: I love having so much space.
+					Content: I am very well settled in this town, I might as well socialize with some new faces around here!
+					NoHome: I would like to settle on this land, however I feel a sudden urge to find some sort of shelter.
+					LoveSpace: I am very well astounished on what this place in particular has to offer.
+					FarFromHome: I have traveled miles away from the palace in the Gallahard Empire before, surely I can make my way home no problem.
+					LikeBiome: This place is nice and all, but I feel like there is a better place that I know of...
+					LoveBiome: Isn't this place great, I could live here for days!
 					DislikeCrowded: I dislike how crowded I am.
 					HateCrowded: I hate how crowded I am.
-					LoveBiome: I love {BiomeName}.
-					LikeBiome: I like {BiomeName}.
 					DislikeBiome: I dislike {BiomeName}.
 					HateBiome: I hate {BiomeName}.
 					LoveNPC: I love {NPCName}.
@@ -2108,22 +2151,21 @@ Mods: {
 				DisplayName: Emperor
 
 				TownNPCMood: {
-					Content: I am content.
-					NoHome: I hate not having a home.
-					FarFromHome: I am too far from home.
-					LoveSpace: I love having so much space.
-					DislikeCrowded: I dislike how crowded I am.
-					HateCrowded: I hate how crowded I am.
-					LoveBiome: I love {BiomeName}.
-					LikeBiome: I like {BiomeName}.
-					DislikeBiome: I dislike {BiomeName}.
-					HateBiome: I hate {BiomeName}.
-					LoveNPC: I love {NPCName}.
-					LikeNPC: I like {NPCName}.
-					DislikeNPC: I dislike {NPCName}.
-					HateNPC: I hate {NPCName}.
-					LikeNPC_Princess: I like {NPCName}.
-					Princess_LovesNPC: I like {NPCName}.
+					Content: It feels just like home, it's just so right! Like the snowy highlands back in the Gallahard Empire...
+					NoHome: I am here, in the wilderness, and I feel like either you can give me a home, or I can make one myself, but I would have to gather the materials from what this place has to offer...
+					LoveSpace: I love how there is so much space here to code tModLoader mods!
+					FarFromHome: There is no way, I could be considered, far from home... I traveled miles outside my home land before. So why ask...
+					DislikeCrowded: You can already see the anxiety on my face, when it comes to big crowds like this...
+					HateCrowded: All of these people around here... Don't they know I'm claustrophobic!
+					LikeBiome: This place is nice and all, but I feel like there is a better place that I know of...
+					LoveBiome: Isn't this place great, I could live here for days!
+					DislikeBiome: I am sweating here, I would hate to inclimatize myself to places like these...
+					HateBiome: I could sense some sort of tremor any moment now...
+					LoveNPC: Emissary {NPCName} has to be one of my most favorite ones, despite the fact I sometimes ignore them, but everyone knows that in Gallahard, the emissaries represent me.
+					DislikeNPC: I know what I am doing, I've been through situations like this before...
+					HateNPC: I hate children...
+					LikeNPC_Princess: Princess {NPCName}'s, her combat tactics remind me of when I supressed the power of a demon overlord who emodies pure unspeakable chaos, responsible for the demonic phenominas occuring in my home empire!
+					Princess_LovesNPC: I like Emperor {NPCName}, his empire seems rather interesting! Especially when he told me a story of how he supressed a demon overlord's power! I wish to visit his empire one day...
 				}
 			}
 
@@ -2277,9 +2319,11 @@ Mods: {
 			GalaxianBeltProjectile.DisplayName: Galaxian Belt
 			AoIGhost.DisplayName: Ark of Imperious' Ghost Blade
 			RoTSProjectile.DisplayName: Rite of The Second Dimension
-			RoTSDProjectile.DisplayName: Ro T S D Projectile
-			SolSytheProjectile.DisplayName: Sol Sythe Projectile
-			UnstabowProjectile.DisplayName: Unstabow Projectile
+			RoTSDProjectile.DisplayName: Rite of the Second Dimension
+			UnstabowProjectile.DisplayName: Unstabow
+			ShiftstormPortalProjectile.DisplayName: Shiftstorm Portal
+			ShiftstormProjectile.DisplayName: Shiftstorm Weapon
+			ChaosCardProjectile.DisplayName: Chaos Card
 		}
 
 		Configs: {

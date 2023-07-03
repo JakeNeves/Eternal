@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Audio;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -10,8 +8,6 @@ namespace Eternal.Content.Projectiles.Weapons.Radiant
 {
     public class PebbleShoot : ModProjectile
     {
-        bool justSpawned = false;
-
         public override void SetStaticDefaults()
         {
             // DisplayName.SetDefault("Pebble");

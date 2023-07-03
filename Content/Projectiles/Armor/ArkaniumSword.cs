@@ -10,8 +10,6 @@ namespace Eternal.Content.Projectiles.Armor
 {
     public class ArkaniumSword : ModProjectile
     {
-        bool justSpawned = false;
-
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 12;
@@ -45,7 +43,7 @@ namespace Eternal.Content.Projectiles.Armor
 
         public override void AI()
         {
-            if (!justSpawned)
+            if (Projectile.ai[0] == 0f && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 for (int i = 0; i < 50; i++)
                 {
@@ -67,7 +65,7 @@ namespace Eternal.Content.Projectiles.Armor
                     dust.fadeIn = 1f;
                 }
 
-                justSpawned = true;
+                Projectile.ai[0] = 1f;
             }
 
             if (Main.rand.NextBool(4))

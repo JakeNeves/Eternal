@@ -10,7 +10,7 @@ using Terraria.GameContent.Bestiary;
 using Eternal.Content.Items.Misc;
 using Eternal.Content.Items.Potions;
 using Eternal.Common.Players;
-using Eternal.Content.Items.Weapons.Throwing;
+using Terraria.GameContent;
 
 namespace Eternal.Content.NPCs.Town
 {
@@ -18,6 +18,15 @@ namespace Eternal.Content.NPCs.Town
     public class Emissary : ModNPC
     {
         public string ShopName = "Shop";
+
+        private static int ShimmerHeadIndex;
+
+        private static Profiles.StackedNPCProfile NPCProfile;
+
+        public override void Load()
+        {
+            ShimmerHeadIndex = Mod.AddNPCHeadTexture(Type, Texture + "_Shimmered_Head");
+        }
 
         public override void SetStaticDefaults()
         {
@@ -28,6 +37,8 @@ namespace Eternal.Content.NPCs.Town
             NPCID.Sets.AttackType[NPC.type] = 0;
             NPCID.Sets.AttackTime[NPC.type] = 90;
             NPCID.Sets.AttackAverageChance[NPC.type] = 30;
+            NPCID.Sets.ShimmerTownTransform[NPC.type] = true;
+            NPCID.Sets.ShimmerTownTransform[Type] = true;
 
             NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
@@ -41,6 +52,16 @@ namespace Eternal.Content.NPCs.Town
                 .SetBiomeAffection<SnowBiome>(AffectionLevel.Love)
                 .SetBiomeAffection<ForestBiome>(AffectionLevel.Like)
             ;
+
+            NPCProfile = new Profiles.StackedNPCProfile(
+                new Profiles.DefaultNPCProfile(Texture, NPCHeadLoader.GetHeadSlot(HeadTexture), Texture + "_Alt"),
+                new Profiles.DefaultNPCProfile(Texture + "_Shimmered", ShimmerHeadIndex, Texture + "_Shimmered_Alt")
+            );
+        }
+
+        public override ITownNPCProfile TownNPCProfile()
+        {
+            return NPCProfile;
         }
 
         public override void SetDefaults()
@@ -220,11 +241,11 @@ namespace Eternal.Content.NPCs.Town
                     continue;
                 }
 
-                /*if (NPC.IsShimmerVariant)
+                if (NPC.IsShimmerVariant)
                 {
                     int value = item.shopCustomPrice ?? item.value;
                     item.shopCustomPrice = value / 2;
-                }*/
+                }
             }
         }
 

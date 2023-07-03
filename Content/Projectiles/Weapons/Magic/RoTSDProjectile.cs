@@ -8,7 +8,6 @@ namespace Eternal.Content.Projectiles.Weapons.Magic
 {
     public class RoTSDProjectile : ModProjectile
     {
-        bool justSpawned = false;
 
         public override void SetStaticDefaults()
         {
@@ -104,7 +103,7 @@ namespace Eternal.Content.Projectiles.Weapons.Magic
 
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(45f);
 
-            if (!justSpawned)
+            if (Projectile.ai[0] == 0f && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 for (int i = 0; i < 50; i++)
                 {
@@ -129,8 +128,7 @@ namespace Eternal.Content.Projectiles.Weapons.Magic
                 }
 
                 Projectile.frame = Main.rand.Next(0, 3);
-
-                justSpawned = true;
+                Projectile.ai[0] = 1f;
             }
 
             NPC closestNPC = FindClosestNPC(maxDetectRadius);
