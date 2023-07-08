@@ -1893,6 +1893,16 @@ Mods: {
 					within The Rift, the weilder's position is shifted around it's enemy.
 					'''
 			}
+
+			TheCherishedKinofGallahard: {
+				DisplayName: The Cherished Kin of Gallahard
+				Tooltip: "'JakeTEM'"
+			}
+
+			TheSonofTheArsGaladia: {
+				DisplayName: The Son of the Ars Galadia
+				Tooltip: "'JakeTEM'"
+			}
 		}
 
 		Buffs: {
@@ -1965,6 +1975,8 @@ Mods: {
 			CometiteOre.MapEntry: Cometite
 			RotaryHerathForge.DisplayName: Rotary Hearth Forge
 			RotaryHearthForge.MapEntry: Rotary Hearth Forge
+			TheCherishedKinofGallahard.MapEntry: The Cherished Kinof Gallahard
+			TheSonofTheArsGaladia.MapEntry: The Sonof The Ars Galadia
 		}
 
 		Biomes: {
@@ -2100,29 +2112,6 @@ Mods: {
 			IesniumSlime.DisplayName: Iesnium Slime
 			MalachiteSlime.DisplayName: Malachite Slime
 			CarminiteInfestedEye.DisplayName: Carminite Infested Eye
-
-			Apollyon: {
-				DisplayName: Apollyon
-
-				TownNPCMood: {
-					Content: I am very pleased with everything around me, it's almost as it hits home for me really well!
-					NoHome: Normally without a house or place of residence, I'm fine on my own but I think I could use a place to live for the time being...
-					LoveSpace: This feels like home, I am very pleased on how much effort you have dedicated into this!
-					FarFromHome: I would get home super easy, but without pure darkness my powers are very little and limited, any directions?
-					LikeBiome: Honestly, I'd settle here along with some new faces, I just wish people could hopefully one day, overcome their fears baing around me, but I'm pretty sure most people have around here.
-					LoveBiome: Settling in a place like this feels unironically perfect in my opinion!
-					DislikeCrowded: I dislike how crowded I am.
-					HateCrowded: I hate how crowded I am.
-					DislikeBiome: I dislike {BiomeName}.
-					HateBiome: I hate {BiomeName}.
-					LoveNPC: I love {NPCName}.
-					LikeNPC: I like {NPCName}.
-					DislikeNPC: I dislike {NPCName}.
-					HateNPC: I hate {NPCName}.
-					LikeNPC_Princess: I like {NPCName}.
-					Princess_LovesNPC: I like {NPCName}.
-				}
-			}
 
 			Emissary: {
 				DisplayName: Emissary

@@ -1,4 +1,4 @@
-displayName = [c/ED0249:Eternal] (Alpha)
+displayName = [c/ED0249:Eternal]
 author = JakeTEM
 version = 1.2
 homepage = https://discord.gg/HUJ8KUSAjC

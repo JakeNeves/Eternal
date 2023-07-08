@@ -1,6 +1,6 @@
-[c/1EC9E3:Eternal] (Alpha) - By [c/008CFF:Jake][c/0204CFF:TEM]!
+[c/1EC9E3:Eternal] - By [c/008CFF:Jake][c/0204CFF:TEM]!
 
-1.2  - [c/009933:Alpha] (The Unnamed Update)
+1.2  - [c/009933:Alpha] (Across a Second Reality)
 
 [c/00B359:---Jake's Lounge Discord Server---]
 Feel free to join my Discord Server and help out with the mod if you want
@@ -9,7 +9,7 @@ https://discord.gg/HUJ8KUSAjC
 Eternal is a mod that loads your game with much content
 possible, including a new difficulty!
 From what we expect, this mod is not fully finished yet so
-there is no harm in cheating in anything from the mod via HERO's and/or Cheat Sheet...
+there is no harm in cheating in anything from the mod via HERO's, Cheat Sheet and/or DragonLens...
 
 [c/ED0249:---NOTICE---]
 This is a public alpha build of the 1.4 port of Eternal, bugs and other sketchy things may arise!
@@ -20,4 +20,5 @@ This is a public alpha build of the 1.4 port of Eternal, bugs and other sketchy 
 2 new biomes (WIP)
 1 new structure (WIP)
 22+ Enemies
-3 Town NPCs (one of them is a WIP)
+2 Town NPCs
+1 new Event (The Rift)

@@ -12,8 +12,6 @@ namespace Eternal.Content
 
 		public override Asset<Texture2D> Logo => ModContent.Request<Texture2D>($"{menuAssetPath}/Logo");
 
-        public override int Music => MusicLoader.GetMusicSlot(Mod, "Assets/Music/AcrossADisfiguredReality");
-
         public override string DisplayName => "Eternal";
 
 		public override void OnSelected()

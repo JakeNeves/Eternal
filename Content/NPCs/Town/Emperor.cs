@@ -1,6 +1,7 @@
 ﻿using Eternal.Common.Players;
 using Eternal.Common.Systems;
 using Eternal.Content.Items.Misc;
+using Eternal.Content.Items.Placeable.Paintings;
 using Eternal.Content.Items.Potions;
 using Eternal.Content.Items.Summon;
 using Eternal.Content.Items.Weapons.Throwing;
@@ -323,7 +324,13 @@ namespace Eternal.Content.NPCs.Town
 
             var emperorShop = new NPCShop(Type, ShopName)
                 .Add<RoyalGaladianBread>()
-                .Add<FineRedWine>();
+                .Add<FineRedWine>()
+                .Add<TheCherishedKinofGallahard>();
+
+            if (NPC.IsShimmerVariant)
+            {
+                emperorShop.Add<TheSonofTheArsGaladia>();
+            }
 
             if (DownedBossSystem.downedCosmicApparition)
             {
