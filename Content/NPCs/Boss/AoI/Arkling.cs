@@ -11,6 +11,15 @@ namespace Eternal.Content.NPCs.Boss.AoI
     public class Arkling : ModNPC
     {
 
+        public override void SetStaticDefaults()
+        {
+            var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            {
+                CustomTexturePath = "Eternal/Content/NPCs/Boss/AoI/Arkling",
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, drawModifier);
+        }
+
         public override void SetDefaults()
         {
             NPC.lifeMax = 8600;

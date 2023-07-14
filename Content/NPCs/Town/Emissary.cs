@@ -219,15 +219,9 @@ namespace Eternal.Content.NPCs.Town
 
             var emissaryShop = new NPCShop(Type, ShopName);
 
-            if (ReputationSystem.ReputationPoints == 50)
-            {
-                emissaryShop.Add<PristineHealingPotion>();
-            }
+            emissaryShop.Add<PristineHealingPotion>(new Condition("Mods.Eternal.Conditions.50ReputationPoints", () => ReputationSystem.ReputationPoints == 50));
 
-            if (ReputationSystem.ReputationPoints == 100)
-            {
-                emissaryShop.Add<PerfectHealingPotion>();
-            }
+            emissaryShop.Add<PerfectHealingPotion>(new Condition("Mods.Eternal.Conditions.100ReputationPoints", () => ReputationSystem.ReputationPoints == 100));
 
             emissaryShop.Register();
         }

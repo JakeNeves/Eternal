@@ -3,8 +3,10 @@ using Eternal.Common.Systems;
 using Eternal.Content.Tiles;
 using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Terraria;
+using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -39,11 +41,27 @@ namespace Eternal.Content.NPCs.Tundra
             NPC.DeathSound = SoundID.Shatter;
         }
 
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Snow,
+
+                new FlavorTextBestiaryInfoElement("Soaring through the tundra, these constructs are made from pure ice, cristalized on a boulder.")
+            });
+        }
+
         public override void HitEffect(NPC.HitInfo hit)
         {
+            var entitySource = NPC.GetSource_Death();
+
             if (NPC.life <= 0)
             {
+                int gore1 = Mod.Find<ModGore>("IceRollerChunk").Type;
+                int gore2 = Mod.Find<ModGore>("IceRollerCore").Type;
 
+                for (int i = 0; i < 4; i++)
+                    Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore1);
+                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore2);
             }
             else
             {

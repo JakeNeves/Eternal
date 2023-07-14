@@ -1467,7 +1467,7 @@ Mods: {
 			}
 
 			ExosiivaGladiusBlade: {
-				DisplayName: Exosiiva Gladius Blade
+				DisplayName: Exosiiva Gladius Blade (WIP)
 				Tooltip:
 					'''
 					'Now where have I seen this before?'
@@ -2397,6 +2397,22 @@ Mods: {
 					}
 				}
 			}
+		}
+
+		Conditions: {
+			CosmicAppatitionDefeated: When the Cosmic Apparition has been defeated
+			IsNamedJake: When the player is named after the Empreror or the mod's creator
+			50ReputationPoints: When the player has a Reputation quota of 50
+			100ReputationPoints: When the player has a Reputation quota of 100
+			150ReputationPoints: When the player has a Reputation quota of 150
+			500ReputationPoints: When the player has a Reputation quota of 500
+			1000ReputationPoints: When the player has a Reputation quota of 1000
+			1050ReputationPoints: When the player has a Reputation quota of 1050
+			1100ReputationPoints: When the player has a Reputation quota of 1100
+			1150ReputationPoints: When the player has a Reputation quota of 1150
+			1500ReputationPoints: When the player has a Reputation quota of 1500
+			5000ReputationPoints: When the player has the maximum Reputation Quota
+			CosmicApparitionDefeated: Mods.Eternal.Conditions.CosmicApparitionDefeated
 		}
 	}
 }

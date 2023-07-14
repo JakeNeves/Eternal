@@ -30,11 +30,9 @@ namespace Eternal.Content.Items.Weapons.Melee
             Item.knockBack = 6.5f;
             Item.useAnimation = 26;
             Item.useTime = 26;
-            Item.shoot = ModContent.ProjectileType<TheBigOneProjectile>();
             Item.shootSpeed = 6f;
             Item.UseSound = SoundID.Item71;
             Item.rare = ModContent.RarityType<Turquoise>();
-            Item.noUseGraphic = true;
         }
 
         public override void AddRecipes()

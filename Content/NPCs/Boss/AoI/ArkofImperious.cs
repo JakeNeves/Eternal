@@ -66,6 +66,14 @@ namespace Eternal.Content.NPCs.Boss.AoI
 
         public override void SetStaticDefaults()
         {
+            var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            {
+                Position = new Vector2(0f, 96f),
+                PortraitPositionXOverride = 0f,
+                PortraitPositionYOverride = 96f
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, drawModifier);
+
             NPCID.Sets.TrailCacheLength[NPC.type] = 12;
             NPCID.Sets.TrailingMode[NPC.type] = 0;
 

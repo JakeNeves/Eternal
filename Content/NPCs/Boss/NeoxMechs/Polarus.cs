@@ -1,7 +1,5 @@
 ﻿using Eternal.Common.Systems;
-using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Potions;
-using Eternal.Content.Projectiles.Boss;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -87,7 +85,11 @@ namespace Eternal.Content.NPCs.Boss.NeoxMechs
 
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Polarus N30X");
+            var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            {
+                CustomTexturePath = "Eternal/Content/NPCs/Boss/NeoxMechs/Polarus",
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, drawModifier);
         }
 
         public override void SetDefaults()

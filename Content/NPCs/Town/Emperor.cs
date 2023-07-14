@@ -6,6 +6,7 @@ using Eternal.Content.Items.Potions;
 using Eternal.Content.Items.Summon;
 using Eternal.Content.Items.Weapons.Throwing;
 using Eternal.Content.Projectiles.Weapons.Ranged;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent;
@@ -325,22 +326,10 @@ namespace Eternal.Content.NPCs.Town
             var emperorShop = new NPCShop(Type, ShopName)
                 .Add<RoyalGaladianBread>()
                 .Add<FineRedWine>()
-                .Add<TheCherishedKinofGallahard>();
-
-            if (NPC.IsShimmerVariant)
-            {
-                emperorShop.Add<TheSonofTheArsGaladia>();
-            }
-
-            if (DownedBossSystem.downedCosmicApparition)
-            {
-                emperorShop.Add<EmperorsTrust>();
-            }
-
-            if (player.name == "Jake" || player.name == "JakeTEM")
-            {
-                emperorShop.Add<PocketJake>();
-            }
+                .Add<TheCherishedKinofGallahard>()
+                .Add<TheSonofTheArsGaladia>(Condition.IsNpcShimmered)
+                .Add<EmperorsTrust>(new Condition("Mods.Eternal.Conditions.CosmicApparitionDefeated", () => DownedBossSystem.downedCosmicApparition))
+                .Add<PocketJake>(new Condition("Mods.Eternal.Conditions.IsNamedJake", () => player.name == "Jake" || player.name == "JakeTEM"));
 
             emperorShop.Register();
         }
@@ -375,7 +364,7 @@ namespace Eternal.Content.NPCs.Town
 
         public void StatueTeleport()
         {
-            Main.NewText("How did I even get here?", 24, 96, 210);
+            CombatText.NewText(NPC.Hitbox, new Color(24, 96, 210), "Woah, what happened?", dramatic: true);
         }
 
         public override void TownNPCAttackCooldown(ref int cooldown, ref int randExtraCooldown)
