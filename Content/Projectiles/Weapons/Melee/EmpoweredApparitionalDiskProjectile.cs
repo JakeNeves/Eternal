@@ -40,7 +40,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
             var entitySource = Projectile.GetSource_FromAI();
 
-            if (pierceTimer >= 20)
+            if (pierceTimer >= 30)
             {
                 for (int i = 0; i < 50; i++)
                 {
