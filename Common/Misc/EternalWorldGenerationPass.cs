@@ -245,21 +245,5 @@ namespace Eternal.Common.Misc
             }
         }
         #endregion
-
-        /// <summary>
-        /// This method could be temperary
-        /// </summary>
-        public static void DropComet()
-        {
-            while (true)
-            {
-                int comX = WorldGen.genRand.Next(Main.rand.Next(-450, 450), Main.maxTilesX - 1200);
-                int comY = WorldGen.genRand.Next((int)GenVars.worldSurface, Main.maxTilesY);
-                WorldGen.TileRunner(comX, comY, WorldGen.genRand.Next(20, 45), 80, ModContent.TileType<CometiteOre>(), false, WorldGen.genRand.Next(4, 8), WorldGen.genRand.Next(-2, 2));
-                //WorldGen.TileRunner(comX, comY, WorldGen.genRand.Next(20, 45), 80, ModContent.TileType<CometiteOre>(), false, WorldGen.genRand.Next(-4, -8), WorldGen.genRand.Next(-2, 2));
-
-                break;
-            }
-        }
     }
 }

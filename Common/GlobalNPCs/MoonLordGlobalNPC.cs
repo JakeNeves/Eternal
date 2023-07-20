@@ -1,4 +1,4 @@
-﻿using Eternal.Common.Misc;
+﻿using Eternal.Common.Systems;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -14,17 +14,20 @@ namespace Eternal.Common.GlobalNPCs
 
         public override void OnKill(NPC npc)
         {
-            if (!NPC.downedMoonlord)
+            if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                Main.NewText("A comet has landed and struck the world!", 0, 215, 215);
-                EternalWorldGenerationPass.DropComet();
-            }
-            else
-            {
-                if (Main.rand.NextBool(2))
+                if (!NPC.downedMoonlord)
                 {
                     Main.NewText("A comet has landed and struck the world!", 0, 215, 215);
-                    EternalWorldGenerationPass.DropComet();
+                    CometSystem.DropComet();
+                }
+                else
+                {
+                    if (Main.rand.NextBool(2))
+                    {
+                        Main.NewText("A comet has landed and struck the world!", 0, 215, 215);
+                        CometSystem.DropComet();
+                    }
                 }
             }
         }
