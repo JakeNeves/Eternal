@@ -1,4 +1,5 @@
 ﻿using Eternal.Common.ItemDropRules.Conditions;
+using Eternal.Common.Systems;
 using Eternal.Content.Dusts;
 using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Weapons.Magic;
@@ -13,6 +14,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Utilities;
 
 namespace Eternal.Content.NPCs.Miniboss
 {
@@ -20,15 +22,6 @@ namespace Eternal.Content.NPCs.Miniboss
     public class PhantomConstruct : ModNPC
     {
         int attackTimer = 0;
-
-        public override void SetStaticDefaults()
-        {
-            var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
-            {
-                CustomTexturePath = "Eternal/Content/NPCs/Miniboss/PhantomConstruct"
-            };
-            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, drawModifier);
-        }
 
         public override void SetDefaults()
         {
@@ -59,6 +52,7 @@ namespace Eternal.Content.NPCs.Miniboss
             NPC.buffImmune[BuffID.Frostburn] = true;
             NPC.buffImmune[BuffID.Frozen] = true;
             NPC.buffImmune[BuffID.Chilled] = true;
+            NPC.rarity = 4;
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -84,6 +78,18 @@ namespace Eternal.Content.NPCs.Miniboss
             return true;
         }
 
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        {
+            if (RiftSystem.isRiftOpen && Main.zenithWorld)
+            {
+                return SpawnCondition.Sky.Chance * 0.5f;
+            }
+            else
+            {
+                return SpawnCondition.Sky.Chance * 0f;
+            }
+        }
+
         public override void AI()
         {
             var entitySource = NPC.GetSource_FromAI();
@@ -98,18 +104,22 @@ namespace Eternal.Content.NPCs.Miniboss
 
             if (NPC.ai[0] == 0f && Main.netMode != NetmodeID.MultiplayerClient)
             {
-                for (int i = 0; i < 50; i++)
+                if (!Main.zenithWorld)
                 {
-                    Vector2 position = NPC.Center + Vector2.UnitX.RotatedBy(MathHelper.ToRadians(360f / 50 * i)) * 60;
-                    Dust dust = Dust.NewDustPerfect(NPC.Center, DustID.PinkTorch);
-                    dust.noGravity = true;
-                    dust.velocity = Vector2.Normalize(position - NPC.Center) * 4;
-                    dust.noLight = false;
-                    dust.fadeIn = 1.25f;
+                    for (int i = 0; i < 50; i++)
+                    {
+                        Vector2 position = NPC.Center + Vector2.UnitX.RotatedBy(MathHelper.ToRadians(360f / 50 * i)) * 60;
+                        Dust dust = Dust.NewDustPerfect(NPC.Center, DustID.PinkTorch);
+                        dust.noGravity = true;
+                        dust.velocity = Vector2.Normalize(position - NPC.Center) * 4;
+                        dust.noLight = false;
+                        dust.fadeIn = 1.25f;
+                    }
+
+                    SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/PhantomConstructSpawn"), NPC.position);
+                    Main.NewText("A Phantom Construct has appeared!", 175, 75, 255);
                 }
 
-                SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/PhantomConstructSpawn"), NPC.position);
-                Main.NewText("A Phantom Construct has appeared!", 175, 75, 255);
                 NPC.TargetClosest(true);
                 NPC.ai[0] = 1f;
             }
@@ -141,7 +151,8 @@ namespace Eternal.Content.NPCs.Miniboss
                 if (NPC.ai[3] >= 180f)
                 {
                     NPC.life = 0;
-                    Main.NewText("The Phantom Construct has been defeated!", 175, 75, 255);
+                    if (!Main.zenithWorld)
+                        Main.NewText("The Phantom Construct has been defeated!", 175, 75, 255);
                     NPC.HitEffect(0, 0);
                     NPC.checkDead();
                 }

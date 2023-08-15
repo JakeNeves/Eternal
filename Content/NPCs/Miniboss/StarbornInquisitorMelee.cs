@@ -18,7 +18,6 @@ namespace Eternal.Content.NPCs.Miniboss
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Starborn Inquisitor");
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.PossessedArmor];
         }
 
@@ -42,6 +41,7 @@ namespace Eternal.Content.NPCs.Miniboss
             NPC.buffImmune[BuffID.Chilled] = true;
             NPC.buffImmune[BuffID.OnFire] = true;
             SpawnModBiomes = new int[1] { ModContent.GetInstance<Biomes.Comet>().Type };
+            NPC.rarity = 4;
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)

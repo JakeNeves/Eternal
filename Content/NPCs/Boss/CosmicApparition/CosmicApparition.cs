@@ -65,10 +65,13 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             NPC.defense = 60;
             NPC.knockBackResist = -1f;
             NPC.boss = true;
-            if (RiftSystem.isRiftOpen)
-                Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/GhostFromAnotherWorld");
-            else
-                Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/ApparitionalAccumulation");
+            if (!Main.dedServ) {
+                if (RiftSystem.isRiftOpen)
+                    Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/GhostFromAnotherWorld");
+                else
+                    Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/ApparitionalAccumulation");
+                
+            }
             NPC.HitSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCHit/CosmicApparitionHit")
             {
                 Volume = 0.8f,

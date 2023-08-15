@@ -42,7 +42,7 @@ namespace Eternal.Content.Items.Misc
             }
             else
             {
-                if (!player.HasBuff(ModContent.BuffType<UnstableState>()))
+                if (!player.HasBuff(ModContent.BuffType<UnstableState>()) || !Main.zenithWorld)
                 {
                     player.AddBuff(Item.buffType, 1 * 30 * 30);
                     SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/RodofDistortion"), player.position);

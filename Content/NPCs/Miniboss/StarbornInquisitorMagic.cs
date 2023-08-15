@@ -46,6 +46,7 @@ namespace Eternal.Content.NPCs.Miniboss
             NPC.buffImmune[BuffID.Chilled] = true;
             NPC.buffImmune[BuffID.OnFire] = true;
             SpawnModBiomes = new int[1] { ModContent.GetInstance<Biomes.Comet>().Type };
+            NPC.rarity = 4;
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)

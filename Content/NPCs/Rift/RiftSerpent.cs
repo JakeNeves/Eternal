@@ -247,8 +247,16 @@ namespace Eternal.Content.NPCs.Rift
     {
 		public override void Init()
 		{
-			minLength = 24;
-			maxLength = 24;
+			if (Main.zenithWorld)
+			{
+                minLength = 48;
+                maxLength = 48;
+            }
+			else
+			{
+                minLength = 24;
+                maxLength = 24;
+            }
 			tailType = ModContent.NPCType<RiftSerpentTail>();
 			bodyType = ModContent.NPCType<RiftSerpentBody>();
 			headType = ModContent.NPCType<RiftSerpentHead>();

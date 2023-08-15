@@ -1,5 +1,6 @@
 ﻿using Eternal.Common.Players;
 using Eternal.Common.Systems;
+using Eternal.Content.Items.Potions;
 using Eternal.Content.NPCs.Boss.CosmicEmperor;
 using Terraria;
 using Terraria.Audio;
@@ -10,11 +11,6 @@ namespace Eternal.Content.Projectiles.Misc
 {
     public class CosmicEmperorSummon : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("???");
-        }
-
         public override void SetDefaults()
         {
             Projectile.width = 6;
@@ -60,6 +56,18 @@ namespace Eternal.Content.Projectiles.Misc
                             break;
                     }
                 }
+                else if (Main.LocalPlayer.HasItem(ModContent.ItemType<CosmicMoonshine>()))
+                {
+                    switch (Projectile.timeLeft)
+                    {
+                        case 690:
+                            Main.NewText("No.", 150, 36, 120);
+                            break;
+                        case 450:
+                            Projectile.Kill();
+                            break;
+                    }
+                }
                 else
                 {
                     switch (Projectile.timeLeft)
@@ -99,6 +107,18 @@ namespace Eternal.Content.Projectiles.Misc
                             break;
                     }
                 }
+                else if (Main.LocalPlayer.HasItem(ModContent.ItemType<CosmicMoonshine>()))
+                {
+                    switch (Projectile.timeLeft)
+                    {
+                        case 690:
+                            Main.NewText("No.", 150, 36, 120);
+                            break;
+                        case 450:
+                            Projectile.Kill();
+                            break;
+                    }
+                }
                 else
                 {
                     switch (Projectile.timeLeft)
@@ -126,7 +146,8 @@ namespace Eternal.Content.Projectiles.Misc
 
             var entitySource = Projectile.GetSource_Death();
 
-            NPC.NewNPC(entitySource, (int)Projectile.position.X, (int)Projectile.position.Y, ModContent.NPCType<CosmicEmperor>());
+            if (!Main.LocalPlayer.HasItem(ModContent.ItemType<CosmicMoonshine>()))
+                NPC.NewNPC(entitySource, (int)Projectile.position.X, (int)Projectile.position.Y, ModContent.NPCType<CosmicEmperor>());
         }
     }
 }

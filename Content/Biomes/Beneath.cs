@@ -1,17 +1,11 @@
 ﻿using Eternal.Common.Systems;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Biomes
 {
     public class Beneath : ModBiome
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("The Beneath");
-        }
-
         public override int Music => MusicLoader.GetMusicSlot(Mod, "Assets/Music/DarknessFromDeepBelow");
 
         public override string BestiaryIcon => base.BestiaryIcon;
@@ -32,5 +26,7 @@ namespace Eternal.Content.Biomes
 
             return b1;
         }
+
+        public override SceneEffectPriority Priority => SceneEffectPriority.BiomeMedium;
     }
 }

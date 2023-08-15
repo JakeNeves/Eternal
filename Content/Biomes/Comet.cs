@@ -7,13 +7,8 @@ namespace Eternal.Content.Biomes
 {
     public class Comet : ModBiome
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Fallen Comet");
-        }
-
         public override int Music => MusicLoader.GetMusicSlot(Mod, "Assets/Music/AstralDiscovery");
-        public override CaptureBiome.TileColorStyle TileColorStyle => CaptureBiome.TileColorStyle.Corrupt;
+        public override CaptureBiome.TileColorStyle TileColorStyle => CaptureBiome.TileColorStyle.Normal;
 
         public override string BestiaryIcon => base.BestiaryIcon;
 

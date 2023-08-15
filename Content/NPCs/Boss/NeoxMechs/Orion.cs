@@ -20,11 +20,6 @@ namespace Eternal.Content.NPCs.Boss.NeoxMechs
 
         bool justSpawnedCircle = false;
 
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Orion N30X");
-        }
-
         public override void HitEffect(NPC.HitInfo hit)
         {
             if (NPC.life <= 0)
@@ -57,7 +52,8 @@ namespace Eternal.Content.NPCs.Boss.NeoxMechs
             NPC.noGravity = true;
             NPC.noTileCollide = true;
             NPC.boss = true;
-            Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/NeoxPower");
+            if (!Main.dedServ)
+                Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/NeoxPower");
             NPC.buffImmune[BuffID.Poisoned] = true;
             NPC.buffImmune[BuffID.OnFire] = true;
             NPC.buffImmune[BuffID.Venom] = true;

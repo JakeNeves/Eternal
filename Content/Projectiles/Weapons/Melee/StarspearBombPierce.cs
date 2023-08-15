@@ -8,18 +8,14 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 {
     public class StarspearBombPierce : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Starspear Bomb");
-        }
-
         public override void SetDefaults()
         {
             Projectile.width = 14;
             Projectile.height = 20;
             Projectile.friendly = true;
             Projectile.ignoreWater = true;
-            Projectile.penetrate = -1;
+            Projectile.aiStyle = -1;
+            Projectile.penetrate = 1;
             Projectile.timeLeft = 300;
         }
 

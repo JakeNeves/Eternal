@@ -2,7 +2,6 @@
 using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Misc;
 using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
@@ -32,10 +31,9 @@ namespace Eternal.Content.NPCs.Rift
                 MaxInstances = 0,
             };
             NPC.DeathSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCDeath/RiftEnemyDeath");
-            NPC.lifeMax = 96000;
             NPC.value = Item.sellPrice(gold: 30);
             NPC.knockBackResist = -1f;
-            NPC.aiStyle = 3;
+            NPC.aiStyle = 5;
             NPC.buffImmune[BuffID.Poisoned] = true;
             NPC.buffImmune[BuffID.OnFire] = true;
             NPC.buffImmune[BuffID.Venom] = true;
@@ -49,6 +47,14 @@ namespace Eternal.Content.NPCs.Rift
             NPC.noTileCollide = true;
         }
 
+        public override void AI()
+        {
+            Player target = Main.player[NPC.target];
+            NPC.TargetClosest(true);
+
+            Lighting.AddLight(NPC.Center, 0.75f, 0f, 0.75f);
+        }
+
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
             bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
@@ -56,44 +62,6 @@ namespace Eternal.Content.NPCs.Rift
 
                 new FlavorTextBestiaryInfoElement("Formed in the depths of outer space upon opening the rift, they roam the airspace usually close down to earth!")
             });
-        }
-
-        public override void AI()
-        {
-            Lighting.AddLight(NPC.Center, 0.75f, 0f, 0.75f);
-
-            player = Main.player[NPC.target];
-            NPC.TargetClosest(true);
-
-            RotateNPCToTarget();
-
-            if (!player.active || player.dead)
-            {
-                NPC.TargetClosest(false);
-                player = Main.player[NPC.target];
-                if (!player.active || player.dead)
-                {
-                    NPC.velocity = new Vector2(0f, -10f);
-                    if (NPC.timeLeft > 10)
-                    {
-                        NPC.timeLeft = 10;
-                    }
-                    return;
-                }
-            }
-        }
-
-        private void Target()
-        {
-            player = Main.player[NPC.target];
-        }
-
-        private void RotateNPCToTarget()
-        {
-            if (player == null) return;
-            Vector2 direction = NPC.Center - player.Center;
-            float rotation = (float)Math.Atan2(direction.Y, direction.X);
-            NPC.rotation = rotation + ((float)Math.PI * 0.5f);
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

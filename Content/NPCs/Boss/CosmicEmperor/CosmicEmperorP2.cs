@@ -463,104 +463,85 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
                 timer = 0;
             }
 
-            if (isDead)
+            if (NPC.ai[3] > 0f)
             {
-                NPC.noTileCollide = false;
-                midFightDialogue = false;
+                NPC.ai[3] += 1f;
                 NPC.dontTakeDamage = true;
-                doAttacks = false;
-                dialogueTimer = 0;
-                timer = 0;
 
-                NPC.velocity.Y += 0.05f;
-                NPC.velocity.X = 0;
+                NPC.velocity = new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 2f));
 
-                DialogueDeathTimer++;
-                deathExplosionTimer++;
-
-                entitySource = NPC.GetSource_Death();
-
-                if (deathExplosionTimer == 4)
+                if (Main.rand.NextBool(5) && NPC.ai[3] < 180f)
                 {
-                    Projectile.NewProjectile(entitySource, (int)NPC.position.X + Main.rand.Next(-64, 64), (int)NPC.position.Y + Main.rand.Next(-64, 64), 0, 0, ModContent.ProjectileType<Projectiles.Explosion.CosmicSpirit>(), 0, 0f);
-                    deathExplosionTimer = 0;
-                }
-
-                if (!DownedBossSystem.downedCosmicEmperor)
-                {
-                    
-                    switch (DialogueDeathTimer)
+                    for (int dustNumber = 0; dustNumber < 3; dustNumber++)
                     {
-                        case 100:
-                            Main.NewText("WHAT!?", 150, 36, 120);
-                            break;
-                        case 200:
-                            Main.NewText("NO!", 150, 36, 120);
-                            break;
-                        case 300:
-                            Main.NewText("HOW DID YOU GAIN SO MUCH POWER!?", 150, 36, 120);
-                            break;
-                        case 400:
-                            Main.NewText("I HAVE BEEN DEFEATED!", 150, 36, 120);
-                            break;
-                        case 500:
-                            Main.NewText("BUT YOU ALSO LOST, " + player.name.ToUpper() + "!", 150, 36, 120);
-                            break;
-                        case 600:
-                            Main.NewText("FATE IS MY OLDEST FRIEND!", 150, 36, 120);
-                            break;
-                        case 700:
-                            Main.NewText("GOODBYE!", 150, 36, 120);
-                            break;
-                        case 750:
-                            for (int k = 0; k < 15; k++)
-                            {
-                                Dust.NewDust(NPC.Center, NPC.width, NPC.height, ModContent.DustType<CosmicSpirit>(), Main.rand.NextFloat(-1.75f, 1.75f), Main.rand.NextFloat(-1.75f, 1.75f), 0, default(Color), 1f);
-                            }
-                            NPC.dontTakeDamage = false;
-                            DownedBossSystem.downedCosmicEmperor = true;
-                            dontKillyet = true;
-                            player.ApplyDamageToNPC(NPC, 9999, 0, 0, false);
-                            break;
+                        Dust dust = Main.dust[Dust.NewDust(NPC.Left, NPC.width, NPC.height / 2, DustID.PinkTorch, 0f, 0f, 0, default(Color), 1f)];
+                        dust.position = NPC.Center + Vector2.UnitY.RotatedByRandom(4.1887903213500977) * new Vector2(NPC.width * 1.5f, NPC.height * 1.1f) * 0.8f * (0.8f + Main.rand.NextFloat() * 0.2f);
+                        dust.velocity.X = 0f;
+                        dust.velocity.Y = -Math.Abs(dust.velocity.Y - (float)dustNumber + NPC.velocity.Y - 4f) * 3f;
+                        dust.noGravity = true;
+                        dust.fadeIn = 1f;
+                        dust.scale = 1f + Main.rand.NextFloat() + (float)dustNumber * 0.3f;
                     }
                 }
-                else
+
+                switch (DialogueDeathTimer)
                 {
-                    switch (DialogueDeathTimer)
+                    case 100:
+                        Main.NewText("WHAT!?", 150, 36, 120);
+                        break;
+                    case 200:
+                        Main.NewText("NO!", 150, 36, 120);
+                        break;
+                    case 300:
+                        Main.NewText("HOW DID YOU GAIN SO MUCH POWER!?", 150, 36, 120);
+                        break;
+                    case 400:
+                        Main.NewText("I HAVE BEEN DEFEATED!", 150, 36, 120);
+                        break;
+                    case 500:
+                        Main.NewText("MY POWER IS DEPLETING", 150, 36, 120);
+                        break;
+                    case 600:
+                        Main.NewText("DEATH IS MY OLDEST FRIEND!", 150, 36, 120);
+                        break;
+                    case 700:
+                        Main.NewText("GOODBYE!", 150, 36, 120);
+                        break;
+                    case 750:
+                        for (int k = 0; k < 15; k++)
+                        {
+                            Dust.NewDust(NPC.Center, NPC.width, NPC.height, ModContent.DustType<CosmicSpirit>(), Main.rand.NextFloat(-1.75f, 1.75f), Main.rand.NextFloat(-1.75f, 1.75f), 0, default(Color), 1f);
+                        }
+                        NPC.dontTakeDamage = false;
+                        break;
+                }
+
+                if (NPC.ai[3] >= 750f)
+                {
+                    NPC.life = 0;
+                    if (!DownedBossSystem.downedCosmicEmperor)
                     {
-                        case 100:
-                            Main.NewText("WHAT!?", 150, 36, 120);
-                            break;
-                        case 200:
-                            Main.NewText("NO!", 150, 36, 120);
-                            break;
-                        case 300:
-                            Main.NewText("HOW DID YOU GAIN SO MUCH POWER!?", 150, 36, 120);
-                            break;
-                        case 400:
-                            Main.NewText("I HAVE BEEN DEFEATED, AGAIN!", 150, 36, 120);
-                            break;
-                        case 500:
-                            Main.NewText("BUT YOU ALSO LOST, " + player.name.ToUpper() + "!", 150, 36, 120);
-                            break;
-                        case 600:
-                            Main.NewText("FATE IS MY OLDEST FRIEND!", 150, 36, 120);
-                            break;
-                        case 700:
-                            Main.NewText("GOODBYE!", 150, 36, 120);
-                            break;
-                        case 750:
-                            for (int k = 0; k < 15; k++)
-                            {
-                                Dust.NewDust(NPC.Center, NPC.width, NPC.height, ModContent.DustType<CosmicSpirit>(), Main.rand.NextFloat(-1.75f, 1.75f), Main.rand.NextFloat(-1.75f, 1.75f), 0, default(Color), 1f);
-                            }
-                            NPC.dontTakeDamage = false;
-                            dontKillyet = true;
-                            player.ApplyDamageToNPC(NPC, 9999, 0, 0, false);
-                            break;
+                        DownedBossSystem.downedCosmicEmperor = true;
                     }
+
+                    NPC.HitEffect(0, 0);
+                    NPC.checkDead();
                 }
             }
+        }
+
+        public override bool CheckDead()
+        {
+            if (NPC.ai[3] == 0f)
+            {
+                NPC.ai[3] = 1f;
+                NPC.damage = 0;
+                NPC.life = NPC.lifeMax;
+                NPC.dontTakeDamage = true;
+                NPC.netUpdate = true;
+                return false;
+            }
+            return true;
         }
 
         public override void BossLoot(ref string name, ref int potionType)

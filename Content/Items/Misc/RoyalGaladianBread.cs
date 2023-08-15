@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -9,17 +10,18 @@ namespace Eternal.Content.Items.Misc
     {
         public override void SetStaticDefaults()
         {
-            /* Tooltip.SetDefault("Major improvements to all stats" +
-                             "\n'Freshly baked by one of the emperor's favourite emissaries!'"); */
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 5;
+
+            ItemID.Sets.FoodParticleColors[Item.type] = new Color[1] {
+                new Color(124, 89, 64)
+            };
         }
 
         public override void SetDefaults()
         {
             Item.width = 22;
             Item.height = 16;
-            Item.useStyle = ItemUseStyleID.DrinkLiquid;
+            Item.useStyle = ItemUseStyleID.EatFood;
             Item.useAnimation = 17;
             Item.useTime = 17;
             Item.useTurn = true;

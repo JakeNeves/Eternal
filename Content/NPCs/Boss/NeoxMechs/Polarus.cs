@@ -109,7 +109,8 @@ namespace Eternal.Content.NPCs.Boss.NeoxMechs
             NPC.HitSound = SoundID.NPCHit4;
             NPC.DeathSound = SoundID.NPCDeath14;
             NPC.alpha = 0;
-            Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/NeoxPower");
+            if (!Main.dedServ)
+                Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/NeoxPower");
             NPC.buffImmune[BuffID.Poisoned] = true;
             NPC.buffImmune[BuffID.OnFire] = true;
             NPC.buffImmune[BuffID.Venom] = true;

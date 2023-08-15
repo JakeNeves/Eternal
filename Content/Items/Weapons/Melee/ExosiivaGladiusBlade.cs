@@ -13,10 +13,6 @@ namespace Eternal.Content.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            /* Tooltip.SetDefault("'Now where have I seen this before?'" +
-                             "\n[c/FC036B:Developer Item]" +
-                             "\nDedicated to [c/038CFC:JakeTEM]"); */
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -27,12 +23,13 @@ namespace Eternal.Content.Items.Weapons.Melee
             Item.damage = 1000;
             Item.DamageType = DamageClass.Melee;
             Item.useStyle = ItemUseStyleID.Swing;
-            Item.knockBack = 6.5f;
-            Item.useAnimation = 26;
-            Item.useTime = 26;
-            Item.shootSpeed = 6f;
+            Item.knockBack = 18f;
+            Item.useAnimation = 20;
+            Item.useTime = 20;
+            Item.shootSpeed = 8f;
             Item.UseSound = SoundID.Item71;
             Item.rare = ModContent.RarityType<Turquoise>();
+            Item.shoot = ModContent.ProjectileType<ExosiivaGladiusBladeProjectile>();
         }
 
         public override void AddRecipes()

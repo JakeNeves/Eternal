@@ -1,11 +1,12 @@
-﻿using Eternal.Content.Items.Materials;
+﻿using Eternal.Common.Systems;
+using Eternal.Content.Items.Materials;
 using Eternal.Content.Rarities;
 using Eternal.Content.Tiles.CraftingStations;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Accessories
@@ -13,18 +14,6 @@ namespace Eternal.Content.Items.Accessories
     [AutoloadEquip(EquipType.Wings)]
     public class RoyalKeepersTreads : ModItem
     {
-        public override LocalizedText DisplayName => base.DisplayName.WithFormatArgs("Royal Keeper's Treads");
-        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("Counts as Wings" +
-                                                                            "\nAllows flight and slow fall" +
-                                                                            "\nPress Down to toggle hover" +
-                                                                            "\nPress Up to deactivate hover" +
-                                                                            "\nAllows the wearer to run at crazy speed!" +
-                                                                            "\nProvides mobility on ice" +
-                                                                            "\nLava Waders effects" +
-                                                                            "\nMaster Ninja Gear effects" +
-                                                                            "\nImmunity to lava" +
-                                                                            "\n'The Cosmic Emperor's Reward for finding such incredibly rare alloy'");
-
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -90,9 +79,42 @@ namespace Eternal.Content.Items.Accessories
             player.spikedBoots = 2;
 
             player.wingTimeMax = 600;
+
+            DashSystem modDashPlayer = player.GetModPlayer<DashSystem>();
+
+            #region Dash Effect
+            if (!modDashPlayer.DashActive)
+                return;
+
+            player.eocDash = modDashPlayer.DashTimer;
+            player.armorEffectDrawShadowEOCShield = true;
+
+            if (modDashPlayer.DashTimer == DashSystem.MAX_DASH_TIMER)
+            {
+                Vector2 newVelocity = player.velocity;
+
+                if ((modDashPlayer.DashDir == DashSystem.DashLeft && player.velocity.X > -modDashPlayer.DashVelocity) || (modDashPlayer.DashDir == DashSystem.DashRight && player.velocity.X < modDashPlayer.DashVelocity))
+                {
+                    int dashDirection = modDashPlayer.DashDir == DashSystem.DashRight ? 1 : -1;
+                    newVelocity.X = dashDirection * modDashPlayer.DashVelocity;
+                }
+
+                player.velocity = newVelocity;
+            }
+
+            modDashPlayer.DashTimer--;
+            modDashPlayer.DashDelay--;
+
+            if (modDashPlayer.DashDelay == 0)
+            {
+                modDashPlayer.DashDelay = DashSystem.MAX_DASH_DELAY;
+                modDashPlayer.DashTimer = DashSystem.MAX_DASH_TIMER;
+                modDashPlayer.DashActive = false;
+            }
+            #endregion
         }
 
-    public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising, ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)
+        public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising, ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)
         {
             ascentWhenFalling = 0.16f;
             ascentWhenRising = 0.18f;

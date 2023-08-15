@@ -13,7 +13,6 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Starspear");
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 16;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }
@@ -45,10 +44,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
                 Projectile.NewProjectile(entitySource, Projectile.Center.X, Projectile.Center.Y, 0, 0, ModContent.ProjectileType<StarspearBomb>(), Projectile.damage, 0, Main.myPlayer, 0f, 0f);
                 bombTimer = 0;
             }
-        }
 
-        public override void Kill(int timeLeft)
-        {
             for (int k = 0; k < 5; k++)
             {
                 Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.PurpleTorch, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);

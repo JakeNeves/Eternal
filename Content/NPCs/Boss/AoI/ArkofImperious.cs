@@ -94,10 +94,13 @@ namespace Eternal.Content.NPCs.Boss.AoI
             };
             NPC.DeathSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCDeath/AoIDeath");
             NPC.boss = true;
-            if (RiftSystem.isRiftOpen)
-                Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/SwordGodsBalladofTheRift");
-            else
-                Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/ImperiousStrike");
+            if (!Main.dedServ)
+            {
+                if (RiftSystem.isRiftOpen)
+                    Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/SwordGodsBalladofTheRift");
+                else
+                    Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/ImperiousStrike");
+            }
             NPC.defense = 80;
             NPC.damage = 40;
             NPC.lavaImmune = true;

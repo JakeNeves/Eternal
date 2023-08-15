@@ -1,5 +1,4 @@
-﻿using Eternal.Content.Buffs;
-using Eternal.Content.Projectiles.Armor;
+﻿using Eternal.Content.Projectiles.Armor;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -38,7 +37,7 @@ namespace Eternal.Common.Players
 
         public override void PreUpdate()
         {
-            var entitySource = Player.GetSource_None();
+            var entitySource = Player.GetSource_FromThis();
 
             if (StarbornArmor)
             {
@@ -81,7 +80,7 @@ namespace Eternal.Common.Players
 
         public override void OnHurt(Player.HurtInfo info)
         {
-            var entitySource = Player.GetSource_None();
+            var entitySource = Player.GetSource_FromThis();
 
             if (ArkaniumArmor)
             {

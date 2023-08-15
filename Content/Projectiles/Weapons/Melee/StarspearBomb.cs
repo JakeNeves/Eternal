@@ -8,11 +8,6 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 {
     public class StarspearBomb : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Sparspear Bomb");
-        }
-
         public override void SetDefaults()
         {
             Projectile.width = 38;

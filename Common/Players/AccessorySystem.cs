@@ -1,4 +1,5 @@
 ﻿using Eternal.Common.Systems;
+using Eternal.Content.Items.Accessories.Expert;
 using Eternal.Content.Projectiles.Accessories;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -51,7 +52,7 @@ namespace Eternal.Common.Players
 
         public override void OnHurt(Player.HurtInfo info)
         {
-            var entitySource = NPC.GetSource_None();
+            var entitySource = Player.GetSource_FromThis();
 
             if (Dreadheart)
             {

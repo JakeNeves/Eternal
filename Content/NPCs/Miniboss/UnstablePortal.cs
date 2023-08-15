@@ -64,9 +64,9 @@ namespace Eternal.Content.NPCs.Miniboss
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (RiftSystem.isRiftOpen)
+            if (RiftSystem.isRiftOpen && !Main.zenithWorld)
             {
-                return SpawnCondition.Sky.Chance * 0.2f;
+                return SpawnCondition.Sky.Chance * 0.4f;
             }
             else
             {
@@ -107,12 +107,14 @@ namespace Eternal.Content.NPCs.Miniboss
             {
                 NPC.ai[3] += 1f;
                 NPC.dontTakeDamage = true;
-                NPC.alpha++;
+                NPC.alpha += 10;
+                while (NPC.scale > 0) {
+                    NPC.scale -= 0.5f;
+                }
 
                 if (NPC.ai[3] >= 180f)
                 {
                     NPC.life = 0;
-                    NPC.alpha = 255;
                     NPC.NewNPC(entitySource, (int)NPC.Center.X + Main.rand.Next(-10, 10), (int)NPC.Center.Y + Main.rand.Next(-10, 10), ModContent.NPCType<PhantomConstruct>());
                     NPC.HitEffect(0, 0);
                     NPC.checkDead();

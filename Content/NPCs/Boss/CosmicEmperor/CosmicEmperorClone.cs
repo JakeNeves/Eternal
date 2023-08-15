@@ -1,19 +1,18 @@
-﻿using Eternal.Content.Dusts;
+﻿using Eternal.Common.Systems;
+using Eternal.Content.Dusts;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Utilities;
 
 namespace Eternal.Content.NPCs.Boss.CosmicEmperor
 {
     public class CosmicEmperorClone : ModNPC
     {
-        public override LocalizedText DisplayName => base.DisplayName.WithFormatArgs("Cosmic Emperor's Shadow Clone");
-
         public override void SetDefaults()
         {
             NPC.lifeMax = 100000;
@@ -114,6 +113,20 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
                 NPC.velocity.Y = NPC.velocity.Y - acceleration;
                 if (NPC.velocity.Y > 0 && yDir < 0)
                     NPC.velocity.Y = NPC.velocity.Y - acceleration;
+            }
+        }
+
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        {
+            Player player = Main.player[Main.myPlayer];
+
+            if (RiftSystem.isRiftOpen && DownedBossSystem.downedRiftArkofImperious && Main.zenithWorld)
+            {
+                return SpawnCondition.Overworld.Chance * 1.5f;
+            }
+            else
+            {
+                return SpawnCondition.Overworld.Chance * 0f;
             }
         }
 

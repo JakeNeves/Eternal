@@ -277,7 +277,10 @@ namespace Eternal.Content.NPCs.Town
                 switch (Main.rand.Next(16))
                 {
                     case 0:
-                        return "What am I even doing here?";
+                        if (player.name == "Jake")
+                            return "So you must be that " + player.name + " guy everyone in Gallahard is talking about! You should come to a Jake meetup one day...";
+                        else
+                            return "What am I even doing here?";
                     case 1:
                         return "I suppose this place feel really wacky to me.";
                     case 2:
