@@ -10,7 +10,9 @@ namespace Eternal.Content
     {
 		private const string menuAssetPath = "Eternal/Assets/Textures/Menu";
 
-		public override Asset<Texture2D> Logo => ModContent.Request<Texture2D>($"{menuAssetPath}/Logo");
+        public override int Music => MusicLoader.GetMusicSlot(Mod, "Assets/Music/DawnofANewBeginning");
+
+        public override Asset<Texture2D> Logo => ModContent.Request<Texture2D>($"{menuAssetPath}/Logo");
 
         public override string DisplayName => "Eternal";
 
