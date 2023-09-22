@@ -18,8 +18,8 @@ namespace Eternal.Content.Items.Placeable
 
         public override void SetDefaults()
         {
-            Item.width = 14;
-            Item.height = 12;
+            Item.width = 18;
+            Item.height = 16;
             Item.value = Item.sellPrice(gold: 50);
             Item.rare = ItemRarityID.Red;
             Item.useAnimation = 15;

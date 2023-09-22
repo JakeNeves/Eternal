@@ -6,6 +6,9 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Eternal.Content.Projectiles.Boss;
+using Eternal.Common.Configurations;
+using Eternal.Common.Misc;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Eternal.Content.NPCs.Boss.CosmicEmperor
 {
@@ -39,7 +42,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
         {
             NPC.width = 54;
             NPC.height = 56;
-            NPC.lifeMax = 4000000;
+            NPC.lifeMax = 400000;
             NPC.defense = 90;
             NPC.damage = 40;
             NPC.noGravity = true;
@@ -106,32 +109,10 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
             }
         }*/
 
-        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
         {
-            if (Main.masterMode)
-            {
-                NPC.lifeMax = 12000000;
-                NPC.defense = 182;
-                NPC.damage = 80;
-            }
-            else if (DifficultySystem.hellMode)
-            {
-                NPC.lifeMax = 16000000;
-                NPC.defense = 184;
-                NPC.damage = 86;
-            }
-            else if (DifficultySystem.sinstormMode)
-            {
-                NPC.lifeMax = 20000000;
-                NPC.defense = 186;
-                NPC.damage = 90;
-            }
-            else
-            {
-                NPC.lifeMax = 8000000;
-                NPC.defense = 180;
-                NPC.damage = 60;
-            }
+            NPC.lifeMax = (int)(NPC.lifeMax * balance * bossAdjustment);
+            NPC.damage = (int)(NPC.damage * balance * bossAdjustment);
         }
 
         public override bool PreAI()
@@ -185,6 +166,15 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
 
         public override void AI()
         {
+            if (ClientConfig.instance.bossBarExtras)
+            {
+                if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
+                {
+                    EternalBossBarOverlay.SetTracked("The Nameless Menace Unleashed, ", NPC, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                    EternalBossBarOverlay.visible = true;
+                }
+            }
+
             if (!firstAttack)
             {
                 tohouAttack = true;

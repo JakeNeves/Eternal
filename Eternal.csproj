@@ -16,4 +16,9 @@
   <ItemGroup>
     <Folder Include="Localization\" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="CalamityMod">
+      <HintPath>..\..\ModReader\CalamityMod\CalamityMod.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>

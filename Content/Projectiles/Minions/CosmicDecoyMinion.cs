@@ -1,8 +1,6 @@
 ﻿using Eternal.Content.Buffs.Minions;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -10,11 +8,8 @@ namespace Eternal.Content.Projectiles.Minions
 {
     public class CosmicDecoyMinion : ModProjectile
     {
-
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Cosmic Decoy");
-
             Main.projFrames[Projectile.type] = 4;
 
             Main.projPet[Projectile.type] = true;

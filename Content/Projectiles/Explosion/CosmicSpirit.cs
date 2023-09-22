@@ -8,11 +8,6 @@ namespace Eternal.Content.Projectiles.Explosion
 {
     public class CosmicSpirit : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Cosmic Spirit Burst");
-        }
-
         public override void SetDefaults()
         {
             Projectile.width = 6;

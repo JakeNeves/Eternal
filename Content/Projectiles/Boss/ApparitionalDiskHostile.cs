@@ -8,7 +8,6 @@ namespace Eternal.Content.Projectiles.Boss
 {
     public class ApparitionalDiskHostile : ModProjectile
     {
-
         public override void SetDefaults()
         {
             Projectile.width = 20;
@@ -22,8 +21,6 @@ namespace Eternal.Content.Projectiles.Boss
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            //Working on Debuff
-
             for (int k = 0; k < 5; k++)
             {
                 Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, DustID.Shadowflame, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);

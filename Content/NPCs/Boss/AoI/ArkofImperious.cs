@@ -1,4 +1,5 @@
 ﻿using Eternal.Common.Configurations;
+using Eternal.Common.Misc;
 using Eternal.Common.Systems;
 using Eternal.Content.Items.BossBags;
 using Eternal.Content.Items.Materials;
@@ -51,7 +52,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
             }
             else if (DifficultySystem.hellMode)
             {
-                if (ModContent.GetInstance<ServerConfig>().brutalHellMode)
+                if (ServerConfig.instance.brutalHellMode)
                 {
                     count += 10;
                 }
@@ -85,7 +86,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
             NPC.aiStyle = -1;
             NPC.width = 170;
             NPC.height = 418;
-            NPC.lifeMax = 2400000;
+            NPC.lifeMax = 240000;
             NPC.HitSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCHit/AoIHit")
             {
                 Volume = 0.8f,
@@ -119,28 +120,10 @@ namespace Eternal.Content.NPCs.Boss.AoI
             SpawnModBiomes = new int[1] { ModContent.GetInstance<Biomes.Shrine>().Type };
         }
 
-        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
         {
-            if (Main.masterMode)
-            {
-                NPC.lifeMax = 4800000;
-                NPC.damage = 44;
-            }
-            else if (DifficultySystem.hellMode)
-            {
-                NPC.lifeMax = 9600000;
-                NPC.damage = 46;
-            }
-            else if (DifficultySystem.sinstormMode)
-            {
-                NPC.lifeMax = 10800000;
-                NPC.damage = 50;
-            }
-            else
-            {
-                NPC.lifeMax = 3600000;
-                NPC.damage = 42;
-            }
+            NPC.lifeMax = (int)(NPC.lifeMax * balance * bossAdjustment);
+            NPC.damage = (int)(NPC.damage * balance * bossAdjustment);
         }
 
         public override void OnKill()
@@ -198,7 +181,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
         {
             target.AddBuff(BuffID.Bleeding, 180, false);
             target.AddBuff(BuffID.BrokenArmor, 180, false);
-            if (DifficultySystem.hellMode && ModContent.GetInstance<ServerConfig>().brutalHellMode)
+            if (DifficultySystem.hellMode && ServerConfig.instance.brutalHellMode)
             {
                 target.AddBuff(BuffID.Cursed, 180, false);
             }
@@ -372,6 +355,15 @@ namespace Eternal.Content.NPCs.Boss.AoI
 
         public override void AI()
         {
+            if (ClientConfig.instance.bossBarExtras)
+            {
+                if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
+                {
+                    EternalBossBarOverlay.SetTracked("Guardian of The Shrine, ", NPC, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                    EternalBossBarOverlay.visible = true;
+                }
+            }
+
             var entitySource = NPC.GetSource_FromAI();
 
             Player target = Main.player[NPC.target];

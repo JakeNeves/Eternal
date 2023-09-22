@@ -121,6 +121,11 @@ namespace Eternal.Content.NPCs.Underworld
 
         public override void HitEffect(NPC.HitInfo hit)
         {
+            if (Main.netMode == NetmodeID.Server)
+            {
+                return;
+            }
+
             if (NPC.life <= 0)
             {
                 for (int k = 0; k < 5; k++)

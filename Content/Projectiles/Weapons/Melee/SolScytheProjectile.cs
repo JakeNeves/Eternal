@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -12,7 +11,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
         public override void SetStaticDefaults()
         {
             // DisplayName.SetDefault("Sol Sythe");
-            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 24;
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 8;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }
 

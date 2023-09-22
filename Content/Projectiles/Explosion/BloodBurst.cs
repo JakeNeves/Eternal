@@ -8,11 +8,6 @@ namespace Eternal.Content.Projectiles.Explosion
 {
     public class BloodBurst : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Blood");
-        }
-
         public override void SetDefaults()
         {
             Projectile.width = 6;

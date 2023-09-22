@@ -34,9 +34,14 @@ namespace Eternal.Common.Players
 
         public override void OnEnterWorld()
         {
-            Main.NewText("Thanks for playing the Eternal " + Eternal.instance.Version.ToString() + ", this is a public alpha build, expect things to change overtime." +
-                    "\nFor updates, join the Jake's Lounge discord server", 125, 45, 60);
-            Main.NewText("https://discord.gg/HUJ8KUSAjC", 100, 0, 210);
+            if (ClientConfig.instance.showWelcomeMessage)
+            {
+                Main.NewText("Thanks for playing the Eternal " + Eternal.instance.Version.ToString() + "!" +
+                        "\nFor updates, join the Jake's Lounge discord server.", 125, 45, 60);
+                Main.NewText("https://discord.gg/HUJ8KUSAjC", 100, 0, 210);
+                Main.NewText("Be sure to check out the Eternal mod wiki (WIP) too!", 125, 45, 60);
+                Main.NewText("https://terrariamods.wiki.gg/wiki/Eternal", 100, 0, 210);
+            }
         }
 
         public override void PreUpdate()
@@ -45,7 +50,7 @@ namespace Eternal.Common.Players
 
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                if (DifficultySystem.hellMode && ModContent.GetInstance<ServerConfig>().cosmicApparitionNaturalSpawn)
+                if (DifficultySystem.hellMode && ServerConfig.instance.cosmicApparitionNaturalSpawn)
                 {
                     if (!DownedBossSystem.downedCosmicApparition && NPC.downedMoonlord && !NPC.AnyNPCs(ModContent.NPCType<CosmicApparition>()))
                     {

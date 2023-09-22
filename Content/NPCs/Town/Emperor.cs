@@ -4,6 +4,7 @@ using Eternal.Content.Items.Misc;
 using Eternal.Content.Items.Placeable.Paintings;
 using Eternal.Content.Items.Potions;
 using Eternal.Content.Items.Summon;
+using Eternal.Content.Items.Vanity;
 using Eternal.Content.Items.Weapons.Throwing;
 using Eternal.Content.Projectiles.Weapons.Ranged;
 using Microsoft.Xna.Framework;
@@ -98,7 +99,7 @@ namespace Eternal.Content.NPCs.Town
                 {
                     continue;
                 }
-                if (NPC.downedMoonlord || SeedSystem.emperorSeed)
+                if (NPC.downedMoonlord || SeedSystem.emperorSeed || Main.zenithWorld)
                     return true;
             }
             return false;
@@ -332,7 +333,10 @@ namespace Eternal.Content.NPCs.Town
                 .Add<TheCherishedKinofGallahard>()
                 .Add<TheSonofTheArsGaladia>(Condition.IsNpcShimmered)
                 .Add<EmperorsTrust>(new Condition("Mods.Eternal.Conditions.CosmicApparitionDefeated", () => DownedBossSystem.downedCosmicApparition))
-                .Add<PocketJake>(new Condition("Mods.Eternal.Conditions.IsNamedJake", () => player.name == "Jake" || player.name == "JakeTEM"));
+                .Add<PocketJake>(new Condition("Mods.Eternal.Conditions.IsNamedJake", () => player.name == "Jake" || player.name == "JakeTEM"))
+                .Add<JakesHat>()
+                .Add<JakesTunic>()
+                .Add<JakesPants>();
 
             emperorShop.Register();
         }

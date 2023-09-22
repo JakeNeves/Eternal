@@ -18,7 +18,7 @@ namespace Eternal.Content.NPCs.Rift
         {
             NPC.width = 68;
             NPC.height = 68;
-            NPC.lifeMax = 45000;
+            NPC.lifeMax = 4500;
             NPC.defense = 20;
             NPC.damage = 48;
             NPC.knockBackResist = -1f;
@@ -46,6 +46,11 @@ namespace Eternal.Content.NPCs.Rift
 
         public override void HitEffect(NPC.HitInfo hit)
         {
+            if (Main.netMode == NetmodeID.Server)
+            {
+                return;
+            }
+
             if (NPC.life <= 0)
             {
 

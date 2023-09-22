@@ -46,7 +46,7 @@ namespace Eternal.Content.NPCs.Boss.Trinity
             }
             else if (DifficultySystem.hellMode)
             {
-                if (ModContent.GetInstance<ServerConfig>().brutalHellMode)
+                if (ServerConfig.instance.brutalHellMode)
                 {
                     count += 12;
                 }

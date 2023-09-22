@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.Audio;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -8,11 +6,6 @@ namespace Eternal.Content.Projectiles.Misc
 {
     public class CosmicApparitionSoul : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Soul of the Cosmic Apparition");
-        }
-
         public override void SetDefaults()
         {
             Projectile.width = 6;

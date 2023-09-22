@@ -19,7 +19,7 @@ namespace Eternal.Common.Systems
 		public override void OnWorldUnload()
 		{
 			hellMode = false;
-			sinstormMode=false;
+			sinstormMode = false;
 		}
 
 		public override void SaveWorldData(TagCompound tag)

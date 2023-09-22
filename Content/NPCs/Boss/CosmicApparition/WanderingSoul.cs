@@ -12,6 +12,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
     public class WanderingSoul : ModNPC
     {
         public override string Texture => "Eternal/Content/NPCs/Boss/CosmicApparition/CosmicApparition";
+        public override string BossHeadTexture => "Eternal/Content/NPCs/Boss/CosmicApparition/CosmicApparition_Head_Boss";
 
         int phase = 0;
         int projectileShoot;

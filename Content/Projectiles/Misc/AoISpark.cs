@@ -9,11 +9,6 @@ namespace Eternal.Content.Projectiles.Misc
 {
     public class AoISpark : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Spark of Imperious");
-        }
-
         public override void SetDefaults()
         {
             Projectile.width = 6;

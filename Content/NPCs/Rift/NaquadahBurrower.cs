@@ -38,7 +38,7 @@ namespace Eternal.Content.NPCs.Rift
                 MaxInstances = 0,
             };
             NPC.DeathSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCDeath/RiftEnemyDeath");
-            NPC.lifeMax = 96000;
+            NPC.lifeMax = 66000;
 			NPC.defense = 20;
 			NPC.damage = 40;
 			NPC.value = Item.sellPrice(platinum: 3, gold: 30, silver: 60);
@@ -61,7 +61,8 @@ namespace Eternal.Content.NPCs.Rift
 		{
 			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RawNaquadah>(), 1, 3, 12));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CrystalizedOminite>(), 2, 1, 2));
-		}
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LargeRawNaquadah>(), 3, 1, 4));
+        }
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
 		{
@@ -106,6 +107,11 @@ namespace Eternal.Content.NPCs.Rift
 
         public override void HitEffect(NPC.HitInfo hit)
         {
+            if (Main.netMode == NetmodeID.Server)
+            {
+                return;
+            }
+
             var entitySource = NPC.GetSource_Death();
 
             int gore1 = Mod.Find<ModGore>("NaquadahBurrowerHead").Type;
@@ -147,7 +153,7 @@ namespace Eternal.Content.NPCs.Rift
                 MaxInstances = 0,
             };
             NPC.DeathSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCDeath/RiftEnemyDeath");
-            NPC.lifeMax = 96000;
+            NPC.lifeMax = 66000;
 			NPC.defense = 20;
 			NPC.damage = 40;
         }
@@ -200,7 +206,7 @@ namespace Eternal.Content.NPCs.Rift
                 MaxInstances = 0,
             };
             NPC.DeathSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCDeath/RiftEnemyDeath");
-            NPC.lifeMax = 96000;
+            NPC.lifeMax = 66000;
 			NPC.defense = 20;
 			NPC.damage = 40;
 		}

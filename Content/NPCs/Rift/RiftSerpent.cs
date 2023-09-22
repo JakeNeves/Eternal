@@ -39,8 +39,8 @@ namespace Eternal.Content.NPCs.Rift
                 MaxInstances = 0,
             };
             NPC.DeathSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCDeath/RiftEnemyDeath");
-            NPC.lifeMax = 44000;
-			NPC.defense = 10;
+            NPC.lifeMax = 4400;
+			NPC.defense = 5;
 			NPC.damage = 20;
 			NPC.value = Item.sellPrice(platinum: 3, gold: 30, silver: 60);
 			SpawnModBiomes = new int[1] { ModContent.GetInstance<Biomes.Rift>().Type };
@@ -66,6 +66,11 @@ namespace Eternal.Content.NPCs.Rift
 
         public override void HitEffect(NPC.HitInfo hit)
         {
+            if (Main.netMode == NetmodeID.Server)
+            {
+                return;
+            }
+
             var entitySource = NPC.GetSource_Death();
 
             int gore1 = Mod.Find<ModGore>("RiftSerpentHead").Type;
@@ -153,8 +158,8 @@ namespace Eternal.Content.NPCs.Rift
                 MaxInstances = 0,
             };
             NPC.DeathSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCDeath/RiftEnemyDeath");
-            NPC.lifeMax = 44000;
-			NPC.defense = 10;
+            NPC.lifeMax = 4400;
+			NPC.defense = 5;
 			NPC.damage = 20;
             NPC.dontTakeDamage = true;
         }
@@ -166,6 +171,11 @@ namespace Eternal.Content.NPCs.Rift
 
         public override void HitEffect(NPC.HitInfo hit)
         {
+            if (Main.netMode == NetmodeID.Server)
+            {
+                return;
+            }
+
             var entitySource = NPC.GetSource_Death();
 
             int gore1 = Mod.Find<ModGore>("RiftSerpentBody").Type;
@@ -207,7 +217,7 @@ namespace Eternal.Content.NPCs.Rift
                 MaxInstances = 0,
             };
             NPC.DeathSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCDeath/RiftEnemyDeath");
-            NPC.lifeMax = 44000;
+            NPC.lifeMax = 4400;
 			NPC.defense = 10;
 			NPC.damage = 20;
 		}
@@ -225,6 +235,11 @@ namespace Eternal.Content.NPCs.Rift
 
         public override void HitEffect(NPC.HitInfo hit)
         {
+            if (Main.netMode == NetmodeID.Server)
+            {
+                return;
+            }
+
             var entitySource = NPC.GetSource_Death();
 
             int gore1 = Mod.Find<ModGore>("RiftSerpentTail").Type;

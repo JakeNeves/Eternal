@@ -7,10 +7,6 @@ namespace Eternal.Content.Projectiles.Boss
 {
     public class IgneopedeFire : ModProjectile
     {
-	    public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Igneopede Fire");
-        }
         public override void SetDefaults()
         {
             Projectile.width = 6;

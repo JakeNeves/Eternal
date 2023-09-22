@@ -27,9 +27,9 @@ namespace Eternal.Content.NPCs.Underworld
 
         public override void SetDefaults()
         {
-            NPC.lifeMax = 22000;
+            NPC.lifeMax = 2200;
             NPC.damage = 86;
-            NPC.defense = 30;
+            NPC.defense = 20;
             NPC.knockBackResist = -1f;
             NPC.width = 6;
             NPC.height = 6;

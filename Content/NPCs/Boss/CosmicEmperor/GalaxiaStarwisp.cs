@@ -25,7 +25,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
 
         public override void SetDefaults()
         {
-            NPC.lifeMax = 44000;
+            NPC.lifeMax = 4400;
             NPC.damage = 120;
             NPC.defense = 45;
             NPC.knockBackResist = -1f;

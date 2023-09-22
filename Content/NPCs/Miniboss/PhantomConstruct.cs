@@ -1,4 +1,6 @@
-﻿using Eternal.Common.ItemDropRules.Conditions;
+﻿using Eternal.Common.Configurations;
+using Eternal.Common.ItemDropRules.Conditions;
+using Eternal.Common.Misc;
 using Eternal.Common.Systems;
 using Eternal.Content.Dusts;
 using Eternal.Content.Items.Materials;
@@ -7,6 +9,7 @@ using Eternal.Content.Items.Weapons.Melee;
 using Eternal.Content.NPCs.Boss.CosmicApparition;
 using Eternal.Content.Projectiles.Boss;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.Audio;
@@ -92,6 +95,15 @@ namespace Eternal.Content.NPCs.Miniboss
 
         public override void AI()
         {
+            if (ClientConfig.instance.bossBarExtras)
+            {
+                if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
+                {
+                    EternalBossBarOverlay.SetTracked("Guardian of The Rift, ", NPC, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                    EternalBossBarOverlay.visible = true;
+                }
+            }
+
             var entitySource = NPC.GetSource_FromAI();
 
             Player target = Main.player[NPC.target];
@@ -106,6 +118,9 @@ namespace Eternal.Content.NPCs.Miniboss
             {
                 if (!Main.zenithWorld)
                 {
+                    for (int k = 0; k < 25; k++)
+                        Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.PinkTorch, 2.5f, -2.5f, 0, default, 1.7f);
+
                     for (int i = 0; i < 50; i++)
                     {
                         Vector2 position = NPC.Center + Vector2.UnitX.RotatedBy(MathHelper.ToRadians(360f / 50 * i)) * 60;
@@ -239,16 +254,35 @@ namespace Eternal.Content.NPCs.Miniboss
             }
             if (attackTimer == 400)
             {
-                SoundEngine.PlaySound(SoundID.Item8, NPC.position);
-                NPC.position.X = targetPosition.X + Main.rand.Next(-600, 600);
-                NPC.position.Y = targetPosition.Y + Main.rand.Next(-600, 600);
+                if (NPC.ai[3] > 0f)
+                {
+                    SoundEngine.PlaySound(SoundID.Item8, NPC.position);
+                    NPC.position.X = targetPosition.X + Main.rand.Next(-600, 600);
+                    NPC.position.Y = targetPosition.Y + Main.rand.Next(-600, 600);
+                }
                 attackTimer = 0;
             }
         }
 
         public override void HitEffect(NPC.HitInfo hit)
         {
-            if (NPC.life <= 0)
+            if (Main.netMode == NetmodeID.Server)
+            {
+                return;
+            }
+
+            var entitySource = NPC.GetSource_Death();
+
+            int gore1 = Mod.Find<ModGore>("PhantomConstructHead").Type;
+            int gore2 = Mod.Find<ModGore>("PhantomConstructBody").Type;
+            int gore3 = Mod.Find<ModGore>("PhantomConstructArm").Type;
+
+            Gore.NewGore(entitySource, NPC.Center, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore1);
+            Gore.NewGore(entitySource, NPC.Center, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore2);
+            for (int i = 0; i < 2; i++)
+                Gore.NewGore(entitySource, NPC.Center, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore3);
+
+            if (NPC.life < 0)
             {
                 for (int k = 0; k < 5; k++)
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.PinkTorch, 2.5f, -2.5f, 0, default, 1.7f);

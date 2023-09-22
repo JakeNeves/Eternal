@@ -1,5 +1,8 @@
-﻿using Eternal.Common.Systems;
+﻿using Eternal.Common.Configurations;
+using Eternal.Common.Misc;
+using Eternal.Common.Systems;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.IO;
 using Terraria;
 using Terraria.Audio;
@@ -84,7 +87,16 @@ namespace Eternal.Content.NPCs.Boss.Duneworm
 
 		public override void CustomBehavior()
 		{
-			Player target = Main.player[NPC.target];
+            if (ClientConfig.instance.bossBarExtras)
+            {
+                if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
+                {
+                    EternalBossBarOverlay.SetTracked("Burrower of The Sands, ", NPC, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                    EternalBossBarOverlay.visible = true;
+                }
+            }
+
+            Player target = Main.player[NPC.target];
 
 			NPC.TargetClosest(true);
 

@@ -11,6 +11,9 @@ using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Eternal.Common.Configurations;
+using Eternal.Common.Misc;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Eternal.Content.NPCs.Boss.DuneGolem
 {
@@ -46,8 +49,8 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
             NPC.damage = 5;
             NPC.defense = 15;
             NPC.knockBackResist = 0f;
-            NPC.width = 104;
-            NPC.height = 104;
+            NPC.width = 106;
+            NPC.height = 106;
             NPC.value = Item.buyPrice(gold: 30);
             NPC.lavaImmune = true;
             NPC.boss = true;
@@ -75,6 +78,11 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
 
         public override void HitEffect(NPC.HitInfo hit)
         {
+            if (Main.netMode == NetmodeID.Server)
+            {
+                return;
+            }
+
             if (!dontKillyet)
             {
                 if (NPC.life < 0)
@@ -101,18 +109,8 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
 
         public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
         {
-            if (Main.masterMode)
-            {
-                NPC.lifeMax = 10000;
-            }
-            else if (DifficultySystem.hellMode)
-            {
-                NPC.lifeMax = 12000;
-            }
-            else
-            {
-                NPC.lifeMax = 8000;
-            }
+            NPC.lifeMax = (int)(NPC.lifeMax * balance * bossAdjustment);
+            NPC.damage = (int)(NPC.damage * balance * bossAdjustment);
         }
 
         public override bool PreAI()
@@ -260,6 +258,15 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
 
         public override void AI()
         {
+            if (ClientConfig.instance.bossBarExtras)
+            {
+                if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
+                {
+                    EternalBossBarOverlay.SetTracked("Possessed Desert Idol, ", NPC, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                    EternalBossBarOverlay.visible = true;
+                }
+            }
+
             var entitySource = NPC.GetSource_FromAI();
 
             Player player = Main.player[NPC.target];

@@ -8,11 +8,6 @@ namespace Eternal.Content.Projectiles.Accessories
 {
     public class DuneSparkFriendly : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Dune Spark");
-        }
-
         public override void SetDefaults()
         {
             Projectile.width = 6;

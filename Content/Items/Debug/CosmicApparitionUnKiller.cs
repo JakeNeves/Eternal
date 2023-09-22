@@ -40,7 +40,7 @@ namespace Eternal.Content.Items.Debug
                     Item.useAnimation = 15;
                     Item.useTime = 15;
                     DownedBossSystem.downedRiftCosmicApparition = false;
-                    Main.NewText("Effects have been undone, kill the Cosmic Apparition again to redo the effect...", 0, 215, 215);
+                    Main.NewText("Effects have been undone, kill the Cosmic Apparition in the Rift again to redo the effect...", 0, 215, 215);
                 }
             }
             else
@@ -52,7 +52,7 @@ namespace Eternal.Content.Items.Debug
                     Item.useAnimation = 15;
                     Item.useTime = 15;
                     DownedBossSystem.downedCosmicApparition = false;
-                    Main.NewText("Effects have been undone, kill the Cosmic Apparition in the Rift again to redo the effect...", 0, 215, 215);
+                    Main.NewText("Effects have been undone, kill the Cosmic Apparition again to redo the effect...", 0, 215, 215);
                 }
             }
             return base.CanUseItem(player);

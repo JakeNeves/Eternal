@@ -27,8 +27,15 @@ namespace Eternal.Content.Items.Materials
 
         public override void AddRecipes()
         {
+            // regular sized raw naquadah
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<RawNaquadah>(), 2)
+                .AddIngredient(ModContent.ItemType<RawNaquadah>())
+                .AddTile(ModContent.TileType<RotaryHearthForge>())
+                .Register();
+
+            // large raw naquadah
+            CreateRecipe(4)
+                .AddIngredient(ModContent.ItemType<LargeRawNaquadah>())
                 .AddTile(ModContent.TileType<RotaryHearthForge>())
                 .Register();
         }

@@ -4,10 +4,8 @@ using Eternal.Content.Dusts;
 using Eternal.Content.Items.Armor;
 using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Weapons.Ranged;
-using Eternal.Content.Tiles;
 using Microsoft.Xna.Framework;
 using System;
-using System.Linq;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
@@ -36,8 +34,26 @@ namespace Eternal.Content.NPCs.Comet
             NPC.aiStyle = 14;
             NPC.noGravity = true;
             NPC.noTileCollide = true;
-            NPC.HitSound = SoundID.DD2_SkeletonHurt;
-            NPC.DeathSound = SoundID.NPCDeath5;
+            if (RiftSystem.isRiftOpen)
+            {
+                NPC.HitSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCHit/CometCreatureHitRift")
+                {
+                    Volume = 0.8f,
+                    PitchVariance = Main.rand.NextFloat(0.2f, 0.9f),
+                    MaxInstances = 0,
+                };
+                NPC.DeathSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCDeath/CometCreatureDeathRift");
+            }
+            else
+            {
+                NPC.HitSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCHit/CometCreatureHit")
+                {
+                    Volume = 0.8f,
+                    PitchVariance = Main.rand.NextFloat(0.2f, 0.9f),
+                    MaxInstances = 0,
+                };
+                NPC.DeathSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCDeath/CometCreatureDeath");
+            }
             NPC.value = Item.sellPrice(gold: 26, silver: 15);
             NPC.buffImmune[BuffID.Poisoned] = true;
             NPC.buffImmune[BuffID.OnFire] = true;
@@ -74,6 +90,12 @@ namespace Eternal.Content.NPCs.Comet
         public override void AI()
         {
             Vector2 targetPosition = Main.player[NPC.target].position;
+
+            if (RiftSystem.isRiftOpen)
+            {
+                for (int k = 0; k < 5; k++)
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, ModContent.DustType<ApparitionalParticle>(), 0, -2f, 0, default, 1f);
+            }
 
             if (DownedBossSystem.downedCosmicApparition)
             {
@@ -153,11 +175,11 @@ namespace Eternal.Content.NPCs.Comet
         {
             PostCosmicApparitionDropCondition postCosmicApparitionDrop = new PostCosmicApparitionDropCondition();
 
-            npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<ApparitionalMatter>(), 1, 12, 24));
-            npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<Astragel>(), 1, 12, 24));
-            npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<InterstellarSingularity>(), 1, 12, 24));
+            npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<ApparitionalMatter>(), 3, 12, 24));
+            npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<Astragel>(), 3, 12, 24));
+            npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<InterstellarSingularity>(), 3, 12, 24));
 
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Meganovae>(), 3));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Meganovae>(), 4));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientStarbornMask>(), 12));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientStarbornHelmet>(), 12));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientStarbornHat>(), 12));
@@ -168,13 +190,24 @@ namespace Eternal.Content.NPCs.Comet
 
         public override void HitEffect(NPC.HitInfo hit)
         {
+            if (Main.netMode == NetmodeID.Server)
+            {
+                return;
+            }
+
+            var entitySource = NPC.GetSource_Death();
+
+            int gore1 = Mod.Find<ModGore>("StarprobeBody").Type;
+
             if (NPC.life <= 0)
             {
+                Gore.NewGore(entitySource, NPC.Center, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore1);
+
                 Dust.NewDust(NPC.Center, NPC.width, NPC.height, ModContent.DustType<CosmicSpirit>(), 0, -1f, 0, default(Color), 1f);
             }
             else
             {
-                for (int k = 0; k < 25; k++)
+                for (int k = 0; k < 5; k++)
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.PurpleTorch, 2.5f, -2.5f, 0, default, 1.7f);
             }
         }

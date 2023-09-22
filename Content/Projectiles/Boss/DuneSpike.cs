@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -11,7 +10,6 @@ namespace Eternal.Content.Projectiles.Boss
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Dune Spike");
             Main.projFrames[Projectile.type] = 2;
         }
 

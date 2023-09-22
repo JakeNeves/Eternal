@@ -12,7 +12,7 @@ namespace Eternal.Common.GlobalItems
     {
         public override bool IsLoadingEnabled(Mod mod)
         {
-            return ModContent.GetInstance<ServerConfig>().recipeChanges;
+            return ServerConfig.instance.recipeChanges;
         }
 
         public override void AddRecipes()

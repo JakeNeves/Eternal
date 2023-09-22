@@ -49,6 +49,11 @@ namespace Eternal.Content.NPCs.Boss.Empraynia
 
         public override void HitEffect(NPC.HitInfo hit)
         {
+            if (Main.netMode == NetmodeID.Server)
+            {
+                return;
+            }
+
             if (NPC.life < 0)
             {
                 var entitySource = NPC.GetSource_Death();

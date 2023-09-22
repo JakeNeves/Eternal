@@ -52,6 +52,11 @@ namespace Eternal.Content.NPCs.Tundra
 
         public override void HitEffect(NPC.HitInfo hit)
         {
+            if (Main.netMode == NetmodeID.Server)
+            {
+                return;
+            }
+
             var entitySource = NPC.GetSource_Death();
 
             if (NPC.life <= 0)

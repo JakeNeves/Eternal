@@ -178,3 +178,5 @@ C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\obj\Deb
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\obj\Debug\net6.0\refint\Eternal.dll
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\obj\Debug\net6.0\Eternal.pdb
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\obj\Debug\net6.0\ref\Eternal.dll
+C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Debug\net6.0\CalamityMod.dll
+C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Debug\net6.0\CalamityMod.pdb

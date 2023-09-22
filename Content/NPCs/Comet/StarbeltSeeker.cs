@@ -1,11 +1,13 @@
 ﻿using Eternal.Common.ItemDropRules.Conditions;
 using Eternal.Common.Systems;
+using Eternal.Content.Dusts;
 using Eternal.Content.Items.Armor;
 using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using System.IO;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -33,9 +35,27 @@ namespace Eternal.Content.NPCs.Comet
 			NPC.CloneDefaults(NPCID.DiggerHead);
 			NPC.aiStyle = -1;
 			NPC.lavaImmune = true;
-			NPC.HitSound = SoundID.DD2_SkeletonHurt;
-			NPC.DeathSound = SoundID.NPCDeath5;
-			NPC.lifeMax = 2200;
+            if (RiftSystem.isRiftOpen)
+            {
+                NPC.HitSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCHit/CometCreatureHitRift")
+                {
+                    Volume = 0.8f,
+                    PitchVariance = Main.rand.NextFloat(0.2f, 0.9f),
+                    MaxInstances = 0,
+                };
+                NPC.DeathSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCDeath/CometCreatureDeathRift");
+            }
+            else
+            {
+                NPC.HitSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCHit/CometCreatureHit")
+                {
+                    Volume = 0.8f,
+                    PitchVariance = Main.rand.NextFloat(0.2f, 0.9f),
+                    MaxInstances = 0,
+                };
+                NPC.DeathSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCDeath/CometCreatureDeath");
+            }
+            NPC.lifeMax = 2200;
 			NPC.defense = 10;
 			NPC.damage = 20;
 			NPC.value = Item.sellPrice(platinum: 3, gold: 30, silver: 60);
@@ -58,12 +78,12 @@ namespace Eternal.Content.NPCs.Comet
 		{
 			PostCosmicApparitionDropCondition postCosmicApparitionDrop = new PostCosmicApparitionDropCondition();
 
-			npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<StarmetalBar>(), 2, 12, 24));
-			npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<GalaxianPlating>(), 2, 12, 24));
-			npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<Astragel>(), 2, 12, 24));
-			npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<InterstellarSingularity>(), 2, 12, 24));
+			npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<StarmetalBar>(), 3, 12, 24));
+			npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<GalaxianPlating>(), 3, 12, 24));
+			npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<Astragel>(), 3, 12, 24));
+			npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<InterstellarSingularity>(), 3, 12, 24));
 
-			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Starspear>(), 3));
+			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Starspear>(), 4));
 			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientStarbornMask>(), 12));
 			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientStarbornHelmet>(), 12));
 			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientStarbornHat>(), 12));
@@ -88,7 +108,13 @@ namespace Eternal.Content.NPCs.Comet
 			Player target = Main.player[NPC.target];
 
 			NPC.TargetClosest(true);
-		}
+
+            if (RiftSystem.isRiftOpen)
+            {
+                for (int k = 0; k < 5; k++)
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, ModContent.DustType<ApparitionalParticle>(), 0, -2f, 0, default, 1f);
+            }
+        }
 
 		public override bool CheckActive()
 		{
@@ -132,9 +158,27 @@ namespace Eternal.Content.NPCs.Comet
 			NPC.CloneDefaults(NPCID.DiggerBody);
 			NPC.aiStyle = -1;
 			NPC.lavaImmune = true;
-			NPC.HitSound = SoundID.DD2_SkeletonHurt;
-			NPC.DeathSound = SoundID.NPCDeath5;
-			NPC.lifeMax = 3200;
+            if (RiftSystem.isRiftOpen)
+            {
+                NPC.HitSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCHit/CometCreatureHitRift")
+                {
+                    Volume = 0.8f,
+                    PitchVariance = Main.rand.NextFloat(0.2f, 0.9f),
+                    MaxInstances = 0,
+                };
+                NPC.DeathSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCDeath/CometCreatureDeathRift");
+            }
+            else
+            {
+                NPC.HitSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCHit/CometCreatureHit")
+                {
+                    Volume = 0.8f,
+                    PitchVariance = Main.rand.NextFloat(0.2f, 0.9f),
+                    MaxInstances = 0,
+                };
+                NPC.DeathSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCDeath/CometCreatureDeath");
+            }
+            NPC.lifeMax = 3200;
 			NPC.defense = 10;
 			NPC.damage = 20;
 		}
@@ -142,7 +186,13 @@ namespace Eternal.Content.NPCs.Comet
         public override void CustomBehavior()
         {
 			Lighting.AddLight(NPC.position, 0.75f, 0f, 0.75f);
-		}
+
+            if (RiftSystem.isRiftOpen)
+            {
+                for (int k = 0; k < 5; k++)
+                    Dust.NewDust(NPC.Center, NPC.width, NPC.height, ModContent.DustType<ApparitionalParticle>(), 0, -2f, 0, default, 1f);
+            }
+        }
 	}
 
 	internal class StarbeltSeekerTail : StarbeltSeeker
@@ -163,9 +213,27 @@ namespace Eternal.Content.NPCs.Comet
 			NPC.CloneDefaults(NPCID.DiggerTail);
 			NPC.aiStyle = -1;
 			NPC.lavaImmune = true;
-			NPC.HitSound = SoundID.DD2_SkeletonHurt;
-			NPC.DeathSound = SoundID.NPCDeath5;
-			NPC.lifeMax = 3200;
+            if (RiftSystem.isRiftOpen)
+            {
+                NPC.HitSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCHit/CometCreatureHitRift")
+                {
+                    Volume = 0.8f,
+                    PitchVariance = Main.rand.NextFloat(0.2f, 0.9f),
+                    MaxInstances = 0,
+                };
+                NPC.DeathSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCDeath/CometCreatureDeathRift");
+            }
+            else
+            {
+                NPC.HitSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCHit/CometCreatureHit")
+                {
+                    Volume = 0.8f,
+                    PitchVariance = Main.rand.NextFloat(0.2f, 0.9f),
+                    MaxInstances = 0,
+                };
+                NPC.DeathSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCDeath/CometCreatureDeath");
+            }
+            NPC.lifeMax = 3200;
 			NPC.defense = 10;
 			NPC.damage = 20;
 		}
@@ -173,7 +241,13 @@ namespace Eternal.Content.NPCs.Comet
 		public override void CustomBehavior()
 		{
 			Lighting.AddLight(NPC.position, 0.75f, 0f, 0.75f);
-		}
+
+            if (RiftSystem.isRiftOpen)
+            {
+                for (int k = 0; k < 5; k++)
+                    Dust.NewDust(NPC.Center, NPC.width, NPC.height, ModContent.DustType<ApparitionalParticle>(), 0, -2f, 0, default, 1f);
+            }
+        }
 
 		public override void Init()
 		{

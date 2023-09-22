@@ -8,11 +8,6 @@ namespace Eternal.Content.Projectiles.Explosion
 {
     public class ElectricBurst : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Electricity Spark");
-        }
-
         public override void SetDefaults()
         {
             Projectile.width = 6;

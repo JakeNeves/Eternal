@@ -1,4 +1,6 @@
-﻿using Eternal.Common.Systems;
+﻿using Eternal.Common.Configurations;
+using Eternal.Common.Misc;
+using Eternal.Common.Systems;
 using Eternal.Content.Items.BossBags;
 using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Pets;
@@ -25,30 +27,45 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
     [AutoloadBossHead]
     public class CosmicApparition : ModNPC
     {
-        public int frameNum;
-        int teleportTimer;
-        int attackTimer;
-        int generalAttackTimer;
-        int moveTimer;
+        public override void Load()
+        {
+            string texture = "Eternal/Content/NPCs/Boss/CosmicApparition/CosmicApparition2_Head_Boss";
+            secondStageHeadSlot = Mod.AddBossHeadTexture(texture, -1);
+        }
+
+        public override void BossHeadSlot(ref int index)
+        {
+            int slot = secondStageHeadSlot;
+            if (phase == 1 && slot != -1)
+            {
+                index = slot;
+            }
+        }
+
+
         int phase = 0;
+        int attackTimerP1Max = 300;
+        int attackTimerP2Max = 600;
+        int teleportTimer;
 
-        const float acceleration = 0.2f;
-        const float speed = 14f;
+        static int secondStageHeadSlot = -1;
 
-        bool teleport = true;
-        bool expert = Main.expertMode;
+        bool canTeleport = true;
 
-        public static int cAppGlobalFrame;
+        ref float attackTimerP1 => ref NPC.localAI[1];
+        ref float attackTimerP2 => ref NPC.localAI[1];
 
-        public static int cAppAnimNumber;
-
-        private Player player;
-
-        bool phase2Warn = false;
+        public override bool CanHitPlayer(Player target, ref int cooldownSlot)
+        {
+            cooldownSlot = ImmunityCooldownID.Bosses;
+            return true;
+        }
 
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 8;
+
+            NPCID.Sets.BossBestiaryPriority.Add(Type);
 
             NPCID.Sets.TrailCacheLength[NPC.type] = 12;
             NPCID.Sets.TrailingMode[NPC.type] = 0;
@@ -70,7 +87,6 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
                     Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/GhostFromAnotherWorld");
                 else
                     Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/ApparitionalAccumulation");
-                
             }
             NPC.HitSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCHit/CosmicApparitionHit")
             {
@@ -91,6 +107,8 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             NPC.buffImmune[BuffID.Chilled] = true;
             NPC.alpha = 0;
             SpawnModBiomes = new int[1] { ModContent.GetInstance<Biomes.Comet>().Type };
+            NPC.aiStyle = -1;
+            NPC.npcSlots = 10;
         }
 
         public override void OnKill()
@@ -115,36 +133,19 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
 
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<CosmicApparitionBag>()));
 
-            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<ApparitionalMatter>(), minimumDropped: 15, maximumDropped: 45));
-            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<StarmetalBar>(), minimumDropped: 15, maximumDropped: 45));
-            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<InterstellarSingularity>(), minimumDropped: 15, maximumDropped: 45));
+            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<ApparitionalMatter>(), 2, 6, 12));
+            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<StarmetalBar>(), 2, 6, 12));
+            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<InterstellarSingularity>(), 2, 6, 12));
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<ApparitionalStave>(), 4));
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<ApparitionalDisk>(), 3));
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Starfall>(), 2));
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Vexation>(), 1));
         }
 
-        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
         {
-            if (Main.masterMode) {
-                NPC.lifeMax = 360000;
-                NPC.defense = 75;
-            }
-            else if (DifficultySystem.hellMode)
-            {
-                NPC.lifeMax = 480000;
-                NPC.defense = 80;
-            }
-            else if (DifficultySystem.sinstormMode)
-            {
-                NPC.lifeMax = 960000;
-                NPC.defense = 85;
-            }
-            else
-            {
-                NPC.lifeMax = 240000;
-                NPC.defense = 70;
-            }
+            NPC.lifeMax = (int)(NPC.lifeMax * balance * bossAdjustment);
+            NPC.damage = (int)(NPC.damage * balance * bossAdjustment);
         }
 
         public override bool CheckDead()
@@ -161,77 +162,117 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             return true;
         }
 
+        public override bool PreAI()
+        {
+            Player player = Main.player[NPC.target];
+
+            player.AddBuff(BuffID.Horrified, 1, false);
+
+            if (DifficultySystem.hellMode)
+            {
+                if (NPC.life < NPC.lifeMax / 2)
+                {
+                    player.AddBuff(BuffID.Obstructed, 1, false);
+                }
+            }
+
+            NPC.rotation = NPC.velocity.X * 0.02f;
+
+            float speed = 30f;
+            float acceleration = 0.15f;
+            Vector2 vector2 = new Vector2(NPC.position.X + (float)NPC.width * 0.5f, NPC.position.Y + (float)NPC.height * 0.5f);
+            float xDir = Main.player[NPC.target].position.X + (float)(Main.player[NPC.target].width / 2) - vector2.X;
+            float yDir = (float)(Main.player[NPC.target].position.Y + (Main.player[NPC.target].height / 2) - 120) - vector2.Y;
+            float length = (float)Math.Sqrt(xDir * xDir + yDir * yDir);
+            if (length > 400 && Main.expertMode)
+            {
+                ++speed;
+                acceleration += 0.05F;
+                if (length > 600)
+                {
+                    ++speed;
+                    acceleration += 0.05F;
+                    if (length > 800)
+                    {
+                        ++speed;
+                        acceleration += 0.05F;
+                    }
+                }
+            }
+            float num10 = speed / length;
+            xDir = xDir * num10;
+            yDir = yDir * num10;
+            if (NPC.velocity.X < xDir)
+            {
+                NPC.velocity.X = NPC.velocity.X + acceleration;
+                if (NPC.velocity.X < 0 && xDir > 0)
+                    NPC.velocity.X = NPC.velocity.X + acceleration;
+            }
+            else if (NPC.velocity.X > xDir)
+            {
+                NPC.velocity.X = NPC.velocity.X - acceleration;
+                if (NPC.velocity.X > 0 && xDir < 0)
+                    NPC.velocity.X = NPC.velocity.X - acceleration;
+            }
+            if (NPC.velocity.Y < yDir)
+            {
+                NPC.velocity.Y = NPC.velocity.Y + acceleration;
+                if (NPC.velocity.Y < 0 && yDir > 0)
+                    NPC.velocity.Y = NPC.velocity.Y + acceleration;
+            }
+            else if (NPC.velocity.Y > yDir)
+            {
+                NPC.velocity.Y = NPC.velocity.Y - acceleration;
+                if (NPC.velocity.Y > 0 && yDir < 0)
+                    NPC.velocity.Y = NPC.velocity.Y - acceleration;
+            }
+
+            return true;
+        }
+
         public override void AI()
         {
-            Lighting.AddLight(NPC.position, 0.75f, 0f, 0.75f);
-
-            Vector2 targetPosition = Main.player[NPC.target].position;
-
-            var entitySource = NPC.GetSource_FromAI();
-
-            if (NPC.life <= NPC.lifeMax / 2)
+            if (ClientConfig.instance.bossBarExtras)
             {
-                phase = 1;
-                attackTimer++;
+                if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
+                {
+                    EternalBossBarOverlay.SetTracked("Ghostly Horror, ", NPC, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                    EternalBossBarOverlay.visible = true;
+                }
             }
 
-            #region Flying
-            NPC.TargetClosest(true);
-            NPC.spriteDirection = NPC.direction;
+            if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead || !Main.player[NPC.target].active)
+            {
+                NPC.TargetClosest();
+            }
+
             Player player = Main.player[NPC.target];
-            if (player.dead || !player.active)
+
+            NPC.spriteDirection = NPC.direction = NPC.Center.X < player.Center.X ? -1 : 1;
+
+            Vector2 playerPosition = Main.player[NPC.target].position;
+
+            if (player.dead)
             {
-                NPC.TargetClosest(false);
-                NPC.active = false;
+                NPC.velocity.Y -= 0.04f;
+                NPC.EncourageDespawn(10);
+                return;
             }
-            moveTimer++;
-            if (moveTimer >= 0)
+
+            if (NPC.AnyNPCs(ModContent.NPCType<CosmicDecoy>()) && DifficultySystem.hellMode)
             {
-                Vector2 StartPosition = new Vector2(NPC.position.X + NPC.width * 0.5f, NPC.position.Y + NPC.height * 0.5f);
-                float DirectionX = Main.player[NPC.target].position.X + Main.player[NPC.target].width / 2 - StartPosition.X;
-                float DirectionY = Main.player[NPC.target].position.Y + Main.player[NPC.target].height / 2 - StartPosition.Y;
-                float Length = (float)Math.Sqrt(DirectionX * DirectionX + DirectionY * DirectionY);
-                float Num = speed / Length;
-                DirectionX = DirectionX * Num;
-                DirectionY = DirectionY * Num;
-                if (NPC.velocity.X < DirectionX)
-                {
-                    NPC.velocity.X = NPC.velocity.X + acceleration;
-                    if (NPC.velocity.X < 0 && DirectionX > 0)
-                        NPC.velocity.X = NPC.velocity.X + acceleration;
-                }
-                else if (NPC.velocity.X > DirectionX)
-                {
-                    NPC.velocity.X = NPC.velocity.X - acceleration;
-                    if (NPC.velocity.X > 0 && DirectionX < 0)
-                        NPC.velocity.X = NPC.velocity.X - acceleration;
-                }
-                if (NPC.velocity.Y < DirectionY)
-                {
-                    NPC.velocity.Y = NPC.velocity.Y + acceleration;
-                    if (NPC.velocity.Y < 0 && DirectionY > 0)
-                        NPC.velocity.Y = NPC.velocity.Y + acceleration;
-                }
-                else if (NPC.velocity.Y > DirectionY)
-                {
-                    NPC.velocity.Y = NPC.velocity.Y - acceleration;
-                    if (NPC.velocity.Y > 0 && DirectionY < 0)
-                        NPC.velocity.Y = NPC.velocity.Y - acceleration;
-                }
-                if (Main.rand.NextBool(36))
-                {
-                    Vector2 StartPosition2 = new Vector2(NPC.position.X + (NPC.width * 0.5f), NPC.position.Y + (NPC.height / 2));
-                    float BossRotation = (float)Math.Atan2(StartPosition2.Y - (Main.player[NPC.target].position.Y + (Main.player[NPC.target].height * 0.5f)), StartPosition2.X - (Main.player[NPC.target].position.X + (Main.player[NPC.target].width * 0.5f)));
-                    NPC.velocity.X = (float)(Math.Cos(BossRotation) * 9) * -1;
-                    NPC.velocity.Y = (float)(Math.Sin(BossRotation) * 9) * -1;
-                    NPC.netUpdate = true;
-                }
+                NPC.dontTakeDamage = true;
             }
-            NPC.rotation = NPC.velocity.X * 0.06f;
-            #endregion
+            else
+            {
+                NPC.dontTakeDamage = false;
+            }
 
             if (NPC.ai[3] > 0f)
             {
+                var entitySource = NPC.GetSource_Death();
+
+                canTeleport = false;
                 NPC.ai[3] += 1f;
                 NPC.dontTakeDamage = true;
                 Projectile.NewProjectile(entitySource, NPC.Center.X + Main.rand.Next(-20, 20), NPC.Center.Y + Main.rand.Next(-20, 20), 0, 0, ModContent.ProjectileType<CosmicSpirit>(), 0, 0f, Main.myPlayer);
@@ -258,6 +299,8 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
                     if (!DownedBossSystem.downedCosmicApparition)
                     {
                         DownedBossSystem.downedCosmicApparition = true;
+                        Main.NewText("The cosmic entities have been empowered...", 120, 160, 240);
+                        Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, 0, 0, ModContent.ProjectileType<CosmicApparitionSoul>(), 0, 0f, Main.myPlayer);
                     }
 
                     if (RiftSystem.isRiftOpen && !DownedBossSystem.downedRiftCosmicApparition)
@@ -271,157 +314,155 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
                 return;
             }
 
-            player.AddBuff(BuffID.Horrified, 1, false);
-
-            if (attackTimer == 100)
-            {
-                if (!NPC.AnyNPCs(ModContent.NPCType<CosmicDecoy>()))
-                {
-                    int amountOfClones = Main.rand.Next(1, 3);
-                    for (int i = 0; i < amountOfClones; ++i)
-                    {
-                        NPC.NewNPC(entitySource, (int)NPC.Center.X + Main.rand.Next(-30, 30), (int)NPC.Center.Y + Main.rand.Next(-30, 30), ModContent.NPCType<CosmicDecoy>());
-
-                        for (int k = 0; k < 10; k++)
-                        {
-                            Dust.NewDust(NPC.position + NPC.velocity, NPC.width, NPC.height, DustID.Shadowflame, NPC.oldVelocity.X * 0.5f, NPC.oldVelocity.Y * 0.5f);
-                        }
-
-                        if (DifficultySystem.hellMode)
-                        {
-                            NPC.alpha = 255;
-                        }
-                    }
-                }
-
-            }
-            else if (attackTimer == 200 || attackTimer == 225 || attackTimer == 250 || attackTimer == 275)
-            {
-                int wisps = Main.rand.Next(2, 4);
-                for (int i = 0; i < wisps; ++i)
-                {
-                    NPC.NewNPC(entitySource, (int)NPC.Center.X + Main.rand.Next(-200, 200), (int)NPC.Center.Y + Main.rand.Next(-200, 200), ModContent.NPCType<CosmicApex>());
-                }
-            }
-            if (attackTimer == 300)
-            {
-                attackTimer = 0;
-            }
-
-            generalAttackTimer++;
-
-            if (generalAttackTimer == 100 || generalAttackTimer == 125 || generalAttackTimer == 150 || generalAttackTimer == 175)
-            {
-                Vector2 direction = Main.player[NPC.target].Center - NPC.Center;
-                direction.Normalize();
-                direction.X *= 8.5f;
-                direction.Y *= 8.5f;
-
-                int amountOfProjectiles = Main.rand.Next(4, 8);
-                for (int i = 0; i < amountOfProjectiles; ++i)
-                {
-                    float A = (float)Main.rand.Next(-200, 200) * 0.01f;
-                    float B = (float)Main.rand.Next(-200, 200) * 0.01f;
-                    if (Main.netMode != NetmodeID.MultiplayerClient)
-                        Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<CosmicPierce>(), NPC.damage / 2, 1, Main.myPlayer, 0, 0);
-                }
-            }
-            if (generalAttackTimer == 200 || generalAttackTimer == 205 || generalAttackTimer == 210 || generalAttackTimer == 215)
-            {
-                Vector2 direction = Main.player[NPC.target].Center - NPC.Center;
-                direction.Normalize();
-                direction.X *= 8.5f;
-                direction.Y *= 8.5f;
-
-                int amountOfProjectiles = Main.rand.Next(4, 8);
-                for (int i = 0; i < amountOfProjectiles; ++i)
-                {
-                    float A = (float)Main.rand.Next(-200, 200) * 0.01f;
-                    float B = (float)Main.rand.Next(-200, 200) * 0.01f;
-                    if (Main.netMode != NetmodeID.MultiplayerClient)
-                        Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<ApparitionalWisp>(), NPC.damage / 3, 1, Main.myPlayer, 0, 0);
-                }
-            }
-            if (generalAttackTimer == 300 || generalAttackTimer == 350)
-            {
-                int wisps = Main.rand.Next(2, 4);
-                for (int i = 0; i < wisps; ++i)
-                {
-                    NPC.NewNPC(entitySource, (int)NPC.Center.X + Main.rand.Next(-400, 400), (int)NPC.Center.Y + Main.rand.Next(-400, 400), ModContent.NPCType<CosmicApex>());
-                }
-            }
-            else if (generalAttackTimer == 400)
-            {
-                generalAttackTimer = 0;
-            }
-
-            if (phase == 1)
-            {
-                if (DifficultySystem.hellMode)
-                {
-                    if (NPC.AnyNPCs(ModContent.NPCType<CosmicDecoy>()))
-                    {
-                        NPC.dontTakeDamage = true;
-                    }
-                    if (!NPC.AnyNPCs(ModContent.NPCType<CosmicDecoy>()))
-                    {
-                        NPC.dontTakeDamage = false;
-                        while (NPC.alpha > 0)
-                        {
-                            NPC.alpha -= 15;
-                        }
-                    }
-                }
-
-                if (!phase2Warn)
-                {
-                    SoundEngine.PlaySound(SoundID.NPCDeath10, NPC.position);
-                    phase2Warn = true;
-                }
-            }
-
-            if (teleport)
+            if (canTeleport)
             {
                 teleportTimer++;
             }
-            if (teleportTimer == 250)
-            {
-                SoundEngine.PlaySound(SoundID.DD2_DarkMageCastHeal, NPC.position);
-                SoundEngine.PlaySound(SoundID.DD2_GhastlyGlaivePierce, NPC.position);
 
-                NPC.position.X = targetPosition.X + Main.rand.Next(-400, 400);
-                for (int k = 0; k < 5; k++)
+            if (teleportTimer == 400)
+            {
+                if (canTeleport)
                 {
-                    Dust.NewDust(NPC.position + NPC.velocity, NPC.width, NPC.height, DustID.Shadowflame, NPC.oldVelocity.X * 0.5f, NPC.oldVelocity.Y * 0.5f);
+                    SoundEngine.PlaySound(SoundID.Item8, NPC.position);
+                    NPC.position.X = playerPosition.X + Main.rand.Next(-600, 600);
+                    NPC.position.Y = playerPosition.Y + Main.rand.Next(-600, 600);
                 }
                 teleportTimer = 0;
-                if (phase == 1)
-                {
-                    Projectile.NewProjectile(entitySource, NPC.position.X + 40, NPC.position.Y + 40, -8, -8, ModContent.ProjectileType<ApparitionalWisp>(), NPC.damage / 2, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(entitySource, NPC.position.X + 40, NPC.position.Y + 40, 8, -8, ModContent.ProjectileType<ApparitionalWisp>(), NPC.damage / 2, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(entitySource, NPC.position.X + 40, NPC.position.Y + 40, -8, 8, ModContent.ProjectileType<ApparitionalWisp>(), NPC.damage / 2, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(entitySource, NPC.position.X + 40, NPC.position.Y + 40, 8, 8, ModContent.ProjectileType<ApparitionalWisp>(), NPC.damage / 2, 0, Main.myPlayer, 0f, 0f);
-                }
-                else
-                {
-                    Projectile.NewProjectile(entitySource, NPC.position.X + 40, NPC.position.Y + 40, -8, -8, ModContent.ProjectileType<ApparitionalDiskHostile>(), NPC.damage / 3, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(entitySource, NPC.position.X + 40, NPC.position.Y + 40, 8, -8, ModContent.ProjectileType<ApparitionalDiskHostile>(), NPC.damage / 3, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(entitySource, NPC.position.X + 40, NPC.position.Y + 40, -8, 8, ModContent.ProjectileType<ApparitionalDiskHostile>(), NPC.damage / 3, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(entitySource, NPC.position.X + 40, NPC.position.Y + 40, 8, 8, ModContent.ProjectileType<ApparitionalDiskHostile>(), NPC.damage / 3, 0, Main.myPlayer, 0f, 0f);
-                }
             }
 
-            if (!player.active || player.dead)
+            if (NPC.life < NPC.lifeMax / 2)
             {
-                teleport = false;
-                NPC.TargetClosest(false);
-                NPC.direction = 1;
-                NPC.velocity.Y = NPC.velocity.Y - 0.1f;
-                if (NPC.timeLeft > 5)
-                {
-                    NPC.timeLeft = 5;
-                    return;
-                }
+                AI_CosmicApparition_Attacks_Phase2();
+            }
+            else
+            {
+                AI_CosmicApparition_Attacks_Phase1();
+            }
+        }
+
+        private void AI_CosmicApparition_CheckPhase2()
+        {
+            if (phase == 1)
+            {
+                return;
+            }
+
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                phase = 1;
+                SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/CosmicApparitionAnger"), NPC.position);
+                NPC.netUpdate = true;
+            }
+        }
+
+        private void AI_CosmicApparition_Attacks_Phase1()
+        {
+            if (NPC.life < NPC.lifeMax * 0.5f)
+            {
+                AI_CosmicApparition_CheckPhase2();
+            }
+
+            var entitySource = NPC.GetSource_FromAI();
+
+            attackTimerP1++;
+            if (attackTimerP1 > attackTimerP1Max)
+            {
+                attackTimerP1 = 0;
+            }
+
+            switch (attackTimerP1)
+            {
+                case 100:
+                    NPC.NewNPC(entitySource, (int)NPC.position.X + 120, (int)NPC.position.Y, ModContent.NPCType<CosmicApex>());
+                    NPC.NewNPC(entitySource, (int)NPC.position.X - 120, (int)NPC.position.Y, ModContent.NPCType<CosmicApex>());
+                    NPC.NewNPC(entitySource, (int)NPC.position.X, (int)NPC.position.Y + 120, ModContent.NPCType<CosmicApex>());
+                    NPC.NewNPC(entitySource, (int)NPC.position.X, (int)NPC.position.Y - 120, ModContent.NPCType<CosmicApex>());
+                    break;
+                case 250:
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    {
+                        if (DifficultySystem.hellMode)
+                        {
+                            for (int i = 0; i < 15; i++)
+                            {
+                                Vector2 speed = Main.rand.NextVector2CircularEdge(1f, 1f);
+                                Projectile.NewProjectile(entitySource, NPC.Center, speed, ModContent.ProjectileType<CosmicPierce>(), NPC.damage / 2, 0f);
+                            }
+                        }
+                        else if (Main.expertMode)
+                        {
+                            for (int i = 0; i < 10; i++)
+                            {
+                                Vector2 speed = Main.rand.NextVector2CircularEdge(1f, 1f);
+                                Projectile.NewProjectile(entitySource, NPC.Center, speed, ModContent.ProjectileType<CosmicPierce>(), NPC.damage / 2, 0f);
+                            }
+                        }
+                        else
+                        {
+                            for (int i = 0; i < 5; i++)
+                            {
+                                Vector2 speed = Main.rand.NextVector2CircularEdge(1f, 1f);
+                                Projectile.NewProjectile(entitySource, NPC.Center, speed, ModContent.ProjectileType<CosmicPierce>(), NPC.damage / 2, 0f);
+                            }
+                        }
+                    }
+                    break;
+            }
+        }
+
+        private void AI_CosmicApparition_Attacks_Phase2()
+        {
+            var entitySource = NPC.GetSource_FromAI();
+
+            attackTimerP2++;
+            if (attackTimerP2 > attackTimerP2Max)
+            {
+                attackTimerP2 = 0;
+            }
+
+            switch (attackTimerP1)
+            {
+                case 100:
+                    NPC.NewNPC(entitySource, (int)NPC.position.X + 240, (int)NPC.position.Y, ModContent.NPCType<CosmicApex>());
+                    NPC.NewNPC(entitySource, (int)NPC.position.X - 240, (int)NPC.position.Y, ModContent.NPCType<CosmicApex>());
+                    NPC.NewNPC(entitySource, (int)NPC.position.X, (int)NPC.position.Y + 240, ModContent.NPCType<CosmicApex>());
+                    NPC.NewNPC(entitySource, (int)NPC.position.X, (int)NPC.position.Y - 240, ModContent.NPCType<CosmicApex>());
+                    break;
+                case 250:
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    {
+                        if (DifficultySystem.hellMode)
+                        {
+                            for (int i = 0; i < 18; i++)
+                            {
+                                Vector2 speed = Main.rand.NextVector2CircularEdge(1f, 1f);
+                                Projectile.NewProjectile(entitySource, NPC.Center, speed, ModContent.ProjectileType<ApparitionalWisp>(), NPC.damage / 2, 0f);
+                            }
+                        }
+                        else if (Main.expertMode)
+                        {
+                            for (int i = 0; i < 12; i++)
+                            {
+                                Vector2 speed = Main.rand.NextVector2CircularEdge(1f, 1f);
+                                Projectile.NewProjectile(entitySource, NPC.Center, speed, ModContent.ProjectileType<ApparitionalWisp>(), NPC.damage / 2, 0f);
+                            }
+                        }
+                        else
+                        {
+                            for (int i = 0; i < 6; i++)
+                            {
+                                Vector2 speed = Main.rand.NextVector2CircularEdge(1f, 1f);
+                                Projectile.NewProjectile(entitySource, NPC.Center, speed, ModContent.ProjectileType<ApparitionalWisp>(), NPC.damage / 2, 0f);
+                            }
+                        }
+                    }
+                    break;
+                case 450:
+                    for (int i = 0; i < Main.rand.Next(4, 6); i++)
+                    {
+                        NPC.NewNPC(entitySource, (int)NPC.position.X + Main.rand.Next(-240, 240), (int)NPC.position.Y + Main.rand.Next(-240, 240), ModContent.NPCType<CosmicDecoy>());
+                    }
+                    break;
             }
         }
 
@@ -435,18 +476,12 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
 
         public override void HitEffect(NPC.HitInfo hit)
         {
+            if (Main.netMode == NetmodeID.Server)
+            {
+                return;
+            }
+
             var entitySource = NPC.GetSource_Death();
-
-            if (!DownedBossSystem.downedCosmicApparition)
-            {
-                Main.NewText("The cosmic entities have been empowered...", 120, 160, 240);
-                Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, 0, 0, ModContent.ProjectileType<CosmicApparitionSoul>(), 0, 0f, Main.myPlayer);
-            }
-
-            for (int k = 0; k < 10.0; k++)
-            {
-                Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.Shadowflame, 0, -1f, 0, default(Color), 1f);
-            }
 
             if (NPC.life <= 0)
             {
@@ -454,12 +489,16 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
                 int gore2 = Mod.Find<ModGore>("CosmicApparitionBody").Type;
                 int gore3 = Mod.Find<ModGore>("CosmicApparitionArm").Type;
 
-                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore1);
-                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore2);
-
+                Gore.NewGore(entitySource, NPC.Center, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore1);
+                Gore.NewGore(entitySource, NPC.Center, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore2);
                 for (int i = 0; i < 2; i++)
+                    Gore.NewGore(entitySource, NPC.Center, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore3);
+            }
+            else
+            {
+                for (int k = 0; k < 10.0; k++)
                 {
-                    Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore3);
+                    Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.Shadowflame, 0, -1f, 0, default(Color), 1f);
                 }
             }
         }
@@ -472,7 +511,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color lightColor)
         {
-            if (phase >= 1)
+            if (phase == 1)
             {
                 //tf does this supposed to mean
                 int num159 = 1;
@@ -508,6 +547,58 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             }
 
             return true;
+        }
+
+        public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+            if (phase == 1 && Main.expertMode)
+            {
+                // Brin of Cthulu things
+                Microsoft.Xna.Framework.Color color9 = Lighting.GetColor((int)((double)NPC.position.X + (double)NPC.width * 0.5) / 16, (int)(((double)NPC.position.Y + (double)NPC.height * 0.5) / 16.0));
+                Texture2D texture = ModContent.Request<Texture2D>("Eternal/Content/NPCs/Boss/CosmicApparition/CosmicApparition2").Value;
+                float num66 = 0f;
+                Vector2 vector11 = new Vector2((float)(texture.Width / 2), (float)(texture.Height / Main.npcFrameCount[NPC.type] / 2));
+                SpriteEffects spriteEffects = SpriteEffects.None;
+                if (NPC.spriteDirection == 1)
+                {
+                    spriteEffects = SpriteEffects.FlipHorizontally;
+                }
+                Microsoft.Xna.Framework.Rectangle frame6 = NPC.frame;
+                Microsoft.Xna.Framework.Color alpha15 = NPC.GetAlpha(color9);
+                float alpha = 1.25f * (1f - (float)NPC.life / (float)NPC.lifeMax);
+                alpha *= alpha;
+                alpha = Math.Min(alpha, 1);
+                alpha15.R = (byte)((float)alpha15.R * alpha);
+                alpha15.G = (byte)((float)alpha15.G * alpha);
+                alpha15.B = (byte)((float)alpha15.B * alpha);
+                alpha15.A = (byte)((float)alpha15.A * alpha);
+                for (int num213 = 0; num213 < 4; num213++)
+                {
+                    Vector2 position9 = NPC.position;
+                    float num214 = Math.Abs(NPC.Center.X - Main.player[Main.myPlayer].Center.X);
+                    float num215 = Math.Abs(NPC.Center.Y - Main.player[Main.myPlayer].Center.Y);
+                    if (num213 == 0 || num213 == 2)
+                    {
+                        position9.X = Main.player[Main.myPlayer].Center.X + num214;
+                    }
+                    else
+                    {
+                        position9.X = Main.player[Main.myPlayer].Center.X - num214;
+                    }
+                    position9.X -= (float)(NPC.width / 2);
+                    if (num213 == 0 || num213 == 1)
+                    {
+                        position9.Y = Main.player[Main.myPlayer].Center.Y + num215;
+                    }
+                    else
+                    {
+                        position9.Y = Main.player[Main.myPlayer].Center.Y - num215;
+                    }
+                    position9.Y -= (float)(NPC.height / 2);
+                    Main.spriteBatch.Draw(texture, new Vector2(position9.X - Main.screenPosition.X + (float)(NPC.width / 2) - (float)texture.Width * NPC.scale / 2f + vector11.X * NPC.scale, position9.Y - Main.screenPosition.Y + (float)NPC.height - (float)texture.Height * NPC.scale / (float)Main.npcFrameCount[NPC.type] + 4f + vector11.Y * NPC.scale + num66 + NPC.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(frame6), alpha15, NPC.rotation, vector11, NPC.scale, spriteEffects, 0f);
+                }
+                Main.spriteBatch.Draw(texture, new Vector2(NPC.position.X - Main.screenPosition.X + (float)(NPC.width / 2) - (float)texture.Width * NPC.scale / 2f + vector11.X * NPC.scale, NPC.position.Y - Main.screenPosition.Y + (float)NPC.height - (float)texture.Height * NPC.scale / (float)Main.npcFrameCount[NPC.type] + 4f + vector11.Y * NPC.scale + num66 + NPC.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(frame6), NPC.GetAlpha(color9), NPC.rotation, vector11, NPC.scale, spriteEffects, 0f);
+            }
         }
 
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)

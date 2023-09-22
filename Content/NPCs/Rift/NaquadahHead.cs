@@ -66,7 +66,7 @@ namespace Eternal.Content.NPCs.Rift
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (RiftSystem.isRiftOpen && DownedBossSystem.downedRiftArkofImperious)
+            if (RiftSystem.isRiftOpen && DownedBossSystem.downedRiftArkofImperious && !Main.dayTime)
                 return SpawnCondition.Sky.Chance * 1.75f;
             else
                 return SpawnCondition.Sky.Chance * 0f;
@@ -76,14 +76,20 @@ namespace Eternal.Content.NPCs.Rift
         {
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RawNaquadah>(), 1, 3, 12));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CrystalizedOminite>(), 2, 1, 2));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LargeRawNaquadah>(), 3, 1, 2));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RodofDistortion>(), 6));
         }
 
         public override void HitEffect(NPC.HitInfo hit)
         {
+            if (Main.netMode == NetmodeID.Server)
+            {
+                return;
+            }
+
             var entitySource = NPC.GetSource_Death();
 
-            int gore1 = Mod.Find<ModGore>("NaquadahHead").Type;
+            int gore1 = Mod.Find<ModGore>("NaquadahHeadBody").Type;
 
             if (NPC.life <= 0)
             {

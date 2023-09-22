@@ -1,10 +1,9 @@
 ﻿using Eternal.Common.ItemDropRules.Conditions;
 using Eternal.Common.Systems;
+using Eternal.Content.Dusts;
 using Eternal.Content.Items.Materials;
-using Eternal.Content.Tiles;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-using System.Linq;
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
@@ -18,8 +17,6 @@ namespace Eternal.Content.NPCs.Comet
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Small Starborn Sludge");
-
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.BlueSlime];
         }
 
@@ -32,8 +29,8 @@ namespace Eternal.Content.NPCs.Comet
             NPC.DeathSound = SoundID.NPCDeath1;
             AIType = NPCID.BlueSlime;
             NPC.damage = 90;
-            NPC.defense = 30;
-            NPC.lifeMax = 20000;
+            NPC.defense = 15;
+            NPC.lifeMax = 2000;
             AnimationType = NPCID.BlueSlime;
             NPC.buffImmune[BuffID.Poisoned] = true;
             NPC.buffImmune[BuffID.OnFire] = true;
@@ -54,6 +51,15 @@ namespace Eternal.Content.NPCs.Comet
             }
         }
 
+        public override void AI()
+        {
+            if (RiftSystem.isRiftOpen)
+            {
+                for (int k = 0; k < 5; k++)
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, ModContent.DustType<ApparitionalParticle>(), 0, -2f, 0, default, 1f);
+            }
+        }
+
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
             bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
@@ -67,9 +73,9 @@ namespace Eternal.Content.NPCs.Comet
         {
             PostCosmicApparitionDropCondition postCosmicApparitionDrop = new PostCosmicApparitionDropCondition();
 
-            npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<ApparitionalMatter>(), 1, 12, 24));
-            npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<Astragel>(), 1, 12, 24));
-            npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<InterstellarSingularity>(), 1, 12, 24));
+            npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<ApparitionalMatter>(), 3, 6, 12));
+            npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<Astragel>(), 3, 6, 12));
+            npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<InterstellarSingularity>(), 3, 6, 12));
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

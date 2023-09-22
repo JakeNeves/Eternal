@@ -9,11 +9,6 @@ namespace Eternal.Content.Projectiles.Misc
 {
     public class IesniumBeaconProjectile : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Iesnium Beacon");
-        }
-
         public override void SetDefaults()
         {
             Projectile.width = 30;

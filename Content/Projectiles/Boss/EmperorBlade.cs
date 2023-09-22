@@ -10,7 +10,6 @@ namespace Eternal.Content.Projectiles.Boss
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Cosmic Emperor's Impact Blade");
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 18;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }

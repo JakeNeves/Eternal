@@ -17,9 +17,9 @@ namespace Eternal.Content.NPCs.Rift
 
         public override void SetDefaults()
         {
-            NPC.lifeMax = 44000;
+            NPC.lifeMax = 4400;
             NPC.damage = 120;
-            NPC.defense = 45;
+            NPC.defense = 20;
             NPC.knockBackResist = -1f;
             NPC.width = 50;
             NPC.height = 50;
@@ -134,6 +134,11 @@ namespace Eternal.Content.NPCs.Rift
 
         public override void HitEffect(NPC.HitInfo hit)
         {
+            if (Main.netMode == NetmodeID.Server)
+            {
+                return;
+            }
+
             var entitySource = NPC.GetSource_Death();
 
             int gore1 = Mod.Find<ModGore>("RiftAnomalyShard").Type;

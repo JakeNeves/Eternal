@@ -29,7 +29,7 @@ namespace Eternal.Content.NPCs.Underworld
             AIType = NPCID.LavaSlime;
             NPC.damage = 150;
             NPC.defense = 15;
-            NPC.lifeMax = 36000;
+            NPC.lifeMax = 3600;
             AnimationType = NPCID.RainbowSlime;
             NPC.value = Item.sellPrice(platinum: 3, gold: 12);
             NPC.knockBackResist = -1f;

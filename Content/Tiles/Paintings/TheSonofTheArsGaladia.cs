@@ -27,10 +27,5 @@ namespace Eternal.Content.Tiles.Paintings
             LocalizedText name = CreateMapEntryName();
             AddMapEntry(new Color(120, 85, 60), Language.GetText("MapObject.Painting"));
         }
-
-        public override void KillMultiTile(int x, int y, int frameX, int frameY)
-        {
-            Item.NewItem(new EntitySource_TileBreak(x, y), x * 16, y * 16, 32, 16, ModContent.ItemType<Items.Placeable.Paintings.TheSonofTheArsGaladia>());
-        }
     }
 }

@@ -26,8 +26,8 @@ namespace Eternal.Content.NPCs.Miniboss
             NPC.width = 34;
             NPC.height = 50;
             NPC.damage = 100;
-            NPC.defense = 80;
-            NPC.lifeMax = 100000;
+            NPC.defense = 30;
+            NPC.lifeMax = 10000;
             NPC.value = Item.sellPrice(platinum: 6);
             NPC.knockBackResist = -1f;
             NPC.aiStyle = 3;

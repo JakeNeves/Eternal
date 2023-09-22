@@ -1,6 +1,8 @@
 ﻿using Eternal.Common.Systems;
 using Eternal.Content.NPCs.Rift;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -76,7 +78,7 @@ namespace Eternal.Content.NPCs.Miniboss
 
         public override void AI()
         {
-            var entitySource = NPC.GetSource_Death();
+            var entitySource = NPC.GetSource_FromAI();
 
             Player target = Main.player[NPC.target];
             NPC.TargetClosest(true);
@@ -105,14 +107,13 @@ namespace Eternal.Content.NPCs.Miniboss
 
             if (NPC.ai[3] > 0f)
             {
+                entitySource = NPC.GetSource_Death();
+
                 NPC.ai[3] += 1f;
                 NPC.dontTakeDamage = true;
-                NPC.alpha += 10;
-                while (NPC.scale > 0) {
-                    NPC.scale -= 0.5f;
-                }
+                NPC.alpha += 1;
 
-                if (NPC.ai[3] >= 180f)
+                if (NPC.ai[3] >= 360f)
                 {
                     NPC.life = 0;
                     NPC.NewNPC(entitySource, (int)NPC.Center.X + Main.rand.Next(-10, 10), (int)NPC.Center.Y + Main.rand.Next(-10, 10), ModContent.NPCType<PhantomConstruct>());
@@ -135,26 +136,29 @@ namespace Eternal.Content.NPCs.Miniboss
             direction.X *= 8.5f;
             direction.Y *= 8.5f;
 
-            if (attackTimer == 200)
+            if (NPC.ai[3] < 1f)
             {
-                for (int i = 0; i < Main.rand.Next(2, 4); i++)
+                if (attackTimer == 200)
                 {
-                    NPC.NewNPC(entitySource, (int)NPC.Center.X + Main.rand.Next(-10, 10), (int)NPC.Center.Y + Main.rand.Next(-10, 10), ModContent.NPCType<UnstableHellwisp>());
+                    for (int i = 0; i < Main.rand.Next(2, 4); i++)
+                    {
+                        NPC.NewNPC(entitySource, (int)NPC.Center.X + Main.rand.Next(-10, 10), (int)NPC.Center.Y + Main.rand.Next(-10, 10), ModContent.NPCType<UnstableHellwisp>());
+                    }
                 }
-            }
-            if (attackTimer == 250)
-            {
-                for (int i = 0; i < Main.rand.Next(4, 8); i++)
+                if (attackTimer == 250)
                 {
-                    NPC.NewNPC(entitySource, (int)NPC.Center.X + Main.rand.Next(-10, 10), (int)NPC.Center.Y + Main.rand.Next(-10, 10), ModContent.NPCType<Shiftspiral>());
+                    for (int i = 0; i < Main.rand.Next(4, 8); i++)
+                    {
+                        NPC.NewNPC(entitySource, (int)NPC.Center.X + Main.rand.Next(-10, 10), (int)NPC.Center.Y + Main.rand.Next(-10, 10), ModContent.NPCType<Shiftspiral>());
+                    }
                 }
-            }
-            if (attackTimer == 400)
-            {
-                SoundEngine.PlaySound(SoundID.Item8, NPC.position);
-                NPC.position.X = targetPosition.X + Main.rand.Next(-600, 600);
-                NPC.position.Y = targetPosition.Y + Main.rand.Next(-600, 600);
-                attackTimer = 0;
+                if (attackTimer == 400)
+                {
+                    SoundEngine.PlaySound(SoundID.Item8, NPC.position);
+                    NPC.position.X = targetPosition.X + Main.rand.Next(-600, 600);
+                    NPC.position.Y = targetPosition.Y + Main.rand.Next(-600, 600);
+                    attackTimer = 0;
+                }
             }
         }
 

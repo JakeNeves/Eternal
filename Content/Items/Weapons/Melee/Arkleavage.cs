@@ -13,9 +13,6 @@ namespace Eternal.Content.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            /* Tooltip.SetDefault("Calls the Ark of Imperious to strike enemies from above" +
-                             "\n'There's a sword...'"); */
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -35,6 +32,11 @@ namespace Eternal.Content.Items.Weapons.Melee
             Item.rare = ModContent.RarityType<Magenta>();
         }
 
+        public override bool CanUseItem(Player player)
+        {
+            return player.ownedProjectileCounts[Item.shoot] < 1;
+        }
+
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             Vector2 target = Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY);
@@ -48,7 +50,7 @@ namespace Eternal.Content.Items.Weapons.Melee
 
             for (int i = 0; i < numberProjectiles; i++)
             {
-                position = player.Center - new Vector2(Main.rand.NextFloat(401) * player.direction, 600f);
+                position.X = Main.MouseWorld.X;
                 position.Y -= 100 * i;
                 Vector2 heading = target - position;
 

@@ -10,12 +10,7 @@ namespace Eternal.Content.Projectiles.Misc
     public class SubzeroElementalP2Transition : ModProjectile
     {
         bool justLanded = false;
-
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Subzero Elemental");
-        }
-
+        
         public override void SetDefaults()
         {
             Projectile.width = 90;

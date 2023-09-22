@@ -477,8 +477,13 @@ Mods: {
 			}
 
 			RawNaquadah: {
-				Tooltip: "'Otherworldly substance, mostly found in an unknown rift...'"
+				Tooltip: "'A small fragment of otherworldly substance, mostly found in a second reality...'"
 				DisplayName: Raw Naquadah
+			}
+
+			LargeRawNaquadah: {
+				Tooltip: "'A big fragment of otherworldly substance, mostly found in a second reality...'"
+				DisplayName: Large Raw Naquadah
 			}
 
 			RawArkrystal: {
@@ -532,7 +537,7 @@ Mods: {
 			}
 
 			InterstellarSingularity: {
-				Tooltip: "'The Essence of Cosmic Beings'"
+				Tooltip: "'The Essence of Cosmic Entities'"
 				DisplayName: Interstellar Singularity
 			}
 
@@ -1199,16 +1204,16 @@ Mods: {
 				DisplayName: Cosmic Starstryder Treads
 			}
 
-			CosmicEmperorsCombatTassle: {
+			CosmicEmperorsCombatTassel: {
 				Tooltip:
 					'''
 					40% increased damage
 					20% critical strike chance
 					[c/008060:Ancient Artifact]
 					This relic of the Cosmic Emperor was weaved with the stardust of comets and moonlight
-					With such power harvested to create such tassle will empower whoever wears this to honor and prase the Cosmic Emperor
+					With such power harvested to create such tassel will empower whoever wears this to honor and prase the Cosmic Emperor
 					'''
-				DisplayName: Cosmic Emperor's Combat Tassle
+				DisplayName: Cosmic Emperor's Combat Tassel
 			}
 
 			CometGauntlet: {
@@ -1913,6 +1918,44 @@ Mods: {
 				DisplayName: The Son of the Ars Galadia
 				Tooltip: "'JakeTEM'"
 			}
+
+			CarminiteAmalgamationMask: {
+				DisplayName: Carminite Amalgamation Mask
+				Tooltop: ""
+				Tooltip: ""
+			}
+
+			DuneMask: {
+				DisplayName: Dune Mask
+				Tooltop: ""
+				Tooltip: ""
+			}
+
+			CosmicApparitionMask: {
+				DisplayName: Cosmic Apparition Mask
+				Tooltop: ""
+				Tooltip: ""
+			}
+
+			JakesPants: {
+				DisplayName: Jake's Pants
+				Tooltip: "'Great for impersonating eternal's devs!'"
+			}
+
+			JakesTunic: {
+				DisplayName: Jake's Tunic
+				Tooltip: "'Great for impersonating eternal's devs!'"
+			}
+
+			JakesHat: {
+				DisplayName: Jake's Hat
+				Tooltip: "'Great for impersonating eternal's devs!'"
+			}
+
+			Ichorate: {
+				DisplayName: Ichorate
+				Tooltip: "'I swear, I remember seeing someone with something similar to this in the outback...'"
+			}
 		}
 
 		Buffs: {
@@ -2188,6 +2231,7 @@ Mods: {
 			Shiftspiral.DisplayName: Shiftspiral
 			ShiftspiralHand.DisplayName: Shiftspiral Hand
 			PhantomConstruct.DisplayName: Phantom Construct
+			PortalShears.DisplayName: Portal Shears
 		}
 
 		Prefixes: {
@@ -2325,6 +2369,7 @@ Mods: {
 			ChaosCardProjectile.DisplayName: Chaos Card
 			ExosiivaGladiusBladeProjectile.DisplayName: Exosiiva Gladius Blade
 			ExosiivaGladiusBladeProjectile2.DisplayName: Exosiiva Gladius Blade
+			IchorateProjectile.DisplayName: Ichorate
 		}
 
 		Configs: {
@@ -2333,7 +2378,7 @@ Mods: {
 
 				Headers: {
 					Messages: Messages
-					QoLFeatures: Quality of Life Features
+					ExperimentalFeatures: Experimental Features
 				}
 			}
 
@@ -2354,7 +2399,7 @@ Mods: {
 						DisplayName: Display Welcome Message
 						Tooltip:
 							'''
-							Displays a Welcome message when you enter a world
+							Displays a Welcome message when you enter a world.
 							(Default: [c/008080:ON])
 							'''
 					}
@@ -2363,7 +2408,17 @@ Mods: {
 						DisplayName: Play Boss Defeated Sound
 						Tooltip:
 							'''
-							Plays a sound when a boss is defeated
+							Plays a sound when a boss is defeated.
+							(Default: [c/008080:OFF])
+							'''
+					}
+
+					bossBarExtras: {
+						DisplayName: Boss Bar Extras
+						Tooltip:
+							'''
+							Adds Eternal's own additions to the vanilla boss bar, just like Starlight River's boss bars.
+							[c/FF0000:OTHER MODS ARE NOT SUPPORTED!]
 							(Default: [c/008080:OFF])
 							'''
 					}

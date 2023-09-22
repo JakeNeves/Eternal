@@ -194,7 +194,12 @@ namespace Eternal.Content.NPCs.Boss.Igneopede
 		{
 			SoundEngine.PlaySound(SoundID.Tink, NPC.position);
 
-			if (NPC.life <= 0)
+            if (Main.netMode == NetmodeID.Server)
+            {
+                return;
+            }
+
+            if (NPC.life <= 0)
             {
 				var entitySource = NPC.GetSource_Death();
 
@@ -333,7 +338,12 @@ namespace Eternal.Content.NPCs.Boss.Igneopede
 		{
 			SoundEngine.PlaySound(SoundID.Tink, NPC.position);
 
-			if (NPC.life <= 0)
+            if (Main.netMode == NetmodeID.Server)
+            {
+                return;
+            }
+
+            if (NPC.life <= 0)
 			{
 				var entitySource = NPC.GetSource_Death();
 

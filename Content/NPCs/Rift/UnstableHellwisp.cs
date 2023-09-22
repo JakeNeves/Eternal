@@ -26,9 +26,9 @@ namespace Eternal.Content.NPCs.Rift
 
         public override void SetDefaults()
         {
-            NPC.lifeMax = 66000;
+            NPC.lifeMax = 4400;
             NPC.damage = 60;
-            NPC.defense = 45;
+            NPC.defense = 20;
             NPC.knockBackResist = -1f;
             NPC.width = 6;
             NPC.height = 6;

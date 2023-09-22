@@ -8,11 +8,6 @@ namespace Eternal.Content.Projectiles.Weapons.Hell
 {
     public class TheKnifeProjectile : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("The Knife");
-        }
-
         public override void SetDefaults()
         {
             Projectile.width = 10;
@@ -41,7 +36,7 @@ namespace Eternal.Content.Projectiles.Weapons.Hell
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            for (int k = 0; k < 15; k++)
+            for (int k = 0; k < 5; k++)
             {
                 Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, DustID.BoneTorch, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);
             }
@@ -49,7 +44,7 @@ namespace Eternal.Content.Projectiles.Weapons.Hell
 
         public override void Kill(int timeLeft)
         {
-            for (int k = 0; k < 20; k++)
+            for (int k = 0; k < 5; k++)
             {
                 Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, DustID.Blood, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);
             }

@@ -4,10 +4,8 @@ using Eternal.Content.Buffs;
 using Eternal.Content.Dusts;
 using Eternal.Content.Items.Armor;
 using Eternal.Content.Items.Materials;
-using Eternal.Content.Tiles;
 using Microsoft.Xna.Framework;
 using System;
-using System.Linq;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
@@ -28,7 +26,7 @@ namespace Eternal.Content.NPCs.Comet
 
         public override void SetDefaults()
         {
-            NPC.lifeMax = 22000;
+            NPC.lifeMax = 2200;
             NPC.damage = 100;
             NPC.defense = 15;
             NPC.knockBackResist = 0f;
@@ -97,6 +95,12 @@ namespace Eternal.Content.NPCs.Comet
                 NPC.active = false;
             }
 
+            if (RiftSystem.isRiftOpen)
+            {
+                for (int k = 0; k < 5; k++)
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, ModContent.DustType<ApparitionalParticle>(), 0, -2f, 0, default, 1f);
+            }
+
             float speed = 12.5f;
             float acceleration = 0.10f;
             Vector2 vector2 = new Vector2(NPC.position.X + (float)NPC.width * 0.5f, NPC.position.Y + (float)NPC.height * 0.5f);
@@ -151,9 +155,9 @@ namespace Eternal.Content.NPCs.Comet
         {
             PostCosmicApparitionDropCondition postCosmicApparitionDrop = new PostCosmicApparitionDropCondition();
 
-            npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<ApparitionalMatter>(), 1, 12, 24));
-            npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<Astragel>(), 1, 12, 24));
-            npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<InterstellarSingularity>(), 1, 12, 24));
+            npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<ApparitionalMatter>(), 3, 6, 12));
+            npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<Astragel>(), 3, 6, 12));
+            npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<InterstellarSingularity>(), 3, 6, 12));
 
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientStarbornMask>(), 12));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientStarbornHelmet>(), 12));
@@ -165,8 +169,24 @@ namespace Eternal.Content.NPCs.Comet
 
         public override void HitEffect(NPC.HitInfo hit)
         {
+            if (Main.netMode == NetmodeID.Server)
+            {
+                return;
+            }
+
+            var entitySource = NPC.GetSource_Death();
+
+            int gore1 = Mod.Find<ModGore>("ApparitionalReminantHead").Type;
+            int gore2 = Mod.Find<ModGore>("ApparitionalReminantBody").Type;
+            int gore3 = Mod.Find<ModGore>("ApparitionalReminantArm").Type;
+
             if (NPC.life <= 0)
             {
+                Gore.NewGore(entitySource, NPC.Center, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore1);
+                Gore.NewGore(entitySource, NPC.Center, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore2);
+                for (int i = 0; i < 2; i++)
+                    Gore.NewGore(entitySource, NPC.Center, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore3);
+
                 Dust.NewDust(NPC.Center, NPC.width, NPC.height, ModContent.DustType<CosmicSpirit>(), 0, -1f, 0, default(Color), 1f);
             }
             else

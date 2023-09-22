@@ -55,14 +55,14 @@ namespace Eternal.Content.Items.Misc
 
                 if (!bossActive)
                 {
-                    if (DifficultySystem.hellMode == false)
+                    if (!DifficultySystem.hellMode)
                     {
                         SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/DifficultyActivate"), player.position);
                         DifficultySystem.hellMode = true;
                         Main.NewText("Hell Mode is Active, witness the unspeakable menace!", 236, 0, 100);
                         //Main.NewText("Hell Mode is Active, enjoy the fun!", 210, 0, 220);
                     }
-                    else if (DifficultySystem.hellMode == true)
+                    else if (DifficultySystem.hellMode)
                     {
                         SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/DifficultyDeactivate"), player.position);
                         DifficultySystem.hellMode = false;
@@ -70,6 +70,9 @@ namespace Eternal.Content.Items.Misc
                         Main.NewText("Hell Mode is no longer Active, breathe easy...", 236, 0, 100);
                         //Main.NewText("Hell Mode is no longer Active, not enough fun for you!", 210, 0, 220);
                     }
+
+                    if (Main.netMode == NetmodeID.Server)
+                        NetMessage.SendData(MessageID.WorldData);
                 }
                 else
                 {

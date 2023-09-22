@@ -106,6 +106,11 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
 
         public override void HitEffect(NPC.HitInfo hit)
         {
+            if (Main.netMode == NetmodeID.Server)
+            {
+                return;
+            }
+
             if (!dontKillyet)
             {
                 if (NPC.life < 0)

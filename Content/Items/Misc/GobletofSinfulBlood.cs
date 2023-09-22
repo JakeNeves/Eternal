@@ -67,6 +67,9 @@ namespace Eternal.Content.Items.Misc
                         Main.NewText($"Sinstorm is no longer active, remain pure {player.name}...", 236, 0, 100);
                         //Main.NewText("Hell Mode is no longer Active, not enough fun for you!", 210, 0, 220);
                     }
+
+                    if (Main.netMode == NetmodeID.Server)
+                        NetMessage.SendData(MessageID.WorldData);
                 }
                 else
                 {

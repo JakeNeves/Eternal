@@ -1,5 +1,4 @@
-﻿using Eternal.Content.NPCs.Boss.CarminiteAmalgamation;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -9,11 +8,6 @@ namespace Eternal.Content.Projectiles.Misc
 {
     public class YogExplode : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Yog");
-        }
-
         public override void SetDefaults()
         {
             Projectile.width = 70;

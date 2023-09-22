@@ -10,15 +10,13 @@ namespace Eternal.Content.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            // Tooltip.SetDefault("Heals you upon striking an enemy");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()
         {
-            Item.width = 34;
-            Item.height = 44;
+            Item.width = 38;
+            Item.height = 42;
             Item.damage = 300;
             Item.knockBack = 3.5f;
             Item.value = Item.buyPrice(platinum: 1, gold: 3);

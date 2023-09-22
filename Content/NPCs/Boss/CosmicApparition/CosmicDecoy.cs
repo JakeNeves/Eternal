@@ -30,15 +30,23 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
 
         public override void HitEffect(NPC.HitInfo hit)
         {
+            var entitySource = NPC.GetSource_Death();
+
             if (NPC.life <= 0)
             {
+                int gore1 = Mod.Find<ModGore>("CosmicApparitionHead").Type;
+                int gore2 = Mod.Find<ModGore>("CosmicApparitionBody").Type;
+                int gore3 = Mod.Find<ModGore>("CosmicApparitionArm").Type;
 
+                Gore.NewGore(entitySource, NPC.Center, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore1);
+                Gore.NewGore(entitySource, NPC.Center, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore2);
+                for (int i = 0; i < 2; i++)
+                    Gore.NewGore(entitySource, NPC.Center, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore3);
             }
             else
             {
                 for (int k = 0; k < 10.0; k++)
                 {
-                    Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.PurpleTorch, 0, -2f, 0, default(Color), 1f);
                     Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.Shadowflame, 0, -1f, 0, default(Color), 1f);
                 }
             }

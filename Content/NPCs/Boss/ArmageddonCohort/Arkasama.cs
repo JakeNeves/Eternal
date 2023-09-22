@@ -57,7 +57,7 @@ namespace Eternal.Content.NPCs.Boss.ArmageddonCohort
             }
             else if (DifficultySystem.hellMode)
             {
-                if (ModContent.GetInstance<ServerConfig>().brutalHellMode)
+                if (ServerConfig.instance.brutalHellMode)
                 {
                     count += 12;
                 }

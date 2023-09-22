@@ -17,8 +17,8 @@ namespace Eternal.Content.Items.Potions
 
         public override void SetDefaults()
         {
-            Item.width = 28;
-            Item.height = 30;
+            Item.width = 40;
+            Item.height = 34;
             Item.useStyle = ItemUseStyleID.DrinkLiquid;
             Item.useAnimation = 17;
             Item.useTime = 17;
@@ -35,7 +35,7 @@ namespace Eternal.Content.Items.Potions
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<ApparitionalMatter>())
+                .AddIngredient(ModContent.ItemType<CrystalizedOminite>())
                 .AddIngredient(ModContent.ItemType<PristineHealingPotion>())
                 .AddTile(ModContent.TileType<AncientForge>())
                 .Register();

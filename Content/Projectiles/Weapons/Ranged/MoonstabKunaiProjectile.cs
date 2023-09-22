@@ -15,8 +15,7 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
 
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Moonstab Kunai");
-            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 16;
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 8;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }
 

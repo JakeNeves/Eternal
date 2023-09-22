@@ -17,7 +17,9 @@ using Eternal.Content.Items.Weapons.Ranged;
 using Eternal.Content.Projectiles.Explosion;
 using Eternal.Common.ItemDropRules.Conditions;
 using Eternal.Content.Items.Accessories.Hell;
-using Terraria.DataStructures;
+using Eternal.Common.Configurations;
+using Eternal.Common.Misc;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
 {
@@ -84,6 +86,11 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
 
         public override void HitEffect(NPC.HitInfo hit)
         {
+            if (Main.netMode == NetmodeID.Server)
+            {
+                return;
+            }
+
             var entitySource = NPC.GetSource_Death();
 
             if (NPC.life <= 0)
@@ -107,33 +114,10 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
             }
         }
 
-        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
         {
-            if (Main.masterMode)
-            {
-                NPC.lifeMax = 9000;
-                NPC.damage = 20;
-                NPC.defense = 14;
-
-            }
-            else if (DifficultySystem.hellMode)
-            {
-                NPC.lifeMax = 12000;
-                NPC.damage = 22;
-                NPC.defense = 16;
-            }
-            else if (DifficultySystem.sinstormMode)
-            {
-                NPC.lifeMax = 15000;
-                NPC.damage = 40;
-                NPC.defense = 18;
-            }
-            else
-            {
-                NPC.lifeMax = 6000;
-                NPC.damage = 18;
-                NPC.defense = 12;
-            }
+            NPC.lifeMax = (int)(NPC.lifeMax * balance * bossAdjustment);
+            NPC.damage = (int)(NPC.damage * balance * bossAdjustment);
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
@@ -169,6 +153,15 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
 
         public override void AI()
         {
+            if (ClientConfig.instance.bossBarExtras)
+            {
+                if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
+                {
+                    EternalBossBarOverlay.SetTracked("Abominable Fleshbound Horror, ", NPC, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                    EternalBossBarOverlay.visible = true;
+                }
+            }
+
             var entitySource = NPC.GetSource_FromAI();
 
             rot = NPC.rotation;

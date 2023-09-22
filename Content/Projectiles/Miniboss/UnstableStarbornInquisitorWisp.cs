@@ -7,11 +7,6 @@ namespace Eternal.Content.Projectiles.Miniboss
 {
     public class UnstableStarbornInquisitorWisp : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Unstable Starborn Wisp");
-        }
-
         public override void SetDefaults()
         {
             Projectile.width = 6;

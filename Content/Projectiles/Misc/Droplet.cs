@@ -9,11 +9,6 @@ namespace Eternal.Content.Projectiles.Misc
 {
     public class Droplet : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Droplet of Blood");
-        }
-
         public override void SetDefaults()
         {
             Projectile.width = 6;

@@ -1,5 +1,4 @@
-﻿using Eternal.Content.Buffs;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -9,12 +8,8 @@ namespace Eternal.Content.Projectiles.Boss
 {
     public class ApparitionalWisp : ModProjectile
     {
-        bool justSpawned = false;
-
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Apparitional Wisp");
-
             Main.projFrames[Projectile.type] = 4;
         }
 
@@ -49,18 +44,19 @@ namespace Eternal.Content.Projectiles.Boss
         {
             Lighting.AddLight(Projectile.position, 1.27f, 0.22f, 0.76f);
 
-            if (!justSpawned)
+            if (Projectile.ai[0] == 0f && Main.netMode != NetmodeID.MultiplayerClient)
             {
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i < 5; i++)
                 {
-                    Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.PurpleTorch, 0f, 0f, 100, default(Color), 2f);
+                    Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.PurpleTorch);
                 }
-                justSpawned = true;
+
+                Projectile.ai[0] = 1f;
             }
 
             for (int i = 0; i < 5; i++)
             {
-                Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.PinkTorch, 0f, 0f, 100, default(Color), 2f);
+                Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.PinkTorch);
             }
 
             if (++Projectile.frameCounter >= 5)

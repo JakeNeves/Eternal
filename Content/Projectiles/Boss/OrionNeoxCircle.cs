@@ -18,10 +18,6 @@ namespace Eternal.Content.Projectiles.Boss
             Projectile.penetrate = -1;
             Projectile.timeLeft = 100000;
         }
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Orion N30X");
-        }
 
         public override void AI()
         {
