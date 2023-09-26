@@ -170,7 +170,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
             {
                 if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
                 {
-                    EternalBossBarOverlay.SetTracked("The Nameless Menace Unleashed, ", NPC, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                    EternalBossBarOverlay.SetTracked("The Nameless Menace Unleashed, ", NPC, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBarFrame", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
                     EternalBossBarOverlay.visible = true;
                 }
             }

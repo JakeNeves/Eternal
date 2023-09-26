@@ -2072,14 +2072,14 @@ Mods: {
 
 			CarminiteAmalgamation: {
 				DisplayName: Carminite Amalgamation
-				BossChecklistIntegration.SpawnInfo: Spawn by using a [i:Eternal/SuspiciousLookingDroplet]
+				BossChecklistIntegration.SpawnInfo: Spawn by using a [i:Eternal/SuspiciousLookingDroplet].
 			}
 
 			CosmicApex.DisplayName: Cosmic Apex
 
 			CosmicApparition: {
 				DisplayName: Cosmic Apparition
-				BossChecklistIntegration.SpawnInfo: Spawn by using [i:Eternal/OtherworldlyCosmicDebris]
+				BossChecklistIntegration.SpawnInfo: Spawn by using [i:Eternal/OtherworldlyCosmicDebris] in the Fallen Comet.
 			}
 
 			CosmicDecoy.DisplayName: Cosmic Decoy
@@ -2088,16 +2088,19 @@ Mods: {
 
 			CosmicEmperor: {
 				DisplayName: Cosmic Emperor
-				BossChecklistIntegration.SpawnInfo: Spawn by using a [i:Eternal/CosmicTablet] at an [i:Eternal/CosmicDesireAltar]
+				BossChecklistIntegration.SpawnInfo: Spawn by using a [i:Eternal/CosmicTablet] at an [i:Eternal/CosmicDesireAltar].
 			}
 
 			CosmicEmperorClone.DisplayName: Cosmic Emperor's Shadow Clone
-			CosmicEmperorP2.DisplayName: Cosmic Emperor
+			CosmicEmperorP2: {
+				DisplayName: Cosmic Emperor
+				BossChecklistIntegration.SpawnInfo: Spawn by using a [i:Eternal/CosmicTablet] at an [i:Eternal/CosmicDesireAltar].
+			}
 			GalaxiaStarwisp.DisplayName: Galaxia Starwisp
 
 			DuneGolem: {
 				DisplayName: Dune Golem
-				BossChecklistIntegration.SpawnInfo: Spawn by using an [i:Eternal/IesniumBeacon]
+				BossChecklistIntegration.SpawnInfo: Spawn by using an [i:Eternal/IesniumBeacon] in the Desert.
 			}
 
 			DunePylon.DisplayName: Dune Pylon
@@ -2105,7 +2108,7 @@ Mods: {
 
 			DunewormHead: {
 				DisplayName: Duneworm
-				BossChecklistIntegration.SpawnInfo: Spawn by using [i:Eternal/SandFood]
+				BossChecklistIntegration.SpawnInfo: Spawn by using [i:Eternal/SandFood].
 			}
 
 			DunewormTail.DisplayName: Duneworm
@@ -2114,7 +2117,7 @@ Mods: {
 
 			IgneopedeHead: {
 				DisplayName: Igneopede
-				BossChecklistIntegration.SpawnInfo: Spawn by using [i:Eternal/MoltenBait]
+				BossChecklistIntegration.SpawnInfo: Spawn by using [i:Eternal/MoltenBait].
 			}
 
 			IgneopedeTail.DisplayName: Igneopede
@@ -2123,7 +2126,7 @@ Mods: {
 
 			Incinerius: {
 				DisplayName: Incinerius
-				BossChecklistIntegration.SpawnInfo: Spawn by using an [i:Eternal/ObsidianLantern]
+				BossChecklistIntegration.SpawnInfo: Spawn by using an [i:Eternal/ObsidianLantern].
 			}
 
 			Atlas.DisplayName: Atlas N30X
@@ -2230,8 +2233,11 @@ Mods: {
 			UnstablePortal.DisplayName: Unstable Portal
 			Shiftspiral.DisplayName: Shiftspiral
 			ShiftspiralHand.DisplayName: Shiftspiral Hand
-			PhantomConstruct.DisplayName: Phantom Construct
-			PortalShears.DisplayName: Portal Shears
+
+			PhantomConstruct: {
+				DisplayName: Phantom Construct
+				BossChecklistIntegration.SpawnInfo: Defeat an Unstable Portal in the Rift Sky.
+			}
 		}
 
 		Prefixes: {

@@ -91,7 +91,7 @@ namespace Eternal.Content.NPCs.Boss.Duneworm
             {
                 if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
                 {
-                    EternalBossBarOverlay.SetTracked("Burrower of The Sands, ", NPC, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                    EternalBossBarOverlay.SetTracked("Burrower of The Sands, ", NPC, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBarEternalBossBar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
                     EternalBossBarOverlay.visible = true;
                 }
             }

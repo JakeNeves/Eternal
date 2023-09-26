@@ -41,133 +41,133 @@ namespace Eternal.Common.GlobalNPCs
                     case NPCID.KingSlime:
                         if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server )
                         {
-                            EternalBossBarOverlay.SetTracked("Mindless Tyrant, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                            EternalBossBarOverlay.SetTracked("Mindless Tyrant, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBarFrame", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
                             EternalBossBarOverlay.visible = true;
                         }
                         break;
                     case NPCID.EyeofCthulhu:
                         if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
                         {
-                            EternalBossBarOverlay.SetTracked("Evil Presence of the Night Sky, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                            EternalBossBarOverlay.SetTracked("Evil Presence of the Night Sky, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBarFrame", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
                             EternalBossBarOverlay.visible = true;
                         }
                         break;
                     case NPCID.EaterofWorldsHead:
                         if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
                         {
-                            EternalBossBarOverlay.SetTracked("Centipede Sabotuer of The Corruption, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                            EternalBossBarOverlay.SetTracked("Centipede Sabotuer of The Corruption, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBarFrame", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
                             EternalBossBarOverlay.visible = true;
                         }
                         break;
                     case NPCID.BrainofCthulhu:
                         if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
                         {
-                            EternalBossBarOverlay.SetTracked("Scourge of The Crimson, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                            EternalBossBarOverlay.SetTracked("Scourge of The Crimson, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBarFrame", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
                             EternalBossBarOverlay.visible = true;
                         }
                         break;
                     case NPCID.QueenBee:
                         if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
                         {
-                            EternalBossBarOverlay.SetTracked("Matriarch of The Hive, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                            EternalBossBarOverlay.SetTracked("Matriarch of The Hive, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBarFrame", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
                             EternalBossBarOverlay.visible = true;
                         }
                         break;
                     case NPCID.SkeletronHead:
                         if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
                         {
-                            EternalBossBarOverlay.SetTracked("Scourge of The Dungeon, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                            EternalBossBarOverlay.SetTracked("Scourge of The Dungeon, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBarFrame", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
                             EternalBossBarOverlay.visible = true;
                         }
                         break;
                     case NPCID.Deerclops:
                         if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
                         {
-                            EternalBossBarOverlay.SetTracked("Scourge of the Tundra, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                            EternalBossBarOverlay.SetTracked("Scourge of the Tundra, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBarFrame", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
                             EternalBossBarOverlay.visible = true;
                         }
                         break;
                     case NPCID.WallofFlesh:
                         if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
                         {
-                            EternalBossBarOverlay.SetTracked("Scourge of The Underworld, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                            EternalBossBarOverlay.SetTracked("Scourge of The Underworld, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBarFrame", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
                             EternalBossBarOverlay.visible = true;
                         }
                         break;
                     case NPCID.SkeletronPrime:
                         if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
                         {
-                            EternalBossBarOverlay.SetTracked("Mechanical Terror of The Cold Wind, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                            EternalBossBarOverlay.SetTracked("Mechanical Terror of The Cold Wind, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBarFrame", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
                             EternalBossBarOverlay.visible = true;
                         }
                         break;
                     case NPCID.Retinazer:
                         if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
                         {
-                            EternalBossBarOverlay.SetTracked("Scourge of The Night Sky, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                            EternalBossBarOverlay.SetTracked("Scourge of The Night Sky, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBarFrame", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
                             EternalBossBarOverlay.visible = true;
                         }
                         break;
                     case NPCID.Spazmatism:
                         if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
                         {
-                            EternalBossBarOverlay.SetTracked("Scourge of The Night Sky, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                            EternalBossBarOverlay.SetTracked("Scourge of The Night Sky, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBarFrame", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
                             EternalBossBarOverlay.visible = true;
                         }
                         break;
                     case NPCID.TheDestroyer:
                         if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
                         {
-                            EternalBossBarOverlay.SetTracked("Rising from The Ground, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                            EternalBossBarOverlay.SetTracked("Rising from The Ground, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBarFrame", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
                             EternalBossBarOverlay.visible = true;
                         }
                         break;
                     case NPCID.Plantera:
                         if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
                         {
-                            EternalBossBarOverlay.SetTracked("Scourge of The Jungle, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                            EternalBossBarOverlay.SetTracked("Scourge of The Jungle, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBarFrame", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
                             EternalBossBarOverlay.visible = true;
                         }
                         break;
                     case NPCID.DukeFishron:
                         if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
                         {
-                            EternalBossBarOverlay.SetTracked("Rising from The Ocean, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                            EternalBossBarOverlay.SetTracked("Rising from The Ocean, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBarFrame", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
                             EternalBossBarOverlay.visible = true;
                         }
                         break;
                     case NPCID.EmpressButterfly:
                         if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
                         {
-                            EternalBossBarOverlay.SetTracked("Guardian of The Hallowed, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                            EternalBossBarOverlay.SetTracked("Guardian of The Hallowed, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBarFrame", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
                             EternalBossBarOverlay.visible = true;
                         }
                         break;
                     case NPCID.QueenSlimeBoss:
                         if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
                         {
-                            EternalBossBarOverlay.SetTracked("Gelutonous Sabotuer, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                            EternalBossBarOverlay.SetTracked("Gelutonous Sabotuer, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBarFrame", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
                             EternalBossBarOverlay.visible = true;
                         }
                         break;
                     case NPCID.Golem:
                         if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
                         {
-                            EternalBossBarOverlay.SetTracked("Guardian of The Lihzard Temple, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                            EternalBossBarOverlay.SetTracked("Guardian of The Lihzard Temple, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBarFrame", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
                             EternalBossBarOverlay.visible = true;
                         }
                         break;
                     case NPCID.CultistBoss:
                         if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
                         {
-                            EternalBossBarOverlay.SetTracked("Scourge of The Dungeon, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                            EternalBossBarOverlay.SetTracked("Scourge of The Dungeon, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBarFrame", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
                             EternalBossBarOverlay.visible = true;
                         }
                         break;
                     case NPCID.MoonLordCore:
                         if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
                         {
-                            EternalBossBarOverlay.SetTracked("Celestial Deity of The Moon, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                            EternalBossBarOverlay.SetTracked("Celestial Deity of The Moon, ", npc, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBarFrame", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
                             EternalBossBarOverlay.visible = true;
                         }
                         break;

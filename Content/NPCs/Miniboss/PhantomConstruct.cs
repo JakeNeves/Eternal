@@ -99,7 +99,7 @@ namespace Eternal.Content.NPCs.Miniboss
             {
                 if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
                 {
-                    EternalBossBarOverlay.SetTracked("Guardian of The Rift, ", NPC, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                    EternalBossBarOverlay.SetTracked("", NPC, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBarFrame", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
                     EternalBossBarOverlay.visible = true;
                 }
             }
@@ -166,6 +166,8 @@ namespace Eternal.Content.NPCs.Miniboss
                 if (NPC.ai[3] >= 180f)
                 {
                     NPC.life = 0;
+                    if (!DownedMinibossSystem.downedPhantomConstruct)
+                        DownedMinibossSystem.downedPhantomConstruct = true;
                     if (!Main.zenithWorld)
                         Main.NewText("The Phantom Construct has been defeated!", 175, 75, 255);
                     NPC.HitEffect(0, 0);
@@ -271,19 +273,19 @@ namespace Eternal.Content.NPCs.Miniboss
                 return;
             }
 
-            var entitySource = NPC.GetSource_Death();
-
-            int gore1 = Mod.Find<ModGore>("PhantomConstructHead").Type;
-            int gore2 = Mod.Find<ModGore>("PhantomConstructBody").Type;
-            int gore3 = Mod.Find<ModGore>("PhantomConstructArm").Type;
-
-            Gore.NewGore(entitySource, NPC.Center, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore1);
-            Gore.NewGore(entitySource, NPC.Center, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore2);
-            for (int i = 0; i < 2; i++)
-                Gore.NewGore(entitySource, NPC.Center, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore3);
-
             if (NPC.life < 0)
             {
+                var entitySource = NPC.GetSource_Death();
+
+                int gore1 = Mod.Find<ModGore>("PhantomConstructHead").Type;
+                int gore2 = Mod.Find<ModGore>("PhantomConstructBody").Type;
+                int gore3 = Mod.Find<ModGore>("PhantomConstructArm").Type;
+
+                Gore.NewGore(entitySource, NPC.Center, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore1);
+                Gore.NewGore(entitySource, NPC.Center, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore2);
+                for (int i = 0; i < 2; i++)
+                    Gore.NewGore(entitySource, NPC.Center, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore3);
+
                 for (int k = 0; k < 5; k++)
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.PinkTorch, 2.5f, -2.5f, 0, default, 1.7f);
             }

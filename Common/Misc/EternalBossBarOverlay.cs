@@ -81,7 +81,7 @@ namespace Eternal.Common.Misc
                 return;
             }
 
-            Texture2D texGlow = ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossbarGlow").Value;
+            Texture2D texGlow = ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBarGlow").Value;
 
             int progress = (int)(EternalBossBarOverlay.tracked?.life / (float)EternalBossBarOverlay.tracked?.lifeMax * 456);
 
@@ -94,7 +94,7 @@ namespace Eternal.Common.Misc
             spriteBatch.End();
             spriteBatch.Begin(default, default, default, default, default, default, Main.UIScaleMatrix);
 
-            Utils.DrawBorderString(spriteBatch, EternalBossBarOverlay.text + NPC.FullName + ": " + NPC.life + "/" + NPC.lifeMax, pos + new Vector2(516 / 2, -20), Color.White, 1, 0.5f, 0);
+            Utils.DrawBorderString(spriteBatch, EternalBossBarOverlay.text + NPC.FullName, pos + new Vector2(516 / 2, -20), Color.White, 1, 0.5f, 0);
         }
     }
 }

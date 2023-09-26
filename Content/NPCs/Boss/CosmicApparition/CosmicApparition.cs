@@ -236,7 +236,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             {
                 if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
                 {
-                    EternalBossBarOverlay.SetTracked("Ghostly Horror, ", NPC, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                    EternalBossBarOverlay.SetTracked("Ghostly Horror, ", NPC, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBarFrame", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
                     EternalBossBarOverlay.visible = true;
                 }
             }
@@ -266,6 +266,13 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             else
             {
                 NPC.dontTakeDamage = false;
+            }
+
+            if (NPC.life < NPC.lifeMax / 2 && phase != 1 && Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                phase = 1;
+                SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/CosmicApparitionAnger"), NPC.position);
+                NPC.netUpdate = true;
             }
 
             if (NPC.ai[3] > 0f)
@@ -340,28 +347,8 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             }
         }
 
-        private void AI_CosmicApparition_CheckPhase2()
-        {
-            if (phase == 1)
-            {
-                return;
-            }
-
-            if (Main.netMode != NetmodeID.MultiplayerClient)
-            {
-                phase = 1;
-                SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/CosmicApparitionAnger"), NPC.position);
-                NPC.netUpdate = true;
-            }
-        }
-
         private void AI_CosmicApparition_Attacks_Phase1()
         {
-            if (NPC.life < NPC.lifeMax * 0.5f)
-            {
-                AI_CosmicApparition_CheckPhase2();
-            }
-
             var entitySource = NPC.GetSource_FromAI();
 
             attackTimerP1++;

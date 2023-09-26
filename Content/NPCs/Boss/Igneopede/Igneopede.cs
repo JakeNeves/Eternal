@@ -48,28 +48,11 @@ namespace Eternal.Content.NPCs.Boss.Igneopede
 			Music = MusicID.Boss3;
 		}
 
-		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
+		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
 		{
-			if (Main.masterMode)
-			{
-				NPC.lifeMax = 640000;
-				NPC.damage = 30;
-				NPC.defense = 25;
-
-			}
-			else if (DifficultySystem.hellMode)
-			{
-				NPC.lifeMax = 1280000;
-				NPC.damage = 40;
-				NPC.defense = 30;
-			}
-			else
-			{
-				NPC.lifeMax = 320000;
-				NPC.damage = 20;
-				NPC.defense = 20;
-			}
-		}
+            NPC.lifeMax = (int)(NPC.lifeMax * balance * bossAdjustment);
+            NPC.damage = (int)(NPC.damage * balance * bossAdjustment);
+        }
 
 		public override void OnKill()
 		{
@@ -241,26 +224,9 @@ namespace Eternal.Content.NPCs.Boss.Igneopede
 
 		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
 		{
-			if (Main.masterMode)
-			{
-				NPC.lifeMax = 640000;
-				NPC.damage = 30;
-				NPC.defense = 25;
-
-			}
-			else if (DifficultySystem.hellMode)
-			{
-				NPC.lifeMax = 1280000;
-				NPC.damage = 40;
-				NPC.defense = 30;
-			}
-			else
-			{
-				NPC.lifeMax = 320000;
-				NPC.damage = 20;
-				NPC.defense = 20;
-			}
-		}
+            NPC.lifeMax = (int)(NPC.lifeMax * balance * bossAdjustment);
+            NPC.damage = (int)(NPC.damage * balance * bossAdjustment);
+        }
 
         public override void HitEffect(NPC.HitInfo hit)
 		{
@@ -308,26 +274,9 @@ namespace Eternal.Content.NPCs.Boss.Igneopede
 
 		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
 		{
-			if (Main.masterMode)
-			{
-				NPC.lifeMax = 640000;
-				NPC.damage = 30;
-				NPC.defense = 25;
-
-			}
-			else if (DifficultySystem.hellMode)
-			{
-				NPC.lifeMax = 1280000;
-				NPC.damage = 40;
-				NPC.defense = 30;
-			}
-			else
-			{
-				NPC.lifeMax = 320000;
-				NPC.damage = 20;
-				NPC.defense = 20;
-			}
-		}
+            NPC.lifeMax = (int)(NPC.lifeMax * balance * bossAdjustment);
+            NPC.damage = (int)(NPC.damage * balance * bossAdjustment);
+        }
 
 		public override void CustomBehavior()
 		{

@@ -7,6 +7,7 @@ using Eternal.Content.NPCs.Boss.DuneGolem;
 using Eternal.Content.NPCs.Boss.Duneworm;
 using Eternal.Content.NPCs.Boss.Igneopede;
 using Eternal.Content.NPCs.Boss.Incinerius;
+using Eternal.Content.NPCs.Miniboss;
 using System.Collections.Generic;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -183,6 +184,27 @@ namespace Eternal.Common.Systems
 						ModContent.ItemType<Content.Items.Materials.UnrefinedHeroSword>(),
 					}
 				}
+            );
+
+            // Phantom Construct (Miniboss)
+            bossChecklistMod.Call(
+                "LogMiniBoss",
+                Mod,
+                nameof(PhantomConstruct),
+                20.25f,
+                () => DownedMinibossSystem.downedPhantomConstruct,
+                ModContent.NPCType<PhantomConstruct>(),
+                new Dictionary<string, object>()
+                {
+                    ["displayName"] = Language.GetText("Mods.Eternal.NPCs.PhantomConstruct.DisplayName"),
+                    ["collectables"] = new List<int>()
+                    {
+                        ModContent.ItemType<Content.Items.Materials.RawOminaquadite>(),
+                        ModContent.ItemType<Content.Items.Weapons.Melee.AspectofTheShiftedWarlock>(),
+                        ModContent.ItemType<Content.Items.Weapons.Melee.RiftedBlade>(),
+                        ModContent.ItemType<Content.Items.Weapons.Magic.Shiftstorm>(),
+                    }
+                }
             );
 
             // Cosmic Emperor

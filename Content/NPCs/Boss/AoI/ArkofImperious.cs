@@ -359,7 +359,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
             {
                 if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
                 {
-                    EternalBossBarOverlay.SetTracked("Guardian of The Shrine, ", NPC, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                    EternalBossBarOverlay.SetTracked("Guardian of The Shrine, ", NPC, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBarFrame", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
                     EternalBossBarOverlay.visible = true;
                 }
             }

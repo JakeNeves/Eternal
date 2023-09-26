@@ -75,32 +75,10 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
             potionType = ItemID.GreaterHealingPotion;
         }
 
-        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
         {
-            if (Main.masterMode)
-            {
-                NPC.lifeMax = 108000;
-                NPC.damage = 16;
-                NPC.defense = 24;
-            }
-            else if (DifficultySystem.hellMode)
-            {
-                NPC.lifeMax = 120000;
-                NPC.damage = 18;
-                NPC.defense = 26;
-            }
-            else if (DifficultySystem.sinstormMode)
-            {
-                NPC.lifeMax = 240000;
-                NPC.damage = 20;
-                NPC.defense = 28;
-            }
-            else
-            {
-                NPC.lifeMax = 96000;
-                NPC.damage = 14;
-                NPC.defense = 22;
-            }
+            NPC.lifeMax = (int)(NPC.lifeMax * balance * bossAdjustment);
+            NPC.damage = (int)(NPC.damage * balance * bossAdjustment);
         }
 
         public override void HitEffect(NPC.HitInfo hit)
@@ -186,7 +164,7 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
             {
                 if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
                 {
-                    EternalBossBarOverlay.SetTracked("The Underworld's Infernal Sabotuer, ", NPC, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                    EternalBossBarOverlay.SetTracked("The Underworld's Infernal Sabotuer, ", NPC, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBarEternalBossBar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
                     EternalBossBarOverlay.visible = true;
                 }
             }
