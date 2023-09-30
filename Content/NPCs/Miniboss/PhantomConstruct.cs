@@ -28,7 +28,7 @@ namespace Eternal.Content.NPCs.Miniboss
 
         public override void SetDefaults()
         {
-            NPC.lifeMax = 640000;
+            NPC.lifeMax = 320000;
             NPC.damage = 120;
             NPC.defense = 45;
             NPC.knockBackResist = -1f;
@@ -56,6 +56,12 @@ namespace Eternal.Content.NPCs.Miniboss
             NPC.buffImmune[BuffID.Frozen] = true;
             NPC.buffImmune[BuffID.Chilled] = true;
             NPC.rarity = 4;
+        }
+
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
+        {
+            NPC.lifeMax = (int)(NPC.lifeMax * balance * bossAdjustment);
+            NPC.damage = (int)(NPC.damage * balance * bossAdjustment);
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)

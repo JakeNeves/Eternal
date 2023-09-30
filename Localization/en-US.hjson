@@ -2092,10 +2092,12 @@ Mods: {
 			}
 
 			CosmicEmperorClone.DisplayName: Cosmic Emperor's Shadow Clone
+
 			CosmicEmperorP2: {
 				DisplayName: Cosmic Emperor
 				BossChecklistIntegration.SpawnInfo: Spawn by using a [i:Eternal/CosmicTablet] at an [i:Eternal/CosmicDesireAltar].
 			}
+
 			GalaxiaStarwisp.DisplayName: Galaxia Starwisp
 
 			DuneGolem: {

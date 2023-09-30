@@ -1,4 +1,5 @@
 ﻿using Eternal.Common.Players;
+using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Placeable;
 using Eternal.Content.Rarities;
 using Terraria;
@@ -38,6 +39,7 @@ namespace Eternal.Content.Items.Accessories.Hell
         {
             CreateRecipe()
                 .AddTile(TileID.Anvils)
+                .AddIngredient(ModContent.ItemType<ShadowSkull>())
                 .AddIngredient(ModContent.ItemType<BlackLantern>())
                 .AddIngredient(ModContent.ItemType<Grimstone>(), 36)
                 .AddIngredient(ItemID.Candle)
