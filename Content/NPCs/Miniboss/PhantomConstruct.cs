@@ -26,6 +26,11 @@ namespace Eternal.Content.NPCs.Miniboss
     {
         int attackTimer = 0;
 
+        public override void SetStaticDefaults()
+        {
+            NPCID.Sets.ImmuneToAllBuffs[Type] = true;
+        }
+
         public override void SetDefaults()
         {
             NPC.lifeMax = 320000;

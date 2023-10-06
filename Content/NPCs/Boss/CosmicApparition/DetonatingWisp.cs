@@ -1,12 +1,9 @@
 ﻿using Eternal.Common.Systems;
 using Eternal.Content.Buffs;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.Audio;
-using Terraria.GameContent.RGB;
-using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -19,7 +16,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
         {
             Main.npcFrameCount[NPC.type] = 4;
 
-            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
                 Hide = true
             };

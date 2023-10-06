@@ -19,17 +19,16 @@ namespace Eternal.Content.NPCs.Boss.Igneopede
 
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("The Igneopede");
+            var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers()
+            {
+                CustomTexturePath = "Eternal/Content/NPCs/Boss/Igneopede/Igneopede_Preview",
+                Position = new Vector2(40f, 24f),
+                PortraitPositionXOverride = 0f,
+                PortraitPositionYOverride = 12f
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, drawModifier);
 
-			var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
-			{
-				CustomTexturePath = "Eternal/Content/NPCs/Boss/Igneopede/Igneopede_Preview",
-				PortraitPositionXOverride = 0f,
-				PortraitPositionYOverride = 12f
-			};
-			NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, drawModifier);
-
-			NPCID.Sets.ShouldBeCountedAsBoss[Type] = true;
+            NPCID.Sets.ShouldBeCountedAsBoss[Type] = true;
 		}
 
 		public override void SetDefaults()
@@ -199,14 +198,12 @@ namespace Eternal.Content.NPCs.Boss.Igneopede
 
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("The Igneopede");
-
-			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
-			{
-				Hide = true
-			};
-			NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
-		}
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
+            {
+                Hide = true
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
+        }
 
 		public override void SetDefaults()
 		{
@@ -249,14 +246,12 @@ namespace Eternal.Content.NPCs.Boss.Igneopede
 
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("The Igneopede");
-
-			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
-			{
-				Hide = true
-			};
-			NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
-		}
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
+            {
+                Hide = true
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
+        }
 
 		public override void SetDefaults()
 		{
@@ -311,11 +306,6 @@ namespace Eternal.Content.NPCs.Boss.Igneopede
 
 	public abstract class Igneopede : Worm
     {
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("The Igneopede");
-		}
-
 		public override void Init()
 		{
 			minLength = 12;

@@ -16,15 +16,15 @@ namespace Eternal.Content.NPCs.Rift
     {
 		public override void SetStaticDefaults()
 		{
-			var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
-			{
-				CustomTexturePath = "Eternal/Content/NPCs/Rift/NaquadahBurrower_Preview",
-				Position = new Vector2(0f, 24f),
-				PortraitPositionXOverride = 0f,
-				PortraitPositionYOverride = 12f
-			};
-			NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, drawModifier);
-		}
+            var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers()
+            {
+                CustomTexturePath = "Eternal/Content/NPCs/Rift/NaquadahBurrower_Preview",
+                Position = new Vector2(40f, 24f),
+                PortraitPositionXOverride = 0f,
+                PortraitPositionYOverride = 12f
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, drawModifier);
+        }
 
 		public override void SetDefaults()
 		{
@@ -134,12 +134,12 @@ namespace Eternal.Content.NPCs.Rift
     {
 		public override void SetStaticDefaults()
 		{
-			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
-			{
-				Hide = true
-			};
-			NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
-		}
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
+            {
+                Hide = true
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
+        }
 
 		public override void SetDefaults()
 		{
@@ -187,12 +187,12 @@ namespace Eternal.Content.NPCs.Rift
     {
 		public override void SetStaticDefaults()
 		{
-			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
-			{
-				Hide = true
-			};
-			NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
-		}
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
+            {
+                Hide = true
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
+        }
 
 		public override void SetDefaults()
 		{

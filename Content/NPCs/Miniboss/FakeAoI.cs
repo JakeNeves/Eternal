@@ -18,7 +18,7 @@ namespace Eternal.Content.NPCs.Miniboss
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Fake Ark of Imperious");
+            NPCID.Sets.ImmuneToAllBuffs[Type] = true;
         }
 
         public override void SetDefaults()

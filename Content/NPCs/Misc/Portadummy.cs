@@ -9,11 +9,11 @@ namespace Eternal.Content.NPCs.Misc
     {
         public override void SetStaticDefaults()
         {
-            NPCID.Sets.NPCBestiaryDrawModifiers bestiaryData = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
                 Hide = true
             };
-            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, bestiaryData);
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
         }
 
         public override void SetDefaults()
@@ -52,7 +52,6 @@ namespace Eternal.Content.NPCs.Misc
             {
                 NPC.life = 0;
                 NPC.HitEffect();
-                // NPC.StrikeNPCNoInteraction(int.MaxValue, 0, 0, false, false, false);
                 NPC.active = false;
             }
         }

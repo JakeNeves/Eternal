@@ -12,9 +12,8 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
         {
             Main.npcFrameCount[NPC.type] = 4;
             NPCID.Sets.MustAlwaysDraw[NPC.type] = true;
-            // DisplayName.SetDefault("Cosmic Apex");
 
-            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
                 Hide = true
             };

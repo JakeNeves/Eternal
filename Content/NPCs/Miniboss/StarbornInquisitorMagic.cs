@@ -20,6 +20,8 @@ namespace Eternal.Content.NPCs.Miniboss
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.PossessedArmor];
+
+            NPCID.Sets.ImmuneToAllBuffs[Type] = true;
         }
 
         int attackTimer;

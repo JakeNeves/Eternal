@@ -35,14 +35,13 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
         bool dontKillyet = false;
         bool doAttacks = true;
 
-        public override LocalizedText DisplayName => base.DisplayName.WithFormatArgs("Cosmic Emperor");
-
         public override void SetStaticDefaults()
         {
-            var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
                 CustomTexturePath = "Eternal/Content/NPCs/Boss/CosmicEmperor/CosmicEmperor"
             };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, drawModifier);
 
             NPCID.Sets.ShouldBeCountedAsBoss[Type] = true;
         }

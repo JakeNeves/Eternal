@@ -10,11 +10,13 @@ Mods: {
 		GameTips: {
 			HellMode: Wish to ramp up the difficulty a bit? Try Hell Mode, works in both Expert and Master mode.
 			EmperorNPC: The Emperor will move upon defeating the moon lord, he sells the Emperor's Trust which allows the Emissary to move in.
-			CometBiome: The Comet is a one of a kind star, be careful as there are powerful enemies that lie near it.
-			CosmicApparition: Uppon defeating the Cosmic Apparition, lots of oppertunities begin to open up for post-Moon Lord progression.
-			CosmicApparitionHellMode: The Cosmic Apparition does not spawn on it own, unless you're playing in Hell Mode of course once the Mood Lord is defeated!
+			CometBiome: The Fallen Comet is a one of a kind star, be careful as there are powerful enemies that lie near it.
+			CosmicApparition: Upon defeating the Cosmic Apparition, lots of oppertunities begin to open up for post-Moon Lord progression.
+			CosmicApparitionHellMode: The Cosmic Apparition does not spawn on it own, unless you're playing in Hell Mode, once the Mood Lord is defeated of course!
 			TheBeneath: The Beneath is a very dark place, torches won't work, unless you have a Black Lantern or a Black Candle.
 			TheRift: Be careful when inside The Rift, dangerous entities and such lie within it! Also, try not to get yelled at by the Emperor for opening it.
+			UnstablePortals: It's been rumored that Unstable Portals can be withness by those who soar through the Rift's sky!
+			PhenomenaUpdateTeaser: Upon Defeating the Cosmic Apparition, it's said that the 1.3 update could be themed around phenomenas...
 		}
 
 		DamageClasses.Radiant.DisplayName: radiant damage
@@ -2189,9 +2191,11 @@ Mods: {
 					LikeNPC: I like {NPCName}.
 					DislikeNPC: I dislike {NPCName}.
 					HateNPC: I hate {NPCName}.
-					LikeNPC_Princess: I like {NPCName}.
-					Princess_LovesNPC: I like {NPCName}.
+					LikeNPC_Princess: Princess {NPCName} is a one of a kind I must say, I told her how being an emisarry myself is a big task, representing our emperor!
+					Princess_LovesNPC: I like {NPCName}, the concept of someone representing an emperor is a big task as I was told!
 				}
+
+				Census.SpawnCondition: Have the [i:Eternal/EmperorsTrust] in your inventory
 			}
 
 			Emperor: {
@@ -2202,18 +2206,20 @@ Mods: {
 					NoHome: I am here, in the wilderness, and I feel like either you can give me a home, or I can make one myself, but I would have to gather the materials from what this place has to offer...
 					LoveSpace: I love how there is so much space here to code tModLoader mods!
 					FarFromHome: There is no way, I could be considered, far from home... I traveled miles outside my home land before. So why ask...
-					DislikeCrowded: You can already see the anxiety on my face, when it comes to big crowds like this...
+					DislikeCrowded: You can already see the anxiety on my face, when it comes to big crowds like this, I get clasutrophobic even...
 					HateCrowded: All of these people around here... Don't they know I'm claustrophobic!
 					LikeBiome: This place is nice and all, but I feel like there is a better place that I know of...
 					LoveBiome: Isn't this place great, I could live here for days!
-					DislikeBiome: I am sweating here, I would hate to inclimatize myself to places like these...
+					DislikeBiome: I am sweating here, I'd hate to inclimatize myself to places like these...
 					HateBiome: I could sense some sort of tremor any moment now...
 					LoveNPC: Emissary {NPCName} has to be one of my most favorite ones, despite the fact I sometimes ignore them, but everyone knows that in Gallahard, the emissaries represent me.
 					DislikeNPC: I know what I am doing, I've been through situations like this before...
 					HateNPC: I hate children...
-					LikeNPC_Princess: Princess {NPCName}'s, her combat tactics remind me of when I supressed the power of a demon overlord who emodies pure unspeakable chaos, responsible for the demonic phenominas occuring in my home empire!
+					LikeNPC_Princess: Princess {NPCName}, her combat tactics remind me of when I supressed the power of a demon overlord who emodies pure unspeakable chaos, responsible for the demonic phenominas occuring in my home empire!
 					Princess_LovesNPC: I like Emperor {NPCName}, his empire seems rather interesting! Especially when he told me a story of how he supressed a demon overlord's power! I wish to visit his empire one day...
 				}
+
+				Census.SpawnCondition: Defeat the Cosmic Apparition or create a world with one of the secret seeds
 			}
 
 			GlacerWalker.DisplayName: Glacer Walker

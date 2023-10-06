@@ -10,6 +10,8 @@ namespace Eternal.Content.Biomes
         public override int Music => MusicLoader.GetMusicSlot(Mod, "Assets/Music/AcrossADisfiguredReality");
         public override CaptureBiome.TileColorStyle TileColorStyle => CaptureBiome.TileColorStyle.Corrupt;
 
+        public override ModWaterStyle WaterStyle => ModContent.GetInstance<RiftWaterStyle>();
+
         public override string BestiaryIcon => base.BestiaryIcon;
 
         public override bool IsBiomeActive(Player player)

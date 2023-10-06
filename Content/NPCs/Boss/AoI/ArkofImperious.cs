@@ -67,7 +67,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
 
         public override void SetStaticDefaults()
         {
-            var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
                 Position = new Vector2(0f, 96f),
                 PortraitPositionXOverride = 0f,
@@ -79,6 +79,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
             NPCID.Sets.TrailingMode[NPC.type] = 0;
 
             NPCID.Sets.ShouldBeCountedAsBoss[Type] = true;
+            NPCID.Sets.ImmuneToAllBuffs[Type] = true;
         }
 
         public override void SetDefaults()

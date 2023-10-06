@@ -25,7 +25,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
         {
             Main.npcFrameCount[NPC.type] = 8;
 
-            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
                 Hide = true
             };

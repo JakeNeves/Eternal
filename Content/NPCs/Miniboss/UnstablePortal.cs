@@ -1,8 +1,6 @@
 ﻿using Eternal.Common.Systems;
 using Eternal.Content.NPCs.Rift;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -17,11 +15,13 @@ namespace Eternal.Content.NPCs.Miniboss
 
         public override void SetStaticDefaults()
         {
-            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
                 Hide = true
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
+
+            NPCID.Sets.ImmuneToAllBuffs[Type] = true;
         }
 
         public override void SetDefaults()

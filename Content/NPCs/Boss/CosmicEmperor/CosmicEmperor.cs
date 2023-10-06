@@ -30,8 +30,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
 
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Cosmic Emperor");
-            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
                 Hide = true
             };

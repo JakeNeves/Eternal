@@ -71,6 +71,15 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             NPCID.Sets.TrailingMode[NPC.type] = 0;
 
             NPCID.Sets.ShouldBeCountedAsBoss[Type] = true;
+
+            #region debuff immunity
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Poisoned] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.DryadsWardDebuff] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.CursedInferno] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.BetsysCurse] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true;
+            #endregion
         }
 
         public override void SetDefaults()
@@ -97,14 +106,6 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             NPC.DeathSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCDeath/CosmicApparitionDeath");
             NPC.noTileCollide = true;
             NPC.noGravity = true;
-            NPC.buffImmune[BuffID.Poisoned] = true;
-            NPC.buffImmune[BuffID.OnFire] = true;
-            NPC.buffImmune[BuffID.Venom] = true;
-            NPC.buffImmune[BuffID.ShadowFlame] = true;
-            NPC.buffImmune[BuffID.CursedInferno] = true;
-            NPC.buffImmune[BuffID.Frostburn] = true;
-            NPC.buffImmune[BuffID.Frozen] = true;
-            NPC.buffImmune[BuffID.Chilled] = true;
             NPC.alpha = 0;
             SpawnModBiomes = new int[1] { ModContent.GetInstance<Biomes.Comet>().Type };
             NPC.aiStyle = -1;
