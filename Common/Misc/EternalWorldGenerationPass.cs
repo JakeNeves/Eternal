@@ -225,8 +225,8 @@ namespace Eternal.Common.Misc
             {
                 int benX = WorldGen.genRand.Next(400, Main.maxTilesX - 1200);
                 int benY = WorldGen.genRand.Next((int)GenVars.rockLayerHigh, Main.maxTilesY);
-                WorldGen.TileRunner(benX, benY, WorldGen.genRand.Next(400, 750), 80, ModContent.TileType<Grimstone>(), false, WorldGen.genRand.Next(9, 20), WorldGen.genRand.Next(-4, 4));
-                WorldGen.TileRunner(benX, benY, WorldGen.genRand.Next(400, 750), 80, ModContent.TileType<Grimstone>(), false, WorldGen.genRand.Next(-20, -9), WorldGen.genRand.Next(-4, 4));
+                WorldGen.TileRunner(benX, benY, WorldGen.genRand.Next(400, 750), 80, ModContent.TileType<Gloomrock>(), false, WorldGen.genRand.Next(9, 20), WorldGen.genRand.Next(-4, 4));
+                WorldGen.TileRunner(benX, benY, WorldGen.genRand.Next(400, 750), 80, ModContent.TileType<Gloomrock>(), false, WorldGen.genRand.Next(-20, -9), WorldGen.genRand.Next(-4, 4));
 
                 break;
             }

@@ -11,7 +11,7 @@ using Terraria.ModLoader;
 
 namespace Eternal
 {
-	public class Eternal : Mod
+	public partial class Eternal : Mod
 	{
         internal static Eternal instance;
 

@@ -8,18 +8,10 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 {
     public class SunshineProjectile : ModProjectile
     {
-
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Sunshine");
-            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 16;
-            ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
-        }
-
         public override void SetDefaults()
         {
-            Projectile.width = 132;
-            Projectile.height = 132;
+            Projectile.width = 176;
+            Projectile.height = 176;
             Projectile.aiStyle = 19;
             Projectile.penetrate = 2;
             Projectile.alpha = 0;
@@ -39,6 +31,21 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
         public override void AI()
         {
             Lighting.AddLight(Projectile.position, 2.15f, 0.95f, 0f);
+
+            if (Main.rand.NextBool(3))
+            {
+                Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.height, Projectile.width, DustID.Torch,
+                    Projectile.velocity.X * .2f, Projectile.velocity.Y * .2f, 200, Scale: 1.2f);
+                dust.velocity += Projectile.velocity * 0.3f;
+                dust.velocity *= 0.2f;
+            }
+            if (Main.rand.NextBool(4))
+            {
+                Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.height, Projectile.width, DustID.SolarFlare,
+                    0, 0, 254, Scale: 0.3f);
+                dust.velocity += Projectile.velocity * 0.5f;
+                dust.velocity *= 0.5f;
+            }
 
             Player projOwner = Main.player[Projectile.owner];
             Vector2 ownerMountedCenter = projOwner.RotatedRelativePoint(projOwner.MountedCenter, true);
@@ -72,21 +79,6 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
             if (Projectile.spriteDirection == -1)
             {
                 Projectile.rotation -= MathHelper.ToRadians(90f);
-            }
-
-            if (Main.rand.NextBool(3))
-            {
-                Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.height, Projectile.width, DustID.PurpleTorch,
-                    Projectile.velocity.X * .2f, Projectile.velocity.Y * .2f, 200, Scale: 1.2f);
-                dust.velocity += Projectile.velocity * 0.3f;
-                dust.velocity *= 0.2f;
-            }
-            if (Main.rand.NextBool(4))
-            {
-                Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.height, Projectile.width, DustID.PinkTorch,
-                    0, 0, 254, Scale: 0.3f);
-                dust.velocity += Projectile.velocity * 0.5f;
-                dust.velocity *= 0.5f;
             }
         }
     }

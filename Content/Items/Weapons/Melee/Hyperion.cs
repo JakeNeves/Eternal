@@ -36,9 +36,9 @@ namespace Eternal.Content.Items.Weapons.Melee
         {
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<UnrefinedHeroSword>())
-                .AddIngredient(ModContent.ItemType<ThunderblightCrystal>(), 12)
+                .AddIngredient(ModContent.ItemType<ThunderblightShard>(), 12)
                 .AddIngredient(ModContent.ItemType<CometiteBar>(), 24)
-                .AddIngredient(ModContent.ItemType<CometiteCrystal>(), 36)
+                .AddIngredient(ModContent.ItemType<StarpowerCrystal>(), 36)
                 .AddIngredient(ModContent.ItemType<WeatheredPlating>(), 48)
                 .AddTile(ModContent.TileType<AncientForge>())
                 .Register();

@@ -1,6 +1,9 @@
-﻿using Eternal.Common.Systems;
-using Eternal.Content.Projectiles.Boss;
+﻿using Eternal.Common.Configurations;
+using Eternal.Common.Misc;
+using Eternal.Common.Systems;
+using Eternal.Content.BossBarStyles;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.IO;
 using Terraria;
 using Terraria.Audio;
@@ -39,13 +42,16 @@ namespace Eternal.Content.NPCs.Boss.Igneopede
 			NPC.HitSound = null;
 			NPC.DeathSound = SoundID.NPCDeath5;
 			NPC.lifeMax = 160000;
-			NPC.defense = 10;
+			NPC.defense = 30;
 			NPC.width = 58;
 			NPC.height = 76;
 			NPC.boss = true;
-			NPC.damage = 15;
-			Music = MusicID.Boss3;
-		}
+			NPC.damage = 25;
+            if (!Main.dedServ)
+            {
+                Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/InfernalPredator");
+            }
+        }
 
 		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
 		{
@@ -74,7 +80,16 @@ namespace Eternal.Content.NPCs.Boss.Igneopede
 
 		public override void CustomBehavior()
 		{
-			Lighting.AddLight(NPC.position, 2.15f, 0.95f, 0f);
+            if (ClientConfig.instance.bossBarExtras)
+            {
+                if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server && BossBarLoader.CurrentStyle == ModContent.GetInstance<EternalBossBarStyle>())
+                {
+                    EternalBossBarOverlay.SetTracked("Giant Magmatic Burrower", NPC);
+                    EternalBossBarOverlay.visible = true;
+                }
+            }
+
+            Lighting.AddLight(NPC.position, 2.15f, 0.95f, 0f);
 
 			attackTimer++;
 
@@ -213,10 +228,10 @@ namespace Eternal.Content.NPCs.Boss.Igneopede
 			NPC.HitSound = null;
 			NPC.DeathSound = SoundID.NPCDeath5;
 			NPC.lifeMax = 160000;
-			NPC.defense = 15;
+			NPC.defense = 30;
 			NPC.width = 58;
 			NPC.height = 76;
-			NPC.damage = 15;
+			NPC.damage = 25;
 		}
 
 		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
@@ -261,7 +276,7 @@ namespace Eternal.Content.NPCs.Boss.Igneopede
 			NPC.HitSound = null;
 			NPC.DeathSound = SoundID.NPCDeath5;
 			NPC.lifeMax = 160000;
-			NPC.defense = 20;
+			NPC.defense = 30;
 			NPC.width = 58;
 			NPC.height = 76;
 			NPC.damage = 15;
@@ -308,8 +323,8 @@ namespace Eternal.Content.NPCs.Boss.Igneopede
     {
 		public override void Init()
 		{
-			minLength = 12;
-			maxLength = 12;
+			minLength = 24;
+			maxLength = 24;
 			tailType = ModContent.NPCType<IgneopedeTail>();
 			bodyType = ModContent.NPCType<IgneopedeBody>();
 			headType = ModContent.NPCType<IgneopedeHead>();

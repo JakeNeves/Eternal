@@ -135,7 +135,7 @@ namespace Eternal.Content.Items.Accessories
                 .AddIngredient(ItemID.TerrasparkBoots)
                 .AddIngredient(ItemID.LunarBar, 6)
                 .AddIngredient(ModContent.ItemType<CometiteBar>(), 20)
-                .AddIngredient(ModContent.ItemType<CometiteCrystal>(), 12)
+                .AddIngredient(ModContent.ItemType<StarpowerCrystal>(), 12)
                 .AddIngredient(ModContent.ItemType<GalaxianPlating>(), 40)
                 .AddTile(ModContent.TileType<Starforge>())
                 .Register();

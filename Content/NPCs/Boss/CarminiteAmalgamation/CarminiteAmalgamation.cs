@@ -13,20 +13,20 @@ using Terraria.GameContent.Bestiary;
 using System.Collections.Generic;
 using Eternal.Content.Tiles;
 using Eternal.Content.Items.Weapons.Melee;
-using Eternal.Content.Items.Weapons.Ranged;
 using Eternal.Content.Projectiles.Explosion;
 using Eternal.Common.ItemDropRules.Conditions;
 using Eternal.Content.Items.Accessories.Hell;
 using Eternal.Common.Configurations;
 using Eternal.Common.Misc;
-using Microsoft.Xna.Framework.Graphics;
+using Eternal.Content.BossBarStyles;
+using Eternal.Content.Items.Weapons.Ranged;
+using Eternal.Content.NPCs.Boss.DuneGolem;
 
 namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
 {
     [AutoloadBossHead]
     public class CarminiteAmalgamation : ModNPC
     {
-
         private Player player;
 
         private float speed;
@@ -51,8 +51,8 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
         {
             NPC.aiStyle = -1;
             NPC.lifeMax = 3000;
-            NPC.damage = 16;
-            NPC.defense = 10;
+            NPC.damage = 8;
+            NPC.defense = 30;
             NPC.knockBackResist = 0f;
             NPC.width = 80;
             NPC.height = 84;
@@ -61,9 +61,19 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
             NPC.boss = true;
             NPC.noGravity = true;
             NPC.noTileCollide = true;
-            NPC.HitSound = SoundID.NPCHit13;
-            NPC.DeathSound = SoundID.NPCDeath12;
-            Music = MusicID.Boss5;
+            NPC.HitSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCHit/CarminiteAmalgamationHit")
+            {
+                Volume = 0.8f,
+                PitchVariance = Main.rand.NextFloat(0.2f, 0.9f),
+                MaxInstances = 0,
+            };
+            NPC.DeathSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCDeath/CarminiteAmalgamationDeath");
+            // NPC.HitSound = SoundID.NPCHit13;
+            // NPC.DeathSound = SoundID.NPCDeath12;
+            if (!Main.dedServ)
+            {
+                Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/CarminiteAgglomeration");
+            }
             if (DifficultySystem.hellMode)
                 NPC.scale = 0.75f;
             else
@@ -129,12 +139,12 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
 
             npcLoot.Add(ItemDropRule.ByCondition(hellModeDrop, ModContent.ItemType<CarminiteHeart>(), 1));
 
-            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Carminite>(), minimumDropped: 12, maximumDropped: 18));
+            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Carminite>(), 1, 12, 18));
 
-            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<CarminiteBane>(), 1));
-            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<CarminitePurgatory>(), 2));
+            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<CarminiteBroadsword>(), 3));
+            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<CarminiteShortsword>(), 3));
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<CarminiteRipperClaws>(), 3));
-            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<CarminiteDeadshot>(), 4));
+            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<CarminiteShortbow>(), 3));
         }
 
         public override bool CheckDead()
@@ -155,14 +165,23 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
         {
             if (ClientConfig.instance.bossBarExtras)
             {
-                if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
+                if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server && BossBarLoader.CurrentStyle == ModContent.GetInstance<EternalBossBarStyle>())
                 {
-                    EternalBossBarOverlay.SetTracked("Abominable Fleshbound Horror, ", NPC, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBarFrame", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                    EternalBossBarOverlay.SetTracked("Abominable Fleshbound Horror", NPC);
                     EternalBossBarOverlay.visible = true;
                 }
             }
 
             var entitySource = NPC.GetSource_FromAI();
+
+            if (NPC.AnyNPCs(ModContent.NPCType<CarminiteAmalgamationTenticle>()))
+            {
+                NPC.dontTakeDamage = true;
+            }
+            else if (!NPC.AnyNPCs(ModContent.NPCType<CarminiteAmalgamationTenticle>()))
+            {
+                NPC.dontTakeDamage = false;
+            }
 
             rot = NPC.rotation;
 
@@ -232,27 +251,32 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
             {
                 NPC.ai[3] += 1f;
                 NPC.dontTakeDamage = true;
-                Projectile.NewProjectile(entitySource, NPC.Center.X + Main.rand.Next(-20, 20), NPC.Center.Y + Main.rand.Next(-20, 20), 0, 0, ModContent.ProjectileType<BloodBurst>(), 0, 0f, Main.myPlayer);
+                deathExplosionTimer++;
+
+                if (deathExplosionTimer > 5)
+                {
+                    Projectile.NewProjectile(entitySource, NPC.Center.X + Main.rand.Next(-20, 20), NPC.Center.Y + Main.rand.Next(-20, 20), 0, 0, ModContent.ProjectileType<BloodBurst>(), 0, 0f, Main.myPlayer);
+                    deathExplosionTimer = 0;
+                }
 
                 NPC.velocity = new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 2f));
 
                 if (Main.rand.NextBool(5) && NPC.ai[3] < 180f)
                 {
-                    for (int dustNumber = 0; dustNumber < 3; dustNumber++)
+                    /* for (int dustNumber = 0; dustNumber < 3; dustNumber++)
                     {
-                        Dust dust = Main.dust[Dust.NewDust(NPC.Left, NPC.width, NPC.height / 2, DustID.PinkTorch, 0f, 0f, 0, default(Color), 1f)];
+                        Dust dust = Main.dust[Dust.NewDust(NPC.Left, NPC.width, NPC.height / 2, DustID.Blood, 0f, 0f, 0, default(Color), 1f)];
                         dust.position = NPC.Center + Vector2.UnitY.RotatedByRandom(4.1887903213500977) * new Vector2(NPC.width * 1.5f, NPC.height * 1.1f) * 0.8f * (0.8f + Main.rand.NextFloat() * 0.2f);
                         dust.velocity.X = 0f;
                         dust.velocity.Y = -Math.Abs(dust.velocity.Y - (float)dustNumber + NPC.velocity.Y - 4f) * 3f;
                         dust.noGravity = true;
                         dust.fadeIn = 1f;
                         dust.scale = 1f + Main.rand.NextFloat() + (float)dustNumber * 0.3f;
-                    }
+                    } */
                 }
 
                 if (NPC.ai[3] >= 180f)
                 {
-                    NPC.life = 0;
                     if (!DownedBossSystem.downedCarminiteAmalgamation)
                     {
                         Main.NewText("The ground has been smothered with luminous energy...", 22, 71, 73);
@@ -266,6 +290,8 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
 
                         DownedBossSystem.downedCarminiteAmalgamation = true;
                     }
+
+                    NPC.life = 0;
                     NPC.HitEffect(0, 0);
                     NPC.checkDead();
                 }

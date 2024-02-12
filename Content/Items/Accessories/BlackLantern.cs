@@ -36,7 +36,7 @@ namespace Eternal.Content.Items.Accessories
             CreateRecipe()
                 .AddTile(TileID.Anvils)
                 .AddIngredient(ItemID.Torch, 12)
-                .AddIngredient(ModContent.ItemType<Grimstone>(), 16)
+                .AddIngredient(ModContent.ItemType<Gloomrock>(), 16)
                 .Register();
         }
     }

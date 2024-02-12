@@ -31,8 +31,8 @@ namespace Eternal.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Generic) += 1.20f;
-            player.GetCritChance(DamageClass.Generic) += 1.10f;
+            player.GetDamage(DamageClass.Generic) += 0.20f;
+            player.GetCritChance(DamageClass.Generic) += 0.10f;
         }
 
         public override void AddRecipes()

@@ -1,4 +1,5 @@
 ﻿using Eternal.Common.Systems;
+using Eternal.Content.Buffs;
 using Eternal.Content.Items.Materials;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -43,6 +44,11 @@ namespace Eternal.Content.NPCs.Rift
             NPC.buffImmune[BuffID.Frozen] = true;
             NPC.buffImmune[BuffID.Chilled] = true;
             SpawnModBiomes = new int[1] { ModContent.GetInstance<Biomes.Rift>().Type };
+        }
+
+        public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
+        {
+            target.AddBuff(ModContent.BuffType<RiftWithering>(), 1 * 60 * 60, false);
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)

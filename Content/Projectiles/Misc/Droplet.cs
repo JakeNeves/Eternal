@@ -72,8 +72,8 @@ namespace Eternal.Content.Projectiles.Misc
             {
                 Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Blood, Projectile.oldVelocity.X * 1f, Projectile.oldVelocity.Y * 1f);
             }
-            SoundEngine.PlaySound(SoundID.NPCDeath1, Projectile.Center);
-            SoundEngine.PlaySound(SoundID.NPCDeath10, Projectile.Center);
+            SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/CarminiteImpact"), Projectile.Center);
+            SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/CarminiteAmalgamationSpawn"), Projectile.Center);
             NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<CarminiteAmalgamation>());
         }
 

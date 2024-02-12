@@ -1,5 +1,4 @@
-﻿using Eternal.Common.Systems;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.Audio;
@@ -18,8 +17,6 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
         int projectileShoot;
         int teleportTimer;
         int projectileTimer;
-
-        bool canTeleport = true;
 
         public override void SetStaticDefaults()
         {
@@ -71,141 +68,91 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             }
         }
 
+        public override bool PreAI()
+        {
+            Player player = Main.player[NPC.target];
+
+            // NPC.spriteDirection = NPC.direction = NPC.Center.X < player.Center.X ? -1 : 1;
+            NPC.spriteDirection = NPC.direction;
+
+            NPC.rotation = NPC.velocity.X * 0.02f;
+
+            float speed = 25f;
+            float acceleration = 0.10f;
+            Vector2 vector2 = new Vector2(NPC.position.X + (float)NPC.width * 0.5f, NPC.position.Y + (float)NPC.height * 0.5f);
+            float xDir = Main.player[NPC.target].position.X + (float)(Main.player[NPC.target].width / 2) - vector2.X;
+            float yDir = (float)(Main.player[NPC.target].position.Y + (Main.player[NPC.target].height / 2) - 120) - vector2.Y;
+            float length = (float)Math.Sqrt(xDir * xDir + yDir * yDir);
+            if (length > 400 && Main.expertMode)
+            {
+                ++speed;
+                acceleration += 0.05F;
+                if (length > 600)
+                {
+                    ++speed;
+                    acceleration += 0.05F;
+                    if (length > 800)
+                    {
+                        ++speed;
+                        acceleration += 0.05F;
+                    }
+                }
+            }
+            float num10 = speed / length;
+            xDir = xDir * num10;
+            yDir = yDir * num10;
+            if (NPC.velocity.X < xDir)
+            {
+                NPC.velocity.X = NPC.velocity.X + acceleration;
+                if (NPC.velocity.X < 0 && xDir > 0)
+                    NPC.velocity.X = NPC.velocity.X + acceleration;
+            }
+            else if (NPC.velocity.X > xDir)
+            {
+                NPC.velocity.X = NPC.velocity.X - acceleration;
+                if (NPC.velocity.X > 0 && xDir < 0)
+                    NPC.velocity.X = NPC.velocity.X - acceleration;
+            }
+            if (NPC.velocity.Y < yDir)
+            {
+                NPC.velocity.Y = NPC.velocity.Y + acceleration;
+                if (NPC.velocity.Y < 0 && yDir > 0)
+                    NPC.velocity.Y = NPC.velocity.Y + acceleration;
+            }
+            else if (NPC.velocity.Y > yDir)
+            {
+                NPC.velocity.Y = NPC.velocity.Y - acceleration;
+                if (NPC.velocity.Y > 0 && yDir < 0)
+                    NPC.velocity.Y = NPC.velocity.Y - acceleration;
+            }
+
+            return true;
+        }
+
         public override void AI()
         {
             Lighting.AddLight(NPC.position, 0.75f, 0f, 0.75f);
-
+            Player player = Main.player[NPC.target];
+            Vector2 playerPosition = Main.player[NPC.target].position;
             var entitySource = NPC.GetSource_FromAI();
 
             if (NPC.life < NPC.lifeMax / 2)
             {
-                phase = 1;
+                teleportTimer++;
+                if (teleportTimer == 450)
+                {
+                    SoundEngine.PlaySound(SoundID.Item8, NPC.position);
+                    NPC.position.X = playerPosition.X + Main.rand.Next(-600, 600);
+                    NPC.position.Y = playerPosition.Y + Main.rand.Next(-600, 600);
+                    teleportTimer = 0;
+                }
             }
 
-            switch (phase)
+            if (player.dead)
             {
-                case 0:
-                    #region Flying Movement P1
-                    if (phase == 0)
-                    {
-                        float speed;
-                        if (DifficultySystem.hellMode)
-                        {
-                            speed = 12f;
-                        }
-                        else
-                        {
-                            speed = 10f;
-                        }
-                        float acceleration = 0.20f;
-                        Vector2 vector2 = new Vector2(NPC.position.X + (float)NPC.width * 0.5f, NPC.position.Y + (float)NPC.height * 0.5f);
-                        float xDir = Main.player[NPC.target].position.X + (float)(Main.player[NPC.target].width / 2) - vector2.X;
-                        float yDir = (float)(Main.player[NPC.target].position.Y + (Main.player[NPC.target].height / 2) - 120) - vector2.Y;
-                        float length = (float)Math.Sqrt(xDir * xDir + yDir * yDir);
-                        if (length > 400 && Main.expertMode)
-                        {
-                            ++speed;
-                            acceleration += 0.05F;
-                            if (length > 600)
-                            {
-                                ++speed;
-                                acceleration += 0.05F;
-                                if (length > 800)
-                                {
-                                    ++speed;
-                                    acceleration += 0.05F;
-                                }
-                            }
-                        }
-                        float num10 = speed / length;
-                        xDir = xDir * num10;
-                        yDir = yDir * num10;
-                        if (NPC.velocity.X < xDir)
-                        {
-                            NPC.velocity.X = NPC.velocity.X + acceleration;
-                            if (NPC.velocity.X < 0 && xDir > 0)
-                                NPC.velocity.X = NPC.velocity.X + acceleration;
-                        }
-                        else if (NPC.velocity.X > xDir)
-                        {
-                            NPC.velocity.X = NPC.velocity.X - acceleration;
-                            if (NPC.velocity.X > 0 && xDir < 0)
-                                NPC.velocity.X = NPC.velocity.X - acceleration;
-                        }
-                        if (NPC.velocity.Y < yDir)
-                        {
-                            NPC.velocity.Y = NPC.velocity.Y + acceleration;
-                            if (NPC.velocity.Y < 0 && yDir > 0)
-                                NPC.velocity.Y = NPC.velocity.Y + acceleration;
-                        }
-                        else if (NPC.velocity.Y > yDir)
-                        {
-                            NPC.velocity.Y = NPC.velocity.Y - acceleration;
-                            if (NPC.velocity.Y > 0 && yDir < 0)
-                                NPC.velocity.Y = NPC.velocity.Y - acceleration;
-                        }
-                    }
-                    #endregion
-                    break;
-                case 1:
-                    #region Flying Movement P2
-                    Player player = Main.player[NPC.target];
-                    NPC.TargetClosest(true);
-                    NPC.direction = NPC.spriteDirection = NPC.Center.X < player.Center.X ? -1 : 1;
-                    Vector2 targetPosition = Main.player[NPC.target].position;
-                    Vector2 target = NPC.HasPlayerTarget ? player.Center : Main.npc[NPC.target].Center;
-                    NPC.netAlways = true;
-                    projectileTimer++;
-                    if (canTeleport)
-                    {
-                        teleportTimer++;
-                    }
-                    if (teleportTimer >= 200)
-                    {
-                        SoundEngine.PlaySound(SoundID.Item8, NPC.position);
-                        for (int k = 0; k < 5; k++)
-                        {
-                            Dust.NewDust(NPC.position + NPC.velocity, NPC.width, NPC.height, DustID.Shadowflame, NPC.oldVelocity.X * 0.5f, NPC.oldVelocity.Y * 0.5f);
-                        }
-                        NPC.position.X = targetPosition.X + Main.rand.Next(-400, 400);
-                        NPC.position.Y = targetPosition.Y + Main.rand.Next(-400, 400);
-                        teleportTimer = 0;
-                    }
-                    if (projectileTimer >= 180)
-                    {
-                        Vector2 shootPos = NPC.Center;
-                        float accuracy = 5f * (NPC.life / NPC.lifeMax);
-                        Vector2 shootVel = target - shootPos + new Vector2(Main.rand.NextFloat(-accuracy, accuracy), Main.rand.NextFloat(-accuracy, accuracy));
-                        shootVel.Normalize();
-                        shootVel *= 14.5f;
-                        projectileShoot = Main.rand.Next(0, 1);
-                        for (int i = 0; i < (Main.expertMode ? 2 : 1); i++)
-                        {
-                            if (projectileShoot == 0)
-                            {
-                                Projectile.NewProjectile(entitySource, shootPos.X + -100 * NPC.direction + Main.rand.Next(-20, 20), shootPos.Y - Main.rand.Next(-20, 20), shootVel.X, shootVel.Y, ProjectileID.ShadowBeamHostile, NPC.damage / 3, 5f);
-                            }
-                            if (projectileShoot == 1)
-                            {
-                                Projectile.NewProjectile(entitySource, shootPos.X + -100 * NPC.direction + Main.rand.Next(-20, 20), shootPos.Y - Main.rand.Next(-20, 20), shootVel.X, shootVel.Y, ProjectileID.Shadowflames, NPC.damage / 2, 5f);
-                            }
-                        }
-                        projectileTimer = 0;
-                    }
-                    if (!player.active || player.dead)
-                    {
-                        canTeleport = false;
-                        NPC.TargetClosest(false);
-                        NPC.direction = 1;
-                        NPC.velocity.Y = NPC.velocity.Y - 0.1f;
-                        if (NPC.timeLeft > 5)
-                        {
-                            NPC.timeLeft = 5;
-                            return;
-                        }
-                    }
-                    #endregion
-                    break;
+                NPC.velocity.Y -= 0.04f;
+                NPC.EncourageDespawn(10);
+                return;
             }
         }
 

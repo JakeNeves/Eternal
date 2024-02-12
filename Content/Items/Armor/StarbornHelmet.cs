@@ -38,7 +38,7 @@ namespace Eternal.Content.Items.Armor
         {
             player.setBonus = "+8 minion slots and 20% increased minion damage" +
                             "\nSome weapons receive special abilities" +
-                            "\nWeapon projectiles heal the player by 15 HP when below half healt upon hitting any enemy" +
+                            "\nWeapon projectiles heal the player by 15 HP when below half health upon hitting any enemy" +
                             "\n15% increased damage when below half health";
             player.GetDamage(DamageClass.Summon) += 0.20f;
             player.maxMinions += 8;
@@ -67,7 +67,7 @@ namespace Eternal.Content.Items.Armor
                 .AddIngredient(ModContent.ItemType<StarmetalBar>(), 5)
                 .AddIngredient(ModContent.ItemType<CometiteBar>(), 16)
                 .AddIngredient(ModContent.ItemType<GalaxianPlating>(), 4)
-                .AddIngredient(ModContent.ItemType<CometiteCrystal>(), 6)
+                .AddIngredient(ModContent.ItemType<StarpowerCrystal>(), 6)
                 .AddTile(ModContent.TileType<Starforge>())
                 .Register();
         }

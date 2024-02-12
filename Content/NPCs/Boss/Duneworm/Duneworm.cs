@@ -1,6 +1,7 @@
 ﻿using Eternal.Common.Configurations;
 using Eternal.Common.Misc;
 using Eternal.Common.Systems;
+using Eternal.Content.BossBarStyles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;
@@ -87,9 +88,9 @@ namespace Eternal.Content.NPCs.Boss.Duneworm
 		{
             if (ClientConfig.instance.bossBarExtras)
             {
-                if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
+                if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server && BossBarLoader.CurrentStyle == ModContent.GetInstance<EternalBossBarStyle>())
                 {
-                    EternalBossBarOverlay.SetTracked("Burrower of The Sands, ", NPC, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBarEternalBossBar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                    EternalBossBarOverlay.SetTracked("Ambusher of the Desert", NPC);
                     EternalBossBarOverlay.visible = true;
                 }
             }

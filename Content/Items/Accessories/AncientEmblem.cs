@@ -30,7 +30,7 @@ namespace Eternal.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Melee) += 1.05f;
+            player.GetDamage(DamageClass.Melee) += 0.05f;
         }
 
         public override void AddRecipes()

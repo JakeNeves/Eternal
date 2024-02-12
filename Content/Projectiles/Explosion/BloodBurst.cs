@@ -43,7 +43,7 @@ namespace Eternal.Content.Projectiles.Explosion
             {
                 Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Blood, Projectile.oldVelocity.X * 1f, Projectile.oldVelocity.Y * 1f);
             }
-            SoundEngine.PlaySound(SoundID.NPCHit1, Projectile.Center);
+            SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/CarminiteImpact"), Projectile.Center);
         }
 
     }

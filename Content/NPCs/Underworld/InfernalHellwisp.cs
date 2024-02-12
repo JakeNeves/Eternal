@@ -1,8 +1,10 @@
 ﻿using Eternal.Common.Systems;
+using Eternal.Content.Items.Materials;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
@@ -15,8 +17,7 @@ namespace Eternal.Content.NPCs.Underworld
 
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Infernal Hellwisp");
-            var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
                 CustomTexturePath = "Eternal/Assets/Textures/Bestiary/InfernalHellwisp_Preview",
                 PortraitPositionXOverride = 0f,
@@ -57,6 +58,11 @@ namespace Eternal.Content.NPCs.Underworld
 
                 new FlavorTextBestiaryInfoElement("Spirits of the dungeon fear this blazing spiritual hellspawn of an amalgamation.")
             });
+        }
+
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<InfernoblightShard>(), 2, 2, 4));
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

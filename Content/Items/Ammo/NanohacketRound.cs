@@ -5,14 +5,11 @@ using Eternal.Content.Rarities;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Localization;
 
 namespace Eternal.Content.Items.Ammo
 {
     public class NanohacketRound : ModItem
     {
-        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("'For slicing and dicing!'");
-
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
@@ -37,7 +34,7 @@ namespace Eternal.Content.Items.Ammo
         {
             CreateRecipe(333)
                 .AddTile(ModContent.TileType<Nanoforge>())
-                .AddIngredient(ModContent.ItemType<ConcintratedHardStone>())
+                .AddIngredient(ModContent.ItemType<NaquadahBar>())
                 .Register();
         }
     }

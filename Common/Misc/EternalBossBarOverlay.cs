@@ -4,9 +4,14 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.UI;
 using Terraria.ModLoader;
+using Terraria.GameContent;
 
 namespace Eternal.Common.Misc
 {
+    /// <summary>
+    /// A feature added by Eternal to add the boss name above the vanilla boss bar as was as a subtitle above the boss name.
+    /// (Other mods may not support the subtitle feature)
+    /// </summary>
     public class EternalBossBarOverlay : SmartHUDState
     {
         public static bool visible;
@@ -15,8 +20,6 @@ namespace Eternal.Common.Misc
         public static string text;
         public static Texture2D texture = ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBarFrame", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
         public static Color glowColor = Color.Transparent;
-
-        public static bool? forceInvulnerabilityVisuals = null;
 
         private readonly BarOverlay bar = new();
 
@@ -51,14 +54,34 @@ namespace Eternal.Common.Misc
             base.Draw(spriteBatch);
         }
 
-        public static void SetTracked(string text, NPC NPC, Texture2D tex = default)
+        /// <summary>
+        /// Used for the Eternal Mod boss bar style
+        /// </summary>
+        /// <param name="text">The text that appears above the NPC's name</param>
+        /// <param name="NPC"></param>
+        public static void SetTracked(string text, NPC NPC)
         {
             tracked = NPC;
             EternalBossBarOverlay.text = text;
             visible = true;
+        }
+    }
 
-            if (tex != default)
-                texture = tex;
+    public class EternalBossBar
+    {
+        // Code taken from the base game, there are some slight modifications to this one though... (The code is based off the unused boss bar style.)
+        public static void DrawBossBar(SpriteBatch spriteBatch, float lifePercent)
+        {
+            Rectangle rectangle = Utils.CenteredRectangle(Main.ScreenSize.ToVector2() * new Vector2(0.5f, 1f) + new Vector2(0f, -50f), new Vector2(400f, 20f));
+            Rectangle destinationRectangle = rectangle;
+            destinationRectangle.Inflate(0, 0);
+            Texture2D value = TextureAssets.MagicPixel.Value;
+            Rectangle value2 = new Rectangle(0, 0, 1, 1);
+            Rectangle destinationRectangle2 = rectangle;
+            destinationRectangle2.Width = (int)((float)destinationRectangle2.Width * lifePercent);
+            spriteBatch.Draw(value, destinationRectangle, value2, Color.Black * 0.6f);
+            spriteBatch.Draw(value, rectangle, value2, Color.Black * 0.6f);
+            spriteBatch.Draw(value, destinationRectangle2, value2, Color.Red * 0.6f);
         }
     }
 
@@ -77,24 +100,13 @@ namespace Eternal.Common.Misc
             if (NPC is null || !NPC.active || !Main.LocalPlayer.active)
             {
                 EternalBossBarOverlay.visible = false;
-                EternalBossBarOverlay.forceInvulnerabilityVisuals = null;
                 return;
             }
 
-            Texture2D texGlow = ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBarGlow").Value;
-
             int progress = (int)(EternalBossBarOverlay.tracked?.life / (float)EternalBossBarOverlay.tracked?.lifeMax * 456);
 
-            spriteBatch.End();
-            spriteBatch.Begin(default, BlendState.Additive, default, default, default, default, Main.UIScaleMatrix);
-
-            spriteBatch.Draw(texGlow, pos + off, EternalBossBarOverlay.glowColor * 0.5f);
-            spriteBatch.Draw(texGlow, new Rectangle((int)(pos.X + off.X), (int)(pos.Y + off.Y), progress, 22), new Rectangle(0, 0, progress, 22), EternalBossBarOverlay.glowColor);
-
-            spriteBatch.End();
-            spriteBatch.Begin(default, default, default, default, default, default, Main.UIScaleMatrix);
-
-            Utils.DrawBorderString(spriteBatch, EternalBossBarOverlay.text + NPC.FullName, pos + new Vector2(516 / 2, -20), Color.White, 1, 0.5f, 0);
+            Utils.DrawBorderString(spriteBatch, EternalBossBarOverlay.text, pos + new Vector2(516 / 2, -40), Color.White, 0.75f, 0.5f, 0);
+            Utils.DrawBorderString(spriteBatch, NPC.FullName, pos + new Vector2(516 / 2, -25), Color.White, 1.5f, 0.5f, 0);
         }
     }
 }

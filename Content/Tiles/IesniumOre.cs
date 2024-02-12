@@ -24,9 +24,7 @@ namespace Eternal.Content.Tiles
             Main.tileBlockLight[Type] = true;
             Main.tileLighted[Type] = true;
             DustType = DustID.BlueTorch;
-            // ItemDrop = ModContent.ItemType<Content.Items.Placeable.IesniumOre>();
             LocalizedText name = CreateMapEntryName();
-            // name.SetDefault("Iesnium");
             AddMapEntry(new Color(22, 71, 73), name);
             MinPick = 100;
             HitSound = SoundID.Tink;

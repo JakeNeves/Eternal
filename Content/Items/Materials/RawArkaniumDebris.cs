@@ -10,9 +10,9 @@ namespace Eternal.Content.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            // Tooltip.SetDefault("'Feels like tough ceramic'");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
+
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<ExathiumSlag>();
         }
 
         public override void SetDefaults()

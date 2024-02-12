@@ -3,6 +3,7 @@ using Terraria.GameContent.Creative;
 using Terraria.ModLoader;
 using Eternal.Content.Tiles.CraftingStations;
 using Eternal.Content.Rarities;
+using Terraria.ID;
 
 namespace Eternal.Content.Items.Materials
 {
@@ -10,9 +11,9 @@ namespace Eternal.Content.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            // Tooltip.SetDefault("'Feels like concrete'");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
+
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<MeldedExathiumShard>();
         }
 
         public override void SetDefaults()

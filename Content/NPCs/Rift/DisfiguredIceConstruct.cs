@@ -1,7 +1,9 @@
 ﻿using Eternal.Common.Systems;
+using Eternal.Content.Buffs;
 using Eternal.Content.Items.Materials;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -44,6 +46,11 @@ namespace Eternal.Content.NPCs.Rift
             });
         }
 
+        public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
+        {
+            target.AddBuff(ModContent.BuffType<RiftWithering>(), 1 * 60 * 60, false);
+        }
+
         public override void HitEffect(NPC.HitInfo hit)
         {
             if (Main.netMode == NetmodeID.Server)
@@ -79,6 +86,7 @@ namespace Eternal.Content.NPCs.Rift
         {
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MoteofOminite>(), 1, 1, 3));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RawNaquadah>(), 2, 1, 2));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ShiftblightShard>(), 2, 2, 4));
         }
 
         public override void AI()

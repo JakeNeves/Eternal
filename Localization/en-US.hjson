@@ -16,7 +16,7 @@ Mods: {
 			TheBeneath: The Beneath is a very dark place, torches won't work, unless you have a Black Lantern or a Black Candle.
 			TheRift: Be careful when inside The Rift, dangerous entities and such lie within it! Also, try not to get yelled at by the Emperor for opening it.
 			UnstablePortals: It's been rumored that Unstable Portals can be withness by those who soar through the Rift's sky!
-			PhenomenaUpdateTeaser: Upon Defeating the Cosmic Apparition, it's said that the 1.3 update could be themed around phenomenas...
+			BossBarConfig: Eternal adds the boss name above the boss bar along with a subtitle, this can be toggled in Eternal's configuration file.
 		}
 
 		DamageClasses.Radiant.DisplayName: radiant damage
@@ -126,23 +126,6 @@ Mods: {
 				DisplayName: The Precursor Temple
 			}
 
-			TheNeoxMechs: {
-				Tooltip:
-					'''
-					[c/2EA5BF:---Entry No. 12---]
-					They have mysteriously gone rouge, my creations!
-					The prototypes have destroyed nearly half of the facility.
-					We have managed to evacuate before nearly risking our very
-					lives to our unspeakable, yet undesireable death! If our highness
-					hears about the wreckage of the facility, he could revoke our research permits
-					for 6 months for unsafe percautions of my creations... They must be destroyed
-					as soon as possible, whatever has possession of these creations, should immediately
-					be punished for their reign of chaotic destruction of our facility.
-					-Dr. Sebastion Kox
-					'''
-				DisplayName: The N30X Mechs
-			}
-
 			TheComet: {
 				Tooltip:
 					'''
@@ -242,9 +225,9 @@ Mods: {
 				DisplayName: Hard Stone
 			}
 
-			Grimstone: {
+			Gloomrock: {
 				Tooltip: "'Dark...'"
-				DisplayName: Grimstone
+				DisplayName: Gloomrock
 			}
 
 			GalaciteOre: {
@@ -427,6 +410,11 @@ Mods: {
 				DisplayName: Yoggie Spotch
 			}
 
+			Yoggie: {
+				DisplayName: Yoggie
+				Tooltip: ""
+			}
+
 			WeatheredPlating: {
 				Tooltip: "'It's weathered, yet still durable'"
 				DisplayName: Weathered Plating
@@ -443,14 +431,14 @@ Mods: {
 				DisplayName: Unrefined Hero Sword
 			}
 
-			ThunderblightCrystal: {
-				Tooltip: "'A mere fragment of the dune's creatures'"
-				DisplayName: Thunderblight Crystal
+			ThunderblightShard: {
+				Tooltip: "'The essence of thunderborn creatures'"
+				DisplayName: Thunderblight Shard
 			}
 
-			ThunderblightCore: {
-				Tooltip: "'A mere fragment of the Eternal thunderborn spirits'"
-				DisplayName: Thunderblight Core
+			ThunderblightJade: {
+				Tooltip: "'The solidified essence of lightning'"
+				DisplayName: Thunderblight Jade
 			}
 
 			StarmetalBar: {
@@ -458,9 +446,9 @@ Mods: {
 				DisplayName: Starmetal Bar
 			}
 
-			StargloomCometiteBar: {
-				Tooltip: "'The strongest starmetal, a material with otherworldly properties when exposed to a rift.'"
-				DisplayName: Stargloom Cometite Bar
+			AwakenedCometiteBar: {
+				Tooltip: "'The strongest starmetal, a material with otherworldly properties when exposed to the rift.'"
+				DisplayName: Awakened Cometite Bar
 			}
 
 			ShadowSkull: {
@@ -548,14 +536,14 @@ Mods: {
 				DisplayName: Interstellar Metal
 			}
 
-			InfernoblightCrystal: {
-				Tooltip: "'A mere fragment of the underworld's creatures'"
-				DisplayName: Infernoblight Crystal
+			InfernoblightShard: {
+				Tooltip: "'The essence of infernoborn creatures'"
+				DisplayName: Infernoblight Shard
 			}
 
-			InfernoblightCore: {
-				Tooltip: "'A mere fragment of the Eternal infernoborn spirits'"
-				DisplayName: Infernoblight Core
+			InfernoblightAmber: {
+				Tooltip: "'The solidified essence of fire'"
+				DisplayName: Infernoblight Amber
 			}
 
 			InfernalAshes: {
@@ -608,14 +596,14 @@ Mods: {
 				Tooltip: ""
 			}
 
-			FrostblightCrystal: {
-				Tooltip: "'A mere fragment of the tundra's creatures'"
-				DisplayName: Frostblight Crystal
+			FrostblightShard: {
+				Tooltip: "'The essence of frostborn creatures'"
+				DisplayName: Frostblight Shard
 			}
 
-			FrostblightCore: {
-				Tooltip: "'A mere fragment of the Eternal frostborn spirits'"
-				DisplayName: Frostblight Core
+			FrostblightSapphire: {
+				Tooltip: "'The solidified essence of ice'"
+				DisplayName: Frostblight Sapphire
 			}
 
 			ElectriteBar: {
@@ -644,19 +632,14 @@ Mods: {
 				DisplayName: Cosmic Emperor's Interstellar Alloy
 			}
 
-			CoreofEternal: {
+			CoreofExodus: {
 				Tooltip: "'A mere fragment of Reality'"
-				DisplayName: Core of Eternal
+				DisplayName: Core of Exodus
 			}
 
-			ConcintratedHardStone: {
-				Tooltip: "'The heaviest form of rock, formed with impossibly heavy pressure...'"
-				DisplayName: Concentrated Hard Stone
-			}
-
-			CometiteCrystal: {
+			StarpowerCrystal: {
 				Tooltip: "'A crystaline singularity of pristine starpower'"
-				DisplayName: Cometite Crystal
+				DisplayName: Starpower Crystal
 			}
 
 			CometiteBar: {
@@ -770,7 +753,7 @@ Mods: {
 					'''
 					[c/FF0000:Debug Item]
 					Makes the Cosmic Apparition no longer a downed boss
-					killing it will make enemies in the comet biome drop cometite materials again...
+					Killing it will make enemies in the comet biome drop materials again...
 					<right> to undo the Rift effect
 					'''
 				DisplayName: Cosmic Apparition Un-Killer
@@ -1171,8 +1154,12 @@ Mods: {
 			}
 
 			GiftofTheSwordGod: {
-				Tooltip: This has features that are not yet implimented
-				DisplayName: Gift of The Sword God (NYI)
+				DisplayName: Gift of The Sword God [NYI]
+				Tooltip:
+					'''
+						[c/ff0000:---NOT YET IMPLIMENTED---]
+						This has features that are not yet implimented...
+					'''
 			}
 
 			DuneCore: {
@@ -1285,8 +1272,8 @@ Mods: {
 				Tooltip: ""
 			}
 
-			CometiteWhaleHarvester: {
-				DisplayName: Cometite Whale Harvester
+			StarbornWhaleHarvester: {
+				DisplayName: Starborn Whale Harvester
 				Tooltip:
 					'''
 					Fires multiple lines at once.
@@ -1563,7 +1550,7 @@ Mods: {
 
 			Sunshine: {
 				DisplayName: Sunshine
-				Tooltip: "'Can you feel the light?'"
+				Tooltip: "'Can you feel the... Wait, wrong game!'"
 			}
 
 			Tartaron: {
@@ -1605,8 +1592,8 @@ Mods: {
 				Tooltip:
 					'''
 					[c/FF0000:Cheat Item]
-					Can manipulate anything in a single swing
-					Automatically drains your health to 1 HP
+					Instanly kills enything that dares to oppose it
+					'It used to drain all your HP down to 1...'
 					'''
 			}
 
@@ -1745,7 +1732,7 @@ Mods: {
 
 			NaquadahHelmet: {
 				DisplayName: Naquadah Helmet
-				Tooltip: ""
+				Tooltip: 20% increased summon damage
 			}
 
 			AdamantriteBar: {
@@ -1763,9 +1750,14 @@ Mods: {
 				Tooltip: Used to process Ominite and Naquadah
 			}
 
-			OminiteTippedNaquadahPickaxe: {
-				DisplayName: Ominite-Tipped Naquadah Pickaxe
+			NaquadahPickaxe: {
+				DisplayName: Naquadah Pickaxe
 				Tooltip: "'Capable of mining some sort of powerful ore...'"
+			}
+
+			NaquadahHamaxe: {
+				DisplayName: Naquadah Hamaxe
+				Tooltip: "'This is a thing, because Jake said so...'"
 			}
 
 			ZeroPointModule: {
@@ -1822,7 +1814,7 @@ Mods: {
 
 			NaquadahCowl: {
 				DisplayName: Naquadah Cowl
-				Tooltip: +20% increased summon damage
+				Tooltip: +20% increased magic damage
 			}
 
 			NaquadahHeadgear: {
@@ -1923,40 +1915,194 @@ Mods: {
 
 			CarminiteAmalgamationMask: {
 				DisplayName: Carminite Amalgamation Mask
-				Tooltop: ""
 				Tooltip: ""
 			}
 
 			DuneMask: {
 				DisplayName: Dune Mask
-				Tooltop: ""
 				Tooltip: ""
 			}
 
 			CosmicApparitionMask: {
 				DisplayName: Cosmic Apparition Mask
-				Tooltop: ""
 				Tooltip: ""
 			}
 
 			JakesPants: {
 				DisplayName: Jake's Pants
-				Tooltip: "'Great for impersonating eternal's devs!'"
+				Tooltip: "'Great for impersonating Eternal's devs!'"
 			}
 
 			JakesTunic: {
 				DisplayName: Jake's Tunic
-				Tooltip: "'Great for impersonating eternal's devs!'"
+				Tooltip: "'Great for impersonating Eternal's devs!'"
 			}
 
 			JakesHat: {
 				DisplayName: Jake's Hat
-				Tooltip: "'Great for impersonating eternal's devs!'"
+				Tooltip: "'Great for impersonating Eternal's devs!'"
 			}
 
 			Ichorate: {
 				DisplayName: Ichorate
-				Tooltip: "'I swear, I remember seeing someone with something similar to this in the outback...'"
+				Tooltip: "'I swear, I remember seeing something similar to this in the outback...'"
+			}
+
+			ShiftblightShard: {
+				Tooltip: "'The essence of shiftborn creatures'"
+				DisplayName: Shiftblight Shard
+			}
+
+			ShiftblightAmethyst: {
+				Tooltip: "'The solidified essence of distortion'"
+				DisplayName: Shiftblight Amethyst
+			}
+
+			WitherWardPotion: {
+				DisplayName: Wither Ward Potion
+				Tooltip: Immunity to Apparitional Wither
+			}
+
+			InstabilityWardPotion: {
+				DisplayName: Instability Ward Potion
+				Tooltip: Immunity to the Rift's Withering
+			}
+
+			CarminiteGreaves: {
+				DisplayName: Carminite Greaves
+				Tooltip: ""
+			}
+
+			CarminiteRibPlate: {
+				DisplayName: Carminite Rib Plate
+				Tooltip: ""
+			}
+
+			CarminiteSkulmet: {
+				DisplayName: Carminite Skulmet
+				Tooltip: ""
+			}
+
+			CarminiteBroadsword: {
+				DisplayName: Carminite Broadsword
+				Tooltip: ""
+			}
+
+			CarminiteShortsword: {
+				DisplayName: Carminite Shortsword
+				Tooltip: ""
+			}
+
+			CarminiteShortbow: {
+				DisplayName: Carminite Shortbow
+				Tooltip: ""
+			}
+
+			PrimordialElementalBreaker: {
+				DisplayName: Primordial Elemental Breaker
+				Tooltip: ""
+			}
+
+			StarshiftObliterationBreaker: {
+				DisplayName: Starshift Obliteration Breaker
+				Tooltip: ""
+			}
+
+			OminaquaditeChair: {
+				DisplayName: Ominaquadite Chair
+				Tooltip: ""
+			}
+
+			AncientArkaniumChestplate: {
+				DisplayName: Ancient Arkanium Chestplate
+				Tooltip: ""
+			}
+
+			AncientArkaniumCowl: {
+				DisplayName: Ancient Arkanium Cowl
+				Tooltip: ""
+			}
+
+			AncientArkaniumGreaves: {
+				DisplayName: Ancient Arkanium Greaves
+				Tooltip: ""
+			}
+
+			AncientArkaniumHeadgear: {
+				DisplayName: Ancient Arkanium Headgear
+				Tooltip: ""
+			}
+
+			AncientArkaniumHelmet: {
+				DisplayName: Ancient Arkanium Helmet
+				Tooltip: ""
+			}
+
+			AncientArkaniumMask: {
+				DisplayName: Ancient Arkanium Mask
+				Tooltip: ""
+			}
+
+			ExathiumSlag: {
+				DisplayName: Exathium Slag
+				Tooltip: "'This is Anti-Arkanium...'"
+			}
+
+			MeldedExathiumShard: {
+				DisplayName: Melded Exathium Shard
+				Tooltip: "'This is also Anti-Arkanium...'"
+			}
+
+			RawExathium: {
+				DisplayName: Raw Exathium
+				Tooltip: "'This is Anti-Arkrystal...'"
+			}
+
+			RefinedExathium: {
+				DisplayName: Refined Exathium
+				Tooltip: "'This is also Anti-Arkrystal...'"
+			}
+
+			WeaponGradeNaquadahAlloy: {
+				DisplayName: Weapon Grade Naquadah Alloy
+				Tooltip: "'How does one even make a naquadah alloy in the first place?'"
+			}
+
+			CrownofTheTundra: {
+				DisplayName: Crown of The Tundra
+				Tooltip:
+					'''
+					Summons the Subzero Elemental
+					'I swear, this belonged to the Frost King at some point...'
+					'''
+			}
+
+			ShiftingEerieMonolith: {
+				DisplayName: Shifting Eerie Monolith [WIP]
+				Tooltip:
+					'''
+					[c/ff0000:---WORK IN PROGRESS---]
+					This item has features that are not yet implimented...
+					'''
+			}
+
+			LifeMote: {
+				DisplayName: Life Mote
+				Tooltip: Permanently increases your health by 5
+			}
+
+			ReverseLifeMote: {
+				DisplayName: Reverse Life Mote
+				Tooltip:
+					'''
+					[c/ff0000:Debug Item]
+					Permanently decreases your health by 5
+					'''
+			}
+
+			Stardrax: {
+				DisplayName: Stardrax
+				Tooltip: ""
 			}
 		}
 
@@ -1972,17 +2118,17 @@ Mods: {
 			}
 
 			CosmicDecoy: {
-				Description: The Cosmic Decoy will aid you in combat
+				Description: The Cosmic Decoy will aid you in combat...
 				DisplayName: Cosmic Decoy
 			}
 
 			Hypothermia: {
-				Description: You are freezing to death
+				Description: You are freezing to death!
 				DisplayName: Hypothermia
 			}
 
 			Hyperthermia: {
-				Description: You are dying of heat
+				Description: You are dying of heat!
 				DisplayName: Hyperthermia
 			}
 
@@ -1992,7 +2138,7 @@ Mods: {
 			}
 
 			Froststruck: {
-				Description: The freezing tempuratures make you body brittle
+				Description: The freezing tempuratures make you body brittle...
 				DisplayName: Froststruck
 			}
 
@@ -2015,6 +2161,16 @@ Mods: {
 				Description: The Rod of Distortion has inflicted you with unstability!
 				DisplayName: Unstable State
 			}
+
+			WitherWard: {
+				Description: Immunity to Apparitional Wither!
+				DisplayName: Wither Ward
+			}
+
+			InstabilityWard: {
+				Description: Immunity to the Rift's Withering!
+				DisplayName: Instability Ward
+			}
 		}
 
 		Tiles: {
@@ -2027,11 +2183,13 @@ Mods: {
 			Starforge.MapEntry: Starforge
 			Nanoforge.MapEntry: Nanoforge
 			AncientForge.MapEntry: Ancient Forge
-			CometiteOre.MapEntry: Cometite
+			StarstoneOre.MapEntry: Cometite
 			RotaryHerathForge.DisplayName: Rotary Hearth Forge
 			RotaryHearthForge.MapEntry: Rotary Hearth Forge
-			TheCherishedKinofGallahard.MapEntry: The Cherished Kinof Gallahard
-			TheSonofTheArsGaladia.MapEntry: The Sonof The Ars Galadia
+			TheCherishedKinofGallahard.MapEntry: Painting
+			TheSonofTheArsGaladia.MapEntry: Painting
+			CometiteOre.MapEntry: Cometite Ore
+			ShiftingEerieMonolith.MapEntry: Shifting Eerie Monolith
 		}
 
 		Biomes: {
@@ -2065,11 +2223,6 @@ Mods: {
 				BossChecklistIntegration.SpawnInfo: Spawn by using a [i:Eternal/RoyalShrineSword]
 			}
 
-			Arkasama.DisplayName: Arkasama
-			ArkasamaShield.DisplayName: Arkasama Shield
-			MechapedeBody.DisplayName: Mechapede
-			MechapedeHead.DisplayName: Mechapede
-			MechapedeTail.DisplayName: Mechapede
 			CarminiteAmalgamationTenticle.DisplayName: Carminite Amalgamation's Tenticle
 
 			CarminiteAmalgamation: {
@@ -2133,13 +2286,8 @@ Mods: {
 				BossChecklistIntegration.SpawnInfo: Spawn by using an [i:Eternal/ObsidianLantern].
 			}
 
-			Atlas.DisplayName: Atlas N30X
-			Orion.DisplayName: Orion N30X
-			Polarus.DisplayName: Polarus N30X
-			PolarusLaserTurret.DisplayName: Polarus N30X Laser Turret
-			PolarusShield.DisplayName: Polarus N30X Shield
-			PolarusSignalDrone.DisplayName: Polarus N30X Signal Drone
 			SubzeroElemental.DisplayName: Subzero Elemental
+			SubzeroElementalRobe.DisplayName: Subzero Elemental?
 			Cryota.DisplayName: Cryota
 			CryotasSentry.DisplayName: Cryota's Sentry
 			Flaremutaria.DisplayName: Flaremutaria
@@ -2246,6 +2394,8 @@ Mods: {
 				DisplayName: Phantom Construct
 				BossChecklistIntegration.SpawnInfo: Defeat an Unstable Portal in the Rift Sky.
 			}
+
+			Absorber.DisplayName: Absorber
 		}
 
 		Prefixes: {
@@ -2272,7 +2422,7 @@ Mods: {
 			DuneSpark.DisplayName: Dune Spark
 			ArkaniumSword.DisplayName: Arkanium Sword
 			UnstableStarbornWisp.DisplayName: Unstable Starborn Wisp
-			CometiteWhaleHarvesterBobber.DisplayName: Cometite Whale Harvester Bobber
+			StarstoneWhaleHarvesterBobber.DisplayName: Starstone Whale Harvester Bobber
 			AoICircle.DisplayName: Ark of Imperious' Ritual Circle
 			ApparitionalDiskHostile.DisplayName: Apparitional Disk
 			ApparitionalWisp.DisplayName: Apparitional Wisp
@@ -2384,6 +2534,12 @@ Mods: {
 			ExosiivaGladiusBladeProjectile.DisplayName: Exosiiva Gladius Blade
 			ExosiivaGladiusBladeProjectile2.DisplayName: Exosiiva Gladius Blade
 			IchorateProjectile.DisplayName: Ichorate
+			PrimordialElementalBreakerProjectile.DisplayName: Primordial Elemental Breaker Projectile
+			StarshiftObliterationBreakerProjectile.DisplayName: Starshift Obliteration Breaker Projectile
+			StarshiftObliterationBreakerShoot.DisplayName: Starshift Obliteration Breaker Shoot
+			CometiteWhaleHarvesterBobber.DisplayName: Cometite Whale Harvester Bobber
+			CarminiteShortswordProjectile.DisplayName: Carminite Shortsword Projectile
+			StardraxProjectile.DisplayName: Stardrax Projectile
 		}
 
 		Configs: {
@@ -2393,6 +2549,7 @@ Mods: {
 				Headers: {
 					Messages: Messages
 					ExperimentalFeatures: Experimental Features
+					EternalModBossBarSettings: Eternal Mod Boss Bar Settings Header
 				}
 			}
 
@@ -2402,6 +2559,7 @@ Mods: {
 				Headers: {
 					GameplayTweaks: Gameplay Tweaks
 					HellModeTweaks: Hell Mode Tweaks
+					ExperimentalFeatures: Experimental Features
 				}
 			}
 		}
@@ -2431,9 +2589,9 @@ Mods: {
 						DisplayName: Boss Bar Extras
 						Tooltip:
 							'''
-							Adds Eternal's own additions to the vanilla boss bar, just like Starlight River's boss bars.
-							[c/FF0000:OTHER MODS ARE NOT SUPPORTED!]
-							(Default: [c/008080:OFF])
+							Adds the boss name above the boss bar.
+							[c/FF0000:OTHER MODS MAY NOT SUPPORT ETERNAL'S EXTRA BOSS BAR FEATURES!]
+							(Default: [c/008080:ON])
 							'''
 					}
 				}
@@ -2476,12 +2634,21 @@ Mods: {
 							(Default: [c/008080:ON])
 							'''
 					}
+
+					lifeMotes: {
+						DisplayName: Life Motes
+						Tooltip:
+							'''
+							Adds Life Motes into the game, these will be dropped by the Phantom Construct.
+							(Default: [c/008080:OFF])
+							'''
+					}
 				}
 			}
 		}
 
 		Conditions: {
-			CosmicAppatitionDefeated: When the Cosmic Apparition has been defeated
+			CosmicApparitionDefeated: When the Cosmic Apparition has been defeated
 			IsNamedJake: When the player is named after the Empreror or the mod's creator
 			50ReputationPoints: When the player has a Reputation quota of 50
 			100ReputationPoints: When the player has a Reputation quota of 100
@@ -2493,7 +2660,6 @@ Mods: {
 			1150ReputationPoints: When the player has a Reputation quota of 1150
 			1500ReputationPoints: When the player has a Reputation quota of 1500
 			5000ReputationPoints: When the player has the maximum Reputation Quota
-			CosmicApparitionDefeated: Mods.Eternal.Conditions.CosmicApparitionDefeated
 		}
 	}
 }

@@ -8,22 +8,23 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 {
     public class SolScytheProjectile : ModProjectile
     {
+        public override string Texture => "Eternal/Content/Items/Weapons/Melee/SolScythe";
+
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Sol Sythe");
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 8;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }
 
         public override void SetDefaults()
         {
-            Projectile.width = 66;
-            Projectile.height = 62;
+            Projectile.width = 108;
+            Projectile.height = 108;
             Projectile.aiStyle = 3;
             Projectile.friendly = true;
             Projectile.DamageType = DamageClass.Melee;
             Projectile.penetrate = -1;
-            Projectile.timeLeft = 600;
+            Projectile.timeLeft = 300;
             Projectile.extraUpdates = 1;
             Projectile.tileCollide = false;
         }

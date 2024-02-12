@@ -106,6 +106,5 @@ namespace Eternal.Content.Items.Weapons.Melee
 
             return false;
         }
-
     }
 }

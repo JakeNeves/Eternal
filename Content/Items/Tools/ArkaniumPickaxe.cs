@@ -22,8 +22,8 @@ namespace Eternal.Content.Items.Tools
             Item.DamageType = DamageClass.Melee;
             Item.width = 42;
             Item.height = 44;
-            Item.useTime = 15;
-            Item.useAnimation = 15;
+            Item.useTime = 20;
+            Item.useAnimation = 20;
             Item.pick = 240;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.knockBack = 12;

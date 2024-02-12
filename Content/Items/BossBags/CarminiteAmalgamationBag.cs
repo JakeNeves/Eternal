@@ -43,10 +43,10 @@ namespace Eternal.Content.Items.BossBags
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Carminite>(), minimumDropped: 24, maximumDropped: 36));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Bloodtooth>()));
 
-            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<CarminiteBane>(), 1));
-            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<CarminitePurgatory>(), 2));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<CarminiteBroadsword>(), 3));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<CarminiteShortsword>(), 3));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<CarminiteRipperClaws>(), 3));
-            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<CarminiteDeadshot>(), 4));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<CarminiteShortbow>(), 3));
         }
     }
 }

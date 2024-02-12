@@ -1,4 +1,5 @@
 ﻿using Eternal.Common.Systems;
+using Eternal.Content.Buffs;
 using Eternal.Content.Items.Materials;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -42,6 +43,11 @@ namespace Eternal.Content.NPCs.Rift
             NPC.alpha = 100;
         }
 
+        public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
+        {
+            target.AddBuff(ModContent.BuffType<RiftWithering>(), 1 * 60 * 60, false);
+        }
+
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
@@ -73,6 +79,7 @@ namespace Eternal.Content.NPCs.Rift
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MoteofOminite>(), 1, 1, 6));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ShiftblightShard>(), 2, 2, 4));
         }
 
         public override void AI()

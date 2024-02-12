@@ -11,6 +11,8 @@ namespace Eternal.Content.Items.Potions
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 30;
+
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<FineRedWine>();
         }
 
         public override void SetDefaults()

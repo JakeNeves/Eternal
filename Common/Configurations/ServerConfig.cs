@@ -46,5 +46,15 @@ namespace Eternal.Common.Configurations
         [LabelKey("$Mods.Eternal.Common.Configurations.ServerConfig.hellModeVanillaBosses.DisplayName")]
         [TooltipKey("$Mods.Eternal.Common.Configurations.ServerConfig.hellModeVanillaBosses.Tooltip")]
         public bool hellModeVanillaBosses = true;
+
+        /// <summary>
+        /// EXPERIMENTAL: Adds Life motes to the game (WIP)
+        /// </summary>
+        [SeparatePage]
+        [Header("ExperimentalFeatures")]
+        [DefaultValue(false)]
+        [LabelKey("$Mods.Eternal.Common.Configurations.ServerConfig.lifeMotes.DisplayName")]
+        [TooltipKey("$Mods.Eternal.Common.Configurations.ServerConfig.lifeMotes.Tooltip")]
+        public bool lifeMotes = false;
     }
 }

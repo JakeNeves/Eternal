@@ -13,7 +13,7 @@ namespace Eternal.Common.Systems
         public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts)
         {
             cometCount = tileCounts[ModContent.TileType<CometiteOre>()];
-            grimstoneCount = tileCounts[ModContent.TileType<Grimstone>()];
+            grimstoneCount = tileCounts[ModContent.TileType<Gloomrock>()];
             shrineBrickCount = tileCounts[ModContent.TileType<ShrineBrick>()];
         }
     }

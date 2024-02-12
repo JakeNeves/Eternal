@@ -23,18 +23,17 @@ namespace Eternal.Content.Tiles
             Main.tileBlockLight[Type] = true;
             Main.tileLighted[Type] = true;
             DustType = ModContent.DustType<CosmicSpirit>();
-            // ItemDrop = ModContent.ItemType<Content.Items.Placeable.CometiteOre>();
             LocalizedText name = CreateMapEntryName();
-            // name.SetDefault("Cometite");
             AddMapEntry(new Color(30, 20, 40), name);
             MinPick = 225;
-            HitSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/CometiteOreBreak")
+            HitSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/CometiteOreHit")
             {
                 Volume = 0.8f,
-                PitchVariance = Main.rand.NextFloat(0.2f, 0.9f),
+                PitchVariance = Main.rand.NextFloat(0.2f, 0.4f),
                 MaxInstances = 0,
+                Variants = new[] { 1, 2, 3, 4 }
             };
-            MineResist = 10f;
+            MineResist = 5.5f;
         }
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)

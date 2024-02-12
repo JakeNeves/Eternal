@@ -37,7 +37,7 @@ namespace Eternal.Content.Items.Accessories.Vanity
         {
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<CursorofTheCosmos>())
-                .AddIngredient(ModContent.ItemType<CoreofEternal>())
+                .AddIngredient(ModContent.ItemType<CoreofExodus>())
                 .AddTile(ModContent.TileType<Nanoforge>())
                 .Register();
         }

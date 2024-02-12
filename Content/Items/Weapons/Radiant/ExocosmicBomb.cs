@@ -42,8 +42,8 @@ namespace Eternal.Content.Items.Weapons.Radiant
         {
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<CosmoniumFragment>())
-                .AddIngredient(ModContent.ItemType<StargloomCometiteBar>(), 12)
-                .AddIngredient(ModContent.ItemType<CoreofEternal>(), 6)
+                .AddIngredient(ModContent.ItemType<AwakenedCometiteBar>(), 12)
+                .AddIngredient(ModContent.ItemType<CoreofExodus>(), 6)
                 .AddTile(ModContent.TileType<Nanoforge>())
                 .Register();
         }

@@ -29,9 +29,9 @@ namespace Eternal.Content.Items.Summon
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<CoreofEternal>(), 12)
+                .AddIngredient(ModContent.ItemType<CoreofExodus>(), 12)
                 .AddIngredient(ModContent.ItemType<CometiteBar>(), 16)
-                .AddIngredient(ModContent.ItemType<CometiteCrystal>(), 20)
+                .AddIngredient(ModContent.ItemType<StarpowerCrystal>(), 20)
                 .AddTile(ModContent.TileType<RotaryHearthForge>())
                 .Register();
         }

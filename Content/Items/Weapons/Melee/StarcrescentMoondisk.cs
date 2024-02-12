@@ -41,7 +41,7 @@ namespace Eternal.Content.Items.Weapons.Melee
         {
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<CosmoniumFragment>())
-                .AddIngredient(ModContent.ItemType<StargloomCometiteBar>(), 30)
+                .AddIngredient(ModContent.ItemType<AwakenedCometiteBar>(), 30)
                 .AddIngredient(ModContent.ItemType<EmpoweredApparitionalDisk>())
                 .AddTile(ModContent.TileType<Nanoforge>())
                 .Register();

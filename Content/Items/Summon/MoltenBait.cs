@@ -47,7 +47,7 @@ namespace Eternal.Content.Items.Summon
                 .AddIngredient(ItemID.Obsidian, 10)
                 .AddIngredient(ItemID.Bone, 6)
                 .AddIngredient(ItemID.HellstoneBar, 12)
-                .AddTile(TileID.DemonAltar)
+                .AddTile(TileID.MythrilAnvil)
                 .Register();
         }
     }

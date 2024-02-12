@@ -36,7 +36,7 @@ namespace Eternal.Content.Items.Weapons.Melee
         {
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<CosmoniumFragment>())
-                .AddIngredient(ModContent.ItemType<StargloomCometiteBar>(), 24)
+                .AddIngredient(ModContent.ItemType<AwakenedCometiteBar>(), 24)
                 .AddIngredient(ModContent.ItemType<RefinedArkrystalSheets>(), 16)
                 .AddIngredient(ModContent.ItemType<ApparitionalMatter>(), 16)
                 .AddTile(ModContent.TileType<Nanoforge>())

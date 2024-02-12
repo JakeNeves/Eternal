@@ -52,7 +52,7 @@ namespace Eternal.Content.Items.Weapons.Melee
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<CosmoniumFragment>())
                 .AddIngredient(ModContent.ItemType<Nyanarang>())
-                .AddIngredient(ModContent.ItemType<StargloomCometiteBar>(), 12)
+                .AddIngredient(ModContent.ItemType<AwakenedCometiteBar>(), 12)
                 .AddIngredient(ModContent.ItemType<ApparitionalMatter>(), 8)
                 .AddTile(ModContent.TileType<Nanoforge>())
                 .Register();

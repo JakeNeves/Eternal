@@ -24,6 +24,7 @@ namespace Eternal.Content.Projectiles.Weapons.Radiant
             Projectile.ignoreWater = true;
             Projectile.penetrate = -1;
             Projectile.timeLeft = 400;
+            Projectile.DamageType = ModContent.GetInstance<DamageClasses.Radiant>();
         }
 
         public override void AI()

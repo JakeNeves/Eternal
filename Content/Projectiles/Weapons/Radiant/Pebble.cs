@@ -23,6 +23,7 @@ namespace Eternal.Content.Projectiles.Weapons.Radiant
             Projectile.ignoreWater = true;
             Projectile.penetrate = -1;
             Projectile.timeLeft = 300;
+            Projectile.DamageType = ModContent.GetInstance<DamageClasses.Radiant>();
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)

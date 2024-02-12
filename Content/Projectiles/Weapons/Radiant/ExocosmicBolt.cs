@@ -26,6 +26,7 @@ namespace Eternal.Content.Projectiles.Weapons.Radiant
             Projectile.tileCollide = false;
             Projectile.DamageType = DamageClass.Magic;
             Projectile.extraUpdates = 2;
+            Projectile.DamageType = ModContent.GetInstance<DamageClasses.Radiant>();
         }
 
         public override void AI()

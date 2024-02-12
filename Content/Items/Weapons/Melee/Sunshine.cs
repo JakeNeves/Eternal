@@ -26,8 +26,8 @@ namespace Eternal.Content.Items.Weapons.Melee
             Item.useTime = 22;
             Item.shootSpeed = 5f;
             Item.knockBack = 4f;
-            Item.width = 66;
-            Item.height = 66;
+            Item.width = 88;
+            Item.height = 88;
             Item.rare = ModContent.RarityType<Teal>();
             Item.value = Item.sellPrice(gold: 10);
 

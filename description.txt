@@ -1,6 +1,6 @@
 [c/1EC9E3:Eternal] - By [c/008CFF:Jake][c/0204CFF:TEM]!
 
-1.2  - [c/009933:Alpha] (Across a Second Reality)
+1.3  - [c/009933:Beta] (Ballad of the Ancients)
 
 [c/00B359:---Jake's Lounge Discord Server---]
 Feel free to join my Discord Server and help out with the mod if you want
@@ -12,7 +12,7 @@ From what we expect, this mod is not fully finished yet so
 there is no harm in cheating in anything from the mod via HERO's, Cheat Sheet and/or DragonLens...
 
 [c/ED0249:---NOTICE---]
-This is a public alpha build of the 1.4 port of Eternal, bugs and other sketchy things may arise!
+This is a public beta build of Eternal, bugs and other sketchy things may arise!
 
 [c/009933:--CONTENT BREAKDOWN--]
 5/32 Bosses (some bosses are in the game, however they may not be finished, but could be in the future)

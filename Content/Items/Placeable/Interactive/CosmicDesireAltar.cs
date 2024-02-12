@@ -37,7 +37,7 @@ namespace Eternal.Content.Items.Placeable.Interactive
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<CometiteCrystal>(), 8)
+                .AddIngredient(ModContent.ItemType<StarpowerCrystal>(), 8)
                 .AddIngredient(ModContent.ItemType<CometiteOre>(), 20)
                 .AddIngredient(ModContent.ItemType<StarmetalBar>(), 30)
                 .AddTile(ModContent.TileType<AncientForge>())

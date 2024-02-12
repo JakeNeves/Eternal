@@ -1,6 +1,7 @@
 ﻿using Eternal.Common.Configurations;
 using Eternal.Common.Misc;
 using Eternal.Common.Systems;
+using Eternal.Content.BossBarStyles;
 using Eternal.Content.Items.BossBags;
 using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Pets;
@@ -177,10 +178,22 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
                 }
             }
 
+            // NPC.spriteDirection = NPC.direction = NPC.Center.X < player.Center.X ? -1 : 1;
+            NPC.spriteDirection = NPC.direction;
             NPC.rotation = NPC.velocity.X * 0.02f;
 
             float speed = 30f;
             float acceleration = 0.15f;
+            if (Main.expertMode)
+            {
+                speed = 45f;
+                acceleration = 0.30f;
+            }
+            else if (DifficultySystem.hellMode)
+            {
+                speed = 60f;
+                acceleration = 0.45f;
+            }
             Vector2 vector2 = new Vector2(NPC.position.X + (float)NPC.width * 0.5f, NPC.position.Y + (float)NPC.height * 0.5f);
             float xDir = Main.player[NPC.target].position.X + (float)(Main.player[NPC.target].width / 2) - vector2.X;
             float yDir = (float)(Main.player[NPC.target].position.Y + (Main.player[NPC.target].height / 2) - 120) - vector2.Y;
@@ -235,9 +248,9 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
         {
             if (ClientConfig.instance.bossBarExtras)
             {
-                if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
+                if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server && BossBarLoader.CurrentStyle == ModContent.GetInstance<EternalBossBarStyle>())
                 {
-                    EternalBossBarOverlay.SetTracked("Ghostly Horror, ", NPC, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBarFrame", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                    EternalBossBarOverlay.SetTracked("Ambusher from the Fallen Comet", NPC);
                     EternalBossBarOverlay.visible = true;
                 }
             }
@@ -248,8 +261,6 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             }
 
             Player player = Main.player[NPC.target];
-
-            NPC.spriteDirection = NPC.direction = NPC.Center.X < player.Center.X ? -1 : 1;
 
             Vector2 playerPosition = Main.player[NPC.target].position;
 
@@ -269,11 +280,11 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
                 NPC.dontTakeDamage = false;
             }
 
-            if (NPC.life < NPC.lifeMax / 2 && phase != 1 && Main.netMode != NetmodeID.MultiplayerClient)
+            if (NPC.life < NPC.lifeMax / 2 && phase < 1)
             {
+                if (!Main.dedServ)
+                    SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/CosmicApparitionAnger"), NPC.position);
                 phase = 1;
-                SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/CosmicApparitionAnger"), NPC.position);
-                NPC.netUpdate = true;
             }
 
             if (NPC.ai[3] > 0f)
@@ -327,15 +338,44 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
                 teleportTimer++;
             }
 
-            if (teleportTimer == 400)
+            if (Main.expertMode)
             {
-                if (canTeleport)
+                if (teleportTimer == 200)
                 {
-                    SoundEngine.PlaySound(SoundID.Item8, NPC.position);
-                    NPC.position.X = playerPosition.X + Main.rand.Next(-600, 600);
-                    NPC.position.Y = playerPosition.Y + Main.rand.Next(-600, 600);
+                    if (canTeleport)
+                    {
+                        SoundEngine.PlaySound(SoundID.Item8, NPC.position);
+                        NPC.position.X = playerPosition.X + Main.rand.Next(-600, 600);
+                        NPC.position.Y = playerPosition.Y + Main.rand.Next(-600, 600);
+                    }
+                    teleportTimer = 0;
                 }
-                teleportTimer = 0;
+            }
+            else if (DifficultySystem.hellMode)
+            {
+                if (teleportTimer == 150)
+                {
+                    if (canTeleport)
+                    {
+                        SoundEngine.PlaySound(SoundID.Item8, NPC.position);
+                        NPC.position.X = playerPosition.X + Main.rand.Next(-600, 600);
+                        NPC.position.Y = playerPosition.Y + Main.rand.Next(-600, 600);
+                    }
+                    teleportTimer = 0;
+                }
+            }
+            else
+            {
+                if (teleportTimer == 400)
+                {
+                    if (canTeleport)
+                    {
+                        SoundEngine.PlaySound(SoundID.Item8, NPC.position);
+                        NPC.position.X = playerPosition.X + Main.rand.Next(-600, 600);
+                        NPC.position.Y = playerPosition.Y + Main.rand.Next(-600, 600);
+                    }
+                    teleportTimer = 0;
+                }
             }
 
             if (NPC.life < NPC.lifeMax / 2)

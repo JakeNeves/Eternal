@@ -130,6 +130,7 @@ namespace Eternal.Content.NPCs.Rift
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MoteofOminite>(), 1, 2, 6));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ShiftblightShard>(), 2, 2, 4));
         }
 
         public override void HitEffect(NPC.HitInfo hit)

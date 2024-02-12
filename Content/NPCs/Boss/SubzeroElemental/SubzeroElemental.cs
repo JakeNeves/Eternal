@@ -1,5 +1,7 @@
-﻿using Eternal.Common.Systems;
-using Eternal.Content.Projectiles.Boss;
+﻿using Eternal.Common.Configurations;
+using Eternal.Common.Misc;
+using Eternal.Common.Systems;
+using Eternal.Content.BossBarStyles;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -191,6 +193,15 @@ namespace Eternal.Content.NPCs.Boss.SubzeroElemental
 
         public override void AI()
         {
+            if (ClientConfig.instance.bossBarExtras)
+            {
+                if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server && BossBarLoader.CurrentStyle == ModContent.GetInstance<EternalBossBarStyle>())
+                {
+                    EternalBossBarOverlay.SetTracked("Guardian of the Tundra", NPC);
+                    EternalBossBarOverlay.visible = true;
+                }
+            }
+
             var entitySource = NPC.GetSource_FromAI();
 
             Player player = Main.player[NPC.target];

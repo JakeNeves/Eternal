@@ -18,17 +18,11 @@ namespace Eternal.Common.Systems
 		public static bool downedDuneworm = false;
 		public static bool downedDroxOverlord = false;
 		public static bool downedEmpraynia = false;
-		public static bool downedArmageddonOverseer = false;
-		public static bool downedArmageddonMechapede = false;
 
 		// post-moon lord bosses
-		public static bool downedFrostKing = false;
 		public static bool downedCosmicApparition = false;
-		public static bool downedArmageddonArkasama = false;
-		public static bool downedArmageddonChampion = false;
-		public static bool downedArmageddonOverlord = false;
+        public static bool downedFrostKing = false;
         public static bool downedArkofImperious = false;
-		public static bool downedNeoxBosses = false;
 		public static bool downedCosmicEmperor = false;
 		public static bool downedTrinity = false;
 
@@ -49,17 +43,11 @@ namespace Eternal.Common.Systems
 			downedDuneworm = false;
 			downedDroxOverlord = false;
 			downedEmpraynia = false;
-			downedArmageddonOverseer = false;
-			downedArmageddonMechapede = false;
 
 			// post-moon lord bosses
-			downedFrostKing = false;
 			downedCosmicApparition = false;
-			downedArmageddonMechapede = false;
-			downedArmageddonChampion = false;
-			downedArmageddonOverlord = false;
-			downedArkofImperious = false;
-			downedNeoxBosses = false;
+            downedFrostKing = false;
+            downedArkofImperious = false;
 			downedCosmicEmperor = false;
 			downedTrinity = false;
 
@@ -81,17 +69,11 @@ namespace Eternal.Common.Systems
 			downedDuneworm = false;
 			downedDroxOverlord = false;
 			downedEmpraynia = false;
-			downedArmageddonOverseer = false;
-			downedArmageddonMechapede = false;
 
 			// post-moon lord bosses
-			downedFrostKing = false;
 			downedCosmicApparition = false;
-			downedArmageddonMechapede = false;
-			downedArmageddonChampion = false;
-			downedArmageddonOverlord = false;
-			downedArkofImperious = false;
-			downedNeoxBosses = false;
+            downedFrostKing = false;
+            downedArkofImperious = false;
 			downedTrinity = false;
 			downedCosmicEmperor = false;
 
@@ -190,9 +172,9 @@ namespace Eternal.Common.Systems
             flags[5] = downedDuneworm;
 
             // post-moon lord bosses
-            flags[10] = downedCosmicApparition;
-			flags[20] = downedArkofImperious;
-            flags[23] = downedCosmicEmperor;
+            flags[9] = downedCosmicApparition;
+			flags[19] = downedArkofImperious;
+            flags[22] = downedCosmicEmperor;
 
             // rift
             downedRiftCosmicApparition = flags[10];
@@ -215,13 +197,13 @@ namespace Eternal.Common.Systems
             downedDuneworm = flags[5];
 
             // post-moon lord bosses
-            downedCosmicApparition = flags[10];
-			downedArkofImperious = flags[20];
-            downedCosmicEmperor = flags[23];
+            downedCosmicApparition = flags[9];
+			downedArkofImperious = flags[19];
+            downedCosmicEmperor = flags[22];
 
             // rift
-            downedRiftCosmicApparition = flags[10];
-            downedRiftArkofImperious = flags[20];
+            downedRiftCosmicApparition = flags[9];
+            downedRiftArkofImperious = flags[19];
         }
 	}
 }

@@ -36,14 +36,13 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "+24 minion slots and 30% increased minion damage" +
+            player.setBonus = "30% increased magic damage" +
                             "\nSome weapons receive special abilities" +
                             "\nStarborn, Arkanium and Ultimus Armor Effects" +
                             "\n[c/FCA5033:Rift Bonus]" +
                             "\nImmunity to Rift Withering" +
                             "\nProtection against the Rod of Distortion's unstability";
-            player.GetDamage(DamageClass.Summon) += 0.30f;
-            player.maxMinions += 8;
+            player.GetDamage(DamageClass.Magic) += 0.30f;
             ArmorSystem.StarbornArmor = true;
             ArmorSystem.ArkaniumArmor = true;
             ArmorSystem.UltimusArmor = true;
@@ -60,12 +59,14 @@ namespace Eternal.Content.Items.Armor
 
         public override void ArmorSetShadows(Player player)
         {
-            player.armorEffectDrawShadow = true;
+            player.armorEffectDrawOutlinesForbidden = true;
+            player.armorEffectDrawOutlines = true;
+            player.armorEffectDrawShadowLokis = true;
         }
 
         public override void UpdateEquip(Player player)
         {
-            player.GetDamage(DamageClass.Summon) += 0.20f;
+            player.GetDamage(DamageClass.Magic) += 0.20f;
         }
 
         public override void AddRecipes()

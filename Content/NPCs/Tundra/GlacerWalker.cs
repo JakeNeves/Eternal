@@ -103,10 +103,8 @@ namespace Eternal.Content.NPCs.Tundra
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            PostCosmicApparitionDropCondition postCosmicApparitionDrop = new PostCosmicApparitionDropCondition();
-
-            npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<Items.Placeable.GalaciteOre>(), 1, 6, 8));
-
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Placeable.GalaciteOre>(), 4, 6, 12));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<FrostblightShard>(), 2, 2, 4));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GlacerWalkerHead>(), 4, 1, 1));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GlacerWalkerChestplate>(), 4, 1, 1));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GlacerWalkerGreaves>(), 4, 1, 1));

@@ -41,7 +41,7 @@ namespace Eternal.Content.Items.Accessories.Hell
                 .AddTile(TileID.Anvils)
                 .AddIngredient(ModContent.ItemType<ShadowSkull>())
                 .AddIngredient(ModContent.ItemType<BlackLantern>())
-                .AddIngredient(ModContent.ItemType<Grimstone>(), 36)
+                .AddIngredient(ModContent.ItemType<Gloomrock>(), 36)
                 .AddIngredient(ItemID.Candle)
                 .Register();
         }

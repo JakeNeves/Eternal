@@ -72,7 +72,7 @@ namespace Eternal.Content.Items.Armor
                 .AddIngredient(ModContent.ItemType<StarmetalBar>(), 5)
                 .AddIngredient(ModContent.ItemType<CometiteBar>(), 16)
                 .AddIngredient(ModContent.ItemType<GalaxianPlating>(), 4)
-                .AddIngredient(ModContent.ItemType<CometiteCrystal>(), 6)
+                .AddIngredient(ModContent.ItemType<StarpowerCrystal>(), 6)
                 .AddTile(ModContent.TileType<Starforge>())
                 .Register();
         }

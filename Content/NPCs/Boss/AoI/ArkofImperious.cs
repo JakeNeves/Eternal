@@ -1,6 +1,7 @@
 ﻿using Eternal.Common.Configurations;
 using Eternal.Common.Misc;
 using Eternal.Common.Systems;
+using Eternal.Content.BossBarStyles;
 using Eternal.Content.Items.BossBags;
 using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Potions;
@@ -358,9 +359,9 @@ namespace Eternal.Content.NPCs.Boss.AoI
         {
             if (ClientConfig.instance.bossBarExtras)
             {
-                if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
+                if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server && BossBarLoader.CurrentStyle == ModContent.GetInstance<EternalBossBarStyle>())
                 {
-                    EternalBossBarOverlay.SetTracked("Guardian of The Shrine, ", NPC, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBarFrame", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                    EternalBossBarOverlay.SetTracked("Guardian of The Shrine", NPC);
                     EternalBossBarOverlay.visible = true;
                 }
             }

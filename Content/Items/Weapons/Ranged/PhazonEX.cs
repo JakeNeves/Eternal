@@ -44,7 +44,7 @@ namespace Eternal.Content.Items.Weapons.Ranged
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<Phazon>())
                 .AddIngredient(ModContent.ItemType<InterstellarMetal>(), 26)
-                .AddIngredient(ModContent.ItemType<CoreofEternal>(), 30)
+                .AddIngredient(ModContent.ItemType<CoreofExodus>(), 30)
                 .AddIngredient(ModContent.ItemType<CosmoniumFragment>())
                 .AddTile(ModContent.TileType<AncientForge>())
                 .Register();

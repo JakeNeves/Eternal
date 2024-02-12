@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 using Eternal.Content.Projectiles.Boss;
 using Eternal.Common.Configurations;
 using Eternal.Common.Misc;
-using Microsoft.Xna.Framework.Graphics;
+using Eternal.Content.BossBarStyles;
 
 namespace Eternal.Content.NPCs.Boss.CosmicEmperor
 {
@@ -167,9 +167,9 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
         {
             if (ClientConfig.instance.bossBarExtras)
             {
-                if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
+                if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server && BossBarLoader.CurrentStyle == ModContent.GetInstance<EternalBossBarStyle>())
                 {
-                    EternalBossBarOverlay.SetTracked("The Nameless Menace Unleashed, ", NPC, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBarFrame", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                    EternalBossBarOverlay.SetTracked("The Nameless Tyrant Unleashed", NPC);
                     EternalBossBarOverlay.visible = true;
                 }
             }

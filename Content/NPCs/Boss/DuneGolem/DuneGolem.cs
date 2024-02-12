@@ -14,6 +14,7 @@ using Terraria.ModLoader;
 using Eternal.Common.Configurations;
 using Eternal.Common.Misc;
 using Microsoft.Xna.Framework.Graphics;
+using Eternal.Content.BossBarStyles;
 
 namespace Eternal.Content.NPCs.Boss.DuneGolem
 {
@@ -46,8 +47,8 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
         public override void SetDefaults()
         {
             NPC.lifeMax = 6000;
-            NPC.damage = 5;
-            NPC.defense = 15;
+            NPC.damage = 6;
+            NPC.defense = 30;
             NPC.knockBackResist = 0f;
             NPC.width = 106;
             NPC.height = 106;
@@ -59,7 +60,10 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
             NPC.buffImmune[BuffID.Electrified] = true;
             NPC.HitSound = SoundID.NPCHit3;
             NPC.DeathSound = SoundID.NPCDeath3;
-            Music = MusicID.Boss1;
+            if (!Main.dedServ)
+            {
+                Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/HauntedTombfromtheDunes");
+            }
         }
 
         public override void OnKill()
@@ -260,9 +264,9 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
         {
             if (ClientConfig.instance.bossBarExtras)
             {
-                if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
+                if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server && BossBarLoader.CurrentStyle == ModContent.GetInstance<EternalBossBarStyle>())
                 {
-                    EternalBossBarOverlay.SetTracked("Possessed Desert Idol, ", NPC, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBarFrame", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                    EternalBossBarOverlay.SetTracked("Possessed Desert Idol", NPC);
                     EternalBossBarOverlay.visible = true;
                 }
             }

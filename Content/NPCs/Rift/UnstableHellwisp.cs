@@ -1,8 +1,10 @@
 ﻿using Eternal.Common.Systems;
+using Eternal.Content.Items.Materials;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
@@ -15,7 +17,7 @@ namespace Eternal.Content.NPCs.Rift
 
         public override void SetStaticDefaults()
         {
-            var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
                 CustomTexturePath = "Eternal/Assets/Textures/Bestiary/UnstableHellwisp_Preview",
                 PortraitPositionXOverride = 0f,
@@ -65,6 +67,11 @@ namespace Eternal.Content.NPCs.Rift
                 return SpawnCondition.Underworld.Chance * 0f;
             else
                 return SpawnCondition.Underworld.Chance * 0.75f;
+        }
+
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ShiftblightShard>(), 2, 2, 4));
         }
 
         public override void AI()

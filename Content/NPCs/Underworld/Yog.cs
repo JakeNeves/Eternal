@@ -1,5 +1,6 @@
 ﻿using Eternal.Common.Systems;
 using Eternal.Content.Items.Materials;
+using Eternal.Content.Items.Placeable;
 using Eternal.Content.Projectiles.Misc;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -68,7 +69,9 @@ namespace Eternal.Content.NPCs.Underworld
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<YoggieSpotch>(), minimumDropped: 1, maximumDropped: 3));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Yoggie>(), 2, 1, 3));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<InfernoblightShard>(), 2, 2, 4));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<IgniumOre>(), 4, 6, 12));
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

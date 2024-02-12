@@ -1,7 +1,7 @@
 ﻿using Eternal.Common.Configurations;
 using Eternal.Common.Misc;
-using Eternal.Common.Players;
 using Eternal.Common.Systems;
+using Eternal.Content.BossBarStyles;
 using Eternal.Content.Dusts;
 using Eternal.Content.Items.Potions;
 using Eternal.Content.Projectiles.Boss;
@@ -225,9 +225,9 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
         {
             if (ClientConfig.instance.bossBarExtras)
             {
-                if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
+                if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server && BossBarLoader.CurrentStyle == ModContent.GetInstance<EternalBossBarStyle>())
                 {
-                    EternalBossBarOverlay.SetTracked("Master of the Cosmic Power, ", NPC, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBarFrame", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                    EternalBossBarOverlay.SetTracked("Master of the Cosmic Power", NPC);
                     EternalBossBarOverlay.visible = true;
                 }
             }

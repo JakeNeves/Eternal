@@ -13,7 +13,7 @@ namespace Eternal.Content.Items.Weapons.Melee
 
         public override void SetDefaults()
         {
-            Item.width = 18;
+            Item.width = 14;
             Item.height = 20;
             Item.DamageType = DamageClass.Melee;
             Item.rare = ItemRarityID.Orange;

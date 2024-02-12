@@ -5,6 +5,7 @@ namespace Eternal.Common.Misc
 {
     /// <summary>
     /// A smart HUD element with some code sorced from the Starlight River GitHub Reopsitory
+    /// (This is primarly used for Eternal's boss bar features)
     /// </summary>
     public abstract class SmartHUDElement : UIElement
     {

@@ -28,13 +28,14 @@ namespace Eternal.Common.Systems
 				return;
 			}
 
-			// pre hardmode
-			// Carminite Amalgamation
-			bossChecklistMod.Call(
+            #region Pre-Hardmode
+            // pre hardmode
+            // Carminite Amalgamation
+            bossChecklistMod.Call(
 				"LogBoss",
 				Mod,
 				nameof(CarminiteAmalgamation),
-				5.5f,
+				4.5f,
 				() => DownedBossSystem.downedCarminiteAmalgamation,
 				ModContent.NPCType<CarminiteAmalgamation>(),
 				new Dictionary<string, object>()
@@ -44,10 +45,10 @@ namespace Eternal.Common.Systems
 					["collectables"] = new List<int>()
 					{
 					    ModContent.ItemType<Content.Items.Materials.Carminite>(),
-					    ModContent.ItemType<Content.Items.Weapons.Melee.CarminiteBane>(),
+					    ModContent.ItemType<Content.Items.Weapons.Melee.CarminiteBroadsword>(),
 					    ModContent.ItemType<Content.Items.Weapons.Melee.CarminiteRipperClaws>(),
-						ModContent.ItemType<Content.Items.Weapons.Melee.CarminitePurgatory>(),
-						ModContent.ItemType<Content.Items.Weapons.Ranged.CarminiteDeadshot>()
+						ModContent.ItemType<Content.Items.Weapons.Melee.CarminiteShortsword>(),
+						ModContent.ItemType<Content.Items.Weapons.Ranged.CarminiteShortbow>()
 					}
                 }
 			);
@@ -70,10 +71,12 @@ namespace Eternal.Common.Systems
 					}
                 }
 			);
+            #endregion
 
+            #region Hardmode
             // hardmode
-            // The Igneopede
-            bossChecklistMod.Call(
+            // The Igneopede (Temporarily Delisted)
+            /* bossChecklistMod.Call(
                 "LogBoss",
                 Mod,
                 nameof(IgneopedeHead),
@@ -89,9 +92,9 @@ namespace Eternal.Common.Systems
                     {
                         // TODO: Igneopede Loot
                     }
-					*/
+					
                 }
-            );
+            ); */
             // Incinerius
             bossChecklistMod.Call(
                 "LogBoss",
@@ -112,8 +115,8 @@ namespace Eternal.Common.Systems
                 }
             );
             // Subzero Elemental
-            // Duneworm
-            bossChecklistMod.Call(
+            // Duneworm (Temporarily Delisted)
+            /* bossChecklistMod.Call(
                 "LogBoss",
                 Mod,
                 nameof(DunewormHead),
@@ -129,13 +132,15 @@ namespace Eternal.Common.Systems
                     {
                         // TODO: Duneworm Loot
                     }
-					*/
+					
                 }
-            );
+            );*/
             // Empraynia
             // Armageddon Golem
             // Armageddon Elemental
+            #endregion
 
+            #region Post-Moon Lord
             // post-moon lord
             // Frost King
             // Cosmic Apparition
@@ -212,7 +217,7 @@ namespace Eternal.Common.Systems
 				"LogBoss",
 				Mod,
 				nameof(CosmicEmperor),
-				32.5f,
+				24f,
 				() => DownedBossSystem.downedCosmicEmperor,
 				ModContent.NPCType<CosmicEmperorP2>(),
                 new Dictionary<string, object>()
@@ -227,6 +232,7 @@ namespace Eternal.Common.Systems
                     }
                 }
             );
-		}
-	}
+            #endregion
+        }
+    }
 }

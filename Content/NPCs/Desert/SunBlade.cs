@@ -1,5 +1,6 @@
 ﻿using Eternal.Common.Systems;
 using Eternal.Content.Items.Materials;
+using Eternal.Content.Items.Placeable;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Bestiary;
@@ -76,6 +77,8 @@ namespace Eternal.Content.NPCs.Desert
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SarosFragment>(), 4, 1, 6));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ThunderblightShard>(), 2, 2, 4));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ElectriteOre>(), 4, 6, 12));
         }
     }
 }

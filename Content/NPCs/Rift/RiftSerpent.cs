@@ -1,4 +1,5 @@
 ﻿using Eternal.Common.Systems;
+using Eternal.Content.Buffs;
 using Eternal.Content.Items.Materials;
 using Microsoft.Xna.Framework;
 using System.IO;
@@ -17,7 +18,7 @@ namespace Eternal.Content.NPCs.Rift
     {
 		public override void SetStaticDefaults()
 		{
-			var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+			var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers()
 			{
 				CustomTexturePath = "Eternal/Content/NPCs/Rift/RiftSerpent_Preview",
 				Position = new Vector2(0f, 24f),
@@ -47,7 +48,12 @@ namespace Eternal.Content.NPCs.Rift
 			NPC.dontTakeDamage = true;
 		}
 
-		public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
+        {
+            target.AddBuff(ModContent.BuffType<RiftWithering>(), 1 * 60 * 60, false);
+        }
+
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
 			int[] cometTileArray = {TileID.Grass, TileID.Sand, TileID.Stone, TileID.SnowBlock, TileID.IceBlock, TileID.Dirt };
 
@@ -91,7 +97,8 @@ namespace Eternal.Content.NPCs.Rift
         public override void ModifyNPCLoot(NPCLoot npcLoot)
 		{
 			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MoteofOminite>(), 1, 2, 6));
-		}
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ShiftblightShard>(), 2, 2, 4));
+        }
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
 		{
@@ -139,7 +146,7 @@ namespace Eternal.Content.NPCs.Rift
     {
 		public override void SetStaticDefaults()
 		{
-			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
 			{
 				Hide = true
 			};
@@ -162,6 +169,11 @@ namespace Eternal.Content.NPCs.Rift
 			NPC.defense = 5;
 			NPC.damage = 20;
             NPC.dontTakeDamage = true;
+        }
+
+        public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
+        {
+            target.AddBuff(ModContent.BuffType<RiftWithering>(), 1 * 60 * 60, false);
         }
 
         public override void CustomBehavior()
@@ -198,7 +210,7 @@ namespace Eternal.Content.NPCs.Rift
     {
 		public override void SetStaticDefaults()
 		{
-			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
 			{
 				Hide = true
 			};
@@ -222,7 +234,12 @@ namespace Eternal.Content.NPCs.Rift
 			NPC.damage = 20;
 		}
 
-		public override void CustomBehavior()
+        public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
+        {
+            target.AddBuff(ModContent.BuffType<RiftWithering>(), 1 * 60 * 60, false);
+        }
+
+        public override void CustomBehavior()
 		{
 			Lighting.AddLight(NPC.Center, 0.75f, 0f, 0.75f);
 		}

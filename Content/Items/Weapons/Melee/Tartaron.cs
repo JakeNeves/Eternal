@@ -39,8 +39,8 @@ namespace Eternal.Content.Items.Weapons.Melee
         {
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<UnrefinedHeroSword>())
-                .AddIngredient(ModContent.ItemType<InfernoblightCrystal>(), 12)
-                .AddIngredient(ModContent.ItemType<YoggieSpotch>(), 24)
+                .AddIngredient(ModContent.ItemType<InfernoblightShard>(), 12)
+                .AddIngredient(ModContent.ItemType<Yoggie>(), 24)
                 .AddTile(ModContent.TileType<AncientForge>())
                 .Register();
         }

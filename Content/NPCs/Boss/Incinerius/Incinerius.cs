@@ -1,9 +1,8 @@
 ﻿using Eternal.Common.Configurations;
 using Eternal.Common.Misc;
-using Eternal.Common.Systems;
+using Eternal.Content.BossBarStyles;
 using Eternal.Content.Items.BossBags;
 using Eternal.Content.Items.Materials;
-using Eternal.Content.Projectiles.Boss;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -162,9 +161,9 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
         {
             if (ClientConfig.instance.bossBarExtras)
             {
-                if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server)
+                if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server && BossBarLoader.CurrentStyle == ModContent.GetInstance<EternalBossBarStyle>())
                 {
-                    EternalBossBarOverlay.SetTracked("The Underworld's Infernal Sabotuer, ", NPC, ModContent.Request<Texture2D>("Eternal/Assets/Textures/UI/EternalBossBarEternalBossBar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                    EternalBossBarOverlay.SetTracked("The Underworld's Infernal Sabotuer", NPC);
                     EternalBossBarOverlay.visible = true;
                 }
             }

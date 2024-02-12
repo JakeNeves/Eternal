@@ -17,15 +17,15 @@ public class Renowned : ModPrefix
         return true;
     }
 
-    public override void Apply(Item item)
+    public override void ApplyAccessoryEffects(Player player)
     {
-        Main.player[Main.myPlayer].statDefense += 15;
+        player.statDefense += 15;
+        player.GetDamage(DamageClass.Generic) += 1.15f;
+        player.GetCritChance(DamageClass.Generic) += 25;
+        player.GetKnockback(DamageClass.Generic) += 1.5f;
     }
 
     public override void SetStats(ref float damageMult, ref float knockbackMult, ref float useTimeMult, ref float scaleMult, ref float shootSpeedMult, ref float manaMult, ref int critBonus)
     {
-        damageMult = 1.15f;
-        critBonus = 80;
-        knockbackMult = 1.5f;
     }
 }

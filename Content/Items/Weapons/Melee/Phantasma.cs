@@ -1,6 +1,5 @@
 ﻿using Eternal.Content.Projectiles.Weapons.Melee;
 using Eternal.Content.Rarities;
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -9,11 +8,6 @@ namespace Eternal.Content.Items.Weapons.Melee
 {
     public class Phantasma : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            // Tooltip.SetDefault("Can phase through tiles");
-        }
-
         public override void SetDefaults()
         {
             Item.useStyle = ItemUseStyleID.Shoot;
@@ -37,5 +31,10 @@ namespace Eternal.Content.Items.Weapons.Melee
         }
 
         private static readonly int[] unwantedPrefixes = new int[] { PrefixID.Terrible, PrefixID.Dull, PrefixID.Annoying, PrefixID.Broken, PrefixID.Damaged, PrefixID.Shoddy };
+
+        public override bool MeleePrefix()
+        {
+            return true;
+        }
     }
 }

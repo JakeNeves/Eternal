@@ -21,15 +21,17 @@ namespace Eternal.Common.Configurations
         public bool showWelcomeMessage = true;
 
         [SeparatePage]
+        [Header("EternalModBossBarSettings")]
+        [DefaultValue(true)]
+        [LabelKey("$Mods.Eternal.Common.Configurations.ClientConfig.bossBarExtras.DisplayName")]
+        [TooltipKey("$Mods.Eternal.Common.Configurations.ClientConfig.bossBarExtras.Tooltip")]
+        public bool bossBarExtras = true;
+
+        [SeparatePage]
         [Header("ExperimentalFeatures")]
         [DefaultValue(false)]
         [LabelKey("$Mods.Eternal.Common.Configurations.ClientConfig.playDefeatSound.DisplayName")]
         [TooltipKey("$Mods.Eternal.Common.Configurations.ClientConfig.playDefeatSound.Tooltip")]
         public bool playDefeatSound = false;
-
-        [DefaultValue(false)]
-        [LabelKey("$Mods.Eternal.Common.Configurations.ClientConfig.bossBarExtras.DisplayName")]
-        [TooltipKey("$Mods.Eternal.Common.Configurations.ClientConfig.bossBarExtras.Tooltip")]
-        public bool bossBarExtras = false;
     }
 }

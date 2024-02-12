@@ -35,8 +35,8 @@ namespace Eternal.Content.Items.Armor
                 .AddTile(ModContent.TileType<AncientForge>())
                 .AddIngredient(ModContent.ItemType<ArkaniumGreaves>())
                 .AddIngredient(ModContent.ItemType<StarbornGreaves>())
-                .AddIngredient(ModContent.ItemType<CoreofEternal>(), 8)
-                .AddIngredient(ModContent.ItemType<StargloomCometiteBar>(), 12)
+                .AddIngredient(ModContent.ItemType<CoreofExodus>(), 8)
+                .AddIngredient(ModContent.ItemType<AwakenedCometiteBar>(), 12)
                 .Register();
         }
     }

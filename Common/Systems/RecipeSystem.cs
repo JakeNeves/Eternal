@@ -11,7 +11,6 @@ namespace Eternal.Common.Systems
         public static RecipeGroup mythrilAnvils;
         public static RecipeGroup copperBars;
         public static RecipeGroup celestialFragments;
-        public static RecipeGroup adamantriteBars;
 
         public override void Unload()
         {
@@ -19,7 +18,6 @@ namespace Eternal.Common.Systems
             mythrilAnvils = null;
             copperBars = null;
             celestialFragments = null;
-            adamantriteBars = null;
         }
 
         public override void AddRecipeGroups()
@@ -28,13 +26,11 @@ namespace Eternal.Common.Systems
             mythrilAnvils = new RecipeGroup(() => "Any Mythril Anvil", ItemID.MythrilAnvil, ItemID.OrichalcumAnvil);
             copperBars = new RecipeGroup(() => "Any Copper Bar", ItemID.CopperBar, ItemID.TinBar);
             celestialFragments = new RecipeGroup(() => "Any Celestial Fragment", ItemID.FragmentNebula, ItemID.FragmentVortex, ItemID.FragmentSolar, ItemID.FragmentStardust);
-            adamantriteBars = new RecipeGroup(() => "Any Adamantrite Bar", ModContent.ItemType<AdamantriteBar>(), ModContent.ItemType<TritaniumBar>());
 
             RecipeGroup.RegisterGroup("eternal:adamantiteForges", adamantiteForges);
             RecipeGroup.RegisterGroup("eternal:mythrilAnvils", mythrilAnvils);
             RecipeGroup.RegisterGroup("eternal:copperBars", copperBars);
-            RecipeGroup.RegisterGroup("eternal:celestialFragments", copperBars);
-            RecipeGroup.RegisterGroup("eternal:adamantriteBars", copperBars);
+            RecipeGroup.RegisterGroup("eternal:celestialFragments", celestialFragments);
         }
     }
 }

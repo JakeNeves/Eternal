@@ -45,7 +45,7 @@ namespace Eternal.Content.Items.Weapons.Magic
                 .AddIngredient(ModContent.ItemType<StarstaveDrei>())
                 .AddIngredient(ModContent.ItemType<ApparitionalMatter>(), 24)
                 .AddIngredient(ModContent.ItemType<StarmetalBar>(), 32)
-                .AddIngredient(ModContent.ItemType<CometiteCrystal>(), 40)
+                .AddIngredient(ModContent.ItemType<StarpowerCrystal>(), 40)
                 .AddIngredient(ModContent.ItemType<CometiteBar>(), 40)
                 .AddTile(ModContent.TileType<Nanoforge>())
                 .Register();
