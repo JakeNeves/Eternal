@@ -9,6 +9,7 @@ namespace Eternal.Common.Players
         public override void PostUpdateMiscEffects()
         {
             Player.ManageSpecialBiomeVisuals("Eternal:Rift", RiftSystem.isRiftOpen);
+            Player.ManageSpecialBiomeVisuals("Eternal:PurifiedBeneath", ModContent.GetInstance<ZoneSystem>().zonePurifiedBeneath);
 
             // Underworld soul "fog" rift effect
             Player.ManageSpecialBiomeVisuals("Eternal:RiftUnderworldEffect", RiftSystem.isRiftOpen && Player.ZoneUnderworldHeight, Player.Center);

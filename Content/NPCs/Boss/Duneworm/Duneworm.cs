@@ -40,30 +40,17 @@ namespace Eternal.Content.NPCs.Boss.Duneworm
 			NPC.damage = 80;
 			NPC.value = Item.sellPrice(platinum: 3, gold: 30, silver: 60);
 			NPC.boss = true;
-		}
+            if (!Main.dedServ)
+            {
+                Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/VibrationsBeneathTheSands");
+            }
+        }
 
-		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
+		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
 		{
-			if (Main.masterMode)
-			{
-				NPC.lifeMax = 256000;
-				NPC.damage = 100;
-				NPC.defense = 40;
-
-			}
-			else if (DifficultySystem.hellMode)
-			{
-				NPC.lifeMax = 512000;
-				NPC.damage = 110;
-				NPC.defense = 50;
-			}
-			else
-			{
-				NPC.lifeMax = 128000;
-				NPC.damage = 90;
-				NPC.defense = 30;
-			}
-		}
+            NPC.lifeMax = (int)(NPC.lifeMax * balance * bossAdjustment);
+            NPC.damage = (int)(NPC.damage * balance * bossAdjustment);
+        }
 
 		public override void BossLoot(ref string name, ref int potionType)
         {
@@ -193,28 +180,11 @@ namespace Eternal.Content.NPCs.Boss.Duneworm
 			NPC.damage = 80;
 		}
 
-		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
+		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
 		{
-			if (Main.masterMode)
-			{
-				NPC.lifeMax = 2560000;
-				NPC.damage = 100;
-				NPC.defense = 40;
-
-			}
-			else if (DifficultySystem.hellMode)
-			{
-				NPC.lifeMax = 5120000;
-				NPC.damage = 110;
-				NPC.defense = 50;
-			}
-			else
-			{
-				NPC.lifeMax = 1280000;
-				NPC.damage = 90;
-				NPC.defense = 30;
-			}
-		}
+            NPC.lifeMax = (int)(NPC.lifeMax * balance * bossAdjustment);
+            NPC.damage = (int)(NPC.damage * balance * bossAdjustment);
+        }
 
 		public override void CustomBehavior()
 		{
@@ -287,28 +257,11 @@ namespace Eternal.Content.NPCs.Boss.Duneworm
 			NPC.damage = 80;
 		}
 
-		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
+		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
 		{
-			if (Main.masterMode)
-			{
-				NPC.lifeMax = 2560000;
-				NPC.damage = 100;
-				NPC.defense = 40;
-
-			}
-			else if (DifficultySystem.hellMode)
-			{
-				NPC.lifeMax = 5120000;
-				NPC.damage = 110;
-				NPC.defense = 50;
-			}
-			else
-			{
-				NPC.lifeMax = 1280000;
-				NPC.damage = 90;
-				NPC.defense = 30;
-			}
-		}
+            NPC.lifeMax = (int)(NPC.lifeMax * balance * bossAdjustment);
+            NPC.damage = (int)(NPC.damage * balance * bossAdjustment);
+        }
 
 		public override void CustomBehavior()
 		{

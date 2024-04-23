@@ -1,4 +1,5 @@
-﻿using Eternal.Content.Items.Misc;
+﻿using Eternal.Common.Configurations;
+using Eternal.Content.Items.Misc;
 using System.IO;
 using Terraria;
 using Terraria.ModLoader;
@@ -8,6 +9,11 @@ namespace Eternal.Common.Players
 {
     public class LifeMotePlayer : ModPlayer
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return ServerConfig.instance.lifeMotes;
+        }
+
         public int lifeMotes;
 
         public override void ModifyMaxStats(out StatModifier health, out StatModifier mana)

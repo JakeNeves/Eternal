@@ -43,6 +43,8 @@ namespace Eternal.Content.Items.Tools
             Item.channel = true;
         }
 
+        // Holding off the recipe, the Stardrax needs some more work to be finished.
+        /*
         public override void AddRecipes()
         {
             CreateRecipe()
@@ -52,5 +54,6 @@ namespace Eternal.Content.Items.Tools
                 .AddTile(ModContent.TileType<Starforge>())
                 .Register();
         }
+        */
     }
 }

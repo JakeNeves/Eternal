@@ -1,7 +1,4 @@
-﻿using System.IO;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
+﻿using Terraria.ModLoader;
 
 namespace Eternal.Common.Systems
 {
@@ -9,12 +6,14 @@ namespace Eternal.Common.Systems
     {
         public bool zoneComet = false;
         public bool zoneBeneath = false;
+        public bool zonePurifiedBeneath = false;
         public bool zoneShrine = false;
 
         public override void ResetEffects()
         {
             zoneComet = false;
             zoneBeneath = false;
+            zonePurifiedBeneath = false;
             zoneShrine = false;
         }
     }

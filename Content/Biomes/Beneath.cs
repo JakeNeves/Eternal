@@ -22,7 +22,7 @@ namespace Eternal.Content.Biomes
 
         public override bool IsBiomeActive(Player player)
         {
-            bool b1 = ModContent.GetInstance<BiomeTileCount>().grimstoneCount >= 60;
+            bool b1 = ModContent.GetInstance<BiomeTileCount>().gloomrockCount >= 60;
 
             return b1;
         }

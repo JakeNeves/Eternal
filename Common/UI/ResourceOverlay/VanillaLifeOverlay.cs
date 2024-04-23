@@ -1,3 +1,4 @@
+using Eternal.Common.Configurations;
 using Eternal.Common.Players;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -11,6 +12,11 @@ namespace Eternal.Common.UI.ResourceOverlay
 {
     public class VanillaLifeOverlay : ModResourceOverlay
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return ServerConfig.instance.lifeMotes;
+        }
+
         private Dictionary<string, Asset<Texture2D>> vanillaAssetCache = new();
 
         private Asset<Texture2D> heartTexture, fancyPanelTexture, barsFillingTexture, barsPanelTexture;

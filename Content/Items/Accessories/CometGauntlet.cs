@@ -1,6 +1,9 @@
-﻿using Eternal.Content.Rarities;
+﻿using Eternal.Content.Items.Materials;
+using Eternal.Content.Rarities;
+using Eternal.Content.Tiles.CraftingStations;
 using Terraria;
 using Terraria.GameContent.Creative;
+using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
@@ -31,9 +34,20 @@ namespace Eternal.Content.Items.Accessories
         {
             //EternalGlobalProjectile.cometGauntlet = true;
 
-            player.GetDamage(DamageClass.Melee) += 1.35f;
-            player.GetAttackSpeed(DamageClass.Melee) += 1.17f;
+            player.GetDamage(DamageClass.Melee) += 0.35f;
+            player.GetAttackSpeed(DamageClass.Melee) += 0.17f;
             player.autoReuseGlove = true;
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddTile(ModContent.TileType<Starforge>())
+                .AddIngredient(ModContent.ItemType<GalaxianPlating>(), 20)
+                .AddIngredient(ModContent.ItemType<StarmetalBar>(), 40)
+                .AddIngredient(ModContent.ItemType<InterstellarSingularity>(), 10)
+                .AddIngredient(ItemID.FireGauntlet)
+                .Register();
         }
     }
 }

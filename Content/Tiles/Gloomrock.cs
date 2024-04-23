@@ -18,7 +18,7 @@ namespace Eternal.Content.Tiles
             DustType = DustID.Wraith;
             AddMapEntry(new Color(24, 24, 24));
             MinPick = 50;
-            HitSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/GrimstoneBreak")
+            HitSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/GloomrockBreak")
             {
                 Volume = 0.8f,
                 PitchVariance = Main.rand.NextFloat(0.2f, 0.9f),

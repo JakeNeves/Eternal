@@ -7,13 +7,15 @@ namespace Eternal.Common.Systems
     public class BiomeTileCount : ModSystem
     {
         public int cometCount;
-        public int grimstoneCount;
+        public int gloomrockCount;
+        public int shinestoneCount;
         public int shrineBrickCount;
 
         public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts)
         {
             cometCount = tileCounts[ModContent.TileType<CometiteOre>()];
-            grimstoneCount = tileCounts[ModContent.TileType<Gloomrock>()];
+            gloomrockCount = tileCounts[ModContent.TileType<Gloomrock>()];
+            shinestoneCount = tileCounts[ModContent.TileType<Shinestone>()];
             shrineBrickCount = tileCounts[ModContent.TileType<ShrineBrick>()];
         }
     }

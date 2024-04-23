@@ -48,13 +48,23 @@ namespace Eternal.Common.Configurations
         public bool hellModeVanillaBosses = true;
 
         /// <summary>
-        /// EXPERIMENTAL: Adds Life motes to the game (WIP)
+        /// EXPERIMENTAL: Adds Life Motes to the game (WIP)
         /// </summary>
         [SeparatePage]
         [Header("ExperimentalFeatures")]
         [DefaultValue(false)]
         [LabelKey("$Mods.Eternal.Common.Configurations.ServerConfig.lifeMotes.DisplayName")]
         [TooltipKey("$Mods.Eternal.Common.Configurations.ServerConfig.lifeMotes.Tooltip")]
+        [ReloadRequired]
         public bool lifeMotes = false;
+
+        /// <summary>
+        /// EXPERIMENTAL: Adds Limbolic Glyphs to the game (NYI)
+        /// </summary>
+        [DefaultValue(false)]
+        [LabelKey("$Mods.Eternal.Common.Configurations.ServerConfig.limbolicGlyphs.DisplayName")]
+        [TooltipKey("$Mods.Eternal.Common.Configurations.ServerConfig.limbolicGlyphs.Tooltip")]
+        [ReloadRequired]
+        public bool limbolicGlyphs = false;
     }
 }

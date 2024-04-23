@@ -11,7 +11,6 @@ C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Deb
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Debug\net6.0\FNA.dll
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Debug\net6.0\Hjson.dll
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Debug\net6.0\Humanizer.dll
-C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Debug\net6.0\Ionic.Zip.Reduced.dll
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Debug\net6.0\log4net.dll
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Debug\net6.0\Microsoft.Build.Locator.dll
@@ -128,10 +127,11 @@ C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Deb
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Debug\net6.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Debug\net6.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Debug\net6.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
-C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\obj\Debug\net6.0\Eternal.csproj.CopyComplete
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\obj\Debug\net6.0\Eternal.dll
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\obj\Debug\net6.0\refint\Eternal.dll
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\obj\Debug\net6.0\Eternal.pdb
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\obj\Debug\net6.0\ref\Eternal.dll
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Debug\net6.0\CalamityMod.dll
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Debug\net6.0\CalamityMod.pdb
+C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\obj\Debug\net6.0\Eternal.csproj.Up2Date
+C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Debug\net6.0\DotNetZip.dll
