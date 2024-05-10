@@ -73,7 +73,7 @@ namespace Eternal.Content.Projectiles.Boss
             }
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             Projectile.alpha = 255;
 

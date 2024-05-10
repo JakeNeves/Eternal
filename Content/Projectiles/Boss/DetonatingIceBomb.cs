@@ -35,7 +35,7 @@ namespace Eternal.Content.Projectiles.Boss
             }
             return projHitbox.Intersects(targetHitbox);
         }
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             SoundEngine.PlaySound(SoundID.Tink, Projectile.position);
             Vector2 usePos = Projectile.position;

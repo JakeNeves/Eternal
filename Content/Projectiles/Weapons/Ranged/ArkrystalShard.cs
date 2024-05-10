@@ -34,7 +34,7 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
             SoundEngine.PlaySound(SoundID.Tink, Projectile.position);

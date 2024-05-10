@@ -65,7 +65,7 @@ namespace Eternal.Content.Projectiles.Weapons.Magic
 
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             var entitySource = Projectile.GetSource_Death();
 

@@ -33,7 +33,7 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
         private const float maxTicks = 30f;
         private const int alphaReducation = 25;
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             SoundEngine.PlaySound(SoundID.Shatter, Projectile.position);
             Vector2 usePos = Projectile.position;

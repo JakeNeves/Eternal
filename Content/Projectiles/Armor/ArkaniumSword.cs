@@ -36,7 +36,7 @@ namespace Eternal.Content.Projectiles.Armor
             return projHitbox.Intersects(targetHitbox);
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             SoundEngine.PlaySound(SoundID.DD2_DarkMageHealImpact, Projectile.position);
         }

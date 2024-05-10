@@ -26,7 +26,7 @@ namespace Eternal.Content.Projectiles.Weapons.Magic
             Projectile.timeLeft = 600;
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             for (int i = 0; i < 30; i++)
             {

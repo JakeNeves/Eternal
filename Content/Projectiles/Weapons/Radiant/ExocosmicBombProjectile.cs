@@ -60,7 +60,7 @@ namespace Eternal.Content.Projectiles.Weapons.Radiant
             var entitySource = Projectile.GetSource_FromAI();
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             var entitySource = Projectile.GetSource_Death();
 

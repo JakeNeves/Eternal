@@ -2,7 +2,6 @@
 using Eternal.Content.Items.Materials;
 using Eternal.Content.Rarities;
 using Eternal.Content.Tiles.CraftingStations;
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
@@ -18,7 +17,7 @@ namespace Eternal.Content.Items.Accessories
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(360, 16, 4f);
+            ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(320, 8, 4f);
         }
 
         public override void SetDefaults()
@@ -72,46 +71,14 @@ namespace Eternal.Content.Items.Accessories
             player.fireWalk = true;
             player.lavaImmune = true;
 
-            player.dash = 1;
-
             player.blackBelt = true;
             player.spikedBoots = 1;
             player.spikedBoots = 2;
 
             player.wingTimeMax = 300;
 
-            DashSystem modDashPlayer = player.GetModPlayer<DashSystem>();
+            player.GetModPlayer<DashSystem>().DashAccessoryEquipped = true;
 
-            #region Dash Effect
-            if (!modDashPlayer.DashActive)
-                return;
-
-            player.eocDash = modDashPlayer.DashTimer;
-            player.armorEffectDrawShadowEOCShield = true;
-
-            if (modDashPlayer.DashTimer == DashSystem.MAX_DASH_TIMER)
-            {
-                Vector2 newVelocity = player.velocity;
-
-                if ((modDashPlayer.DashDir == DashSystem.DashLeft && player.velocity.X > -modDashPlayer.DashVelocity) || (modDashPlayer.DashDir == DashSystem.DashRight && player.velocity.X < modDashPlayer.DashVelocity))
-                {
-                    int dashDirection = modDashPlayer.DashDir == DashSystem.DashRight ? 1 : -1;
-                    newVelocity.X = dashDirection * modDashPlayer.DashVelocity;
-                }
-
-                player.velocity = newVelocity;
-            }
-
-            modDashPlayer.DashTimer--;
-            modDashPlayer.DashDelay--;
-
-            if (modDashPlayer.DashDelay == 0)
-            {
-                modDashPlayer.DashDelay = DashSystem.MAX_DASH_DELAY;
-                modDashPlayer.DashTimer = DashSystem.MAX_DASH_TIMER;
-                modDashPlayer.DashActive = false;
-            }
-            #endregion
         }
 
         public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising, ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)

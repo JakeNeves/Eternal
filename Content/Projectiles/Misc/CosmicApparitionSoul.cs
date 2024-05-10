@@ -57,7 +57,7 @@ namespace Eternal.Content.Projectiles.Misc
             }
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             Main.NewText("The tundra crackles restless...", 7, 28, 224);
             Main.NewText("You hear lightning strike the dunes...", 0, 95, 215);

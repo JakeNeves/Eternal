@@ -76,7 +76,7 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
             return closestNPC;
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             for (int k = 0; k < 5; k++)
             {

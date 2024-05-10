@@ -72,7 +72,7 @@ namespace Eternal.Content.Projectiles.Misc
             return false;
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             var entitySource = Projectile.GetSource_Death();
 

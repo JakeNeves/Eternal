@@ -44,7 +44,7 @@ namespace Eternal.Content.Projectiles.Bobbers
 			}
 		}
 
-		public override void ModifyFishingLine(ref Vector2 lineOriginOffset, ref Color lineColor)
+		public override void ModifyFishingLine(ref Vector2 lineOriginOffset, ref Color lineColor)/* tModPorter Note: Removed. Use ModItem.ModifyFishingLine */
 		{
 			lineOriginOffset = new Vector2(47, -31);
 			lineColor = FishingLineColor;

@@ -38,7 +38,7 @@ namespace Eternal.Content.Projectiles.Weapons.Magic
             return projHitbox.Intersects(targetHitbox);
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/RoTSDDespawn")
             {

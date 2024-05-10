@@ -50,7 +50,7 @@ namespace Eternal.Content.Projectiles.Weapons.Radiant
             }
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             SoundEngine.PlaySound(SoundID.Dig, Projectile.position);
 

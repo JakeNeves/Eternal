@@ -5,33 +5,29 @@ namespace Eternal.Content.DamageClasses
 {
     public class Radiant : DamageClass
     {
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("radiant damage");
-		}
+		internal static Radiant Instance;
 
-		public override StatInheritanceData GetModifierInheritance(DamageClass damageClass)
+        public override void Load()
+        {
+			Instance = this;
+        }
+
+        public override void Unload()
+        {
+			Instance = null;
+        }
+
+        public override StatInheritanceData GetModifierInheritance(DamageClass damageClass)
 		{
-			if (damageClass == DamageClass.Generic)
+			if (damageClass == DamageClass.Magic || damageClass == DamageClass.Generic)
 				return StatInheritanceData.Full;
 
-			return new StatInheritanceData(
-				damageInheritance: 0f,
-				critChanceInheritance: 0f,
-				attackSpeedInheritance: 0f,
-				armorPenInheritance: 0f,
-				knockbackInheritance: 0f
-			);
+			return StatInheritanceData.None;
 		}
 
 		public override bool GetEffectInheritance(DamageClass damageClass)
 		{
-			if (damageClass == DamageClass.Melee)
-				return true;
-			if (damageClass == DamageClass.Magic)
-				return true;
-
-			return false;
+			return damageClass == DamageClass.Magic;
 		}
 
 		public override void SetDefaultStats(Player player)

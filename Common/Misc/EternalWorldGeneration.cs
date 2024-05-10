@@ -15,7 +15,7 @@ namespace Eternal.Common.Misc
 
             int MarbleIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Marble"));
             if (MarbleIndex > -1)
-                tasks.Insert(GraniteIndex + 1, new PassLegacy("PrecursorHollows", EternalWorldGenerationPass.GenPrecursorHollows));
+                tasks.Insert(MarbleIndex + 1, new PassLegacy("PrecursorHollows", EternalWorldGenerationPass.GenPrecursorHollows));
 
             int LivingTreesIndex = tasks.FindIndex(genpass => genpass.Name.Equals("LivingTrees"));
             if (LivingTreesIndex > -1)

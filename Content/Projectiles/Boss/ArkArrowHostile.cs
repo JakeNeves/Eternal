@@ -35,7 +35,7 @@ namespace Eternal.Content.Projectiles.Boss
             }
             return projHitbox.Intersects(targetHitbox);
         }
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             SoundEngine.PlaySound(SoundID.DD2_ExplosiveTrapExplode, Projectile.position);
             for (int k = 0; k < 5; k++)

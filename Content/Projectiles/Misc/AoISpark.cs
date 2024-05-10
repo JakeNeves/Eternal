@@ -63,7 +63,7 @@ namespace Eternal.Content.Projectiles.Misc
             hitbox.Height += size * 2;
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             var entitySource = Projectile.GetSource_FromAI();
 

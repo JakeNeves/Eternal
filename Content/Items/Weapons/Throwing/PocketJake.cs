@@ -14,12 +14,6 @@ namespace Eternal.Content.Items.Weapons.Throwing
     {
         public override void SetStaticDefaults()
         {
-            /* Tooltip.SetDefault("Throws pocket Jakes that explode on impact in a comical way" +
-                             "\nThrow more than one pocket Jake when the Emperor's Trust is in your inventory" +
-                             "\n'Channel your inner Jake!'" +
-                             "\n[c/FC036B:Developer Item]" +
-                             "\nDedicated to [c/038CFC:JakeTEM]"); */
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

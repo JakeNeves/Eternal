@@ -90,7 +90,7 @@ namespace Eternal.Content.Projectiles.Boss
             }
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             var entitySource = Projectile.GetSource_Death();
             Projectile.alpha = 255;

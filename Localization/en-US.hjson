@@ -2611,6 +2611,15 @@ Mods: {
 			Micro.DisplayName: Micro
 			UnironicallyOversized.DisplayName: Unironically Oversized
 			Headstrong.DisplayName: Headstrong
+			Atoned.DisplayName: Atoned
+			Ludicrous.DisplayName: Ludicrous
+			Resplendant.DisplayName: Resplendant
+			UndeniablyImmense.DisplayName: Undeniably Immense
+			Underperformant.DisplayName: Underperformant
+			Abused.DisplayName: Abused
+			Crude.DisplayName: Crude
+			Irrational.DisplayName: Irrational
+			RadiantPrefix.DisplayName: Radiant Prefix
 		}
 
 		Projectiles: {
