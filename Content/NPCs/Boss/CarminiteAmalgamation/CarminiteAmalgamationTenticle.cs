@@ -35,7 +35,7 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
             NPC.width = 18;
             NPC.height = 24;
 
-            NPC.lifeMax = 200;
+            NPC.lifeMax = 150;
             NPC.damage = 15;
             NPC.defense = 16;
             NPC.knockBackResist = -1f;

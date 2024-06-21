@@ -72,7 +72,7 @@ namespace Eternal.Common.Misc
         // Code taken from the base game, there are some slight modifications to this one though... (The code is based off the unused boss bar style.)
         public static void DrawBossBar(SpriteBatch spriteBatch, float lifePercent)
         {
-            Rectangle rectangle = Utils.CenteredRectangle(Main.ScreenSize.ToVector2() * new Vector2(0.5f, 1f) + new Vector2(0f, -50f), new Vector2(400f, 20f));
+            Rectangle rectangle = Utils.CenteredRectangle(Main.ScreenSize.ToVector2() * new Vector2(0.5f, 1f) + new Vector2(0f, -50f), new Vector2(800f, 10f));
             Rectangle destinationRectangle = rectangle;
             destinationRectangle.Inflate(0, 0);
             Texture2D value = TextureAssets.MagicPixel.Value;
@@ -81,7 +81,7 @@ namespace Eternal.Common.Misc
             destinationRectangle2.Width = (int)((float)destinationRectangle2.Width * lifePercent);
             spriteBatch.Draw(value, destinationRectangle, value2, Color.Black * 0.6f);
             spriteBatch.Draw(value, rectangle, value2, Color.Black * 0.6f);
-            spriteBatch.Draw(value, destinationRectangle2, value2, Color.Red * 0.6f);
+            spriteBatch.Draw(value, destinationRectangle2, value2, Color.Red * 0.5f);
         }
     }
 

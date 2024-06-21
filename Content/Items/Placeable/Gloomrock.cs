@@ -1,4 +1,5 @@
-﻿using Terraria.GameContent.Creative;
+﻿using Eternal.Common.Configurations;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -10,7 +11,8 @@ namespace Eternal.Content.Items.Placeable
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
 
-            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<Shinestone>();
+            if (ServerConfig.instance.purifiedBeneath)
+                ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<Shinestone>();
         }
 
         public override void SetDefaults()

@@ -49,7 +49,7 @@ namespace Eternal.Content.NPCs.Comet
         {
             for (int k = 0; k < 10.0; k++)
             {
-                Dust.NewDust(NPC.Center, NPC.width, NPC.height, ModContent.DustType<Machalite>(), 0, 0, 0, default(Color), 1f);
+                Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.PurpleTorch, 0, 0, 0, default(Color), 1f);
             }
         }
 
@@ -58,7 +58,7 @@ namespace Eternal.Content.NPCs.Comet
             if (RiftSystem.isRiftOpen)
             {
                 for (int k = 0; k < 5; k++)
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, ModContent.DustType<ApparitionalParticle>(), 0, -2f, 0, default, 1f);
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.PurpleTorch, 0, -2f, 0, default, 1f);
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using Terraria.GameContent.Creative;
+﻿using Eternal.Common.Configurations;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -6,6 +7,11 @@ namespace Eternal.Content.Items.Placeable
 {
     public class Shinestone : ModItem
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return ServerConfig.instance.purifiedBeneath;
+        }
+
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;

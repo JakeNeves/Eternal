@@ -196,6 +196,12 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
             }
             if (phase2Init)
             {
+                if (Timer == 100 || Timer == 110 || Timer == 120 || Timer == 130 || Timer == 140 || Timer == 150 || Timer == 160)
+                {
+                    SoundEngine.PlaySound(SoundID.NPCDeath1, NPC.Center);
+                    Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<CarminiteSludge>(), (int)(NPC.damage * 0.25f), 0f, Main.myPlayer);
+                    Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<CarminiteTooth>(), (int)(NPC.damage * 0.25f), 0f, Main.myPlayer);
+                }
                 if (Timer == 200)
                 {
                     Timer = 0;
@@ -206,10 +212,10 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
                 if (Timer == 100 || Timer == 105 || Timer == 110 || Timer == 115 || Timer == 120 || Timer == 125 || Timer == 130)
                 {
                     SoundEngine.PlaySound(SoundID.NPCDeath1, NPC.Center);
-                    Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<CarminiteSludge>(), NPC.damage, 0f, Main.myPlayer);
-                    Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<CarminiteTooth>(), NPC.damage, 0f, Main.myPlayer);
+                    Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<CarminiteSludge>(), (int)(NPC.damage * 0.5f), 0f, Main.myPlayer);
+                    Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<CarminiteTooth>(), (int)(NPC.damage * 0.5f), 0f, Main.myPlayer);
                 }
-                if (Timer == 200)
+                if (Timer == 250)
                 {
                     Timer = 0;
                 }

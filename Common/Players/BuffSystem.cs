@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 using Eternal.Content.Buffs;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
+using Eternal.Content.Dusts;
 
 namespace Eternal.Common.Players
 {
@@ -57,6 +58,11 @@ namespace Eternal.Common.Players
             if (unstableState)
             {
                 Dust.NewDust(Player.position, Player.width, Player.height, DustID.PurpleCrystalShard, 0.5f, 0.5f, 0, Color.White, Main.rand.NextFloat(0.25f, 1f));
+            }
+
+            if (apparitionalWither)
+            {
+                Dust.NewDust(Player.position, Player.width, Player.height, ModContent.DustType<CosmicSpirit>(), 0.5f, 0.5f, 0, Color.White, Main.rand.NextFloat(0.5f, 1.5f));
             }
         }
 

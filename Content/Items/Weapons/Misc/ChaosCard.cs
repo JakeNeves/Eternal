@@ -26,11 +26,6 @@ namespace Eternal.Content.Items.Weapons.Misc
             Item.shoot = ModContent.ProjectileType<ChaosCardProjectile>();
         }
 
-        public override bool CanUseItem(Player player)
-        {
-            return player.ownedProjectileCounts[Item.shoot] < 1;
-        }
-
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             int dmg = tooltips.FindIndex(x => x.Name == "Damage");

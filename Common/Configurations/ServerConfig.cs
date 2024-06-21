@@ -11,7 +11,7 @@ namespace Eternal.Common.Configurations
         public static ServerConfig instance => ModContent.GetInstance<ServerConfig>();
 
         /// <summary>
-        /// Changes some of the base game's recipes as well as add new ones
+        /// Changes some of the base game's recipes as well as add new ones (WIP)
         /// </summary>
         [SeparatePage]
         [Header("GameplayTweaks")]
@@ -66,5 +66,14 @@ namespace Eternal.Common.Configurations
         [TooltipKey("$Mods.Eternal.Common.Configurations.ServerConfig.limbolicGlyphs.Tooltip")]
         [ReloadRequired]
         public bool limbolicGlyphs = false;
+
+        /// <summary>
+        /// EXPERIMENTAL: Adds the Purified Beneath biome (WIP)
+        /// </summary>
+        [DefaultValue(false)]
+        [LabelKey("$Mods.Eternal.Common.Configurations.ServerConfig.purifiedBeneath.DisplayName")]
+        [TooltipKey("$Mods.Eternal.Common.Configurations.ServerConfig.purifiedBeneath.Tooltip")]
+        [ReloadRequired]
+        public bool purifiedBeneath = false;
     }
 }

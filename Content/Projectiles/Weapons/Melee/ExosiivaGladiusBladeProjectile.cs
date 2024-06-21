@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Eternal.Content.Dusts;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent;
@@ -33,22 +34,31 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
         {
             var entitySource = Projectile.GetSource_Death();
 
-            for (int k = 0; k < Main.rand.Next(3, 6); k++)
+            for (int k = 0; k < 10; k++)
             {
-                Projectile.NewProjectile(entitySource, target.Center + new Vector2(Main.rand.Next(-150, 150), Main.rand.Next(-150, 150)), Projectile.velocity, ModContent.ProjectileType<ExosiivaGladiusBladeProjectile2>(), Projectile.damage, 0);
+                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<Exosiiva>(), Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f, 0, Color.White, Main.rand.NextFloat(0.5f, 1f));
             }
         }
 
         public override void AI()
         {
+            Lighting.AddLight(Projectile.Center, 0.36f, 2.03f, 2.09f);
+
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(45f);
+
+            for (int k = 0; k < Main.rand.Next(2, 4); k++)
+            {
+                Dust dust = Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<Exosiiva>());
+                dust.noGravity = true;
+                dust.velocity = new Vector2(Main.rand.NextFloat(0.5f, 1f), Main.rand.NextFloat(0.5f, 1f));
+                dust.scale = Main.rand.NextFloat(0.25f, 1.5f);
+            }
 
             if (Projectile.ai[0] == 0f && Main.netMode != NetmodeID.MultiplayerClient)
             {
-                for (int k = 0; k < 10; k++)
+                for (int k = 0; k < 5; k++)
                 {
-                    Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.SpectreStaff, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f, 0, Color.White, 0.75f);
-                    Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Frost, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f, 0, Color.White, 1f);
+                    Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<Exosiiva>(), Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f, 0, Color.White, Main.rand.NextFloat(0.5f, 1f));
                 }
 
                 Projectile.ai[0] = 1f;

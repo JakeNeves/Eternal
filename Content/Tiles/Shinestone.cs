@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Eternal.Common.Configurations;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -8,6 +9,11 @@ namespace Eternal.Content.Tiles
 {
     public class Shinestone : ModTile
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return ServerConfig.instance.purifiedBeneath;
+        }
+
         public override void SetStaticDefaults()
         {
             Main.tileSolid[Type] = true;

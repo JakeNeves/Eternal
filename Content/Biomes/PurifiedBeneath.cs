@@ -1,4 +1,5 @@
-﻿using Eternal.Common.Systems;
+﻿using Eternal.Common.Configurations;
+using Eternal.Common.Systems;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -6,6 +7,11 @@ namespace Eternal.Content.Biomes
 {
     public class PurifiedBeneath : ModBiome
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return ServerConfig.instance.purifiedBeneath;
+        }
+
         public override int Music => MusicLoader.GetMusicSlot(Mod, "Assets/Music/GlisteringPasture");
 
         public override string BestiaryIcon => base.BestiaryIcon;

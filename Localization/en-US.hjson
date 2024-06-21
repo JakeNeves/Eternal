@@ -2863,6 +2863,16 @@ Mods: {
 							(Default: [c/008080:OFF])
 							'''
 					}
+
+					purifiedBeneath: {
+						DisplayName: Purified Beneath (NYI)
+						Tooltip:
+							'''
+							Adds the Purified Beneath this is not yet implemented!
+							This feature requires a reload
+							(Default: [c/008080:OFF])
+							'''
+					}
 				}
 			}
 		}
