@@ -73,7 +73,7 @@ namespace Eternal.Content.NPCs.Boss.Trinity
             NPC.defense = 70;
             NPC.damage = 110;
             NPC.aiStyle = -1;
-            NPC.knockBackResist = -1f;
+            NPC.knockBackResist = 0f;
             NPC.HitSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCHit/TrinityHit")
             {
                 Volume = 0.8f,

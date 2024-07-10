@@ -39,7 +39,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             NPC.damage = 90;
             NPC.noGravity = true;
             NPC.noTileCollide = true;
-            NPC.knockBackResist = -1f;
+            NPC.knockBackResist = 0f;
             NPC.alpha = 255;
             NPCID.Sets.ProjectileNPC[NPC.type] = true;
         }
@@ -83,9 +83,9 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
 
             NPC.alpha -= 10;
 
+            Target();
             CheckActive();
             Move(new Vector2(0, 0f));
-            Target();
         }
 
         public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)

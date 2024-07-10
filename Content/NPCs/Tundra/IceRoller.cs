@@ -28,7 +28,7 @@ namespace Eternal.Content.NPCs.Tundra
             NPC.lifeMax = 1500;
             NPC.defense = 20;
             NPC.damage = 48;
-            NPC.knockBackResist = -1f;
+            NPC.knockBackResist = 0f;
             NPC.aiStyle = 14;
             NPC.noGravity = true;
             NPC.noTileCollide = true;

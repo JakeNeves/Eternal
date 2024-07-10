@@ -13,7 +13,7 @@ namespace Eternal.Content.NPCs.Rift
         {
             Main.npcFrameCount[NPC.type] = 4;
 
-            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
                 Hide = true
             };
@@ -33,7 +33,7 @@ namespace Eternal.Content.NPCs.Rift
             NPC.lifeMax = 3200;
             NPC.damage = 60;
             NPC.defense = 20;
-            NPC.knockBackResist = -1f;
+            NPC.knockBackResist = 0f;
             NPC.alpha = 100;
 
             NPC.lavaImmune = true;

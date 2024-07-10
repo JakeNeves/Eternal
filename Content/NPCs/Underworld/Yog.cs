@@ -33,7 +33,7 @@ namespace Eternal.Content.NPCs.Underworld
             NPC.lifeMax = 3600;
             AnimationType = NPCID.RainbowSlime;
             NPC.value = Item.sellPrice(platinum: 3, gold: 12);
-            NPC.knockBackResist = -1f;
+            NPC.knockBackResist = 0f;
             NPC.lavaImmune = true;
             NPC.buffImmune[BuffID.OnFire] = true;
             NPC.buffImmune[BuffID.Suffocation] = true;

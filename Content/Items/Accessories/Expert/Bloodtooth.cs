@@ -18,8 +18,8 @@ namespace Eternal.Content.Items.Accessories.Expert
         
         public override void SetDefaults()
         {
-            Item.width = 26;
-            Item.height = 26;
+            Item.width = 16;
+            Item.height = 20;
             Item.value = Item.sellPrice(silver: 25, copper: 15);
             Item.rare = ItemRarityID.Expert;
             Item.accessory = true;

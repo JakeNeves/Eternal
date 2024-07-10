@@ -34,7 +34,7 @@ namespace Eternal.Content.NPCs.Miniboss
             NPC.defense = 30;
             NPC.lifeMax = 10000;
             NPC.value = Item.sellPrice(platinum: 6);
-            NPC.knockBackResist = -1f;
+            NPC.knockBackResist = 0f;
             NPC.aiStyle = 3;
             AnimationType = NPCID.PossessedArmor;
             NPC.HitSound = SoundID.NPCHit4;

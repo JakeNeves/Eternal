@@ -51,7 +51,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
             NPC.DeathSound = null;
             NPC.boss = true;
             Music = MusicID.OtherworldlyLunarBoss;
-            NPC.knockBackResist = -1f;
+            NPC.knockBackResist = 0f;
         }
 
         public override void HitEffect(NPC.HitInfo hit)

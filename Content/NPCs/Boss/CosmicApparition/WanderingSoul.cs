@@ -52,7 +52,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             NPC.damage = 200;
             NPC.noGravity = true;
             NPC.noTileCollide = true;
-            NPC.knockBackResist = -1f;
+            NPC.knockBackResist = 0f;
             NPC.BossBar = Main.BigBossProgressBar.NeverValid;
         }
 

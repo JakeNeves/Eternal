@@ -59,7 +59,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             NPC.lifeMax = 3600;
             NPC.damage = 100;
             NPC.defense = 18;
-            NPC.knockBackResist = -1f;
+            NPC.knockBackResist = 0f;
             NPC.HitSound = SoundID.NPCHit52;
             NPC.DeathSound = SoundID.NPCDeath55;
             NPC.noTileCollide = true;

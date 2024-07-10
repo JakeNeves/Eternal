@@ -31,7 +31,7 @@ namespace Eternal.Content.NPCs.Underworld
             NPC.lifeMax = 2200;
             NPC.damage = 86;
             NPC.defense = 20;
-            NPC.knockBackResist = -1f;
+            NPC.knockBackResist = 0f;
             NPC.width = 6;
             NPC.height = 6;
             NPC.alpha = 255;

@@ -31,7 +31,7 @@ namespace Eternal.Content.NPCs.Underworld
             NPC.defense = 90;
             NPC.lifeMax = 1000;
             NPC.value = Item.sellPrice(gold: 30);
-            NPC.knockBackResist = -1f;
+            NPC.knockBackResist = 0f;
             NPC.aiStyle = 3;
             AnimationType = NPCID.PossessedArmor;
             NPC.HitSound = SoundID.Tink;

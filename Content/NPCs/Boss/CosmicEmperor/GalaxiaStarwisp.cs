@@ -27,7 +27,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
             NPC.lifeMax = 4400;
             NPC.damage = 120;
             NPC.defense = 45;
-            NPC.knockBackResist = -1f;
+            NPC.knockBackResist = 0f;
             NPC.width = 6;
             NPC.height = 6;
             NPC.alpha = 255;

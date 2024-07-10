@@ -13,7 +13,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
 
         public override void SetStaticDefaults()
         {
-            var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
                 CustomTexturePath = "Eternal/Content/NPCs/Boss/AoI/Arkling",
             };

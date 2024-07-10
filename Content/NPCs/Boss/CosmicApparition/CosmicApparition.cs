@@ -90,7 +90,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             NPC.lifeMax = 120000;
             NPC.damage = 75;
             NPC.defense = 60;
-            NPC.knockBackResist = -1f;
+            NPC.knockBackResist = 0f;
             NPC.boss = true;
             if (!Main.dedServ) {
                 if (RiftSystem.isRiftOpen)

@@ -68,7 +68,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
             NPC.height = 56;
             NPC.damage = 110;
             NPC.defense = 90;
-            NPC.knockBackResist = -1f;
+            NPC.knockBackResist = 0f;
             NPC.boss = true;
             NPC.noTileCollide = true;
             Music = MusicID.LunarBoss;

@@ -37,7 +37,7 @@ namespace Eternal.Content.NPCs.Miniboss
             NPC.lifeMax = 320000;
             NPC.damage = 120;
             NPC.defense = 45;
-            NPC.knockBackResist = -1f;
+            NPC.knockBackResist = 0f;
             NPC.width = 60;
             NPC.height = 68;
             NPC.aiStyle = -1;

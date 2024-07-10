@@ -38,7 +38,7 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
             NPC.lifeMax = 150;
             NPC.damage = 15;
             NPC.defense = 16;
-            NPC.knockBackResist = -1f;
+            NPC.knockBackResist = 0f;
 
             NPC.lavaImmune = true;
             NPC.noGravity = true;

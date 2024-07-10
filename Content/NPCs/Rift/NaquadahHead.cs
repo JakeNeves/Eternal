@@ -32,7 +32,7 @@ namespace Eternal.Content.NPCs.Rift
             };
             NPC.DeathSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCDeath/RiftEnemyDeath");
             NPC.value = Item.sellPrice(gold: 30);
-            NPC.knockBackResist = -1f;
+            NPC.knockBackResist = 0f;
             NPC.aiStyle = 5;
             NPC.buffImmune[BuffID.Poisoned] = true;
             NPC.buffImmune[BuffID.OnFire] = true;

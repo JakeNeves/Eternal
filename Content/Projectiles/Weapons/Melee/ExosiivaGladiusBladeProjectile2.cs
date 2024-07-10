@@ -74,7 +74,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
             for (int k = 0; k < 5; k++)
             {
-                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.BlueTorch, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);
+                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<Exosiiva>(), Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);
             }
         }
 

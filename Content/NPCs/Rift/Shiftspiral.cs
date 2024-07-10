@@ -27,7 +27,7 @@ namespace Eternal.Content.NPCs.Rift
             NPC.lifeMax = 32000;
             NPC.defense = 20;
             NPC.damage = 48;
-            NPC.knockBackResist = -1f;
+            NPC.knockBackResist = 0f;
             NPC.aiStyle = 22;
             NPC.noGravity = true;
             NPC.noTileCollide = true;

@@ -45,7 +45,7 @@ namespace Eternal.Content.NPCs.Boss.Trinity
         {
             // DisplayName.SetDefault("Cryota's Sentry");
 
-            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
                 Hide = true
             };
@@ -65,7 +65,7 @@ namespace Eternal.Content.NPCs.Boss.Trinity
             NPC.netAlways = true;
             NPC.noGravity = true;
             NPC.noTileCollide = true;
-            NPC.knockBackResist = -1f;
+            NPC.knockBackResist = 0f;
         }
 
         public override void AI()

@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ModLoader;
 using Terraria.ID;
+using Eternal.Common.Configurations;
 
 namespace Eternal.Content.Items.Debug
 {
@@ -11,6 +12,11 @@ namespace Eternal.Content.Items.Debug
     {
         public static readonly int LifeMoteMax = 20;
         public static readonly int LifePerMote = 5;
+
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return ServerConfig.instance.lifeMotes;
+        }
 
         public override void SetStaticDefaults()
         {

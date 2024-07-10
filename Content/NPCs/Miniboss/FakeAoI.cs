@@ -33,7 +33,7 @@ namespace Eternal.Content.NPCs.Miniboss
             NPC.DeathSound = SoundID.DD2_ExplosiveTrapExplode;
             NPC.noGravity = true;
             NPC.noTileCollide = true;
-            NPC.knockBackResist = -1f;
+            NPC.knockBackResist = 0f;
             NPC.damage = 80;
             SpawnModBiomes = new int[1] { ModContent.GetInstance<Biomes.Shrine>().Type };
         }

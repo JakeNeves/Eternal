@@ -24,7 +24,7 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
             NPC.lifeMax = 100;
             NPC.HitSound = SoundID.NPCHit3;
             NPC.DeathSound = SoundID.NPCDeath3;
-            NPC.knockBackResist = -1f;
+            NPC.knockBackResist = 0f;
             NPC.noTileCollide = true;
             NPC.noGravity = true;
         }

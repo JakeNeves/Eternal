@@ -32,7 +32,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             NPC.alpha = 255;
             NPC.noGravity = true;
             NPC.noTileCollide = true;
-            NPC.knockBackResist = -1f;
+            NPC.knockBackResist = 0f;
         }
 
         public override void HitEffect(NPC.HitInfo hit)

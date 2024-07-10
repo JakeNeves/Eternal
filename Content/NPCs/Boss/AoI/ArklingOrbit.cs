@@ -36,7 +36,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
 
         public override void SetStaticDefaults()
         {
-            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
                 Hide = true
             };
@@ -57,7 +57,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
             NPC.noGravity = true;
             NPC.noTileCollide = true;
             NPC.alpha = 255;
-            NPC.knockBackResist = -1f;
+            NPC.knockBackResist = 0f;
             SpawnModBiomes = new int[1] { ModContent.GetInstance<Biomes.Shrine>().Type };
         }
 

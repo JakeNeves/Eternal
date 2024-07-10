@@ -32,7 +32,7 @@ namespace Eternal.Content.NPCs.Boss.Empraynia
             NPC.height = 184;
             NPC.damage = 180;
             NPC.defense = 64;
-            NPC.knockBackResist = -1f;
+            NPC.knockBackResist = 0f;
             NPC.boss = true;
             NPC.noTileCollide = true;
             Music = MusicID.Boss4;
