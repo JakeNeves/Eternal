@@ -23,8 +23,8 @@ namespace Eternal.Content.Items.Materials
 
         public override void SetDefaults()
         {
-            Item.width = 30;
-            Item.height = 24;
+            Item.width = 26;
+            Item.height = 20;
             Item.value = Item.sellPrice(gold: 5);
             Item.rare = ModContent.RarityType<Teal>();
             Item.maxStack = 9999;
@@ -34,7 +34,7 @@ namespace Eternal.Content.Items.Materials
         {
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<Astragel>())
-                .AddIngredient(ModContent.ItemType<InterstellarSingularity>())
+                .AddIngredient(ModContent.ItemType<InterstellarScrapMetal>())
                 .AddIngredient(ModContent.ItemType<StarmetalBar>())
                 .AddIngredient(ModContent.ItemType<Placeable.CometiteOre>())
                 .AddTile(ModContent.TileType<Starforge>())

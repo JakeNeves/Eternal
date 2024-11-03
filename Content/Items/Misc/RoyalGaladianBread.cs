@@ -19,7 +19,7 @@ namespace Eternal.Content.Items.Misc
 
         public override void SetDefaults()
         {
-            Item.width = 22;
+            Item.width = 24;
             Item.height = 16;
             Item.useStyle = ItemUseStyleID.EatFood;
             Item.useAnimation = 17;

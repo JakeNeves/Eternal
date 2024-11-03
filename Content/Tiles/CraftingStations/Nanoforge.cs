@@ -22,7 +22,7 @@ namespace Eternal.Content.Tiles.CraftingStations
             TileObjectData.newTile.Width = 9;
             TileObjectData.newTile.Height = 12;
             TileObjectData.newTile.Origin = new Point16(8, 11);
-            TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16 };
+            TileObjectData.newTile.CoordinateHeights = [ 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16 ];
             TileObjectData.newTile.StyleWrapLimit = 2;
             TileObjectData.newTile.StyleMultiplier = 2;
             TileObjectData.addTile(Type);
@@ -44,7 +44,7 @@ namespace Eternal.Content.Tiles.CraftingStations
                 TileID.Loom,
                 TileID.Kegs,
                 ModContent.TileType<Starforge>(),
-                ModContent.TileType<AncientForge>(),
+                ModContent.TileType<AncientFoundry>(),
                 ModContent.TileType<RotaryHearthForge>()
             };
         }

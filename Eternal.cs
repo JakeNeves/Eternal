@@ -13,7 +13,7 @@ namespace Eternal
 {
 	public partial class Eternal : Mod
 	{
-        internal static Eternal instance;
+        internal static Eternal Instance;
 
         public static int Naquadarinite;
 
@@ -21,7 +21,7 @@ namespace Eternal
 
         public override void Load()
         {
-            instance = this;
+            Instance = this;
 
             if (!Main.dedServ)
             {
@@ -43,7 +43,7 @@ namespace Eternal
 
 		public override void Unload()
         {
-            instance = null;
+            Instance = null;
         }
     }
 }

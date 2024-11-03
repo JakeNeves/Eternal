@@ -35,10 +35,10 @@ namespace Eternal.Content.Items.Armor
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<ArkaniumCompoundSheets>(), 60)
+                .AddIngredient(ModContent.ItemType<ArkaniumAlloy>(), 60)
                 .AddIngredient(ModContent.ItemType<WeatheredPlating>(), 20)
-                .AddIngredient(ModContent.ItemType<RefinedArkrystalSheets>(), 96)
-                .AddTile(ModContent.TileType<AncientForge>())
+                .AddIngredient(ModContent.ItemType<ArkiumQuartzPlating>(), 96)
+                .AddTile(ModContent.TileType<AncientFoundry>())
                 .Register();
         }
     }

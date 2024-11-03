@@ -21,8 +21,8 @@ namespace Eternal.Content.Items.Materials
 
         public override void SetDefaults()
         {
-            Item.width = 30;
-            Item.height = 24;
+            Item.width = 26;
+            Item.height = 20;
             Item.value = Item.sellPrice(gold: 20);
             Item.rare = ModContent.RarityType<Magenta>();
             Item.maxStack = 9999;
@@ -33,8 +33,8 @@ namespace Eternal.Content.Items.Materials
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<CometiteBar>())
                 .AddIngredient(ModContent.ItemType<StarpowerCrystal>())
-                .AddIngredient(ModContent.ItemType<RefinedArkrystalSheets>())
-                .AddTile(ModContent.TileType<AncientForge>())
+                .AddIngredient(ModContent.ItemType<ArkiumQuartzPlating>())
+                .AddTile(ModContent.TileType<AncientFoundry>())
                 .Register();
         }
     }

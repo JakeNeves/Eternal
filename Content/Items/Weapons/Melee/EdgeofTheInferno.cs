@@ -43,7 +43,7 @@ namespace Eternal.Content.Items.Weapons.Melee
                 .AddIngredient(ModContent.ItemType<EmpoweredMalachiteEdge>())
                 .AddIngredient(ModContent.ItemType<IgniumBar>(), 45)
                 .AddIngredient(ItemID.HellstoneBar, 20)
-                .AddTile(ModContent.TileType<AncientForge>())
+                .AddTile(ModContent.TileType<AncientFoundry>())
                 .Register();
         }
     }

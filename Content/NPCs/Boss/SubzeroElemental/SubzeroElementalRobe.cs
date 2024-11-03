@@ -2,6 +2,7 @@
 using Eternal.Common.Misc;
 using Eternal.Common.Systems;
 using Eternal.Content.BossBarStyles;
+using Eternal.Content.Projectiles.Misc;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -84,6 +85,7 @@ namespace Eternal.Content.NPCs.Boss.SubzeroElemental
             {
                 CombatText.NewText(NPC.Hitbox, new Color(0, 90, 210), "ARGH!", dramatic: true);
                 Main.NewText("ARGH!", 0, 90, 210);
+                Projectile.NewProjectile(entitySource, NPC.Center, NPC.velocity, ModContent.ProjectileType<SubzeroElementalP2Transition>(), 0, 0);
             }
             else
             {

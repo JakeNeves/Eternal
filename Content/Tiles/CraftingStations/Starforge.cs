@@ -19,15 +19,14 @@ namespace Eternal.Content.Tiles.CraftingStations
             Main.tileLavaDeath[Type] = false;
             DustType = DustID.Shadowflame;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2xX);
-            TileObjectData.newTile.Width = 5;
+            TileObjectData.newTile.Width = 6;
             TileObjectData.newTile.Height = 3;
-            TileObjectData.newTile.Origin = new Point16(4, 2);
-            TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16, 16 };
+            TileObjectData.newTile.Origin = new Point16(5, 2);
+            TileObjectData.newTile.CoordinateHeights = [ 16, 16, 16 ];
             TileObjectData.newTile.StyleWrapLimit = 2;
             TileObjectData.newTile.StyleMultiplier = 2;
             TileObjectData.addTile(Type);
             LocalizedText name = CreateMapEntryName();
-            // name.SetDefault("Starforge");
             AddMapEntry(new Color(50, 0, 25), name);
         }
 

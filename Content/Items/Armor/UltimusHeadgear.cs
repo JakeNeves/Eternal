@@ -64,7 +64,7 @@ namespace Eternal.Content.Items.Armor
         public override void AddRecipes()
         {
             CreateRecipe()
-               .AddTile(ModContent.TileType<AncientForge>())
+               .AddTile(ModContent.TileType<AncientFoundry>())
                .AddIngredient(ModContent.ItemType<ArkaniumCowl>())
                .AddIngredient(ModContent.ItemType<StarbornHood>())
                .AddIngredient(ModContent.ItemType<CoreofExodus>(), 8)

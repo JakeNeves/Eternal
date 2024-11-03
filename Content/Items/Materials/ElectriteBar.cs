@@ -28,7 +28,7 @@ namespace Eternal.Content.Items.Materials
         {
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<ElectriteOre>())
-                .AddTile(ModContent.TileType<AncientForge>())
+                .AddTile(ModContent.TileType<AncientFoundry>())
                 .Register();
         }
     }

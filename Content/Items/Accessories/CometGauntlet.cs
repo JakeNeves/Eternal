@@ -45,7 +45,7 @@ namespace Eternal.Content.Items.Accessories
                 .AddTile(ModContent.TileType<Starforge>())
                 .AddIngredient(ModContent.ItemType<GalaxianPlating>(), 20)
                 .AddIngredient(ModContent.ItemType<StarmetalBar>(), 40)
-                .AddIngredient(ModContent.ItemType<InterstellarSingularity>(), 10)
+                .AddIngredient(ModContent.ItemType<InterstellarScrapMetal>(), 10)
                 .AddIngredient(ItemID.FireGauntlet)
                 .Register();
         }

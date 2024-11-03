@@ -49,7 +49,7 @@ namespace Eternal.Content.Items.Weapons.Magic
                 .AddIngredient(ModContent.ItemType<ApparitionalMatter>(), 20)
                 .AddIngredient(ModContent.ItemType<CometiteBar>(), 6)
                 .AddIngredient(ModContent.ItemType<StarpowerCrystal>(), 6)
-                .AddIngredient(ModContent.ItemType<ArkaniumCompoundSheets>(), 10)
+                .AddIngredient(ModContent.ItemType<ArkaniumAlloy>(), 10)
                 .Register();
         }
 

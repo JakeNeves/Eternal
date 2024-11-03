@@ -5,7 +5,7 @@
 
 ---
 
-Eternal is a mod which aims to add some random stuff into your Terraria
+Eternal is a work in progress mod which aims to add some random stuff into your Terraria
 experience, with a plan of 32 total bosses and some minibosses, and don't
 forget, hundreds upon hundreds of items (maybe thousands). There is also
 a brand new difficulty to spice up a bit of your gameplay and have some reward

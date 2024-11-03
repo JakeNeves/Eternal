@@ -21,8 +21,8 @@ namespace Eternal.Content.Items.Misc
 
         public override void SetDefaults()
         {
-            Item.width = 22;
-            Item.height = 20;
+            Item.width = 20;
+            Item.height = 28;
             Item.useStyle = ItemUseStyleID.HoldUp;
             Item.useAnimation = 15;
             Item.useTime = 15;

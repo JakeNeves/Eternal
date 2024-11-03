@@ -1,4 +1,4 @@
-
+﻿
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\tModLoader.targets" />
   <PropertyGroup>
@@ -17,5 +17,10 @@
     <Reference Include="CalamityMod">
       <HintPath>..\..\ModReader\CalamityMod\CalamityMod.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+	<Reference Include="StructureHelper">
+	  <HintPath>lib\StructureHelper.dll</HintPath>
+	</Reference>
   </ItemGroup>
 </Project>

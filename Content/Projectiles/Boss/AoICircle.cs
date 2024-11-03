@@ -8,20 +8,17 @@ namespace Eternal.Content.Projectiles.Boss
     {
         public override void SetDefaults()
         {
-            Projectile.width = 300;
-            Projectile.height = 300;
+            Projectile.width = 418;
+            Projectile.height = 418;
 
-            Projectile.hostile = true;
+            Projectile.hostile = false;
+            Projectile.friendly = false;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = false;
 
             Projectile.alpha = 80;
             Projectile.penetrate = -1;
             Projectile.timeLeft = 100000;
-        }
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Ark of Imperious");
         }
 
         public override void AI()
@@ -35,7 +32,7 @@ namespace Eternal.Content.Projectiles.Boss
 
             Projectile.Center = parent.Center;
 
-            Projectile.rotation += 0.05f;
+            Projectile.rotation += 0.15f;
         }
     }
 }

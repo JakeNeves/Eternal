@@ -70,7 +70,7 @@ namespace Eternal.Content.Items.Weapons.Ranged
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<WeaponGradeNaquadahAlloy>(), 30)
+                .AddIngredient(ModContent.ItemType<WeaponsGradeNaquadahAlloy>(), 30)
                 .AddIngredient(ModContent.ItemType<ShiftblightAmethyst>(), 6)
                 .AddTile(ModContent.TileType<RotaryHearthForge>())
                 .Register();

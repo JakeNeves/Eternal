@@ -41,7 +41,7 @@ namespace Eternal.Content.Items.Weapons.Melee
                 .AddIngredient(ModContent.ItemType<UnrefinedHeroSword>())
                 .AddIngredient(ModContent.ItemType<FrostblightShard>(), 12)
                 .AddIngredient(ModContent.ItemType<GalaciteGemstone>(), 24)
-                .AddTile(ModContent.TileType<AncientForge>())
+                .AddTile(ModContent.TileType<AncientFoundry>())
                 .Register();
         }
     }

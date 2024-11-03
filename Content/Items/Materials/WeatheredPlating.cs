@@ -15,8 +15,8 @@ namespace Eternal.Content.Items.Materials
 
         public override void SetDefaults()
         {
-            Item.width = 29;
-            Item.height = 36;
+            Item.width = 26;
+            Item.height = 16;
             Item.rare = ModContent.RarityType<Teal>();
             Item.maxStack = 9999;
         }

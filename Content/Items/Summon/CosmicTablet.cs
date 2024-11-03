@@ -21,8 +21,8 @@ namespace Eternal.Content.Items.Summon
 
         public override void SetDefaults()
         {
-            Item.width = 36;
-            Item.height = 52;
+            Item.width = 22;
+            Item.height = 30;
             Item.rare = ModContent.RarityType<Turquoise>();
         }
 

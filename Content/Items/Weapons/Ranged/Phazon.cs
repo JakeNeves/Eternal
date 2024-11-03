@@ -45,7 +45,7 @@ namespace Eternal.Content.Items.Weapons.Ranged
                 .AddIngredient(ItemID.SpectreBar, 16)
                 .AddIngredient(ModContent.ItemType<WeatheredPlating>(), 24)
                 .AddIngredient(ModContent.ItemType<CometiteBar>(), 18)
-                .AddTile(ModContent.TileType<AncientForge>())
+                .AddTile(ModContent.TileType<AncientFoundry>())
                 .Register();
         }
 

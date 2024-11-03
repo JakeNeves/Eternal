@@ -49,7 +49,7 @@ namespace Eternal.Content.Items.Weapons.Ranged
                 .AddIngredient(ModContent.ItemType<StarmetalBar>(), 16)
                 .AddIngredient(ModContent.ItemType<StarpowerCrystal>(), 20)
                 .AddIngredient(ModContent.ItemType<CometiteBar>(), 20)
-                .AddTile(ModContent.TileType<AncientForge>())
+                .AddTile(ModContent.TileType<AncientFoundry>())
                 .Register();
         }
 

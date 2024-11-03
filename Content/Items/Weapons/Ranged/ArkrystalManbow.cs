@@ -45,9 +45,9 @@ namespace Eternal.Content.Items.Weapons.Ranged
         {
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<WeatheredPlating>(), 8)
-                .AddIngredient(ModContent.ItemType<ArkaniumCompoundSheets>(), 16)
-                .AddIngredient(ModContent.ItemType<RefinedArkrystalSheets>(), 16)
-                .AddTile(ModContent.TileType<AncientForge>())
+                .AddIngredient(ModContent.ItemType<ArkaniumAlloy>(), 16)
+                .AddIngredient(ModContent.ItemType<ArkiumQuartzPlating>(), 16)
+                .AddTile(ModContent.TileType<AncientFoundry>())
                 .Register();
         }
 

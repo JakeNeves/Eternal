@@ -27,7 +27,7 @@ namespace Eternal.Content.Items.Materials
         {
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<MoteofOminite>(), 2)
-                .AddTile(ModContent.TileType<AncientForge>())
+                .AddTile(ModContent.TileType<AncientFoundry>())
                 .Register();
         }
 

@@ -39,7 +39,7 @@ namespace Eternal.Content.Items.Summon
         {
             CreateRecipe()
                 .AddTile(ModContent.TileType<Starforge>())
-                .AddIngredient(ModContent.ItemType<ArkaniumCompoundSheets>(), 16)
+                .AddIngredient(ModContent.ItemType<ArkaniumAlloy>(), 16)
                 .AddIngredient(ModContent.ItemType<WeatheredPlating>(), 3)
                 .Register();
         }

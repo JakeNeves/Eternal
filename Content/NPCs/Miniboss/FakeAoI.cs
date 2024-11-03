@@ -120,9 +120,9 @@ namespace Eternal.Content.NPCs.Miniboss
         {
             PostArkofImperiousDropCondition postArkDrop = new PostArkofImperiousDropCondition();
 
-            npcLoot.Add(ItemDropRule.ByCondition(postArkDrop, ModContent.ItemType<RawArkrystal>(), 1, 2, 4));
+            npcLoot.Add(ItemDropRule.ByCondition(postArkDrop, ModContent.ItemType<ArkiumQuartzCrystalCluster>(), 1, 2, 4));
 
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RawArkaniumDebris>(), 2, 2, 12));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ArkaniumScrap>(), 2, 2, 12));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<WeatheredPlating>(), 4, 1, 3));
         }
 

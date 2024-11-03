@@ -278,9 +278,9 @@ Mods: {
 				DisplayName: Nanoforge
 			}
 
-			AncientForge: {
+			AncientFoundry: {
 				Tooltip: Used to craft hyper-teir items
-				DisplayName: Ancient Forge
+				DisplayName: Ancient Foundry
 			}
 
 			CometiteOre: {
@@ -466,9 +466,9 @@ Mods: {
 				DisplayName: Sebastian's Cyber Chassis
 			}
 
-			RefinedArkrystalSheets: {
+			ArkiumQuartzPlating: {
 				Tooltip: "'Durable, yet so shiny...'"
-				DisplayName: Refined Arkrystal Sheets
+				DisplayName: Arkium Quartz Plating
 			}
 
 			RawNaquadah: {
@@ -481,14 +481,14 @@ Mods: {
 				DisplayName: Large Raw Naquadah
 			}
 
-			RawArkrystal: {
-				Tooltip: "'Crystalized energy of living swords'"
-				DisplayName: Raw Arkrystal
+			ArkiumQuartzCrystalCluster: {
+				Tooltip: "'Crystallized essence of absolute dominance'"
+				DisplayName: Arkium Quartz Crystal Cluster
 			}
 
-			RawArkaniumDebris: {
-				Tooltip: "'A very hard rocky substance'"
-				DisplayName: Raw Arkanium Debris
+			ArkaniumScrap: {
+				Tooltip: "'A very hard durable metal...'"
+				DisplayName: Arkanium Scrap
 			}
 
 			PermafrostAlloy: {
@@ -531,9 +531,9 @@ Mods: {
 				DisplayName: Knife Blade
 			}
 
-			InterstellarSingularity: {
-				Tooltip: "'The Essence of Cosmic Entities'"
-				DisplayName: Interstellar Singularity
+			InterstellarScrapMetal: {
+				Tooltip: "'Armor plating that is surprisingly valuable despite it's rough condition...'"
+				DisplayName: Interstellar Scrap Metal
 			}
 
 			InterstellarMetal: {
@@ -662,9 +662,9 @@ Mods: {
 				DisplayName: Astragel
 			}
 
-			ArkaniumCompoundSheets: {
+			ArkaniumAlloy: {
 				Tooltip: ""
-				DisplayName: Arkanium Compound Sheets
+				DisplayName: Arkanium Alloy
 			}
 
 			ApparitionalMatter: {
@@ -675,11 +675,6 @@ Mods: {
 			SarosFragment: {
 				Tooltip: "'A shard of the black sun'"
 				DisplayName: Saros Fragment
-			}
-
-			LuminousQuartz: {
-				Tooltip: "'A crystal of pure moonlight'"
-				DisplayName: Luminous Quartz
 			}
 
 			ReverseLifeContainer: {
@@ -1389,23 +1384,30 @@ Mods: {
 					'''
 			}
 
-			ArkrystalBlade: {
-				DisplayName: Arkrystal Blade
+			BoonOfTheArks: {
+				DisplayName: Boon of the Arks
 				Tooltip:
 					'''
 					<right> for True Melee
-					'Formally known as The Imperious Cohort...'
+					Unleashes a barrage of shards upon striking an enemy
+					Projectiles striking an enemy will explode into a barrage of shards
+					Upon hitting any surface, the projectiles will explode into pieces
+					'Now with an AOE attack of some sort...'
 					'''
 			}
 
-			ArkrystalChakram: {
-				DisplayName: Arkrystal Chakram
-				Tooltip: ""
+			ArkiumDisk: {
+				DisplayName: Arkium Disk
+				Tooltip:
+					'''
+					Hitting an enemy with the disk will create a ghost disk
+					that gratually expands and fades away overtime
+					'''
 			}
 
-			ArkrystalGladius: {
-				DisplayName: Arkrystal Gladius
-				Tooltip: "'The Arkrystal Blade's short counterpart'"
+			ArkiumGladius: {
+				DisplayName: Arkium Gladius
+				Tooltip: "'The Boon of the Ark's shortsword counterpart'"
 			}
 
 			Arkspear: {
@@ -1740,16 +1742,6 @@ Mods: {
 				Tooltip: 20% increased summon damage
 			}
 
-			AdamantriteBar: {
-				DisplayName: Adamantrite Bar
-				Tooltip: "'Not to be confused with Adamantite...'"
-			}
-
-			TritaniumBar: {
-				DisplayName: Tritanium Bar
-				Tooltip: "'Not to be confused with Titanium...'"
-			}
-
 			RotaryHearthForge: {
 				DisplayName: Rotary Hearth Forge
 				Tooltip: Used to process Ominite and Naquadah
@@ -1837,11 +1829,6 @@ Mods: {
 					Upon firing, the projectile's unstability chases it's target and constantly teleports
 					to the original shooter causing partial confusion to the target.
 					'''
-			}
-
-			ZeroPointTransmissionCodex: {
-				DisplayName: Zero-Point Transmission Codex
-				Tooltip: Transmits a signal to Sebastion's rogue creations
 			}
 
 			NaquadariniteMote: {
@@ -2055,16 +2042,16 @@ Mods: {
 
 			RawExathium: {
 				DisplayName: Raw Exathium
-				Tooltip: "'This is Anti-Arkrystal...'"
+				Tooltip: "'This is Anti-Arkium...'"
 			}
 
 			RefinedExathium: {
 				DisplayName: Refined Exathium
-				Tooltip: "'This is also Anti-Arkrystal...'"
+				Tooltip: "'This is also Anti-Arkium...'"
 			}
 
-			WeaponGradeNaquadahAlloy: {
-				DisplayName: Weapon Grade Naquadah Alloy
+			WeaponsGradeNaquadahAlloy: {
+				DisplayName: Weapons Grade Naquadah Alloy
 				Tooltip: "'How does one even make a naquadah alloy in the first place?'"
 			}
 
@@ -2296,6 +2283,11 @@ Mods: {
 				DisplayName: Limbolic Glyph Z
 				Tooltip: ""
 			}
+
+			StarquartzCrystalCluster: {
+				DisplayName: Starquartz Crystal Cluster
+				Tooltip: "'Crystallized essence of raw star power!'"
+			}
 		}
 
 		Buffs: {
@@ -2374,13 +2366,12 @@ Mods: {
 			ElectriteOre.MapEntry: Electrite
 			Starforge.MapEntry: Starforge
 			Nanoforge.MapEntry: Nanoforge
-			AncientForge.MapEntry: Ancient Forge
-			StarstoneOre.MapEntry: Cometite
+			AncientFoundry.MapEntry: Ancient Foundry
 			RotaryHerathForge.DisplayName: Rotary Hearth Forge
 			RotaryHearthForge.MapEntry: Rotary Hearth Forge
 			TheCherishedKinofGallahard.MapEntry: Painting
 			TheSonofTheArsGaladia.MapEntry: Painting
-			CometiteOre.MapEntry: Cometite Ore
+			CometiteOre.MapEntry: Cometite
 			ShiftingEerieMonolith.MapEntry: Shifting Eerie Monolith
 		}
 
@@ -2488,8 +2479,6 @@ Mods: {
 			Cryota.DisplayName: Cryota
 			CryotasSentry.DisplayName: Cryota's Sentry
 			Flaremutaria.DisplayName: Flaremutaria
-			SpiritofIncinerius.DisplayName: Spirit of Incinerius
-			SpiritoftheDuneGolem.DisplayName: Spirit of the Dune Golem
 			Thunderius.DisplayName: Thunderius
 			ApparitionalReminant.DisplayName: Apparitional Reminant
 			AstroidSmasher.DisplayName: Astroid Smasher
@@ -2626,7 +2615,6 @@ Mods: {
 			BloodtoothProjectile.DisplayName: Bloodtooth
 			DuneSparkFriendly.DisplayName: Dune Spark
 			DuneSpark.DisplayName: Dune Spark
-			ArkaniumSword.DisplayName: Arkanium Sword
 			UnstableStarbornWisp.DisplayName: Unstable Starborn Wisp
 			StarstoneWhaleHarvesterBobber.DisplayName: Starstone Whale Harvester Bobber
 			AoICircle.DisplayName: Ark of Imperious' Ritual Circle
@@ -2671,8 +2659,8 @@ Mods: {
 			AoIProjectile.DisplayName: Ark of Imperious
 			ApparitionalDiskPierce.DisplayName: Apparitional Disk
 			ApparitionalDiskProjectile.DisplayName: Apparitional Disk
-			ArkrystalBolt.DisplayName: Arkrystal Bolt
-			ArkrystalChakramProjectile.DisplayName: Arkrystal Chakram
+			BOTAProjectile.DisplayName: Boon of the Arks
+			ArkiumDisk.DisplayName: Arkium Disk
 			ArkspearProjectile.DisplayName: Arkspear
 			ArkspearProjectileThrown.DisplayName: Arkspear
 			AstraeaProjectile.DisplayName: Astraea
@@ -2681,10 +2669,6 @@ Mods: {
 			EmpoweredApparitionalDiskProjectile.DisplayName: Empowered Apparitional Disk
 			EmpoweredApparitionalDiskProjectileMini.DisplayName: Empowered Apparitional Disk
 			EmpoweredMachaliteEdgeProjectile.DisplayName: Empowered Machalite Edge
-			FinalBossBladeProjectile1Shoot.DisplayName: Final Boss Blade
-			FinalBossBladeProjectile2Shoot.DisplayName: Final Boss Blade
-			FinalBossBladeProjectileRing.DisplayName: Final Boss Blade
-			FinalBossBladeProjectileRingPierce.DisplayName: Final Boss Blade
 			GiantFireChakramProjectile.DisplayName: Giant Fire Chakram
 			HyperionProjectile.DisplayName: Hyperion
 			MachaliteChakramProjectile.DisplayName: Machalite Chakram
@@ -2692,7 +2676,7 @@ Mods: {
 			NyanarangProjectile.DisplayName: Nyanarang
 			PhantasmaProjectile.DisplayName: Phantasma
 			ScyllaProjectile.DisplayName: Scylla
-			ArkrystalGladiusProjectile.DisplayName: Arkrystal Gladius
+			ArkiumGladiusProjectile.DisplayName: Arkium Gladius
 			CarminitePurgatoryProjectile.DisplayName: Carminite Purgatory
 			SolScytheProjectile.DisplayName: Sol Scythe
 			StarcrescentMoondiskProjectile.DisplayName: Starcrescent Moondisk
@@ -2714,7 +2698,6 @@ Mods: {
 			ExocosmicBombProjectile.DisplayName: Exocosmic Bomb
 			Pebble.DisplayName: Pebble
 			PebbleShoot.DisplayName: Pebble
-			ArkrystalShard.DisplayName: Arkrystal Shard
 			BasaltShellProjectile.DisplayName: Basalt Shell
 			CosmicNinjaStarProjectile.DisplayName: Cosmic Ninja Star
 			EmpoweredSwiftShotStarbuster.DisplayName: Empowered Swift Shot Starbuster
@@ -2741,15 +2724,19 @@ Mods: {
 			ExosiivaGladiusBladeProjectile2.DisplayName: Exosiiva Gladius Blade
 			IchorateProjectile.DisplayName: Ichorate
 			PrimordialElementalBreakerProjectile.DisplayName: Primordial Elemental Breaker Projectile
-			StarshiftObliterationBreakerProjectile.DisplayName: Starshift Obliteration Breaker Projectile
-			StarshiftObliterationBreakerShoot.DisplayName: Starshift Obliteration Breaker Shoot
 			CometiteWhaleHarvesterBobber.DisplayName: Cometite Whale Harvester Bobber
-			CarminiteShortswordProjectile.DisplayName: Carminite Shortsword Projectile
-			StardraxProjectile.DisplayName: Stardrax Projectile
-			SuperUniverseTotalityProjectile.DisplayName: Super Universe Totality Projectile
-			SuperUniverseTotalityShoot.DisplayName: Super Universe Totality Shoot
-			NaquadahNaniteProjectile.DisplayName: Naquadah Nanite Projectile
-			OminiteNaniteProjectile.DisplayName: Ominite Nanite Projectile
+			CarminiteShortswordProjectile.DisplayName: Carminite Shortsword
+			StardraxProjectile.DisplayName: Stardrax
+			SuperUniverseTotalityProjectile.DisplayName: Super Universe Totality
+			SuperUniverseTotalityShoot.DisplayName: Super Universe Totality
+			NaquadahNaniteProjectile.DisplayName: Naquadah Nanites
+			OminiteNaniteProjectile.DisplayName: Ominite Nanites
+			ArkiumDiskProjectile.DisplayName: Arkium Disk
+			ArkiumDiskProjectileAOE.DisplayName: Boon of the Arks
+			BOTAProjectileAOE.DisplayName: Boon of the Arks
+			BOTAProjectileTrail.DisplayName: Boon of the Arks
+			ArkaniumSword.DisplayName: Arkanium Sword
+			ArkrystalShard.DisplayName: Arkrystal Shard
 		}
 
 		Configs: {

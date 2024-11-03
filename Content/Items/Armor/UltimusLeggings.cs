@@ -32,7 +32,7 @@ namespace Eternal.Content.Items.Armor
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddTile(ModContent.TileType<AncientForge>())
+                .AddTile(ModContent.TileType<AncientFoundry>())
                 .AddIngredient(ModContent.ItemType<ArkaniumGreaves>())
                 .AddIngredient(ModContent.ItemType<StarbornGreaves>())
                 .AddIngredient(ModContent.ItemType<CoreofExodus>(), 8)

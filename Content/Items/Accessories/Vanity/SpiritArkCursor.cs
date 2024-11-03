@@ -37,8 +37,8 @@ namespace Eternal.Content.Items.Accessories.Vanity
         {
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<VoidCursor>())
-                .AddIngredient(ModContent.ItemType<RefinedArkrystalSheets>())
-                .AddTile(ModContent.TileType<AncientForge>())
+                .AddIngredient(ModContent.ItemType<ArkiumQuartzPlating>())
+                .AddTile(ModContent.TileType<AncientFoundry>())
                 .Register();
         }
     }

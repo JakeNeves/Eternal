@@ -20,8 +20,8 @@ namespace Eternal.Content.Items.Tools
             Item.tileBoost = 16;
             Item.damage = 400;
             Item.DamageType = DamageClass.Melee;
-            Item.width = 42;
-            Item.height = 40;
+            Item.width = 50;
+            Item.height = 48;
             Item.useTime = 15;
             Item.useAnimation = 15;
             Item.axe = 50;
@@ -38,11 +38,11 @@ namespace Eternal.Content.Items.Tools
         {
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<WeatheredPlating>(), 4)
-                .AddIngredient(ModContent.ItemType<ArkaniumCompoundSheets>(), 20)
+                .AddIngredient(ModContent.ItemType<ArkaniumAlloy>(), 20)
                 .AddIngredient(ModContent.ItemType<GalaciteBar>(), 30)
                 .AddIngredient(ModContent.ItemType<ElectriteBar>(), 30)
                 .AddIngredient(ModContent.ItemType<IgniumBar>(), 30)
-                .AddTile(ModContent.TileType<AncientForge>())
+                .AddTile(ModContent.TileType<AncientFoundry>())
                 .Register();
         }
     }

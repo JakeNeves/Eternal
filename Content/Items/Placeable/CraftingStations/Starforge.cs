@@ -18,8 +18,8 @@ namespace Eternal.Content.Items.Placeable.CraftingStations
 
         public override void SetDefaults()
         {
-            Item.width = 80;
-            Item.height = 48;
+            Item.width = 84;
+            Item.height = 46;
             Item.maxStack = 9999;
             Item.useTurn = false;
             Item.autoReuse = true;
@@ -38,7 +38,7 @@ namespace Eternal.Content.Items.Placeable.CraftingStations
                 .AddIngredient(ModContent.ItemType<StarmetalBar>(), 60)
                 .AddIngredient(ModContent.ItemType<GalaxianPlating>(), 90)
                 .AddIngredient(ModContent.ItemType<Astragel>(), 120)
-                .AddIngredient(ModContent.ItemType<InterstellarSingularity>(), 48)
+                .AddIngredient(ModContent.ItemType<InterstellarScrapMetal>(), 48)
                 .AddIngredient(ItemID.LunarBar, 4)
                 .AddRecipeGroup("eternal:celestialFragments", 8)
                 .AddRecipeGroup("eternal:mythrilAnvils")

@@ -42,7 +42,7 @@ namespace Eternal.Content.Items.BossBags
         public override void ModifyItemLoot(ItemLoot itemLoot)
         {
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<ApparitionalMatter>(), minimumDropped: 30, maximumDropped: 60));
-            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<InterstellarSingularity>(), minimumDropped: 30, maximumDropped: 60));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<InterstellarScrapMetal>(), minimumDropped: 30, maximumDropped: 60));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<StarmetalBar>(), minimumDropped: 30, maximumDropped: 60));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Vexation>(), 1));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Starfall>(), 2));

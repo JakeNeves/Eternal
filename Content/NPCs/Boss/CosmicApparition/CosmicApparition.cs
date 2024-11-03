@@ -137,7 +137,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
 
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<ApparitionalMatter>(), 2, 6, 12));
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<StarmetalBar>(), 2, 6, 12));
-            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<InterstellarSingularity>(), 2, 6, 12));
+            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<InterstellarScrapMetal>(), 2, 6, 12));
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<ApparitionalStave>(), 4));
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<ApparitionalDisk>(), 3));
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Starfall>(), 2));

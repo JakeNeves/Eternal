@@ -36,7 +36,7 @@ namespace Eternal.Common.Players
         {
             if (ClientConfig.instance.showWelcomeMessage)
             {
-                Main.NewText("Thanks for playing the Eternal " + Eternal.instance.Version.ToString() + "!" +
+                Main.NewText("Thanks for playing the Eternal " + Eternal.Instance.Version.ToString() + "!" +
                         "\nFor updates, join the Jake's Lounge discord server.", 125, 45, 60);
                 Main.NewText("https://discord.gg/HUJ8KUSAjC", 100, 0, 210);
                 Main.NewText("Be sure to check out the Eternal mod wiki (WIP) too!", 125, 45, 60);

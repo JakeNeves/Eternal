@@ -159,7 +159,7 @@ namespace Eternal.Common.Systems
 					{
 						ModContent.ItemType<Content.Items.Materials.ApparitionalMatter>(),
 						ModContent.ItemType<Content.Items.Materials.Astragel>(),
-						ModContent.ItemType<Content.Items.Materials.InterstellarSingularity>(),
+						ModContent.ItemType<Content.Items.Materials.InterstellarScrapMetal>(),
 						ModContent.ItemType<Content.Items.Materials.StarmetalBar>(),
 						ModContent.ItemType<Content.Items.Weapons.Melee.Vexation>(),
 						ModContent.ItemType<Content.Items.Weapons.Melee.ApparitionalDisk>(),
@@ -183,8 +183,8 @@ namespace Eternal.Common.Systems
                     ["displayName"] = Language.GetText("Mods.Eternal.NPCs.ArkofImperious.DisplayName"),
                     ["collectables"] = new List<int>()
 					{
-						ModContent.ItemType<Content.Items.Materials.RawArkrystal>(),
-						ModContent.ItemType<Content.Items.Materials.RawArkaniumDebris>(),
+						ModContent.ItemType<Content.Items.Materials.ArkiumQuartzCrystalCluster>(),
+						ModContent.ItemType<Content.Items.Materials.ArkaniumScrap>(),
 						ModContent.ItemType<Content.Items.Materials.WeatheredPlating>(),
 						ModContent.ItemType<Content.Items.Materials.UnrefinedHeroSword>(),
 					}

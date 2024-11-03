@@ -23,8 +23,8 @@ namespace Eternal.Content.Items.Misc
 
         public override void SetDefaults()
         {
-            Item.width = 20;
-            Item.height = 30;
+            Item.width = 24;
+            Item.height = 34;
             Item.rare = ModContent.RarityType<Teal>();
             Item.value = Item.sellPrice(gold: 30);
             Item.useStyle = ItemUseStyleID.HoldUp;

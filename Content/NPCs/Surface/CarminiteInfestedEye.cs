@@ -66,7 +66,7 @@ namespace Eternal.Content.NPCs.Surface
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return SpawnCondition.OverworldNightMonster.Chance * 0.5f;
+            return SpawnCondition.OverworldNightMonster.Chance * 0.25f;
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)

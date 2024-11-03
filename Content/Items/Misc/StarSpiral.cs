@@ -72,7 +72,7 @@ namespace Eternal.Content.Items.Misc
         {
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<ApparitionalMatter>(), 4)
-                .AddIngredient(ModContent.ItemType<InterstellarSingularity>(), 4)
+                .AddIngredient(ModContent.ItemType<InterstellarScrapMetal>(), 4)
                 .AddIngredient(ModContent.ItemType<Astragel>(), 4)
                 .AddIngredient(ModContent.ItemType<StarmetalBar>(), 4)
                 .AddTile(ModContent.TileType<Starforge>())

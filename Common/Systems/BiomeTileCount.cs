@@ -6,6 +6,9 @@ namespace Eternal.Common.Systems
 {
     public class BiomeTileCount : ModSystem
     {
+        public int biomeTileX;
+        public int biomeTileY;
+
         public int cometCount;
         public int gloomrockCount;
         public int shinestoneCount;

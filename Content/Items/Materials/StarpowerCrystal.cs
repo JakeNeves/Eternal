@@ -11,17 +11,15 @@ namespace Eternal.Content.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            // Tooltip.SetDefault("'A crystaline shard of pristine starpower'");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
 
-            Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(5, 10));
+            Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(4, 8));
         }
 
         public override void SetDefaults()
         {
-            Item.width = 16;
-            Item.height = 22;
+            Item.width = 26;
+            Item.height = 30;
             Item.value = Item.sellPrice(gold: 5);
             Item.rare = ModContent.RarityType<Teal>();
             Item.maxStack = 9999;
@@ -31,7 +29,7 @@ namespace Eternal.Content.Items.Materials
         {
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<Astragel>())
-                .AddIngredient(ModContent.ItemType<InterstellarSingularity>())
+                .AddIngredient(ModContent.ItemType<InterstellarScrapMetal>())
                 .AddIngredient(ModContent.ItemType<StarmetalBar>())
                 .AddIngredient(ModContent.ItemType<ApparitionalMatter>())
                 .AddTile(ModContent.TileType<Starforge>())

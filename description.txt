@@ -9,7 +9,7 @@ This is a public [c/009933:beta] build of Eternal, bugs and other sketchy things
 Feel free to join my Discord Server and help out with the mod if you want
 https://discord.gg/HUJ8KUSAjC
 
-Eternal is a mod that loads your game with much content
+Eternal is a work in progress mod that loads your game with much content
 possible, including a new difficulty!
 From what we expect, this mod is not fully finished yet so
 there is no harm in cheating in anything from the mod via HERO's, Cheat Sheet and/or DragonLens...

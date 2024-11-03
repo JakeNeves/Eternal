@@ -39,7 +39,7 @@ namespace Eternal.Content.Items.Tools
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<CrystalizedOminite>(), 16)
                 .AddIngredient(ModContent.ItemType<OminaquaditeBar>(), 20)
-                .AddIngredient(ModContent.ItemType<WeaponGradeNaquadahAlloy>(), 14)
+                .AddIngredient(ModContent.ItemType<WeaponsGradeNaquadahAlloy>(), 14)
                 .AddTile(ModContent.TileType<RotaryHearthForge>())
                 .Register();
         }

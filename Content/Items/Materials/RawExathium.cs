@@ -15,10 +15,10 @@ namespace Eternal.Content.Items.Materials
 
         public override void SetDefaults()
         {
-            Item.width = 20;
-            Item.height = 18;
+            Item.width = 26;
+            Item.height = 24;
             Item.rare = ModContent.RarityType<Turquoise>();
-            Item.value = Item.sellPrice(platinum: 10);
+            Item.value = Item.sellPrice(gold: 10);
             Item.maxStack = 9999;
         }
     }

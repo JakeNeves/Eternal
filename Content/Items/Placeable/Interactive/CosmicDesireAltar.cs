@@ -12,16 +12,13 @@ namespace Eternal.Content.Items.Placeable.Interactive
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Altar of Cosmic Desire");
-            // Tooltip.SetDefault("Used to worship the Cosmic Emperor");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()
         {
             Item.width = 80;
-            Item.height = 48;
+            Item.height = 46;
             Item.maxStack = 9999;
             Item.useTurn = false;
             Item.autoReuse = true;
@@ -40,7 +37,7 @@ namespace Eternal.Content.Items.Placeable.Interactive
                 .AddIngredient(ModContent.ItemType<StarpowerCrystal>(), 8)
                 .AddIngredient(ModContent.ItemType<CometiteOre>(), 20)
                 .AddIngredient(ModContent.ItemType<StarmetalBar>(), 30)
-                .AddTile(ModContent.TileType<AncientForge>())
+                .AddTile(ModContent.TileType<AncientFoundry>())
                 .Register();
         }
     }

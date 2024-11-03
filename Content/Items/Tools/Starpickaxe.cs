@@ -22,8 +22,8 @@ namespace Eternal.Content.Items.Tools
             Item.tileBoost = 12;
             Item.damage = 200;
             Item.DamageType = DamageClass.Melee;
-            Item.width = 50;
-            Item.height = 52;
+            Item.width = 44;
+            Item.height = 44;
             Item.useTime = 10;
             Item.useAnimation = 15;
             Item.pick = 230;

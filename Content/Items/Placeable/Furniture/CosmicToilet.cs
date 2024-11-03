@@ -34,7 +34,7 @@ namespace Eternal.Content.Items.Placeable.Furniture
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddTile(ModContent.TileType<AncientForge>())
+                .AddTile(ModContent.TileType<AncientFoundry>())
                 .AddIngredient(ItemID.Toilet)
                 .AddIngredient(ModContent.ItemType<CometiteBar>(), 16)
                 .AddIngredient(ModContent.ItemType<CosmoniumFragment>())

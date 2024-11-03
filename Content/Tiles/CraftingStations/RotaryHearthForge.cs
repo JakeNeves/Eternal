@@ -22,7 +22,7 @@ namespace Eternal.Content.Tiles.CraftingStations
             TileObjectData.newTile.Width = 7;
             TileObjectData.newTile.Height = 8;
             TileObjectData.newTile.Origin = new Point16(6, 7);
-            TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16, 16, 16, 16, 16, 16, 16 };
+            TileObjectData.newTile.CoordinateHeights = [ 16, 16, 16, 16, 16, 16, 16, 16 ];
             TileObjectData.newTile.StyleWrapLimit = 2;
             TileObjectData.newTile.StyleMultiplier = 2;
             TileObjectData.addTile(Type);

@@ -37,7 +37,7 @@ namespace Eternal.Content.Items.Potions
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<CrystalizedOminite>())
                 .AddIngredient(ModContent.ItemType<PristineHealingPotion>())
-                .AddTile(ModContent.TileType<AncientForge>())
+                .AddTile(ModContent.TileType<AncientFoundry>())
                 .Register();
         }
     }

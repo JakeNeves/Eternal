@@ -1,4 +1,5 @@
 ﻿using Eternal.Common.Systems;
+using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Placeable;
 using Eternal.Content.NPCs.Boss.CosmicApparition;
 using Terraria;
@@ -21,8 +22,8 @@ namespace Eternal.Content.Items.Summon
 
         public override void SetDefaults()
         {
-            Item.width = 32;
-            Item.height = 26;
+            Item.width = 20;
+            Item.height = 20;
             Item.rare = ItemRarityID.Red;
             Item.useAnimation = 45;
             Item.useTime = 45;
@@ -32,7 +33,7 @@ namespace Eternal.Content.Items.Summon
         public override bool CanUseItem(Player player)
         {
             Main.NewText("Something gazes upon you...", 220, 0, 210);
-            return !NPC.AnyNPCs(ModContent.NPCType<WanderingSoul>()) && !NPC.AnyNPCs(ModContent.NPCType<CosmicApparition>()) && ModContent.GetInstance<ZoneSystem>().zoneComet;
+            return !NPC.AnyNPCs(ModContent.NPCType<WanderingSoul>()) && !NPC.AnyNPCs(ModContent.NPCType<CosmicApparition>());
         }
 
         public override bool? UseItem(Player player)
@@ -48,6 +49,7 @@ namespace Eternal.Content.Items.Summon
         {
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<CometiteOre>(), 8)
+                .AddIngredient(ModContent.ItemType<StarquartzCrystalCluster>(), 20)
                 .AddIngredient(ItemID.Ectoplasm, 16)
                 .AddIngredient(ItemID.LunarBar, 4)
                 .AddTile(TileID.LunarCraftingStation)

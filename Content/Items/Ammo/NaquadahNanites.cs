@@ -34,7 +34,7 @@ namespace Eternal.Content.Items.Ammo
         {
             CreateRecipe(333)
                 .AddTile(ModContent.TileType<Nanoforge>())
-                .AddIngredient(ModContent.ItemType<WeaponGradeNaquadahAlloy>())
+                .AddIngredient(ModContent.ItemType<WeaponsGradeNaquadahAlloy>())
                 .Register();
         }
     }

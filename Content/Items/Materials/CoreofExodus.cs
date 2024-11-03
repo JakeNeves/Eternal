@@ -29,7 +29,7 @@ namespace Eternal.Content.Items.Materials
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddTile(ModContent.TileType<AncientForge>())
+                .AddTile(ModContent.TileType<AncientFoundry>())
                 .AddIngredient(ModContent.ItemType<FrostblightSapphire>())
                 .AddIngredient(ModContent.ItemType<InfernoblightAmber>())
                 .AddIngredient(ModContent.ItemType<ThunderblightJade>())

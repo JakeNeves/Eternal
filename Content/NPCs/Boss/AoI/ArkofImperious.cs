@@ -335,8 +335,8 @@ namespace Eternal.Content.NPCs.Boss.AoI
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<AoIBag>()));
 
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<WeatheredPlating>(), minimumDropped: 6, maximumDropped: 8));
-            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<RawArkaniumDebris>(), minimumDropped: 10, maximumDropped: 20));
-            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<RawArkrystal>(), minimumDropped: 10, maximumDropped: 20));
+            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<ArkaniumScrap>(), minimumDropped: 10, maximumDropped: 20));
+            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<ArkiumQuartzCrystalCluster>(), minimumDropped: 10, maximumDropped: 20));
 
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<UnrefinedHeroSword>(), 20));
         }

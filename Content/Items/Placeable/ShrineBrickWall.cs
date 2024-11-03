@@ -16,7 +16,7 @@ namespace Eternal.Content.Items.Placeable
             Item.useTime = 7;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.consumable = true;
-            Item.DefaultToPlaceableTile(ModContent.WallType<Walls.ShrineBrickWall>());
+            Item.createWall = ModContent.WallType<Walls.ShrineBrickWall>();
         }
 
         public override void AddRecipes()

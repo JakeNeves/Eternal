@@ -1,6 +1,5 @@
 ﻿using Eternal.Common.ItemDropRules.Conditions;
 using Eternal.Common.Systems;
-using Eternal.Content.Dusts;
 using Eternal.Content.Items.Armor;
 using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Weapons.Melee;
@@ -22,7 +21,7 @@ namespace Eternal.Content.NPCs.Comet
 		{
             var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
-                CustomTexturePath = "Eternal/Content/NPCs/Rift/NaquadahBurrower_Preview",
+                CustomTexturePath = "Eternal/Content/NPCs/Rift/StarbeltSeeker_Preview",
                 Position = new Vector2(40f, 24f),
                 PortraitPositionXOverride = 0f,
                 PortraitPositionYOverride = 12f
@@ -81,7 +80,7 @@ namespace Eternal.Content.NPCs.Comet
 			npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<StarmetalBar>(), 3, 12, 24));
 			npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<GalaxianPlating>(), 3, 12, 24));
 			npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<Astragel>(), 3, 12, 24));
-			npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<InterstellarSingularity>(), 3, 12, 24));
+			npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<InterstellarScrapMetal>(), 3, 12, 24));
 
 			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Starspear>(), 4));
 			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientStarbornMask>(), 12));

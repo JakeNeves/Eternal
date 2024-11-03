@@ -22,15 +22,14 @@ namespace Eternal.Content.Tiles.Interactive
             Main.tileLavaDeath[Type] = false;
             DustType = DustID.DemonTorch;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2xX);
-            TileObjectData.newTile.Width = 5;
+            TileObjectData.newTile.Width = 6;
             TileObjectData.newTile.Height = 3;
-            TileObjectData.newTile.Origin = new Point16(4, 2);
-            TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16, 16 };
+            TileObjectData.newTile.Origin = new Point16(5, 2);
+            TileObjectData.newTile.CoordinateHeights = [ 16, 16, 16 ];
             TileObjectData.newTile.StyleWrapLimit = 2;
             TileObjectData.newTile.StyleMultiplier = 2;
             TileObjectData.addTile(Type);
             LocalizedText name = CreateMapEntryName();
-            // name.SetDefault("Altar of Cosmic Desire");
             AddMapEntry(new Color(100, 25, 75), name);
         }
 
@@ -73,7 +72,7 @@ namespace Eternal.Content.Tiles.Interactive
             }
             else
             {
-                Main.NewText("The shrine appears to desire an inscrubed tablet...", 100, 24, 60);
+                Main.NewText("The shrine appears to desire an inscribed tablet...", 100, 24, 60);
             }
             return false;
         }

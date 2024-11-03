@@ -36,7 +36,7 @@ namespace Eternal.Content.Items.Accessories
                 .AddTile(ModContent.TileType<RotaryHearthForge>())
                 .AddIngredient(ModContent.ItemType<CometGauntlet>())
                 .AddIngredient(ModContent.ItemType<InertHandApparatus>())
-                .AddIngredient(ModContent.ItemType<WeaponGradeNaquadahAlloy>(), 20)
+                .AddIngredient(ModContent.ItemType<WeaponsGradeNaquadahAlloy>(), 20)
                 .AddIngredient(ModContent.ItemType<ShiftblightAmethyst>(), 10)
                 .Register();
         }

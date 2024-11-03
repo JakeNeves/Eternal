@@ -22,8 +22,8 @@ namespace Eternal.Content.Items.Weapons.Magic
 
         public override void SetDefaults()
         {
-            Item.width = 32;
-            Item.height = 30;
+            Item.width = 34;
+            Item.height = 32;
             Item.damage = 600;
             Item.DamageType = DamageClass.Magic;
             Item.useStyle = ItemUseStyleID.Shoot;

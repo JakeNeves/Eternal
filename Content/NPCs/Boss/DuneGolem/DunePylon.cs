@@ -72,7 +72,7 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
 
             if (!justSpawned)
             {
-                for (int i = 0; i < 50; i++)
+                for (int i = 0; i < 10; i++)
                 {
                     Vector2 position = NPC.Center + Vector2.UnitX.RotatedBy(MathHelper.ToRadians(360f / 50 * i)) * 30;
                     Dust dust = Dust.NewDustPerfect(NPC.position, DustID.DesertTorch);
@@ -86,6 +86,8 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
 
                 justSpawned = true;
             }
+
+            // NPC.velocity.Y += (NPC.velocity.Y * (float)Math.Sin(0.5)) / 20; <- how tf am I supposed to achieve a floating effect?
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color lightColor)

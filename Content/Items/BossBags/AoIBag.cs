@@ -37,8 +37,8 @@ namespace Eternal.Content.Items.BossBags
         public override void ModifyItemLoot(ItemLoot itemLoot)
         {
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<WeatheredPlating>(), minimumDropped: 12, maximumDropped: 16));
-            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<RawArkaniumDebris>(), minimumDropped: 20, maximumDropped: 40));
-            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<RawArkrystal>(), minimumDropped: 20, maximumDropped: 40));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<ArkaniumScrap>(), minimumDropped: 20, maximumDropped: 40));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<ArkiumQuartzCrystalCluster>(), minimumDropped: 20, maximumDropped: 40));
 
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<UnrefinedHeroSword>(), 10));
         }

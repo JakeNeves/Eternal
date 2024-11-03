@@ -11,7 +11,6 @@ namespace Eternal.Content.Walls
         {
             DustType = DustID.Stone;
             Main.wallHouse[Type] = false;
-            // ItemDrop = ModContent.ItemType<Items.Placeable.ShrineBrickWall>();
             AddMapEntry(new Color(16, 20, 26));
         }
 
