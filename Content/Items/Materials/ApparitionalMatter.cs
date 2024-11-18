@@ -11,8 +11,6 @@ namespace Eternal.Content.Items.Materials
 
         public override void SetStaticDefaults()
         {
-            // Tooltip.SetDefault("'Paranormal energy emmits from it's very core'");
-
             ItemID.Sets.ItemNoGravity[Item.type] = true;
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
@@ -20,8 +18,8 @@ namespace Eternal.Content.Items.Materials
 
         public override void SetDefaults()
         {
-            Item.width = 32;
-            Item.height = 32;
+            Item.width = 24;
+            Item.height = 20;
             Item.value = Item.sellPrice(platinum: 1, gold: 30);
             Item.rare = ModContent.RarityType<Teal>();
             Item.maxStack = 9999;

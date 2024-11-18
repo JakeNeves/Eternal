@@ -21,10 +21,10 @@ namespace Eternal.Content.NPCs.Comet
 		{
             var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
-                CustomTexturePath = "Eternal/Content/NPCs/Rift/StarbeltSeeker_Preview",
-                Position = new Vector2(40f, 24f),
+                CustomTexturePath = "Eternal/Content/NPCs/Comet/StarbeltSeeker_Preview",
+                Position = new Vector2(16f, 24f),
                 PortraitPositionXOverride = 0f,
-                PortraitPositionYOverride = 12f
+                PortraitPositionYOverride = 8f
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, drawModifier);
         }
@@ -82,7 +82,7 @@ namespace Eternal.Content.NPCs.Comet
 			npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<Astragel>(), 3, 12, 24));
 			npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<InterstellarScrapMetal>(), 3, 12, 24));
 
-			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Starspear>(), 4));
+			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Startrident>(), 4));
 			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientStarbornMask>(), 12));
 			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientStarbornHelmet>(), 12));
 			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientStarbornHat>(), 12));

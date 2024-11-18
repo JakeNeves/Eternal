@@ -136,6 +136,12 @@ namespace Eternal.Content.NPCs.Miniboss
 
             Lighting.AddLight(NPC.Center, 0.75f, 0f, 0.75f);
 
+            if (!target.active || target.dead)
+            {
+                NPC.velocity.Y -= 0.04f;
+                NPC.EncourageDespawn(10);
+            }
+
             if (NPC.ai[0] == 0f && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 if (!Main.zenithWorld)
@@ -152,9 +158,6 @@ namespace Eternal.Content.NPCs.Miniboss
                         dust.noLight = false;
                         dust.fadeIn = 1.25f;
                     }
-
-                    SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/PhantomConstructSpawn"), NPC.position);
-                    Main.NewText("A Phantom Construct has appeared!", 175, 75, 255);
                 }
 
                 NPC.TargetClosest(true);

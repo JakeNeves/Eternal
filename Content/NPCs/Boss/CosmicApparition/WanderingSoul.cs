@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Eternal.Common.Systems;
+using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.Audio;
@@ -48,7 +49,8 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
                 MaxInstances = 0,
             };
             NPC.DeathSound = null;
-            Music = 0;
+            if (!Main.dedServ)
+                Music = 0;
             NPC.damage = 200;
             NPC.noGravity = true;
             NPC.noTileCollide = true;
@@ -67,17 +69,21 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
                 NPC.NewNPC(entitySource, (int)NPC.Center.X - 20, (int)NPC.Center.Y, ModContent.NPCType<CosmicApparition>());
             }
         }
-
-        public override bool PreAI()
+        public override void AI()
         {
+            Lighting.AddLight(NPC.position, 0.75f, 0f, 0.75f);
+            NPC.rotation = NPC.velocity.X * 0.03f;
+            NPC.TargetClosest(true);
             Player player = Main.player[NPC.target];
+            Vector2 playerPosition = Main.player[NPC.target].position;
+            NPC.spriteDirection = NPC.direction = NPC.Center.X < player.Center.X ? -1 : 1;
+            if (player.dead || !player.active)
+            {
+                NPC.TargetClosest(false);
+                NPC.active = false;
+            }
 
-            // NPC.spriteDirection = NPC.direction = NPC.Center.X < player.Center.X ? -1 : 1;
-            NPC.spriteDirection = NPC.direction;
-
-            NPC.rotation = NPC.velocity.X * 0.02f;
-
-            float speed = 25f;
+            float speed = 8f;
             float acceleration = 0.10f;
             Vector2 vector2 = new Vector2(NPC.position.X + (float)NPC.width * 0.5f, NPC.position.Y + (float)NPC.height * 0.5f);
             float xDir = Main.player[NPC.target].position.X + (float)(Main.player[NPC.target].width / 2) - vector2.X;
@@ -126,16 +132,6 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
                     NPC.velocity.Y = NPC.velocity.Y - acceleration;
             }
 
-            return true;
-        }
-
-        public override void AI()
-        {
-            Lighting.AddLight(NPC.position, 0.75f, 0f, 0.75f);
-            Player player = Main.player[NPC.target];
-            Vector2 playerPosition = Main.player[NPC.target].position;
-            var entitySource = NPC.GetSource_FromAI();
-
             if (NPC.life < NPC.lifeMax / 2)
             {
                 teleportTimer++;
@@ -148,7 +144,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
                 }
             }
 
-            if (player.dead)
+            if (!player.active || player.dead)
             {
                 NPC.velocity.Y -= 0.04f;
                 NPC.EncourageDespawn(10);

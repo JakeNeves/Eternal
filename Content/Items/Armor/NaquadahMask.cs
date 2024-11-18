@@ -39,16 +39,16 @@ namespace Eternal.Content.Items.Armor
         {
             player.setBonus = "30% increased melee damage and 25% increased melee speed" +
                             "\nSome weapons receive special abilities" +
-                            "\nStarborn, Arkanium and Ultimus Armor Effects" +
+                            "\nYou release spike bombs upon getting hit" +
                             "\n[c/FCA5033:Rift Bonus]" +
                             "\nImmunity to Rift Withering" +
                             "\nProtection against the Rod of Distortion's unstability";
+
             player.GetDamage(DamageClass.Melee) += 0.30f;
             player.GetAttackSpeed(DamageClass.Melee) += 0.25f;
-            ArmorSystem.StarbornArmor = true;
-            ArmorSystem.ArkaniumArmor = true;
-            ArmorSystem.UltimusArmor = true;
+
             ArmorSystem.NaquadahArmor = true;
+            ArmorSystem.NaquadahArmorMeleeBonus = true;
 
             Lighting.AddLight(player.Center, 0.75f, 0f, 0.75f);
 
@@ -72,10 +72,9 @@ namespace Eternal.Content.Items.Armor
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<NaquadahBar>(), 5)
+                .AddIngredient(ModContent.ItemType<WeaponsGradeNaquadahAlloy>(), 5)
                 .AddIngredient(ModContent.ItemType<CrystalizedOminite>())
-                .AddIngredient(ModContent.ItemType<StarbornMask>())
-                .AddIngredient(ModContent.ItemType<UltimusMask>())
+                .AddIngredient(ModContent.ItemType<WeatheredPlating>(), 6)
                 .AddTile(ModContent.TileType<RotaryHearthForge>())
                 .Register();
         }

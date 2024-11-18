@@ -1,10 +1,13 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Projectiles.Weapons.Melee
 {
     public class ArkiumDiskProjectileAOE : ModProjectile
     {
+        float projScale = 1f;
+
         public override void SetDefaults()
         {
             Projectile.width = 30;

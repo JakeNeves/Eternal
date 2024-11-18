@@ -35,9 +35,9 @@ namespace Eternal.Content.Items.Armor
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<NaquadahBar>(), 8)
-                .AddIngredient(ModContent.ItemType<StarbornGreaves>())
-                .AddIngredient(ModContent.ItemType<UltimusLeggings>())
+                .AddIngredient(ModContent.ItemType<WeaponsGradeNaquadahAlloy>(), 8)
+                .AddIngredient(ModContent.ItemType<CrystalizedOminite>())
+                .AddIngredient(ModContent.ItemType<WeatheredPlating>(), 10)
                 .AddTile(ModContent.TileType<RotaryHearthForge>())
                 .Register();
         }

@@ -38,7 +38,7 @@ namespace Eternal.Content.NPCs.Miniboss
             NPC.HitSound = SoundID.NPCHit3;
             NPC.DeathSound = null;
             NPC.noTileCollide = true;
-            SpawnModBiomes = new int[1] { ModContent.GetInstance<Biomes.Rift>().Type };
+            SpawnModBiomes = [ ModContent.GetInstance<Biomes.Rift>().Type ];
             NPC.buffImmune[BuffID.Poisoned] = true;
             NPC.buffImmune[BuffID.OnFire] = true;
             NPC.buffImmune[BuffID.Venom] = true;
@@ -88,9 +88,9 @@ namespace Eternal.Content.NPCs.Miniboss
             NPC.rotation += 0.15f;
             if (NPC.ai[0] == 0f && Main.netMode != NetmodeID.MultiplayerClient)
             {
-                for (int i = 0; i < 50; i++)
+                for (int i = 0; i < 15; i++)
                 {
-                    Vector2 position = NPC.Center + Vector2.UnitX.RotatedBy(MathHelper.ToRadians(360f / 50 * i)) * 60;
+                    Vector2 position = NPC.Center + Vector2.UnitX.RotatedBy(MathHelper.ToRadians(360f / 15 * i)) * 30;
                     Dust dust = Dust.NewDustPerfect(NPC.Center, DustID.PinkTorch);
                     dust.noGravity = true;
                     dust.velocity = Vector2.Normalize(position - NPC.Center) * 4;
@@ -116,7 +116,9 @@ namespace Eternal.Content.NPCs.Miniboss
                 if (NPC.ai[3] >= 360f)
                 {
                     NPC.life = 0;
-                    NPC.NewNPC(entitySource, (int)NPC.Center.X + Main.rand.Next(-10, 10), (int)NPC.Center.Y + Main.rand.Next(-10, 10), ModContent.NPCType<PhantomConstruct>());
+                    SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/PhantomConstructSpawn"), NPC.position);
+                    Main.NewText("A Phantom Construct has appeared!", 175, 75, 255);
+                    NPC.NewNPC(entitySource, (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<PhantomConstruct>());
                     NPC.HitEffect(0, 0);
                     NPC.checkDead();
                 }

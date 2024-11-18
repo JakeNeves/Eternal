@@ -14,9 +14,6 @@ namespace Eternal.Content.Items.Summon
     {
         public override void SetStaticDefaults()
         {
-            /* Tooltip.SetDefault("Attracts a wandering soul" +
-                             "\n'A mysteriously devious chunk of paranormal essance'"); */
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -32,7 +29,6 @@ namespace Eternal.Content.Items.Summon
 
         public override bool CanUseItem(Player player)
         {
-            Main.NewText("Something gazes upon you...", 220, 0, 210);
             return !NPC.AnyNPCs(ModContent.NPCType<WanderingSoul>()) && !NPC.AnyNPCs(ModContent.NPCType<CosmicApparition>());
         }
 
@@ -40,7 +36,9 @@ namespace Eternal.Content.Items.Summon
         {
             var entitySource = player.GetSource_FromThis();
 
-            NPC.NewNPC(entitySource, (int)player.Center.X, (int)player.Center.Y - 900, ModContent.NPCType<WanderingSoul>());
+            Main.NewText("Something gazes upon you...", 220, 0, 210);
+            NPC.NewNPC(entitySource, (int)player.Center.X, (int)player.Center.Y - 600, ModContent.NPCType<WanderingSoul>());
+
             SoundEngine.PlaySound(SoundID.Roar, player.position);
             return true;
         }

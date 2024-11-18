@@ -12,16 +12,14 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Arkspear");
-
-            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 12;
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 8;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }
 
         public override void SetDefaults()
         {
-            Projectile.width = 120;
-            Projectile.height = 120;
+            Projectile.width = 96;
+            Projectile.height = 96;
             Projectile.aiStyle = -1;
             Projectile.friendly = true;
             Projectile.hostile = false;
@@ -33,6 +31,8 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
         public override void AI()
         {
+            Lighting.AddLight(Projectile.position, 0.55f, 1.56f, 1.10f);
+
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(45f);
         }
 
@@ -51,18 +51,56 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
             {
                 Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.JungleTorch, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);
             }
+
             for (int k = 0; k < 5; k++)
             {
                 Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, DustID.GreenTorch, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);
             }
+
             Collision.HitTiles(Projectile.position + Projectile.velocity, Projectile.velocity, Projectile.width, Projectile.height);
-            SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
+        }
+
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            var entitySource = Projectile.GetSource_FromAI();
+
+            SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/ArkiumDiskHit")
+            {
+                Volume = 0.8f,
+                PitchVariance = Main.rand.NextFloat(1f, 1.5f),
+                MaxInstances = 0,
+                Variants = [ 1, 2, 3 ]
+            }, Projectile.position);
+
+            for (int i = 0; i < 6; i++)
+            {
+                Projectile.NewProjectile(entitySource, Projectile.Center, new Vector2(Main.rand.Next(-8, 8), Main.rand.Next(-8, 8)), ModContent.ProjectileType<BOTAProjectileAOE>(), Projectile.damage / 2, 0.0f, Main.myPlayer, 0.0f, 0.0f);
+            }
+
+            return true;
+        }
+
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            var entitySource = Projectile.GetSource_Death();
+
+            for (int i = 0; i < 6; i++)
+            {
+                Projectile.NewProjectile(entitySource, Projectile.Center, new Vector2(Main.rand.Next(-8, 8), Main.rand.Next(-8, 8)), ModContent.ProjectileType<BOTAProjectileTrail>(), Projectile.damage / 2, 0.0f, Main.myPlayer, 0.0f, 0.0f);
+            }
+
+            SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/BOTAHit")
+            {
+                Volume = 0.8f,
+                PitchVariance = Main.rand.NextFloat(1f, 1.25f),
+                MaxInstances = 0,
+            }, Projectile.position);
         }
 
         public override bool PreDraw(ref Color lightColor)
         {
             Main.instance.LoadProjectile(Projectile.type);
-            Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
+            Texture2D texture = ModContent.Request<Texture2D>("Eternal/Content/Projectiles/Weapons/Melee/ArkspearProjectileThrown_Shadow").Value;
 
             Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, Projectile.height * 0.5f);
             for (int k = 0; k < Projectile.oldPos.Length; k++)

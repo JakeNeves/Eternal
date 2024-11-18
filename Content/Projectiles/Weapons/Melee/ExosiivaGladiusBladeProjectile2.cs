@@ -28,6 +28,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
             Projectile.hostile = false;
             Projectile.penetrate = 1;
             Projectile.timeLeft = 100;
+            Projectile.alpha = 255;
             Projectile.DamageType = DamageClass.Melee;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = false;
@@ -36,6 +37,9 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
         public override void AI()
         {
             Lighting.AddLight(Projectile.Center, 0.36f, 2.03f, 2.09f);
+
+            while (Projectile.alpha > 0)
+                Projectile.alpha -= 15;
 
             for (int k = 0; k < Main.rand.Next(2, 4); k++)
             {

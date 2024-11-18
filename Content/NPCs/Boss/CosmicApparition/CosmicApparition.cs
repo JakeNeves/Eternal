@@ -109,7 +109,6 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             NPC.noGravity = true;
             NPC.alpha = 0;
             SpawnModBiomes = new int[1] { ModContent.GetInstance<Biomes.Comet>().Type };
-            NPC.aiStyle = -1;
             NPC.npcSlots = 10;
         }
 
@@ -264,7 +263,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
 
             Vector2 playerPosition = Main.player[NPC.target].position;
 
-            if (player.dead)
+            if (!player.active || player.dead)
             {
                 NPC.velocity.Y -= 0.04f;
                 NPC.EncourageDespawn(10);

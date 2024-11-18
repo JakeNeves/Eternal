@@ -19,7 +19,7 @@ namespace Eternal.Content.NPCs.Rift
             var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
                 CustomTexturePath = "Eternal/Content/NPCs/Rift/NaquadahBurrower_Preview",
-                Position = new Vector2(40f, 24f),
+                Position = new Vector2(16f, 24f),
                 PortraitPositionXOverride = 0f,
                 PortraitPositionYOverride = 12f
             };

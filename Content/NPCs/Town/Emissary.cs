@@ -267,7 +267,7 @@ namespace Eternal.Content.NPCs.Town
 
         public override void TownNPCAttackProj(ref int projType, ref int attackDelay)
         {
-            projType = ModContent.ProjectileType<StarspearProjectileThrown>();
+            projType = ModContent.ProjectileType<StartridentProjectileThrown>();
             attackDelay = 1;
         }
 

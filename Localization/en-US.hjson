@@ -16,7 +16,10 @@ Mods: {
 			TheBeneath: The Beneath is a very dark place, torches won't work, unless you have a Black Lantern or a Black Candle.
 			TheRift: Be careful when inside The Rift, dangerous entities and such lie within it! Also, try not to get yelled at by the Emperor for opening it.
 			UnstablePortals: It's been rumored that Unstable Portals can be withness by those who soar through the Rift's sky!
-			BossBarConfig: Eternal adds the boss name above the boss bar along with a subtitle, this can be toggled in Eternal's configuration file.
+			ThePhantomConstructs: Never try to close an unstable portal, otherwise the last thing to come out of it is a Phantom Construct!
+			BossBarConfig: Eternal adds the boss name above the boss bar along with some flavour text, this can be toggled in Eternal's configuration file.
+			TheShrine: Who knows what lies around the Shrine, other than magical flying swords of course...
+			ExperimentalFeatures: Wanna take a look at some future content? head on over to the Eternal mod's configs and toggle them to try them out, although be warned that those features are a work in progress and can be very buggy!
 		}
 
 		DamageClasses.Radiant.DisplayName: radiant damage
@@ -1545,13 +1548,14 @@ Mods: {
 				Tooltip: "'Named after the silent nihiliophane demon, Nihilion'"
 			}
 
-			Starspear: {
-				DisplayName: Starspear
+			Startrident: {
+				DisplayName: Startrident
 				Tooltip:
 					'''
 					<right> to throw and leave a trail of bombs
-					More Starspears spawn while wearing Starborn Armor or better
-					'A Starsharp Spear'
+					[c/FCA5033:Starborn Armor Bonus]
+					Multiple Startrident can be thrown while wearing Starborn Armor or better
+					'A Starsharp Trident'
 					'''
 			}
 
@@ -2032,22 +2036,38 @@ Mods: {
 
 			ExathiumSlag: {
 				DisplayName: Exathium Slag
-				Tooltip: "'This is Anti-Arkanium...'"
+				Tooltip:
+					'''
+					Obtained by soaking Arkanium Scrap in a pool of Shimmer
+					'This is Anti-Arkanium...'
+					'''
 			}
 
 			MeldedExathiumShard: {
 				DisplayName: Melded Exathium Shard
-				Tooltip: "'This is also Anti-Arkanium...'"
+				Tooltip:
+					'''
+					Obtained by soaking Arkanium Alloy in a pool of Shimmer
+					'This is also Anti-Arkanium...'
+					'''
 			}
 
 			RawExathium: {
 				DisplayName: Raw Exathium
-				Tooltip: "'This is Anti-Arkium...'"
+				Tooltip:
+					'''
+					Obtained by soaking Arkium Quartz in a pool of Shimmer
+					'This is Anti-Arkium...'
+					'''
 			}
 
 			RefinedExathium: {
 				DisplayName: Refined Exathium
-				Tooltip: "'This is also Anti-Arkium...'"
+				Tooltip:
+					'''
+					Obtained by soaking Arkium Quartz Plating in a pool of Shimmer
+					'This is also Anti-Arkium...'
+					'''
 			}
 
 			WeaponsGradeNaquadahAlloy: {
@@ -2287,6 +2307,61 @@ Mods: {
 			StarquartzCrystalCluster: {
 				DisplayName: Starquartz Crystal Cluster
 				Tooltip: "'Crystallized essence of raw star power!'"
+			}
+
+			CometMusicBox: {
+				DisplayName: Music Box (Fallen Comet)
+				Tooltip: JakeTEM - Astral Discovery
+			}
+
+			AoIMusicBox: {
+				DisplayName: Music Box (Ark of Imperious)
+				Tooltip: JakeTEM - Imperious Strike
+			}
+
+			CosmicApparitionMusicBox: {
+				DisplayName: Music Box (Cosmic Apparition)
+				Tooltip: JakeTEM - Apparitional Accumulation
+			}
+
+			RiftMusicBox: {
+				DisplayName: Music Box (Rift)
+				Tooltip: JakeTEM - Across a Disfigured Reality
+			}
+
+			RiftNightMusicBox: {
+				DisplayName: Music Box (Rift Night)
+				Tooltip: JakeTEM - Journey into a Shifting World
+			}
+
+			RiftSkyMusicBox: {
+				DisplayName: Music Box (Rift Sky)
+				Tooltip: JakeTEM - Wandering Beyond the Shifting Distortion Across the Horizons
+			}
+
+			RiftUndergroundMusicBox: {
+				DisplayName: Music Box (Rift Underground)
+				Tooltip: JakeTEM - To the Center of the Shifted World
+			}
+
+			RiftUnderworldMusicBox: {
+				DisplayName: Music Box (Rift Underworld)
+				Tooltip: JakeTEM - The Torrid Center of the Shifted World
+			}
+
+			PhantomConstructMusicBox: {
+				DisplayName: Music Box (Phantom Construct)
+				Tooltip: JakeTEM - Constructed by Unstability
+			}
+
+			ShrineMusicBox: {
+				DisplayName: Music Box (Shrine)
+				Tooltip: JakeTEM - From Another World
+			}
+
+			ArkiumManbow: {
+				DisplayName: Arkium Manbow
+				Tooltip: ""
 			}
 		}
 
@@ -2682,10 +2757,10 @@ Mods: {
 			StarcrescentMoondiskProjectile.DisplayName: Starcrescent Moondisk
 			StarofNihilionOrbit.DisplayName: Starof Nihilion
 			StarofNihilionProjectile.DisplayName: Starof Nihilion
-			StarspearBomb.DisplayName: Starspear Bomb
-			StarspearBombPierce.DisplayName: Starspear Bomb
-			StarspearProjectile.DisplayName: Starspear
-			StarspearProjectileThrown.DisplayName: Starspear
+			StartridentBomb.DisplayName: Startrident Bomb
+			StartridentBombPierce.DisplayName: Startrident Bomb
+			StartridentProjectile.DisplayName: Startrident
+			StartridentProjectileThrown.DisplayName: Startrident
 			SunshineBomb.DisplayName: Sunshine
 			SunshineProjectile.DisplayName: Sunshine
 			TartaronProjectile.DisplayName: Tartaron
@@ -2724,7 +2799,7 @@ Mods: {
 			ExosiivaGladiusBladeProjectile2.DisplayName: Exosiiva Gladius Blade
 			IchorateProjectile.DisplayName: Ichorate
 			PrimordialElementalBreakerProjectile.DisplayName: Primordial Elemental Breaker Projectile
-			CometiteWhaleHarvesterBobber.DisplayName: Cometite Whale Harvester Bobber
+			StarbornWhaleHarvesterBobber.DisplayName: Starborn Whale Harvester Bobber
 			CarminiteShortswordProjectile.DisplayName: Carminite Shortsword
 			StardraxProjectile.DisplayName: Stardrax
 			SuperUniverseTotalityProjectile.DisplayName: Super Universe Totality
@@ -2736,7 +2811,12 @@ Mods: {
 			BOTAProjectileAOE.DisplayName: Boon of the Arks
 			BOTAProjectileTrail.DisplayName: Boon of the Arks
 			ArkaniumSword.DisplayName: Arkanium Sword
-			ArkrystalShard.DisplayName: Arkrystal Shard
+			StarspearBomb.DisplayName: Starspear Bomb
+			StarspearBombPierce.DisplayName: Starspear Bomb Pierce
+			NaquadahSpike.DisplayName: Naquadah Spike
+			NaquadahSpikeBomb.DisplayName: Naquadah Spike Bomb
+			NaquadahSpikeBombAOE.DisplayName: Naquadah Spike Bomb
+			ArkiumShard.DisplayName: Arkium Shard
 		}
 
 		Configs: {

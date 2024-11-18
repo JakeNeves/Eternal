@@ -47,7 +47,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
                 Volume = 0.8f,
                 PitchVariance = Main.rand.NextFloat(1f, 1.5f),
                 MaxInstances = 0,
-                Variants = new[] { 1, 2, 3 }
+                Variants = [ 1, 2, 3 ]
             }, Projectile.position);
 
             Projectile.NewProjectile(entitySource, Projectile.Center, new Vector2(0, 0), ModContent.ProjectileType<ArkiumDiskProjectileAOE>(), Projectile.damage / 2, Projectile.knockBack / 0.5f);

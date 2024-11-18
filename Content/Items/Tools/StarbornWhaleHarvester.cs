@@ -6,6 +6,8 @@ using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using Eternal.Content.Projectiles.Bobbers;
 using Eternal.Content.Rarities;
+using Eternal.Content.Items.Materials;
+using Eternal.Content.Tiles.CraftingStations;
 
 namespace Eternal.Content.Items.Tools
 {
@@ -13,12 +15,8 @@ namespace Eternal.Content.Items.Tools
     {
 		public override void SetStaticDefaults()
 		{
-			/* Tooltip.SetDefault("Fires multiple lines at once." +
-							 "\nCan fish in lava." +
-							 "\nThe fishing line never snaps." +
-							 "\n'Just don't use truffle worms with this, or even bloodworms...'"); */
-
 			ItemID.Sets.CanFishInLava[Item.type] = true;
+
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
@@ -26,20 +24,36 @@ namespace Eternal.Content.Items.Tools
 		{
 			Item.CloneDefaults(ItemID.GoldenFishingRod);
 
+			Item.width = 46;
+			Item.height = 32;
 			Item.rare = ModContent.RarityType<Teal>();
 			Item.fishingPole = 750;
 			Item.shootSpeed = 18f;
-			Item.shoot = ModContent.ProjectileType<CometiteWhaleHarvesterBobber>();
+			Item.shoot = ModContent.ProjectileType<StarbornWhaleHarvesterBobber>();
 		}
 
-		public override void HoldItem(Player player)
+        public override void ModifyFishingLine(Projectile bobber, ref Vector2 lineOriginOffset, ref Color lineColor)
+        {
+            lineOriginOffset = new Vector2(43, -30);
+
+            if (bobber.ModProjectile is StarbornWhaleHarvesterBobber starbornWhaleHarvesterBobber)
+            {
+                lineColor = starbornWhaleHarvesterBobber.FishingLineColor;
+            }
+            else
+            {
+                lineColor = Main.DiscoColor;
+            }
+        }
+
+        public override void HoldItem(Player player)
 		{
 			player.accFishingLine = true;
 		}
 
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
-			int bobberAmount = 5 + Main.rand.Next(7);
+			int bobberAmount = 3 + Main.rand.Next(4);
 			float spreadAmount = 80f;
 
 			for (int index = 0; index < bobberAmount; ++index)
@@ -50,5 +64,14 @@ namespace Eternal.Content.Items.Tools
 			}
 			return false;
 		}
-	}
+
+        public override void AddRecipes()
+        {
+			CreateRecipe()
+				.AddIngredient(ModContent.ItemType<CometiteBar>(), 12)
+				.AddIngredient(ModContent.ItemType<StarpowerCrystal>(), 6)
+				.AddTile(ModContent.TileType<Starforge>())
+				.Register();
+        }
+    }
 }

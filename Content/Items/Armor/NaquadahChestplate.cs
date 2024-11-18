@@ -13,8 +13,6 @@ namespace Eternal.Content.Items.Armor
 
         public override void SetStaticDefaults()
         {
-            // Tooltip.SetDefault("+100 increased max life");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -35,9 +33,9 @@ namespace Eternal.Content.Items.Armor
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<NaquadahBar>(), 16)
-                .AddIngredient(ModContent.ItemType<StarbornScalePlate>())
-                .AddIngredient(ModContent.ItemType<UltimusPlateMail>())
+                .AddIngredient(ModContent.ItemType<WeaponsGradeNaquadahAlloy>(), 16)
+                .AddIngredient(ModContent.ItemType<CrystalizedOminite>())
+                .AddIngredient(ModContent.ItemType<WeatheredPlating>(), 32)
                 .AddTile(ModContent.TileType<RotaryHearthForge>())
                 .Register();
         }

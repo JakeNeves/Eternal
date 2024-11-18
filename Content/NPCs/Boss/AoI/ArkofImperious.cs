@@ -70,9 +70,9 @@ namespace Eternal.Content.NPCs.Boss.AoI
         {
             var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
-                Position = new Vector2(0f, 96f),
+                Position = new Vector2(0f, 100f),
                 PortraitPositionXOverride = 0f,
-                PortraitPositionYOverride = 96f
+                PortraitPositionYOverride = 100f
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, drawModifier);
 

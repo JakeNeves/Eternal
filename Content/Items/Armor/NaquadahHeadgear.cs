@@ -3,6 +3,7 @@ using Eternal.Content.Items.Materials;
 using Eternal.Content.Rarities;
 using Eternal.Content.Tiles.CraftingStations;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Armor
@@ -10,6 +11,11 @@ namespace Eternal.Content.Items.Armor
     [AutoloadEquip(EquipType.Head)]
     public class NaquadahHeadgear : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
+
         public override void SetDefaults()
         {
             Item.width = 20;
@@ -28,7 +34,7 @@ namespace Eternal.Content.Items.Armor
         {
             player.setBonus = "30% increased ranged damage" +
                             "\nYou emit a source of light" +
-                            "\nStarborn and Arkanium Armor Effects" +
+                            "\nYou release spike bombs upon getting hit" +
                             "\n[c/FCA5033:Rift Bonus]" +
                             "\nImmunity to Rift Withering" +
                             "\nProtection against the Rod of Distortion's unstability";
@@ -37,10 +43,8 @@ namespace Eternal.Content.Items.Armor
 
             Lighting.AddLight(player.Center, 0.75f, 0f, 0.75f);
 
-            ArmorSystem.ArkaniumArmor = true;
-            ArmorSystem.StarbornArmor = true;
-            ArmorSystem.UltimusArmor = true;
             ArmorSystem.NaquadahArmor = true;
+            ArmorSystem.NaquadahArmorRangedBonus = true;
         }
 
         public override void ArmorSetShadows(Player player)
@@ -58,10 +62,9 @@ namespace Eternal.Content.Items.Armor
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<NaquadahBar>(), 5)
+                .AddIngredient(ModContent.ItemType<WeaponsGradeNaquadahAlloy>(), 5)
                 .AddIngredient(ModContent.ItemType<CrystalizedOminite>())
-                .AddIngredient(ModContent.ItemType<StarbornMask>())
-                .AddIngredient(ModContent.ItemType<UltimusMask>())
+                .AddIngredient(ModContent.ItemType<WeatheredPlating>(), 6)
                 .AddTile(ModContent.TileType<RotaryHearthForge>())
                 .Register();
         }

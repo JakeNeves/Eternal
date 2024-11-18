@@ -6,7 +6,7 @@ namespace Eternal.Content.Biomes
 {
     public class Shrine : ModBiome
     {
-        public override int Music => MusicLoader.GetMusicSlot(Mod, "Assets/Music/ImperiousShrine");
+        public override int Music => MusicLoader.GetMusicSlot(Mod, "Assets/Music/FromAnotherWorld");
 
         public override string BestiaryIcon => base.BestiaryIcon;
 
