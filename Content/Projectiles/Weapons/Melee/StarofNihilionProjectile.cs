@@ -15,7 +15,6 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Star of Nihilion");
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 5;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }
@@ -30,7 +29,6 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
             Projectile.timeLeft = 600;
             Projectile.tileCollide = false;
             Projectile.aiStyle = ProjAIStyleID.Flail;
-            // AIType = ProjectileID.BlueMoon;
         }
 
         public override void AI()

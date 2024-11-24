@@ -8,11 +8,6 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
     {
         int pierceTimer = 0;
 
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Nyanarang");
-        }
-
         public override void SetDefaults()
         {
             Projectile.width = 40;

@@ -129,7 +129,9 @@ namespace Eternal.Content.NPCs.Underworld
 
             if (attackTimer == 200 || attackTimer == 215 || attackTimer == 230)
             {
-                SoundEngine.PlaySound(SoundID.DD2_FlameburstTowerShot, NPC.position);
+                if (!Main.dedServ)
+                    SoundEngine.PlaySound(SoundID.DD2_FlameburstTowerShot, NPC.position);
+
                 float A = (float)Main.rand.Next(-200, 200) * 0.01f;
                 float B = (float)Main.rand.Next(-200, 200) * 0.01f;
                 if (Main.netMode != NetmodeID.MultiplayerClient)
@@ -151,7 +153,9 @@ namespace Eternal.Content.NPCs.Underworld
             }
             else
             {
-                SoundEngine.PlaySound(SoundID.NPCDeath14, NPC.position);
+                if (!Main.dedServ)
+                    SoundEngine.PlaySound(SoundID.NPCDeath14, NPC.position);
+
                 Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.Torch, 0, -1f, 0, default(Color), 1f);
             }
         }

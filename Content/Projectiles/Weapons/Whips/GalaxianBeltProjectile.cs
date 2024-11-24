@@ -13,8 +13,6 @@ namespace Eternal.Content.Projectiles.Weapons.Whips
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Galaxian Belt");
-
             ProjectileID.Sets.IsAWhip[Type] = true;
         }
 

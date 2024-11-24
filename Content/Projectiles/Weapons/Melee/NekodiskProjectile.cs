@@ -10,11 +10,6 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
     {
         Vector2 CircleDirc = new Vector2(0.0f, 16f);
 
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Nekodisk");
-        }
-
         public override void SetDefaults()
         {
             Projectile.width = 48;

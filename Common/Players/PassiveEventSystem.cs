@@ -68,7 +68,10 @@ namespace Eternal.Common.Players
                                 break;
                             case 16000:
                                 NPC.NewNPC(entitySource, (int)Player.Center.X, (int)Player.Center.Y - 900, ModContent.NPCType<CosmicApparition>());
-                                SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/CosmicApparitionAnger"));
+
+                                if (!Main.dedServ)
+                                    SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/CosmicApparitionAnger"));
+
                                 Main.NewText("A Cosmic Apparition has awoken!", 175, 75, 255);
                                 cosmicApparitionPresence = 0;
                                 break;

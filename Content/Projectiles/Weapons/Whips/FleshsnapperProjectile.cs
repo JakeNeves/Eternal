@@ -12,8 +12,6 @@ namespace Eternal.Content.Projectiles.Weapons.Whips
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Fleshsnapper");
-
             ProjectileID.Sets.IsAWhip[Type] = true;
         }
 

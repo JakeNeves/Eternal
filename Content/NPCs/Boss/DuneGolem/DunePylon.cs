@@ -67,7 +67,8 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
                     dust.fadeIn = 1f;
                 }
 
-                SoundEngine.PlaySound(SoundID.DD2_SonicBoomBladeSlash, NPC.position);
+                if (!Main.dedServ)
+                    SoundEngine.PlaySound(SoundID.DD2_SonicBoomBladeSlash, NPC.position);
             }
 
             if (!justSpawned)
@@ -82,7 +83,8 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
                     dust.fadeIn = 1f;
                 }
 
-                SoundEngine.PlaySound(SoundID.DD2_DefenseTowerSpawn, NPC.position);
+                if (!Main.dedServ)
+                    SoundEngine.PlaySound(SoundID.DD2_DefenseTowerSpawn, NPC.position);
 
                 justSpawned = true;
             }

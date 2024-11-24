@@ -33,7 +33,8 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
         public override void AI()
         {
-            Lighting.AddLight(Projectile.position, 0.55f, 1.56f, 1.10f);
+            if (!Main.dedServ)
+                Lighting.AddLight(Projectile.position, 0.55f, 1.56f, 1.10f);
 
             Projectile.rotation += Projectile.velocity.X * 0.1f;
         }
@@ -42,13 +43,16 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
         {
             var entitySource = Projectile.GetSource_FromAI();
 
-            SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/ArkiumDiskHit")
+            if (!Main.dedServ)
             {
-                Volume = 0.8f,
-                PitchVariance = Main.rand.NextFloat(1f, 1.5f),
-                MaxInstances = 0,
-                Variants = [ 1, 2, 3 ]
-            }, Projectile.position);
+                SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/ArkiumDiskHit")
+                {
+                    Volume = 0.8f,
+                    PitchVariance = Main.rand.NextFloat(1f, 1.5f),
+                    MaxInstances = 0,
+                    Variants = [1, 2, 3]
+                }, Projectile.position);
+            }
 
             Projectile.NewProjectile(entitySource, Projectile.Center, new Vector2(0, 0), ModContent.ProjectileType<ArkiumDiskProjectileAOE>(), Projectile.damage / 2, Projectile.knockBack / 0.5f);
         }

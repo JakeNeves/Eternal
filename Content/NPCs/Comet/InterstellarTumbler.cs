@@ -91,7 +91,9 @@ namespace Eternal.Content.NPCs.Comet
 
         public override void AI()
         {
+            if (!Main.dedServ)
             Lighting.AddLight(NPC.position, 0.75f, 0f, 0.75f);
+
             NPC.rotation += NPC.velocity.X * 0.1f;
 
             if (RiftSystem.isRiftOpen)

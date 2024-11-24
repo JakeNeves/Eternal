@@ -11,8 +11,6 @@ namespace Eternal.Content.Projectiles.Weapons.Magic
     {
 	    public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Starstave Bolt Drei");
-
             ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
         }
         public override void SetDefaults()
@@ -69,7 +67,8 @@ namespace Eternal.Content.Projectiles.Weapons.Magic
         {
             var entitySource = Projectile.GetSource_Death();
 
-            SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
+            if (!Main.dedServ)
+                SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
 
             for (int i = 0; i < 50; i++)
             {
@@ -106,7 +105,10 @@ namespace Eternal.Content.Projectiles.Weapons.Magic
             else
             {
                 Collision.HitTiles(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height);
-                SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
+
+                if (!Main.dedServ)
+                    SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
+
                 if ((double)Math.Abs(Projectile.velocity.X - oldVelocity.X) > 1.4012984643248171E-45)
                     Projectile.velocity.X = -oldVelocity.X;
                 if ((double)Math.Abs(Projectile.velocity.Y - oldVelocity.Y) > 1.4012984643248171E-45)

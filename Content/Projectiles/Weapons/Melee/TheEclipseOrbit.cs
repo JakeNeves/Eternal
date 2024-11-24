@@ -14,8 +14,6 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("The Eclipse");
-
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 16;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }

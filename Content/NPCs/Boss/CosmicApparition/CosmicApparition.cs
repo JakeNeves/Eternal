@@ -283,6 +283,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             {
                 if (!Main.dedServ)
                     SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/CosmicApparitionAnger"), NPC.position);
+
                 phase = 1;
             }
 

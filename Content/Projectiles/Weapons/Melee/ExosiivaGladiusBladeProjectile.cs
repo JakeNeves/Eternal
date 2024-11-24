@@ -48,12 +48,13 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
         public override void AI()
         {
-            Lighting.AddLight(Projectile.Center, 0.36f, 2.03f, 2.09f);
+            if (!Main.dedServ)
+                Lighting.AddLight(Projectile.Center, 0.36f, 2.03f, 2.09f);
 
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(45f);
 
             if (Projectile.alpha > 0)
-                Projectile.alpha--;
+                Projectile.alpha -= 5;
 
             for (int k = 0; k < Main.rand.Next(2, 4); k++)
             {

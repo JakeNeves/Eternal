@@ -32,7 +32,8 @@ namespace Eternal.Common.Players
         {
             if (holyMantle)
             {
-                SoundEngine.PlaySound(SoundID.NPCDeath14, Player.position);
+                if (!Main.dedServ)
+                    SoundEngine.PlaySound(SoundID.NPCDeath14, Player.position);
 
                 for (int i = 0; i < 25; i++)
                 {

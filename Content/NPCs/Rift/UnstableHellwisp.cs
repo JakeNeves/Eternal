@@ -49,7 +49,7 @@ namespace Eternal.Content.NPCs.Rift
             NPC.buffImmune[BuffID.Frostburn] = true;
             NPC.buffImmune[BuffID.Frozen] = true;
             NPC.buffImmune[BuffID.Chilled] = true;
-            SpawnModBiomes = new int[1] { ModContent.GetInstance<Biomes.Rift>().Type };
+            SpawnModBiomes = [ ModContent.GetInstance<Biomes.Rift>().Type ];
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -132,6 +132,7 @@ namespace Eternal.Content.NPCs.Rift
             {
                 float A = (float)Main.rand.Next(-200, 200) * 0.01f;
                 float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                     Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ProjectileID.EyeLaser, NPC.damage, 1, Main.myPlayer, 0, 0);
             }

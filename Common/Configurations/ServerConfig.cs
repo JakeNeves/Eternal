@@ -59,15 +59,6 @@ namespace Eternal.Common.Configurations
         public bool lifeMotes = false;
 
         /// <summary>
-        /// EXPERIMENTAL: Adds Limbolic Glyphs to the game (NYI)
-        /// </summary>
-        [DefaultValue(false)]
-        [LabelKey("$Mods.Eternal.Common.Configurations.ServerConfig.limbolicGlyphs.DisplayName")]
-        [TooltipKey("$Mods.Eternal.Common.Configurations.ServerConfig.limbolicGlyphs.Tooltip")]
-        [ReloadRequired]
-        public bool limbolicGlyphs = false;
-
-        /// <summary>
         /// EXPERIMENTAL: Adds the Purified Beneath biome (WIP)
         /// </summary>
         [DefaultValue(false)]

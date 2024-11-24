@@ -5,11 +5,6 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 {
     public class EmpoweredMachaliteEdgeProjectile : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Empowered Machalite Edge");
-        }
-
         public override void SetDefaults()
         {
             Projectile.width = 34;
@@ -25,7 +20,8 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
         public override void AI()
         {
-            Lighting.AddLight(Projectile.position, 0.55f, 1.56f, 1.10f);
+            if (!Main.dedServ)
+                Lighting.AddLight(Projectile.position, 0.55f, 1.56f, 1.10f);
 
             Projectile.rotation += Projectile.velocity.X * 0.1f;
         }

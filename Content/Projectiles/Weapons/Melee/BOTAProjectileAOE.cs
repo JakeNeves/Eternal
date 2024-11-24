@@ -31,12 +31,15 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/BOTAAOEHit")
+            if (!Main.dedServ)
             {
-                Volume = 0.8f,
-                PitchVariance = Main.rand.NextFloat(1f, 1.25f),
-                MaxInstances = 0,
-            }, Projectile.position);
+                SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/BOTAAOEHit")
+                {
+                    Volume = 0.8f,
+                    PitchVariance = Main.rand.NextFloat(1f, 1.25f),
+                    MaxInstances = 0,
+                }, Projectile.position);
+            }
 
             Projectile.Kill();
         }

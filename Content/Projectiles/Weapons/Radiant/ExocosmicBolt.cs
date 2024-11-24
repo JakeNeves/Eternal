@@ -10,8 +10,6 @@ namespace Eternal.Content.Projectiles.Weapons.Radiant
     {
 	    public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Exocosmic Bolt");
-
             ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
         }
         public override void SetDefaults()
@@ -50,7 +48,8 @@ namespace Eternal.Content.Projectiles.Weapons.Radiant
 
         public override void OnKill(int timeLeft)
         {
-            SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
+            if (!Main.dedServ)
+                SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
 
             for (int i = 0; i < 50; i++)
             {

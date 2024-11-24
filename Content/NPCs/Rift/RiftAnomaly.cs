@@ -72,7 +72,8 @@ namespace Eternal.Content.NPCs.Rift
             NPC.TargetClosest(true);
             NPC.spriteDirection = NPC.direction;
 
-            Lighting.AddLight(NPC.Center, 0.75f, 0f, 0.75f);
+            if (!Main.dedServ)
+                Lighting.AddLight(NPC.Center, 0.75f, 0f, 0.75f);
 
             attackTimer++;
             Attack();

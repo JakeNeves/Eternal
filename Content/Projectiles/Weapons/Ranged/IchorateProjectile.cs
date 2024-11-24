@@ -35,7 +35,9 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
 
         public override void OnKill(int timeLeft)
         {
-            SoundEngine.PlaySound(SoundID.Shatter, Projectile.position);
+            if (!Main.dedServ)
+                SoundEngine.PlaySound(SoundID.Shatter, Projectile.position);
+
             Vector2 usePos = Projectile.position;
             Vector2 rotVector = (Projectile.rotation - MathHelper.ToRadians(90f)).ToRotationVector2();
 

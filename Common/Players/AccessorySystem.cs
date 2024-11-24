@@ -1,5 +1,4 @@
 ﻿using Eternal.Common.Systems;
-using Eternal.Content.Items.Accessories.Expert;
 using Eternal.Content.Projectiles.Accessories;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -61,15 +60,23 @@ namespace Eternal.Common.Players
 
             if (Bloodtooth)
             {
-                SoundEngine.PlaySound(SoundID.DD2_OgreSpit, Player.Center);
+                if (!Main.dedServ)
+                    SoundEngine.PlaySound(SoundID.DD2_OgreSpit, Player.Center);
+
                 for (int i = 0; i < Main.rand.Next(4, 8); i++)
-                    Projectile.NewProjectile(entitySource, Player.Center.X, Player.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<BloodtoothProjectile>(), 24, 0f, Main.myPlayer);
+                {
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                        Projectile.NewProjectile(entitySource, Player.Center.X, Player.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<BloodtoothProjectile>(), 24, 0f, Main.myPlayer);
+                }
             }
 
             if (DuneCore)
             {
                 for (int i = 0; i < Main.rand.Next(8, 16); i++)
-                    Projectile.NewProjectile(entitySource, Player.Center.X, Player.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<DuneSparkFriendly>(), 24, 0f, Main.myPlayer);
+                {
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                        Projectile.NewProjectile(entitySource, Player.Center.X, Player.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<DuneSparkFriendly>(), 24, 0f, Main.myPlayer);
+                }
             }
         }
 

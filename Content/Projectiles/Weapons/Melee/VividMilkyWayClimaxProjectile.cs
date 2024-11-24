@@ -8,10 +8,6 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 {
     public class VividMilkyWayClimaxProjectile : ModProjectile
     {
-	    public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Vivid Milky Way Climax");
-        }
         public override void SetDefaults()
         {
             Projectile.width = 6;
@@ -62,7 +58,8 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
         public override void OnKill(int timeLeft)
         {
-            SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
+            if (!Main.dedServ)
+                SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
 
             for (int i = 0; i < 50; i++)
             {

@@ -31,7 +31,8 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
         public override void AI()
         {
-            Lighting.AddLight(Projectile.position, 0.55f, 1.56f, 1.10f);
+            if (!Main.dedServ)
+                Lighting.AddLight(Projectile.position, 0.55f, 1.56f, 1.10f);
 
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(45f);
         }
@@ -64,13 +65,16 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
         {
             var entitySource = Projectile.GetSource_FromAI();
 
-            SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/ArkiumDiskHit")
+            if (!Main.dedServ)
             {
-                Volume = 0.8f,
-                PitchVariance = Main.rand.NextFloat(1f, 1.5f),
-                MaxInstances = 0,
-                Variants = [ 1, 2, 3 ]
-            }, Projectile.position);
+                SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/ArkiumDiskHit")
+                {
+                    Volume = 0.8f,
+                    PitchVariance = Main.rand.NextFloat(1f, 1.5f),
+                    MaxInstances = 0,
+                    Variants = [1, 2, 3]
+                }, Projectile.position);
+            }
 
             for (int i = 0; i < 6; i++)
             {
@@ -89,12 +93,15 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
                 Projectile.NewProjectile(entitySource, Projectile.Center, new Vector2(Main.rand.Next(-8, 8), Main.rand.Next(-8, 8)), ModContent.ProjectileType<BOTAProjectileTrail>(), Projectile.damage / 2, 0.0f, Main.myPlayer, 0.0f, 0.0f);
             }
 
-            SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/BOTAHit")
+            if (!Main.dedServ)
             {
-                Volume = 0.8f,
-                PitchVariance = Main.rand.NextFloat(1f, 1.25f),
-                MaxInstances = 0,
-            }, Projectile.position);
+                SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/BOTAHit")
+                {
+                    Volume = 0.8f,
+                    PitchVariance = Main.rand.NextFloat(1f, 1.25f),
+                    MaxInstances = 0,
+                }, Projectile.position);
+            }
         }
 
         public override bool PreDraw(ref Color lightColor)

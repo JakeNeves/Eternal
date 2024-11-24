@@ -1622,15 +1622,6 @@ Mods: {
 				Tooltip: Shoots a pebble that shoots small pebbles
 			}
 
-			ArkrystalManbow: {
-				DisplayName: Arkrystal Manbow
-				Tooltip:
-					'''
-					Converts arrows to Arkrystal Shards
-					'I guess you can consider this a bit of a machine gun bow...'
-					'''
-			}
-
 			Bowpocalypse: {
 				DisplayName: Bowpocalypse
 				Tooltip: Shoots a random assortment of arrows
@@ -2165,145 +2156,6 @@ Mods: {
 				Tooltip: ""
 			}
 
-			TestLimbolicGlyphsItem: {
-				DisplayName: Test Limbolic Glyphs Item
-				Tooltip:
-					'''
-						Simply testing some custom made glyphs, they're slightly hardcoded right now...
-						[i:Eternal/LimbolicGlyphL][i:Eternal/LimbolicGlyphO][i:Eternal/LimbolicGlyphR][i:Eternal/LimbolicGlyphE][i:Eternal/LimbolicGlyphM] [i:Eternal/LimbolicGlyphI][i:Eternal/LimbolicGlyphP][i:Eternal/LimbolicGlyphS][i:Eternal/LimbolicGlyphU][i:Eternal/LimbolicGlyphM]
-					'''
-			}
-
-			LimbolicGlyphA: {
-				DisplayName: Limbolic Glyph A
-				Tooltip: ""
-			}
-
-			LimbolicGlyphB: {
-				DisplayName: Limbolic Glyph B
-				Tooltip: ""
-			}
-
-			LimbolicGlyphC: {
-				DisplayName: Limbolic Glyph C
-				Tooltip: ""
-			}
-
-			LimbolicGlyphD: {
-				DisplayName: Limbolic Glyph D
-				Tooltip: ""
-			}
-
-			LimbolicGlyphE: {
-				DisplayName: Limbolic Glyph E
-				Tooltip: ""
-			}
-
-			LimbolicGlyphF: {
-				DisplayName: Limbolic Glyph F
-				Tooltip: ""
-			}
-
-			LimbolicGlyphG: {
-				DisplayName: Limbolic Glyph G
-				Tooltip: ""
-			}
-
-			LimbolicGlyphH: {
-				DisplayName: Limbolic Glyph H
-				Tooltip: ""
-			}
-
-			LimbolicGlyphI: {
-				DisplayName: Limbolic Glyph I
-				Tooltip: ""
-			}
-
-			LimbolicGlyphJ: {
-				DisplayName: Limbolic Glyph J
-				Tooltip: ""
-			}
-
-			LimbolicGlyphK: {
-				DisplayName: Limbolic Glyph K
-				Tooltip: ""
-			}
-
-			LimbolicGlyphL: {
-				DisplayName: Limbolic Glyph L
-				Tooltip: ""
-			}
-
-			LimbolicGlyphM: {
-				DisplayName: Limbolic Glyph M
-				Tooltip: ""
-			}
-
-			LimbolicGlyphN: {
-				DisplayName: Limbolic Glyph N
-				Tooltip: ""
-			}
-
-			LimbolicGlyphO: {
-				DisplayName: Limbolic Glyph O
-				Tooltip: ""
-			}
-
-			LimbolicGlyphP: {
-				DisplayName: Limbolic Glyph P
-				Tooltip: ""
-			}
-
-			LimbolicGlyphQ: {
-				DisplayName: Limbolic Glyph Q
-				Tooltip: ""
-			}
-
-			LimbolicGlyphR: {
-				DisplayName: Limbolic Glyph R
-				Tooltip: ""
-			}
-
-			LimbolicGlyphS: {
-				DisplayName: Limbolic Glyph S
-				Tooltip: ""
-			}
-
-			LimbolicGlyphT: {
-				DisplayName: Limbolic Glyph T
-				Tooltip: ""
-			}
-
-			LimbolicGlyphU: {
-				DisplayName: Limbolic Glyph U
-				Tooltip: ""
-			}
-
-			LimbolicGlyphV: {
-				DisplayName: Limbolic Glyph V
-				Tooltip: ""
-			}
-
-			LimbolicGlyphW: {
-				DisplayName: Limbolic Glyph W
-				Tooltip: ""
-			}
-
-			LimbolicGlyphX: {
-				DisplayName: Limbolic Glyph X
-				Tooltip: ""
-			}
-
-			LimbolicGlyphY: {
-				DisplayName: Limbolic Glyph Y
-				Tooltip: ""
-			}
-
-			LimbolicGlyphZ: {
-				DisplayName: Limbolic Glyph Z
-				Tooltip: ""
-			}
-
 			StarquartzCrystalCluster: {
 				DisplayName: Starquartz Crystal Cluster
 				Tooltip: "'Crystallized essence of raw star power!'"
@@ -2359,9 +2211,23 @@ Mods: {
 				Tooltip: JakeTEM - From Another World
 			}
 
+			CarminiteAmalgamationMusicBox: {
+				DisplayName: Music Box (Carminite Amalgamation)
+				Tooltip: JakeTEM - Carminite Agglomeration
+			}
+
+			DuneGolemMusicBox: {
+				DisplayName: Music Box (Dune Golem)
+				Tooltip: JakeTEM - Haunted Tomb from the Dunes
+			}
+
 			ArkiumManbow: {
 				DisplayName: Arkium Manbow
-				Tooltip: ""
+				Tooltip:
+					'''
+					Converts arrows to Arkium Quartz Crystal Shards
+					'I guess you can consider this a bit of a machine gun bow...'
+					'''
 			}
 		}
 
@@ -2917,16 +2783,6 @@ Mods: {
 						Tooltip:
 							'''
 							Adds Life Motes into the game, these will be dropped by the Phantom Construct.
-							(Default: [c/008080:OFF])
-							'''
-					}
-
-					limbolicGlyphs: {
-						DisplayName: Limbolic Glyphs (NYI)
-						Tooltip:
-							'''
-							Adds Limbolic Glyphs, this is not yet implemented!
-							This feature requires a reload
 							(Default: [c/008080:OFF])
 							'''
 					}

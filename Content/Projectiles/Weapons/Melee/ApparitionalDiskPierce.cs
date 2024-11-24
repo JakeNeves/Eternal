@@ -8,10 +8,6 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 {
     public class ApparitionalDiskPierce : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("ApparitionalDisk");
-        }
 
         public override void SetDefaults()
         {
@@ -25,7 +21,8 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
+            if (!Main.dedServ)
+                SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
 
             for (int i = 0; i < 50; i++)
             {

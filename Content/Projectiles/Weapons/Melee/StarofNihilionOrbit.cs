@@ -7,11 +7,6 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 {
     public class StarofNihilionOrbit : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Star of Nihilion");
-        }
-
         public override void SetDefaults()
         {
             Projectile.height = 14;

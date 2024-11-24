@@ -9,11 +9,6 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 {
     public class MachaliteChakramProjectile : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Machalite Chakram");
-        }
-
         public override void SetDefaults()
         {
             Projectile.width = 34;
@@ -33,7 +28,9 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            SoundEngine.PlaySound(SoundID.Dig, Projectile.position);
+            if (!Main.dedServ)
+                SoundEngine.PlaySound(SoundID.Dig, Projectile.position);
+            
             Projectile.Kill();
             for (int k = 0; k < 5; k++)
             {

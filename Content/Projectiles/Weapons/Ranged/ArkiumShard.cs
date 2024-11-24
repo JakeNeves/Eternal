@@ -29,15 +29,20 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
 
         public override void AI()
         {
-            Lighting.AddLight(Projectile.position, 0.24f, 0.32f, 0.32f);
+            if (!Main.dedServ)
+                Lighting.AddLight(Projectile.position, 0.24f, 0.32f, 0.32f);
 
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);
         }
 
         public override void OnKill(int timeLeft)
         {
-            SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
-            SoundEngine.PlaySound(SoundID.Tink, Projectile.position);
+            if (!Main.dedServ)
+            {
+                SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
+                SoundEngine.PlaySound(SoundID.Tink, Projectile.position);
+            }
+
             for (int k = 0; k < 10; k++)
             {
                 Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, DustID.GreenTorch, Projectile.oldVelocity.X * 1f, Projectile.oldVelocity.Y * 1f);

@@ -13,8 +13,6 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("The Eclipse");
-
             ProjectileID.Sets.YoyosLifeTimeMultiplier[Projectile.type] = -1f;
             ProjectileID.Sets.YoyosMaximumRange[Projectile.type] = 360f;
             ProjectileID.Sets.YoyosTopSpeed[Projectile.type] = 15f;

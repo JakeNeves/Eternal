@@ -33,7 +33,8 @@ namespace Eternal.Content.Projectiles.Weapons.Radiant
 
         public override void AI()
         {
-            Lighting.AddLight(Projectile.position, 0.75f, 0f, 0.75f);
+            if (!Main.dedServ)
+                Lighting.AddLight(Projectile.position, 0.75f, 0f, 0.75f);
 
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(45f);
 
@@ -51,7 +52,9 @@ namespace Eternal.Content.Projectiles.Weapons.Radiant
                 Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, DustID.GreenTorch, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);
             }
             Collision.HitTiles(Projectile.position + Projectile.velocity, Projectile.velocity, Projectile.width, Projectile.height);
-            SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
+
+            if (!Main.dedServ)
+                SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
         }
 
         public override bool PreDraw(ref Color lightColor)

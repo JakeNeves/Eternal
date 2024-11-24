@@ -63,7 +63,9 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
             }
 
             Collision.HitTiles(Projectile.position + Projectile.velocity, Projectile.velocity, Projectile.width, Projectile.height);
-            SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
+
+            if (!Main.dedServ)
+                SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
         }
     }
 }

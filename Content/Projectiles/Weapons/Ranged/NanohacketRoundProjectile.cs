@@ -10,8 +10,6 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Nanohacket Round");
-
             ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
         }
 
@@ -84,7 +82,9 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
             }
 
             Collision.HitTiles(Projectile.position + Projectile.velocity, Projectile.velocity, Projectile.width, Projectile.height);
-            SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
+
+            if (!Main.dedServ)
+                SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
         }
 
     }

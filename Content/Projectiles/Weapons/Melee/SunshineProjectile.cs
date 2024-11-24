@@ -30,7 +30,8 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
         public override void AI()
         {
-            Lighting.AddLight(Projectile.position, 2.15f, 0.95f, 0f);
+            if (!Main.dedServ)
+                Lighting.AddLight(Projectile.position, 2.15f, 0.95f, 0f);
 
             if (Main.rand.NextBool(3))
             {

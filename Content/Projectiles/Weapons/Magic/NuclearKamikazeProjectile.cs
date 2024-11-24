@@ -77,7 +77,8 @@ namespace Eternal.Content.Projectiles.Weapons.Magic
 
         public override void OnKill(int timeLeft)
         {
-            SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
+            if (!Main.dedServ)
+                SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
 
             for (int k = 0; k < 10; k++)
             {
@@ -97,7 +98,8 @@ namespace Eternal.Content.Projectiles.Weapons.Magic
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
+            if (!Main.dedServ)
+                SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
 
             for (int k = 0; k < 10; k++)
             {

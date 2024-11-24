@@ -52,7 +52,8 @@ namespace Eternal.Content.NPCs.Rift
             Player target = Main.player[NPC.target];
             NPC.TargetClosest(true);
 
-            Lighting.AddLight(NPC.Center, 0.75f, 0f, 0.75f);
+            if (!Main.dedServ)
+                Lighting.AddLight(NPC.Center, 0.75f, 0f, 0.75f);
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)

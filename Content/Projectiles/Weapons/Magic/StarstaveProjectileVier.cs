@@ -10,8 +10,6 @@ namespace Eternal.Content.Projectiles.Weapons.Magic
     {
 	    public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Starstave Bolt Vier");
-
             ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
         }
         public override void SetDefaults()
@@ -76,7 +74,8 @@ namespace Eternal.Content.Projectiles.Weapons.Magic
         {
             var entitySource = Projectile.GetSource_Death();
 
-            SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
+            if (!Main.dedServ)
+                SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
 
             for (int i = 0; i < 50; i++)
             {

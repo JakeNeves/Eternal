@@ -40,12 +40,15 @@ namespace Eternal.Content.Projectiles.Weapons.Magic
 
         public override void OnKill(int timeLeft)
         {
-            SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/RoTSDDespawn")
+            if (!Main.dedServ)
             {
-                Volume = 0.25f,
-                PitchVariance = Main.rand.NextFloat(0.2f, 0.9f),
-                MaxInstances = 0,
-            }, Projectile.position);
+                SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/RoTSDDespawn")
+                {
+                    Volume = 0.25f,
+                    PitchVariance = Main.rand.NextFloat(0.2f, 0.9f),
+                    MaxInstances = 0,
+                }, Projectile.position);
+            }
 
             for (int i = 0; i < 50; i++)
             {

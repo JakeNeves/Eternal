@@ -61,7 +61,8 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
 
         public override void OnKill(int timeLeft)
         {
-            SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
+            if (!Main.dedServ)
+                SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
 
             for (int k = 0; k < 5; k++)
             {

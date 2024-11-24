@@ -599,13 +599,15 @@ namespace Eternal.Content.NPCs.Boss.AoI
                     direction.X *= 8.5f;
                     direction.Y *= 8.5f;
 
-                    int amountOfProjectiles = 2;
+                    int amountOfProjectiles = 2 + Main.rand.Next(2);
                     for (int i = 0; i < amountOfProjectiles; ++i)
                     {
                         float A = (float)Main.rand.Next(-200, 200) * 0.01f;
                         float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+
                         if (Main.netMode != NetmodeID.MultiplayerClient)
                             SoundEngine.PlaySound(SoundID.DD2_LightningAuraZap, NPC.position);
+
                         Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<ArkEnergyHostile>(), NPC.damage / 2, 1, Main.myPlayer, 0, 0);
                     }
                 }
@@ -634,14 +636,16 @@ namespace Eternal.Content.NPCs.Boss.AoI
                     direction.X *= 8.5f;
                     direction.Y *= 8.5f;
 
-                    int amountOfProjectiles = 2;
+                    int amountOfProjectiles = 2 + Main.rand.Next(2);
                     for (int i = 0; i < amountOfProjectiles; ++i)
                     {
                         float A = (float)Main.rand.Next(-200, 200) * 0.01f;
                         float B = (float)Main.rand.Next(-200, 200) * 0.01f;
                         int damage = Main.expertMode ? 110 : 220;
+
                         if (Main.netMode != NetmodeID.MultiplayerClient)
                             SoundEngine.PlaySound(SoundID.Item8, NPC.position);
+
                         Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<ArkArrowHostile>(), damage, 1, Main.myPlayer, 0, 0);
                     }
                 }
@@ -657,8 +661,10 @@ namespace Eternal.Content.NPCs.Boss.AoI
                     {
                         float A = (float)Main.rand.Next(-200, 200) * 0.01f;
                         float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+
                         if (Main.netMode != NetmodeID.MultiplayerClient)
                             SoundEngine.PlaySound(SoundID.DD2_LightningAuraZap, NPC.position);
+
                         Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<ArkEnergyHostile>(), NPC.damage / 2, 1, Main.myPlayer, 0, 0);
                     }
                 }
@@ -704,8 +710,10 @@ namespace Eternal.Content.NPCs.Boss.AoI
                     {
                         float A = (float)Main.rand.Next(-200, 200) * 0.01f;
                         float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+
                         if (Main.netMode != NetmodeID.MultiplayerClient)
                             SoundEngine.PlaySound(SoundID.DD2_LightningAuraZap, NPC.position);
+
                         Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<ArkEnergyHostile>(), NPC.damage / 2, 1, Main.myPlayer, 0, 0);
                     }
                 }

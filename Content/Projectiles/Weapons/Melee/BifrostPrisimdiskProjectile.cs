@@ -9,11 +9,6 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 {
     public class BifrostPrisimdiskProjectile : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Bifrost Prisimdisk");
-        }
-
         public override void SetDefaults()
         {
             Projectile.width = 42;

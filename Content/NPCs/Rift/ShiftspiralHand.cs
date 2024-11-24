@@ -65,7 +65,7 @@ namespace Eternal.Content.NPCs.Rift
                     break;
                 }
             }
-            if (Main.netMode != 1)
+            if (Main.netMode != NetmodeID.MultiplayerClient)
             {
                 NPC.localAI[0] -= 1f;
                 if (NPC.localAI[0] <= 0f)

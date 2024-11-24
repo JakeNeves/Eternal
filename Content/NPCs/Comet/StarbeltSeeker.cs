@@ -102,7 +102,8 @@ namespace Eternal.Content.NPCs.Comet
 
 		public override void CustomBehavior()
 		{
-			Lighting.AddLight(NPC.position, 0.75f, 0f, 0.75f);
+			if (!Main.dedServ)
+				Lighting.AddLight(NPC.position, 0.75f, 0f, 0.75f);
 
 			Player target = Main.player[NPC.target];
 
@@ -182,7 +183,8 @@ namespace Eternal.Content.NPCs.Comet
 
         public override void CustomBehavior()
         {
-			Lighting.AddLight(NPC.position, 0.75f, 0f, 0.75f);
+			if (!Main.dedServ)
+				Lighting.AddLight(NPC.position, 0.75f, 0f, 0.75f);
 
             if (RiftSystem.isRiftOpen)
             {
@@ -235,7 +237,8 @@ namespace Eternal.Content.NPCs.Comet
 
 		public override void CustomBehavior()
 		{
-			Lighting.AddLight(NPC.position, 0.75f, 0f, 0.75f);
+			if (!Main.dedServ)
+				Lighting.AddLight(NPC.position, 0.75f, 0f, 0.75f);
 
             if (RiftSystem.isRiftOpen)
             {

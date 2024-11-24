@@ -14,7 +14,6 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Ark of Imperious");
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 16;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }
@@ -51,7 +50,8 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
         {
             if (!justLanded)
             {
-                SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/AoIProjectileLand"), Projectile.position);
+                if (!Main.dedServ)
+                    SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/AoIProjectileLand"), Projectile.position);
                 justLanded = true;
             }
             return false;
@@ -64,7 +64,9 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
                 Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, DustID.GreenTorch, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);
             }
             Collision.HitTiles(Projectile.position + Projectile.velocity, Projectile.velocity, Projectile.width, Projectile.height);
-            SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
+
+            if (!Main.dedServ)
+                SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
         }
 
         public override bool PreDraw(ref Color lightColor)

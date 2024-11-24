@@ -18,7 +18,6 @@ namespace Eternal.Content.NPCs.Tundra
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Glacer Walker");
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.GoblinWarrior];
         }
 

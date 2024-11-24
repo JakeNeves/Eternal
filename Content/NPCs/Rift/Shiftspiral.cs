@@ -89,11 +89,12 @@ namespace Eternal.Content.NPCs.Rift
 
             var entitySource = NPC.GetSource_FromAI();
 
-            Lighting.AddLight(NPC.Center, 0.75f, 0f, 0.75f);
+            if (!Main.dedServ)
+                Lighting.AddLight(NPC.Center, 0.75f, 0f, 0.75f);
 
             if (!justSpawned)
             {
-                int amountOfTenticles = Main.rand.Next(2, 6);
+                int amountOfTenticles = 2 + Main.rand.Next(2);
                 for (int i = 0; i < amountOfTenticles; ++i)
                 {
                     NPC.NewNPC(entitySource, (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<ShiftspiralHand>());

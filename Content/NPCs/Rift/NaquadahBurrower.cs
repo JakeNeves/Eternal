@@ -75,7 +75,8 @@ namespace Eternal.Content.NPCs.Rift
 
 		public override void CustomBehavior()
 		{
-			Lighting.AddLight(NPC.Center, 0.75f, 0f, 0.75f);
+            if (!Main.dedServ)
+			    Lighting.AddLight(NPC.Center, 0.75f, 0f, 0.75f);
 
 			Player target = Main.player[NPC.target];
 
@@ -160,7 +161,8 @@ namespace Eternal.Content.NPCs.Rift
 
         public override void CustomBehavior()
         {
-			Lighting.AddLight(NPC.Center, 0.75f, 0f, 0.75f);
+            if (!Main.dedServ)
+			    Lighting.AddLight(NPC.Center, 0.75f, 0f, 0.75f);
 		}
 
         public override void HitEffect(NPC.HitInfo hit)
@@ -213,7 +215,8 @@ namespace Eternal.Content.NPCs.Rift
 
 		public override void CustomBehavior()
 		{
-			Lighting.AddLight(NPC.Center, 0.75f, 0f, 0.75f);
+            if (!Main.dedServ)
+			    Lighting.AddLight(NPC.Center, 0.75f, 0f, 0.75f);
 		}
 
 		public override void Init()

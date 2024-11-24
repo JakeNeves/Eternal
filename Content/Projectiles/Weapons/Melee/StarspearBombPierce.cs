@@ -33,7 +33,8 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
         public override void OnKill(int timeLeft)
         {
-            SoundEngine.PlaySound(SoundID.NPCHit3, Projectile.position);
+            if (!Main.dedServ)
+                SoundEngine.PlaySound(SoundID.NPCHit3, Projectile.position);
         }
     }
 }

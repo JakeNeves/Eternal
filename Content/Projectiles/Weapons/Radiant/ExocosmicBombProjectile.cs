@@ -12,8 +12,6 @@ namespace Eternal.Content.Projectiles.Weapons.Radiant
         public override void SetStaticDefaults()
         {
             Main.projFrames[Projectile.type] = 4;
-
-            // DisplayName.SetDefault("Exocosmic Bomb");
         }
 
         public override void SetDefaults()
@@ -40,7 +38,8 @@ namespace Eternal.Content.Projectiles.Weapons.Radiant
 
             if (Projectile.timeLeft == 400)
             {
-                SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/ExocosmicBombCharge"), Projectile.position);
+                if (!Main.dedServ)
+                    SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/ExocosmicBombCharge"), Projectile.position);
             }
 
             if (Projectile.timeLeft >= 200)
@@ -64,7 +63,8 @@ namespace Eternal.Content.Projectiles.Weapons.Radiant
         {
             var entitySource = Projectile.GetSource_Death();
 
-            SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/ExocosmicBombDischarge"), Projectile.position);
+            if (!Main.dedServ)
+                SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/ExocosmicBombDischarge"), Projectile.position);
 
             for (int k = 0; k < 10; k++)
             {

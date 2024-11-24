@@ -33,7 +33,8 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
         public override void AI()
         {
-            Lighting.AddLight(Projectile.position, 2.15f, 0.95f, 0f);
+            if (!Main.dedServ)
+                Lighting.AddLight(Projectile.position, 2.15f, 0.95f, 0f);
 
             Projectile.rotation += Projectile.velocity.X + Projectile.velocity.Y * 0.1f;
 
@@ -71,7 +72,9 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
             {
                 Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, DustID.SolarFlare, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);
             }
-            SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
+
+            if (!Main.dedServ)
+                SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
 
             Vector2 usePos = Projectile.position;
             Vector2 rotVector = (Projectile.rotation - MathHelper.ToRadians(90f)).ToRotationVector2();

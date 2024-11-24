@@ -7,11 +7,6 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
 {
     public class ScorchthrowerFlame : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Scorchthrower");
-        }
-
         public override void SetDefaults()
         {
             Projectile.width = 6;

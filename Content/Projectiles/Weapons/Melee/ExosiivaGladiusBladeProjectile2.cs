@@ -36,9 +36,10 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
         public override void AI()
         {
-            Lighting.AddLight(Projectile.Center, 0.36f, 2.03f, 2.09f);
+            if (!Main.dedServ)
+                Lighting.AddLight(Projectile.Center, 0.36f, 2.03f, 2.09f);
 
-            while (Projectile.alpha > 0)
+            if (Projectile.alpha > 0)
                 Projectile.alpha -= 15;
 
             for (int k = 0; k < Main.rand.Next(2, 4); k++)
@@ -55,12 +56,15 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
                     Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<Exosiiva>(), Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f, 0, Color.White, Main.rand.NextFloat(0.5f, 1f));
                 }
 
-                SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/ExosiivaGladiusBlade")
+                if (!Main.dedServ)
                 {
-                    Volume = 0.25f,
-                    PitchVariance = Main.rand.NextFloat(0.2f, 0.9f),
-                    MaxInstances = 0,
-                }, Projectile.position);
+                    SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/ExosiivaGladiusBlade")
+                    {
+                        Volume = 0.25f,
+                        PitchVariance = Main.rand.NextFloat(0.2f, 0.9f),
+                        MaxInstances = 0,
+                    }, Projectile.position);
+                }
 
                 Projectile.ai[0] = 1f;
             }

@@ -12,8 +12,6 @@ namespace Eternal.Content.Projectiles.Weapons.Magic
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Sword of The Sword God");
-
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 6;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }
@@ -41,7 +39,8 @@ namespace Eternal.Content.Projectiles.Weapons.Magic
 
         public override void OnKill(int timeLeft)
         {
-            SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
+            if (!Main.dedServ)
+                SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
 
             for (int i = 0; i < 50; i++)
             {

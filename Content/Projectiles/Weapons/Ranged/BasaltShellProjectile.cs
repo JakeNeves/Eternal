@@ -13,7 +13,6 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
 
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Basalt Shell");
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 6;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }
@@ -37,7 +36,8 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
 
         public override void AI()
         {
-            Lighting.AddLight(Projectile.position, 1.98f, 0.49f, 2.47f);
+            if (!Main.dedServ)
+                Lighting.AddLight(Projectile.position, 1.98f, 0.49f, 2.47f);
 
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);
         }
@@ -76,7 +76,9 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
             }
 
             Collision.HitTiles(Projectile.position + Projectile.velocity, Projectile.velocity, Projectile.width, Projectile.height);
-            SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
+
+            if (!Main.dedServ)
+                SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
         }
     }
 }

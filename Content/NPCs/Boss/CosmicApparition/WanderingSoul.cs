@@ -64,7 +64,9 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
 
             if (NPC.life < 0)
             {
-                SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/CosmicApparitionAnger"), NPC.position);
+                if (!Main.dedServ)
+                    SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/CosmicApparitionAnger"), NPC.position);
+
                 Main.NewText("Shrieks echo as the soul angers...", 175, 75, 255);
                 NPC.NewNPC(entitySource, (int)NPC.Center.X - 20, (int)NPC.Center.Y, ModContent.NPCType<CosmicApparition>());
             }

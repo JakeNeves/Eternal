@@ -20,7 +20,8 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
         public override void AI()
         {
-            Lighting.AddLight(Projectile.position, 0.24f, 0.22f, 1.90f);
+            if (!Main.dedServ)
+                Lighting.AddLight(Projectile.position, 0.24f, 0.22f, 1.90f);
 
             Projectile.rotation += Projectile.velocity.X * 0.1f;
         }
@@ -32,7 +33,8 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
         public override void OnKill(int timeLeft)
         {
-            SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
+            if (!Main.dedServ)
+                SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
 
             var entitySource = Projectile.GetSource_FromThis();
 

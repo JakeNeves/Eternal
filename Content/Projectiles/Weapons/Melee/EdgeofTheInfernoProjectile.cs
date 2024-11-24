@@ -11,8 +11,6 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Edge of the Inferno");
-
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 16;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }
@@ -37,7 +35,8 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
         {
             Projectile.alpha += 6;
 
-            Lighting.AddLight(Projectile.position, 2.15f, 0.95f, 0f);
+            if (!Main.dedServ)
+                Lighting.AddLight(Projectile.position, 2.15f, 0.95f, 0f);
 
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(45f);
         }

@@ -16,8 +16,6 @@ namespace Eternal.Content.NPCs.Underworld
 
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Magmatic Scorcher");
-
             Main.npcFrameCount[NPC.type] = 2;
         }
 
@@ -89,7 +87,9 @@ namespace Eternal.Content.NPCs.Underworld
                 for (int k = 0; k < 5; k++)
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.FlameBurst, 0f, -2.5f, 0, default, 1.7f);
 
-                SoundEngine.PlaySound(SoundID.Item8, NPC.position);
+                if (!Main.dedServ)
+                    SoundEngine.PlaySound(SoundID.Item8, NPC.position);
+
                 NPC.position.X = targetPosition.X + Main.rand.Next(-400, 400);
                 NPC.position.Y = targetPosition.Y + Main.rand.Next(-400, 400);
 
@@ -100,7 +100,9 @@ namespace Eternal.Content.NPCs.Underworld
             {
                 frameNum = 1;
 
-                SoundEngine.PlaySound(SoundID.DD2_BetsyFireballShot, NPC.position);
+                if (!Main.dedServ)
+                    SoundEngine.PlaySound(SoundID.DD2_BetsyFireballShot, NPC.position);
+
                 float A = (float)Main.rand.Next(-200, 200) * 0.01f;
                 float B = (float)Main.rand.Next(-200, 200) * 0.01f;
                 if (Main.netMode != NetmodeID.MultiplayerClient)

@@ -1,6 +1,8 @@
 ﻿using Eternal.Common.Systems;
+using Eternal.Content.NPCs.Boss.CosmicApparition;
 using Eternal.Content.NPCs.Rift;
 using Microsoft.Xna.Framework;
+using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -12,6 +14,13 @@ namespace Eternal.Content.NPCs.Miniboss
     public class UnstablePortal : ModNPC
     {
         int attackTimer = 0;
+
+        private static readonly int[] possibleEnemyTypes = { 
+            ModContent.NPCType<UnstableHellwisp>(),
+            ModContent.NPCType<Shiftspiral>()
+        };
+
+        private int enemyTypeIndex;
 
         public override void SetStaticDefaults()
         {
@@ -76,6 +85,13 @@ namespace Eternal.Content.NPCs.Miniboss
             }
         }
 
+        public override bool PreAI()
+        {
+            enemyTypeIndex = Main.rand.Next(possibleEnemyTypes.Length);
+
+            return true;
+        }
+
         public override void AI()
         {
             var entitySource = NPC.GetSource_FromAI();
@@ -83,9 +99,11 @@ namespace Eternal.Content.NPCs.Miniboss
             Player target = Main.player[NPC.target];
             NPC.TargetClosest(true);
 
-            Lighting.AddLight(NPC.Center, 0.75f, 0f, 0.75f);
+            if (!Main.dedServ)
+                Lighting.AddLight(NPC.Center, 0.75f, 0f, 0.75f);
 
             NPC.rotation += 0.15f;
+
             if (NPC.ai[0] == 0f && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 for (int i = 0; i < 15; i++)
@@ -116,7 +134,10 @@ namespace Eternal.Content.NPCs.Miniboss
                 if (NPC.ai[3] >= 360f)
                 {
                     NPC.life = 0;
-                    SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/PhantomConstructSpawn"), NPC.position);
+
+                    if (!Main.dedServ)
+                        SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/PhantomConstructSpawn"), NPC.position);
+
                     Main.NewText("A Phantom Construct has appeared!", 175, 75, 255);
                     NPC.NewNPC(entitySource, (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<PhantomConstruct>());
                     NPC.HitEffect(0, 0);
@@ -142,21 +163,23 @@ namespace Eternal.Content.NPCs.Miniboss
             {
                 if (attackTimer == 200)
                 {
-                    for (int i = 0; i < Main.rand.Next(2, 4); i++)
+                    for (int i = 0; i < 1 + Main.rand.Next(3); i++)
                     {
-                        NPC.NewNPC(entitySource, (int)NPC.Center.X + Main.rand.Next(-10, 10), (int)NPC.Center.Y + Main.rand.Next(-10, 10), ModContent.NPCType<UnstableHellwisp>());
+                        NPC.NewNPC(entitySource, (int)NPC.Center.X + Main.rand.Next(-15, 15), (int)NPC.Center.Y + Main.rand.Next(-15, 15), possibleEnemyTypes[enemyTypeIndex]);
                     }
                 }
                 if (attackTimer == 250)
                 {
-                    for (int i = 0; i < Main.rand.Next(4, 8); i++)
+                    for (int i = 0; i < 1 + Main.rand.Next(3); i++)
                     {
-                        NPC.NewNPC(entitySource, (int)NPC.Center.X + Main.rand.Next(-10, 10), (int)NPC.Center.Y + Main.rand.Next(-10, 10), ModContent.NPCType<Shiftspiral>());
+                        NPC.NewNPC(entitySource, (int)NPC.Center.X + Main.rand.Next(-15, 15), (int)NPC.Center.Y + Main.rand.Next(-15, 15), ModContent.NPCType<DetonatingWisp>());
                     }
                 }
                 if (attackTimer == 400)
                 {
-                    SoundEngine.PlaySound(SoundID.Item8, NPC.position);
+                    if (!Main.dedServ)
+                        SoundEngine.PlaySound(SoundID.Item8, NPC.position);
+
                     NPC.position.X = targetPosition.X + Main.rand.Next(-600, 600);
                     NPC.position.Y = targetPosition.Y + Main.rand.Next(-600, 600);
                     attackTimer = 0;
@@ -181,6 +204,16 @@ namespace Eternal.Content.NPCs.Miniboss
         {
             scale = 1.5f;
             return null;
+        }
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write((byte)enemyTypeIndex);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            enemyTypeIndex = reader.ReadByte();
         }
     }
 }

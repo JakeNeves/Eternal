@@ -44,7 +44,8 @@ namespace Eternal.Content.Projectiles.Weapons.Magic
         {
             var entitySource = Projectile.GetSource_FromAI();
 
-            Lighting.AddLight(Projectile.Center, 0.75f, 0f, 0.75f);
+            if (!Main.dedServ)
+                Lighting.AddLight(Projectile.Center, 0.75f, 0f, 0.75f);
 
             Projectile.rotation += 0.15f;
             timer++;

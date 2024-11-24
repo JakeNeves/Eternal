@@ -10,10 +10,9 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
     {
 	    public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("The Eclipse");
-
             ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
         }
+
         public override void SetDefaults()
         {
             Projectile.width = 6;
@@ -35,7 +34,8 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
                 Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Torch, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);
             }
 
-            Lighting.AddLight(Projectile.position, 0.24f, 0.22f, 1.90f);
+            if (!Main.dedServ)
+                Lighting.AddLight(Projectile.position, 0.24f, 0.22f, 1.90f);
 
             float maxDetectRadius = 450f;
             float projSpeed = 16f;
@@ -50,7 +50,8 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
         public override void OnKill(int timeLeft)
         {
-            SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
+            if (!Main.dedServ)
+                SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
 
             for (int k = 0; k < 30; k++)
             {

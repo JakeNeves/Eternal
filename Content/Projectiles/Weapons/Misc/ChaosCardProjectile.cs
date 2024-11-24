@@ -22,7 +22,9 @@ namespace Eternal.Content.Projectiles.Weapons.Misc
         {
             Player player = Main.player[Projectile.owner];
 
-            SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
+            if (!Main.dedServ)
+                SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
+            
             for (int k = 0; k < 5; k++)
             {
                 Dust.NewDust(Projectile.Center + Projectile.velocity, Projectile.width, Projectile.height, DustID.Wraith, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);
@@ -42,7 +44,9 @@ namespace Eternal.Content.Projectiles.Weapons.Misc
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            SoundEngine.PlaySound(SoundID.Dig, Projectile.position);
+            if (!Main.dedServ)
+                SoundEngine.PlaySound(SoundID.Dig, Projectile.position);
+            
             for (int k = 0; k < 5; k++)
             {
                 Dust.NewDust(Projectile.Center + Projectile.velocity, Projectile.width, Projectile.height, DustID.Wraith, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);

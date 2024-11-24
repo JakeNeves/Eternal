@@ -29,8 +29,7 @@ namespace Eternal.Common.Systems
 			}
 
             #region Pre-Hardmode
-            // pre hardmode
-            // Carminite Amalgamation
+            #region Carminite Amalgamation
             bossChecklistMod.Call(
 				"LogBoss",
 				Mod,
@@ -52,8 +51,9 @@ namespace Eternal.Common.Systems
 					}
                 }
 			);
+            #endregion
 
-            // Dune Golem
+            #region Dune Golem
             bossChecklistMod.Call(
 				"LogBoss",
 				Mod,
@@ -72,10 +72,10 @@ namespace Eternal.Common.Systems
                 }
 			);
             #endregion
+            #endregion
 
             #region Hardmode
-            // hardmode
-            // The Igneopede (Temporarily Delisted)
+            #region The Igneopede
             /* bossChecklistMod.Call(
                 "LogBoss",
                 Mod,
@@ -95,7 +95,9 @@ namespace Eternal.Common.Systems
 					
                 }
             ); */
-            // Incinerius
+            #endregion
+
+            #region Incinerius
             bossChecklistMod.Call(
                 "LogBoss",
                 Mod,
@@ -114,8 +116,12 @@ namespace Eternal.Common.Systems
 					}
                 }
             );
-            // Subzero Elemental
-            // Duneworm (Temporarily Delisted)
+            #endregion
+
+            #region Subzero Elemental
+            #endregion
+
+            #region Duneworm
             /* bossChecklistMod.Call(
                 "LogBoss",
                 Mod,
@@ -135,15 +141,17 @@ namespace Eternal.Common.Systems
 					
                 }
             );*/
-            // Empraynia
-            // Armageddon Golem
-            // Armageddon Elemental
+            #endregion
+
+            #region Dark Moon (Event)
+            #endregion
+
+            #region Empraynia
+            #endregion
             #endregion
 
             #region Post-Moon Lord
-            // post-moon lord
-            // Frost King
-            // Cosmic Apparition
+            #region Cosmic Apparition
             bossChecklistMod.Call(
 				"LogBoss",
 				Mod,
@@ -168,8 +176,9 @@ namespace Eternal.Common.Systems
 					}
 				}
             );
+            #endregion
 
-            // Ark of Imperious
+            #region Ark of Imperious
             bossChecklistMod.Call(
 				"LogBoss",
 				Mod,
@@ -190,8 +199,9 @@ namespace Eternal.Common.Systems
 					}
 				}
             );
+            #endregion
 
-            // Phantom Construct (Miniboss)
+            #region Phantom Construct (Miniboss)
             bossChecklistMod.Call(
                 "LogMiniBoss",
                 Mod,
@@ -211,9 +221,16 @@ namespace Eternal.Common.Systems
                     }
                 }
             );
+            #endregion
 
-            // Cosmic Emperor
-            bossChecklistMod.Call(
+            #region The Trinity
+            #endregion
+
+            #region Dark Moon II (Event)
+            #endregion
+
+            #region Cosmic Emperor
+            /*bossChecklistMod.Call(
 				"LogBoss",
 				Mod,
 				nameof(CosmicEmperor),
@@ -231,7 +248,8 @@ namespace Eternal.Common.Systems
                         ModContent.ItemType<Content.Items.Materials.CosmoniumFragment>(),
                     }
                 }
-            );
+            );*/
+            #endregion
             #endregion
         }
     }

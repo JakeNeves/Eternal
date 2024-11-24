@@ -10,11 +10,6 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 {
     public class TheBigOneProjectile : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("The Big One");
-        }
-
         public override void SetDefaults()
         {
             Projectile.width = 164;

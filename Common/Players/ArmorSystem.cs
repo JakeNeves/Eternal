@@ -110,7 +110,9 @@ namespace Eternal.Common.Players
 
                     if (starbornMagicProjTimer >= 2000)
                     {
-                        Projectile.NewProjectile(entitySource, Player.position.X, Player.position.Y, Main.rand.Next(-4, 4), Main.rand.Next(-4, 4), ModContent.ProjectileType<UnstableStarbornWisp>(), Player.statManaMax2, 0, Player.whoAmI);
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                            Projectile.NewProjectile(entitySource, Player.position.X, Player.position.Y, Main.rand.Next(-4, 4), Main.rand.Next(-4, 4), ModContent.ProjectileType<UnstableStarbornWisp>(), Player.statManaMax2, 0, Player.whoAmI);
+
                         starbornMagicProjTimer = 0;
                     }
                 }
@@ -149,19 +151,27 @@ namespace Eternal.Common.Players
             if (ArkaniumArmor)
             {
                 for (int i = 0; i < Main.rand.Next(8, 16); i++)
-                    Projectile.NewProjectile(entitySource, Player.position.X + Main.rand.NextFloat(-200f, 200f), Player.position.Y - 600f, Main.rand.NextFloat(-4f, 4f), 16f, ModContent.ProjectileType<ArkaniumSword>(), 200 * 2, 0, Player.whoAmI);
+                {
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                        Projectile.NewProjectile(entitySource, Player.position.X + Main.rand.NextFloat(-200f, 200f), Player.position.Y - 600f, Main.rand.NextFloat(-4f, 4f), 16f, ModContent.ProjectileType<ArkaniumSword>(), 200 * 2, 0, Player.whoAmI);
+                }
             }
             #endregion
 
             #region Naquadah Armor Set Bonuses
             if (NaquadahArmor)
             {
-                SoundEngine.PlaySound(SoundID.DD2_KoboldExplosion, Player.position);
+                if (!Main.dedServ)
+                    SoundEngine.PlaySound(SoundID.DD2_KoboldExplosion, Player.position);
 
-                Projectile.NewProjectile(entitySource, Player.position, new Vector2(0, 0), ModContent.ProjectileType<NaquadahSpikeBombAOE>(), 0, 0, Player.whoAmI);
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                    Projectile.NewProjectile(entitySource, Player.position, new Vector2(0, 0), ModContent.ProjectileType<NaquadahSpikeBombAOE>(), 0, 0, Player.whoAmI);
 
                 for (int i = 0; i < Main.rand.Next(2, 4); i++)
-                    Projectile.NewProjectile(entitySource, Player.position, new Vector2(Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-8f, 8f)), ModContent.ProjectileType<NaquadahSpikeBomb>(), 200 * 2, 0, Player.whoAmI);
+                {
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                        Projectile.NewProjectile(entitySource, Player.position, new Vector2(Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-8f, 8f)), ModContent.ProjectileType<NaquadahSpikeBomb>(), 200 * 2, 0, Player.whoAmI);
+                }
             }
             #endregion
         }

@@ -132,7 +132,9 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
             {
                 if (!phase2Init)
                 {
-                    SoundEngine.PlaySound(SoundID.DD2_ExplosiveTrapExplode, NPC.Center);
+                    if (!Main.dedServ)
+                        SoundEngine.PlaySound(SoundID.DD2_ExplosiveTrapExplode, NPC.Center);
+
                     phase2Init = true;
                 }
 
@@ -312,7 +314,9 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
                 {
                     for (int i = 0; i < 2; ++i)
                     {
-                        SoundEngine.PlaySound(SoundID.NPCHit3, NPC.Center);
+                        if (!Main.dedServ)
+                            SoundEngine.PlaySound(SoundID.NPCHit3, NPC.Center);
+
                         float A = (float)Main.rand.Next(-200, 200) * 0.01f;
                         float B = (float)Main.rand.Next(-200, 200) * 0.01f;
                         if (Main.netMode != NetmodeID.MultiplayerClient)
@@ -321,7 +325,9 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
                 }
                 if (attackTimer == 200 || attackTimer == 205 || attackTimer == 210 || attackTimer == 215 || attackTimer == 220 || attackTimer == 225 || attackTimer == 230 || attackTimer == 235 || attackTimer == 240 || attackTimer == 245 || attackTimer == 250 || attackTimer == 260 || attackTimer == 265 || attackTimer == 270 || attackTimer == 275 || attackTimer == 280 || attackTimer == 285 || attackTimer == 290 || attackTimer == 295 || attackTimer == 300)
                 {
-                    SoundEngine.PlaySound(SoundID.DD2_LightningAuraZap, NPC.Center);
+                    if (!Main.dedServ)
+                        SoundEngine.PlaySound(SoundID.DD2_LightningAuraZap, NPC.Center);
+
                     Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<DuneSpark>(), NPC.damage, 0f, Main.myPlayer);
                 }
                 if (attackTimer == 300)
@@ -358,7 +364,9 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
                 {
                     for (int i = 0; i < 1; ++i)
                     {
-                        SoundEngine.PlaySound(SoundID.NPCHit3, NPC.Center);
+                        if (!Main.dedServ)
+                            SoundEngine.PlaySound(SoundID.NPCHit3, NPC.Center);
+
                         float A = (float)Main.rand.Next(-200, 200) * 0.01f;
                         float B = (float)Main.rand.Next(-200, 200) * 0.01f;
                         if (Main.netMode != NetmodeID.MultiplayerClient)

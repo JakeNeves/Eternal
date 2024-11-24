@@ -10,11 +10,6 @@ namespace Eternal.Content.Projectiles.Weapons.Radiant
     {
         int shootTimer = 0;
 
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Pebble");
-        }
-
         public override void SetDefaults()
         {
             Projectile.width = 12;
@@ -28,7 +23,8 @@ namespace Eternal.Content.Projectiles.Weapons.Radiant
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            SoundEngine.PlaySound(SoundID.Dig, Projectile.position);
+            if (!Main.dedServ)
+                SoundEngine.PlaySound(SoundID.Dig, Projectile.position);
 
             Projectile.Kill();
         }
@@ -52,7 +48,8 @@ namespace Eternal.Content.Projectiles.Weapons.Radiant
 
         public override void OnKill(int timeLeft)
         {
-            SoundEngine.PlaySound(SoundID.Dig, Projectile.position);
+            if (!Main.dedServ)
+                SoundEngine.PlaySound(SoundID.Dig, Projectile.position);
 
             for (int i = 0; i < 25; i++)
             {

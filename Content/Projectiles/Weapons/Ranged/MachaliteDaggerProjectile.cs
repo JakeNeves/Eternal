@@ -9,11 +9,6 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
 {
     public class MachaliteDaggerProjectile : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Machalite Dagger");
-        }
-
         public override void SetDefaults()
         {
             Projectile.width = 10;
@@ -33,7 +28,9 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            SoundEngine.PlaySound(SoundID.Dig, Projectile.position);
+            if (!Main.dedServ)
+                SoundEngine.PlaySound(SoundID.Dig, Projectile.position);
+
             Projectile.Kill();
             return true;
         }

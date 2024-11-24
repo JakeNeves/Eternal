@@ -9,7 +9,7 @@ namespace Eternal.Content.Projectiles.Bobbers
 {
     public class StarbornWhaleHarvesterBobber : ModProjectile
     {
-		public static readonly Color[] PossibleLineColors = new Color[] {
+		public static readonly Color[] PossibleLineColors = {
 			new Color(96, 33, 99),
 			new Color(110, 33, 183),
 			new Color(212, 44, 96)

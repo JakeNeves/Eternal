@@ -9,8 +9,6 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Phazon EX");
-
             ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
         }
 

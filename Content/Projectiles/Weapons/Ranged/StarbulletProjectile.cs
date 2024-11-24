@@ -14,7 +14,6 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
 
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Starbullet");
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 12;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }
@@ -38,7 +37,8 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
 
         public override void AI()
         {
-            Lighting.AddLight(Projectile.position, 1.98f, 0.49f, 2.47f);
+            if (!Main.dedServ)
+                Lighting.AddLight(Projectile.position, 1.98f, 0.49f, 2.47f);
 
             if (justCollided)
             {
@@ -95,7 +95,10 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
             else
             {
                 Collision.HitTiles(Projectile.position + Projectile.velocity, Projectile.velocity, Projectile.width, Projectile.height);
-                SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
+
+                if (!Main.dedServ)
+                    SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
+
                 if (Projectile.velocity.X != oldVelocity.X)
                 {
                     Projectile.velocity.X = -oldVelocity.X;
@@ -156,7 +159,9 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
             }
 
             Collision.HitTiles(Projectile.position + Projectile.velocity, Projectile.velocity, Projectile.width, Projectile.height);
-            SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
+
+            if (!Main.dedServ)
+                SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
         }
 
     }
