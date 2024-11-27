@@ -82,6 +82,8 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
 
         public override void HitEffect(NPC.HitInfo hit)
         {
+            var entitySource = NPC.GetSource_Death();
+
             if (Main.netMode == NetmodeID.Server)
             {
                 return;
@@ -94,6 +96,19 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
                     NPC.life = 1;
                     isDead = true;
                 }
+            }
+
+            if (NPC.life <= 0)
+            {
+                int gore1 = Mod.Find<ModGore>("DuneGolem1").Type;
+                int gore2 = Mod.Find<ModGore>("DuneGolem2").Type;
+                int gore3 = Mod.Find<ModGore>("DuneGolem3").Type;
+                int gore4 = Mod.Find<ModGore>("DuneGolem4").Type;
+
+                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-4, 4), Main.rand.Next(-4, 4)), gore1);
+                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-4, 4), Main.rand.Next(-4, 4)), gore2);
+                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-4, 4), Main.rand.Next(-4, 4)), gore3);
+                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-4, 4), Main.rand.Next(-4, 4)), gore4);
             }
 
             for (int k = 0; k < 5; k++)

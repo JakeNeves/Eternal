@@ -177,7 +177,6 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
                 }
             }
 
-            // NPC.spriteDirection = NPC.direction = NPC.Center.X < player.Center.X ? -1 : 1;
             NPC.spriteDirection = NPC.direction;
             NPC.rotation = NPC.velocity.X * 0.02f;
 
@@ -262,6 +261,8 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             Player player = Main.player[NPC.target];
 
             Vector2 playerPosition = Main.player[NPC.target].position;
+
+            NPC.spriteDirection = NPC.direction = NPC.Center.X < player.Center.X ? -1 : 1;
 
             if (!player.active || player.dead)
             {

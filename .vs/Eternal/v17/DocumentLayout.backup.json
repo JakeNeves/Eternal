@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|c:\\users\\jaken\\documents\\my games\\terraria\\tmodloader\\modsources\\eternal\\common\\systems\\integrationsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|solutionrelative:common\\systems\\integrationsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|c:\\users\\jaken\\documents\\my games\\terraria\\tmodloader\\modsources\\eternal\\content\\projectiles\\misc\\cosmicapparitionsoul.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|solutionrelative:content\\projectiles\\misc\\cosmicapparitionsoul.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,14 +19,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "IntegrationSystem.cs",
-              "DocumentMoniker": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Common\\Systems\\IntegrationSystem.cs",
-              "RelativeDocumentMoniker": "Common\\Systems\\IntegrationSystem.cs",
-              "ToolTip": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Common\\Systems\\IntegrationSystem.cs",
-              "RelativeToolTip": "Common\\Systems\\IntegrationSystem.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAowMQAAAAbAAAAAAAAAA==",
+              "Title": "CosmicApparitionSoul.cs",
+              "DocumentMoniker": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Content\\Projectiles\\Misc\\CosmicApparitionSoul.cs",
+              "RelativeDocumentMoniker": "Content\\Projectiles\\Misc\\CosmicApparitionSoul.cs",
+              "ToolTip": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Content\\Projectiles\\Misc\\CosmicApparitionSoul.cs",
+              "RelativeToolTip": "Content\\Projectiles\\Misc\\CosmicApparitionSoul.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAowBwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-22T23:45:20.593Z",
+              "WhenOpened": "2024-11-27T17:31:34.427Z",
               "EditorCaption": ""
             }
           ]

@@ -88,6 +88,9 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             NPC.TargetClosest(true);
             NPC.spriteDirection = NPC.direction;
             Player player = Main.player[NPC.target];
+
+            NPC.spriteDirection = NPC.direction = NPC.Center.X < player.Center.X ? -1 : 1;
+
             if (player.dead || !player.active)
             {
                 NPC.TargetClosest(false);

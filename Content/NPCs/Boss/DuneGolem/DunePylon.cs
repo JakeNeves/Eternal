@@ -40,6 +40,24 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
 
         public override void HitEffect(NPC.HitInfo hit)
         {
+            var entitySource = NPC.GetSource_Death();
+
+            if (Main.netMode == NetmodeID.Server)
+            {
+                return;
+            }
+
+            if (NPC.life <= 0)
+            {
+                int gore1 = Mod.Find<ModGore>("DunePylon1").Type;
+                int gore2 = Mod.Find<ModGore>("DunePylon2").Type;
+                int gore3 = Mod.Find<ModGore>("DunePylon3").Type;
+
+                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-4, 4), Main.rand.Next(-4, 4)), gore1);
+                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-4, 4), Main.rand.Next(-4, 4)), gore2);
+                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-4, 4), Main.rand.Next(-4, 4)), gore3);
+            }
+
             for (int k = 0; k < 5; k++)
             {
                 Dust.NewDust(NPC.position + NPC.velocity, NPC.width, NPC.height, DustID.DesertTorch, NPC.oldVelocity.X * 0.5f, NPC.oldVelocity.Y * 0.5f);
