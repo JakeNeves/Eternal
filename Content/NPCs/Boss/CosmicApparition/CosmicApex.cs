@@ -116,10 +116,12 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
 
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
-                    float velocityX = NPC.rotation;
+                    /*float velocityX = NPC.rotation;
                     float velocityY = NPC.rotation;
                     Vector2 vector3 = Vector2.Normalize(player.Center - center) * (NPC.width + 20) / 2f + center;
-                    int bubble = NPC.NewNPC(entitySource, (int)vector3.X, (int)vector3.Y + 45, ModContent.NPCType<DetonatingWisp>());
+                    int bubble = NPC.NewNPC(entitySource, (int)vector3.X, (int)vector3.Y, ModContent.NPCType<DetonatingWisp>());*/
+
+                    int wisp = NPC.NewNPC(entitySource, (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<DetonatingWisp>());
                 }
             }
         }

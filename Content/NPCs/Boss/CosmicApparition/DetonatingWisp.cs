@@ -23,12 +23,6 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
         }
 
-        public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
-        {
-            scale = 1.5f;
-            return null;
-        }
-
         public override void SetDefaults()
         {
             NPC.width = 48;
@@ -41,12 +35,14 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             NPC.noTileCollide = true;
             NPC.knockBackResist = 0f;
             NPC.alpha = 255;
+            NPC.aiStyle = 14;
             NPCID.Sets.ProjectileNPC[NPC.type] = true;
         }
 
         public override void HitEffect(NPC.HitInfo hit)
         {
             SoundEngine.PlaySound(SoundID.NPCDeath14, NPC.position);
+
             if (NPC.life < 0)
             {
                 _ = NPC.Center;
@@ -81,11 +77,58 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
         {
             Lighting.AddLight(NPC.position, 0.75f, 0f, 0.75f);
 
-            NPC.alpha -= 10;
+            NPC.alpha -= 5;
 
-            Target();
-            CheckActive();
-            Move(new Vector2(0, 0f));
+            Player player = Main.player[NPC.target];
+
+            float speed = 15f;
+            float acceleration = 0.05f;
+            Vector2 vector2 = new Vector2(NPC.position.X + (float)NPC.width * 0.5f, NPC.position.Y + (float)NPC.height * 0.5f);
+            float xDir = Main.player[NPC.target].position.X + (float)(Main.player[NPC.target].width / 2) - vector2.X;
+            float yDir = (float)(Main.player[NPC.target].position.Y + (Main.player[NPC.target].height / 2) - 120) - vector2.Y;
+            float length = (float)Math.Sqrt(xDir * xDir + yDir * yDir);
+            if (length > 400)
+            {
+                ++speed;
+                acceleration += 0.05F;
+                if (length > 600)
+                {
+                    ++speed;
+                    acceleration += 0.05F;
+                    if (length > 800)
+                    {
+                        ++speed;
+                        acceleration += 0.05F;
+                    }
+                }
+            }
+            float num10 = speed / length;
+            xDir = xDir * num10;
+            yDir = yDir * num10;
+            if (NPC.velocity.X < xDir)
+            {
+                NPC.velocity.X = NPC.velocity.X + acceleration;
+                if (NPC.velocity.X < 0 && xDir > 0)
+                    NPC.velocity.X = NPC.velocity.X + acceleration;
+            }
+            else if (NPC.velocity.X > xDir)
+            {
+                NPC.velocity.X = NPC.velocity.X - acceleration;
+                if (NPC.velocity.X > 0 && xDir < 0)
+                    NPC.velocity.X = NPC.velocity.X - acceleration;
+            }
+            if (NPC.velocity.Y < yDir)
+            {
+                NPC.velocity.Y = NPC.velocity.Y + acceleration;
+                if (NPC.velocity.Y < 0 && yDir > 0)
+                    NPC.velocity.Y = NPC.velocity.Y + acceleration;
+            }
+            else if (NPC.velocity.Y > yDir)
+            {
+                NPC.velocity.Y = NPC.velocity.Y - acceleration;
+                if (NPC.velocity.Y > 0 && yDir < 0)
+                    NPC.velocity.Y = NPC.velocity.Y - acceleration;
+            }
         }
 
         public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
@@ -93,74 +136,6 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             SoundEngine.PlaySound(SoundID.NPCDeath14, NPC.position);
             target.ApplyDamageToNPC(NPC, 1, 0, 0, false);
             target.AddBuff(ModContent.BuffType<ApparitionalWither>(), 1 * 60 * 60, false);
-        }
-
-        private void Move(Vector2 offset)
-        {
-            float speed;
-
-            if (Main.expertMode)
-            {
-                speed = 12f;
-            }
-            else if (DifficultySystem.hellMode)
-            {
-                speed = 16f;
-            }
-            else
-            {
-                speed = 8f;
-            }
-
-            Player player = Main.player[NPC.target];
-            Vector2 moveTo = player.Center + offset;
-            Vector2 move = moveTo - NPC.Center;
-            float magnitude = Magnitude(move);
-            if (magnitude > speed)
-            {
-                move *= speed / magnitude;
-            }
-            float turnResistance = 5f;
-            move = (NPC.velocity * turnResistance + move) / (turnResistance + 1f);
-            magnitude = Magnitude(move);
-            if (magnitude > speed)
-            {
-                move *= speed / magnitude;
-            }
-            NPC.velocity = move;
-        }
-
-        /* public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
-        {
-            Main.spriteBatch.End();
-            Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullNone, null, Main.GameViewMatrix.ZoomMatrix);
-
-            var wispShader = GameShaders.Misc["Eternal:ApparitionalParticle"];
-            wispShader.UseOpacity(1f - (NPC.ai[0] - 30f) / 150f);
-
-            return true;
-        }
-
-        public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
-        {
-            Main.spriteBatch.End();
-            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, Main.GameViewMatrix.TransformationMatrix);
-        } */
-
-        public override bool CheckActive()
-        {
-            Player player = Main.player[NPC.target];
-            return !player.active || player.dead;
-        }
-
-        private void Target()
-        {
-            Player player = Main.player[NPC.target];
-        }
-
-        private float Magnitude(Vector2 mag)
-        {
-            return (float)Math.Sqrt(mag.X * mag.X + mag.Y * mag.Y);
         }
 
         public override void FindFrame(int frameHeight)

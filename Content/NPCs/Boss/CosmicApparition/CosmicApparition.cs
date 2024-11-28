@@ -49,6 +49,8 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
         int attackTimerP2Max = 600;
         int teleportTimer;
 
+        int expTimer = 0;
+
         static int secondStageHeadSlot = -1;
 
         bool canTeleport = true;
@@ -295,7 +297,13 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
                 canTeleport = false;
                 NPC.ai[3] += 1f;
                 NPC.dontTakeDamage = true;
-                Projectile.NewProjectile(entitySource, NPC.Center.X + Main.rand.Next(-20, 20), NPC.Center.Y + Main.rand.Next(-20, 20), 0, 0, ModContent.ProjectileType<CosmicSpirit>(), 0, 0f, Main.myPlayer);
+                expTimer++;
+
+                if (expTimer >= 5)
+                {
+                    Projectile.NewProjectile(entitySource, NPC.Center.X + Main.rand.Next(-20, 20), NPC.Center.Y + Main.rand.Next(-20, 20), 0, 0, ModContent.ProjectileType<CosmicSpirit>(), 0, 0f, Main.myPlayer);
+                    expTimer = 0;
+                }
 
                 NPC.velocity = new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 2f));
 
