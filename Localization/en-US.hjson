@@ -783,6 +783,24 @@ Mods: {
 				DisplayName: Ark of Imperious Un-Killer
 			}
 
+			CometFaller: {
+				Tooltip:
+					'''
+					[c/FF0000:Debug Item]
+					Places a Fallen Comet somewhere random in the world
+					'''
+				DisplayName: Comet Faller
+			}
+
+			ConsumableCometFaller: {
+				Tooltip:
+					'''
+					Places a Fallen Comet somewhere random in the world
+					'A little temporary fix until the main issue is resolved...'
+					'''
+				DisplayName: Comet Faller
+			}
+
 			IncineriusBag: {
 				Tooltip: <right> to Open
 				DisplayName: Treasure Bag (Incinerius)

@@ -3,6 +3,22 @@
   "WorkspaceRootPath": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|c:\\users\\jaken\\documents\\my games\\terraria\\tmodloader\\modsources\\eternal\\common\\globalnpcs\\bossglobalnpcs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|solutionrelative:common\\globalnpcs\\bossglobalnpcs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|c:\\users\\jaken\\documents\\my games\\terraria\\tmodloader\\modsources\\eternal\\localization\\en-us.hjson||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|solutionrelative:localization\\en-us.hjson||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|c:\\users\\jaken\\documents\\my games\\terraria\\tmodloader\\modsources\\eternal\\content\\items\\debug\\cometfaller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|solutionrelative:content\\items\\debug\\cometfaller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|c:\\users\\jaken\\documents\\my games\\terraria\\tmodloader\\modsources\\eternal\\common\\globalnpcs\\moonlordglobalnpc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|solutionrelative:common\\globalnpcs\\moonlordglobalnpc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|c:\\users\\jaken\\documents\\my games\\terraria\\tmodloader\\modsources\\eternal\\content\\npcs\\boss\\cosmicapparition\\cosmicapparition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|solutionrelative:content\\npcs\\boss\\cosmicapparition\\cosmicapparition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -23,19 +39,71 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "BossGlobalNPCs.cs",
+              "DocumentMoniker": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Common\\GlobalNPCs\\BossGlobalNPCs.cs",
+              "RelativeDocumentMoniker": "Common\\GlobalNPCs\\BossGlobalNPCs.cs",
+              "ToolTip": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Common\\GlobalNPCs\\BossGlobalNPCs.cs",
+              "RelativeToolTip": "Common\\GlobalNPCs\\BossGlobalNPCs.cs",
+              "ViewState": "AgIAAL0AAAAAAAAAAADgv8MAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-06T14:00:10.551Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "en-US.hjson",
+              "DocumentMoniker": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Localization\\en-US.hjson",
+              "RelativeDocumentMoniker": "Localization\\en-US.hjson",
+              "ToolTip": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Localization\\en-US.hjson",
+              "RelativeToolTip": "Localization\\en-US.hjson",
+              "ViewState": "AgIAAPsCAAAAAAAAAAAAAAQDAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-12-06T13:58:34.295Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CometFaller.cs",
+              "DocumentMoniker": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Content\\Items\\Debug\\CometFaller.cs",
+              "RelativeDocumentMoniker": "Content\\Items\\Debug\\CometFaller.cs",
+              "ToolTip": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Content\\Items\\Debug\\CometFaller.cs",
+              "RelativeToolTip": "Content\\Items\\Debug\\CometFaller.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-06T13:38:41.912Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MoonLordGlobalNPC.cs",
+              "DocumentMoniker": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Common\\GlobalNPCs\\MoonLordGlobalNPC.cs",
+              "RelativeDocumentMoniker": "Common\\GlobalNPCs\\MoonLordGlobalNPC.cs",
+              "ToolTip": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Common\\GlobalNPCs\\MoonLordGlobalNPC.cs",
+              "RelativeToolTip": "Common\\GlobalNPCs\\MoonLordGlobalNPC.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-06T12:59:46.842Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "CosmicApparition.cs",
               "DocumentMoniker": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Content\\NPCs\\Boss\\CosmicApparition\\CosmicApparition.cs",
               "RelativeDocumentMoniker": "Content\\NPCs\\Boss\\CosmicApparition\\CosmicApparition.cs",
               "ToolTip": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Content\\NPCs\\Boss\\CosmicApparition\\CosmicApparition.cs",
               "RelativeToolTip": "Content\\NPCs\\Boss\\CosmicApparition\\CosmicApparition.cs",
-              "ViewState": "AgIAABUBAAAAAAAAAAAiwDABAAAhAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-28T14:32:55.674Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "IntegrationSystem.cs",
               "DocumentMoniker": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Common\\Systems\\IntegrationSystem.cs",
               "RelativeDocumentMoniker": "Common\\Systems\\IntegrationSystem.cs",
@@ -43,8 +111,7 @@
               "RelativeToolTip": "Common\\Systems\\IntegrationSystem.cs",
               "ViewState": "AgIAAGkAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-28T00:07:35.661Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-28T00:07:35.661Z"
             }
           ]
         }

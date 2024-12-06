@@ -10,6 +10,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Eternal.Common.Misc;
 using Eternal.Content.BossBarStyles;
+using Eternal.Content.Items.Debug;
 
 namespace Eternal.Common.GlobalNPCs
 {
@@ -201,6 +202,10 @@ namespace Eternal.Common.GlobalNPCs
 
                 case NPCID.SkeletronHead:
                     npcLoot.Add(ItemDropRule.ByCondition(hellModeDrop, ModContent.ItemType<ShadowSkull>(), 1));
+                    break;
+
+                case NPCID.MoonLordCore:
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ConsumableCometFaller>(), 1, 1));
                     break;
             }
         }

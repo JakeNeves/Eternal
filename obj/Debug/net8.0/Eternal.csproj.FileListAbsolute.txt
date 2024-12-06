@@ -53,6 +53,7 @@ C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Deb
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Debug\net8.0\ReLogic.dll
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Debug\net8.0\Steamworks.NET.dll
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Debug\net8.0\SteelSeriesEngineWrapper.dll
+C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Debug\net8.0\StructureHelper.dll
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Debug\net8.0\Stubble.Core.dll
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Debug\net8.0\System.CodeDom.dll
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Debug\net8.0\System.CommandLine.dll
@@ -142,6 +143,7 @@ C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Deb
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Debug\net8.0\tModPorter.pdb
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Debug\net8.0\UtfUnknown.xml
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Debug\net8.0\CalamityMod.pdb
+C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Debug\net8.0\StructureHelper.pdb
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.resources.dll
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.resources.dll
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.resources.dll
@@ -230,5 +232,3 @@ C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\obj\Deb
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\obj\Debug\net8.0\refint\Eternal.dll
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\obj\Debug\net8.0\Eternal.pdb
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\obj\Debug\net8.0\ref\Eternal.dll
-C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Debug\net8.0\StructureHelper.dll
-C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Debug\net8.0\StructureHelper.pdb
