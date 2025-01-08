@@ -34,12 +34,18 @@ namespace Eternal.Content.Items.Summon
 
         public override bool? UseItem(Player player)
         {
-            var entitySource = player.GetSource_FromThis();
+            if (player.whoAmI == Main.myPlayer)
+            {
+                var entitySource = player.GetSource_FromThis();
 
-            Main.NewText("Something gazes upon you...", 220, 0, 210);
-            NPC.NewNPC(entitySource, (int)player.Center.X, (int)player.Center.Y - 600, ModContent.NPCType<WanderingSoul>());
+                SoundEngine.PlaySound(SoundID.Roar, player.position);
 
-            SoundEngine.PlaySound(SoundID.Roar, player.position);
+                Main.NewText("Something gazes upon you...", 220, 0, 210);
+
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                    NPC.NewNPC(entitySource, (int)player.Center.X, (int)player.Center.Y - 600, ModContent.NPCType<WanderingSoul>());
+            }
+
             return true;
         }
 

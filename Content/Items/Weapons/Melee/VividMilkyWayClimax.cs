@@ -12,15 +12,13 @@ namespace Eternal.Content.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            // Tooltip.SetDefault("'Where's the climax?'");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()
         {
-            Item.width = 58;
-            Item.height = 58;
+            Item.width = 42;
+            Item.height = 42;
             Item.damage = 200;
             Item.DamageType = DamageClass.Melee;
             Item.useStyle = ItemUseStyleID.Swing;

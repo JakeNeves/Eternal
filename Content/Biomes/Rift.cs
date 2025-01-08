@@ -16,7 +16,7 @@ namespace Eternal.Content.Biomes
 
         public override bool IsBiomeActive(Player player)
         {
-            return RiftSystem.isRiftOpen;
+            return EventSystem.isRiftOpen;
         }
 
         public override void OnInBiome(Player player)

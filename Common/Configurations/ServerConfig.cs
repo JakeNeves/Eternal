@@ -66,5 +66,14 @@ namespace Eternal.Common.Configurations
         [TooltipKey("$Mods.Eternal.Common.Configurations.ServerConfig.purifiedBeneath.Tooltip")]
         [ReloadRequired]
         public bool purifiedBeneath = false;
+
+        /// <summary>
+        /// EXPERIMENTAL: Adds some of the upcoming 1.4 content (WIP)
+        /// </summary>
+        [DefaultValue(false)]
+        [LabelKey("$Mods.Eternal.Common.Configurations.ServerConfig.update14.DisplayName")]
+        [TooltipKey("$Mods.Eternal.Common.Configurations.ServerConfig.update14.Tooltip")]
+        [ReloadRequired]
+        public bool update14 = false;
     }
 }

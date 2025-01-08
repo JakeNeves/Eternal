@@ -78,7 +78,8 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
             for (int i = 0; i < 6; i++)
             {
-                Projectile.NewProjectile(entitySource, Projectile.Center, new Vector2(Main.rand.Next(-8, 8), Main.rand.Next(-8, 8)), ModContent.ProjectileType<BOTAProjectileAOE>(), Projectile.damage / 2, 0.0f, Main.myPlayer, 0.0f, 0.0f);
+                if (!Main.dedServ)
+                    Projectile.NewProjectile(entitySource, Projectile.Center, new Vector2(Main.rand.Next(-8, 8), Main.rand.Next(-8, 8)), ModContent.ProjectileType<BOTAProjectileAOE>(), Projectile.damage / 2, 0.0f, Main.myPlayer, 0.0f, 0.0f);
             }
 
             return true;

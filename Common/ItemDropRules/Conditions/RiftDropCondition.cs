@@ -7,7 +7,7 @@ namespace Eternal.Common.ItemDropRules.Conditions
     {
         public bool CanDrop(DropAttemptInfo info)
         {
-            return RiftSystem.isRiftOpen;
+            return EventSystem.isRiftOpen;
         }
 
         public bool CanShowItemDropInUI()

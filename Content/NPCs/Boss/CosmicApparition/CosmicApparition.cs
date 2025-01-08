@@ -95,7 +95,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             NPC.knockBackResist = 0f;
             NPC.boss = true;
             if (!Main.dedServ) {
-                if (RiftSystem.isRiftOpen)
+                if (EventSystem.isRiftOpen)
                     Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/GhostFromAnotherWorld");
                 else
                     Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/ApparitionalAccumulation");
@@ -331,7 +331,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
                         Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, 0, 0, ModContent.ProjectileType<CosmicApparitionSoul>(), 0, 0f, Main.myPlayer);
                     }
 
-                    if (RiftSystem.isRiftOpen && !DownedBossSystem.downedRiftCosmicApparition)
+                    if (EventSystem.isRiftOpen && !DownedBossSystem.downedRiftCosmicApparition)
                     {
                         DownedBossSystem.downedRiftCosmicApparition = true;
                     }

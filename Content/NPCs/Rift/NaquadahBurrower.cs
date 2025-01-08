@@ -47,7 +47,7 @@ namespace Eternal.Content.NPCs.Rift
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
-			if (RiftSystem.isRiftOpen && DownedBossSystem.downedRiftArkofImperious)
+			if (EventSystem.isRiftOpen && DownedBossSystem.downedRiftArkofImperious)
 			{
 				return SpawnCondition.Underground.Chance * 1.5f;
 			}

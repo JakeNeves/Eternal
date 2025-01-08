@@ -11,9 +11,6 @@ namespace Eternal.Content.Items.Summon
     {
         public override void SetStaticDefaults()
         {
-            /* Tooltip.SetDefault("Attracts a giant lava centipede" +
-                               "\n'This is not food'"); */
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
         }
 
@@ -36,8 +33,16 @@ namespace Eternal.Content.Items.Summon
 
         public override bool? UseItem(Player player)
         {
-            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<IgneopedeHead>());
-            SoundEngine.PlaySound(SoundID.Roar, player.position);
+            if (player.whoAmI == Main.myPlayer)
+            {
+                SoundEngine.PlaySound(SoundID.Roar, player.position);
+
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                    NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<IgneopedeHead>());
+                else
+                    NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, number: player.whoAmI, number2: ModContent.NPCType<IgneopedeHead>());
+            }
+
             return true;
         }
 

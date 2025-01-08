@@ -105,7 +105,7 @@ namespace Eternal.Content.NPCs.Miniboss
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (RiftSystem.isRiftOpen && Main.zenithWorld)
+            if (EventSystem.isRiftOpen && Main.zenithWorld)
             {
                 return SpawnCondition.Sky.Chance * 0.5f;
             }

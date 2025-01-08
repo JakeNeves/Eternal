@@ -534,6 +534,16 @@ Mods: {
 				DisplayName: Knife Blade
 			}
 
+			KnifeHandle14: {
+				Tooltip: ???
+				DisplayName: Knife Handle
+			}
+
+			KnifeBlade14: {
+				Tooltip: ???
+				DisplayName: Knife Blade
+			}
+
 			InterstellarScrapMetal: {
 				Tooltip: "'Armor plating that is surprisingly valuable despite it's rough condition...'"
 				DisplayName: Interstellar Scrap Metal
@@ -1350,6 +1360,17 @@ Mods: {
 					'''
 					'Stab stab stab!'
 					Hell Mode drop
+					'''
+			}
+
+			TheKnife14: {
+				DisplayName: The Knife
+				Tooltip:
+					'''
+					[c/ff8045:Legendary Weapon]
+					Breaks enemy armor
+					Upon first striking an enemy, the user can temporarly deal additonal damage
+					'Stab stab stab!'
 					'''
 			}
 
@@ -2239,12 +2260,46 @@ Mods: {
 				Tooltip: JakeTEM - Haunted Tomb from the Dunes
 			}
 
+			DarkMoonMusicBox: {
+				DisplayName: Music Box (Dark Moon)
+				Tooltip: JakeTEM - Dark Twisted Nightmare
+			}
+
 			ArkiumManbow: {
 				DisplayName: Arkium Manbow
 				Tooltip:
 					'''
 					Converts arrows to Arkium Quartz Crystal Shards
 					'I guess you can consider this a bit of a machine gun bow...'
+					'''
+			}
+
+			Animanomicon: {
+				DisplayName: Animanomicon
+				Tooltip:
+					'''
+					Summons the Dark Moon
+					'Tonight is gonna be dreadful...'
+					'''
+			}
+
+			OcculticMatter: {
+				DisplayName: Occultic Matter
+				Tooltip: "'Psycic energy pulses deep within...'"
+			}
+
+			PsycheMatterAshes: {
+				DisplayName: Psyche Matter Ashes
+				Tooltip: "'The essence of psychebound horrors'"
+			}
+
+			HellHacker: {
+				DisplayName: Hell Hacker
+				Tooltip:
+					'''
+					[c/ff8045:Legendary Weapon]
+					Ignites enemies on fire, with a chance of inflicting shadowflames instead!
+					'Forged in the foundries of the Gehanna, hexed in the flames of occultism!'
 					'''
 			}
 		}
@@ -2314,6 +2369,16 @@ Mods: {
 				Description: Immunity to the Rift's Withering!
 				DisplayName: Instability Ward
 			}
+
+			FatalPenetration: {
+				Description: You're on the brink of death, tread carefully!
+				DisplayName: Fatal Penetration
+			}
+
+			BloodyMurder: {
+				Description: The sensation of slaughtering the innocent fills you determination!
+				DisplayName: Bloody Murder
+			}
 		}
 
 		Tiles: {
@@ -2358,6 +2423,11 @@ Mods: {
 			Rift: {
 				DisplayName: Rift
 				TownNPCDialogueName: the Rift
+			}
+
+			DarkMoon: {
+				DisplayName: Dark Moon
+				TownNPCDialogueName: the gloomy and darkened night
 			}
 		}
 
@@ -2441,17 +2511,22 @@ Mods: {
 			Thunderius.DisplayName: Thunderius
 			ApparitionalReminant.DisplayName: Apparitional Reminant
 			AstroidSmasher.DisplayName: Astroid Smasher
-			InterstellarTumbler.DisplayName: Interstellar Tumbler
-			SearchRoller.DisplayName: Search Roller
-			StarbeltSeekerBody.DisplayName: Starbelt Seeker
-			StarbeltSeekerHead.DisplayName: Starbelt Seeker
-			StarbeltSeekerTail.DisplayName: Starbelt Seeker
+			AstroidSmasherSnow.DisplayName: Astroid Smasher
+			StargrazerDesert.DisplayName: Stargrazer
+			Stargrazer.DisplayName: Stargrazer
+			StarboreBody.DisplayName: Starbore
+			StarboreHead.DisplayName: Starbore
+			StarboreTail.DisplayName: Starbore
+			StarboreSnowBody.DisplayName: Starbore
+			StarboreSnowHead.DisplayName: Starbore
+			StarboreSnowTail.DisplayName: Starbore
 			RiftSerpentBody.DisplayName: Rift Serpent
 			RiftSerpentHead.DisplayName: Rift Serpent
 			RiftSerpentTail.DisplayName: Rift Serpent
 			StarbornSludge.DisplayName: Starborn Sludge
 			StarbornSludgeSmall.DisplayName: Starborn Sludge
 			Starprobe.DisplayName: Starprobe
+			StarprobeDesert.DisplayName: Starprobe
 			TarnishedGhoul.DisplayName: Tarnished Ghoul
 			TarnishedSkeleton.DisplayName: Tarnished Skeleton
 			TarnishedZombie.DisplayName: Tarnished Zombie
@@ -2541,6 +2616,17 @@ Mods: {
 			}
 
 			Absorber.DisplayName: Absorber
+			DarkMoonWatcher.DisplayName: Dark Moon Watcher
+			DarkMoonWatcher2.DisplayName: Dark Moon Watcher
+			PsycheSlime.DisplayName: Psyche Slime
+			TwistedPsycheSlime.DisplayName: Twisted Psyche Slime
+			Pseyeche.DisplayName: Pseyeche
+			PsycheSkull.DisplayName: Pshyche Skull
+			HexedSkeleton.DisplayName: Hexed Skeleton
+			Occultist.DisplayName: Occultist
+			PsycheZombie.DisplayName: Psyche Zombie
+			CosmicLance.DisplayName: Cosmic Lance
+			CosmicSword.DisplayName: Cosmic Sword
 		}
 
 		Prefixes: {
@@ -2610,6 +2696,7 @@ Mods: {
 			CosmicReminant.DisplayName: Cosmic Reminant
 			DuneEviscratorProjectile.DisplayName: Dune Eviscrator
 			TheKnifeProjectile.DisplayName: The Knife
+			TheKnife14Projectile.DisplayName: The Knife
 			NuclearKamikazeProjectile.DisplayName: Nuclear Kamikaze
 			StarstaveProjectile.DisplayName: Starstave
 			StarstaveProjectileDrei.DisplayName: Starstave Drei
@@ -2701,6 +2788,7 @@ Mods: {
 			NaquadahSpikeBomb.DisplayName: Naquadah Spike Bomb
 			NaquadahSpikeBombAOE.DisplayName: Naquadah Spike Bomb
 			ArkiumShard.DisplayName: Arkium Shard
+			HellHackerProjectile.DisplayName: Hell Hacker Projectile
 		}
 
 		Configs: {
@@ -2763,14 +2851,13 @@ Mods: {
 						Tooltip:
 							'''
 							Changes some of the recipes in the game as well as add ones for various items with no recipes
-							This feature requires a reload
 							[c/FF0000:THIS MAY CAUSE ISSUES WITH CALAMITY'S RECIPE CHANGES, BEWARE OF SKETCHY BUGS]
 							(Default: [c/008080:ON])
 							'''
 					}
 
 					cosmicApparitionNaturalSpawn: {
-						DisplayName: Cosmic Apparition Natural Spawnng
+						DisplayName: Cosmic Apparition Natural Spawning
 						Tooltip:
 							'''
 							Makes the Cosmic Apparition Spawn naturally if not yet defeated in the world
@@ -2810,7 +2897,23 @@ Mods: {
 						Tooltip:
 							'''
 							Adds the Purified Beneath this is not yet implemented!
-							This feature requires a reload
+							(Default: [c/008080:OFF])
+							'''
+					}
+
+					update14: {
+						DisplayName: 1.4 Update Content
+						Tooltip:
+							'''
+							Adds content from the upcoming 1.4 update
+							[c/0000FF:---Content Breakdown---]
+							* Adds new legendary weapons, very rare weapons that have some unique features
+							* New Fallen Comet enemies, replaces the current Fallen Comet enemies
+							* Dark Moon event, an event similar to the Blood Moon, only summonable with an item
+							[c/FF0000:---WARNING---]
+							This experimental feature can be very buggy, make sure
+							you backup your worlds before enabling this experimental
+							feature.
 							(Default: [c/008080:OFF])
 							'''
 					}

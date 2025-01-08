@@ -33,18 +33,10 @@ namespace Eternal.Content.Items.Misc
 
         public override bool? UseItem(Player player)
         {
-            if (ArmorSystem.NaquadahArmor && RiftSystem.isRiftOpen)
+            if (player.whoAmI == Main.myPlayer)
             {
-                SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/RodofDistortion"), player.position);
-                player.Teleport(Main.MouseWorld, 2, 0);
-
-                Dust.NewDust(player.position, player.width, player.height, DustID.PinkTorch, 0.5f, 0.5f, 0, Color.White, Main.rand.NextFloat(0.25f, 1f));
-            }
-            else
-            {
-                if (!player.HasBuff(ModContent.BuffType<UnstableState>()) || !Main.zenithWorld)
+                if (ArmorSystem.NaquadahArmor && EventSystem.isRiftOpen)
                 {
-                    player.AddBuff(Item.buffType, 1 * 30 * 30);
                     SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/RodofDistortion"), player.position);
                     player.Teleport(Main.MouseWorld, 2, 0);
 
@@ -52,7 +44,18 @@ namespace Eternal.Content.Items.Misc
                 }
                 else
                 {
-                    player.KillMe(PlayerDeathReason.ByCustomReason(player.name + "'s body was heavily disfigured by the Rod of Distortion's unstable power"), 10000, 1, false);
+                    if (!player.HasBuff(ModContent.BuffType<UnstableState>()) || !Main.zenithWorld)
+                    {
+                        player.AddBuff(Item.buffType, 1 * 30 * 30);
+                        SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/RodofDistortion"), player.position);
+                        player.Teleport(Main.MouseWorld, 2, 0);
+
+                        Dust.NewDust(player.position, player.width, player.height, DustID.PinkTorch, 0.5f, 0.5f, 0, Color.White, Main.rand.NextFloat(0.25f, 1f));
+                    }
+                    else
+                    {
+                        player.KillMe(PlayerDeathReason.ByCustomReason(player.name + "'s body was heavily disfigured by the Rod of Distortion's unstable power"), 10000, 1, false);
+                    }
                 }
             }
 

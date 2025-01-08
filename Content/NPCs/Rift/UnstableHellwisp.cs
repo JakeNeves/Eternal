@@ -63,7 +63,7 @@ namespace Eternal.Content.NPCs.Rift
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (!RiftSystem.isRiftOpen)
+            if (!EventSystem.isRiftOpen)
                 return SpawnCondition.Underworld.Chance * 0f;
             else
                 return SpawnCondition.Underworld.Chance * 0.75f;

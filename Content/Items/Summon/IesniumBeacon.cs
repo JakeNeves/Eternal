@@ -12,9 +12,6 @@ namespace Eternal.Content.Items.Summon
     {
         public override void SetStaticDefaults()
         {
-            /* Tooltip.SetDefault("Summons a possessed desert idol" +
-                               "\n'Throw it in the air, watch it attract an idol'"); */
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

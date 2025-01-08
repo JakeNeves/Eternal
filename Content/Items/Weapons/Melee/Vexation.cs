@@ -15,8 +15,8 @@ namespace Eternal.Content.Items.Weapons.Melee
 
         public override void SetDefaults()
         {
-            Item.width = 38;
-            Item.height = 42;
+            Item.width = 40;
+            Item.height = 40;
             Item.damage = 300;
             Item.knockBack = 3.5f;
             Item.value = Item.buyPrice(platinum: 1, gold: 3);

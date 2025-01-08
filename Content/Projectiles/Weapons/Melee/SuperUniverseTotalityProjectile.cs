@@ -32,11 +32,14 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
         {
             var entitySource = Projectile.GetSource_FromAI();
 
-            CircleDirc = Utils.RotatedBy(CircleDirc, 0.10000000149011612, new Vector2());
-            int index5 = Projectile.NewProjectile(entitySource, Projectile.Center, CircleDirc, ModContent.ProjectileType<SuperUniverseTotalityShoot>(), Projectile.damage, 0.0f, Main.myPlayer, 0.0f, 0.0f);
-            int index6 = Projectile.NewProjectile(entitySource, Projectile.Center, Utils.RotatedBy(CircleDirc, Math.PI, new Vector2()), ModContent.ProjectileType<SuperUniverseTotalityShoot>(), Projectile.damage, 0.0f, Main.myPlayer, 0.0f, 0.0f);
-            Main.projectile[index5].timeLeft = 10;
-            Main.projectile[index6].timeLeft = 10;
+            if (!Main.dedServ)
+            {
+                CircleDirc = Utils.RotatedBy(CircleDirc, 0.10000000149011612, new Vector2());
+                int index5 = Projectile.NewProjectile(entitySource, Projectile.Center, CircleDirc, ModContent.ProjectileType<SuperUniverseTotalityShoot>(), Projectile.damage, 0.0f, Main.myPlayer, 0.0f, 0.0f);
+                int index6 = Projectile.NewProjectile(entitySource, Projectile.Center, Utils.RotatedBy(CircleDirc, Math.PI, new Vector2()), ModContent.ProjectileType<SuperUniverseTotalityShoot>(), Projectile.damage, 0.0f, Main.myPlayer, 0.0f, 0.0f);
+                Main.projectile[index5].timeLeft = 10;
+                Main.projectile[index6].timeLeft = 10;
+            }
         }
 
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)

@@ -60,7 +60,7 @@ namespace Eternal.Content.NPCs.Rift
 			float baseChance = SpawnCondition.Overworld.Chance;
 			float multiplier = cometTileArray.Contains(Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY].TileType) ? 0.5f : 0.75f;
 
-			if (RiftSystem.isRiftOpen)
+			if (EventSystem.isRiftOpen)
 			{
 				return baseChance * multiplier;
 			}

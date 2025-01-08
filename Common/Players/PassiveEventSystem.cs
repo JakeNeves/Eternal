@@ -4,6 +4,7 @@ using Eternal.Content.Items.Accessories;
 using Eternal.Content.Items.Misc;
 using Eternal.Content.Items.Weapons.Melee;
 using Eternal.Content.NPCs.Boss.CosmicApparition;
+using Eternal.Content.NPCs.Boss.Igneopede;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
@@ -37,10 +38,17 @@ namespace Eternal.Common.Players
             if (ClientConfig.instance.showWelcomeMessage)
             {
                 Main.NewText("Thanks for playing the Eternal " + Eternal.Instance.Version.ToString() + "!" +
-                        "\nFor updates, join the Jake's Lounge discord server.", 125, 45, 60);
-                Main.NewText("https://discord.gg/HUJ8KUSAjC", 100, 0, 210);
-                Main.NewText("Be sure to check out the Eternal mod wiki (WIP) too!", 125, 45, 60);
-                Main.NewText("https://terrariamods.wiki.gg/wiki/Eternal", 100, 0, 210);
+                        "\nFor updates, join the Jake's Lounge discord server.", 235, 40, 170);
+                Main.NewText("https://discord.gg/HUJ8KUSAjC", 8, 147, 207);
+                Main.NewText("Be sure to check out the Eternal mod wiki (WIP) too!", 235, 40, 170);
+                Main.NewText("https://terrariamods.wiki.gg/wiki/Eternal", 8, 147, 207);
+                Main.NewText("Please note that this mod is a work in progress, so bugs may occur!" + 
+                        "\nMake sure you backup your world every now and then, especially when using the mod's experimental features." +
+                        "\nThese messages can be disabled in the mod's configs.", 255, 223, 64);
+
+                if (ServerConfig.instance.update14) {
+                    Main.NewText("You are currently playing with the experimental 1.4 update content, things can and will change throughout the update's development cycle!", 235, 40, 170);
+                }
             }
         }
 
@@ -58,21 +66,23 @@ namespace Eternal.Common.Players
                         switch (cosmicApparitionPresence)
                         {
                             case 4000:
-                                Main.NewText("You feel a ghostly figure is following you...", 220, 0, 210);
+                                Main.NewText("You feel a ghostly figure following you...", 220, 0, 210);
                                 break;
                             case 8000:
-                                Main.NewText("Shrieks start to echo around you...", 220, 0, 210);
+                                Main.NewText("Shrieks start to echo faintly around you...", 220, 0, 210);
                                 break;
                             case 12000:
                                 Main.NewText("A chill goes down your spine as something approaches from a vast distance...", 220, 0, 210);
                                 break;
                             case 16000:
-                                NPC.NewNPC(entitySource, (int)Player.Center.X, (int)Player.Center.Y - 900, ModContent.NPCType<CosmicApparition>());
+                                SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/CosmicApparitionAnger"));
 
                                 if (!Main.dedServ)
-                                    SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/CosmicApparitionAnger"));
+                                    NPC.SpawnOnPlayer(Player.whoAmI, ModContent.NPCType<IgneopedeHead>());
+                                else
+                                    NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, number: Player.whoAmI, number2: ModContent.NPCType<IgneopedeHead>());
 
-                                Main.NewText("A Cosmic Apparition has awoken!", 175, 75, 255);
+                                // Main.NewText("A Cosmic Apparition has awoken!", 175, 75, 255);
                                 cosmicApparitionPresence = 0;
                                 break;
                         }

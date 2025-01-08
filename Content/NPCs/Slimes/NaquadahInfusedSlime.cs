@@ -57,7 +57,7 @@ namespace Eternal.Content.NPCs.Slimes
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (RiftSystem.isRiftOpen && DownedBossSystem.downedArkofImperious)
+            if (EventSystem.isRiftOpen && DownedBossSystem.downedArkofImperious)
                 return SpawnCondition.Underground.Chance * 0.5f;
             else
                 return SpawnCondition.Underground.Chance * 0f;

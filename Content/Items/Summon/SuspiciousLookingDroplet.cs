@@ -12,9 +12,6 @@ namespace Eternal.Content.Items.Summon
     {
         public override void SetStaticDefaults()
         {
-            /* Tooltip.SetDefault("Summons the Carminite Amalgamation" +
-                               "\n'Looks rather tasty...'"); */
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
         }
 

@@ -37,7 +37,8 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
             for (int k = 0; k < Main.rand.Next(3, 6); k++)
             {
-                Projectile.NewProjectile(entitySource, (int)Projectile.Center.X + Main.rand.Next(-200, 200), (int)Projectile.Center.Y + Main.rand.Next(-200, 200), (float)Projectile.velocity.X, (float)Projectile.velocity.Y, ModContent.ProjectileType<ExosiivaGladiusBladeProjectile2>(), Projectile.damage / 2, -1f);
+                if (!Main.dedServ)
+                    Projectile.NewProjectile(entitySource, (int)Projectile.Center.X + Main.rand.Next(-200, 200), (int)Projectile.Center.Y + Main.rand.Next(-200, 200), (float)Projectile.velocity.X, (float)Projectile.velocity.Y, ModContent.ProjectileType<ExosiivaGladiusBladeProjectile2>(), Projectile.damage / 2, -1f);
             }
 
             for (int k = 0; k < 10; k++)

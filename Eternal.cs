@@ -27,6 +27,7 @@ namespace Eternal
             {
                 Filters.Scene["Eternal:Rift"] = new Filter(new ScreenShaderData("FilterMiniTower").UseColor(0.75f, 0f, 0.75f).UseOpacity(0.5f), EffectPriority.High);
                 SkyManager.Instance["Eternal:Rift"] = new RiftSky();
+
                 Filters.Scene["Eternal:PurifiedBeneath"] = new Filter(new ScreenShaderData("FilterMiniTower").UseColor(1f, 1f, 1f).UseOpacity(0.75f), EffectPriority.High);
                 SkyManager.Instance["Eternal:PurifiedBeneath"] = new PurifiedBeneathSky();
 

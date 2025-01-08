@@ -72,7 +72,7 @@ namespace Eternal.Content.NPCs.Rift
         {
             Player player = Main.player[Main.myPlayer];
 
-            if (RiftSystem.isRiftOpen && DownedBossSystem.downedRiftArkofImperious && player.ZoneSnow)
+            if (EventSystem.isRiftOpen && DownedBossSystem.downedRiftArkofImperious && player.ZoneSnow)
             {
                 return SpawnCondition.Overworld.Chance * 1.5f;
             }

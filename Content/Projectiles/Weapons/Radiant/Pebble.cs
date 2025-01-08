@@ -41,7 +41,9 @@ namespace Eternal.Content.Projectiles.Weapons.Radiant
 
             if (shootTimer >= 10)
             {
-                Projectile.NewProjectile(entitySource, Projectile.Center.X, Projectile.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<PebbleShoot>(), Projectile.damage, 0, Main.myPlayer, 0f, 0f);
+                if (!Main.dedServ)
+                    Projectile.NewProjectile(entitySource, Projectile.Center.X, Projectile.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<PebbleShoot>(), Projectile.damage, 0, Main.myPlayer, 0f, 0f);
+                
                 shootTimer = 0;
             }
         }

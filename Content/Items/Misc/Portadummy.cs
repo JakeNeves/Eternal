@@ -35,28 +35,31 @@ namespace Eternal.Content.Items.Misc
 
         public override bool? UseItem(Player player)
         {
-            var entitySource = player.GetSource_FromThis();
-
             if (player.whoAmI == Main.myPlayer)
             {
-                if (player.altFunctionUse == 2)
+                var entitySource = player.GetSource_FromThis();
+
+                if (player.whoAmI == Main.myPlayer)
                 {
-                    for (int i = 0; i < Main.maxNPCs; i++)
+                    if (player.altFunctionUse == 2)
                     {
-                        if (Main.npc[i].active && Main.npc[i].type == ModContent.NPCType<NPCs.Misc.Portadummy>())
+                        for (int i = 0; i < Main.maxNPCs; i++)
                         {
-                            NPC npc = Main.npc[i];
-                            npc.life = 0;
-                            npc.HitEffect();
-                            // Main.npc[i].StrikeNPCNoInteraction(int.MaxValue, 0, 0, false, false, false);
+                            if (Main.npc[i].active && Main.npc[i].type == ModContent.NPCType<NPCs.Misc.Portadummy>())
+                            {
+                                NPC npc = Main.npc[i];
+                                npc.life = 0;
+                                npc.HitEffect();
+                                // Main.npc[i].StrikeNPCNoInteraction(int.MaxValue, 0, 0, false, false, false);
+                            }
                         }
                     }
-                }
-                else
-                {
-                    if (NPC.CountNPCS(ModContent.NPCType<NPCs.Misc.Portadummy>()) < 25)
+                    else
                     {
-                        NPC.NewNPC(entitySource, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, ModContent.NPCType<NPCs.Misc.Portadummy>());
+                        if (NPC.CountNPCS(ModContent.NPCType<NPCs.Misc.Portadummy>()) < 25)
+                        {
+                            NPC.NewNPC(entitySource, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, ModContent.NPCType<NPCs.Misc.Portadummy>());
+                        }
                     }
                 }
             }

@@ -75,7 +75,7 @@ namespace Eternal.Content.NPCs.Miniboss
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (RiftSystem.isRiftOpen && !Main.zenithWorld && !NPC.AnyNPCs(ModContent.NPCType<PhantomConstruct>()))
+            if (EventSystem.isRiftOpen && !Main.zenithWorld && !NPC.AnyNPCs(ModContent.NPCType<PhantomConstruct>()))
             {
                 return SpawnCondition.Sky.Chance * 0.4f;
             }

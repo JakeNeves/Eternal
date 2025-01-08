@@ -31,12 +31,21 @@ namespace Eternal.Content.Items.Summon
 
         public override bool? UseItem(Player player)
         {
-            var entitySource = player.GetSource_FromThis();
+            if (player.whoAmI == Main.myPlayer)
+            {
+                // var entitySource = player.GetSource_FromThis();
 
-            Main.NewText("A Subzero Elemental has awoken!", 220, 0, 210);
-            NPC.NewNPC(entitySource, (int)player.Center.X, (int)player.Center.Y - 150, ModContent.NPCType<SubzeroElementalRobe>());
-            
-            SoundEngine.PlaySound(SoundID.Roar, player.position);
+                // Main.NewText("A Subzero Elemental has awoken!", 220, 0, 210);
+                // NPC.NewNPC(entitySource, (int)player.Center.X, (int)player.Center.Y - 150, ModContent.NPCType<SubzeroElementalRobe>());
+
+                SoundEngine.PlaySound(SoundID.Roar, player.position);
+
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                    NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<SubzeroElementalRobe>());
+                else
+                    NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, number: player.whoAmI, number2: ModContent.NPCType<SubzeroElementalRobe>());
+            }
+
             return true;
         }
 

@@ -1,4 +1,5 @@
-﻿using Eternal.Content.Items.Materials;
+﻿using Eternal.Common.Configurations;
+using Eternal.Content.Items.Materials;
 using Eternal.Content.Projectiles.Weapons.Hell;
 using Eternal.Content.Rarities;
 using Terraria;
@@ -9,11 +10,9 @@ namespace Eternal.Content.Items.Weapons.Hell
 {
     public class TheKnife : ModItem
     {
-
-        public override void SetStaticDefaults()
+        public override bool IsLoadingEnabled(Mod mod)
         {
-            /* Tooltip.SetDefault("'Stab stab stab!'" +
-                             "\nHell Mode drop"); */
+            return !ServerConfig.instance.update14;
         }
 
         public override void SetDefaults()
@@ -21,6 +20,7 @@ namespace Eternal.Content.Items.Weapons.Hell
             Item.damage = 60;
             Item.DamageType = DamageClass.Ranged;
             Item.noUseGraphic = true;
+            Item.noMelee = true;
             Item.UseSound = SoundID.Item1;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.useTime = 12;

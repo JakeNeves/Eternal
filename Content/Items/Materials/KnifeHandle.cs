@@ -1,19 +1,20 @@
-﻿using Eternal.Content.Items.Placeable;
-using Eternal.Content.Tiles.CraftingStations;
-using Terraria;
+﻿using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Eternal.Content.Rarities;
+using Eternal.Common.Configurations;
 
 namespace Eternal.Content.Items.Materials
 {
     public class KnifeHandle : ModItem
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return !ServerConfig.instance.update14;
+        }
+
         public override void SetStaticDefaults()
         {
-            // Tooltip.SetDefault("???");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

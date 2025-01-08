@@ -32,14 +32,21 @@ namespace Eternal.Content.Items.Summon
 
         public override bool? UseItem(Player player)
         {
-            var entitySource = player.GetSource_FromThis();
+            if (player.whoAmI == Main.myPlayer)
+            {
+                var entitySource = player.GetSource_FromThis();
 
-            NPC.NewNPC(entitySource, (int)player.Center.X - 600, (int)player.Center.Y - 300, ModContent.NPCType<Thunderius>());
-            NPC.NewNPC(entitySource, (int)player.Center.X + 600, (int)player.Center.Y - 300, ModContent.NPCType<Flaremutaria>());
-            NPC.NewNPC(entitySource, (int)player.Center.X, (int)player.Center.Y - 300, ModContent.NPCType<Cryota>());
+                Main.NewText("The Trinity has awoken!", 175, 75, 255);
+                SoundEngine.PlaySound(SoundID.Roar, player.position);
 
-            Main.NewText("The Trinity has awoken!", 175, 75, 255);
-            SoundEngine.PlaySound(SoundID.Roar, player.position);
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    NPC.NewNPC(entitySource, (int)player.Center.X - 600, (int)player.Center.Y - 300, ModContent.NPCType<Thunderius>());
+                    NPC.NewNPC(entitySource, (int)player.Center.X + 600, (int)player.Center.Y - 300, ModContent.NPCType<Flaremutaria>());
+                    NPC.NewNPC(entitySource, (int)player.Center.X, (int)player.Center.Y - 300, ModContent.NPCType<Cryota>());
+                }
+            }
+
             return true;
         }
     }

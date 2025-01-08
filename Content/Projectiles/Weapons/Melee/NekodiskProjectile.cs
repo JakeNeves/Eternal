@@ -29,11 +29,14 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
             var entitySource = Projectile.GetSource_FromAI();
 
-            CircleDirc = Utils.RotatedBy(CircleDirc, 0.10000000149011612, new Vector2());
-            int index5 = Projectile.NewProjectile(entitySource, Projectile.Center, CircleDirc, ProjectileID.Meowmere, Projectile.damage, 0.0f, Main.myPlayer, 0.0f, 0.0f);
-            int index6 = Projectile.NewProjectile(entitySource, Projectile.Center, Utils.RotatedBy(CircleDirc, Math.PI, new Vector2()), ProjectileID.Meowmere, Projectile.damage, 0.0f, Main.myPlayer, 0.0f, 0.0f);
-            Main.projectile[index5].timeLeft = 300;
-            Main.projectile[index6].timeLeft = 300;
+            if (!Main.dedServ)
+            {
+                CircleDirc = Utils.RotatedBy(CircleDirc, 0.10000000149011612, new Vector2());
+                int index5 = Projectile.NewProjectile(entitySource, Projectile.Center, CircleDirc, ProjectileID.Meowmere, Projectile.damage, 0.0f, Main.myPlayer, 0.0f, 0.0f);
+                int index6 = Projectile.NewProjectile(entitySource, Projectile.Center, Utils.RotatedBy(CircleDirc, Math.PI, new Vector2()), ProjectileID.Meowmere, Projectile.damage, 0.0f, Main.myPlayer, 0.0f, 0.0f);
+                Main.projectile[index5].timeLeft = 300;
+                Main.projectile[index6].timeLeft = 300;
+            }
         }
     }
 }

@@ -12,10 +12,6 @@ namespace Eternal.Content.Items.Misc
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Holy Card");
-            /* Tooltip.SetDefault("Creates a Holy Mantle to protect you" +
-                             "\nHell Mode drop"); */
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -34,9 +30,12 @@ namespace Eternal.Content.Items.Misc
 
         public override bool? UseItem(Player player)
         {
-            if (!player.GetModPlayer<BuffSystem>().holyMantle)
+            if (player.whoAmI == Main.myPlayer)
             {
-                player.AddBuff(Item.buffType, 2);
+                if (!player.GetModPlayer<BuffSystem>().holyMantle)
+                {
+                    player.AddBuff(Item.buffType, 2);
+                }
             }
 
             return true;

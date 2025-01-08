@@ -116,7 +116,7 @@ namespace Eternal.Content.NPCs.Town
             {
                 button2 = "Letter of Recommendation";
             }
-            if (RiftSystem.isRiftOpen)
+            if (EventSystem.isRiftOpen)
             {
                 button2 = "Help";
             }
@@ -183,7 +183,7 @@ namespace Eternal.Content.NPCs.Town
             {
                 Main.npcChatText = "A Letter of Recommendation? I must say that you my friend, should happily have this gift to honor your saviour rank as well as great reputation and other great things you have done since I have first arrived here in your world, although I wish to return to my world however, I think I'll stay here for the time being!";
             }
-            else if (RiftSystem.isRiftOpen)
+            else if (EventSystem.isRiftOpen)
             {
                 switch (Main.rand.Next(4))
                 {
@@ -231,7 +231,7 @@ namespace Eternal.Content.NPCs.Town
         public override string GetChat()
         {
             Player player = Main.player[Main.myPlayer];
-            if (RiftSystem.isRiftOpen)
+            if (EventSystem.isRiftOpen)
             {
                 switch (Main.rand.Next(8))
                 {

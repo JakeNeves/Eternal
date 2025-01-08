@@ -99,7 +99,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
             NPC.boss = true;
             if (!Main.dedServ)
             {
-                if (RiftSystem.isRiftOpen)
+                if (EventSystem.isRiftOpen)
                     Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/SwordGodsBalladofTheRift");
                 else
                     Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/ImperiousStrike");
@@ -413,7 +413,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
                     {
                         DownedBossSystem.downedArkofImperious = true;
                     }
-                    if (RiftSystem.isRiftOpen && !DownedBossSystem.downedRiftArkofImperious)
+                    if (EventSystem.isRiftOpen && !DownedBossSystem.downedRiftArkofImperious)
                     {
                         DownedBossSystem.downedRiftArkofImperious = true;
                     }
@@ -618,7 +618,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
             }
             if (NPC.life < NPC.lifeMax / 3)
             {
-                if (RiftSystem.isRiftOpen)
+                if (EventSystem.isRiftOpen)
                 {
                     if (AttackTimer == 180 || AttackTimer == 200)
                     {
@@ -680,7 +680,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
             }
             else
             {
-                if (RiftSystem.isRiftOpen)
+                if (EventSystem.isRiftOpen)
                 {
                     if (AttackTimer == 180 || AttackTimer == 200)
                     {

@@ -52,7 +52,7 @@ namespace Eternal.Content.NPCs.Comet
             NPC.buffImmune[BuffID.Frostburn] = true;
             NPC.buffImmune[BuffID.Frozen] = true;
             NPC.buffImmune[BuffID.Chilled] = true;
-            SpawnModBiomes = new int[1] { ModContent.GetInstance<Biomes.Comet>().Type };
+            SpawnModBiomes = [ ModContent.GetInstance<Biomes.Comet>().Type ];
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -96,7 +96,7 @@ namespace Eternal.Content.NPCs.Comet
                 NPC.active = false;
             }
 
-            if (RiftSystem.isRiftOpen)
+            if (EventSystem.isRiftOpen)
             {
                 for (int k = 0; k < 5; k++)
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.PurpleTorch, 0, -2f, 0, default, 1f);
@@ -159,13 +159,6 @@ namespace Eternal.Content.NPCs.Comet
             npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<ApparitionalMatter>(), 3, 6, 12));
             npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<Astragel>(), 3, 6, 12));
             npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<InterstellarScrapMetal>(), 3, 6, 12));
-
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientStarbornMask>(), 12));
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientStarbornHelmet>(), 12));
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientStarbornHat>(), 12));
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientStarbornHeadgear>(), 12));
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientStarbornScalePlate>(), 12));
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientStarbornGreaves>(), 12));
         }
 
         public override void HitEffect(NPC.HitInfo hit)
@@ -177,9 +170,9 @@ namespace Eternal.Content.NPCs.Comet
 
             var entitySource = NPC.GetSource_Death();
 
-            int gore1 = Mod.Find<ModGore>("ApparitionalReminantHead").Type;
-            int gore2 = Mod.Find<ModGore>("ApparitionalReminantBody").Type;
-            int gore3 = Mod.Find<ModGore>("ApparitionalReminantArm").Type;
+            int gore1 = Mod.Find<ModGore>("CosmicApparitionHead").Type;
+            int gore2 = Mod.Find<ModGore>("CosmicApparitionBody").Type;
+            int gore3 = Mod.Find<ModGore>("CosmicApparitionArm").Type;
 
             if (NPC.life <= 0)
             {

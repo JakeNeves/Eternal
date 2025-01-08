@@ -15,11 +15,6 @@ namespace Eternal.Content.Items.Misc
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Star Spiral (NYI)");
-            /* Tooltip.SetDefault("Unleashes a rift that shifts the world into an alternate reality" +
-                "\n[c/ED0249:Warning]: Very powerful creatures lie within the rift!" +
-                "\n'Just wait until I turn this world upside down!'"); */
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -35,36 +30,40 @@ namespace Eternal.Content.Items.Misc
 
         public override bool? UseItem(Player player)
         {
-            bool bossActive = false;
-            for (int i = 0; i < 200; i++)
+            if (player.whoAmI == Main.myPlayer)
             {
-                if (Main.npc[i].active && Main.npc[i].boss)
+                bool bossActive = false;
+                for (int i = 0; i < 200; i++)
                 {
-                    bossActive = true;
-                    break;
+                    if (Main.npc[i].active && Main.npc[i].boss)
+                    {
+                        bossActive = true;
+                        break;
+                    }
+                }
+
+                if (!bossActive)
+                {
+                    if (!EventSystem.isRiftOpen)
+                    {
+                        SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/RiftOpen"), player.position);
+                        EventSystem.isRiftOpen = true;
+                        Main.NewText("The world shifts into an unstable realm!", 200, 100, 200);
+                    }
+                    else if (EventSystem.isRiftOpen)
+                    {
+                        SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/RiftClose"), player.position);
+                        EventSystem.isRiftOpen = false;
+                        Main.NewText("The world shifts back into it's stablized tranquil state!", 200, 100, 200);
+                    }
+                }
+                else
+                {
+                    SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/StarSpiralKill"), player.position);
+                    player.KillMe(PlayerDeathReason.ByCustomReason(player.name + "'s body became disfigured trying to close the rift,"), 10000, 1, false);
                 }
             }
 
-            if (!bossActive)
-            {
-                if (!RiftSystem.isRiftOpen)
-                {
-                    SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/RiftOpen"), player.position);
-                    RiftSystem.isRiftOpen = true;
-                    Main.NewText("The world shifts into an unstable realm!", 200, 100, 200);
-                }
-                else if (RiftSystem.isRiftOpen)
-                {
-                    SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/RiftClose"), player.position);
-                    RiftSystem.isRiftOpen = false;
-                    Main.NewText("The world shifts back into it's stablized tranquil state!", 200, 100, 200);
-                }
-            }
-            else
-            {
-                SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/StarSpiralKill"), player.position);
-                player.KillMe(PlayerDeathReason.ByCustomReason(player.name + "'s body became disfigured trying to close the rift,"), 10000, 1, false);
-            }
             return true;
         }
 

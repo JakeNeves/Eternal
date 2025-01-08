@@ -196,12 +196,22 @@ namespace Eternal.Common.GlobalNPCs
 
             switch (npc.type)
             {
+                case NPCID.EyeofCthulhu:
+                    if (!ServerConfig.instance.update14)
+                        npcLoot.Add(ItemDropRule.ByCondition(hellModeDrop, ModContent.ItemType<KnifeHandle>(), 1));
+                    break;
+
                 case NPCID.WallofFlesh:
                     npcLoot.Add(ItemDropRule.ByCondition(hellModeDrop, ModContent.ItemType<HolyCard>(), 1));
                     break;
 
                 case NPCID.SkeletronHead:
                     npcLoot.Add(ItemDropRule.ByCondition(hellModeDrop, ModContent.ItemType<ShadowSkull>(), 1));
+                    break;
+
+                case NPCID.Plantera:
+                    if (!ServerConfig.instance.update14)
+                        npcLoot.Add(ItemDropRule.ByCondition(hellModeDrop, ModContent.ItemType<KnifeBlade>(), 1));
                     break;
 
                 case NPCID.MoonLordCore:

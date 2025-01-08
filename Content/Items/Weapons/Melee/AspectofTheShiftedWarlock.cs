@@ -38,7 +38,7 @@ namespace Eternal.Content.Items.Weapons.Melee
                 int dust = Dust.NewDust(player.Center, target.width, target.height, DustID.PinkTorch, target.oldVelocity.X * 1f, target.oldVelocity.Y * 1f);
             }
 
-            if (RiftSystem.isRiftOpen)
+            if (EventSystem.isRiftOpen)
             {
                 SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/RodofDistortion"), player.position);
                 for (int k = 0; k < 8; k++)

@@ -82,7 +82,8 @@ namespace Eternal.Content.Projectiles.Weapons.Magic
 
             for (int i = 0; i < 4; i++)
             {
-                Projectile.NewProjectile(entitySource, Projectile.position.X, Projectile.position.Y, Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(-4f, 4f), ModContent.ProjectileType<StarstaveProjectile>(), 0, 0);
+                if (!Main.dedServ)
+                    Projectile.NewProjectile(entitySource, Projectile.position.X, Projectile.position.Y, Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(-4f, 4f), ModContent.ProjectileType<StarstaveProjectile>(), 0, 0);
             }
         }
 

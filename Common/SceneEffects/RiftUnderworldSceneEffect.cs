@@ -8,7 +8,7 @@ namespace Eternal.Common.SceneEffects
     {
         public override int Music => MusicLoader.GetMusicSlot(Mod, "Assets/Music/TheTorridCenterofTheShiftedWorld");
 
-        public override bool IsSceneEffectActive(Player player) => RiftSystem.isRiftOpen && player.ZoneUnderworldHeight;
+        public override bool IsSceneEffectActive(Player player) => EventSystem.isRiftOpen && player.ZoneUnderworldHeight;
 
         public override SceneEffectPriority Priority => SceneEffectPriority.Environment;
     }

@@ -66,7 +66,7 @@ namespace Eternal.Content.NPCs.Rift
         {
             Player player = Main.player[Main.myPlayer];
 
-            if (RiftSystem.isRiftOpen && player.ZoneUnderworldHeight)
+            if (EventSystem.isRiftOpen && player.ZoneUnderworldHeight)
             {
                 return SpawnCondition.Underworld.Chance * 1.5f;
             }

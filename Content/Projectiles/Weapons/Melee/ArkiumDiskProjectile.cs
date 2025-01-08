@@ -54,7 +54,8 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
                 }, Projectile.position);
             }
 
-            Projectile.NewProjectile(entitySource, Projectile.Center, new Vector2(0, 0), ModContent.ProjectileType<ArkiumDiskProjectileAOE>(), Projectile.damage / 2, Projectile.knockBack / 0.5f);
+            if (!Main.dedServ)
+                Projectile.NewProjectile(entitySource, Projectile.Center, new Vector2(0, 0), ModContent.ProjectileType<ArkiumDiskProjectileAOE>(), Projectile.damage / 2, Projectile.knockBack / 0.5f);
         }
 
         public override bool PreDraw(ref Color lightColor)

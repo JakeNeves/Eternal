@@ -71,9 +71,10 @@ namespace Eternal.Content.Projectiles.Weapons.Radiant
                 Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, DustID.PurpleTorch, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);
             }
 
-            for (int i = 0; i < 32; i++)
+            for (int i = 0; i < 24; i++)
             {
-                Projectile.NewProjectile(entitySource, Projectile.Center, Utils.RotatedBy(new Vector2(10f, 0.0f), (double)MathHelper.ToRadians((i * 30 + Main.rand.Next(30))), new Vector2()), ModContent.ProjectileType<ExocosmicBolt>(), Projectile.damage, 0.0f, Main.myPlayer, 0.0f, 0.0f);
+                if (!Main.dedServ)
+                    Projectile.NewProjectile(entitySource, Projectile.Center, Utils.RotatedBy(new Vector2(10f, 0.0f), (double)MathHelper.ToRadians((i * 30 + Main.rand.Next(30))), new Vector2()), ModContent.ProjectileType<ExocosmicBolt>(), Projectile.damage, 0.0f, Main.myPlayer, 0.0f, 0.0f);
             }
         }
     }

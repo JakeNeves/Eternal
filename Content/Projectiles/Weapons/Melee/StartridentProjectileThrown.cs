@@ -41,7 +41,9 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
             if (bombTimer >= 10)
             {
-                Projectile.NewProjectile(entitySource, Projectile.Center, Projectile.velocity, ModContent.ProjectileType<StarspearBomb>(), Projectile.damage, 0, Main.myPlayer, 0f, 0f);
+                if (!Main.dedServ)
+                    Projectile.NewProjectile(entitySource, Projectile.Center, Projectile.velocity, ModContent.ProjectileType<StarspearBomb>(), Projectile.damage, 0, Main.myPlayer, 0f, 0f);
+                
                 bombTimer = 0;
             }
 
