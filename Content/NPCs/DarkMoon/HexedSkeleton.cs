@@ -1,4 +1,5 @@
-﻿using Eternal.Common.Systems;
+﻿using Eternal.Common.Configurations;
+using Eternal.Common.Systems;
 using Eternal.Content.Items.Materials;
 using System.Collections.Generic;
 using Terraria;
@@ -12,6 +13,11 @@ namespace Eternal.Content.NPCs.DarkMoon
 {
     public class HexedSkeleton : ModNPC
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return ServerConfig.instance.update14;
+        }
+
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Skeleton];

@@ -1,9 +1,7 @@
-﻿using CalamityMod.Dusts;
-using Eternal.Common.Configurations;
+﻿using Eternal.Common.Configurations;
 using Eternal.Common.Systems;
 using Eternal.Content.Items.Materials;
 using Microsoft.Xna.Framework;
-using System.Diagnostics;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Bestiary;

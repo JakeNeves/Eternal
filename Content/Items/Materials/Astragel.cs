@@ -11,8 +11,6 @@ namespace Eternal.Content.Items.Materials
 
         public override void SetStaticDefaults()
         {
-            // Tooltip.SetDefault("'Not actual gel'");
-
             ItemID.Sets.ItemNoGravity[Item.type] = true;
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
@@ -20,8 +18,8 @@ namespace Eternal.Content.Items.Materials
 
         public override void SetDefaults()
         {
-            Item.width = 20;
-            Item.height = 24;
+            Item.width = 14;
+            Item.height = 22;
             Item.value = Item.sellPrice(platinum: 1, gold: 30);
             Item.rare = ModContent.RarityType<Teal>();
             Item.maxStack = 9999;
