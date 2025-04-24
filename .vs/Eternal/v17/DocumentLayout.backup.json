@@ -1,12 +1,151 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|c:\\users\\jaken\\documents\\my games\\terraria\\tmodloader\\modsources\\eternal\\content\\npcs\\mausoleum\\psyrunner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|solutionrelative:content\\npcs\\mausoleum\\psyrunner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|c:\\users\\jaken\\documents\\my games\\terraria\\tmodloader\\modsources\\eternal\\content\\npcs\\darkmoon\\occultist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|solutionrelative:content\\npcs\\darkmoon\\occultist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|c:\\users\\jaken\\documents\\my games\\terraria\\tmodloader\\modsources\\eternal\\content\\npcs\\mausoleum\\hereticcaster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|solutionrelative:content\\npcs\\mausoleum\\hereticcaster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|c:\\users\\jaken\\documents\\my games\\terraria\\tmodloader\\modsources\\eternal\\content\\npcs\\boss\\niades\\niades.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|solutionrelative:content\\npcs\\boss\\niades\\niades.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|c:\\users\\jaken\\documents\\my games\\terraria\\tmodloader\\modsources\\eternal\\localization\\en-us.hjson||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|solutionrelative:localization\\en-us.hjson||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|c:\\users\\jaken\\documents\\my games\\terraria\\tmodloader\\modsources\\eternal\\content\\npcs\\boss\\trinity\\infernito.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|solutionrelative:content\\npcs\\boss\\trinity\\infernito.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|c:\\users\\jaken\\documents\\my games\\terraria\\tmodloader\\modsources\\eternal\\content\\npcs\\boss\\trinity\\trinitycore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|solutionrelative:content\\npcs\\boss\\trinity\\trinitycore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|c:\\users\\jaken\\documents\\my games\\terraria\\tmodloader\\modsources\\eternal\\content\\npcs\\boss\\trinity\\cryota.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|solutionrelative:content\\npcs\\boss\\trinity\\cryota.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PsyRunner.cs",
+              "DocumentMoniker": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Content\\NPCs\\Mausoleum\\PsyRunner.cs",
+              "RelativeDocumentMoniker": "Content\\NPCs\\Mausoleum\\PsyRunner.cs",
+              "ToolTip": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Content\\NPCs\\Mausoleum\\PsyRunner.cs",
+              "RelativeToolTip": "Content\\NPCs\\Mausoleum\\PsyRunner.cs",
+              "ViewState": "AgIAAEYAAAAAAAAAAAAcwFQAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-23T21:48:04.617Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "HereticCaster.cs",
+              "DocumentMoniker": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Content\\NPCs\\Mausoleum\\HereticCaster.cs",
+              "RelativeDocumentMoniker": "Content\\NPCs\\Mausoleum\\HereticCaster.cs",
+              "ToolTip": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Content\\NPCs\\Mausoleum\\HereticCaster.cs",
+              "RelativeToolTip": "Content\\NPCs\\Mausoleum\\HereticCaster.cs",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAmwHEAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-23T18:35:36.613Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Occultist.cs",
+              "DocumentMoniker": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Content\\NPCs\\DarkMoon\\Occultist.cs",
+              "RelativeDocumentMoniker": "Content\\NPCs\\DarkMoon\\Occultist.cs",
+              "ToolTip": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Content\\NPCs\\DarkMoon\\Occultist.cs",
+              "RelativeToolTip": "Content\\NPCs\\DarkMoon\\Occultist.cs",
+              "ViewState": "AgIAAIwAAAAAAAAAAAAAAH4AAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-21T19:15:58.692Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "en-US.hjson",
+              "DocumentMoniker": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Localization\\en-US.hjson",
+              "RelativeDocumentMoniker": "Localization\\en-US.hjson",
+              "ToolTip": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Localization\\en-US.hjson",
+              "RelativeToolTip": "Localization\\en-US.hjson",
+              "ViewState": "AgIAANsIAAAAAAAAAAD4v+gIAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-04-17T16:12:13.674Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Niades.cs",
+              "DocumentMoniker": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Content\\NPCs\\Boss\\Niades\\Niades.cs",
+              "RelativeDocumentMoniker": "Content\\NPCs\\Boss\\Niades\\Niades.cs",
+              "ToolTip": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Content\\NPCs\\Boss\\Niades\\Niades.cs",
+              "RelativeToolTip": "Content\\NPCs\\Boss\\Niades\\Niades.cs",
+              "ViewState": "AgIAANgBAAAAAAAAAAAAAOcBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T18:18:23.733Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Infernito.cs",
+              "DocumentMoniker": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Content\\NPCs\\Boss\\Trinity\\Infernito.cs",
+              "RelativeDocumentMoniker": "Content\\NPCs\\Boss\\Trinity\\Infernito.cs",
+              "ToolTip": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Content\\NPCs\\Boss\\Trinity\\Infernito.cs",
+              "RelativeToolTip": "Content\\NPCs\\Boss\\Trinity\\Infernito.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAwwGcBAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T18:18:12.441Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Cryota.cs",
+              "DocumentMoniker": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Content\\NPCs\\Boss\\Trinity\\Cryota.cs",
+              "RelativeDocumentMoniker": "Content\\NPCs\\Boss\\Trinity\\Cryota.cs",
+              "ToolTip": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Content\\NPCs\\Boss\\Trinity\\Cryota.cs",
+              "RelativeToolTip": "Content\\NPCs\\Boss\\Trinity\\Cryota.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T18:13:48.257Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "TrinityCore.cs",
+              "DocumentMoniker": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Content\\NPCs\\Boss\\Trinity\\TrinityCore.cs",
+              "RelativeDocumentMoniker": "Content\\NPCs\\Boss\\Trinity\\TrinityCore.cs",
+              "ToolTip": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Content\\NPCs\\Boss\\Trinity\\TrinityCore.cs",
+              "RelativeToolTip": "Content\\NPCs\\Boss\\Trinity\\TrinityCore.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAowCwAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T15:10:47.342Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

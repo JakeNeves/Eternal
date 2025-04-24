@@ -19,8 +19,8 @@ namespace Eternal.Content.Items.Weapons.Ranged
 
         public override void SetDefaults()
         {
-            Item.width = 40;
-            Item.height = 58;
+            Item.width = 32;
+            Item.height = 60;
             Item.damage = 300;
             Item.DamageType = DamageClass.Ranged;
             Item.useStyle = ItemUseStyleID.Shoot;

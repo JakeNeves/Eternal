@@ -1,20 +1,13 @@
-﻿using Eternal.Common.Configurations;
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Dusts
 {
     public class PsycheFire : ModDust
     {
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return ServerConfig.instance.update14;
-        }
-
         public override void OnSpawn(Dust dust)
         {
             dust.velocity *= 0.2f;
-            dust.noLight = true;
         }
 
         public override bool Update(Dust dust)

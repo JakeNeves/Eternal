@@ -1,7 +1,6 @@
 ﻿using Eternal.Common.Configurations;
 using Eternal.Common.Misc;
 using Eternal.Common.Systems;
-using Eternal.Content.BossBarStyles;
 using Eternal.Content.Dusts;
 using Eternal.Content.Items.Potions;
 using Eternal.Content.Projectiles.Boss;
@@ -81,6 +80,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
             NPC.buffImmune[BuffID.Poisoned] = true;
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCDeath/CosmicEmperorDeath");
+            NPC.npcSlots = 6;
         }
 
         public override void OnKill()
@@ -223,15 +223,6 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
 
         public override void AI()
         {
-            if (ClientConfig.instance.bossBarExtras)
-            {
-                if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server && BossBarLoader.CurrentStyle == ModContent.GetInstance<EternalBossBarStyle>())
-                {
-                    EternalBossBarOverlay.SetTracked("Master of the Cosmic Power", NPC);
-                    EternalBossBarOverlay.visible = true;
-                }
-            }
-
             NPC.netUpdate = true;
             NPC.TargetClosest(true);
             Player player = Main.player[NPC.target];
@@ -290,6 +281,8 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
                 NPC.ai[3] += 1f;
                 NPC.dontTakeDamage = true;
 
+                DialogueDeathTimer++;
+
                 NPC.velocity = new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 2f));
 
                 if (Main.rand.NextBool(5) && NPC.ai[3] < 180f)
@@ -338,7 +331,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
                         break;
                 }
 
-                if (NPC.ai[3] >= 750f)
+                if (NPC.ai[3] >= 500f)
                 {
                     NPC.life = 0;
                     if (!DownedBossSystem.downedCosmicEmperor)

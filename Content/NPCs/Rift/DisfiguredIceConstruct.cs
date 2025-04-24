@@ -39,11 +39,9 @@ namespace Eternal.Content.NPCs.Rift
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Snow,
-
+            bestiaryEntry.Info.AddRange([
                 new FlavorTextBestiaryInfoElement("A heavily damaged ice construct, with crystal-like growths and naquadah embossed all over itself")
-            });
+            ]);
         }
 
         public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
@@ -72,7 +70,7 @@ namespace Eternal.Content.NPCs.Rift
         {
             Player player = Main.player[Main.myPlayer];
 
-            if (EventSystem.isRiftOpen && DownedBossSystem.downedRiftArkofImperious && player.ZoneSnow)
+            if (EventSystem.isRiftOpen && DownedBossSystem.downedArkofImperious && player.ZoneSnow)
             {
                 return SpawnCondition.Overworld.Chance * 1.5f;
             }

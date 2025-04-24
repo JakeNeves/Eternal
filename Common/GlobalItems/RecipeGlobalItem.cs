@@ -26,13 +26,50 @@ namespace Eternal.Common.GlobalItems
             {
                 Recipe recipe = Main.recipe[i];
 
-                if (recipe.TryGetResult(ItemID.SuspiciousLookingEye, out Item result))
+                if (recipe.TryGetResult(ItemID.SuspiciousLookingEye, out Item suspiciousLookingEye))
                 {
-                    if (recipe.TryGetIngredient(ItemID.Lens, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.Lens, out Item lens))
                     {
-                        ingredient.stack = 10;
+                        lens.stack = 10;
                     }
                 }
+
+                /*if (recipe.TryGetResult(ItemID.MechanicalEye, out Item mechanicalEye))
+                {
+                    recipe.DisableRecipe();
+
+                    recipe.AddTile(TileID.MythrilAnvil)
+                        .AddIngredient(ItemID.Lens, 3)
+                        .AddRecipeGroup("eternal:copperBars", 5)
+                        .AddRecipeGroup("eternal:ironBars", 5)
+                        .AddIngredient(ItemID.SoulofLight, 6)
+                        .Register();
+                }
+
+                if (recipe.TryGetResult(ItemID.MechanicalSkull, out Item mechanicalSkull))
+                {
+                    recipe.DisableRecipe();
+
+                    recipe.AddTile(TileID.MythrilAnvil)
+                        .AddIngredient(ItemID.Bone, 30)
+                        .AddRecipeGroup("eternal:copperBars", 5)
+                        .AddRecipeGroup("eternal:ironBars", 5)
+                        .AddIngredient(ItemID.SoulofLight, 3)
+                        .AddIngredient(ItemID.SoulofNight, 3)
+                        .Register();
+                }
+
+                if (recipe.TryGetResult(ItemID.MechanicalWorm, out Item mechanicalWorm))
+                {
+                    recipe.DisableRecipe();
+
+                    recipe.AddTile(TileID.MythrilAnvil)
+                        .AddRecipeGroup("eternal:rottenChunks", 6)
+                        .AddRecipeGroup("eternal:copperBars", 5)
+                        .AddRecipeGroup("eternal:ironBars", 5)
+                        .AddIngredient(ItemID.SoulofNight, 6)
+                        .Register();
+                }*/
             }
         }
     }

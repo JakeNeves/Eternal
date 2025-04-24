@@ -1,5 +1,4 @@
-﻿using Eternal.Common.Configurations;
-using Eternal.Common.Systems;
+﻿using Eternal.Common.Systems;
 using Eternal.Content.Items.Materials;
 using System.Collections.Generic;
 using Terraria;
@@ -13,10 +12,6 @@ namespace Eternal.Content.NPCs.DarkMoon
 {
     public class PsycheZombie : ModNPC
     {
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return ServerConfig.instance.update14;
-        }
 
         public override void SetStaticDefaults()
         {
@@ -44,11 +39,17 @@ namespace Eternal.Content.NPCs.DarkMoon
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-
+            bestiaryEntry.Info.AddRange([
                 new FlavorTextBestiaryInfoElement("Your simple regular zombies, but this time, they're hexed!")
-            });
+            ]);
+        }
+
+        public override void AI()
+        {
+            if (!Main.dedServ)
+            {
+                Lighting.AddLight(NPC.Center, 1.50f, 0.25f, 1.50f);
+            }
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

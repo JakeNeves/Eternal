@@ -1,4 +1,4 @@
-﻿using Eternal.Common.Configurations;
+﻿using Eternal.Common.ItemDropRules.Conditions;
 using Eternal.Common.Systems;
 using Eternal.Content.Items.Materials;
 using Microsoft.Xna.Framework;
@@ -16,11 +16,6 @@ namespace Eternal.Content.NPCs.DarkMoon
     {
         int attackTimer = 0;
         int frameType = 0;
-
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return ServerConfig.instance.update14;
-        }
 
         public override void SetStaticDefaults()
         {
@@ -51,23 +46,17 @@ namespace Eternal.Content.NPCs.DarkMoon
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-
+            bestiaryEntry.Info.AddRange([
                 new FlavorTextBestiaryInfoElement("Hexed skulls that will fire at anything with no hesitation!")
-            });
+            ]);
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if (EventSystem.darkMoon)
-            {
                 return SpawnCondition.OverworldNightMonster.Chance * 0.5f;
-            }
             else
-            {
                 return SpawnCondition.OverworldNightMonster.Chance * 0f;
-            }
         }
 
         public override void AI()
@@ -80,11 +69,6 @@ namespace Eternal.Content.NPCs.DarkMoon
             if (!Main.dedServ)
             {
                 Lighting.AddLight(NPC.Center, 1.50f, 0.25f, 1.50f);
-
-                for (int k = 0; k < 5.0; k++)
-                {
-                    Dust.NewDust(NPC.Center, NPC.width, NPC.height, ModContent.DustType<Dusts.PsycheFire>(), 0, 0, 0, default(Color), 1f);
-                }
             }
 
             attackTimer++;
@@ -188,8 +172,12 @@ namespace Eternal.Content.NPCs.DarkMoon
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
+            PostNiadesDropCondition postNiadesDrop = new PostNiadesDropCondition();
+
+            npcLoot.Add(ItemDropRule.ByCondition(postNiadesDrop, ModContent.ItemType<CursedAshes>(), 3, 2, 4));
+
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<OcculticMatter>(), minimumDropped: 4, maximumDropped: 6));
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PsycheMatterAshes>(), minimumDropped: 6, maximumDropped: 8));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PsychicAshes>(), minimumDropped: 6, maximumDropped: 8));
         }
     }
 }

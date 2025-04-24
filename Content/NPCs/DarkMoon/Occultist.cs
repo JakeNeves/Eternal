@@ -1,7 +1,9 @@
-﻿using Eternal.Common.Configurations;
+﻿using Eternal.Common.ItemDropRules.Conditions;
 using Eternal.Common.Systems;
 using Eternal.Content.Items.Materials;
+using Eternal.Content.Projectiles.Enemy;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
@@ -14,13 +16,9 @@ namespace Eternal.Content.NPCs.DarkMoon
 {
     public class Occultist : ModNPC
     {
-        int attackTimer = 0;
         int frameType = 0;
 
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return ServerConfig.instance.update14;
-        }
+        ref float AttackTimer => ref NPC.ai[1];
 
         public override void SetStaticDefaults()
         {
@@ -45,85 +43,130 @@ namespace Eternal.Content.NPCs.DarkMoon
             NPC.buffImmune[BuffID.Frozen] = true;
             NPC.buffImmune[BuffID.Chilled] = true;
             NPC.value = 10f;
-            SpawnModBiomes = [ ModContent.GetInstance<Biomes.DarkMoon>().Type ];
+            SpawnModBiomes = [ ModContent.GetInstance<Biomes.DarkMoon>().Type, ModContent.GetInstance<Biomes.Mausoleum>().Type ];
         }
 
-        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        public override void SetBestiary(BestiaryDatabase dataNPC, BestiaryEntry bestiaryEntry)
         {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-
-                new FlavorTextBestiaryInfoElement("Hexed skulls that will fire at anything with no hesitation!")
-            });
+            bestiaryEntry.Info.AddRange([
+                new FlavorTextBestiaryInfoElement("Dreadful casters that inhabit the Mausoleum, occasionally strikes when the glow of the darkened moon shines across the horizon...")
+            ]);
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if (EventSystem.darkMoon)
-            {
-                return SpawnCondition.OverworldNightMonster.Chance * 0.5f;
-            }
+                return SpawnCondition.OverworldNightMonster.Chance * 0.5f + SpawnCondition.Underground.Chance * 0f;
+            else if (ModContent.GetInstance<ZoneSystem>().zoneMausoleum)
+                return SpawnCondition.OverworldNightMonster.Chance * 0f + SpawnCondition.Underground.Chance * 0.25f;
             else
-            {
-                return SpawnCondition.OverworldNightMonster.Chance * 0f;
-            }
+                return SpawnCondition.OverworldNightMonster.Chance * 0f + SpawnCondition.Underground.Chance * 0f;
         }
 
         public override void AI()
         {
+            if (!Main.dedServ)
+                Lighting.AddLight(NPC.Center, 1.50f, 0.25f, 1.50f);
 
-            Player target = Main.player[NPC.target];
-            NPC.TargetClosest(true);
             NPC.spriteDirection = NPC.direction;
 
-            Lighting.AddLight(NPC.position, 2.15f, 0.95f, 0f);
-
-            attackTimer++;
-            Attack();
-        }
-
-        private void Attack()
-        {
-            var entitySource = NPC.GetSource_FromAI();
-
-            Vector2 targetPosition = Main.player[NPC.target].position;
-            Vector2 direction = Main.player[NPC.target].Center - NPC.Center;
-
-            direction.Normalize();
-            direction.X *= 8.5f;
-            direction.Y *= 8.5f;
-
-            if (attackTimer == 200)
+            // Taken from the vanilla source code, I edited it for the sake of reworking the Occultist, why did I even do this in the first place?
+            NPC.TargetClosest();
+            NPC.velocity.X *= 0.93f;
+            if ((double)NPC.velocity.X > -0.1 && (double)NPC.velocity.X < 0.1)
             {
-                for (int k = 0; k < 5; k++)
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, ModContent.DustType<Dusts.OcculticMatter>(), 0f, -2.5f, 0, default, 1.7f);
-
-                if (!Main.dedServ)
-                    SoundEngine.PlaySound(SoundID.Item8, NPC.position);
-
-                NPC.position.X = targetPosition.X + Main.rand.Next(-400, 400);
-                NPC.position.Y = targetPosition.Y;
-
-                for (int k = 0; k < 5; k++)
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, ModContent.DustType<Dusts.OcculticMatter>(), 0f, -2.5f, 0, default, 1.7f);
+                NPC.velocity.X = 0f;
             }
-            if (attackTimer == 250)
+            if (NPC.ai[0] == 0f)
+            {
+                NPC.ai[0] = 500f;
+            }
+            if (NPC.ai[2] != 0f && NPC.ai[3] != 0f)
+            {
+                NPC.position += NPC.netOffset;
+                SoundEngine.PlaySound(in SoundID.Item8, NPC.position);
+                for (int num70 = 0; num70 < 50; num70++)
+                {
+                    int num78 = Dust.NewDust(new Vector2(NPC.position.X, NPC.position.Y), NPC.width, NPC.height, ModContent.DustType<Dusts.MausoleumTorch>(), 0f, 0f, 100, default(Color), 2.5f);
+                    Dust dust9 = Main.dust[num78];
+                    Dust dust2 = dust9;
+                    dust2.velocity *= 3f;
+                    Main.dust[num78].noGravity = true;
+                }
+                NPC.position -= NPC.netOffset;
+                NPC.position.X = NPC.ai[2] * 16f - (float)(NPC.width / 2) + 8f;
+                NPC.position.Y = NPC.ai[3] * 16f - (float)NPC.height;
+                NPC.netOffset *= 0f;
+                NPC.velocity.X = 0f;
+                NPC.velocity.Y = 0f;
+                NPC.ai[2] = 0f;
+                NPC.ai[3] = 0f;
+                SoundEngine.PlaySound(in SoundID.Item8, NPC.position);
+                for (int num79 = 0; num79 < 50; num79++)
+                {
+                    int num87 = Dust.NewDust(new Vector2(NPC.position.X, NPC.position.Y), NPC.width, NPC.height, ModContent.DustType<Dusts.MausoleumTorch>(), 0f, 0f, 100, default(Color), 2.5f);
+                    Dust dust17 = Main.dust[num87];
+                    Dust dust2 = dust17;
+                    dust2.velocity *= 3f;
+                    Main.dust[num87].noGravity = true;
+                }
+            }
+            NPC.ai[0] += 1f;
+            if (NPC.ai[0] == 100f || NPC.ai[0] == 150f || NPC.ai[0] == 200f)
             {
                 frameType = 1;
 
-                if (!Main.dedServ)
-                    SoundEngine.PlaySound(SoundID.Item8, NPC.position);
-
-                float A = (float)Main.rand.Next(-200, 200) * 0.01f;
-                float B = (float)Main.rand.Next(-200, 200) * 0.01f;
-                if (Main.netMode != NetmodeID.MultiplayerClient)
-                    Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ProjectileID.Shadowflames, NPC.damage, 1, Main.myPlayer, 0, 0);
+                NPC.ai[1] = 30f;
+                NPC.netUpdate = true;
             }
-            if (attackTimer == 275)
-            {
+            else
                 frameType = 0;
-                attackTimer = 0;
+            if (NPC.ai[0] >= 650f && Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                NPC.ai[0] = 1f;
+                int targetTileX = (int)Main.player[NPC.target].Center.X / 16;
+                int targetTileY = (int)Main.player[NPC.target].Center.Y / 16;
+                Vector2 chosenTile = Vector2.Zero;
+                if (NPC.AI_AttemptToFindTeleportSpot(ref chosenTile, targetTileX, targetTileY))
+                {
+                    NPC.ai[1] = 20f;
+                    NPC.ai[2] = chosenTile.X;
+                    NPC.ai[3] = chosenTile.Y;
+                }
+                NPC.netUpdate = true;
             }
+            if (NPC.ai[1] > 0f)
+            {
+                NPC.ai[1] -= 1f;
+                if (NPC.ai[1] == 25f)
+                {
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    {
+                        float num102 = 10f;
+                        Vector2 vector14 = new Vector2(NPC.position.X + (float)NPC.width * 0.5f, NPC.position.Y + (float)NPC.height * 0.5f);
+                        float num103 = Main.player[NPC.target].position.X + (float)Main.player[NPC.target].width * 0.5f - vector14.X + (float)Main.rand.Next(-10, 11);
+                        float num104 = Main.player[NPC.target].position.Y + (float)Main.player[NPC.target].height * 0.5f - vector14.Y + (float)Main.rand.Next(-10, 11);
+                        float num105 = (float)Math.Sqrt(num103 * num103 + num104 * num104);
+                        num105 = num102 / num105;
+                        num103 *= num105;
+                        num104 *= num105;
+                        int num106 = 40;
+                        int num108 = Projectile.NewProjectile(NPC.GetSource_FromAI(), vector14.X, vector14.Y, num103, num104, ModContent.ProjectileType<Psyfireball>(), num106, 0f, Main.myPlayer);
+                        Main.projectile[num108].timeLeft = 300;
+                        NPC.localAI[0] = 0f;
+                    }
+                }
+            }
+            NPC.position += NPC.netOffset;
+            if (Main.rand.NextBool(2))
+            {
+                int num117 = Dust.NewDust(new Vector2(NPC.position.X, NPC.position.Y + 2f), NPC.width, NPC.height, ModContent.DustType<Dusts.MausoleumTorch>(), NPC.velocity.X * 0.2f, NPC.velocity.Y * 0.2f, 100, default(Color), 2f);
+                Main.dust[num117].noGravity = true;
+                Main.dust[num117].velocity.X *= 1f;
+                Main.dust[num117].velocity.Y *= 1f;
+            }
+            NPC.position -= NPC.netOffset;
+            return;
         }
 
         public override void FindFrame(int frameHeight)
@@ -134,9 +177,7 @@ namespace Eternal.Content.NPCs.DarkMoon
         public override void HitEffect(NPC.HitInfo hit)
         {
             if (Main.netMode == NetmodeID.Server)
-            {
                 return;
-            }
 
             if (NPC.life <= 0)
             {
@@ -151,8 +192,12 @@ namespace Eternal.Content.NPCs.DarkMoon
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
+            PostNiadesDropCondition postNiadesDrop = new PostNiadesDropCondition();
+
+            npcLoot.Add(ItemDropRule.ByCondition(postNiadesDrop, ModContent.ItemType<CursedAshes>(), 2, 2, 6));
+
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<OcculticMatter>(), minimumDropped: 8, maximumDropped: 12));
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PsycheMatterAshes>(), minimumDropped: 4, maximumDropped: 12));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PsychicAshes>(), minimumDropped: 4, maximumDropped: 12));
         }
     }
 }

@@ -29,7 +29,7 @@ namespace Eternal.Content.Items.Placeable.Furniture
             CreateRecipe()
                 .AddTile(ModContent.TileType<RotaryHearthForge>())
                 .AddIngredient(ModContent.ItemType<OminaquaditeBar>(), 6)
-                .AddIngredient(ModContent.ItemType<CrystalizedOminite>(), 12)
+                .AddIngredient(ModContent.ItemType<CrystallizedOminite>(), 12)
                 .AddIngredient(ModContent.ItemType<NaquadahBar>(), 6)
                 .Register();
         }

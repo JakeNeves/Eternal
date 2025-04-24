@@ -17,24 +17,19 @@ namespace Eternal.Content.NPCs.Underworld
 
         public override void SetStaticDefaults()
         {
-            var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers()
-            {
-                CustomTexturePath = "Eternal/Assets/Textures/Bestiary/InfernalHellwisp_Preview",
-                PortraitPositionXOverride = 0f,
-                PortraitPositionYOverride = 0f
-            };
-            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, drawModifier);
+            Main.npcFrameCount[NPC.type] = 4;
+
+            NPCID.Sets.ImmuneToAllBuffs[Type] = true;
         }
 
         public override void SetDefaults()
         {
             NPC.lifeMax = 2200;
-            NPC.damage = 86;
+            NPC.damage = 60;
             NPC.defense = 20;
             NPC.knockBackResist = 0f;
-            NPC.width = 6;
-            NPC.height = 6;
-            NPC.alpha = 255;
+            NPC.width = 18;
+            NPC.height = 28;
             NPC.aiStyle = 14;
             NPC.noGravity = true;
             NPC.noTileCollide = true;
@@ -78,44 +73,10 @@ namespace Eternal.Content.NPCs.Underworld
             Player target = Main.player[NPC.target];
             NPC.TargetClosest(true);
 
+            NPC.rotation = NPC.velocity.X * -0.03f;
+
             attackTimer++;
             Attack();
-
-            float dustScale = 1f;
-            if (NPC.ai[0] == 0f)
-                dustScale = 0.25f;
-            else if (NPC.ai[0] == 1f)
-                dustScale = 0.5f;
-            else if (NPC.ai[0] == 2f)
-                dustScale = 0.75f;
-
-            if (Main.rand.NextBool(2))
-            {
-                Dust dust = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.Torch, NPC.velocity.X * 0.2f, NPC.velocity.Y * 0.2f, 100);
-                if (Main.rand.NextBool(3))
-                {
-                    dust.noGravity = true;
-                    dust.scale *= 3f;
-                    dust.velocity.X *= 2f;
-                    dust.velocity.Y *= 2f;
-                }
-
-                dust.scale *= 1.5f;
-                dust.velocity *= 1.2f;
-                dust.scale *= dustScale;
-            }
-            NPC.ai[0] += 1f;
-
-            int maxdusts = 6;
-            for (int i = 0; i < maxdusts; i++)
-            {
-                float dustDistance = 50;
-                float dustSpeed = 8;
-                Vector2 offset = Vector2.UnitX.RotateRandom(MathHelper.Pi) * dustDistance;
-                Vector2 velocity = -offset.SafeNormalize(-Vector2.UnitY) * dustSpeed;
-                Dust vortex = Dust.NewDustPerfect(new Vector2(NPC.Center.X, NPC.Center.Y) + offset, DustID.Torch, velocity, 0, default(Color), 1.5f);
-                vortex.noGravity = true;
-            }
         }
 
         private void Attack()
@@ -158,6 +119,14 @@ namespace Eternal.Content.NPCs.Underworld
 
                 Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.Torch, 0, -1f, 0, default(Color), 1f);
             }
+        }
+
+        public override void FindFrame(int frameHeight)
+        {
+            NPC.frameCounter += 0.15f;
+            NPC.frameCounter %= Main.npcFrameCount[NPC.type];
+            int Frame = (int)NPC.frameCounter;
+            NPC.frame.Y = Frame * frameHeight;
         }
     }
 }

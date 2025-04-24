@@ -63,16 +63,14 @@ namespace Eternal.Content.NPCs.Comet
             NPC.buffImmune[BuffID.Frostburn] = true;
             NPC.buffImmune[BuffID.Frozen] = true;
             NPC.buffImmune[BuffID.Chilled] = true;
-            SpawnModBiomes = new int[1] { ModContent.GetInstance<Biomes.Comet>().Type };
+            SpawnModBiomes = [ ModContent.GetInstance<Biomes.Comet>().Type ];
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-
+            bestiaryEntry.Info.AddRange([
                 new FlavorTextBestiaryInfoElement("When the comet landed onto the surface of this world, these little probes started to unleash upon the surrounding area where the comet landed")
-            });
+            ]);
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

@@ -47,7 +47,7 @@ namespace Eternal.Content.NPCs.Rift
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
-			if (EventSystem.isRiftOpen && DownedBossSystem.downedRiftArkofImperious)
+			if (EventSystem.isRiftOpen && DownedBossSystem.downedArkofImperious)
 			{
 				return SpawnCondition.Underground.Chance * 1.5f;
 			}
@@ -60,17 +60,15 @@ namespace Eternal.Content.NPCs.Rift
 		public override void ModifyNPCLoot(NPCLoot npcLoot)
 		{
 			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RawNaquadah>(), 1, 3, 12));
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CrystalizedOminite>(), 2, 1, 2));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CrystallizedOminite>(), 2, 1, 2));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LargeRawNaquadah>(), 3, 1, 4));
         }
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
 		{
-			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Underground,
-
+			bestiaryEntry.Info.AddRange([
 				new FlavorTextBestiaryInfoElement("A powerful Ominite-bossed digger armored in pure Naquadah.")
-			});
+			]);
 		}
 
 		public override void CustomBehavior()

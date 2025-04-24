@@ -1,4 +1,5 @@
 ﻿using Eternal.Common.Systems;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -6,9 +7,12 @@ namespace Eternal.Content.Biomes
 {
     public class Beneath : ModBiome
     {
-        public override int Music => MusicLoader.GetMusicSlot(Mod, "Assets/Music/DarknessFromDeepBelow");
+        public override int Music => MusicLoader.GetMusicSlot(Mod, "Assets/Music/PsionicEchoes");
 
         public override string BestiaryIcon => base.BestiaryIcon;
+        public override string BackgroundPath => base.BackgroundPath;
+        public override Color? BackgroundColor => base.BackgroundColor;
+        public override string MapBackground => BackgroundPath;
 
         public override void OnEnter(Player player)
         {

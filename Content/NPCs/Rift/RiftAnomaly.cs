@@ -34,7 +34,7 @@ namespace Eternal.Content.NPCs.Rift
             };
             NPC.DeathSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCDeath/RiftEnemyDeath");
             NPC.value = Item.sellPrice(gold: 30);
-            SpawnModBiomes = new int[1] { ModContent.GetInstance<Biomes.Rift>().Type };
+            SpawnModBiomes = [ModContent.GetInstance<Biomes.Rift>().Type ];
             NPC.buffImmune[BuffID.Poisoned] = true;
             NPC.buffImmune[BuffID.OnFire] = true;
             NPC.buffImmune[BuffID.Venom] = true;
@@ -47,11 +47,9 @@ namespace Eternal.Content.NPCs.Rift
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-
+            bestiaryEntry.Info.AddRange([
                 new FlavorTextBestiaryInfoElement("An ominite construct that fires lasers in four directions")
-            });
+            ]);
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

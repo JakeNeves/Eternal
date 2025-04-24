@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
@@ -10,22 +11,22 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 {
     public class ApparitionalDiskProjectile : ModProjectile
     {
-        int pierceTimer = 0;
+        Vector2 CircleDirc = new Vector2(0.0f, 15f);
 
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 6;
-            ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
+            ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
         }
 
         public override void SetDefaults()
         {
-            Projectile.width = 54;
-            Projectile.height = 54;
+            Projectile.width = 60;
+            Projectile.height = 60;
             Projectile.aiStyle = 3;
             Projectile.friendly = true;
             Projectile.DamageType = DamageClass.Melee;
-            Projectile.penetrate = -1;
+            Projectile.penetrate = 1;
             Projectile.timeLeft = 600;
             Projectile.extraUpdates = 1;
             Projectile.tileCollide = false;
@@ -35,26 +36,40 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
         {
             Projectile.rotation += Projectile.velocity.X * 0.1f;
 
-            pierceTimer++;
+            var entitySource = Projectile.GetSource_FromAI();
+        }
 
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
             var entitySource = Projectile.GetSource_FromAI();
 
-            if (pierceTimer >= 30)
+            if (!Main.dedServ)
             {
-                for (int i = 0; i < 75; i++)
+                for (int i = 0; i < 12; i++)
                 {
-                    Vector2 position = Projectile.Center + Vector2.UnitX.RotatedBy(MathHelper.ToRadians(360f / 75 * i)) * 90;
-                    Dust dust = Dust.NewDustPerfect(Projectile.Center, DustID.DemonTorch);
-                    dust.noGravity = true;
-                    dust.velocity = Vector2.Normalize(position - Projectile.Center) * 12;
-                    dust.noLight = false;
-                    dust.fadeIn = 1f;
+                    CircleDirc = Utils.RotatedBy(CircleDirc, 0.30f, new Vector2());
+                    int index5 = Projectile.NewProjectile(entitySource, Projectile.Center, CircleDirc, ModContent.ProjectileType<ApparitionalDiskPierce>(), Projectile.damage / 4, 0.0f, Main.myPlayer, 0.0f, 0.0f);
+                    int index6 = Projectile.NewProjectile(entitySource, Projectile.Center, Utils.RotatedBy(CircleDirc, Math.PI, new Vector2()), ModContent.ProjectileType<ApparitionalDiskPierce>(), Projectile.damage / 4, 0.0f, Main.myPlayer, 0.0f, 0.0f);
+                    Main.projectile[index5].timeLeft = 30;
+                    Main.projectile[index6].timeLeft = 30;
                 }
+            }
+        }
 
-                if (!Main.dedServ)
-                    Projectile.NewProjectile(entitySource, Projectile.Center.X, Projectile.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<ApparitionalDiskPierce>(), Projectile.damage, 0, Main.myPlayer, 0f, 0f);
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
+        {
+            var entitySource = Projectile.GetSource_FromAI();
 
-                pierceTimer = 0;
+            if (!Main.dedServ)
+            {
+                for (int i = 0; i < 6; i++)
+                {
+                    CircleDirc = Utils.RotatedBy(CircleDirc, 0.15, new Vector2());
+                    int index5 = Projectile.NewProjectile(entitySource, Projectile.Center, CircleDirc, ModContent.ProjectileType<ApparitionalDiskPierce>(), Projectile.damage / 4, 0.0f, Main.myPlayer, 0.0f, 0.0f);
+                    int index6 = Projectile.NewProjectile(entitySource, Projectile.Center, Utils.RotatedBy(CircleDirc, Math.PI, new Vector2()), ModContent.ProjectileType<ApparitionalDiskPierce>(), Projectile.damage / 4, 0.0f, Main.myPlayer, 0.0f, 0.0f);
+                    Main.projectile[index5].timeLeft = 30;
+                    Main.projectile[index6].timeLeft = 30;
+                }
             }
         }
 

@@ -17,8 +17,8 @@ namespace Eternal.Content.Items.Potions
 
         public override void SetDefaults()
         {
-            Item.width = 40;
-            Item.height = 32;
+            Item.width = 28;
+            Item.height = 30;
             Item.useStyle = ItemUseStyleID.DrinkLiquid;
             Item.useAnimation = 17;
             Item.useTime = 17;

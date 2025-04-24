@@ -10,15 +10,14 @@ namespace Eternal.Content.Buffs
 
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Apparitional Wither");
-            // Description.SetDefault("Your flesh and bones are massivly decaying");
             Main.debuff[Type] = true;
+
             BuffID.Sets.LongerExpertDebuff[Type] = true;
         }
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.GetModPlayer<BrutalHellModeSystem>().hyperthermia = true;
+            player.GetModPlayer<BuffSystem>().apparitionalWither = true;
         }
     }
 }

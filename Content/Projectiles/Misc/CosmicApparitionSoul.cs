@@ -1,12 +1,31 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Chat;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Projectiles.Misc
 {
     public class CosmicApparitionSoul : ModProjectile
     {
+        public static LocalizedText CosmicApparitionDefeated1 { get; private set; }
+        public static LocalizedText CosmicApparitionDefeated2 { get; private set; }
+        public static LocalizedText CosmicApparitionDefeated3 { get; private set; }
+        public static LocalizedText CosmicApparitionDefeated4 { get; private set; }
+        public static LocalizedText CosmicApparitionDefeated5 { get; private set; }
+        public static LocalizedText CosmicApparitionDefeated6 { get; private set; }
+
+        public override void SetStaticDefaults()
+        {
+            CosmicApparitionDefeated1 = Mod.GetLocalization($"BossDefeatedEvent.{nameof(CosmicApparitionDefeated1)}");
+            CosmicApparitionDefeated2 = Mod.GetLocalization($"BossDefeatedEvent.{nameof(CosmicApparitionDefeated2)}");
+            CosmicApparitionDefeated3 = Mod.GetLocalization($"BossDefeatedEvent.{nameof(CosmicApparitionDefeated3)}");
+            CosmicApparitionDefeated4 = Mod.GetLocalization($"BossDefeatedEvent.{nameof(CosmicApparitionDefeated4)}");
+            CosmicApparitionDefeated5 = Mod.GetLocalization($"BossDefeatedEvent.{nameof(CosmicApparitionDefeated5)}");
+            CosmicApparitionDefeated6 = Mod.GetLocalization($"BossDefeatedEvent.{nameof(CosmicApparitionDefeated6)}");
+        }
+
         public override void SetDefaults()
         {
             Projectile.width = 6;
@@ -66,11 +85,24 @@ namespace Eternal.Content.Projectiles.Misc
 
         public override void OnKill(int timeLeft)
         {
-            Main.NewText("The tundra crackles restless...", 7, 28, 224);
-            Main.NewText("You hear lightning strike the sands across the dunes...", 0, 95, 215);
-            Main.NewText("The ancient spirits of the underworld starts blazing furiously...", 215, 95, 0);
-            Main.NewText("The seal of the cosmic entities has been broken, newfound materials can be gathered from them...", 220, 0, 210);
-            Main.NewText("A faint etherial hum can be heard from the shrine...", 48, 255, 179);
+            if (Main.netMode == NetmodeID.SinglePlayer)
+            {
+                Main.NewText(CosmicApparitionDefeated1.Value, 7, 28, 224);
+                Main.NewText(CosmicApparitionDefeated2.Value, 0, 95, 0);
+                Main.NewText(CosmicApparitionDefeated3.Value, 220, 0, 210);
+                Main.NewText(CosmicApparitionDefeated4.Value, 48, 255, 179);
+                Main.NewText(CosmicApparitionDefeated5.Value, 200, 0, 50);
+                Main.NewText(CosmicApparitionDefeated6.Value, 100, 0, 100);
+            }
+            else if (Main.netMode == NetmodeID.Server)
+            {
+                ChatHelper.BroadcastChatMessage(CosmicApparitionDefeated1.ToNetworkText(), new Color(7, 28, 224));
+                ChatHelper.BroadcastChatMessage(CosmicApparitionDefeated2.ToNetworkText(), new Color(0, 95, 0));
+                ChatHelper.BroadcastChatMessage(CosmicApparitionDefeated3.ToNetworkText(), new Color(220, 0, 210));
+                ChatHelper.BroadcastChatMessage(CosmicApparitionDefeated4.ToNetworkText(), new Color(48, 255, 179));
+                ChatHelper.BroadcastChatMessage(CosmicApparitionDefeated5.ToNetworkText(), new Color(200, 0, 50));
+                ChatHelper.BroadcastChatMessage(CosmicApparitionDefeated6.ToNetworkText(), new Color(100, 0, 100));
+            }
         }
     }
 }

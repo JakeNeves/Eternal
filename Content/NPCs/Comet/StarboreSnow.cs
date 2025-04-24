@@ -22,7 +22,7 @@ namespace Eternal.Content.NPCs.Comet
             var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
                 CustomTexturePath = "Eternal/Content/NPCs/Comet/StarboreSnow_Preview",
-                Position = new Vector2(16f, 24f),
+                Position = new Vector2(0f, 24f),
                 PortraitPositionXOverride = 0f,
                 PortraitPositionYOverride = 8f
             };
@@ -95,11 +95,9 @@ namespace Eternal.Content.NPCs.Comet
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
 		{
-			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-
+			bestiaryEntry.Info.AddRange([
 				new FlavorTextBestiaryInfoElement("These otherworldly serpents like to burrow through comets and meteors, they are however very nimble navigator despite their lack in length.")
-			});
+			]);
 		}
 
 		public override void CustomBehavior()

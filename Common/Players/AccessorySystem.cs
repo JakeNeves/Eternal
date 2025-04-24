@@ -1,4 +1,6 @@
 ﻿using Eternal.Common.Systems;
+using Eternal.Content.Items.Accessories;
+using Eternal.Content.Items.Accessories.Expert;
 using Eternal.Content.Projectiles.Accessories;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -18,9 +20,11 @@ namespace Eternal.Common.Players
         public static bool Bloodtooth = false;
         public static bool DuneCore = false;
         public static bool GiftofTheSwordGod = false;
+        public static bool Godhead = false;
 
         // misc
         public static bool BlackLantern = false;
+        public static bool ShadeLocket = false;
 
         // cursors
         public static bool hasVoidCursor = false;
@@ -38,9 +42,11 @@ namespace Eternal.Common.Players
             Bloodtooth = false;
             DuneCore = false;
             GiftofTheSwordGod = false;
+            Godhead = false;
 
             // misc
             BlackLantern = false;
+            ShadeLocket = false;
 
             // cursor
             hasVoidCursor = false;
@@ -51,8 +57,6 @@ namespace Eternal.Common.Players
 
         public override void OnHurt(Player.HurtInfo info)
         {
-            var entitySource = Player.GetSource_FromThis();
-
             if (Dreadheart)
             {
                 Player.HealEffect(Main.rand.Next(6, 12), false);
@@ -63,19 +67,58 @@ namespace Eternal.Common.Players
                 if (!Main.dedServ)
                     SoundEngine.PlaySound(SoundID.DD2_OgreSpit, Player.Center);
 
-                for (int i = 0; i < Main.rand.Next(4, 8); i++)
+                for (int i = 0; i < Main.maxNPCs; i++)
                 {
+                    var npc = Main.npc[i];
+                    if (!npc.active)
+                        continue;
+
+                    for (int j = 0; j < Main.rand.Next(4, 8); j++)
+                    {
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                            Projectile.NewProjectile(Player.GetSource_Accessory_OnHurt(Main.item[ModContent.ItemType<Bloodtooth>()], npc), Player.Center.X, Player.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<BloodtoothProjectile>(), 24, 0f, Main.myPlayer);
+                    }
+                }
+            }
+
+            if (ShadeLocket)
+            {
+                for (int i = 0; i < Main.maxNPCs; i++)
+                {
+                    var npc = Main.npc[i];
+                    if (!npc.active)
+                        continue;
+
                     if (Main.netMode != NetmodeID.MultiplayerClient)
-                        Projectile.NewProjectile(entitySource, Player.Center.X, Player.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<BloodtoothProjectile>(), 24, 0f, Main.myPlayer);
+                    {
+                        SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/ShademanTrap")
+                        {
+                            Volume = 0.8f,
+                            PitchVariance = Main.rand.NextFloat(0.2f, 0.9f),
+                            MaxInstances = 0
+                        });
+
+                        Projectile.NewProjectile(Player.GetSource_Accessory_OnHurt(Main.item[ModContent.ItemType<ShadeLocket>()], npc), Player.Center.X, Player.Center.Y, 12f, 0f, ModContent.ProjectileType<ShadeBombFriendly>(), info.Damage, 0f, Main.myPlayer);
+                        Projectile.NewProjectile(Player.GetSource_Accessory_OnHurt(Main.item[ModContent.ItemType<ShadeLocket>()], npc), Player.Center.X, Player.Center.Y, 0f, 12f, ModContent.ProjectileType<ShadeBombFriendly>(), info.Damage, 0f, Main.myPlayer);
+                        Projectile.NewProjectile(Player.GetSource_Accessory_OnHurt(Main.item[ModContent.ItemType<ShadeLocket>()], npc), Player.Center.X, Player.Center.Y, -12f, 0f, ModContent.ProjectileType<ShadeBombFriendly>(), info.Damage, 0f, Main.myPlayer);
+                        Projectile.NewProjectile(Player.GetSource_Accessory_OnHurt(Main.item[ModContent.ItemType<ShadeLocket>()], npc), Player.Center.X, Player.Center.Y, 0f, -12f, ModContent.ProjectileType<ShadeBombFriendly>(), info.Damage, 0f, Main.myPlayer);
+                    }
                 }
             }
 
             if (DuneCore)
             {
-                for (int i = 0; i < Main.rand.Next(8, 16); i++)
+                for (int i = 0; i < Main.maxNPCs; i++)
                 {
-                    if (Main.netMode != NetmodeID.MultiplayerClient)
-                        Projectile.NewProjectile(entitySource, Player.Center.X, Player.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<DuneSparkFriendly>(), 24, 0f, Main.myPlayer);
+                    var npc = Main.npc[i];
+                    if (!npc.active)
+                        continue;
+
+                    for (int j = 0; j < Main.rand.Next(8, 16); j++)
+                    {
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                            Projectile.NewProjectile(Player.GetSource_Accessory_OnHurt(Main.item[ModContent.ItemType<DuneCore>()], npc), Player.Center.X, Player.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<DuneSparkFriendly>(), 24, 0f, Main.myPlayer);
+                    }
                 }
             }
         }

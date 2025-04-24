@@ -15,6 +15,18 @@ namespace Eternal.Common.Players
         public static bool CosmicKeeperArmor = false;
         public static bool IesniumArmor = false;
 
+        #region Occulist Armor
+        public static bool OcculistArmor = false;
+        public static bool OcculistArmorMagicBonus = false;
+        public static bool OcculistArmorSummonBonus = false;
+        #endregion
+
+        #region Sanguine Armor
+        public static bool SanguineArmor = false;
+        public static bool SanguineArmorMeleeBonus = false;
+        public static bool SanguineArmorRangedBonus = false;
+        #endregion
+
         #region Starborn Armor
         public static bool StarbornArmor = false;
         public static bool StarbornArmorMagicBonus = false;
@@ -55,6 +67,14 @@ namespace Eternal.Common.Players
 
         public override void ResetEffects()
         {
+            SanguineArmor = false;
+            SanguineArmorMeleeBonus = false;
+            SanguineArmorRangedBonus = false;
+
+            OcculistArmor = false;
+            OcculistArmorMagicBonus = false;
+            OcculistArmorSummonBonus = false;
+
             StarbornArmor = false;
             StarbornArmorMagicBonus = false;
             StarbornArmorMeleeBonus = false;
@@ -94,8 +114,6 @@ namespace Eternal.Common.Players
 
         public override void PreUpdate()
         {
-            var entitySource = Player.GetSource_FromThis();
-
             #region Starborn Armor Set Bonuses
             if (StarbornArmor)
             {
@@ -111,7 +129,7 @@ namespace Eternal.Common.Players
                     if (starbornMagicProjTimer >= 2000)
                     {
                         if (Main.netMode != NetmodeID.MultiplayerClient)
-                            Projectile.NewProjectile(entitySource, Player.position.X, Player.position.Y, Main.rand.Next(-4, 4), Main.rand.Next(-4, 4), ModContent.ProjectileType<UnstableStarbornWisp>(), Player.statManaMax2, 0, Player.whoAmI);
+                            Projectile.NewProjectile(Player.GetSource_FromThis("SetBonus_StarbornArmorMagicBonus"), Player.position.X, Player.position.Y, Main.rand.Next(-4, 4), Main.rand.Next(-4, 4), ModContent.ProjectileType<UnstableStarbornWisp>(), Player.statManaMax2, 0, Player.whoAmI);
 
                         starbornMagicProjTimer = 0;
                     }
@@ -144,16 +162,21 @@ namespace Eternal.Common.Players
         public override void OnHurt(Player.HurtInfo info)
         {
             var entitySource = Player.GetSource_FromThis();
-
-            
                 
             #region Arkanium Aromr Set Bonuses
             if (ArkaniumArmor)
             {
-                for (int i = 0; i < Main.rand.Next(8, 16); i++)
+                for (int i = 0; i < Main.maxNPCs; i++)
                 {
-                    if (Main.netMode != NetmodeID.MultiplayerClient)
-                        Projectile.NewProjectile(entitySource, Player.position.X + Main.rand.NextFloat(-200f, 200f), Player.position.Y - 600f, Main.rand.NextFloat(-4f, 4f), 16f, ModContent.ProjectileType<ArkaniumSword>(), 200 * 2, 0, Player.whoAmI);
+                    var npc = Main.npc[i];
+                    if (!npc.active)
+                        continue;
+
+                    for (int j = 0; j < Main.rand.Next(4, 8); j++)
+                    {
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                            Projectile.NewProjectile(Player.GetSource_OnHurt(npc, "SetBonus_ArkiumArmor"), Player.position.X + Main.rand.NextFloat(-200f, 200f), Player.position.Y - 600f, Main.rand.NextFloat(-4f, 4f), 16f, ModContent.ProjectileType<ArkaniumSword>(), info.Damage * 2, 0, Player.whoAmI);
+                    }
                 }
             }
             #endregion
@@ -164,13 +187,21 @@ namespace Eternal.Common.Players
                 if (!Main.dedServ)
                     SoundEngine.PlaySound(SoundID.DD2_KoboldExplosion, Player.position);
 
-                if (Main.netMode != NetmodeID.MultiplayerClient)
-                    Projectile.NewProjectile(entitySource, Player.position, new Vector2(0, 0), ModContent.ProjectileType<NaquadahSpikeBombAOE>(), 0, 0, Player.whoAmI);
-
-                for (int i = 0; i < Main.rand.Next(2, 4); i++)
+                for (int i = 0; i < Main.maxNPCs; i++)
                 {
+                    var npc = Main.npc[i];
+                    if (!npc.active)
+                        continue;
+
+
                     if (Main.netMode != NetmodeID.MultiplayerClient)
-                        Projectile.NewProjectile(entitySource, Player.position, new Vector2(Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-8f, 8f)), ModContent.ProjectileType<NaquadahSpikeBomb>(), 200 * 2, 0, Player.whoAmI);
+                        Projectile.NewProjectile(Player.GetSource_OnHurt(npc, "SetBonus_NaquadahArmor"), Player.position, new Vector2(0, 0), ModContent.ProjectileType<NaquadahSpikeBombAOE>(), 0, 0, Player.whoAmI);
+
+                    for (int j = 0; j < Main.rand.Next(2, 4); j++)
+                    {
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                            Projectile.NewProjectile(Player.GetSource_OnHurt(npc, "SetBonus_NaquadahArmor"), Player.position, new Vector2(Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-8f, 8f)), ModContent.ProjectileType<NaquadahSpikeBomb>(), info.Damage * 2, 0, Player.whoAmI);
+                    }
                 }
             }
             #endregion

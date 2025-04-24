@@ -13,8 +13,6 @@ namespace Eternal.Content.Items.Weapons.Magic
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Starstave Drei");
-            // Tooltip.SetDefault("Fires a bouncing bolt that explodes into four");
             Item.staff[Item.type] = true;
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -22,8 +20,8 @@ namespace Eternal.Content.Items.Weapons.Magic
 
         public override void SetDefaults()
         {
-            Item.width = 44;
-            Item.height = 44;
+            Item.width = 48;
+            Item.height = 48;
             Item.damage = 600;
             Item.DamageType = DamageClass.Magic;
             Item.useStyle = ItemUseStyleID.Shoot;
@@ -36,6 +34,7 @@ namespace Eternal.Content.Items.Weapons.Magic
             Item.UseSound = SoundID.Item8;
             Item.rare = ModContent.RarityType<Magenta>();
             Item.autoReuse = true;
+            Item.noMelee = true;
         }
 
         public override void AddRecipes()

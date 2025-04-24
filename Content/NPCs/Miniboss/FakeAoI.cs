@@ -36,6 +36,7 @@ namespace Eternal.Content.NPCs.Miniboss
             NPC.knockBackResist = 0f;
             NPC.damage = 80;
             SpawnModBiomes = new int[1] { ModContent.GetInstance<Biomes.Shrine>().Type };
+            NPC.npcSlots = 6;
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)

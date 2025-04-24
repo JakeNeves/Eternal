@@ -102,11 +102,9 @@ namespace Eternal.Content.NPCs.Rift
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
 		{
-			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-
+			bestiaryEntry.Info.AddRange([
 				new FlavorTextBestiaryInfoElement("A powerful entity who's weak area is it's shiny crystal on it's tail.")
-			});
+			]);
 		}
 
 		public override void CustomBehavior()

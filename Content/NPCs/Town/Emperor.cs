@@ -45,7 +45,7 @@ namespace Eternal.Content.NPCs.Town
             NPCID.Sets.ShimmerTownTransform[NPC.type] = true;
             NPCID.Sets.ShimmerTownTransform[Type] = true;
 
-            NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
                 Velocity = 1f,
                 Direction = 1
@@ -82,8 +82,8 @@ namespace Eternal.Content.NPCs.Town
             NPC.height = 55;
             NPC.aiStyle = 7;
             NPC.damage = 20;
-            NPC.defense = 60;
-            NPC.lifeMax = 60000;
+            NPC.defense = 40;
+            NPC.lifeMax = 3000;
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.DD2_GhastlyGlaivePierce;
             NPC.knockBackResist = 0.5f;
@@ -108,18 +108,15 @@ namespace Eternal.Content.NPCs.Town
         public override void SetChatButtons(ref string button, ref string button2)
         {
             button = Language.GetTextValue("LegacyInterface.28");
+
             if (Main.LocalPlayer.HasItem(ModContent.ItemType<CosmicTablet>()))
-            {
                 button2 = "The Cosmic Emperor";
-            }
+
             if (Main.LocalPlayer.HasItem(ModContent.ItemType<LetterofRecommendation>()))
-            {
                 button2 = "Letter of Recommendation";
-            }
+
             if (EventSystem.isRiftOpen)
-            {
                 button2 = "Help";
-            }
         }
 
         public override bool CheckDead()
@@ -328,11 +325,13 @@ namespace Eternal.Content.NPCs.Town
             Player player = Main.player[Main.myPlayer];
 
             var emperorShop = new NPCShop(Type, ShopName)
-                .Add<RoyalGaladianBread>()
+                .Add<RoyalGaladianBread>(new Condition("Mods.Eternal.Conditions.TrinityDefeated", () => DownedBossSystem.downedTrinity))
                 .Add<FineRedWine>()
                 .Add<TheCherishedKinofGallahard>()
                 .Add<TheSonofTheArsGaladia>(Condition.IsNpcShimmered)
                 .Add<EmperorsTrust>(new Condition("Mods.Eternal.Conditions.CosmicApparitionDefeated", () => DownedBossSystem.downedCosmicApparition))
+                .Add<JakeTEMnomicon>(new Condition("Mods.Eternal.Conditions.isZenithWorld", () => Main.zenithWorld))
+                .Add<ItemNotFound>(new Condition("Mods.Eternal.Conditions.isZenithWorld", () => Main.zenithWorld))
                 .Add<PocketJake>(new Condition("Mods.Eternal.Conditions.IsNamedJake", () => player.name == "Jake" || player.name == "JakeTEM"))
                 .Add<JakesHat>()
                 .Add<JakesTunic>()

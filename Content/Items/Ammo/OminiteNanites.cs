@@ -34,7 +34,7 @@ namespace Eternal.Content.Items.Ammo
         {
             CreateRecipe(333)
                 .AddTile(ModContent.TileType<RotaryHearthForge>())
-                .AddIngredient(ModContent.ItemType<CrystalizedOminite>())
+                .AddIngredient(ModContent.ItemType<CrystallizedOminite>())
                 .Register();
         }
     }

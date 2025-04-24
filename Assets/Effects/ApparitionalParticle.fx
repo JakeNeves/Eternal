@@ -18,6 +18,7 @@ float2 uImageSize1;
 float4 PixelShaderFunction(float2 coords : TEXCOORD0) : COLOR0
 {
 	float4 color = tex2D(uImage0, coords);
+	
 	if (!any(color))
 		return color;
 	float4 color1= tex2D( uImage1 , coords.xy);
@@ -34,7 +35,7 @@ float4 PixelShaderFunction(float2 coords : TEXCOORD0) : COLOR0
 
 technique Technique1
 {
-	pass DeathAnimation
+	pass ApparitionalParticlePass
 	{
 		PixelShader = compile ps_2_0 PixelShaderFunction();
 	}

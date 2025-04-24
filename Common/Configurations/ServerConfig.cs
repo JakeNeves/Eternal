@@ -16,8 +16,8 @@ namespace Eternal.Common.Configurations
         [SeparatePage]
         [Header("GameplayTweaks")]
         [DefaultValue(true)]
-        [LabelKey("$Mods.Eternal.Common.Configurations.ServerConfig.recipeChanges.DisplayName")]
-        [TooltipKey("$Mods.Eternal.Common.Configurations.ServerConfig.recipeChanges.Tooltip")]
+        [LabelKey("$Mods.Eternal.Server.Configurations.ServerConfig.recipeChanges.DisplayName")]
+        [TooltipKey("$Mods.Eternal.Server.Configurations.ServerConfig.recipeChanges.Tooltip")]
         [ReloadRequired]
         public bool recipeChanges = true;
 
@@ -27,24 +27,24 @@ namespace Eternal.Common.Configurations
         [SeparatePage]
         [Header("HellModeTweaks")]
         [DefaultValue(true)]
-        [LabelKey("$Mods.Eternal.Common.Configurations.ServerConfig.cosmicApparitionNaturalSpawn.DisplayName")]
-        [TooltipKey("$Mods.Eternal.Common.Configurations.ServerConfig.cosmicApparitionNaturalSpawn.Tooltip")]
+        [LabelKey("$Mods.Eternal.Server.Configurations.ServerConfig.cosmicApparitionNaturalSpawn.DisplayName")]
+        [TooltipKey("$Mods.Eternal.Server.Configurations.ServerConfig.cosmicApparitionNaturalSpawn.Tooltip")]
         public bool cosmicApparitionNaturalSpawn = true;
 
         /// <summary>
         /// Makes Hell Mode Cruel
         /// </summary>
         [DefaultValue(true)]
-        [LabelKey("$Mods.Eternal.Common.Configurations.ServerConfig.brutalHellMode.DisplayName")]
-        [TooltipKey("$Mods.Eternal.Common.Configurations.ServerConfig.brutalHellMode.Tooltip")]
+        [LabelKey("$Mods.Eternal.Server.Configurations.ServerConfig.brutalHellMode.DisplayName")]
+        [TooltipKey("$Mods.Eternal.Server.Configurations.ServerConfig.brutalHellMode.Tooltip")]
         public bool brutalHellMode = false;
 
         /// <summary>
         /// Gives bosses from the base game an increase of stats, simular to Master Mode
         /// </summary>
         [DefaultValue(true)]
-        [LabelKey("$Mods.Eternal.Common.Configurations.ServerConfig.hellModeVanillaBosses.DisplayName")]
-        [TooltipKey("$Mods.Eternal.Common.Configurations.ServerConfig.hellModeVanillaBosses.Tooltip")]
+        [LabelKey("$Mods.Eternal.Server.Configurations.ServerConfig.hellModeVanillaBosses.DisplayName")]
+        [TooltipKey("$Mods.Eternal.Server.Configurations.ServerConfig.hellModeVanillaBosses.Tooltip")]
         public bool hellModeVanillaBosses = true;
 
         /// <summary>
@@ -53,8 +53,8 @@ namespace Eternal.Common.Configurations
         [SeparatePage]
         [Header("ExperimentalFeatures")]
         [DefaultValue(false)]
-        [LabelKey("$Mods.Eternal.Common.Configurations.ServerConfig.lifeMotes.DisplayName")]
-        [TooltipKey("$Mods.Eternal.Common.Configurations.ServerConfig.lifeMotes.Tooltip")]
+        [LabelKey("$Mods.Eternal.Server.Configurations.ServerConfig.lifeMotes.DisplayName")]
+        [TooltipKey("$Mods.Eternal.Server.Configurations.ServerConfig.lifeMotes.Tooltip")]
         [ReloadRequired]
         public bool lifeMotes = false;
 
@@ -62,18 +62,9 @@ namespace Eternal.Common.Configurations
         /// EXPERIMENTAL: Adds the Purified Beneath biome (WIP)
         /// </summary>
         [DefaultValue(false)]
-        [LabelKey("$Mods.Eternal.Common.Configurations.ServerConfig.purifiedBeneath.DisplayName")]
-        [TooltipKey("$Mods.Eternal.Common.Configurations.ServerConfig.purifiedBeneath.Tooltip")]
+        [LabelKey("$Mods.Eternal.Server.Configurations.ServerConfig.purifiedBeneath.DisplayName")]
+        [TooltipKey("$Mods.Eternal.Server.Configurations.ServerConfig.purifiedBeneath.Tooltip")]
         [ReloadRequired]
         public bool purifiedBeneath = false;
-
-        /// <summary>
-        /// EXPERIMENTAL: Adds some of the upcoming 1.4 content (WIP)
-        /// </summary>
-        [DefaultValue(false)]
-        [LabelKey("$Mods.Eternal.Common.Configurations.ServerConfig.update14.DisplayName")]
-        [TooltipKey("$Mods.Eternal.Common.Configurations.ServerConfig.update14.Tooltip")]
-        [ReloadRequired]
-        public bool update14 = false;
     }
 }

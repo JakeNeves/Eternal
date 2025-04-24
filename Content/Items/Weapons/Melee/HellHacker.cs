@@ -9,11 +9,6 @@ namespace Eternal.Content.Items.Weapons.Melee
 {
     public class HellHacker : ModItem
     {
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return ServerConfig.instance.update14;
-        }
-
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

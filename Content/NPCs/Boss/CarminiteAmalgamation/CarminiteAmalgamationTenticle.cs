@@ -71,7 +71,7 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
                     break;
                 }
             }
-            if (Main.netMode != 1)
+            if (Main.netMode != NetmodeID.MultiplayerClient)
             {
                 NPC.localAI[0] -= 1f;
                 if (NPC.localAI[0] <= 0f)
@@ -170,7 +170,7 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
             {
                 NPC.velocity.Y = -maxSpeed;
             }
-            if (num786 > 0f)
+            /*if (num786 > 0f)
             {
                 NPC.spriteDirection = 1;
                 NPC.rotation = (float)Math.Atan2((double)num787, (double)num786);
@@ -180,7 +180,7 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
                 NPC.spriteDirection = -1;
                 NPC.rotation = (float)Math.Atan2((double)num787, (double)num786) + 3.14f;
                 return;
-            }
+            }*/
 
             if (attackTimer == 100 || attackTimer == 110 || attackTimer == 120 || attackTimer == 130 || attackTimer == 140)
             {

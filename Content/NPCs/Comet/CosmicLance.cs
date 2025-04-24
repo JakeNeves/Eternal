@@ -69,18 +69,16 @@ namespace Eternal.Content.NPCs.Comet
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Desert,
-
+            bestiaryEntry.Info.AddRange([
                 new FlavorTextBestiaryInfoElement("A starborn lance pierces through anything it charges towards!")
-            });
+            ]);
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             Player player = Main.player[Main.myPlayer];
 
-            if (DownedBossSystem.downedCosmicApparition && player.ZoneSnow)
+            if (DownedBossSystem.downedCosmicApparition && player.ZoneSnow && ModContent.GetInstance<ZoneSystem>().zoneComet)
             {
                 return SpawnCondition.Overworld.Chance * 1f;
             }

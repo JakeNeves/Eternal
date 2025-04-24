@@ -1,7 +1,8 @@
 ﻿using Eternal.Common.Configurations;
+using Eternal.Common.ItemDropRules.Conditions;
 using Eternal.Common.Misc;
 using Eternal.Common.Systems;
-using Eternal.Content.BossBarStyles;
+using Eternal.Content.Items.Accessories.Hell;
 using Eternal.Content.Items.BossBags;
 using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Pets;
@@ -18,9 +19,12 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
+using Terraria.Chat;
+using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.NPCs.Boss.CosmicApparition
@@ -28,6 +32,8 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
     [AutoloadBossHead]
     public class CosmicApparition : ModNPC
     {
+        public static LocalizedText CosmicApparitionDefeated { get; private set; }
+
         public override void Load()
         {
             string texture = "Eternal/Content/NPCs/Boss/CosmicApparition/CosmicApparition2_Head_Boss";
@@ -66,6 +72,8 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
 
         public override void SetStaticDefaults()
         {
+            CosmicApparitionDefeated = Mod.GetLocalization($"WorldGen.{nameof(CosmicApparitionDefeated)}");
+
             Main.npcFrameCount[NPC.type] = 8;
 
             NPCID.Sets.BossBestiaryPriority.Add(Type);
@@ -87,8 +95,8 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
 
         public override void SetDefaults()
         {
-            NPC.width = 28;
-            NPC.height = 46;
+            NPC.width = 26;
+            NPC.height = 56;
             NPC.lifeMax = 120000;
             NPC.damage = 75;
             NPC.defense = 60;
@@ -110,27 +118,44 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             NPC.noTileCollide = true;
             NPC.noGravity = true;
             NPC.alpha = 0;
-            SpawnModBiomes = new int[1] { ModContent.GetInstance<Biomes.Comet>().Type };
-            NPC.npcSlots = 10;
+            SpawnModBiomes = [ ModContent.GetInstance<Biomes.Comet>().Type ];
+            NPC.npcSlots = 6;
         }
 
         public override void OnKill()
         {
+            var entitySource = NPC.GetSource_Death();
+
+            if (!DownedBossSystem.downedCosmicApparition)
+            {
+                if (Main.netMode == NetmodeID.SinglePlayer)
+                {
+                    Main.NewText(CosmicApparitionDefeated.Value, 120, 160, 240);
+                }
+                else if (Main.netMode == NetmodeID.Server)
+                {
+                    ChatHelper.BroadcastChatMessage(CosmicApparitionDefeated.ToNetworkText(), new Color(120, 160, 240));
+                }
+
+                Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, 0, 0, ModContent.ProjectileType<CosmicApparitionSoul>(), 0, 0f, Main.myPlayer);
+            }
+
             NPC.SetEventFlagCleared(ref DownedBossSystem.downedCosmicApparition, -1);
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-
+            bestiaryEntry.Info.AddRange([
                 new FlavorTextBestiaryInfoElement("A lost soul, seeking vengance on anything that attacks. Perhaps it seeks something from the Fallen Comet, yet this atoned spirit of an agglomerated horror has been witnessed by very little travelers!")
-            });
+            ]);
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             LeadingConditionRule notExpertRule = new(new Conditions.NotExpert());
+            HellModeDropCondition hellModeDrop = new HellModeDropCondition();
+
+            npcLoot.Add(ItemDropRule.ByCondition(hellModeDrop, ModContent.ItemType<SpiritRites>(), 4));
 
             npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<ReminantHead>(), 4));
 
@@ -246,15 +271,6 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
 
         public override void AI()
         {
-            if (ClientConfig.instance.bossBarExtras)
-            {
-                if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server && BossBarLoader.CurrentStyle == ModContent.GetInstance<EternalBossBarStyle>())
-                {
-                    EternalBossBarOverlay.SetTracked("Ambusher from the Fallen Comet", NPC);
-                    EternalBossBarOverlay.visible = true;
-                }
-            }
-
             if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead || !Main.player[NPC.target].active)
             {
                 NPC.TargetClosest();
@@ -324,17 +340,6 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
                 if (NPC.ai[3] >= 180f)
                 {
                     NPC.life = 0;
-                    if (!DownedBossSystem.downedCosmicApparition)
-                    {
-                        DownedBossSystem.downedCosmicApparition = true;
-                        Main.NewText("The cosmic entities have been empowered...", 120, 160, 240);
-                        Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, 0, 0, ModContent.ProjectileType<CosmicApparitionSoul>(), 0, 0f, Main.myPlayer);
-                    }
-
-                    if (EventSystem.isRiftOpen && !DownedBossSystem.downedRiftCosmicApparition)
-                    {
-                        DownedBossSystem.downedRiftCosmicApparition = true;
-                    }
                     NPC.HitEffect(0, 0);
                     NPC.checkDead();
                 }

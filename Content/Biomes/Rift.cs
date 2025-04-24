@@ -1,4 +1,5 @@
 ﻿using Eternal.Common.Systems;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Graphics.Capture;
 using Terraria.ModLoader;
@@ -13,6 +14,9 @@ namespace Eternal.Content.Biomes
         public override ModWaterStyle WaterStyle => ModContent.GetInstance<RiftWaterStyle>();
 
         public override string BestiaryIcon => base.BestiaryIcon;
+        public override string BackgroundPath => base.BackgroundPath;
+        public override Color? BackgroundColor => Color.Magenta;
+        public override string MapBackground => BackgroundPath;
 
         public override bool IsBiomeActive(Player player)
         {

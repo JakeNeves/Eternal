@@ -22,7 +22,7 @@ namespace Eternal.Content.Items.Weapons.Magic
         public override void SetDefaults()
         {
             Item.width = 26;
-            Item.height = 32;
+            Item.height = 28;
             Item.damage = 800;
             Item.DamageType = DamageClass.Magic;
             Item.useStyle = ItemUseStyleID.Shoot;
@@ -40,13 +40,14 @@ namespace Eternal.Content.Items.Weapons.Magic
             };
             Item.rare = ModContent.RarityType<Turquoise>();
             Item.autoReuse = true;
+            Item.noMelee = true;
         }
 
         public override void AddRecipes()
         {
             CreateRecipe()
                 .AddTile(ModContent.TileType<RotaryHearthForge>())
-                .AddIngredient(ModContent.ItemType<CrystalizedOminite>(), 20)
+                .AddIngredient(ModContent.ItemType<CrystallizedOminite>(), 20)
                 .AddIngredient(ModContent.ItemType<NaquadahBar>(), 10)
                 .AddIngredient(ModContent.ItemType<OminaquaditeBar>(), 10)
                 .Register();

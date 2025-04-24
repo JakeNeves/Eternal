@@ -15,8 +15,6 @@ namespace Eternal.Content.Items.Weapons.Magic
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Starstave Vier");
-            // Tooltip.SetDefault("Fires a small barage of starstave bolts that indulges in mitosis");
             Item.staff[Item.type] = true;
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -24,9 +22,9 @@ namespace Eternal.Content.Items.Weapons.Magic
 
         public override void SetDefaults()
         {
-            Item.width = 44;
-            Item.height = 44;
-            Item.damage = 800;
+            Item.width = 50;
+            Item.height = 50;
+            Item.damage = 620;
             Item.DamageType = DamageClass.Magic;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.mana = 14;
@@ -37,6 +35,7 @@ namespace Eternal.Content.Items.Weapons.Magic
             Item.shootSpeed = 12f;
             Item.UseSound = SoundID.Item8;
             Item.rare = ModContent.RarityType<Turquoise>();
+            Item.noMelee = true;
         }
 
         public override void AddRecipes()

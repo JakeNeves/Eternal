@@ -24,6 +24,8 @@ namespace Eternal.Content.NPCs.Miniboss
 
         public override void SetStaticDefaults()
         {
+            Main.npcFrameCount[NPC.type] = 3;
+
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
                 Hide = true
@@ -35,12 +37,12 @@ namespace Eternal.Content.NPCs.Miniboss
 
         public override void SetDefaults()
         {
-            NPC.lifeMax = 160000;
+            NPC.lifeMax = 80000;
             NPC.damage = 120;
             NPC.defense = 45;
             NPC.knockBackResist = 0f;
-            NPC.width = 92;
-            NPC.height = 92;
+            NPC.width = 54;
+            NPC.height = 54;
             NPC.aiStyle = -1;
             NPC.noGravity = true;
             NPC.lavaImmune = true;
@@ -102,7 +104,7 @@ namespace Eternal.Content.NPCs.Miniboss
             if (!Main.dedServ)
                 Lighting.AddLight(NPC.Center, 0.75f, 0f, 0.75f);
 
-            NPC.rotation += 0.15f;
+            NPC.rotation += 0.05f;
 
             if (NPC.ai[0] == 0f && Main.netMode != NetmodeID.MultiplayerClient)
             {
@@ -185,6 +187,14 @@ namespace Eternal.Content.NPCs.Miniboss
                     attackTimer = 0;
                 }
             }
+        }
+
+        public override void FindFrame(int frameHeight)
+        {
+            NPC.frameCounter += 0.15f;
+            NPC.frameCounter %= Main.npcFrameCount[NPC.type];
+            int Frame = (int)NPC.frameCounter;
+            NPC.frame.Y = Frame * frameHeight;
         }
 
         public override void HitEffect(NPC.HitInfo hit)

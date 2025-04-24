@@ -11,12 +11,12 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
         public override void SetDefaults()
         {
-            Projectile.width = 14;
-            Projectile.height = 20;
+            Projectile.width = 18;
+            Projectile.height = 38;
             Projectile.friendly = true;
             Projectile.ignoreWater = true;
             Projectile.penetrate = -1;
-            Projectile.timeLeft = 450;
+            Projectile.timeLeft = 200;
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)

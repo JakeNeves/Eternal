@@ -16,11 +16,7 @@ using Eternal.Content.Items.Weapons.Melee;
 using Eternal.Content.Projectiles.Explosion;
 using Eternal.Common.ItemDropRules.Conditions;
 using Eternal.Content.Items.Accessories.Hell;
-using Eternal.Common.Configurations;
-using Eternal.Common.Misc;
-using Eternal.Content.BossBarStyles;
 using Eternal.Content.Items.Weapons.Ranged;
-using Eternal.Content.NPCs.Boss.DuneGolem;
 
 namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
 {
@@ -78,10 +74,16 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
                 NPC.scale = 0.75f;
             else
                 NPC.scale = 1f;
+            NPC.npcSlots = 6;
         }
 
         public override void OnKill()
         {
+            if (!DownedBossSystem.downedCarminiteAmalgamation)
+            {
+                ModContent.GetInstance<IesniumOreSystem>().BlessWorldWithIesnium();
+            }
+
             NPC.SetEventFlagCleared(ref DownedBossSystem.downedCarminiteAmalgamation, -1);
         }
 
@@ -163,25 +165,12 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
 
         public override void AI()
         {
-            if (ClientConfig.instance.bossBarExtras)
-            {
-                if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server && BossBarLoader.CurrentStyle == ModContent.GetInstance<EternalBossBarStyle>())
-                {
-                    EternalBossBarOverlay.SetTracked("Abominable Fleshbound Horror", NPC);
-                    EternalBossBarOverlay.visible = true;
-                }
-            }
-
             var entitySource = NPC.GetSource_FromAI();
 
             if (NPC.AnyNPCs(ModContent.NPCType<CarminiteAmalgamationTenticle>()))
-            {
                 NPC.dontTakeDamage = true;
-            }
-            else if (!NPC.AnyNPCs(ModContent.NPCType<CarminiteAmalgamationTenticle>()))
-            {
+            else
                 NPC.dontTakeDamage = false;
-            }
 
             rot = NPC.rotation;
 
@@ -234,7 +223,7 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
                         int amountOfTenticles = Main.rand.Next(4, 8);
                         for (int i = 0; i < amountOfTenticles; ++i)
                         {
-                            NPC.NewNPC(entitySource, (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<CarminiteAmalgamationTenticle>());
+                            int tenticle = NPC.NewNPC(entitySource, (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<CarminiteAmalgamationTenticle>());
                         }
                     }
                     else if (Main.expertMode)
@@ -242,7 +231,7 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
                         int amountOfTenticles = Main.rand.Next(3, 6);
                         for (int i = 0; i < amountOfTenticles; ++i)
                         {
-                            NPC.NewNPC(entitySource, (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<CarminiteAmalgamationTenticle>());
+                            int tenticle = NPC.NewNPC(entitySource, (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<CarminiteAmalgamationTenticle>());
                         }
                     }
                     else
@@ -250,7 +239,7 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
                         int amountOfTenticles = Main.rand.Next(2, 4);
                         for (int i = 0; i < amountOfTenticles; ++i)
                         {
-                            NPC.NewNPC(entitySource, (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<CarminiteAmalgamationTenticle>());
+                            int tenticle = NPC.NewNPC(entitySource, (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<CarminiteAmalgamationTenticle>());
                         }
                     }
                     phase2Init = true;
@@ -287,20 +276,6 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
 
                 if (NPC.ai[3] >= 180f)
                 {
-                    if (!DownedBossSystem.downedCarminiteAmalgamation)
-                    {
-                        Main.NewText("The ground has been smothered with luminous energy...", 22, 71, 73);
-
-                        for (int k = 0; k < (int)(Main.maxTilesX * Main.maxTilesY * 6E-05); k++)
-                        {
-                            int x = WorldGen.genRand.Next(0, Main.maxTilesX);
-                            int y = WorldGen.genRand.Next((int)Terraria.WorldBuilding.GenVars.worldSurfaceLow, Main.maxTilesY);
-                            WorldGen.TileRunner(x, y, WorldGen.genRand.Next(4, 6), WorldGen.genRand.Next(4, 12), ModContent.TileType<IesniumOre>());
-                        }
-
-                        DownedBossSystem.downedCarminiteAmalgamation = true;
-                    }
-
                     NPC.life = 0;
                     NPC.HitEffect(0, 0);
                     NPC.checkDead();

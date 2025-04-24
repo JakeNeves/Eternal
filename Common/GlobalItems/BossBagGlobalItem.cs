@@ -1,5 +1,4 @@
-﻿using Eternal.Common.Configurations;
-using Eternal.Content.Items.Materials;
+﻿using Eternal.Content.Items.Materials;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -13,13 +12,11 @@ namespace Eternal.Common.GlobalItems
         {
             switch (item.type) {
                 case ItemID.EyeOfCthulhuBossBag:
-                    if (ServerConfig.instance.update14)
-                        itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<KnifeHandle14>(), 24));
+                        itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<KnifeHandle>(), 24));
                     break;
 
                 case ItemID.PlanteraBossBag:
-                    if (ServerConfig.instance.update14)
-                        itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<KnifeBlade14>(), 24));
+                        itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<KnifeBlade>(), 24));
                     break;
             }
         }

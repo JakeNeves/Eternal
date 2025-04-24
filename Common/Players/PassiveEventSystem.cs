@@ -45,17 +45,11 @@ namespace Eternal.Common.Players
                 Main.NewText("Please note that this mod is a work in progress, so bugs may occur!" + 
                         "\nMake sure you backup your world every now and then, especially when using the mod's experimental features." +
                         "\nThese messages can be disabled in the mod's configs.", 255, 223, 64);
-
-                if (ServerConfig.instance.update14) {
-                    Main.NewText("You are currently playing with the experimental 1.4 update content, things can and will change throughout the update's development cycle!", 235, 40, 170);
-                }
             }
         }
 
         public override void PreUpdate()
         {
-            var entitySource = Player.GetSource_NaturalSpawn();
-
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
                 if (DifficultySystem.hellMode && ServerConfig.instance.cosmicApparitionNaturalSpawn)
@@ -65,22 +59,22 @@ namespace Eternal.Common.Players
                         cosmicApparitionPresence++;
                         switch (cosmicApparitionPresence)
                         {
-                            case 4000:
+                            case 4500:
                                 Main.NewText("You feel a ghostly figure following you...", 220, 0, 210);
                                 break;
-                            case 8000:
+                            case 6000:
                                 Main.NewText("Shrieks start to echo faintly around you...", 220, 0, 210);
                                 break;
-                            case 12000:
+                            case 7500:
                                 Main.NewText("A chill goes down your spine as something approaches from a vast distance...", 220, 0, 210);
                                 break;
-                            case 16000:
+                            case 9000:
                                 SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/CosmicApparitionAnger"));
 
                                 if (!Main.dedServ)
-                                    NPC.SpawnOnPlayer(Player.whoAmI, ModContent.NPCType<IgneopedeHead>());
+                                    NPC.SpawnOnPlayer(Player.whoAmI, ModContent.NPCType<CosmicApparition>());
                                 else
-                                    NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, number: Player.whoAmI, number2: ModContent.NPCType<IgneopedeHead>());
+                                    NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, number: Player.whoAmI, number2: ModContent.NPCType<CosmicApparition>());
 
                                 // Main.NewText("A Cosmic Apparition has awoken!", 175, 75, 255);
                                 cosmicApparitionPresence = 0;

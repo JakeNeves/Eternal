@@ -63,8 +63,6 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            var entitySource = Projectile.GetSource_FromAI();
-
             if (!Main.dedServ)
             {
                 SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/ArkiumDiskHit")
@@ -79,7 +77,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
             for (int i = 0; i < 6; i++)
             {
                 if (!Main.dedServ)
-                    Projectile.NewProjectile(entitySource, Projectile.Center, new Vector2(Main.rand.Next(-8, 8), Main.rand.Next(-8, 8)), ModContent.ProjectileType<BOTAProjectileAOE>(), Projectile.damage / 2, 0.0f, Main.myPlayer, 0.0f, 0.0f);
+                    Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, new Vector2(Main.rand.Next(-8, 8), Main.rand.Next(-8, 8)), ModContent.ProjectileType<BOTAProjectileAOE>(), Projectile.damage / 2, 0.0f, Main.myPlayer, 0.0f, 0.0f);
             }
 
             return true;
@@ -87,11 +85,9 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            var entitySource = Projectile.GetSource_Death();
-
             for (int i = 0; i < 6; i++)
             {
-                Projectile.NewProjectile(entitySource, Projectile.Center, new Vector2(Main.rand.Next(-8, 8), Main.rand.Next(-8, 8)), ModContent.ProjectileType<BOTAProjectileTrail>(), Projectile.damage / 2, 0.0f, Main.myPlayer, 0.0f, 0.0f);
+                Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, new Vector2(Main.rand.Next(-8, 8), Main.rand.Next(-8, 8)), ModContent.ProjectileType<BOTAProjectileTrail>(), Projectile.damage / 2, 0.0f, Main.myPlayer, 0.0f, 0.0f);
             }
 
             if (!Main.dedServ)

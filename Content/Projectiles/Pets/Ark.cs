@@ -13,18 +13,18 @@ namespace Eternal.Content.Projectiles.Pets
 
 		public override void SetDefaults()
 		{
-			Projectile.CloneDefaults(ProjectileID.ZephyrFish);
-			Projectile.width = 76;
-			Projectile.height = 144;
+			Projectile.CloneDefaults(ProjectileID.DD2PetGato);
+			Projectile.width = 46;
+			Projectile.height = 92;
 
-			AIType = ProjectileID.ZephyrFish;
+			AIType = ProjectileID.DD2PetGato;
 		}
 
 		public override bool PreAI()
 		{
 			Player player = Main.player[Projectile.owner];
 
-			player.zephyrfish = false;
+			player.petFlagDD2Gato = false;
 
 			return true;
 		}

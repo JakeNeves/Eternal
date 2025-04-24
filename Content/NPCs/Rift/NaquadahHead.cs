@@ -42,7 +42,7 @@ namespace Eternal.Content.NPCs.Rift
             NPC.buffImmune[BuffID.Frostburn] = true;
             NPC.buffImmune[BuffID.Frozen] = true;
             NPC.buffImmune[BuffID.Chilled] = true;
-            SpawnModBiomes = new int[1] { ModContent.GetInstance<Biomes.Rift>().Type };
+            SpawnModBiomes = [ ModContent.GetInstance<Biomes.Rift>().Type ];
             NPC.noGravity = true;
             NPC.noTileCollide = true;
         }
@@ -58,16 +58,14 @@ namespace Eternal.Content.NPCs.Rift
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky,
-
+            bestiaryEntry.Info.AddRange([
                 new FlavorTextBestiaryInfoElement("Formed in the depths of outer space upon opening the rift, they roam the airspace usually close down to earth!")
-            });
+            ]);
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (EventSystem.isRiftOpen && DownedBossSystem.downedRiftArkofImperious && !Main.dayTime)
+            if (EventSystem.isRiftOpen && DownedBossSystem.downedArkofImperious && !Main.dayTime)
                 return SpawnCondition.Sky.Chance * 1.75f;
             else
                 return SpawnCondition.Sky.Chance * 0f;
@@ -76,7 +74,7 @@ namespace Eternal.Content.NPCs.Rift
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RawNaquadah>(), 1, 3, 12));
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CrystalizedOminite>(), 2, 1, 2));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CrystallizedOminite>(), 2, 1, 2));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LargeRawNaquadah>(), 3, 1, 2));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RodofDistortion>(), 6));
         }

@@ -33,6 +33,7 @@ namespace Eternal.Content.Items.Weapons.Magic
             Item.shootSpeed = 0f;
             Item.UseSound = SoundID.Item84;
             Item.rare = ModContent.RarityType<Teal>();
+            Item.noMelee = true;
         }
 
         public override bool CanUseItem(Player player)
@@ -46,7 +47,7 @@ namespace Eternal.Content.Items.Weapons.Magic
                 .AddTile(ModContent.TileType<RotaryHearthForge>())
                 .AddIngredient(ModContent.ItemType<CometiteBar>(), 6)
                 .AddIngredient(ModContent.ItemType<MoteofOminite>(), 12)
-                .AddIngredient(ModContent.ItemType<CrystalizedOminite>(), 6)
+                .AddIngredient(ModContent.ItemType<CrystallizedOminite>(), 6)
                 .Register();
         }
 

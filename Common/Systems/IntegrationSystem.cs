@@ -1,4 +1,5 @@
-﻿using Eternal.Content.Items.Summon;
+﻿using CalamityMod.Projectiles.Rogue;
+using Eternal.Content.Items.Summon;
 using Eternal.Content.NPCs.Boss.AoI;
 using Eternal.Content.NPCs.Boss.CarminiteAmalgamation;
 using Eternal.Content.NPCs.Boss.CosmicApparition;
@@ -7,6 +8,9 @@ using Eternal.Content.NPCs.Boss.DuneGolem;
 using Eternal.Content.NPCs.Boss.Duneworm;
 using Eternal.Content.NPCs.Boss.Igneopede;
 using Eternal.Content.NPCs.Boss.Incinerius;
+using Eternal.Content.NPCs.Boss.Niades;
+using Eternal.Content.NPCs.Boss.Trinity;
+using Eternal.Content.NPCs.DarkMoon;
 using Eternal.Content.NPCs.Miniboss;
 using System.Collections.Generic;
 using Terraria.Localization;
@@ -144,9 +148,50 @@ namespace Eternal.Common.Systems
             #endregion
 
             #region Dark Moon (Event)
+            bossChecklistMod.Call(
+                "LogEvent",
+                Mod,
+                "DarkMoon",
+                12.25f,
+                () => EventSystem.downedDarkMoon,
+                new List<int>()
+                {
+                    ModContent.NPCType<BloodSlurper>(),
+                    ModContent.NPCType<DarkMoonWatcher>(),
+                    ModContent.NPCType<HexedSkeleton>(),
+                    ModContent.NPCType<Pseyeche>(),
+                    ModContent.NPCType<PsycheSkull>(),
+                    ModContent.NPCType<PsycheSlime>(),
+                    ModContent.NPCType<PsycheZombie>(),
+                    ModContent.NPCType<TwistedPsycheSlime>()
+                },
+                new Dictionary<string, object>()
+                {
+                    ["spawnItems"] = ModContent.ItemType<Animanomicon>(),
+                    ["displayName"] = Language.GetText("Mods.Eternal.Events.DarkMoon.DisplayName"),
+                }
+            );
             #endregion
 
-            #region Empraynia
+            #region Niades
+            bossChecklistMod.Call(
+                "LogBoss",
+                Mod,
+                nameof(Niades),
+                13.15f,
+                () => DownedBossSystem.downedNiades,
+                ModContent.NPCType<Niades>(),
+                new Dictionary<string, object>()
+                {
+                    ["spawnItems"] = ModContent.ItemType<BloodstainedJudgement>(),
+                    ["displayName"] = Language.GetText("Mods.Eternal.NPCs.Niades.DisplayName"),
+                    ["collectables"] = new List<int>()
+                    {
+                        ModContent.ItemType<Content.Items.Accessories.Expert.Rosary>(),
+                        ModContent.ItemType<Content.Items.Materials.CursedAshes>()
+                    }
+                }
+            );
             #endregion
             #endregion
 
@@ -224,9 +269,70 @@ namespace Eternal.Common.Systems
             #endregion
 
             #region The Trinity
+            bossChecklistMod.Call(
+                "LogBoss",
+                Mod,
+                nameof(TrinityCore),
+                21.0f,
+                () => DownedBossSystem.downedTrinity,
+                new List<int>()
+                {
+                    ModContent.NPCType<Thunderius>(),
+                    ModContent.NPCType<Infernito>(),
+                    ModContent.NPCType<Cryota>(),
+                    ModContent.NPCType<TrinityCore>()
+                },
+                new Dictionary<string, object>()
+                {
+                    ["spawnItems"] = ModContent.ItemType<PrimordialRelic>(),
+                    ["displayName"] = Language.GetText("Mods.Eternal.NPCs.TrinityCore.DisplayName"),
+                    ["collectables"] = new List<int>()
+                    {
+
+                    }
+                }
+            );
             #endregion
 
             #region Dark Moon II (Event)
+            bossChecklistMod.Call(
+                "LogEvent",
+                Mod,
+                "DarkMoon2",
+                21.25f,
+                () => EventSystem.downedDarkMoon2,
+                new List<int>()
+                {
+                    ModContent.NPCType<Shademan>(),
+                    ModContent.NPCType<SanguineSphere>(),
+                    ModContent.NPCType<ShadeBat>()
+                },
+                new Dictionary<string, object>()
+                {
+                    ["spawnItems"] = ModContent.ItemType<Animanomicon>(),
+                    ["displayName"] = Language.GetText("Mods.Eternal.Events.DarkMoon2.DisplayName"),
+                }
+            );
+            #endregion
+
+            #region Shade Slime (Miniboss)
+            bossChecklistMod.Call(
+                "LogMiniBoss",
+                Mod,
+                nameof(ShadeSlime),
+                21.28f,
+                () => DownedMinibossSystem.downedShadeSlime,
+                ModContent.NPCType<ShadeSlime>(),
+                new Dictionary<string, object>()
+                {
+                    ["displayName"] = Language.GetText("Mods.Eternal.NPCs.ShadeSlime.DisplayName"),
+                    ["collectables"] = new List<int>()
+                    {
+                        ModContent.ItemType<Content.Items.Accessories.ShadeLocket>(),
+                        ModContent.ItemType<Content.Items.Weapons.Magic.DarkArts>(),
+                    }
+                }
+            );
             #endregion
 
             #region Cosmic Emperor

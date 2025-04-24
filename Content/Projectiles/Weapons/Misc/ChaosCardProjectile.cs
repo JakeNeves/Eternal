@@ -30,8 +30,11 @@ namespace Eternal.Content.Projectiles.Weapons.Misc
                 Dust.NewDust(Projectile.Center + Projectile.velocity, Projectile.width, Projectile.height, DustID.Wraith, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);
             }
 
-            target.life = 1;
-            player.ApplyDamageToNPC(target, 9999, 0f, 0, false);
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+                target.StrikeInstantKill();
+
+            //target.life = 1;
+            //player.ApplyDamageToNPC(target, 9999, 0f, 0, false);
 
         }
 

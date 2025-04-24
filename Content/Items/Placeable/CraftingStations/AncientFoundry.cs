@@ -37,7 +37,7 @@ namespace Eternal.Content.Items.Placeable.CraftingStations
                 .AddIngredient(ModContent.ItemType<ArkaniumScrap>(), 50)
                 .AddIngredient(ModContent.ItemType<StarquartzCrystalCluster>(), 60)
                 .AddIngredient(ModContent.ItemType<ArkiumQuartzCrystalCluster>(), 50)
-                .AddIngredient(ModContent.ItemType<CrystalizedOminite>(), 200)
+                .AddIngredient(ModContent.ItemType<CrystallizedOminite>(), 200)
                 .AddIngredient(ModContent.ItemType<Starforge>())
                 .AddIngredient(ItemID.LunarCraftingStation)
                 .AddRecipeGroup("eternal:adamantiteForges")

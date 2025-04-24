@@ -1,6 +1,8 @@
 ﻿using Eternal.Common.Players;
+using Eternal.Content.Projectiles.Accessories;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ModLoader;
 
 namespace Eternal.Common.GlobalProjectiles
@@ -36,6 +38,15 @@ namespace Eternal.Common.GlobalProjectiles
             var entitySource = Projectile.GetSource_None();
             int pro = Projectile.NewProjectile(entitySource, pos, vel, type, damage, knockback, owner, ai0, ai1);
             return (pro < 1000) ? Main.projectile[pro] : null;
+        }
+
+        public override void OnSpawn(Projectile projectile, IEntitySource source)
+        {
+            if (AccessorySystem.Godhead)
+            {
+                if (projectile.DamageType == DamageClass.Melee || projectile.DamageType == DamageClass.Magic)
+                    Projectile.NewProjectile(source, projectile.Center, projectile.velocity, ModContent.ProjectileType<GodheadCircle>(), 100, 0f);
+            }
         }
     }
 }

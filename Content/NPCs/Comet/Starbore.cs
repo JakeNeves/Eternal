@@ -15,14 +15,14 @@ using Terraria.ModLoader.Utilities;
 
 namespace Eternal.Content.NPCs.Comet
 {
-	internal class StarboreHead : Starbore
+	internal class StarboreHead : Psyworm
 	{
 		public override void SetStaticDefaults()
 		{
             var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
                 CustomTexturePath = "Eternal/Content/NPCs/Comet/Starbore_Preview",
-                Position = new Vector2(16f, 24f),
+                Position = new Vector2(0f, 24f),
                 PortraitPositionXOverride = 0f,
                 PortraitPositionYOverride = 8f
             };
@@ -58,7 +58,7 @@ namespace Eternal.Content.NPCs.Comet
 			NPC.defense = 10;
 			NPC.damage = 20;
 			NPC.value = Item.sellPrice(platinum: 3, gold: 30, silver: 60);
-			SpawnModBiomes = new int[1] { ModContent.GetInstance<Biomes.Comet>().Type };
+			SpawnModBiomes = [ ModContent.GetInstance<Biomes.Comet>().Type ];
 		}
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -93,11 +93,11 @@ namespace Eternal.Content.NPCs.Comet
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
 		{
-			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+			bestiaryEntry.Info.AddRange([
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
 
 				new FlavorTextBestiaryInfoElement("These otherworldly serpents like to burrow through comets and meteors, they are however very nimble navigator despite their lack in length.")
-			});
+			]);
 		}
 
 		public override void CustomBehavior()
@@ -140,7 +140,7 @@ namespace Eternal.Content.NPCs.Comet
 		}
 	}
 
-	internal class StarboreBody : Starbore
+	internal class StarboreBody : Psyworm
 	{
 		public override void SetStaticDefaults()
 		{
@@ -194,7 +194,7 @@ namespace Eternal.Content.NPCs.Comet
         }
 	}
 
-	internal class StarboreTail : Starbore
+	internal class StarboreTail : Psyworm
 	{
 		public override void SetStaticDefaults()
 		{
@@ -254,7 +254,7 @@ namespace Eternal.Content.NPCs.Comet
 		}
 	}
 
-	public abstract class Starbore : Worm
+	public abstract class Psyworm : Worm
     {
 		public override void Init()
 		{

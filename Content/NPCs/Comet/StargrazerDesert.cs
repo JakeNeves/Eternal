@@ -65,11 +65,9 @@ namespace Eternal.Content.NPCs.Comet
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-
+            bestiaryEntry.Info.AddRange([
                 new FlavorTextBestiaryInfoElement("A starborn tumbler that rolls along the ground and grazes anything in it's path...")
-            });
+            ]);
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
@@ -80,6 +78,7 @@ namespace Eternal.Content.NPCs.Comet
             npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<GalaxianPlating>(), 3, 6, 8));
             npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<Astragel>(), 3, 6, 8));
             npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<InterstellarScrapMetal>(), 3, 6, 8));
+            npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<JumboStar>(), 36));
 
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MoonstabKunai>(), 4));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientStarbornMask>(), 25));

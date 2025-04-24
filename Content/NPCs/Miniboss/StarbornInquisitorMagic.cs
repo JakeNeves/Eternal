@@ -47,15 +47,14 @@ namespace Eternal.Content.NPCs.Miniboss
             NPC.buffImmune[BuffID.OnFire] = true;
             SpawnModBiomes = new int[1] { ModContent.GetInstance<Biomes.Comet>().Type };
             NPC.rarity = 4;
+            NPC.npcSlots = 6;
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-
+            bestiaryEntry.Info.AddRange([
                 new FlavorTextBestiaryInfoElement("Perhaps, one of the strongest entities anyone has encountered, this one can fire an unstable wisp!")
-            });
+            ]);
         }
 
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)

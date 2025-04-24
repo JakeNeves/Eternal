@@ -43,8 +43,6 @@ namespace Eternal.Content.NPCs.Boss.Trinity
 
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Cryota's Sentry");
-
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
                 Hide = true
@@ -57,7 +55,7 @@ namespace Eternal.Content.NPCs.Boss.Trinity
             NPC.lavaImmune = true;
             NPC.HitSound = SoundID.NPCHit41;
             NPC.DeathSound = SoundID.NPCDeath14;
-            NPC.lifeMax = 60000;
+            NPC.lifeMax = 8000;
             NPC.defense = 95;
             NPC.width = 46;
             NPC.height = 56;
@@ -92,7 +90,7 @@ namespace Eternal.Content.NPCs.Boss.Trinity
             {
                 iceBombTimer++;
 
-                if (iceBombTimer > 5)
+                if (iceBombTimer > 10)
                 {
                     float A = (float)Main.rand.Next(-200, 200) * 0.01f;
                     float B = (float)Main.rand.Next(-200, 200) * 0.01f;
@@ -107,15 +105,15 @@ namespace Eternal.Content.NPCs.Boss.Trinity
                 iceBombTimer = 0;
             }
 
-            if (attackTimer == 100)
+            if (attackTimer == 200)
             {
                 iceBombTrail = true;
             }
-            if (attackTimer == 500)
+            if (attackTimer == 400)
             {
                 iceBombTrail = false;
             }
-            if (attackTimer == 600)
+            if (attackTimer == 400)
             {
                 attackTimer = 0;
             }
@@ -183,7 +181,7 @@ namespace Eternal.Content.NPCs.Boss.Trinity
 
             float rad = (float)PositionIndex / Cryota.SentryCount() * MathHelper.TwoPi;
 
-            RotationTimer += 0.5f;
+            RotationTimer += 0.15f;
             if (RotationTimer > RotationTimerMax)
             {
                 RotationTimer = 0;
@@ -208,8 +206,8 @@ namespace Eternal.Content.NPCs.Boss.Trinity
             Vector2 toDestination = destination - NPC.Center;
             Vector2 toDestinationNormalized = toDestination.SafeNormalize(Vector2.Zero);
 
-            float speed = 70f;
-            float inertia = 20;
+            float speed = 45f;
+            float inertia = 15;
 
             Vector2 moveTo = toDestinationNormalized * speed;
             NPC.velocity = (NPC.velocity * (inertia - 1) + moveTo) / inertia;

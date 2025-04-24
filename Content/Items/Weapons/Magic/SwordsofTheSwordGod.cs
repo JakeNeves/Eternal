@@ -13,17 +13,13 @@ namespace Eternal.Content.Items.Weapons.Magic
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Swords of The Sword God");
-            /* Tooltip.SetDefault("Fires a barrage of swords" +
-                             "\n'How about we do a little sword dance!'"); */
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()
         {
-            Item.width = 34;
-            Item.height = 32;
+            Item.width = 26;
+            Item.height = 28;
             Item.damage = 600;
             Item.DamageType = DamageClass.Magic;
             Item.useStyle = ItemUseStyleID.Shoot;
@@ -36,6 +32,7 @@ namespace Eternal.Content.Items.Weapons.Magic
             Item.UseSound = SoundID.Item71;
             Item.rare = ModContent.RarityType<Magenta>();
             Item.autoReuse = true;
+            Item.noMelee = true;
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

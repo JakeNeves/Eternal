@@ -39,7 +39,7 @@ namespace Eternal.Content.NPCs.Comet
             NPC.buffImmune[BuffID.Frostburn] = true;
             NPC.buffImmune[BuffID.Frozen] = true;
             NPC.buffImmune[BuffID.Chilled] = true;
-            SpawnModBiomes = new int[1] { ModContent.GetInstance<Biomes.Comet>().Type };
+            SpawnModBiomes = [ ModContent.GetInstance<Biomes.Comet>().Type ];
         }
 
         public override void HitEffect(NPC.HitInfo hit)
@@ -61,11 +61,9 @@ namespace Eternal.Content.NPCs.Comet
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-
+            bestiaryEntry.Info.AddRange([
                 new FlavorTextBestiaryInfoElement("Like slimes, they aren't very intelligent and quite small, but they do have otherworldly properties that typical slimes don't...")
-            });
+            ]);
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)

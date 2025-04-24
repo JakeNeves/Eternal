@@ -14,11 +14,6 @@ namespace Eternal.Content.NPCs.DarkMoon
 {
     public class DarkMoonWatcher : ModNPC
     {
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return ServerConfig.instance.update14;
-        }
-
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.DemonEye];
@@ -78,11 +73,9 @@ namespace Eternal.Content.NPCs.DarkMoon
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-
+            bestiaryEntry.Info.AddRange([
                 new FlavorTextBestiaryInfoElement("A psychebound horror that gazes upon the darkened moon.")
-            });
+            ]);
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

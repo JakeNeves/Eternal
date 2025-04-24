@@ -28,6 +28,9 @@ namespace Eternal
                 Filters.Scene["Eternal:Rift"] = new Filter(new ScreenShaderData("FilterMiniTower").UseColor(0.75f, 0f, 0.75f).UseOpacity(0.5f), EffectPriority.High);
                 SkyManager.Instance["Eternal:Rift"] = new RiftSky();
 
+                Filters.Scene["Eternal:DarkMoon"] = new Filter(new ScreenShaderData("FilterMiniTower").UseColor(0.5f, 0f, 0.5f).UseOpacity(0.5f), EffectPriority.High);
+                SkyManager.Instance["Eternal:DarkMoon"] = new DarkMoonSky();
+
                 Filters.Scene["Eternal:PurifiedBeneath"] = new Filter(new ScreenShaderData("FilterMiniTower").UseColor(1f, 1f, 1f).UseOpacity(0.75f), EffectPriority.High);
                 SkyManager.Instance["Eternal:PurifiedBeneath"] = new PurifiedBeneathSky();
 
@@ -37,6 +40,9 @@ namespace Eternal
                 Filters.Scene["Eternal:RiftSkyEffect"] = new Filter((new SandstormShaderData("FilterSandstormForeground")).UseColor(0.025f, 0.0f, 0.025f).UseImage(ModContent.Request<Texture2D>("Eternal/Assets/Textures/Misc/MilkyNoise", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value, 0, null).UseOpacity(0.015f).UseImageScale(new Vector2(3f, 0.75f), 0), EffectPriority.High);
                 Filters.Scene["Eternal:RiftSkyEffect2"] = new Filter((new SandstormShaderData("FilterSandstormForeground")).UseColor(0.025f, 0.0f, 0.025f).UseImage(ModContent.Request<Texture2D>("Eternal/Assets/Textures/Misc/MilkyNoise2", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value, 0, null).UseOpacity(0.010f).UseImageScale(new Vector2(3f, 0.75f), 0), EffectPriority.High);
                 Filters.Scene["Eternal:RiftSkyEffect3"] = new Filter((new SandstormShaderData("FilterSandstormForeground")).UseColor(0.025f, 0.0f, 0.025f).UseImage(ModContent.Request<Texture2D>("Eternal/Assets/Textures/Misc/MilkyNoise3", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value, 0, null).UseOpacity(0.005f).UseImageScale(new Vector2(3f, 0.75f), 0), EffectPriority.High);
+
+                Filters.Scene["Eternal:Trinity"] = new Filter(new ScreenShaderData("FilterMiniTower").UseColor(0.75f, 0.15f, 0.8f).UseOpacity(0.5f), EffectPriority.High);
+                SkyManager.Instance["Eternal:Trinity"] = new TrinitySky();
             }
 
             Naquadarinite = CustomCurrencyManager.RegisterCurrency(new Naquadarinite(ModContent.ItemType<NaquadariniteMote>(), 999L, "Naquadarinite"));

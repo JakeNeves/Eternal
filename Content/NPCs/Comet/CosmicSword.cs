@@ -69,18 +69,16 @@ namespace Eternal.Content.NPCs.Comet
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Desert,
-
+            bestiaryEntry.Info.AddRange([
                 new FlavorTextBestiaryInfoElement("A living sword that was once a follower of the Ark of Imperious.")
-            });
+            ]);
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             Player player = Main.player[Main.myPlayer];
 
-            if (DownedBossSystem.downedCosmicApparition)
+            if (DownedBossSystem.downedCosmicApparition && ModContent.GetInstance<ZoneSystem>().zoneComet)
             {
                 return SpawnCondition.OverworldDayDesert.Chance * 1f;
             }

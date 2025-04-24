@@ -8,11 +8,6 @@ namespace Eternal.Content.Items.Materials
 {
     public class KnifeHandle : ModItem
     {
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return !ServerConfig.instance.update14;
-        }
-
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -21,7 +16,7 @@ namespace Eternal.Content.Items.Materials
         public override void SetDefaults()
         {
             Item.width = 16;
-            Item.height = 8;
+            Item.height = 16;
             Item.rare = ItemRarityID.Gray;
         }
     }

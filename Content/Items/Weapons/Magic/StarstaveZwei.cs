@@ -16,8 +16,6 @@ namespace Eternal.Content.Items.Weapons.Magic
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Starstave Zwei");
-            // Tooltip.SetDefault("Fires multiple Starstave Bolts");
             Item.staff[Item.type] = true;
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -25,8 +23,8 @@ namespace Eternal.Content.Items.Weapons.Magic
 
         public override void SetDefaults()
         {
-            Item.width = 48;
-            Item.height = 48;
+            Item.width = 42;
+            Item.height = 42;
             Item.damage = 300;
             Item.DamageType = DamageClass.Magic;
             Item.useStyle = ItemUseStyleID.Shoot;
@@ -39,6 +37,7 @@ namespace Eternal.Content.Items.Weapons.Magic
             Item.UseSound = SoundID.Item8;
             Item.rare = ModContent.RarityType<Teal>();
             Item.autoReuse = true;
+            Item.noMelee = true;
         }
 
         public override void AddRecipes()

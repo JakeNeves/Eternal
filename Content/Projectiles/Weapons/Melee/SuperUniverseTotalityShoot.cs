@@ -51,7 +51,10 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
         public override void OnKill(int timeLeft)
         {
-            
+            for (int k = 0; k < 10; k++)
+            {
+                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.PurpleCrystalShard, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);
+            }
         }
     }
 }

@@ -8,11 +8,6 @@ namespace Eternal.Content.Projectiles.Boss
 {
     public class CarminiteSludge : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Carminite Sludge");
-        }
-
         public override void SetDefaults()
         {
             Projectile.width = 6;
@@ -41,12 +36,12 @@ namespace Eternal.Content.Projectiles.Boss
                 if (Main.rand.NextBool(3))
                 {
                     dust.noGravity = true;
-                    dust.scale *= 3f;
+                    dust.scale *= 1.75f;
                     dust.velocity.X *= 2f;
                     dust.velocity.Y *= 2f;
                 }
 
-                dust.scale *= 1.5f;
+                dust.scale *= 1.25f;
                 dust.velocity *= 1.2f;
                 dust.scale *= dustScale;
             }
@@ -86,7 +81,7 @@ namespace Eternal.Content.Projectiles.Boss
             {
                 Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Blood, Projectile.oldVelocity.X * 1f, Projectile.oldVelocity.Y * 1f);
             }
-            SoundEngine.PlaySound(SoundID.NPCHit1, Projectile.Center);
+            SoundEngine.PlaySound(SoundID.Item111, Projectile.Center);
         }
 
     }

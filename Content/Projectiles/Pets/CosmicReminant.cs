@@ -31,6 +31,15 @@ namespace Eternal.Content.Projectiles.Pets
 
 			player.zephyrfish = false;
 
+			if (++Projectile.frameCounter >= 9)
+			{
+				Projectile.frameCounter = 0;
+				if (++Projectile.frame >= 8)
+				{
+					Projectile.frame = 0;
+				}
+			}
+
 			return true;
 		}
 

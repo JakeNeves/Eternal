@@ -13,6 +13,8 @@ namespace Eternal.Common.Systems
         public int gloomrockCount;
         public int shinestoneCount;
         public int shrineBrickCount;
+        public int redBasaltCount;
+        public int hexedBasaltCount;
 
         public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts)
         {
@@ -20,6 +22,8 @@ namespace Eternal.Common.Systems
             gloomrockCount = tileCounts[ModContent.TileType<Gloomrock>()];
             shinestoneCount = tileCounts[ModContent.TileType<Shinestone>()];
             shrineBrickCount = tileCounts[ModContent.TileType<ShrineBrick>()];
+            redBasaltCount = tileCounts[ModContent.TileType<RedBasaltBlock>()];
+            hexedBasaltCount = tileCounts[ModContent.TileType<HexedBasaltBlock>()];
         }
     }
 }

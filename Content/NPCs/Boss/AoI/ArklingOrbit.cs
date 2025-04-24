@@ -50,8 +50,8 @@ namespace Eternal.Content.NPCs.Boss.AoI
             NPC.DeathSound = SoundID.NPCDeath14;
             NPC.lifeMax = 4000;
             NPC.defense = 40;
-            NPC.width = 38;
-            NPC.height = 72;
+            NPC.width = 86;
+            NPC.height = 186;
             NPC.damage = 60;
             NPC.netAlways = true;
             NPC.noGravity = true;
@@ -117,8 +117,8 @@ namespace Eternal.Content.NPCs.Boss.AoI
             Vector2 toDestination = destination - NPC.Center;
             Vector2 toDestinationNormalized = toDestination.SafeNormalize(Vector2.Zero);
 
-            float speed = 48f;
-            float inertia = 20;
+            float speed = 24f;
+            float inertia = 60;
 
             Vector2 moveTo = toDestinationNormalized * speed;
             NPC.velocity = (NPC.velocity * (inertia - 1) + moveTo) / inertia;

@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using Terraria;
+using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -8,6 +10,8 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
 {
     public class CosmicApex : ModNPC
     {
+        int frameType = 0;
+
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 4;
@@ -22,12 +26,17 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
 
         public override void SetDefaults()
         {
-            NPC.width = 118;
-            NPC.height = 80;
+            NPC.width = 26;
+            NPC.height = 40;
             NPC.lifeMax = 2000;
             NPC.defense = 80;
-            NPC.HitSound = SoundID.DD2_SkeletonHurt;
-            NPC.DeathSound = SoundID.DD2_SkeletonDeath;
+            NPC.HitSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCHit/ApparitionalReminantHit")
+            {
+                Volume = 0.8f,
+                PitchVariance = Main.rand.NextFloat(0.2f, 0.9f),
+                MaxInstances = 0,
+            };
+            NPC.DeathSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCDeath/ApparitionalReminantDeath");
             NPC.damage = 90;
             NPC.alpha = 255;
             NPC.noGravity = true;
@@ -67,8 +76,14 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             }
         }
 
+        public override void OnSpawn(IEntitySource source)
+        {
+            frameType = Main.rand.Next(0, 3);
+        }
+
         public override void AI()
         {
+
             Lighting.AddLight(NPC.position, 0.75f, 0f, 0.75f);
 
             var entitySource = NPC.GetSource_FromAI();
@@ -128,10 +143,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
 
         public override void FindFrame(int frameHeight)
         {
-            NPC.frameCounter += 0.15f;
-            NPC.frameCounter %= Main.npcFrameCount[NPC.type];
-            int Frame = (int)NPC.frameCounter;
-            NPC.frame.Y = Frame * frameHeight;
+            NPC.frame.Y = frameType * frameHeight;
         }
     }
 }

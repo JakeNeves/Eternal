@@ -20,8 +20,8 @@ namespace Eternal.Content.Items.Weapons.Ranged
 
         public override void SetDefaults()
         {
-            Item.width = 32;
-            Item.height = 48;
+            Item.width = 44;
+            Item.height = 56;
             Item.damage = 220;
             Item.knockBack = 2.6f;
             Item.noMelee = true;

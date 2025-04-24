@@ -1,6 +1,5 @@
 ﻿using Eternal.Common.Configurations;
 using Eternal.Common.Misc;
-using Eternal.Content.BossBarStyles;
 using Eternal.Content.Items.BossBags;
 using Eternal.Content.Items.Materials;
 using Microsoft.Xna.Framework;
@@ -18,7 +17,7 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
     [AutoloadBossHead]
     public class Incinerius : ModNPC
     {
-        int attackTimer = 0;
+        ref float attackTimer => ref NPC.ai[1];
 
         Vector2 CircleDirc = new Vector2(0.0f, 16f);
 
@@ -61,6 +60,7 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
             NPC.noTileCollide = true;
             NPC.HitSound = SoundID.Tink;
             NPC.DeathSound = SoundID.NPCDeath42;
+            NPC.npcSlots = 6;
         }
 
         public Vector2 bossCenter
@@ -159,15 +159,6 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
 
         public override void AI()
         {
-            if (ClientConfig.instance.bossBarExtras)
-            {
-                if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server && BossBarLoader.CurrentStyle == ModContent.GetInstance<EternalBossBarStyle>())
-                {
-                    EternalBossBarOverlay.SetTracked("The Underworld's Infernal Sabotuer", NPC);
-                    EternalBossBarOverlay.visible = true;
-                }
-            }
-
             Player player = Main.player[NPC.target];
 
             Lighting.AddLight(NPC.position, 2.15f, 0.95f, 0f);

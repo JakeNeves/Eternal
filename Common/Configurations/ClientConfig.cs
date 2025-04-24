@@ -16,22 +16,22 @@ namespace Eternal.Common.Configurations
         [SeparatePage]
         [Header("Messages")]
         [DefaultValue(true)]
-        [LabelKey("$Mods.Eternal.Common.Configurations.ClientConfig.showWelcomeMessage.DisplayName")]
-        [TooltipKey("$Mods.Eternal.Common.Configurations.ClientConfig.showWelcomeMessage.Tooltip")]
+        [LabelKey("$Mods.Eternal.Client.Configurations.ClientConfig.showWelcomeMessage.DisplayName")]
+        [TooltipKey("$Mods.Eternal.Client.Configurations.ClientConfig.showWelcomeMessage.Tooltip")]
         public bool showWelcomeMessage = true;
 
         [SeparatePage]
         [Header("EternalModBossBarSettings")]
         [DefaultValue(true)]
-        [LabelKey("$Mods.Eternal.Common.Configurations.ClientConfig.bossBarExtras.DisplayName")]
-        [TooltipKey("$Mods.Eternal.Common.Configurations.ClientConfig.bossBarExtras.Tooltip")]
-        public bool bossBarExtras = true;
+        [LabelKey("$Mods.Eternal.Client.Configurations.ClientConfig.bossBarExtras.DisplayName")]
+        [TooltipKey("$Mods.Eternal.Client.Configurations.ClientConfig.bossBarExtras.Tooltip")]
+        public bool bossBarExtras = false;
 
         [SeparatePage]
         [Header("ExperimentalFeatures")]
         [DefaultValue(false)]
-        [LabelKey("$Mods.Eternal.Common.Configurations.ClientConfig.playDefeatSound.DisplayName")]
-        [TooltipKey("$Mods.Eternal.Common.Configurations.ClientConfig.playDefeatSound.Tooltip")]
+        [LabelKey("$Mods.Eternal.Client.Configurations.ClientConfig.playDefeatSound.DisplayName")]
+        [TooltipKey("$Mods.Eternal.Client.Configurations.ClientConfig.playDefeatSound.Tooltip")]
         public bool playDefeatSound = false;
     }
 }

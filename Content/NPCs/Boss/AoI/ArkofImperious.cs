@@ -1,7 +1,6 @@
 ﻿using Eternal.Common.Configurations;
 using Eternal.Common.Misc;
 using Eternal.Common.Systems;
-using Eternal.Content.BossBarStyles;
 using Eternal.Content.Items.BossBags;
 using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Potions;
@@ -76,7 +75,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, drawModifier);
 
-            NPCID.Sets.TrailCacheLength[NPC.type] = 12;
+            NPCID.Sets.TrailCacheLength[NPC.type] = 10;
             NPCID.Sets.TrailingMode[NPC.type] = 0;
 
             NPCID.Sets.ShouldBeCountedAsBoss[Type] = true;
@@ -88,7 +87,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
             NPC.aiStyle = -1;
             NPC.width = 170;
             NPC.height = 418;
-            NPC.lifeMax = 240000;
+            NPC.lifeMax = 360000;
             NPC.HitSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCHit/AoIHit")
             {
                 Volume = 0.8f,
@@ -105,7 +104,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
                     Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/ImperiousStrike");
             }
             NPC.defense = 80;
-            NPC.damage = 40;
+            NPC.damage = 50;
             NPC.lavaImmune = true;
             NPC.noTileCollide = true;
             NPC.noGravity = true;
@@ -119,7 +118,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
             NPC.buffImmune[BuffID.Frostburn] = true;
             NPC.buffImmune[BuffID.Frozen] = true;
             NPC.buffImmune[BuffID.Chilled] = true;
-            SpawnModBiomes = new int[1] { ModContent.GetInstance<Biomes.Shrine>().Type };
+            SpawnModBiomes = [ ModContent.GetInstance<Biomes.Shrine>().Type ];
         }
 
         public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
@@ -131,6 +130,14 @@ namespace Eternal.Content.NPCs.Boss.AoI
         public override void OnKill()
         {
             NPC.SetEventFlagCleared(ref DownedBossSystem.downedArkofImperious, -1);
+
+            if (!DownedBossSystem.downedArkofImperious)
+            {
+                Main.NewText("The rift is shifting...", 200, 100, 200);
+                Main.NewText("The seal of the Cosmic Tablet has broken, the stars above are calling upon you...", 200, 48, 120);
+
+                DownedBossSystem.downedArkofImperious = true;
+            }
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -145,7 +152,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color lightColor)
         {
             Main.instance.LoadNPC(NPC.type);
-            Texture2D texture = TextureAssets.Projectile[NPC.type].Value;
+            Texture2D texture = TextureAssets.Npc[NPC.type].Value;
 
             Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, NPC.height * 0.5f);
             for (int k = 0; k < NPC.oldPos.Length; k++)
@@ -169,12 +176,6 @@ namespace Eternal.Content.NPCs.Boss.AoI
                     dust.velocity = Vector2.Normalize(position - NPC.position);
                     dust.noLight = false;
                     dust.fadeIn = 1f;
-                }
-
-                if (!DownedBossSystem.downedArkofImperious)
-                {
-                    Main.NewText("The seal of the Cosmic Tablet has broken, the stars above are calling upon you...", 200, 48, 120);
-                    DownedBossSystem.downedArkofImperious = true;
                 }
             }
         }
@@ -330,6 +331,8 @@ namespace Eternal.Content.NPCs.Boss.AoI
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
+            // TODO: Revamp Ark of Imperious Lootable
+
             LeadingConditionRule notExpertRule = new(new Conditions.NotExpert());
 
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<AoIBag>()));
@@ -357,15 +360,6 @@ namespace Eternal.Content.NPCs.Boss.AoI
 
         public override void AI()
         {
-            if (ClientConfig.instance.bossBarExtras)
-            {
-                if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server && BossBarLoader.CurrentStyle == ModContent.GetInstance<EternalBossBarStyle>())
-                {
-                    EternalBossBarOverlay.SetTracked("Guardian of The Shrine", NPC);
-                    EternalBossBarOverlay.visible = true;
-                }
-            }
-
             var entitySource = NPC.GetSource_FromAI();
 
             Player target = Main.player[NPC.target];
@@ -381,6 +375,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
                 NPC.dontTakeDamage = true;
                 NPC.alpha++;
 
+                /*
                 NPC.velocity.X *= 0.95f;
                 if (NPC.velocity.Y < 0.5f)
                 {
@@ -390,6 +385,9 @@ namespace Eternal.Content.NPCs.Boss.AoI
                 {
                     NPC.velocity.Y = NPC.velocity.Y - 0.02f;
                 }
+                */
+
+                NPC.velocity = new(0f, 0f);
 
                 if (Main.rand.NextBool(5) && NPC.ai[3] < 120f)
                 {
@@ -409,14 +407,6 @@ namespace Eternal.Content.NPCs.Boss.AoI
                 {
                     NPC.life = 0;
                     NPC.alpha = 0;
-                    if (!DownedBossSystem.downedArkofImperious)
-                    {
-                        DownedBossSystem.downedArkofImperious = true;
-                    }
-                    if (EventSystem.isRiftOpen && !DownedBossSystem.downedRiftArkofImperious)
-                    {
-                        DownedBossSystem.downedRiftArkofImperious = true;
-                    }
                     NPC.HitEffect(0, 0);
                     NPC.checkDead();
                 }
@@ -469,7 +459,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
             {
                 if (!justSpawnedCircle)
                 {
-                    Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, 0, 0, ModContent.ProjectileType<AoICircle>(), NPC.damage, 0, 0, 0f, NPC.whoAmI);
+                    Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, 0, 0, ModContent.ProjectileType<AoICircle>(), 0, 0, 0, 0f, NPC.whoAmI);
                     justSpawnedCircle = true;
                 }
             }
@@ -556,7 +546,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
 
             Player player = Main.player[NPC.target];
 
-            if (NPC.AnyNPCs(ModContent.NPCType<ArklingOrbit>()) || NPC.AnyNPCs(ModContent.NPCType<Arkling>()))
+            if (NPC.AnyNPCs(ModContent.NPCType<ArklingOrbit>()) || (Main.getGoodWorld && NPC.AnyNPCs(ModContent.NPCType<Arkling>())))
             {
                 NPC.dontTakeDamage = true;
             }
@@ -578,14 +568,14 @@ namespace Eternal.Content.NPCs.Boss.AoI
                     {
                         if (DifficultySystem.hellMode)
                         {
-                            for (int i = 0; i < Main.rand.Next(12, 24); i++)
+                            for (int i = 0; i < Main.rand.Next(4, 8); i++)
                             {
                                 NPC.NewNPC(entitySource, (int)NPC.Center.X + Main.rand.Next(-100, 100), (int)NPC.Center.Y + Main.rand.Next(-100, 100), ModContent.NPCType<Arkling>());
                             }
                         }
                         else
                         {
-                            for (int i = 0; i < Main.rand.Next(6, 12); i++)
+                            for (int i = 0; i < Main.rand.Next(2, 4); i++)
                             {
                                 NPC.NewNPC(entitySource, (int)NPC.Center.X + Main.rand.Next(-100, 100), (int)NPC.Center.Y + Main.rand.Next(-100, 100), ModContent.NPCType<Arkling>());
                             }

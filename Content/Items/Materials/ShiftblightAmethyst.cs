@@ -37,7 +37,7 @@ namespace Eternal.Content.Items.Materials
             CreateRecipe()
                 .AddTile(ModContent.TileType<RotaryHearthForge>())
                 .AddIngredient(ModContent.ItemType<ShiftblightShard>(), 4)
-                .AddIngredient(ModContent.ItemType<CrystalizedOminite>(), 12)
+                .AddIngredient(ModContent.ItemType<CrystallizedOminite>(), 12)
                 .Register();
         }
     }

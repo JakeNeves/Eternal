@@ -1,10 +1,6 @@
-﻿using Eternal.Common.Configurations;
-using Eternal.Common.Systems;
-using Eternal.Content.Projectiles.Misc;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Drawing;
 using Terraria.GameContent.ObjectInteractions;
@@ -18,11 +14,6 @@ namespace Eternal.Content.Tiles.MusicBox
 {
     public class DarkMoonMusicBox : ModTile
     {
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return ServerConfig.instance.update14;
-        }
-
         public override void SetStaticDefaults()
         {
             Main.tileFrameImportant[Type] = true;

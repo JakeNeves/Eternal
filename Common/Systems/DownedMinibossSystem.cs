@@ -10,12 +10,14 @@ namespace Eternal.Common.Systems
         public static bool downedStarbornInquisitor = false;
         public static bool downedFakeArkofImperious = false;
         public static bool downedPhantomConstruct = false;
+        public static bool downedShadeSlime = false;
 
         public override void OnWorldLoad()
 		{
             downedStarbornInquisitor = false;
             downedFakeArkofImperious = false;
             downedPhantomConstruct = false;
+            downedShadeSlime = false;
 		}
 
 		public override void OnWorldUnload()
@@ -23,6 +25,7 @@ namespace Eternal.Common.Systems
             downedStarbornInquisitor = false;
             downedFakeArkofImperious = false;
             downedPhantomConstruct = false;
+            downedShadeSlime = false;
         }
 		public override void SaveWorldData(TagCompound tag)
 		{
@@ -38,6 +41,10 @@ namespace Eternal.Common.Systems
             {
                 tag["downedPhantomConstruct"] = true;
             }
+            if (downedShadeSlime)
+            {
+                tag["downedShadeSlime"] = true;
+            }
         }
 
 		public override void LoadWorldData(TagCompound tag)
@@ -45,6 +52,7 @@ namespace Eternal.Common.Systems
             downedStarbornInquisitor = tag.ContainsKey("downedStarbornInquisitor");
             downedFakeArkofImperious = tag.ContainsKey("downedFakeArkofImperious");
             downedPhantomConstruct = tag.ContainsKey("downedPhantomConstruct");
+            downedShadeSlime = tag.ContainsKey("downedShadeSlime");
         }
 
 		public override void NetSend(BinaryWriter writer)
@@ -53,6 +61,7 @@ namespace Eternal.Common.Systems
             flags[0] = downedStarbornInquisitor;
             flags[1] = downedFakeArkofImperious;
             flags[2] = downedPhantomConstruct;
+            flags[3] = downedShadeSlime;
 
             writer.Write(flags);
 		}
@@ -64,6 +73,7 @@ namespace Eternal.Common.Systems
             downedStarbornInquisitor = flags[0];
             downedFakeArkofImperious = flags[1];
             downedPhantomConstruct = flags[2];
+            downedShadeSlime = flags[3];
         }
 	}
 }

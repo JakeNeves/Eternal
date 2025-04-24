@@ -1,12 +1,5 @@
 Mods: {
 	Eternal: {
-		BiomeName: {
-			Comet: Fallen Comet
-			Beneath: The Beneath
-			Shrine: The Shrine
-			Rift: The Rift
-		}
-
 		GameTips: {
 			HellMode: Wish to ramp up the difficulty a bit? Try Hell Mode, works in both Expert and Master mode.
 			EmperorNPC: The Emperor will move upon defeating the moon lord, he sells the Emperor's Trust which allows the Emissary to move in.
@@ -19,6 +12,7 @@ Mods: {
 			ThePhantomConstructs: Never try to close an unstable portal, otherwise the last thing to come out of it is a Phantom Construct!
 			BossBarConfig: Eternal adds the boss name above the boss bar along with some flavour text, this can be toggled in Eternal's configuration file.
 			TheShrine: Who knows what lies around the Shrine, other than magical flying swords of course...
+			DarkMoon: The Dark Moon can make the night, somewhat cursed... It gets a bit devistating after you defeat the Trinity!
 			ExperimentalFeatures: Wanna take a look at some future content? head on over to the Eternal mod's configs and toggle them to try them out, although be warned that those features are a work in progress and can be very buggy!
 		}
 
@@ -634,9 +628,9 @@ Mods: {
 				DisplayName: Cosmonium Fragment
 			}
 
-			CrystalizedOminite: {
+			CrystallizedOminite: {
 				Tooltip: ""
-				DisplayName: Crystalized Ominite
+				DisplayName: Crystallized Ominite
 			}
 
 			CosmicEmperorsInterstellarAlloy: {
@@ -839,6 +833,16 @@ Mods: {
 			AoIBag: {
 				Tooltip: <right> to Open
 				DisplayName: Treasure Bag (Ark of Imperious)
+			}
+
+			TrinityBag: {
+				Tooltip: <right> to Open
+				DisplayName: Treasure Bag (The Trinity)
+			}
+
+			NiadesBag: {
+				Tooltip: <right> to Open
+				DisplayName: Treasure Bag (Niades)
 			}
 
 			UltimusPlateMail: {
@@ -1358,19 +1362,22 @@ Mods: {
 				DisplayName: The Knife
 				Tooltip:
 					'''
+					[c/ff8045:Legendary Weapon]
+					Breaks enemy armor
+					Upon first striking an enemy, the user can temporarly deal additonal damage
 					'Stab stab stab!'
-					Hell Mode drop
 					'''
 			}
 
-			TheKnife14: {
-				DisplayName: The Knife
+			TrueKnife: {
+				DisplayName: True Knife
 				Tooltip:
 					'''
 					[c/ff8045:Legendary Weapon]
 					Breaks enemy armor
 					Upon first striking an enemy, the user can temporarly deal additonal damage
-					'Stab stab stab!'
+					'About time...'
+					Hell Mode Upgrade
 					'''
 			}
 
@@ -1897,8 +1904,7 @@ Mods: {
 				Tooltip:
 					'''
 					[c/FF0000:Cheat Item]
-					Instanty kills anything that dares to oppose it
-					'It's just like a throwable One-Hit Obliterator!'
+					!!!
 					'''
 			}
 
@@ -2265,6 +2271,31 @@ Mods: {
 				Tooltip: JakeTEM - Dark Twisted Nightmare
 			}
 
+			PostTrinityDarkMoonMusicBox: {
+				DisplayName: Music Box (Dark Moon (Post-Trinity))
+				Tooltip: JakeTEM - Anethemis Occultae
+			}
+
+			GehennaMusicBox: {
+				DisplayName: Music Box (Gehenna)
+				Tooltip: JakeTEM - Tartarus
+			}
+
+			MausoleumMusicBox: {
+				DisplayName: Music Box (Mausoleum)
+				Tooltip: JakeTEM - Crucis Nihilo
+			}
+
+			BeneathMusicBox: {
+				DisplayName: Music Box (Beneath)
+				Tooltip: JakeTEM - Psionic Echoes
+			}
+
+			TheGlareMusicBox: {
+				DisplayName: Music Box (The Glare)
+				Tooltip: JakeTEM - Infamy
+			}
+
 			ArkiumManbow: {
 				DisplayName: Arkium Manbow
 				Tooltip:
@@ -2288,9 +2319,9 @@ Mods: {
 				Tooltip: "'Psycic energy pulses deep within...'"
 			}
 
-			PsycheMatterAshes: {
-				DisplayName: Psyche Matter Ashes
-				Tooltip: "'The essence of psychebound horrors'"
+			PsyblightEssence: {
+				DisplayName: Psyblight Essence
+				Tooltip: "'It seems cursed...'"
 			}
 
 			HellHacker: {
@@ -2299,8 +2330,403 @@ Mods: {
 					'''
 					[c/ff8045:Legendary Weapon]
 					Ignites enemies on fire, with a chance of inflicting shadowflames instead!
-					'Forged in the foundries of the Gehanna, hexed in the flames of occultism!'
+					'Forged in the foundries of the Gehenna, hexed in the flames of occultism!'
 					'''
+			}
+
+			GehennasRemedy: {
+				DisplayName: Gehenna's Remedy
+				Tooltip:
+					'''
+					[c/ff8045:Legendary Weapon]
+					Damage scales by 25% of a combined total of your Defense and Damage Reduction
+					You have a chance to break enemy armor by 1/3 of their defense
+					'Blood, blood, blood! Make them bleed, Slaughter in the name of tartarus!'
+					'''
+			}
+
+			MrFishbone: {
+				DisplayName: Mr. Fishbone
+				Tooltip:
+					'''
+					[c/ff8045:Legendary Weapon]
+					You have a chance of getting a buff from attacking an enemy as long as you're over half of your maximum HP
+					Upon <right>, you can throw Mr. Fishbone and have pieces of him explode off his body, the bone shrapnels deal half of your current damage
+					'When this thing bites, it bites... PAINFULLY!'
+					'''
+			}
+
+			BookofTar: {
+				DisplayName: Book of Tar
+				Tooltip: "'Very sticky!'"
+			}
+
+			BasaltBlock: {
+				DisplayName: Basalt Block
+				Tooltip: ""
+			}
+
+			BasaltBrick: {
+				DisplayName: Basalt Brick
+				Tooltip: ""
+			}
+
+			BasaltBrickWall: {
+				DisplayName: Basalt Brick Wall
+				Tooltip: ""
+			}
+
+			GehennaTorch: {
+				DisplayName: Gehenna Torch
+				Tooltip: ""
+			}
+
+			MausoleumTorch: {
+				DisplayName: Mausoleum Torch
+				Tooltip: ""
+			}
+
+			RedBasaltBlock: {
+				DisplayName: Red Basalt Block
+				Tooltip: "'Stained from all of that torture'"
+			}
+
+			GehennaBrick: {
+				DisplayName: Gehenna Brick
+				Tooltip: ""
+			}
+
+			GehennaBrickWall: {
+				DisplayName: Gehenna Brick Wall
+				Tooltip: ""
+			}
+
+			MausoleumBrick: {
+				DisplayName: Mausoleum Brick
+				Tooltip: ""
+			}
+
+			MausoleumBrickWall: {
+				DisplayName: Mausoleum Brick Wall
+				Tooltip: ""
+			}
+
+			HexedBasaltBlock: {
+				DisplayName: Hexed Basalt Block
+				Tooltip: "'Hexed from all of the occultism'"
+			}
+
+			PsychicAshes: {
+				DisplayName: Psychic Ashes
+				Tooltip: "'The essence of psychebound horrors'"
+			}
+
+			BloodstainedJudgement: {
+				DisplayName: Bloodstained Judgement
+				Tooltip:
+					'''
+					Summons Niades, the twisted occult construct
+					Can only be used during a Dark Moon
+					'When the hexed and darkened moon shines across the horizon, let the construct roam aimlessly...'
+					'''
+			}
+
+			Dross: {
+				DisplayName: Dross
+				Tooltip:
+					'''
+					Casts a ball of sewage
+					'It stinks...'
+					'''
+			}
+
+			ApparitionalBlood: {
+				DisplayName: Apparitional Blood
+				Tooltip: ""
+			}
+
+			JakeTEMnomicon: {
+				DisplayName: JakeTEMnomicon
+				Tooltip: "'This is stupid...'"
+			}
+
+			SpiritRites: {
+				DisplayName: Spirit Rites
+				Tooltip: ???
+			}
+
+			Psybender: {
+				DisplayName: Psybender
+				Tooltip:
+					'''
+					Casts a controllable psychic fireball that follows your cursor
+					'Now you're playing with telepathy!'
+					'''
+			}
+
+			PsybenderPlus: {
+				DisplayName: Psybender+
+				Tooltip:
+					'''
+					Casts a controllable psychic fireball that follows your cursor
+					'Now you're playing with telepathy, with some extra damage!'
+					'''
+			}
+
+			ShadeLocket: {
+				DisplayName: Shade Locket
+				Tooltip:
+					'''
+					You fire Shade Bombs in a cross pattern when hit
+					While wearing this, the Dark Arts cost zero mana
+					'''
+			}
+
+			PsionicKnives: {
+				DisplayName: Psionic Knives
+				Tooltip:
+					'''
+					[c/ff8045:Legendary Weapon]
+					Throws controllable knives that follow your cursor
+					'Telepathic knives, cursed by the Psion...'
+					'''
+			}
+
+			ValtoricKnives: {
+				DisplayName: Valtoric Knives
+				Tooltip:
+					'''
+					[c/ff8045:Legendary Weapon]
+					'Wait, these aren't Vampire Knives!'
+					'''
+			}
+
+			Rosary: {
+				DisplayName: Rosary
+				Tooltip:
+					'''
+					Grants a Holy Mantle
+					The Holy Mantle lasts for one hit before a cooldown
+					'My faith protects me...'
+					'''
+			}
+
+			ItemNotFound: {
+				DisplayName: Item Not Found
+				Tooltip:
+					'''
+					[c/ff0000:WARNING!]
+					This item can break everything, use at your own risk!
+					'ZZiZ ZZ ZZaZZy ZZuZZd'
+					'''
+			}
+
+			Prystaltine: {
+				DisplayName: Prystaltine
+				Tooltip: "[c/ff8045:Legendary Weapon]"
+			}
+
+			NiadesRevenge: {
+				DisplayName: Niades' Revenge
+				Tooltip:
+					'''
+					[c/ff8045:Legendary Weapon]
+					'This is really cursed!'
+					'''
+			}
+
+			Naquadica: {
+				DisplayName: Naquadica
+				Tooltip: ""
+			}
+
+			CursedAshes: {
+				DisplayName: Cursed Ashes
+				Tooltip: "'The essence of occultism'"
+			}
+
+			SanguinebeamStave: {
+				DisplayName: Sanguinebeam Stave
+				Tooltip: ""
+			}
+
+			Brimstone: {
+				DisplayName: Brimstone
+				Tooltip:
+					'''
+					Casts a large sanguinebeam
+					'Blood laser barrage'
+					'''
+			}
+
+			SanguineChestplate: {
+				DisplayName: Sanguine Chestplate
+				Tooltip: ""
+			}
+
+			SanguineGreaves: {
+				DisplayName: Sanguine Greaves
+				Tooltip: ""
+			}
+
+			SanguineMask: {
+				DisplayName: Sanguine Mask
+				Tooltip: ""
+			}
+
+			CoagulatedBlood: {
+				DisplayName: Coagulated Blood
+				Tooltip: "'The essence of torture'"
+			}
+
+			CoagulatedBloodBlock: {
+				DisplayName: Coagulated Blood Block
+				Tooltip: "'Made from blood clots...'"
+			}
+
+			DarkArts: {
+				DisplayName: Dark Arts
+				Tooltip:
+					'''
+					Casts a Shade Bomb that explodes
+					On terrain impact or in mid-air, there is a slight delay before the inital explosion
+					Upon striking an enemy, the Shade Bomb explodes right away
+					While wearing the Shade Locket, this weapon costs zero mana
+					'''
+			}
+
+			Godhead: {
+				DisplayName: Godhead
+				Tooltip: ""
+			}
+
+			Eraser: {
+				DisplayName: Eraser
+				Tooltip:
+					'''
+					[c/FF0000:Cheat Item]
+					When hitting an emeny or a boss, it will instantly delete it
+					This item may achieve strange results with segmented enemies or bosses
+					'Erase your enemies...'
+					'''
+			}
+
+			JumboStar: {
+				DisplayName: Jumbo Star
+				Tooltip:
+					'''
+					[c/ff8045:Legendary Weapon]
+					Upon hitting the ground, the weapon will split
+					into four projectiles facing four different directions
+					'Not as big as it originally was...'
+					'''
+			}
+
+			MysteryMeat: {
+				DisplayName: Mystery Meat
+				Tooltip: "'A pound of Mystery Meat, it looks tasty...'"
+			}
+
+			DeadMeat: {
+				DisplayName: Dead Meat
+				Tooltip: "'A pound of Dead Meat, it looks disgusting...'"
+			}
+
+			Fistula: {
+				DisplayName: Fistula
+				Tooltip: ""
+			}
+
+			Lipoma: {
+				DisplayName: Lipoma
+				Tooltip: ""
+			}
+
+			TheGlareBag: {
+				DisplayName: Treasure Bag (The Glare)
+				Tooltip: <right> to open
+			}
+
+			SuspiciousLookingMask: {
+				DisplayName: Suspicious Looking Mask
+				Tooltip:
+					'''
+					Summons the Glare
+					'May imfamy come to torment you...'
+					'''
+			}
+
+			HauntedVisage: {
+				Tooltip:
+					'''
+					Summons a Strange Mask that follows and haunts you
+					'2spoopy4me'
+					'''
+				DisplayName: Haunted Visage
+			}
+
+			OrbofTheOccult: {
+				Tooltip:
+					'''
+					Summons an Occultic Construct that follows you
+					'Now you have a Niades construct of your very own!'
+					'''
+				DisplayName: Orb of The Occult
+			}
+
+			RiftsDivinity: {
+				Tooltip: "'Help, I'm very uncreative!'"
+				DisplayName: Rift's Divinity
+			}
+
+			GehennaSpike: {
+				DisplayName: Gehenna Spike
+				Tooltip: ""
+			}
+
+			MausoleumSpike: {
+				DisplayName: Mausoleum Spike
+				Tooltip: ""
+			}
+
+			GehennaKeyFragment1: {
+				DisplayName: Gehenna Key Fragment1
+				Tooltip: ""
+			}
+
+			GehennaKeyFragment2: {
+				DisplayName: Gehenna Key Fragment2
+				Tooltip: ""
+			}
+
+			GehennaKey: {
+				DisplayName: Gehenna Key
+				Tooltip: ""
+			}
+
+			MausoleumKeyFragment1: {
+				DisplayName: Mausoleum Key Fragment1
+				Tooltip: ""
+			}
+
+			MausoleumKeyFragment2: {
+				DisplayName: Mausoleum Key Fragment2
+				Tooltip: ""
+			}
+
+			MausoleumKey: {
+				DisplayName: Mausoleum Key
+				Tooltip: ""
+			}
+
+			GehennaChest: {
+				DisplayName: Gehenna Chest
+				Tooltip: ""
+			}
+
+			MausoleumChest: {
+				DisplayName: Mausoleum Chest
+				Tooltip: ""
 			}
 		}
 
@@ -2333,6 +2759,11 @@ Mods: {
 			HolyMantle: {
 				Description: A Holy Mantle is protecting you, this lasts until you get hit!
 				DisplayName: Holy Mantle
+			}
+
+			HolyMantleCooldown: {
+				Description: The Holy Mantle is replenishing it's power...
+				DisplayName: Holy Mantle Cooldown
 			}
 
 			Froststruck: {
@@ -2379,6 +2810,31 @@ Mods: {
 				Description: The sensation of slaughtering the innocent fills you determination!
 				DisplayName: Bloody Murder
 			}
+
+			MrFishbonesBoon: {
+				Description: The everful rage of Mr. Fishbone's spirit fills you with absolute power!
+				DisplayName: Mr. Fishbone's Boon
+			}
+
+			ImmenseArmorFracture: {
+				Description: Defense and Damage Reduction greatfully decreased!
+				DisplayName: Immense Armor Fracture
+			}
+
+			Error: {
+				Description: ZZnZ ZZ ZZeZZoZZrZZ
+				DisplayName: ERROR
+			}
+
+			StrangeMask: {
+				Description: A Strange Mask is haunting you...
+				DisplayName: Strange Mask
+			}
+
+			OcculticConstruct: {
+				DisplayName: Occultic Construct
+				Description: Niades is following you...
+			}
 		}
 
 		Tiles: {
@@ -2397,22 +2853,34 @@ Mods: {
 			TheSonofTheArsGaladia.MapEntry: Painting
 			CometiteOre.MapEntry: Cometite
 			ShiftingEerieMonolith.MapEntry: Shifting Eerie Monolith
+
+			GehennaChest: {
+				MapEntry0: Mods.Eternal.Tiles.GehennaChest.MapEntry0
+				MapEntry1: Mods.Eternal.Tiles.GehennaChest.MapEntry1
+				Locked: Mods.Eternal.Tiles.GehennaChest.Locked
+			}
+
+			MausoleumChest: {
+				MapEntry0: Mods.Eternal.Tiles.MausoleumChest.MapEntry0
+				MapEntry1: Mods.Eternal.Tiles.MausoleumChest.MapEntry1
+				Locked: Mods.Eternal.Tiles.MausoleumChest.Locked
+			}
 		}
 
 		Biomes: {
 			Shrine: {
 				DisplayName: The Shrine
-				TownNPCDialogueName: the Shrine
+				TownNPCDialogueName: this archaic Shrine
 			}
 
 			Comet: {
 				DisplayName: Fallen Comet
-				TownNPCDialogueName: the Comet
+				TownNPCDialogueName: this strange Comet from the sky
 			}
 
 			Beneath: {
 				DisplayName: The Beneath
-				TownNPCDialogueName: the Beneath
+				TownNPCDialogueName: this barren cavern
 			}
 
 			PurifiedBeneath: {
@@ -2421,13 +2889,23 @@ Mods: {
 			}
 
 			Rift: {
-				DisplayName: Rift
-				TownNPCDialogueName: the Rift
+				DisplayName: The Rift
+				TownNPCDialogueName: this terror-bound world
 			}
 
 			DarkMoon: {
 				DisplayName: Dark Moon
 				TownNPCDialogueName: the gloomy and darkened night
+			}
+
+			Gehenna: {
+				DisplayName: Gehenna
+				TownNPCDialogueName: this torture hall
+			}
+
+			Mausoleum: {
+				DisplayName: Mausoleum
+				TownNPCDialogueName: this cursed place
 			}
 		}
 
@@ -2447,6 +2925,7 @@ Mods: {
 				BossChecklistIntegration.SpawnInfo: Spawn by using a [i:Eternal/SuspiciousLookingDroplet].
 			}
 
+			DegradedCarminiteAmalgamation.DisplayName: Carminite Amalgamation
 			CosmicApex.DisplayName: Cosmic Apex
 
 			CosmicApparition: {
@@ -2507,7 +2986,6 @@ Mods: {
 			SubzeroElementalRobe.DisplayName: Subzero Elemental?
 			Cryota.DisplayName: Cryota
 			CryotasSentry.DisplayName: Cryota's Sentry
-			Flaremutaria.DisplayName: Flaremutaria
 			Thunderius.DisplayName: Thunderius
 			ApparitionalReminant.DisplayName: Apparitional Reminant
 			AstroidSmasher.DisplayName: Astroid Smasher
@@ -2539,7 +3017,7 @@ Mods: {
 			LesserArk.DisplayName: Lesser Ark
 			IesniumSlime.DisplayName: Iesnium Slime
 			MalachiteSlime.DisplayName: Malachite Slime
-			CarminiteInfestedEye.DisplayName: Carminite Infested Eye
+			CarminiteInfestedEye.DisplayName: Carminite-Infested Eye
 
 			Emissary: {
 				DisplayName: Emissary
@@ -2627,24 +3105,88 @@ Mods: {
 			PsycheZombie.DisplayName: Psyche Zombie
 			CosmicLance.DisplayName: Cosmic Lance
 			CosmicSword.DisplayName: Cosmic Sword
+
+			Niades: {
+				DisplayName: Niades
+				BossChecklistIntegration.SpawnInfo: Use the [i:Eternal/BloodstainedJudgement] during the Dark Moon.
+			}
+
+			BloodSlurper.DisplayName: Blood Slurper
+
+			TrinityCore: {
+				DisplayName: The Trinity
+				BossChecklistIntegration.SpawnInfo: Use a [i:Eternal/PrimordialRelic].
+			}
+
+			Infernito.DisplayName: Infernito
+			MindEffigy.DisplayName: Effigy of the Mind
+			BodyEffigy.DisplayName: Effigy of the Body
+			SoulEffigy.DisplayName: Effigy of the Soul
+			DegradedCarminiteAmalgamationTenticle.DisplayName: Carminite Amalgamation's Tenticle
+			FloatyDank.DisplayName: Floaty Dank
+			Psye.DisplayName: Psye
+			TortureGrudge.DisplayName: Torture Grudge
+			MortoGrudge.DisplayName: Morto Grudge
+			PsywormBody.DisplayName: Psyworm
+			PsywormHead.DisplayName: Psyworm
+			PsywormTail.DisplayName: Psyworm
+			PsyblightSkeleton.DisplayName: Psyblight Skeleton
+			VoraciousSkeleton.DisplayName: Voracious Skeleton
+			Shadeling.DisplayName: Shadeling
+			ShadeSlime.DisplayName: Shade Slime
+			Shademan.DisplayName: Shademan
+			ShadeBat.DisplayName: Shade Bat
+			DiabolicGrimace.DisplayName: Diabolic Grimace
+			CursedSludgeLarge.DisplayName: Cursed Sludge
+			CursedSludgeSmall.DisplayName: Cursed Sludge
+			CoagulatedBloodslime.DisplayName: Coagulated Bloodslime
+			DreadSlime.DisplayName: Dread Slime
+			TheShriveled.DisplayName: The Shriveled
+			TheRotted.DisplayName: The Rotted
+			TerrariaAdventofEpiphany.DisplayName: Terraria: Advent of Epiphany
+			BigHeadSkeleton.DisplayName: Big Head Skeleton
+			Teratoma.DisplayName: Teratoma
+			Hematoma.DisplayName: Hematoma
+			SanguineSphere.DisplayName: Sanguine Sphere
+			ColossalEye.DisplayName: Colossal Eye
+			SansUndertale.DisplayName: Sans (Undertale)
+			SensoryConstruct.DisplayName: Sensory Construct
+			BoneArchmage.DisplayName: Bone Archmage
+			GlareHeart.DisplayName: Glare's Heart
+
+			TheGlare: {
+				DisplayName: The Glare
+				BossChecklistIntegration.SpawnInfo: Use a [i:Eternal/SuspiciousLookingMask] in either the Mausoleum or the Gehenna.
+			}
+
+			TheGlareDefeated.DisplayName: The Glare
+			HereticCaster.DisplayName: Heretic Caster
+
+			Heretic: {
+				DisplayName: Heretic
+
+				TownNPCMood: {
+					Content: I am content.
+					NoHome: I hate not having a home.
+					FarFromHome: I am too far from home.
+					LoveSpace: I love having so much space.
+					DislikeCrowded: I dislike how crowded I am.
+					HateCrowded: I hate how crowded I am.
+					LoveBiome: I love {BiomeName}.
+					LikeBiome: I like {BiomeName}.
+					LoveNPC: I love {NPCName}.
+					LikeNPC_Princess: I like {NPCName}.
+					Princess_LovesNPC: I like {NPCName}.
+				}
+
+				Census.SpawnCondition: Conditions unknown
+			}
+
+			ArcaneWisp.DisplayName: Arcane Wisp
+			PsyRunner.DisplayName: Psy Runner
 		}
 
 		Prefixes: {
-			Ancient.DisplayName: Ancient
-			Renowned.DisplayName: Renowned
-			Stalwart.DisplayName: Stalwart
-			Exalted.DisplayName: Exalted
-			Heroic.DisplayName: Heroic
-			Repentant.DisplayName: Repentant
-			Ascendant.DisplayName: Ascendant
-			Unstable.DisplayName: Unstable
-			Barbaric.DisplayName: Barbaric
-			Divine.DisplayName: Divine
-			Emperors.DisplayName: Emperor's
-			Hypersized.DisplayName: Hypersized
-			Micro.DisplayName: Micro
-			UnironicallyOversized.DisplayName: Unironically Oversized
-			Headstrong.DisplayName: Headstrong
 			Atoned.DisplayName: Atoned
 			Ludicrous.DisplayName: Ludicrous
 			Resplendant.DisplayName: Resplendant
@@ -2653,7 +3195,8 @@ Mods: {
 			Abused.DisplayName: Abused
 			Crude.DisplayName: Crude
 			Irrational.DisplayName: Irrational
-			RadiantPrefix.DisplayName: Radiant Prefix
+			RadiantPrefix.DisplayName: Radiant
+			Tarnished.DisplayName: Tarnished
 		}
 
 		Projectiles: {
@@ -2769,8 +3312,8 @@ Mods: {
 			ExosiivaGladiusBladeProjectile.DisplayName: Exosiiva Gladius Blade
 			ExosiivaGladiusBladeProjectile2.DisplayName: Exosiiva Gladius Blade
 			IchorateProjectile.DisplayName: Ichorate
-			PrimordialElementalBreakerProjectile.DisplayName: Primordial Elemental Breaker Projectile
-			StarbornWhaleHarvesterBobber.DisplayName: Starborn Whale Harvester Bobber
+			PrimordialElementalBreakerProjectile.DisplayName: Primordial Elemental Breaker
+			StarbornWhaleHarvesterBobber.DisplayName: Starborn Whale Harvester
 			CarminiteShortswordProjectile.DisplayName: Carminite Shortsword
 			StardraxProjectile.DisplayName: Stardrax
 			SuperUniverseTotalityProjectile.DisplayName: Super Universe Totality
@@ -2788,7 +3331,63 @@ Mods: {
 			NaquadahSpikeBomb.DisplayName: Naquadah Spike Bomb
 			NaquadahSpikeBombAOE.DisplayName: Naquadah Spike Bomb
 			ArkiumShard.DisplayName: Arkium Shard
-			HellHackerProjectile.DisplayName: Hell Hacker Projectile
+			HellHackerProjectile.DisplayName: Hell Hacker
+			MrFishboneBone.DisplayName: Mr. Fishbone's Bone
+			MrFishboneProjectile.DisplayName: Mr. Fishbone
+			Tarball.DisplayName: Tarball
+			BallofSewage.DisplayName: Ball of Sewage
+			TrinityBurst.DisplayName: Trinity Burst
+			JakeTEMnomiconProjectile.DisplayName: JakeTEMnomicon
+			TrueKnifeProjectile.DisplayName: True Knife
+			GehennasRemedyProjectile.DisplayName: Gehennas Remedy
+			Psyfireball.DisplayName: Psyfireball
+			PsybenderProjectile.DisplayName: Psybender
+			ShadeBomb.DisplayName: Shade Bomb
+			ShadeBomb2.DisplayName: Shade Bomb
+			ShadeBombFriendly.DisplayName: Shade Bomb
+			ShadeBomb2Friendly.DisplayName: Shade Bomb
+			PsionicKnivesProjectile.DisplayName: Psionic Knives
+			ValtoricKnivesProjectile.DisplayName: Valtoric Knives
+			NiadesRevengeHoldout.DisplayName: Niades Revenge
+			NiadesRevengeLaser.DisplayName: Niades Revenge
+			PrystaltineHoldout.DisplayName: Prystaltine
+			PrystaltineLaser.DisplayName: Prystaltine
+			NaquadicaProjectile.DisplayName: Naquadica
+			NaquadicaProjectileAOE.DisplayName: Naquadica
+			GehennicDoom.DisplayName: Gehennic Doom
+			Sanguinebeam.DisplayName: Sanguinebeam
+			SanguinebeamFriendly.DisplayName: Sanguinebeam
+			Sanguinebeam2.DisplayName: Sanguinebeam
+			Sanguinebeam2Friendly.DisplayName: Sanguinebeam
+			DarkArtsProjectile.DisplayName: Dark Arts
+			GodheadCircle.DisplayName: Godhead Circle
+			EraserProjectile.DisplayName: Eraser
+			JumboStarProjectile.DisplayName: Jumbo Star
+			JumboStarProjectileShard.DisplayName: Jumbo Star Shard
+			BallofPuss.DisplayName: Ball of Puss
+			FistulaProjectile.DisplayName: Fistula
+			LipomaProjectile.DisplayName: Lipoma
+			StrangeMask.DisplayName: Strange Mask
+			OcculticConstruct.DisplayName: Occultic Construct
+			RiftsDivinityProjectile.DisplayName: Rift's Divinity
+		}
+
+		WorldGen: {
+			IesniumOrePassMessage: Iesnium Ore
+			BlessedWithIesniumOreMessage: The ground has been smothered with luminous energy...
+			DropFallenComet: A comet has fallen and struck the world!
+		}
+
+		BossDefeatedEvent: {
+			NiadesDefeated: The cursed moon darkens...
+			CosmicApparitionDefeated: The seal of the cosmic entities has been broken, newfound materials can be gathered from them...
+			CosmicApparitionDefeated1: The tundra freezes restlessly...
+			CosmicApparitionDefeated2: You hear lightning strike the sands across the dunes...
+			CosmicApparitionDefeated3: Spirits of the Underworld are blazing furiously...
+			CosmicApparitionDefeated4: An etherial hum is echoing from the shrine...
+			CosmicApparitionDefeated5: The Rift awaits...
+			CosmicApparitionDefeated6: Ancestoral spirits have been unleashed across the Mausoleum and Gehenna...
+			TrinityDefeated: An occultic hex has strengthened the spirits of the cursed moon...
 		}
 
 		Configs: {
@@ -2813,7 +3412,7 @@ Mods: {
 			}
 		}
 
-		Common: {
+		Client: {
 			Configurations: {
 				ClientConfig: {
 					showWelcomeMessage: {
@@ -2840,11 +3439,15 @@ Mods: {
 							'''
 							Adds the boss name above the boss bar.
 							[c/FF0000:OTHER MODS MAY NOT SUPPORT ETERNAL'S EXTRA BOSS BAR FEATURES!]
-							(Default: [c/008080:ON])
+							(Default: [c/008080:OFF])
 							'''
 					}
 				}
+			}
+		}
 
+		Server: {
+			Configurations: {
 				ServerConfig: {
 					recipeChanges: {
 						DisplayName: Recipe Changes (WIP)
@@ -2900,29 +3503,26 @@ Mods: {
 							(Default: [c/008080:OFF])
 							'''
 					}
-
-					update14: {
-						DisplayName: 1.4 Update Content
-						Tooltip:
-							'''
-							Adds content from the upcoming 1.4 update
-							[c/0000FF:---Content Breakdown---]
-							* Adds new legendary weapons, very rare weapons that have some unique features
-							* New Fallen Comet enemies, replaces the current Fallen Comet enemies
-							* Dark Moon event, an event similar to the Blood Moon, only summonable with an item
-							[c/FF0000:---WARNING---]
-							This experimental feature can be very buggy, make sure
-							you backup your worlds before enabling this experimental
-							feature.
-							(Default: [c/008080:OFF])
-							'''
-					}
 				}
+			}
+		}
+
+		Events: {
+			DarkMoon: {
+				DisplayName: Dark Moon
+				BossChecklistIntegration.SpawnInfo: Use an [i:Eternal/Animanomicon] during the night.
+			}
+
+			DarkMoon2: {
+				DisplayName: Dark Moon II (Post-Trinity)
+				BossChecklistIntegration.SpawnInfo: Use an [i:Eternal/Animanomicon] during the night, after defeating The Trinity.
 			}
 		}
 
 		Conditions: {
 			CosmicApparitionDefeated: When the Cosmic Apparition has been defeated
+			TrinityDefeated: When the Trinity has been defeated
+			isZenithWorld: Exclusively to the Zenith seed
 			IsNamedJake: When the player is named after the Empreror or the mod's creator
 			50ReputationPoints: When the player has a Reputation quota of 50
 			100ReputationPoints: When the player has a Reputation quota of 100
@@ -2934,6 +3534,13 @@ Mods: {
 			1150ReputationPoints: When the player has a Reputation quota of 1150
 			1500ReputationPoints: When the player has a Reputation quota of 1500
 			5000ReputationPoints: When the player has the maximum Reputation Quota
+			HellMode: Exclusively in Hell Mode
+			InRift: In the Rift
+			DarkMoon: During the Dark Moon
+			InMausoleum: In the Mausoleum
+			InGehenna: In the Gehenna
+			InFallenComet: At the Fallen Comet
+			InTheBeneath: In the Beneath
 		}
 	}
 }

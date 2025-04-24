@@ -15,15 +15,14 @@ namespace Eternal.Content.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            /* Tooltip.SetDefault("<right> to throw" +
-                             "\n'This little ark was unfortunatley turned into a spear...'"); */
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
+            ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = true;
         }
 
         public override void SetDefaults()
         {
-            Item.damage = 600;
+            Item.damage = 400;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.useAnimation = 18;
             Item.useTime = 24;

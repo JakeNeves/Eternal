@@ -13,7 +13,7 @@ namespace Eternal.Content.Buffs.Pets
 			// Description.SetDefault("A reminant is following you");
 
 			Main.buffNoTimeDisplay[Type] = true;
-			Main.vanityPet[Type] = true;
+			Main.lightPet[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex)

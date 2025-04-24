@@ -6,6 +6,7 @@ using Eternal.Content.Buffs;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using Eternal.Content.Dusts;
+using Eternal.Content.Buffs.Accessories;
 
 namespace Eternal.Common.Players
 {
@@ -14,30 +15,43 @@ namespace Eternal.Common.Players
         public bool holyMantle = false;
 
         public bool apparitionalWither = false;
+
         public bool unstableState = false;
+        public bool error = false;
+        public bool immenseFracture = false;
 
         public override void ResetEffects()
         {
             holyMantle = false;
+
+            apparitionalWither = false;
+
             unstableState = false;
+            error = false;
+            immenseFracture = false;
         }
 
         public override void UpdateDead()
         {
+            holyMantle = false;
+
             apparitionalWither = false;
+
             unstableState = false;
+            error = false;
+            immenseFracture = false;
         }
 
         public override void OnHurt(Player.HurtInfo info)
         {
-            if (holyMantle)
+            if (holyMantle && !Player.HasBuff(ModContent.BuffType<HolyMantleCooldown>()))
             {
                 if (!Main.dedServ)
                     SoundEngine.PlaySound(SoundID.NPCDeath14, Player.position);
 
-                for (int i = 0; i < 25; i++)
+                for (int i = 0; i < 15; i++)
                 {
-                    Vector2 position = Player.Center + Vector2.UnitX.RotatedBy(MathHelper.ToRadians(360f / 25 * i)) * 30;
+                    Vector2 position = Player.Center + Vector2.UnitX.RotatedBy(MathHelper.ToRadians(360f / 21 * i)) * 30;
                     Dust dust = Dust.NewDustPerfect(Player.position, DustID.BlueTorch);
                     dust.noGravity = false;
                     dust.velocity = Vector2.Normalize(position - Player.Center) * 4;
@@ -45,6 +59,8 @@ namespace Eternal.Common.Players
                     dust.fadeIn = 1f;
                 }
 
+                Player.Heal(Player.statLifeMax2);
+                Player.AddBuff(ModContent.BuffType<HolyMantleCooldown>(), 6000);
                 Player.ClearBuff(ModContent.BuffType<HolyMantle>());
             }
         }
@@ -53,7 +69,8 @@ namespace Eternal.Common.Players
         {
             if (holyMantle)
             {
-                Player.endurance += 15f;
+                Player.endurance += 999f;
+                Player.statDefense += 999;
             }
 
             if (unstableState)
@@ -64,6 +81,21 @@ namespace Eternal.Common.Players
             if (apparitionalWither)
             {
                 Dust.NewDust(Player.position, Player.width, Player.height, ModContent.DustType<CosmicSpirit>(), 0.5f, 0.5f, 0, Color.White, Main.rand.NextFloat(0.5f, 1.5f));
+            }
+
+            if (error)
+            {
+                Player.bodyRotation = 105f;
+                Player.headRotation = 105f;
+                Player.itemRotation = 105f;
+                Player.legRotation = 105f;
+            }
+            else
+            {
+                Player.bodyRotation = 0f;
+                Player.headRotation = 0f;
+                Player.itemRotation = 0f;
+                Player.legRotation = 0f;
             }
         }
 

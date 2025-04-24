@@ -12,13 +12,12 @@ namespace Eternal.Content.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            // Tooltip.SetDefault("'A metallic alloy of pure starpower'");
-
             ItemID.Sets.ItemNoGravity[Item.type] = true;
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
 
             Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(5, 6));
+            ItemID.Sets.AnimatesAsSoul[Item.type] = true;
         }
 
         public override void SetDefaults()

@@ -1,4 +1,5 @@
 ﻿using Eternal.Common.Systems;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Graphics.Capture;
 using Terraria.ModLoader;
@@ -11,6 +12,9 @@ namespace Eternal.Content.Biomes
         public override CaptureBiome.TileColorStyle TileColorStyle => CaptureBiome.TileColorStyle.Normal;
 
         public override string BestiaryIcon => base.BestiaryIcon;
+        public override string BackgroundPath => base.BackgroundPath;
+        public override Color? BackgroundColor => base.BackgroundColor;
+        public override string MapBackground => BackgroundPath;
 
         public override void OnEnter(Player player)
         {

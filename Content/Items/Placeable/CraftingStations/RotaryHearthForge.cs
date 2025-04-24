@@ -34,7 +34,7 @@ namespace Eternal.Content.Items.Placeable.CraftingStations
         {
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<CometiteBar>(), 12)
-                .AddIngredient(ModContent.ItemType<CrystalizedOminite>(), 20)
+                .AddIngredient(ModContent.ItemType<CrystallizedOminite>(), 20)
                 .AddIngredient(ModContent.ItemType<WeatheredPlating>(), 16)
                 .AddTile(ModContent.TileType<Tiles.CraftingStations.Starforge>())
                 .Register();

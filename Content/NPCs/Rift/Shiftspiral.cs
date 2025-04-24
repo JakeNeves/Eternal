@@ -39,7 +39,7 @@ namespace Eternal.Content.NPCs.Rift
             NPC.buffImmune[BuffID.Chilled] = true;
             NPC.HitSound = SoundID.NPCHit3;
             NPC.DeathSound = SoundID.NPCDeath52;
-            SpawnModBiomes = new int[1] { ModContent.GetInstance<Biomes.Rift>().Type };
+            SpawnModBiomes = [ ModContent.GetInstance<Biomes.Rift>().Type ];
             NPC.alpha = 100;
         }
 
@@ -50,11 +50,9 @@ namespace Eternal.Content.NPCs.Rift
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheUnderworld,
-
+            bestiaryEntry.Info.AddRange([
                 new FlavorTextBestiaryInfoElement("A ghostly figure corrupted with unstable properties of the shifted Underworld")
-            });
+            ]);
         }
 
         public override void HitEffect(NPC.HitInfo hit)

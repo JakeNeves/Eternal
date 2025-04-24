@@ -1,5 +1,4 @@
-﻿using Eternal.Content.Buffs.Weapons;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;
 using Terraria;
@@ -49,7 +48,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
             if (!Main.dedServ)
                 Lighting.AddLight(Projectile.position, 1.50f, 0.25f, 1.50f);
 
-            Projectile.rotation += Projectile.velocity.X * 0.1f;
+            Projectile.rotation += 0.15f;
         }
 
         public override bool PreDraw(ref Color lightColor)

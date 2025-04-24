@@ -27,7 +27,7 @@ namespace Eternal.Content.Items.Summon
 
        public override bool CanUseItem(Player player)
         {
-            return !NPC.AnyNPCs(ModContent.NPCType<Thunderius>()) && !NPC.AnyNPCs(ModContent.NPCType<Flaremutaria>()) && !NPC.AnyNPCs(ModContent.NPCType<Cryota>());
+            return !NPC.AnyNPCs(ModContent.NPCType<Thunderius>()) && !NPC.AnyNPCs(ModContent.NPCType<Infernito>()) && !NPC.AnyNPCs(ModContent.NPCType<Cryota>());
         }
 
         public override bool? UseItem(Player player)
@@ -37,12 +37,12 @@ namespace Eternal.Content.Items.Summon
                 var entitySource = player.GetSource_FromThis();
 
                 Main.NewText("The Trinity has awoken!", 175, 75, 255);
-                SoundEngine.PlaySound(SoundID.Roar, player.position);
+                SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/PrimordialRelicUse"), player.position);
 
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     NPC.NewNPC(entitySource, (int)player.Center.X - 600, (int)player.Center.Y - 300, ModContent.NPCType<Thunderius>());
-                    NPC.NewNPC(entitySource, (int)player.Center.X + 600, (int)player.Center.Y - 300, ModContent.NPCType<Flaremutaria>());
+                    NPC.NewNPC(entitySource, (int)player.Center.X + 600, (int)player.Center.Y - 300, ModContent.NPCType<Infernito>());
                     NPC.NewNPC(entitySource, (int)player.Center.X, (int)player.Center.Y - 300, ModContent.NPCType<Cryota>());
                 }
             }

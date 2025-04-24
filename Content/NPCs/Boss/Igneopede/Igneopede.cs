@@ -1,7 +1,6 @@
 ﻿using Eternal.Common.Configurations;
 using Eternal.Common.Misc;
 using Eternal.Common.Systems;
-using Eternal.Content.BossBarStyles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;
@@ -51,6 +50,7 @@ namespace Eternal.Content.NPCs.Boss.Igneopede
             {
                 Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/InfernalPredator");
             }
+            NPC.npcSlots = 6;
         }
 
 		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
@@ -80,15 +80,6 @@ namespace Eternal.Content.NPCs.Boss.Igneopede
 
 		public override void CustomBehavior()
 		{
-            if (ClientConfig.instance.bossBarExtras)
-            {
-                if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server && BossBarLoader.CurrentStyle == ModContent.GetInstance<EternalBossBarStyle>())
-                {
-                    EternalBossBarOverlay.SetTracked("Giant Magmatic Burrower", NPC);
-                    EternalBossBarOverlay.visible = true;
-                }
-            }
-
             Lighting.AddLight(NPC.position, 2.15f, 0.95f, 0f);
 
 			attackTimer++;

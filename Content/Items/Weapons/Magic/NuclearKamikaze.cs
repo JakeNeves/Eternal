@@ -15,10 +15,6 @@ namespace Eternal.Content.Items.Weapons.Magic
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Nuclear Kamikaze");
-            /* Tooltip.SetDefault("Casts fast moving razorblades, similar to the Razorblade Typhoon" +
-                             "\n'Not to be confused with the Nuclear Fury...'"); */
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -38,6 +34,7 @@ namespace Eternal.Content.Items.Weapons.Magic
             Item.UseSound = SoundID.Item84;
             Item.rare = ModContent.RarityType<Teal>();
             Item.autoReuse = true;
+            Item.noMelee = true;
         }
 
         public override void AddRecipes()

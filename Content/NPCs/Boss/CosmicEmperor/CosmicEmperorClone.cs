@@ -120,7 +120,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
         {
             Player player = Main.player[Main.myPlayer];
 
-            if (EventSystem.isRiftOpen && DownedBossSystem.downedRiftArkofImperious && Main.zenithWorld)
+            if (EventSystem.isRiftOpen && Main.zenithWorld)
             {
                 return SpawnCondition.Overworld.Chance * 1.5f;
             }

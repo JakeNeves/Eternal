@@ -24,8 +24,8 @@ namespace Eternal.Content.NPCs.Shrine
             NPC.damage = 20;
             NPC.defense = 10;
             NPC.knockBackResist = 0f;
-            NPC.width = 30;
-            NPC.height = 60;
+            NPC.width = 38;
+            NPC.height = 70;
             NPC.value = Item.buyPrice(silver: 8);
             NPC.lavaImmune = true;
             NPC.noGravity = true;

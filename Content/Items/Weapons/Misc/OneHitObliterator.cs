@@ -32,14 +32,19 @@ namespace Eternal.Content.Items.Weapons.Misc
 
         public override void HoldItem(Player player)
         {
-            if (!player.active || player.dead)
-                player.statLife = 1;
+            // if (!player.active || player.dead)
+            //     player.statLife = 1;
+
+            player.statLife = 1;
         }
 
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            target.life = 1;
-            player.ApplyDamageToNPC(target, 9999, 0f, 0, false);
+            // target.life = 1;
+            // player.ApplyDamageToNPC(target, 9999, 0f, 0, false);
+
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+                target.StrikeInstantKill();
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

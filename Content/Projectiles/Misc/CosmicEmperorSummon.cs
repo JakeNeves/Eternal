@@ -33,9 +33,6 @@ namespace Eternal.Content.Projectiles.Misc
 
             Player player = Main.player[Projectile.owner];
 
-            Projectile.position.X = player.Center.X;
-            Projectile.position.Y = player.Center.Y - 200;
-
             if (DownedBossSystem.downedCosmicEmperor)
             {
                 if (ReputationSystem.ReputationPoints == 5000)

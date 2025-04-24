@@ -12,7 +12,7 @@ namespace Eternal.Content
 
         public override int Music => MusicLoader.GetMusicSlot(Mod, "Assets/Music/DawnofANewBeginning");
 
-        public override Asset<Texture2D> Logo => ModContent.Request<Texture2D>($"{menuAssetPath}/Logo");
+        public override Asset<Texture2D> Logo => ModContent.Request<Texture2D>($"{menuAssetPath}/LogoAOE");
 
         public override string DisplayName => "Eternal";
 

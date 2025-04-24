@@ -1,5 +1,4 @@
-﻿using Eternal.Common.Configurations;
-using Eternal.Common.Systems;
+﻿using Eternal.Common.Systems;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Creative;
@@ -10,11 +9,6 @@ namespace Eternal.Content.Items.Summon
 {
     public class Animanomicon : ModItem
     {
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return ServerConfig.instance.update14;
-        }
-
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

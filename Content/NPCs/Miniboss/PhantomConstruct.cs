@@ -2,7 +2,6 @@
 using Eternal.Common.ItemDropRules.Conditions;
 using Eternal.Common.Misc;
 using Eternal.Common.Systems;
-using Eternal.Content.BossBarStyles;
 using Eternal.Content.Dusts;
 using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Misc;
@@ -25,7 +24,7 @@ namespace Eternal.Content.NPCs.Miniboss
     [AutoloadBossHead]
     public class PhantomConstruct : ModNPC
     {
-        int attackTimer = 0;
+        ref float attackTimer => ref NPC.ai[1];
 
         public override void SetStaticDefaults()
         {
@@ -34,12 +33,12 @@ namespace Eternal.Content.NPCs.Miniboss
 
         public override void SetDefaults()
         {
-            NPC.lifeMax = 320000;
-            NPC.damage = 120;
+            NPC.lifeMax = 32000;
+            NPC.damage = 110;
             NPC.defense = 45;
             NPC.knockBackResist = 0f;
-            NPC.width = 60;
-            NPC.height = 68;
+            NPC.width = 44;
+            NPC.height = 62;
             NPC.aiStyle = -1;
             NPC.noGravity = true;
             NPC.lavaImmune = true;
@@ -52,7 +51,7 @@ namespace Eternal.Content.NPCs.Miniboss
             };
             NPC.DeathSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCDeath/PhantomConstructDeath");
             NPC.value = Item.sellPrice(gold: 30);
-            SpawnModBiomes = new int[1] { ModContent.GetInstance<Biomes.Rift>().Type };
+            SpawnModBiomes = [ ModContent.GetInstance<Biomes.Rift>().Type ];
             NPC.buffImmune[BuffID.Poisoned] = true;
             NPC.buffImmune[BuffID.OnFire] = true;
             NPC.buffImmune[BuffID.Venom] = true;
@@ -62,16 +61,7 @@ namespace Eternal.Content.NPCs.Miniboss
             NPC.buffImmune[BuffID.Frozen] = true;
             NPC.buffImmune[BuffID.Chilled] = true;
             NPC.rarity = 4;
-            if (!Main.zenithWorld)
-            {
-                NPC.boss = true;
-                if (!Main.dedServ)
-                    Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/ConstructedByUnstability");
-            }
-            else
-            {
-                NPC.boss = false;
-            }
+            NPC.npcSlots = 6;
         }
 
         public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
@@ -82,11 +72,9 @@ namespace Eternal.Content.NPCs.Miniboss
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky,
-
+            bestiaryEntry.Info.AddRange([
                 new FlavorTextBestiaryInfoElement("Appearing from an Unstable Portal, these constructs are made from pure Ominite and renforced with Cometite.")
-            });
+            ]);
         }
 
         public override bool CheckDead()
@@ -117,15 +105,6 @@ namespace Eternal.Content.NPCs.Miniboss
 
         public override void AI()
         {
-            if (ClientConfig.instance.bossBarExtras)
-            {
-                if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server && BossBarLoader.CurrentStyle == ModContent.GetInstance<EternalBossBarStyle>() && !Main.zenithWorld)
-                {
-                    EternalBossBarOverlay.SetTracked("", NPC);
-                    EternalBossBarOverlay.visible = true;
-                }
-            }
-
             var entitySource = NPC.GetSource_FromAI();
 
             Player target = Main.player[NPC.target];
@@ -193,8 +172,8 @@ namespace Eternal.Content.NPCs.Miniboss
                     NPC.life = 0;
                     if (!DownedMinibossSystem.downedPhantomConstruct)
                         DownedMinibossSystem.downedPhantomConstruct = true;
-                    // if (!Main.zenithWorld)
-                    //     Main.NewText("The Phantom Construct has been defeated!", 175, 75, 255);
+                    if (!Main.zenithWorld)
+                         Main.NewText("The Phantom Construct has been defeated!", 175, 75, 255);
                     NPC.HitEffect(0, 0);
                     NPC.checkDead();
                 }
@@ -328,10 +307,10 @@ namespace Eternal.Content.NPCs.Miniboss
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            PostArkofImperiousRiftDropCondition postAoIRiftDrop = new PostArkofImperiousRiftDropCondition();
+            PostArkofImperiousDropCondition postAoIDrop = new PostArkofImperiousDropCondition();
             LifeMoteExperimentalFeatureCondition lifeMote = new LifeMoteExperimentalFeatureCondition();
 
-            npcLoot.Add(ItemDropRule.ByCondition(postAoIRiftDrop, ModContent.ItemType<RawOminaquadite>(), 2, 6, 12));
+            npcLoot.Add(ItemDropRule.ByCondition(postAoIDrop, ModContent.ItemType<RawOminaquadite>(), 2, 6, 12));
             npcLoot.Add(ItemDropRule.ByCondition(lifeMote, ModContent.ItemType<LifeMote>(), 6));
 
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AspectofTheShiftedWarlock>(), 1));

@@ -12,7 +12,7 @@ namespace Eternal.Common.ItemDropRules.Conditions
 
         public bool CanShowItemDropInUI()
         {
-            return true;
+            return ServerConfig.instance.lifeMotes;
         }
 
         public string GetConditionDescription()

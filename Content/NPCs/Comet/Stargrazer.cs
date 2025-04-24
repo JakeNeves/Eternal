@@ -1,9 +1,9 @@
 ﻿using Eternal.Common.ItemDropRules.Conditions;
 using Eternal.Common.Systems;
-using Eternal.Content.Dusts;
 using Eternal.Content.Items.Armor;
 using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Weapons.Melee;
+using Eternal.Content.Items.Weapons.Throwing;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
@@ -47,7 +47,7 @@ namespace Eternal.Content.NPCs.Comet
                 NPC.DeathSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCDeath/CometCreatureDeath");
             }
             NPC.value = Item.sellPrice(gold: 30);
-            SpawnModBiomes = new int[1] { ModContent.GetInstance<Biomes.Comet>().Type };
+            SpawnModBiomes = [ ModContent.GetInstance<Biomes.Comet>().Type ];
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -64,11 +64,9 @@ namespace Eternal.Content.NPCs.Comet
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-
+            bestiaryEntry.Info.AddRange([
                 new FlavorTextBestiaryInfoElement("A starborn tumbler that rolls along the ground and grazes anything in it's path...")
-            });
+            ]);
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
@@ -79,6 +77,7 @@ namespace Eternal.Content.NPCs.Comet
             npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<GalaxianPlating>(), 3, 6, 8));
             npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<Astragel>(), 3, 6, 8));
             npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<InterstellarScrapMetal>(), 3, 6, 8));
+            npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<JumboStar>(), 36));
 
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VividMilkyWayClimax>(), 4));
 

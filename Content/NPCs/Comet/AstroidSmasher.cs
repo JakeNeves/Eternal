@@ -4,6 +4,7 @@ using Eternal.Content.Dusts;
 using Eternal.Content.Items.Armor;
 using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Weapons.Magic;
+using Eternal.Content.Items.Weapons.Throwing;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -68,11 +69,9 @@ namespace Eternal.Content.NPCs.Comet
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-
+            bestiaryEntry.Info.AddRange([
                 new FlavorTextBestiaryInfoElement("These creatures pack quite a punch, they are srtong enough to break astroids into four.")
-            });
+            ]);
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -164,6 +163,7 @@ namespace Eternal.Content.NPCs.Comet
             npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<ApparitionalMatter>(), 3, 6, 12));
             npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<Astragel>(), 3, 6, 12));
             npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<InterstellarScrapMetal>(), 3, 6, 12));
+            npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<JumboStar>(), 36));
 
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<StarstaveEin>(), 4));
         }
@@ -212,6 +212,12 @@ namespace Eternal.Content.NPCs.Comet
     {
         public override void SetStaticDefaults()
         {
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
+            {
+                Hide = true
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
+
             Main.npcFrameCount[NPC.type] = 4;
         }
 
@@ -256,15 +262,6 @@ namespace Eternal.Content.NPCs.Comet
             NPC.buffImmune[BuffID.Frozen] = true;
             NPC.buffImmune[BuffID.Chilled] = true;
             SpawnModBiomes = [ModContent.GetInstance<Biomes.Comet>().Type];
-        }
-
-        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
-        {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-
-                new FlavorTextBestiaryInfoElement("These creatures pack quite a punch, they are srtong enough to break astroids into four.")
-            });
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -358,6 +355,7 @@ namespace Eternal.Content.NPCs.Comet
             npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<ApparitionalMatter>(), 3, 6, 12));
             npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<Astragel>(), 3, 6, 12));
             npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<InterstellarScrapMetal>(), 3, 6, 12));
+            npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<JumboStar>(), 36));
 
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<StarstaveEin>(), 4));
         }

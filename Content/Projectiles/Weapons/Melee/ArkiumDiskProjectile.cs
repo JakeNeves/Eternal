@@ -1,9 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.Audio;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -41,7 +39,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            var entitySource = Projectile.GetSource_FromAI();
+            var entitySource = Projectile.GetSource_FromThis();
 
             if (!Main.dedServ)
             {

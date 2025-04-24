@@ -1,5 +1,4 @@
-﻿using Eternal.Common.Configurations;
-using Terraria;
+﻿using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -9,11 +8,6 @@ namespace Eternal.Content.Items.Materials
 {
     public class OcculticMatter : ModItem
     {
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return ServerConfig.instance.update14;
-        }
-
         public override void SetStaticDefaults()
         {
             ItemID.Sets.ItemNoGravity[Item.type] = true;
@@ -21,6 +15,7 @@ namespace Eternal.Content.Items.Materials
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
 
             Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(6, 2));
+            ItemID.Sets.AnimatesAsSoul[Item.type] = true;
         }
 
         public override void SetDefaults()

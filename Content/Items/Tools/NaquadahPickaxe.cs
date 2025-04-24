@@ -36,7 +36,7 @@ namespace Eternal.Content.Items.Tools
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<CrystalizedOminite>(), 12)
+                .AddIngredient(ModContent.ItemType<CrystallizedOminite>(), 12)
                 .AddIngredient(ModContent.ItemType<OminaquaditeBar>(), 16)
                 .AddIngredient(ModContent.ItemType<WeaponsGradeNaquadahAlloy>(), 10)
                 .AddTile(ModContent.TileType<RotaryHearthForge>())

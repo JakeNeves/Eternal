@@ -1,7 +1,6 @@
 ﻿using Eternal.Common.Configurations;
 using Eternal.Common.Misc;
 using Eternal.Common.Systems;
-using Eternal.Content.BossBarStyles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;
@@ -44,6 +43,7 @@ namespace Eternal.Content.NPCs.Boss.Duneworm
             {
                 Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/VibrationsBeneathTheSands");
             }
+            NPC.npcSlots = 6;
         }
 
 		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
@@ -73,15 +73,6 @@ namespace Eternal.Content.NPCs.Boss.Duneworm
 
 		public override void CustomBehavior()
 		{
-            if (ClientConfig.instance.bossBarExtras)
-            {
-                if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server && BossBarLoader.CurrentStyle == ModContent.GetInstance<EternalBossBarStyle>())
-                {
-                    EternalBossBarOverlay.SetTracked("Ambusher of the Desert", NPC);
-                    EternalBossBarOverlay.visible = true;
-                }
-            }
-
             Player target = Main.player[NPC.target];
 
 			NPC.TargetClosest(true);

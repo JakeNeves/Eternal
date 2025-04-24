@@ -1,5 +1,4 @@
-﻿using Eternal.Common.Configurations;
-using Eternal.Common.Systems;
+﻿using Eternal.Common.Systems;
 using Eternal.Content.Items.Materials;
 using Microsoft.Xna.Framework;
 using System;
@@ -18,11 +17,6 @@ namespace Eternal.Content.NPCs.DarkMoon
         private Player player;
 
         int attackTimer;
-
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return ServerConfig.instance.update14;
-        }
 
         public override void SetStaticDefaults()
         {
@@ -54,11 +48,6 @@ namespace Eternal.Content.NPCs.DarkMoon
             if (!Main.dedServ)
             {
                 Lighting.AddLight(NPC.Center, 1.50f, 0.25f, 1.50f);
-
-                for (int k = 0; k < 5.0; k++)
-                {
-                    Dust.NewDust(NPC.Center, NPC.width, NPC.height, ModContent.DustType<Dusts.OcculticMatter>(), 0, 0, 0, default(Color), 1f);
-                }
             }
 
             player = Main.player[NPC.target];
@@ -94,11 +83,9 @@ namespace Eternal.Content.NPCs.DarkMoon
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-
+            bestiaryEntry.Info.AddRange([
                 new FlavorTextBestiaryInfoElement("A condensed ball of matter, made from pure occultic energy, they can easily phase through solid surfaces and fire twisted dark energy!")
-            });
+            ]);
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

@@ -1,13 +1,10 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Projectiles.Weapons.Melee
 {
     public class ArkiumDiskProjectileAOE : ModProjectile
     {
-        float projScale = 1f;
-
         public override void SetDefaults()
         {
             Projectile.width = 30;
@@ -24,7 +21,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
         {
             Projectile.rotation += 0.15f;
             Projectile.alpha++;
-            Projectile.scale += 0.05f;
+            Projectile.scale += (0.05f * Projectile.scale) / 4;
 
             if (Projectile.alpha >= 255)
                 Projectile.Kill();

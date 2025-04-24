@@ -16,12 +16,12 @@ namespace Eternal.Content.Items.Weapons.Melee
 
         public override void SetDefaults()
         {
-            Item.width = 46;
-            Item.height = 46;
+            Item.width = 60;
+            Item.height = 60;
             Item.DamageType = DamageClass.Melee;
             Item.rare = ModContent.RarityType<Teal>();
             Item.noMelee = true;
-            Item.damage = 400;
+            Item.damage = 100;
             Item.useAnimation = 16;
             Item.useTime = 16;
             Item.useStyle = ItemUseStyleID.Swing;

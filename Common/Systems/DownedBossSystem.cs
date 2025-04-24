@@ -17,7 +17,8 @@ namespace Eternal.Common.Systems
 		public static bool downedSubzeroElemental = false;
 		public static bool downedDuneworm = false;
 		public static bool downedDroxOverlord = false;
-		public static bool downedEmpraynia = false;
+		public static bool downedNiades = false;
+		public static bool downedGlare = false;
 
 		// post-moon lord bosses
 		public static bool downedCosmicApparition = false;
@@ -25,10 +26,6 @@ namespace Eternal.Common.Systems
         public static bool downedArkofImperious = false;
 		public static bool downedCosmicEmperor = false;
 		public static bool downedTrinity = false;
-
-        // rift
-        public static bool downedRiftCosmicApparition = false;
-        public static bool downedRiftArkofImperious = false;
 
         public override void OnWorldLoad()
 		{
@@ -42,18 +39,15 @@ namespace Eternal.Common.Systems
 			downedSubzeroElemental = false;
 			downedDuneworm = false;
 			downedDroxOverlord = false;
-			downedEmpraynia = false;
+			downedNiades = false;
+			downedGlare = false;
 
 			// post-moon lord bosses
 			downedCosmicApparition = false;
             downedFrostKing = false;
             downedArkofImperious = false;
-			downedCosmicEmperor = false;
-			downedTrinity = false;
-
-            // rift
-            downedRiftCosmicApparition = false;
-			downedRiftArkofImperious = false;
+            downedTrinity = false;
+            downedCosmicEmperor = false;
 		}
 
 		public override void OnWorldUnload()
@@ -68,7 +62,8 @@ namespace Eternal.Common.Systems
 			downedSubzeroElemental = false;
 			downedDuneworm = false;
 			downedDroxOverlord = false;
-			downedEmpraynia = false;
+			downedNiades = false;
+			downedGlare = false;
 
 			// post-moon lord bosses
 			downedCosmicApparition = false;
@@ -76,10 +71,6 @@ namespace Eternal.Common.Systems
             downedArkofImperious = false;
 			downedTrinity = false;
 			downedCosmicEmperor = false;
-
-            // rift
-            downedRiftCosmicApparition = false;
-            downedRiftArkofImperious = false;
         }
 		public override void SaveWorldData(TagCompound tag)
 		{
@@ -110,6 +101,14 @@ namespace Eternal.Common.Systems
             {
                 tag["downedDuneworm"] = true;
             }
+            if (downedNiades)
+            {
+                tag["downedNiades"] = true;
+            }
+            if (downedGlare)
+            {
+                tag["downedGlare"] = true;
+            }
 
             // post-moon lord bosses
             if (downedCosmicApparition)
@@ -120,19 +119,13 @@ namespace Eternal.Common.Systems
 			{
 				tag["downedArkofImperious"] = true;
 			}
+            if (downedTrinity)
+            {
+                tag["downedTrinity"] = true;
+            }
             if (downedCosmicEmperor)
             {
                 tag["downedCosmicEmperor"] = true;
-            }
-
-            // rift
-            if (downedRiftCosmicApparition)
-            {
-                tag["downedRiftCosmicApparition"] = true;
-            }
-            if (downedRiftArkofImperious)
-            {
-                tag["downedRiftArkofImperious"] = true;
             }
         }
 
@@ -147,15 +140,14 @@ namespace Eternal.Common.Systems
             downedIncinerius = tag.ContainsKey("downedIncinerius");
             downedSubzeroElemental = tag.ContainsKey("downedSubzeroElemental");
             downedDuneworm = tag.ContainsKey("downedDuneworm");
+            downedNiades = tag.ContainsKey("downedNiades");
+            downedGlare = tag.ContainsKey("downedGlare");
 
             // post-moon lord bosses
             downedCosmicApparition = tag.ContainsKey("downedCosmicApparition");
 			downedArkofImperious = tag.ContainsKey("downedArkofImperious");
-			downedCosmicEmperor = tag.ContainsKey("downedCosmicEmperor");
-
-            // rift
-            downedRiftCosmicApparition = tag.ContainsKey("downedRiftCosmicApparition");
-            downedRiftArkofImperious = tag.ContainsKey("downedRiftArkofImperious");
+            downedTrinity = tag.ContainsKey("downedTrinity");
+            downedCosmicEmperor = tag.ContainsKey("downedCosmicEmperor");
         }
 
 		public override void NetSend(BinaryWriter writer)
@@ -170,15 +162,14 @@ namespace Eternal.Common.Systems
             flags[3] = downedIncinerius;
             flags[4] = downedSubzeroElemental;
             flags[5] = downedDuneworm;
+            flags[6] = downedNiades;
+            flags[7] = downedGlare;
 
             // post-moon lord bosses
             flags[9] = downedCosmicApparition;
 			flags[19] = downedArkofImperious;
+            flags[20] = downedTrinity;
             flags[22] = downedCosmicEmperor;
-
-            // rift
-            downedRiftCosmicApparition = flags[10];
-            downedRiftArkofImperious = flags[20];
 
             writer.Write(flags);
 		}
@@ -195,15 +186,14 @@ namespace Eternal.Common.Systems
             downedIncinerius = flags[3];
             downedSubzeroElemental = flags[4];
             downedDuneworm = flags[5];
+            downedNiades = flags[6];
+            downedGlare = flags[7];
 
             // post-moon lord bosses
             downedCosmicApparition = flags[9];
 			downedArkofImperious = flags[19];
+            downedTrinity = flags[20];
             downedCosmicEmperor = flags[22];
-
-            // rift
-            downedRiftCosmicApparition = flags[9];
-            downedRiftArkofImperious = flags[19];
         }
 	}
 }

@@ -23,8 +23,8 @@ namespace Eternal.Content.Items.Weapons.Summon
 
         public override void SetDefaults()
         {
-            Item.width = 50;
-            Item.height = 50;
+            Item.width = 32;
+            Item.height = 32;
             Item.damage = 400;
             Item.mana = 60;
             Item.knockBack = 9.5f;

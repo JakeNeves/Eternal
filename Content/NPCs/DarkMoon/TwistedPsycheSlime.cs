@@ -1,5 +1,4 @@
-﻿using Eternal.Common.Configurations;
-using Eternal.Common.Systems;
+﻿using Eternal.Common.Systems;
 using Eternal.Content.Items.Materials;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -14,11 +13,6 @@ namespace Eternal.Content.NPCs.DarkMoon
 {
     public class TwistedPsycheSlime : ModNPC
     {
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return ServerConfig.instance.update14;
-        }
-
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.BlueSlime];
@@ -62,11 +56,9 @@ namespace Eternal.Content.NPCs.DarkMoon
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-
+            bestiaryEntry.Info.AddRange([
                 new FlavorTextBestiaryInfoElement("When the glow of the darkened moon, shines upon the horizon, helpless slimes become psychebound by occultic energy! These however, are brutish...")
-            });
+            ]);
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)

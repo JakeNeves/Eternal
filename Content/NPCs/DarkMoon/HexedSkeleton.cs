@@ -1,5 +1,4 @@
-﻿using Eternal.Common.Configurations;
-using Eternal.Common.Systems;
+﻿using Eternal.Common.Systems;
 using Eternal.Content.Items.Materials;
 using System.Collections.Generic;
 using Terraria;
@@ -13,11 +12,6 @@ namespace Eternal.Content.NPCs.DarkMoon
 {
     public class HexedSkeleton : ModNPC
     {
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return ServerConfig.instance.update14;
-        }
-
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Skeleton];
@@ -29,7 +23,7 @@ namespace Eternal.Content.NPCs.DarkMoon
             NPC.height = 40;
             NPC.damage = 40;
             NPC.defense = 12;
-            NPC.lifeMax = 600;
+            NPC.lifeMax = 200;
             NPC.HitSound = SoundID.NPCHit2;
             NPC.DeathSound = SoundID.NPCDeath2;
             NPC.value = Item.sellPrice(silver: 12, gold: 4);
@@ -39,24 +33,24 @@ namespace Eternal.Content.NPCs.DarkMoon
             AnimationType = NPCID.Skeleton;
             Banner = Item.NPCtoBanner(NPCID.Skeleton);
             BannerItem = Item.BannerToItem(Banner);
-            SpawnModBiomes = [ ModContent.GetInstance<Biomes.DarkMoon>().Type ];
+            SpawnModBiomes = [ ModContent.GetInstance<Biomes.DarkMoon>().Type, ModContent.GetInstance<Biomes.Mausoleum>().Type];
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-
+            bestiaryEntry.Info.AddRange([
                 new FlavorTextBestiaryInfoElement("Remains of what was left of dead occultists, brought back to life!")
-            });
+            ]);
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if (EventSystem.darkMoon)
-                return SpawnCondition.OverworldNightMonster.Chance * 0.5f;
+                return SpawnCondition.OverworldNightMonster.Chance * 0.5f + SpawnCondition.Underground.Chance * 0f;
+            else if (ModContent.GetInstance<ZoneSystem>().zoneMausoleum)
+                return SpawnCondition.OverworldNightMonster.Chance * 0f + SpawnCondition.Underground.Chance * 0.25f;
             else
-                return SpawnCondition.OverworldNightMonster.Chance * 0f;
+                return SpawnCondition.OverworldNightMonster.Chance * 0f + SpawnCondition.Underground.Chance * 0f;
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)

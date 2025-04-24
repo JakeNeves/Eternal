@@ -1,5 +1,4 @@
-﻿using Eternal.Common.Configurations;
-using Eternal.Common.Systems;
+﻿using Eternal.Common.Systems;
 using Eternal.Content.Items.Materials;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -12,11 +11,6 @@ namespace Eternal.Content.NPCs.DarkMoon
 {
     public class DarkMoonWatcher2 : ModNPC
     {
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return ServerConfig.instance.update14;
-        }
-
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.DemonEye];

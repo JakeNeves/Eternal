@@ -10,8 +10,6 @@ namespace Eternal.Content.Items.Weapons.Magic
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Starstave Ein");
-            // Tooltip.SetDefault("'Stave? Staff? You decide...'");
             Item.staff[Item.type] = true;
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -19,8 +17,8 @@ namespace Eternal.Content.Items.Weapons.Magic
 
         public override void SetDefaults()
         {
-            Item.width = 44;
-            Item.height = 44;
+            Item.width = 40;
+            Item.height = 40;
             Item.damage = 200;
             Item.DamageType = DamageClass.Magic;
             Item.useStyle = ItemUseStyleID.Shoot;
@@ -33,6 +31,7 @@ namespace Eternal.Content.Items.Weapons.Magic
             Item.UseSound = SoundID.Item8;
             Item.rare = ItemRarityID.Red;
             Item.autoReuse = true;
+            Item.noMelee = true;
         }
     }
 }

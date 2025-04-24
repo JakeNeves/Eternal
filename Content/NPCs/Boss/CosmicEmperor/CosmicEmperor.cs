@@ -8,23 +8,55 @@ using Terraria.ModLoader;
 using Eternal.Content.Projectiles.Boss;
 using Eternal.Common.Configurations;
 using Eternal.Common.Misc;
-using Eternal.Content.BossBarStyles;
+using Eternal.Content.Projectiles.Enemy;
 
 namespace Eternal.Content.NPCs.Boss.CosmicEmperor
 {
     [AutoloadBossHead]
     public class CosmicEmperor : ModNPC
     {
-        int tohouTimer = 0;
-        int attackTimer = 0;
         int dialogueTimer = 0;
 
         bool spawnedClones = false;
         bool dialogue = false;
-        bool tohouAttack = false;
         bool firstAttack = false;
-        bool isDead = false;
-        bool dontKillyet = false;
+
+        bool canAttack = false;
+
+        int AICosmicEmperorShootTime = 4;
+        int AICosmicEmperorShootRate()
+        {
+            int rate;
+
+            if (DifficultySystem.hellMode)
+                rate = 6;
+            else if (Main.expertMode)
+                rate = 8;
+            else
+                rate = 10;
+
+            return rate;
+        }
+
+        static int AICosmicEmperorLaserShotRateMax()
+        {
+            int rate;
+
+            if (DifficultySystem.hellMode)
+                rate = 4;
+            else if (Main.expertMode)
+                rate = 5;
+            else
+                rate = 6;
+
+            return rate;
+        }
+
+        int AICosmicEmperorLaserShotRate = AICosmicEmperorLaserShotRateMax();
+
+        float AICosmicEmperorProjectileRotation = MathHelper.PiOver2;
+
+        ref float AttackTimer => ref NPC.ai[1];
 
         Vector2 CircleDirc = new Vector2(0.0f, 16f);
 
@@ -41,72 +73,44 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
         {
             NPC.width = 54;
             NPC.height = 56;
-            NPC.lifeMax = 400000;
-            NPC.defense = 90;
-            NPC.damage = 40;
-            NPC.noGravity = true;
-            NPC.noTileCollide = true;
+            NPC.lifeMax = 1000000;
+            NPC.defense = 75;
+            NPC.damage = 30;
             NPC.lavaImmune = true;
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = null;
             NPC.boss = true;
             Music = MusicID.OtherworldlyLunarBoss;
             NPC.knockBackResist = 0f;
+            NPC.npcSlots = 6;
         }
 
         public override void HitEffect(NPC.HitInfo hit)
         {
-            if (!dontKillyet)
+            canAttack = true;
+
+            Player target = Main.player[NPC.target];
+
+            for (int i = 0; i < Main.maxPlayers; i++)
             {
-                if (NPC.life < 0)
+                var player = Main.player[i];
+                if (!player.active)
+                    continue;
+
+                Vector2 direction = Main.player[NPC.target].Center - NPC.Center;
+                direction.Normalize();
+                direction.X *= 8.5f;
+                direction.Y *= 8.5f;
+
+                if (Main.rand.NextBool(2))
                 {
-                    NPC.life = 1;
-                    isDead = true;
+                    float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                    float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                        Projectile.NewProjectile(NPC.GetSource_OnHurt(player), NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<CosmicFireball>(), NPC.damage, 1, Main.myPlayer, 0, 0);
                 }
             }
         }
-
-        /*public override void ModifyIncomingHit(ref NPC.HitModifiers modifiers)
-        {
-            if (damage > NPC.lifeMax / 2)
-            {
-                SoundEngine.PlaySound(SoundID.DD2_BallistaTowerShot);
-                if (Main.rand.NextBool(1))
-                {
-                    Main.NewText("No!", 150, 36, 120);
-                }
-                if (Main.rand.NextBool(2))
-                {
-                    Main.NewText("I shall not tolerate such action...", 150, 36, 120);
-                }
-                if (Main.rand.NextBool(3))
-                {
-                    Main.NewText("What is wrong with you?", 150, 36, 120);
-                }
-                if (Main.rand.NextBool(4))
-                {
-                    Main.NewText("You think your black magic can withstand my potental?", 150, 36, 120);
-                }
-                if (Main.rand.NextBool(5))
-                {
-                    Main.NewText("What an absolute cheater you are.", 150, 36, 120);
-                }
-                if (Main.rand.NextBool(6))
-                {
-                    Main.NewText("Don't you butcher me with your nonsense!", 150, 36, 120);
-                }
-                if (Main.rand.NextBool(7))
-                {
-                    Main.NewText("That did not penetrate me...", 150, 36, 120);
-                }
-                if (Main.rand.NextBool(8))
-                {
-                    Main.NewText("Maybe you should go butcher someone else, not me!", 150, 36, 120);
-                }
-
-                damage = 0;
-            }
-        }*/
 
         public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
         {
@@ -163,162 +167,35 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
             return true;
         }
 
+        public override bool CheckDead()
+        {
+            if (NPC.ai[3] == 0f)
+            {
+                NPC.ai[3] = 1f;
+                NPC.damage = 0;
+                NPC.life = NPC.lifeMax;
+                NPC.dontTakeDamage = true;
+                NPC.netUpdate = true;
+                return false;
+            }
+            return true;
+        }
+
         public override void AI()
         {
-            if (ClientConfig.instance.bossBarExtras)
-            {
-                if (!EternalBossBarOverlay.visible && Main.netMode != NetmodeID.Server && BossBarLoader.CurrentStyle == ModContent.GetInstance<EternalBossBarStyle>())
-                {
-                    EternalBossBarOverlay.SetTracked("The Nameless Tyrant Unleashed", NPC);
-                    EternalBossBarOverlay.visible = true;
-                }
-            }
-
-            if (!firstAttack)
-            {
-                tohouAttack = true;
-                firstAttack = true;
-            }
-
             var entitySource = NPC.GetSource_FromAI();
 
+            NPC.TargetClosest(true);
+            NPC.spriteDirection = NPC.direction;
             Player player = Main.player[NPC.target];
-
-            attackTimer++;
-
             Vector2 direction = Main.player[NPC.target].Center - NPC.Center;
             direction.Normalize();
             direction.X *= 8.5f;
             direction.Y *= 8.5f;
 
-            if (tohouAttack)
+            if (NPC.ai[3] > 0f)
             {
-                NPC.dontTakeDamage = true;
-
-                tohouTimer++;
-
-                if (DifficultySystem.hellMode)
-                {
-                    if (attackTimer == 50 || attackTimer == 55 || attackTimer == 60 || attackTimer == 65 || attackTimer == 70)
-                    {
-                        for (int i = 0; i < 2; ++i)
-                        {
-                            Projectile.NewProjectile(entitySource, player.position.X - 800, player.position.Y + Main.rand.Next(-600, 600), Main.rand.Next(2, 4), 0, ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                            Projectile.NewProjectile(entitySource, player.position.X + 800, player.position.Y + Main.rand.Next(-600, 600), Main.rand.Next(-4, -2), 0, ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                        }
-                    }
-                    if (attackTimer == 75 || attackTimer == 180 || attackTimer == 85 || attackTimer == 90 || attackTimer == 95)
-                    {
-                        for (int i = 0; i < 2; ++i)
-                        {
-                            Projectile.NewProjectile(entitySource, player.position.X + Main.rand.Next(-600, 600), player.position.Y - 800, 0, Main.rand.Next(2, 14), ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                            Projectile.NewProjectile(entitySource, player.position.X + Main.rand.Next(-600, 600), player.position.Y + 800, 0, Main.rand.Next(-4, -2), ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                        }
-                    }
-                    if (attackTimer == 100 || attackTimer == 105 || attackTimer == 110 || attackTimer == 115 || attackTimer == 120)
-                    {
-                        for (int i = 0; i < 2; ++i)
-                        {
-                            Projectile.NewProjectile(entitySource, player.position.X + Main.rand.Next(-600, 600), player.position.Y - 800, Main.rand.Next(2, 4), 0, ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                            Projectile.NewProjectile(entitySource, player.position.X + Main.rand.Next(-600, 600), player.position.Y + 800, Main.rand.Next(-4, -2), 0, ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                            Projectile.NewProjectile(entitySource, player.position.X - 800, player.position.Y + Main.rand.Next(-600, 600), 0, Main.rand.Next(2, 4), ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                            Projectile.NewProjectile(entitySource, player.position.X + 800, player.position.Y + Main.rand.Next(-600, 600), 0, Main.rand.Next(-4, -2), ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                        }
-                    }
-                }
-                else
-                {
-                    if (attackTimer == 50 || attackTimer == 55 || attackTimer == 60 || attackTimer == 65 || attackTimer == 70)
-                    {
-                        for (int i = 0; i < 2; ++i)
-                        {
-                            Projectile.NewProjectile(entitySource, player.position.X - 800, player.position.Y + Main.rand.Next(-600, 600), 2, 0, ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                            Projectile.NewProjectile(entitySource, player.position.X + 800, player.position.Y + Main.rand.Next(-600, 600), -2, 0, ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                        }
-                    }
-                    if (attackTimer == 75 || attackTimer == 180 || attackTimer == 85 || attackTimer == 90 || attackTimer == 95)
-                    {
-                        for (int i = 0; i < 2; ++i)
-                        {
-                            Projectile.NewProjectile(entitySource, player.position.X + Main.rand.Next(-600, 600), player.position.Y - 800, 0, 2, ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                            Projectile.NewProjectile(entitySource, player.position.X + Main.rand.Next(-600, 600), player.position.Y + 800, 0, -2, ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                        }
-                    }
-                    if (attackTimer == 100 || attackTimer == 105 || attackTimer == 110 || attackTimer == 115 || attackTimer == 120)
-                    {
-                        for (int i = 0; i < 2; ++i)
-                        {
-                            Projectile.NewProjectile(entitySource, player.position.X + Main.rand.Next(-600, 600), player.position.Y - 800, 2, 0, ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                            Projectile.NewProjectile(entitySource, player.position.X + Main.rand.Next(-600, 600), player.position.Y + 800, -2, 0, ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                            Projectile.NewProjectile(entitySource, player.position.X - 800, player.position.Y + Main.rand.Next(-600, 600), 0, 2, ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                            Projectile.NewProjectile(entitySource, player.position.X + 800, player.position.Y + Main.rand.Next(-600, 600), 0, -2, ModContent.ProjectileType<CosmicEmperorTohou>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                        }
-                    }
-                }
-                if (attackTimer > 120)
-                {
-                    attackTimer = 0;
-                }
-
-                if (tohouTimer == 1500)
-                {
-                    NPC.dontTakeDamage = false;
-                    tohouAttack = false;
-                    tohouTimer = 0;
-                }
-            }
-            else
-            {
-                if (attackTimer == 75 || attackTimer == 100 || attackTimer == 125 || attackTimer == 150 || attackTimer == 175 || attackTimer == 200)
-                {
-                    for (int i = 0; i < 3 + Main.rand.Next(3); ++i)
-                    {
-                        SoundEngine.PlaySound(SoundID.NPCHit3, NPC.Center);
-                        float A = (float)Main.rand.Next(-200, 200) * 0.01f;
-                        float B = (float)Main.rand.Next(-200, 200) * 0.01f;
-                        if (Main.netMode != NetmodeID.MultiplayerClient)
-                            Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<CosmicFireball>(), NPC.damage, 1, Main.myPlayer, 0, 0);
-                    }
-                }
-                if (attackTimer == 375 || attackTimer == 400 || attackTimer == 425 || attackTimer == 450 || attackTimer == 475 || attackTimer == 500)
-                {
-                    for (int i = 0; i < 4 + Main.rand.Next(4); ++i)
-                    {
-                        SoundEngine.PlaySound(SoundID.NPCHit3, NPC.Center);
-                        float A = (float)Main.rand.Next(-200, 200) * 0.01f;
-                        float B = (float)Main.rand.Next(-200, 200) * 0.01f;
-                        if (Main.netMode != NetmodeID.MultiplayerClient)
-                            Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<CosmicFireball>(), NPC.damage, 1, Main.myPlayer, 0, 0);
-                    }
-                }
-                if (attackTimer > 500 && attackTimer < 700)
-                {
-                    CircleDirc = Utils.RotatedBy(CircleDirc, 0.10000000149011612, new Vector2());
-                    int index5 = Projectile.NewProjectile(entitySource, NPC.Center, CircleDirc, ModContent.ProjectileType<CosmicEmperorKnife>(), NPC.damage / 4, 0.0f, Main.myPlayer, 0.0f, 0.0f);
-                    int index6 = Projectile.NewProjectile(entitySource, NPC.Center, Utils.RotatedBy(CircleDirc, Math.PI, new Vector2()), ModContent.ProjectileType<CosmicEmperorKnife>(), NPC.damage / 4, 0.0f, Main.myPlayer, 0.0f, 0.0f);
-                    Main.projectile[index5].tileCollide = false;
-                    Main.projectile[index5].timeLeft = 300;
-                    Main.projectile[index6].tileCollide = false;
-                    Main.projectile[index6].timeLeft = 300;
-                }
-                if (attackTimer == 800)
-                {
-                    for (int i = 0; i < Main.rand.Next(18, 36); i++)
-                    {
-                        Projectile.NewProjectile(entitySource, NPC.Center, Utils.RotatedBy(new Vector2(10f, 0.0f), (double)MathHelper.ToRadians((i * 30 + Main.rand.Next(30))), new Vector2()), ModContent.ProjectileType<CosmicFireball>(), 0, 0.0f, Main.myPlayer, 0.0f, 0.0f);
-                    }
-                }
-                if (attackTimer == 1000)
-                {
-                    Projectile.NewProjectile(entitySource, player.position.X, player.position.Y, 0, 0, ModContent.ProjectileType<EmperorBlade>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-
-                    attackTimer = 0;
-                }
-            }
-
-            if (isDead)
-            {
-                attackTimer = 0;
+                NPC.ai[3] += 1f;
                 NPC.dontTakeDamage = true;
 
                 if (!dialogue)
@@ -329,24 +206,29 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
                 }
                 switch (dialogueTimer)
                 {
-                    case 150:
-                        Main.NewText("Well, it looks like you're pretty good...", 150, 36, 120);
+                    case 100:
+                        CombatText.NewText(NPC.Hitbox, new Color(150, 36, 120), "...", dramatic: true);
+                        Main.NewText("...", 150, 36, 120);
                         break;
-                    case 290:
-                        Main.NewText("However, this is the end of your journey, because guess what...", 150, 36, 120);
+                    case 200:
+                        CombatText.NewText(NPC.Hitbox, new Color(150, 36, 120), "No...", dramatic: true);
+                        Main.NewText("No...", 150, 36, 120);
                         break;
-                    case 450:
-                        Main.NewText("YOUR RESISTANCE ENDS NOW!", 150, 36, 120);
+                    case 300:
+                        CombatText.NewText(NPC.Hitbox, new Color(150, 36, 120), "Not like this!", dramatic: true);
+                        Main.NewText("Not like this!", 150, 36, 120);
                         break;
-                    case 690:
-                        Main.NewText("I CAN ALREADY HEAR THE MARCHING OF A THOUSAND ANTS APPROACHING!", 150, 36, 120);
+                    case 400:
+                        CombatText.NewText(NPC.Hitbox, new Color(150, 36, 120), "I just have one more thing I'm gonna pull off, before I give in all that I've got....", dramatic: true);
+                        Main.NewText("I just have one more thing I'm gonna pull off, before I give in all that I've got...", 150, 36, 120);
                         break;
-                    case 850:
-                        Main.NewText("CLONES, PUNISH THEM!", 150, 36, 120);
+                    case 500:
+                        CombatText.NewText(NPC.Hitbox, new Color(150, 36, 120), "Clones, cut them down, tear them apart, punish them once in for all!...", dramatic: true);
+                        Main.NewText("Clones, cut them down, tear them apart, punish them once in for all!", 150, 36, 120);
                         spawnedClones = true;
-                        for (int i = 0; i < 12; ++i)
+                        for (int i = 0; i < 6; ++i)
                         {
-                            NPC.NewNPC(entitySource, (int)NPC.position.X + Main.rand.Next(-120, 120), (int)NPC.position.Y + Main.rand.Next(-120, 120), ModContent.NPCType<CosmicEmperorClone>());
+                            NPC.NewNPC(entitySource, (int)NPC.position.X + Main.rand.Next(-200, 200), (int)NPC.position.Y + Main.rand.Next(-200, 200), ModContent.NPCType<CosmicEmperorClone>());
                         }
                         dialogue = true;
                         break;
@@ -355,12 +237,208 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
                 {
                     if (!NPC.AnyNPCs(ModContent.NPCType<CosmicEmperorClone>()))
                     {
-                        Main.NewText("THESE CLONES ARE USELESS, I WILL HAVE TO TAKE MATTER INTO MY OWN HANDS NOW!", 150, 36, 120);
+                        CombatText.NewText(NPC.Hitbox, new Color(150, 36, 120), "Useless, I gues this is my last resort, I'll really have take matter into my own hands now!", dramatic: true);
+                        Main.NewText("Useless, I gues this is my last resort, I'll really have take matter into my own hands now!", 150, 36, 120);
                         NPC.NewNPC(entitySource, (int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<CosmicEmperorP2>());
                         NPC.active = false;
                     }
                 }
+
+                if (NPC.ai[3] >= 500f && !NPC.AnyNPCs(ModContent.NPCType<CosmicEmperorClone>()))
+                {
+                    NPC.life = 0;
+                    NPC.checkDead();
+                }
+
+                return;
             }
+
+            if (canAttack)
+            {
+                if (NPC.life < NPC.lifeMax / 1.25)
+                    AI_Cosmic_Emperor_Attacks_Phase2();
+                else if (NPC.life < NPC.lifeMax / 2)
+                    AI_Cosmic_Emperor_Attacks_Phase3();
+                else
+                    AI_Cosmic_Emperor_Attacks_Phase1();
+            }
+        }
+
+        private void AI_Cosmic_Emperor_Attacks_Phase1()
+        {
+            var entitySource = NPC.GetSource_FromAI();
+
+            Vector2 circDir = new Vector2(0f, 15f);
+
+            Player player = Main.player[NPC.target];
+            Vector2 direction = Main.player[NPC.target].Center - NPC.Center;
+            direction.Normalize();
+            direction.X *= 8.5f;
+            direction.Y *= 8.5f;
+
+            if (canAttack)
+                AttackTimer++;
+
+            if (AttackTimer >= 100 && AttackTimer < 250)
+            {
+                AICosmicEmperorLaserShotRate--;
+
+                if (AICosmicEmperorLaserShotRate <= 0)
+                {
+                    float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+                    float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    {
+                        int proj = Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ProjectileID.EyeLaser, NPC.damage, 1, Main.myPlayer, 0, 0);
+
+                        Main.projectile[proj].tileCollide = false;
+                        Main.projectile[proj].timeLeft = 100;
+                    }
+
+                    AICosmicEmperorLaserShotRate = AICosmicEmperorLaserShotRateMax();
+                }
+            }
+
+            if (AttackTimer >= 300 && AttackTimer < 400)
+            {
+                AICosmicEmperorLaserShotRate--;
+
+                if (AICosmicEmperorLaserShotRate <= 0)
+                {
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    {
+                        for (int i = 0; i < 15; i++)
+                        {
+                            circDir = Utils.RotatedBy(circDir, 0.15, new Vector2());
+                            int proj = Projectile.NewProjectile(entitySource, NPC.Center, circDir, ModContent.ProjectileType<Psyfireball>(), NPC.damage / 2, 0.0f);
+
+                            Main.projectile[proj].tileCollide = false;
+                            Main.projectile[proj].timeLeft = 100;
+                        }
+                    }
+
+                    AICosmicEmperorLaserShotRate = AICosmicEmperorLaserShotRateMax();
+                }
+            }
+
+            if (AttackTimer >= 450 && AttackTimer < 500)
+            {
+                AICosmicEmperorLaserShotRate--;
+
+                if (AICosmicEmperorLaserShotRate <= 0)
+                {
+                    float A = (float)Main.rand.Next(-200, 200) * 0.02f;
+                    float B = (float)Main.rand.Next(-200, 200) * 0.02f;
+
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    {
+                        int proj = Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<CosmicEmperorKnife>(), NPC.damage, 1, Main.myPlayer, 0, 0);
+
+                        Main.projectile[proj].tileCollide = false;
+                        Main.projectile[proj].timeLeft = 100;
+                    }
+
+                    AICosmicEmperorLaserShotRate = AICosmicEmperorLaserShotRateMax();
+                }
+            }
+
+            if (AttackTimer >= 600 && AttackTimer < 1000)
+            {
+                NPC.velocity = new Vector2(0f, 0f);
+                NPC.rotation = 0;
+
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    AICosmicEmperorProjectileRotation += 0.01f;
+                    if (--AICosmicEmperorShootTime <= 0)
+                    {
+                        SoundEngine.PlaySound(SoundID.DD2_BetsyFlameBreath, NPC.Center);
+
+                        AICosmicEmperorShootTime = AICosmicEmperorShootRate();
+                        var shootPos = NPC.Center;
+                        var shootVel = new Vector2(0, 10).RotatedBy(AICosmicEmperorProjectileRotation);
+                        int[] i = [
+                            Projectile.NewProjectile(entitySource, shootPos, shootVel, ModContent.ProjectileType<CosmicFireball>(), NPC.damage, 1f),
+                            Projectile.NewProjectile(entitySource, shootPos, shootVel.RotatedBy(MathHelper.PiOver2), ModContent.ProjectileType<CosmicFireball>(), NPC.damage, 1f),
+                            Projectile.NewProjectile(entitySource, shootPos, shootVel.RotatedBy(MathHelper.Pi), ModContent.ProjectileType<CosmicFireball>(), NPC.damage, 1f),
+                            Projectile.NewProjectile(entitySource, shootPos, shootVel.RotatedBy(-MathHelper.PiOver2), ModContent.ProjectileType<CosmicFireball>(), NPC.damage, 1f)
+                        ];
+                        for (int l = 0; l < i.Length; l++)
+                        {
+                            Main.projectile[i[l]].tileCollide = false;
+                            Main.projectile[i[l]].timeLeft = 300;
+                        }
+                    }
+                }
+            }
+
+            if (AttackTimer >= 1100 && AttackTimer < 1600)
+            {
+                NPC.velocity = new Vector2(0f, 0f);
+                NPC.rotation = 0;
+
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    AICosmicEmperorProjectileRotation += 0.01f;
+                    if (--AICosmicEmperorShootTime <= 0)
+                    {
+                        AICosmicEmperorShootTime = AICosmicEmperorShootRate();
+                        var shootPos = NPC.Center;
+                        var shootVel = new Vector2(0, 5).RotatedBy(AICosmicEmperorProjectileRotation);
+                        int[] i = [
+                            Projectile.NewProjectile(entitySource, shootPos, -shootVel, ProjectileID.EyeLaser, NPC.damage, 1f),
+                            Projectile.NewProjectile(entitySource, shootPos, -shootVel.RotatedBy(MathHelper.PiOver2), ProjectileID.EyeLaser, NPC.damage, 1f),
+                            Projectile.NewProjectile(entitySource, shootPos, -shootVel.RotatedBy(MathHelper.Pi), ProjectileID.EyeLaser, NPC.damage, 1f),
+                            Projectile.NewProjectile(entitySource, shootPos, -shootVel.RotatedBy(-MathHelper.PiOver2), ProjectileID.EyeLaser, NPC.damage, 1f)
+                        ];
+                        for (int l = 0; l < i.Length; l++)
+                        {
+                            Main.projectile[i[l]].tileCollide = false;
+                            Main.projectile[i[l]].friendly = false;
+                            Main.projectile[i[l]].hostile = true;
+                            Main.projectile[i[l]].timeLeft = 300;
+                        }
+                    }
+                }
+            }
+
+            if (AttackTimer > 2100)
+                AttackTimer = 0;
+        }
+
+        private void AI_Cosmic_Emperor_Attacks_Phase2()
+        {
+            var entitySource = NPC.GetSource_FromAI();
+
+            Player player = Main.player[NPC.target];
+            Vector2 direction = Main.player[NPC.target].Center - NPC.Center;
+            direction.Normalize();
+            direction.X *= 8.5f;
+            direction.Y *= 8.5f;
+
+            if (canAttack)
+                AttackTimer++;
+
+            if (AttackTimer > 2000)
+                AttackTimer = 0;
+        }
+
+        private void AI_Cosmic_Emperor_Attacks_Phase3()
+        {
+            var entitySource = NPC.GetSource_FromAI();
+
+            Player player = Main.player[NPC.target];
+            Vector2 direction = Main.player[NPC.target].Center - NPC.Center;
+            direction.Normalize();
+            direction.X *= 8.5f;
+            direction.Y *= 8.5f;
+
+            if (canAttack)
+                AttackTimer++;
+
+            if (AttackTimer > 2000)
+                AttackTimer = 0;
         }
 
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)

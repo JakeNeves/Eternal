@@ -23,8 +23,8 @@ namespace Eternal.Content.NPCs.Boss.AoI
         public override void SetDefaults()
         {
             NPC.lifeMax = 8600;
-            NPC.width = 38;
-            NPC.height = 72;
+            NPC.width = 86;
+            NPC.height = 186;
             NPC.damage = 60;
             NPC.defense = 40;
             NPC.HitSound = SoundID.NPCHit4;

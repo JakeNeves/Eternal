@@ -64,7 +64,7 @@ namespace Eternal.Content.Items.Armor
         {
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<WeaponsGradeNaquadahAlloy>(), 5)
-                .AddIngredient(ModContent.ItemType<CrystalizedOminite>())
+                .AddIngredient(ModContent.ItemType<CrystallizedOminite>())
                 .AddIngredient(ModContent.ItemType<WeatheredPlating>(), 6)
                 .AddTile(ModContent.TileType<RotaryHearthForge>())
                 .Register();

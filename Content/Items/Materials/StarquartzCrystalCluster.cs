@@ -16,6 +16,7 @@ namespace Eternal.Content.Items.Materials
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
 
             Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(6, 4));
+            ItemID.Sets.AnimatesAsSoul[Item.type] = true;
         }
 
         public override void SetDefaults()

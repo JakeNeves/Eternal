@@ -10,8 +10,6 @@ namespace Eternal.Content.Items.Materials
 
         public override void SetStaticDefaults()
         {
-            // Tooltip.SetDefault("'It pulses very faintly'");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
         }
 
