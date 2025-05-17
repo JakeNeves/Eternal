@@ -8,8 +8,8 @@ namespace Eternal.Common
         /// <summary>
         /// Allows you to do some pretty cool things with lerping the color values.
         /// </summary>
-        /// <param name="percent">The percentage</param>
-        /// <param name="colors">The Colors</param>
+        /// <param name="percent">The percentage at witch the color fade rate is</param>
+        /// <param name="colors">The Colors given within the parameters</param>
         /// <returns></returns>
         public static Color MultiLerpColor(float percent, params Color[] colors)
         {

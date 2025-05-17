@@ -17,7 +17,7 @@ namespace Eternal.Content.Items.Tools
 
         public override void SetDefaults()
         {
-            Item.tileBoost = 16;
+            Item.tileBoost = 5;
             Item.damage = 400;
             Item.DamageType = DamageClass.Melee;
             Item.width = 50;
@@ -32,6 +32,7 @@ namespace Eternal.Content.Items.Tools
             Item.rare = ModContent.RarityType<Magenta>();
             Item.UseSound = SoundID.Item1;
             Item.autoReuse = true;
+            Item.attackSpeedOnlyAffectsWeaponAnimation = true;
         }
 
         public override void AddRecipes()

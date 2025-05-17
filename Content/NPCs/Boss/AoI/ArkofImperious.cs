@@ -31,7 +31,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
         float acceleration = 0.2f;
 
         int Phase = 0;
-        int AttackTimer = 0;
+        ref float AttackTimer => ref NPC.ai[1];
         int moveTimer;
 
         private Player player;
@@ -103,8 +103,8 @@ namespace Eternal.Content.NPCs.Boss.AoI
                 else
                     Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/ImperiousStrike");
             }
-            NPC.defense = 80;
-            NPC.damage = 50;
+            NPC.defense = 50;
+            NPC.damage = 30;
             NPC.lavaImmune = true;
             NPC.noTileCollide = true;
             NPC.noGravity = true;
@@ -259,7 +259,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
             {
                 if (DifficultySystem.hellMode)
                 {
-                    speed = 60f;
+                    speed = 50f;
                     acceleration = 0.40f;
                 }
                 else
@@ -420,16 +420,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
                 if (!phase2Init)
                 {
                     AttackTimer = 0;
-                    for (int i = 0; i < 25; i++)
-                    {
-                        Vector2 position = NPC.Center + Vector2.UnitX.RotatedBy(MathHelper.ToRadians(360f / 25 * i)) * 15;
-                        Dust dust = Dust.NewDustPerfect(NPC.position, DustID.GreenTorch);
-                        dust.noGravity = true;
-                        dust.velocity = Vector2.Normalize(position - NPC.Center) * 4;
-                        dust.noLight = false;
-                        dust.fadeIn = 1f;
-                    }
-                    SoundEngine.PlaySound(SoundID.DD2_SkeletonSummoned, NPC.position);
+                    SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCDeath/AoIDeath"), NPC.position);
                     SpawnShield();
                     phase2Init = true;
                 }
@@ -557,12 +548,9 @@ namespace Eternal.Content.NPCs.Boss.AoI
 
             if (NPC.life < NPC.lifeMax / 2)
             {
-                if (!DifficultySystem.hellMode)
-                {
-                    isDashing = false;
-                }
+                isDashing = false;
                 
-                if ((AttackTimer == 120 || AttackTimer == 145 || AttackTimer == 160))
+                if ((AttackTimer == 120 || AttackTimer == 145 || AttackTimer == 160) && Main.netMode != NetmodeID.Server)
                 {
                     if (!NPC.AnyNPCs(ModContent.NPCType<Arkling>()))
                     {
@@ -582,7 +570,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
                         }
                     }
                 }
-                if ((AttackTimer == 185 || AttackTimer == 200 || AttackTimer == 225))
+                if ((AttackTimer == 185 || AttackTimer == 200 || AttackTimer == 225) && Main.netMode != NetmodeID.Server)
                 {
                     Vector2 direction = Main.player[NPC.target].Center - NPC.Center;
                     direction.Normalize();
@@ -598,7 +586,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
                         if (Main.netMode != NetmodeID.MultiplayerClient)
                             SoundEngine.PlaySound(SoundID.DD2_LightningAuraZap, NPC.position);
 
-                        Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<ArkEnergyHostile>(), NPC.damage / 2, 1, Main.myPlayer, 0, 0);
+                        Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<ArkEnergyHostile>(), NPC.damage / 4, 1, Main.myPlayer, 0, 0);
                     }
                 }
                 else if (AttackTimer == 250)
@@ -610,16 +598,16 @@ namespace Eternal.Content.NPCs.Boss.AoI
             {
                 if (EventSystem.isRiftOpen)
                 {
-                    if (AttackTimer == 180 || AttackTimer == 200)
+                    if (AttackTimer == 200)
                     {
-                        Projectile.NewProjectile(entitySource, player.position.X, player.position.Y - 800, 0, 16, ModContent.ProjectileType<AoIGhost>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                        Projectile.NewProjectile(entitySource, player.position.X, player.position.Y + 800, 0, -16, ModContent.ProjectileType<AoIGhost>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                        Projectile.NewProjectile(entitySource, player.position.X - 800, player.position.Y, 16, 0, ModContent.ProjectileType<AoIGhost>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                        Projectile.NewProjectile(entitySource, player.position.X + 800, player.position.Y, -16, 0, ModContent.ProjectileType<AoIGhost>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(entitySource, player.position.X, player.position.Y - 800, 0, 16, ModContent.ProjectileType<AoIGhost>(), NPC.damage / 2, 0, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(entitySource, player.position.X, player.position.Y + 800, 0, -16, ModContent.ProjectileType<AoIGhost>(), NPC.damage / 2, 0, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(entitySource, player.position.X - 800, player.position.Y, 16, 0, ModContent.ProjectileType<AoIGhost>(), NPC.damage / 2, 0, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(entitySource, player.position.X + 800, player.position.Y, -16, 0, ModContent.ProjectileType<AoIGhost>(), NPC.damage / 2, 0, Main.myPlayer, 0f, 0f);
                     }
                 }
 
-                if (AttackTimer == 50 || AttackTimer == 65 || AttackTimer == 70 || AttackTimer == 85 || AttackTimer == 90 || AttackTimer == 105 || AttackTimer == 115 || AttackTimer == 130)
+                if ((AttackTimer == 40 || AttackTimer == 80 || AttackTimer == 120 || AttackTimer == 160 || AttackTimer == 200 || AttackTimer == 240 || AttackTimer == 280 || AttackTimer == 320) && Main.netMode != NetmodeID.Server)
                 {
                     Vector2 direction = Main.player[NPC.target].Center - NPC.Center;
                     direction.Normalize();
@@ -631,15 +619,15 @@ namespace Eternal.Content.NPCs.Boss.AoI
                     {
                         float A = (float)Main.rand.Next(-200, 200) * 0.01f;
                         float B = (float)Main.rand.Next(-200, 200) * 0.01f;
-                        int damage = Main.expertMode ? 110 : 220;
+                        int damage = Main.expertMode ? 80 : 90;
 
                         if (Main.netMode != NetmodeID.MultiplayerClient)
                             SoundEngine.PlaySound(SoundID.Item8, NPC.position);
 
-                        Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<ArkArrowHostile>(), damage, 1, Main.myPlayer, 0, 0);
+                        int proj = Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<ArkProjectile>(), damage, 1, Main.myPlayer, 0, 0);
                     }
                 }
-                if ((AttackTimer == 115 || AttackTimer == 120 || AttackTimer == 125))
+                if ((AttackTimer == 115 || AttackTimer == 120 || AttackTimer == 125) && Main.netMode != NetmodeID.Server)
                 {
                     Vector2 direction = Main.player[NPC.target].Center - NPC.Center;
                     direction.Normalize();
@@ -658,12 +646,12 @@ namespace Eternal.Content.NPCs.Boss.AoI
                         Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<ArkEnergyHostile>(), NPC.damage / 2, 1, Main.myPlayer, 0, 0);
                     }
                 }
-                else if (AttackTimer == 250)
+                else if (AttackTimer == 250 && Main.netMode != NetmodeID.Server)
                 {
-                    Projectile.NewProjectile(entitySource, NPC.position.X + 80, NPC.position.Y + 80, -12, 0, ModContent.ProjectileType<ArkEnergyHostile>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(entitySource, NPC.position.X + 80, NPC.position.Y + 80, 12, 0, ModContent.ProjectileType<ArkEnergyHostile>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(entitySource, NPC.position.X + 80, NPC.position.Y + 80, 0, 12, ModContent.ProjectileType<ArkEnergyHostile>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(entitySource, NPC.position.X + 80, NPC.position.Y + 80, 0, -12, ModContent.ProjectileType<ArkEnergyHostile>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(entitySource, NPC.position.X + 80, NPC.position.Y + 80, -12, 0, ModContent.ProjectileType<ArkEnergyHostile>(), NPC.damage / 4, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(entitySource, NPC.position.X + 80, NPC.position.Y + 80, 12, 0, ModContent.ProjectileType<ArkEnergyHostile>(), NPC.damage / 4, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(entitySource, NPC.position.X + 80, NPC.position.Y + 80, 0, 12, ModContent.ProjectileType<ArkEnergyHostile>(), NPC.damage / 4, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(entitySource, NPC.position.X + 80, NPC.position.Y + 80, 0, -12, ModContent.ProjectileType<ArkEnergyHostile>(), NPC.damage / 4, 0, Main.myPlayer, 0f, 0f);
 
                     AttackTimer = 0;
                 }
@@ -674,21 +662,21 @@ namespace Eternal.Content.NPCs.Boss.AoI
                 {
                     if (AttackTimer == 180 || AttackTimer == 200)
                     {
-                        Projectile.NewProjectile(entitySource, player.position.X, player.position.Y - 800, 0, 16, ModContent.ProjectileType<AoIGhost>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                        Projectile.NewProjectile(entitySource, player.position.X, player.position.Y + 800, 0, -16, ModContent.ProjectileType<AoIGhost>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(entitySource, player.position.X, player.position.Y - 800, 0, 16, ModContent.ProjectileType<AoIGhost>(), NPC.damage / 2, 0, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(entitySource, player.position.X, player.position.Y + 800, 0, -16, ModContent.ProjectileType<AoIGhost>(), NPC.damage / 2, 0, Main.myPlayer, 0f, 0f);
                     }
                 }
 
-                if ((AttackTimer == 100 || AttackTimer == 150 || AttackTimer == 175))
+                if ((AttackTimer == 100 || AttackTimer == 150 || AttackTimer == 200) && Main.netMode != NetmodeID.Server)
                 {
-                    Projectile.NewProjectile(entitySource, NPC.position.X + 80, NPC.position.Y + 80, -12, 0, ModContent.ProjectileType<ArkArrowHostile>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(entitySource, NPC.position.X + 80, NPC.position.Y + 80, 12, 0, ModContent.ProjectileType<ArkArrowHostile>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(entitySource, NPC.position.X + 80, NPC.position.Y + 80, 0, 12, ModContent.ProjectileType<ArkArrowHostile>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(entitySource, NPC.position.X + 80, NPC.position.Y + 80, 0, -12, ModContent.ProjectileType<ArkArrowHostile>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(entitySource, NPC.position.X + 40, NPC.position.Y + 40, -8, -8, ModContent.ProjectileType<ArkArrowHostile>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(entitySource, NPC.position.X + 40, NPC.position.Y + 40, 8, -8, ModContent.ProjectileType<ArkArrowHostile>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(entitySource, NPC.position.X + 40, NPC.position.Y + 40, -8, 8, ModContent.ProjectileType<ArkArrowHostile>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
-                    Projectile.NewProjectile(entitySource, NPC.position.X + 40, NPC.position.Y + 40, 8, 8, ModContent.ProjectileType<ArkArrowHostile>(), NPC.damage, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(entitySource, NPC.position.X + 80, NPC.position.Y + 80, -12, 0, ModContent.ProjectileType<ArkProjectile>(), NPC.damage / 4, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(entitySource, NPC.position.X + 80, NPC.position.Y + 80, 12, 0, ModContent.ProjectileType<ArkProjectile>(), NPC.damage / 4, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(entitySource, NPC.position.X + 80, NPC.position.Y + 80, 0, 12, ModContent.ProjectileType<ArkProjectile>(), NPC.damage / 4, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(entitySource, NPC.position.X + 80, NPC.position.Y + 80, 0, -12, ModContent.ProjectileType<ArkProjectile>(), NPC.damage / 4, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(entitySource, NPC.position.X + 40, NPC.position.Y + 40, -8, -8, ModContent.ProjectileType<ArkProjectile>(), NPC.damage / 4, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(entitySource, NPC.position.X + 40, NPC.position.Y + 40, 8, -8, ModContent.ProjectileType<ArkProjectile>(), NPC.damage / 4, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(entitySource, NPC.position.X + 40, NPC.position.Y + 40, -8, 8, ModContent.ProjectileType<ArkProjectile>(), NPC.damage / 4, 0, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(entitySource, NPC.position.X + 40, NPC.position.Y + 40, 8, 8, ModContent.ProjectileType<ArkProjectile>(), NPC.damage / 4, 0, Main.myPlayer, 0f, 0f);
 
                     Vector2 direction = Main.player[NPC.target].Center - NPC.Center;
                     direction.Normalize();

@@ -1077,6 +1077,15 @@ Mods: {
 				DisplayName: Cursor of The Cosmos
 			}
 
+			JakesCursor: {
+				Tooltip:
+					'''
+					Causes your cursor to shift between pink, yellow and blue
+					'Great for impersonating Eternal's devs!'
+					'''
+				DisplayName: Jake's Cursor
+			}
+
 			UniversalBreathingPack: {
 				Tooltip:
 					'''
@@ -1541,15 +1550,6 @@ Mods: {
 				Tooltip: ""
 			}
 
-			Hyperion: {
-				DisplayName: Hyperion (WIP)
-				Tooltip:
-					'''
-					[c/008060:Ancient Artifact]
-					This sword was weilded by the thunderborn warriors of the dunes
-					'''
-			}
-
 			MalachiteChakram: {
 				DisplayName: Malachite Chakram
 				Tooltip: ""
@@ -1573,15 +1573,6 @@ Mods: {
 			Phantasma: {
 				DisplayName: Phantasma
 				Tooltip: Can phase through tiles
-			}
-
-			Scylla: {
-				DisplayName: Scylla (WIP)
-				Tooltip:
-					'''
-					[c/008060:Ancient Artifact]
-					This sword was weilded by the frostborn warriors of the tundra
-					'''
 			}
 
 			StarcrescentMoondisk: {
@@ -1608,15 +1599,6 @@ Mods: {
 			Sunshine: {
 				DisplayName: Sunshine
 				Tooltip: "'Can you feel the... Wait, wrong game!'"
-			}
-
-			Tartaron: {
-				DisplayName: Tartaron (WIP)
-				Tooltip:
-					'''
-					[c/008060:Ancient Artifact]
-					This sword was weilded by the blazeborn warriors of the underworld
-					'''
 			}
 
 			TheBigOne: {
@@ -2340,7 +2322,7 @@ Mods: {
 					'''
 					[c/ff8045:Legendary Weapon]
 					Damage scales by 25% of a combined total of your Defense and Damage Reduction
-					You have a chance to break enemy armor by 1/3 of their defense
+					You have a chance to break enemy armor by ~2/3 of their defense
 					'Blood, blood, blood! Make them bleed, Slaughter in the name of tartarus!'
 					'''
 			}
@@ -2690,33 +2672,33 @@ Mods: {
 			}
 
 			GehennaKeyFragment1: {
-				DisplayName: Gehenna Key Fragment1
-				Tooltip: ""
+				DisplayName: Gehenna Key Fragment
+				Tooltip: ???
 			}
 
 			GehennaKeyFragment2: {
-				DisplayName: Gehenna Key Fragment2
-				Tooltip: ""
+				DisplayName: Gehenna Key Fragment
+				Tooltip: ???
 			}
 
 			GehennaKey: {
 				DisplayName: Gehenna Key
-				Tooltip: ""
+				Tooltip: Opens all Chests in the Gehenna
 			}
 
 			MausoleumKeyFragment1: {
-				DisplayName: Mausoleum Key Fragment1
-				Tooltip: ""
+				DisplayName: Mausoleum Key Fragment
+				Tooltip: ???
 			}
 
 			MausoleumKeyFragment2: {
-				DisplayName: Mausoleum Key Fragment2
-				Tooltip: ""
+				DisplayName: Mausoleum Key Fragment
+				Tooltip: ???
 			}
 
 			MausoleumKey: {
 				DisplayName: Mausoleum Key
-				Tooltip: ""
+				Tooltip: Opens all Chests in the Mausoleum
 			}
 
 			GehennaChest: {
@@ -2726,6 +2708,31 @@ Mods: {
 
 			MausoleumChest: {
 				DisplayName: Mausoleum Chest
+				Tooltip: ""
+			}
+
+			GehennaPlatform: {
+				DisplayName: Gehenna Platform
+				Tooltip: ""
+			}
+
+			MausoleumPlatform: {
+				DisplayName: Mausoleum Platform
+				Tooltip: ""
+			}
+
+			ArcaneKnives: {
+				DisplayName: Arcane Knives
+				Tooltip: ""
+			}
+
+			Psydisk: {
+				DisplayName: Psydisk
+				Tooltip: ""
+			}
+
+			SactothsConquest: {
+				DisplayName: Sactoth's Conquest
 				Tooltip: ""
 			}
 		}
@@ -2855,15 +2862,15 @@ Mods: {
 			ShiftingEerieMonolith.MapEntry: Shifting Eerie Monolith
 
 			GehennaChest: {
-				MapEntry0: Mods.Eternal.Tiles.GehennaChest.MapEntry0
-				MapEntry1: Mods.Eternal.Tiles.GehennaChest.MapEntry1
-				Locked: Mods.Eternal.Tiles.GehennaChest.Locked
+				MapEntry0: Gehenna Chest
+				MapEntry1: Gehenna Chest
+				Locked: Locked Gehenna Chest
 			}
 
 			MausoleumChest: {
-				MapEntry0: Mods.Eternal.Tiles.MausoleumChest.MapEntry0
-				MapEntry1: Mods.Eternal.Tiles.MausoleumChest.MapEntry1
-				Locked: Mods.Eternal.Tiles.MausoleumChest.Locked
+				MapEntry0: Mausoleum Chest
+				MapEntry1: Mausoleum Chest
+				Locked: Locked Mausoleum Chest
 			}
 		}
 
@@ -3108,14 +3115,18 @@ Mods: {
 
 			Niades: {
 				DisplayName: Niades
-				BossChecklistIntegration.SpawnInfo: Use the [i:Eternal/BloodstainedJudgement] during the Dark Moon.
+
+				BossChecklistIntegration: {
+					SpawnInfo: Spawn by using the [i:Eternal/BloodstainedJudgement] during the Dark Moon.
+					DespawnMessage: Niades wanders off into the distant horizon...
+				}
 			}
 
 			BloodSlurper.DisplayName: Blood Slurper
 
 			TrinityCore: {
 				DisplayName: The Trinity
-				BossChecklistIntegration.SpawnInfo: Use a [i:Eternal/PrimordialRelic].
+				BossChecklistIntegration.SpawnInfo: Spawn by using a [i:Eternal/PrimordialRelic].
 			}
 
 			Infernito.DisplayName: Infernito
@@ -3133,7 +3144,12 @@ Mods: {
 			PsyblightSkeleton.DisplayName: Psyblight Skeleton
 			VoraciousSkeleton.DisplayName: Voracious Skeleton
 			Shadeling.DisplayName: Shadeling
-			ShadeSlime.DisplayName: Shade Slime
+
+			ShadeSlime: {
+				DisplayName: Shade Slime
+				BossChecklistIntegration.SpawnInfo: Rarely spawns during the Dark Moon.
+			}
+
 			Shademan.DisplayName: Shademan
 			ShadeBat.DisplayName: Shade Bat
 			DiabolicGrimace.DisplayName: Diabolic Grimace
@@ -3156,7 +3172,11 @@ Mods: {
 
 			TheGlare: {
 				DisplayName: The Glare
-				BossChecklistIntegration.SpawnInfo: Use a [i:Eternal/SuspiciousLookingMask] in either the Mausoleum or the Gehenna.
+
+				BossChecklistIntegration: {
+					SpawnInfo: Spawn by using a [i:Eternal/SuspiciousLookingMask] in either the Mausoleum or the Gehenna.
+					DespawnMessage: The Glare has dissapeared...
+				}
 			}
 
 			TheGlareDefeated.DisplayName: The Glare
@@ -3167,23 +3187,24 @@ Mods: {
 
 				TownNPCMood: {
 					Content: I am content.
-					NoHome: I hate not having a home.
-					FarFromHome: I am too far from home.
-					LoveSpace: I love having so much space.
-					DislikeCrowded: I dislike how crowded I am.
-					HateCrowded: I hate how crowded I am.
+					NoHome: I am unfortunately unable to seek shelter within a given proximity.
+					FarFromHome: My household shelter seems to be out of reach from here...
+					LoveSpace: I can truly dedicate as much space I need to perform the dark arts!
+					DislikeCrowded: There are too many people around here...
+					HateCrowded: There are way too many people within the vicinity of this very settlement.
 					LoveBiome: I love {BiomeName}.
 					LikeBiome: I like {BiomeName}.
 					LoveNPC: I love {NPCName}.
-					LikeNPC_Princess: I like {NPCName}.
-					Princess_LovesNPC: I like {NPCName}.
+					LikeNPC_Princess: I like {NPCName}, she has quite the charm, it brings nothing but a smile on my face!
+					Princess_LovesNPC: I like {NPCName}, even though he looks kinda unusual for the people I know. He told me about a story about how his sons went missing, I feel bad for him...
 				}
 
-				Census.SpawnCondition: Conditions unknown
+				Census.SpawnCondition: Defeat Niades
 			}
 
 			ArcaneWisp.DisplayName: Arcane Wisp
 			PsyRunner.DisplayName: Psy Runner
+			PsychoZombie.DisplayName: Psycho Zombie
 		}
 
 		Prefixes: {
@@ -3208,7 +3229,7 @@ Mods: {
 			AoICircle.DisplayName: Ark of Imperious' Ritual Circle
 			ApparitionalDiskHostile.DisplayName: Apparitional Disk
 			ApparitionalWisp.DisplayName: Apparitional Wisp
-			ArkArrowHostile.DisplayName: Ark Arrow
+			ArkProjectile.DisplayName: Ark
 			ArkEnergyHostile.DisplayName: Ark Energy
 			Ark.DisplayName: Ark
 			CarminiteSludge.DisplayName: Carminite Sludge
@@ -3218,7 +3239,6 @@ Mods: {
 			CosmicFireball.DisplayName: Cosmic Fireball
 			CosmicPierce.DisplayName: Cosmic Pierce
 			CosmigeddonBomb.DisplayName: Cosmigeddon Bomb
-			DetonatingIceBomb.DisplayName: Detonating Ice Bomb
 			DuneSpike.DisplayName: Dune Spike
 			EmperorBlade.DisplayName: Emperor Blade
 			FlamingSoul.DisplayName: Flaming Soul
@@ -3239,7 +3259,6 @@ Mods: {
 			CosmicReminant.DisplayName: Cosmic Reminant
 			DuneEviscratorProjectile.DisplayName: Dune Eviscrator
 			TheKnifeProjectile.DisplayName: The Knife
-			TheKnife14Projectile.DisplayName: The Knife
 			NuclearKamikazeProjectile.DisplayName: Nuclear Kamikaze
 			StarstaveProjectile.DisplayName: Starstave
 			StarstaveProjectileDrei.DisplayName: Starstave Drei
@@ -3259,12 +3278,10 @@ Mods: {
 			EmpoweredApparitionalDiskProjectileMini.DisplayName: Empowered Apparitional Disk
 			EmpoweredMachaliteEdgeProjectile.DisplayName: Empowered Machalite Edge
 			GiantFireChakramProjectile.DisplayName: Giant Fire Chakram
-			HyperionProjectile.DisplayName: Hyperion
 			MachaliteChakramProjectile.DisplayName: Machalite Chakram
 			NekodiskProjectile.DisplayName: Nekodisk
 			NyanarangProjectile.DisplayName: Nyanarang
 			PhantasmaProjectile.DisplayName: Phantasma
-			ScyllaProjectile.DisplayName: Scylla
 			ArkiumGladiusProjectile.DisplayName: Arkium Gladius
 			CarminitePurgatoryProjectile.DisplayName: Carminite Purgatory
 			SolScytheProjectile.DisplayName: Sol Scythe
@@ -3277,7 +3294,6 @@ Mods: {
 			StartridentProjectileThrown.DisplayName: Startrident
 			SunshineBomb.DisplayName: Sunshine
 			SunshineProjectile.DisplayName: Sunshine
-			TartaronProjectile.DisplayName: Tartaron
 			TheBigOneProjectile.DisplayName: The Big One
 			TheEclipseOrbit.DisplayName: The Eclipse
 			TheEclipseProjectile.DisplayName: The Eclipse
@@ -3370,12 +3386,20 @@ Mods: {
 			StrangeMask.DisplayName: Strange Mask
 			OcculticConstruct.DisplayName: Occultic Construct
 			RiftsDivinityProjectile.DisplayName: Rift's Divinity
+			ArcaneKnivesProjectile.DisplayName: Arcane Knives Projectile
+			PsydiskProjectile.DisplayName: Psydisk Projectile
+			SactothsConquestProjectile.DisplayName: Sactoth's Conquest Projectile
+			CryotasWisp.DisplayName: Cryota's Wisp
+			CryotasWisp2.DisplayName: Cryota's Wisp
+			SpiritBomb.DisplayName: Spirit Bomb
+			SpiritBomb2.DisplayName: Spirit Bomb2
 		}
 
 		WorldGen: {
 			IesniumOrePassMessage: Iesnium Ore
 			BlessedWithIesniumOreMessage: The ground has been smothered with luminous energy...
 			DropFallenComet: A comet has fallen and struck the world!
+			CosmicApparitionDefeated: Mods.Eternal.WorldGen.CosmicApparitionDefeated
 		}
 
 		BossDefeatedEvent: {
@@ -3477,15 +3501,6 @@ Mods: {
 							'''
 					}
 
-					hellModeVanillaBosses: {
-						DisplayName: Hell Mode Vanilla Bosses
-						Tooltip:
-							'''
-							Buffs the health, damage and defense of vanilla bosses
-							(Default: [c/008080:ON])
-							'''
-					}
-
 					lifeMotes: {
 						DisplayName: Life Motes
 						Tooltip:
@@ -3518,6 +3533,8 @@ Mods: {
 				BossChecklistIntegration.SpawnInfo: Use an [i:Eternal/Animanomicon] during the night, after defeating The Trinity.
 			}
 		}
+
+		Death.ApparitionalWither: "{0}'s body withered away..."
 
 		Conditions: {
 			CosmicApparitionDefeated: When the Cosmic Apparition has been defeated

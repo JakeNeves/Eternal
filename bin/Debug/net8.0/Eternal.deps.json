@@ -73,7 +73,6 @@
           "System.Security.Cryptography.ProtectedData": "8.0.0.0",
           "System.Security.Cryptography.Xml": "7.0.0.0",
           "System.Security.Permissions": "8.0.0.0",
-          "System.Text.Json": "8.0.0.0",
           "System.Windows.Extensions": "8.0.0.0",
           "TerrariaHooks": "0.0.0.0",
           "tModLoader": "1.4.4.9",
@@ -843,14 +842,6 @@
           }
         }
       },
-      "System.Text.Json/8.0.0.0": {
-        "runtime": {
-          "System.Text.Json.dll": {
-            "assemblyVersion": "8.0.0.0",
-            "fileVersion": "8.0.1024.46610"
-          }
-        }
-      },
       "System.Windows.Extensions/8.0.0.0": {
         "runtime": {
           "System.Windows.Extensions.dll": {
@@ -1222,11 +1213,6 @@
       "sha512": ""
     },
     "System.Security.Permissions/8.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "System.Text.Json/8.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

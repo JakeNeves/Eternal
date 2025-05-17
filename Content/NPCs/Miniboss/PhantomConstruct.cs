@@ -13,6 +13,7 @@ using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -52,16 +53,29 @@ namespace Eternal.Content.NPCs.Miniboss
             NPC.DeathSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCDeath/PhantomConstructDeath");
             NPC.value = Item.sellPrice(gold: 30);
             SpawnModBiomes = [ ModContent.GetInstance<Biomes.Rift>().Type ];
-            NPC.buffImmune[BuffID.Poisoned] = true;
-            NPC.buffImmune[BuffID.OnFire] = true;
-            NPC.buffImmune[BuffID.Venom] = true;
-            NPC.buffImmune[BuffID.ShadowFlame] = true;
-            NPC.buffImmune[BuffID.CursedInferno] = true;
-            NPC.buffImmune[BuffID.Frostburn] = true;
-            NPC.buffImmune[BuffID.Frozen] = true;
-            NPC.buffImmune[BuffID.Chilled] = true;
             NPC.rarity = 4;
             NPC.npcSlots = 6;
+        }
+
+        public override void OnKill()
+        {
+            if (!Main.zenithWorld)
+                Main.NewText("The Phantom Construct has been defeated!", 175, 75, 255);
+
+            int gore1 = Mod.Find<ModGore>("PhantomConstructHead").Type;
+            int gore2 = Mod.Find<ModGore>("PhantomConstructBody").Type;
+            int gore3 = Mod.Find<ModGore>("PhantomConstructArm").Type;
+
+            Gore.NewGore(NPC.GetSource_Death(), NPC.Center, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore1);
+            Gore.NewGore(NPC.GetSource_Death(), NPC.Center, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore2);
+
+            for (int i = 0; i < 2; i++)
+                Gore.NewGore(NPC.GetSource_Death(), NPC.Center, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore3);
+
+            for (int k = 0; k < 5; k++)
+                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.PinkTorch, 2.5f, -2.5f, 0, default, 1.7f);
+
+            NPC.SetEventFlagCleared(ref DownedMinibossSystem.downedPhantomConstruct, -1);
         }
 
         public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
@@ -94,13 +108,9 @@ namespace Eternal.Content.NPCs.Miniboss
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if (EventSystem.isRiftOpen && Main.zenithWorld)
-            {
                 return SpawnCondition.Sky.Chance * 0.5f;
-            }
             else
-            {
                 return SpawnCondition.Sky.Chance * 0f;
-            }
         }
 
         public override void AI()
@@ -170,10 +180,6 @@ namespace Eternal.Content.NPCs.Miniboss
                 if (NPC.ai[3] >= 180f)
                 {
                     NPC.life = 0;
-                    if (!DownedMinibossSystem.downedPhantomConstruct)
-                        DownedMinibossSystem.downedPhantomConstruct = true;
-                    if (!Main.zenithWorld)
-                         Main.NewText("The Phantom Construct has been defeated!", 175, 75, 255);
                     NPC.HitEffect(0, 0);
                     NPC.checkDead();
                 }
@@ -279,30 +285,9 @@ namespace Eternal.Content.NPCs.Miniboss
         public override void HitEffect(NPC.HitInfo hit)
         {
             if (Main.netMode == NetmodeID.Server)
-            {
                 return;
-            }
 
-            if (NPC.life <= 0)
-            {
-                var entitySource = NPC.GetSource_Death();
-
-                int gore1 = Mod.Find<ModGore>("PhantomConstructHead").Type;
-                int gore2 = Mod.Find<ModGore>("PhantomConstructBody").Type;
-                int gore3 = Mod.Find<ModGore>("PhantomConstructArm").Type;
-
-                Gore.NewGore(entitySource, NPC.Center, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore1);
-                Gore.NewGore(entitySource, NPC.Center, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore2);
-                for (int i = 0; i < 2; i++)
-                    Gore.NewGore(entitySource, NPC.Center, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore3);
-
-                for (int k = 0; k < 5; k++)
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.PinkTorch, 2.5f, -2.5f, 0, default, 1.7f);
-            }
-            else
-            {
-                Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.PinkTorch, 0, -1f, 0, default(Color), 1f);
-            }
+            Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.PinkTorch, 0, -1f, 0, default(Color), 1f);
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)

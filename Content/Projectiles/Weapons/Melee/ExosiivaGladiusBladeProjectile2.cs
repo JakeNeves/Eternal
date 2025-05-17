@@ -44,17 +44,18 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
             for (int k = 0; k < Main.rand.Next(2, 4); k++)
             {
-                Dust dust = Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<Exosiiva>());
-                dust.noGravity = true;
-                dust.velocity = new Vector2(Main.rand.NextFloat(0.5f, 1f), Main.rand.NextFloat(0.25f, 1.5f));
+                if (Main.rand.NextBool(2))
+                {
+                    Dust dust = Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<Exosiiva>());
+                    dust.noGravity = true;
+                    dust.velocity = new Vector2(Main.rand.NextFloat(0.5f, 1f), Main.rand.NextFloat(0.25f, 1.5f));
+                }
             }
 
             if (Projectile.ai[0] == 0f && Main.netMode != NetmodeID.MultiplayerClient)
             {
-                for (int k = 0; k < 5; k++)
-                {
+                if (Main.rand.NextBool(2))
                     Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<Exosiiva>(), Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f, 0, Color.White, Main.rand.NextFloat(0.5f, 1f));
-                }
 
                 if (!Main.dedServ)
                 {
@@ -80,10 +81,8 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
             Projectile.velocity = (closestNPC.Center - Projectile.Center).SafeNormalize(Vector2.Zero) * projSpeed;
 
-            for (int k = 0; k < 5; k++)
-            {
+            if (Main.rand.NextBool(2))
                 Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<Exosiiva>(), Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);
-            }
         }
 
         public NPC FindClosestNPC(float maxDetectDistance)

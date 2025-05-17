@@ -49,7 +49,7 @@ namespace Eternal.Content.NPCs.Mausoleum
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
             bestiaryEntry.Info.AddRange([
-                new FlavorTextBestiaryInfoElement("They were once clergies from the dungeon, but they've since then turned against them...")
+                new FlavorTextBestiaryInfoElement("They were once zealots from the Dungeon, but they've since then turned their devotion towards the Mausoleum...")
             ]);
         }
 
@@ -90,11 +90,11 @@ namespace Eternal.Content.NPCs.Mausoleum
                     Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 0f, -4f, ModContent.ProjectileType<Psyfireball>(), NPC.damage, 0),
                     Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, -4f, 0f, ModContent.ProjectileType<Psyfireball>(), NPC.damage, 0),
                     Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 4f, 0f, ModContent.ProjectileType<Psyfireball>(), NPC.damage, 0)
-                 };
+                };
 
                 for (int j = 0; j < i.Length; j++)
                 {
-                    Main.projectile[i[j]].timeLeft = 300;
+                    Main.projectile[i[j]].timeLeft = 100;
                     Main.projectile[i[j]].tileCollide = false;
                 }
 

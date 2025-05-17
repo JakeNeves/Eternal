@@ -31,15 +31,17 @@ namespace Eternal.Content.Items.Weapons.Magic
             Item.useTime = 16;
             Item.shoot = ModContent.ProjectileType<DarkArtsProjectile>();
             Item.shootSpeed = 8f;
-            Item.UseSound = SoundID.Item8;
+            Item.UseSound = SoundID.Item45;
             Item.rare = ModContent.RarityType<Turquoise>();
             Item.autoReuse = true;
             Item.noMelee = true;
         }
 
+        /*
         public override bool CanUseItem(Player player)
         {
-            return player.ownedProjectileCounts[Item.shoot] < 1;
+            return player.ownedProjectileCounts[Item.shoot] < 4;
         }
+        */
     }
 }

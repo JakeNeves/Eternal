@@ -2,8 +2,10 @@
 using Eternal.Content.Items.Materials;
 using Eternal.Content.Rarities;
 using Eternal.Content.Tiles.CraftingStations;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Creative;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Armor
@@ -45,6 +47,15 @@ namespace Eternal.Content.Items.Armor
 
             ArmorSystem.NaquadahArmor = true;
             ArmorSystem.NaquadahArmorRangedBonus = true;
+
+            if (Main.rand.NextBool(2))
+            {
+                Dust dust;
+                Vector2 position = Main.LocalPlayer.Center;
+                dust = Main.dust[Dust.NewDust(player.position, (int)player.width, (int)player.height, DustID.Wraith, 0f, 0f, 0, new Color(255, 255, 255), 1f)];
+                dust.fadeIn = 0.3f;
+                dust.noGravity = true;
+            }
         }
 
         public override void ArmorSetShadows(Player player)

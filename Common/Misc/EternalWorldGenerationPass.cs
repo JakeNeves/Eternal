@@ -1,5 +1,5 @@
 ﻿using Eternal.Content.Tiles;
-using StructureHelper;
+using StructureHelper.API;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.IO;
@@ -79,7 +79,7 @@ namespace Eternal.Common.Misc
                     break;
 
                 if (progress != null)
-                    progress.Message = "Placing a hexed Mausoleum";
+                    progress.Message = "Placing a cursed Mausoleum";
 
                 GenMausoleum();
 
@@ -92,30 +92,24 @@ namespace Eternal.Common.Misc
         private static void GenShrine() {
             int _shrineTileX = WorldGen.genRand.Next(WorldGen.genRand.Next(-400, 400), Main.maxTilesX - 1200);
 
-            var _shrineDim = new Point16();
-
             Generator.GenerateStructure("Content/Structures/Shrine", new Point16(_shrineTileX, (int)Main.worldSurface - 160), Eternal.Instance);
-            Generator.GetDimensions("Content/Structures/Shrine", Eternal.Instance, ref _shrineDim);
+            Generator.GetStructureDimensions("Content/Structures/Shrine", Eternal.Instance);
         }
 
         private static void GenGehenna()
         {
             int _gehannaTileX = WorldGen.genRand.Next(WorldGen.genRand.Next(-400, 400), Main.maxTilesX - 1200);
 
-            var _gehannaDim = new Point16();
-
             Generator.GenerateStructure("Content/Structures/Gehenna", new Point16(_gehannaTileX, (int)Main.UnderworldLayer + 160), Eternal.Instance);
-            Generator.GetDimensions("Content/Structures/Gehenna", Eternal.Instance, ref _gehannaDim);
+            Generator.GetStructureDimensions("Content/Structures/Gehenna", Eternal.Instance);
         }
 
         private static void GenMausoleum()
         {
             int _mausoTileX = WorldGen.genRand.Next(WorldGen.genRand.Next(-500, 500), Main.maxTilesX - 1200);
 
-            var _mausoDim = new Point16();
-
             Generator.GenerateStructure("Content/Structures/Mausoleum", new Point16(_mausoTileX, (int)Main.rockLayer), Eternal.Instance);
-            Generator.GetDimensions("Content/Structures/Mausoleum", Eternal.Instance, ref _mausoDim);
+            Generator.GetStructureDimensions("Content/Structures/Mausoleum", Eternal.Instance);
         }
         #endregion
 

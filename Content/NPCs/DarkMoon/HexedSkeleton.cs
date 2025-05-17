@@ -33,7 +33,7 @@ namespace Eternal.Content.NPCs.DarkMoon
             AnimationType = NPCID.Skeleton;
             Banner = Item.NPCtoBanner(NPCID.Skeleton);
             BannerItem = Item.BannerToItem(Banner);
-            SpawnModBiomes = [ ModContent.GetInstance<Biomes.DarkMoon>().Type, ModContent.GetInstance<Biomes.Mausoleum>().Type];
+            SpawnModBiomes = [ ModContent.GetInstance<Biomes.DarkMoon>().Type, ModContent.GetInstance<Biomes.Mausoleum>().Type ];
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)

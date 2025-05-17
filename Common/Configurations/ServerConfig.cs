@@ -40,14 +40,6 @@ namespace Eternal.Common.Configurations
         public bool brutalHellMode = false;
 
         /// <summary>
-        /// Gives bosses from the base game an increase of stats, simular to Master Mode
-        /// </summary>
-        [DefaultValue(true)]
-        [LabelKey("$Mods.Eternal.Server.Configurations.ServerConfig.hellModeVanillaBosses.DisplayName")]
-        [TooltipKey("$Mods.Eternal.Server.Configurations.ServerConfig.hellModeVanillaBosses.Tooltip")]
-        public bool hellModeVanillaBosses = true;
-
-        /// <summary>
         /// EXPERIMENTAL: Adds Life Motes to the game (WIP)
         /// </summary>
         [SeparatePage]

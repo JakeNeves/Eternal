@@ -17,6 +17,7 @@ using Eternal.Content.Projectiles.Explosion;
 using Eternal.Common.ItemDropRules.Conditions;
 using Eternal.Content.Items.Accessories.Hell;
 using Eternal.Content.Items.Weapons.Ranged;
+using Terraria.DataStructures;
 
 namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
 {
@@ -28,7 +29,8 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
         private float speed;
         public float rot;
 
-        int Timer;
+        ref float AttackTimer => ref NPC.ai[1];
+
         int DeathTimer;
         int deathExplosionTimer = 0;
 
@@ -48,7 +50,7 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
             NPC.aiStyle = -1;
             NPC.lifeMax = 3000;
             NPC.damage = 8;
-            NPC.defense = 30;
+            NPC.defense = 20;
             NPC.knockBackResist = 0f;
             NPC.width = 80;
             NPC.height = 84;
@@ -80,9 +82,19 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
         public override void OnKill()
         {
             if (!DownedBossSystem.downedCarminiteAmalgamation)
-            {
                 ModContent.GetInstance<IesniumOreSystem>().BlessWorldWithIesnium();
-            }
+
+            int gore1 = Mod.Find<ModGore>("CarminiteAmalgamationEye").Type;
+            int gore2 = Mod.Find<ModGore>("CarminiteAmalgamationFang1").Type;
+            int gore3 = Mod.Find<ModGore>("CarminiteAmalgamationFang2").Type;
+            int gore4 = Mod.Find<ModGore>("CarminiteAmalgamationLeftHalf").Type;
+            int gore5 = Mod.Find<ModGore>("CarminiteAmalgamationRightHalf").Type;
+
+            Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore1);
+            Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore2);
+            Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore3);
+            Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore4);
+            Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore5);
 
             NPC.SetEventFlagCleared(ref DownedBossSystem.downedCarminiteAmalgamation, -1);
         }
@@ -99,31 +111,10 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
         public override void HitEffect(NPC.HitInfo hit)
         {
             if (Main.netMode == NetmodeID.Server)
-            {
                 return;
-            }
-
-            var entitySource = NPC.GetSource_Death();
-
-            if (NPC.life <= 0)
-            {
-                int gore1 = Mod.Find<ModGore>("CarminiteAmalgamationEye").Type;
-                int gore2 = Mod.Find<ModGore>("CarminiteAmalgamationFang1").Type;
-                int gore3 = Mod.Find<ModGore>("CarminiteAmalgamationFang2").Type;
-                int gore4 = Mod.Find<ModGore>("CarminiteAmalgamationLeftHalf").Type;
-                int gore5 = Mod.Find<ModGore>("CarminiteAmalgamationRightHalf").Type;
-
-                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore1);
-                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore2);
-                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore3);
-                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore4);
-                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore5);
-            }
 
             for (int k = 0; k < 15.0; k++)
-            {
                 Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.Blood, 0, 0, 0, default(Color), 1f);
-            }
         }
 
         public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
@@ -174,18 +165,18 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
 
             rot = NPC.rotation;
 
-            Timer++;
+            AttackTimer++;
             Target();
             RotateNPCToTarget();
             DespawnHandler();
 
-            if (Timer >= 0)
+            if (AttackTimer >= 0)
             {
                 Move(new Vector2(0, 0f));
             }
             if (phase2Init)
             {
-                if (Timer == 100 || Timer == 110 || Timer == 120 || Timer == 130 || Timer == 140 || Timer == 150 || Timer == 160)
+                if (AttackTimer == 100 || AttackTimer == 110 || AttackTimer == 120 || AttackTimer == 130 || AttackTimer == 140 || AttackTimer == 150 || AttackTimer == 160 && Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     if (!Main.dedServ)
                         SoundEngine.PlaySound(SoundID.NPCDeath1, NPC.Center);
@@ -193,14 +184,14 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
                     Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<CarminiteSludge>(), (int)(NPC.damage * 0.25f), 0f, Main.myPlayer);
                     Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<CarminiteTooth>(), (int)(NPC.damage * 0.25f), 0f, Main.myPlayer);
                 }
-                if (Timer == 200)
+                if (AttackTimer == 200)
                 {
-                    Timer = 0;
+                    AttackTimer = 0;
                 }
             }
             else
             {
-                if (Timer == 100 || Timer == 105 || Timer == 110 || Timer == 115 || Timer == 120 || Timer == 125 || Timer == 130)
+                if (AttackTimer == 100 || AttackTimer == 105 || AttackTimer == 110 || AttackTimer == 115 || AttackTimer == 120 || AttackTimer == 125 || AttackTimer == 130 && Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     if (!Main.dedServ)
                         SoundEngine.PlaySound(SoundID.NPCDeath1, NPC.Center);
@@ -208,13 +199,13 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
                     Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<CarminiteSludge>(), (int)(NPC.damage * 0.5f), 0f, Main.myPlayer);
                     Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<CarminiteTooth>(), (int)(NPC.damage * 0.5f), 0f, Main.myPlayer);
                 }
-                if (Timer == 250)
+                if (AttackTimer == 250)
                 {
-                    Timer = 0;
+                    AttackTimer = 0;
                 }
             }
                 
-            if(NPC.life < NPC.lifeMax / 2)
+            if (NPC.life < NPC.lifeMax / 2)
             {
                 if (!phase2Init)
                 {

@@ -56,13 +56,9 @@ namespace Eternal.Content.NPCs.DarkMoon
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if (EventSystem.darkMoon)
-            {
                 return SpawnCondition.OverworldNightMonster.Chance * 0.15f;
-            }
             else
-            {
                 return SpawnCondition.OverworldNightMonster.Chance * 0f;
-            }
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
@@ -87,15 +83,12 @@ namespace Eternal.Content.NPCs.DarkMoon
             NPC.spriteDirection = NPC.direction;
             NPC.rotation = NPC.velocity.X * 0.02f;
 
-            if (attackTimer == 200 || attackTimer == 225 || attackTimer == 300 || attackTimer == 325)
+            if (attackTimer == 200 || attackTimer == 225 || attackTimer == 300 || attackTimer == 325 && Main.netMode != NetmodeID.MultiplayerClient)
             {
-                 if (!Main.dedServ)
-                 {
-                     Dust.NewDust(new Vector2(NPC.position.X, NPC.position.Y), NPC.width, NPC.height, DustID.Blood);
-                     Projectile.NewProjectile(entitySource, NPC.Center, direction, ModContent.ProjectileType<Sanguinebeam2>(), 0, 0f, Main.myPlayer);
-                     SoundEngine.PlaySound(SoundID.Item167, NPC.Center);
-                     SoundEngine.PlaySound(SoundID.NPCDeath22, NPC.Center);
-                 }
+                Dust.NewDust(new Vector2(NPC.position.X, NPC.position.Y), NPC.width, NPC.height, DustID.Blood);
+                Projectile.NewProjectile(entitySource, NPC.Center, direction, ModContent.ProjectileType<Sanguinebeam2>(), 0, 0f, Main.myPlayer);
+                SoundEngine.PlaySound(SoundID.Item167, NPC.Center);
+                SoundEngine.PlaySound(SoundID.NPCDeath22, NPC.Center);
             }
 
             if (attackTimer > 350)

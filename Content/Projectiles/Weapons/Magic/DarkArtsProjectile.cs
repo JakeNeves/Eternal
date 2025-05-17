@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework.Graphics;
 using Eternal.Content.Projectiles.Accessories;
+using Terraria.ID;
 
 namespace Eternal.Content.Projectiles.Weapons.Magic
 {
@@ -15,35 +16,34 @@ namespace Eternal.Content.Projectiles.Weapons.Magic
         {
             Projectile.width = 6;
             Projectile.height = 6;
-            Projectile.aiStyle = 1;
             Projectile.friendly = true;
             Projectile.penetrate = 1;
-            Projectile.timeLeft = 300;
+            Projectile.timeLeft = 150;
             Projectile.ignoreWater = false;
             Projectile.tileCollide = true;
+            Projectile.extraUpdates = 1;
         }
 
         public override void AI()
         {
-            if (Main.rand.NextBool(4))
-            {
-                for (int k = 0; k < 15; k++)
-                {
-                    Dust.NewDust(Projectile.Center, Projectile.width, Projectile.height, ModContent.DustType<Shade>(), Projectile.oldVelocity.X * 1f, Projectile.oldVelocity.Y * 1f);
-                }
-            }
+            if (Main.rand.NextBool(2))
+                Dust.NewDust(Projectile.Center, Projectile.width, Projectile.height, ModContent.DustType<Shade>(), Projectile.oldVelocity.X * 1f, Projectile.oldVelocity.Y * 1f);
         }
 
         public override void OnKill(int timeLeft)
         {
             var entitySource = Projectile.GetSource_Death();
 
-            if (!Main.dedServ)
+            if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                Projectile.NewProjectile(entitySource, Projectile.Center, new Vector2(0f, 0f), ModContent.ProjectileType<ShadeBombFriendly>(), Projectile.damage / 2, 0);
+                Projectile.NewProjectile(entitySource, Projectile.Center, new Vector2(12f, 0f), ModContent.ProjectileType<ShadeBombFriendly>(), Projectile.damage / 2, 0);
+                Projectile.NewProjectile(entitySource, Projectile.Center, new Vector2(0f, 12f), ModContent.ProjectileType<ShadeBombFriendly>(), Projectile.damage / 2, 0);
+                Projectile.NewProjectile(entitySource, Projectile.Center, new Vector2(-12f, 0f), ModContent.ProjectileType<ShadeBombFriendly>(), Projectile.damage / 2, 0);
+                Projectile.NewProjectile(entitySource, Projectile.Center, new Vector2(0f, -12f), ModContent.ProjectileType<ShadeBombFriendly>(), Projectile.damage / 2, 0);
             }
         }
 
+        /*
         public override void ModifyDamageHitbox(ref Rectangle hitbox)
         {
             int size = 30;
@@ -52,6 +52,7 @@ namespace Eternal.Content.Projectiles.Weapons.Magic
             hitbox.Width += size * 2;
             hitbox.Height += size * 2;
         }
+        */
 
         public override bool PreDraw(ref Color lightColor)
         {

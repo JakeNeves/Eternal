@@ -38,8 +38,8 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
 
         public override void SetDefaults()
         {
-            NPC.width = 28;
-            NPC.height = 46;
+            NPC.width = 26;
+            NPC.height = 56;
             NPC.lifeMax = 12800;
             NPC.defense = 18;
             NPC.HitSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCHit/CosmicApparitionHit")

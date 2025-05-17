@@ -37,14 +37,12 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
             for (int k = 0; k < Main.rand.Next(3, 6); k++)
             {
-                if (!Main.dedServ)
+                if (Main.netMode != NetmodeID.MultiplayerClient)
                     Projectile.NewProjectile(entitySource, (int)Projectile.Center.X + Main.rand.Next(-200, 200), (int)Projectile.Center.Y + Main.rand.Next(-200, 200), (float)Projectile.velocity.X, (float)Projectile.velocity.Y, ModContent.ProjectileType<ExosiivaGladiusBladeProjectile2>(), Projectile.damage / 2, -1f);
             }
 
-            for (int k = 0; k < 10; k++)
-            {
+            if (Main.rand.NextBool(2))
                 Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<Exosiiva>(), Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f, 0, Color.White, Main.rand.NextFloat(0.5f, 1f));
-            }
         }
 
         public override void AI()

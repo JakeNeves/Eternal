@@ -25,20 +25,16 @@ namespace Eternal.Content.Projectiles.Accessories
 
         public override void AI()
         {
-            for (int k = 0; k < 5; k++)
-            {
-                int dust = Dust.NewDust(Projectile.Center, Projectile.width, Projectile.height, ModContent.DustType<Shade>(), Projectile.oldVelocity.X * 1f, Projectile.oldVelocity.Y * 1f);
-            }
+            if (Main.rand.NextBool(2))
+                Dust.NewDust(Projectile.Center, Projectile.width, Projectile.height, ModContent.DustType<Shade>(), Projectile.oldVelocity.X * 1f, Projectile.oldVelocity.Y * 1f);
         }
 
         public override void OnKill(int timeLeft)
         {
             SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.position);
 
-            for (int k = 0; k < 10; k++)
-            {
+            for (int k = 0; k < 5; k++)
                 Dust.NewDust(Projectile.Center, Projectile.width, Projectile.height, ModContent.DustType<Shade>(), Projectile.oldVelocity.X * 1f, Projectile.oldVelocity.Y * 1f);
-            }
         }
 
         public override void ModifyDamageHitbox(ref Rectangle hitbox)

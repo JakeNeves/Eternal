@@ -70,14 +70,9 @@ namespace Eternal.Content.NPCs.DarkMoon
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if (EventSystem.darkMoon)
-            {
                 return SpawnCondition.OverworldNightMonster.Chance * 0.25f;
-            }
             else
-            {
                 return SpawnCondition.OverworldNightMonster.Chance * 0f;
-            }
-            
         }
     }
 }

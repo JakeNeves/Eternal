@@ -98,8 +98,8 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             NPC.width = 26;
             NPC.height = 56;
             NPC.lifeMax = 120000;
-            NPC.damage = 75;
-            NPC.defense = 60;
+            NPC.damage = 30;
+            NPC.defense = 40;
             NPC.knockBackResist = 0f;
             NPC.boss = true;
             if (!Main.dedServ) {
@@ -195,14 +195,6 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             Player player = Main.player[NPC.target];
 
             player.AddBuff(BuffID.Horrified, 1, false);
-
-            if (DifficultySystem.hellMode)
-            {
-                if (NPC.life < NPC.lifeMax / 2)
-                {
-                    player.AddBuff(BuffID.Obstructed, 1, false);
-                }
-            }
 
             NPC.spriteDirection = NPC.direction;
             NPC.rotation = NPC.velocity.X * 0.02f;

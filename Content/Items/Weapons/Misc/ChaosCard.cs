@@ -22,6 +22,7 @@ namespace Eternal.Content.Items.Weapons.Misc
             Item.UseSound = SoundID.Item1;
             Item.autoReuse = true;
             Item.noUseGraphic = true;
+            Item.noMelee = true;
             Item.shootSpeed = 12f;
             Item.shoot = ModContent.ProjectileType<ChaosCardProjectile>();
         }

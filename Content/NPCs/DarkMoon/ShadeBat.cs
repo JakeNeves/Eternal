@@ -45,7 +45,7 @@ namespace Eternal.Content.NPCs.DarkMoon
         {
             var entitySource = NPC.GetSource_Death();
 
-            if (!Main.dedServ)
+            if (Main.netMode != NetmodeID.MultiplayerClient)
             {
                 SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/ShademanTrap")
                 {
@@ -97,9 +97,7 @@ namespace Eternal.Content.NPCs.DarkMoon
             Player player = Main.player[NPC.target];
             NPC.TargetClosest(true);
             if (player.dead || !player.active)
-            {
                 NPC.TargetClosest(false);
-            }
 
             var entitySource = NPC.GetSource_FromAI();
         }

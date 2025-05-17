@@ -91,24 +91,35 @@ namespace Eternal.Content.NPCs.Comet
 
             if (EventSystem.isRiftOpen)
             {
-                for (int k = 0; k < 5; k++)
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.PurpleTorch, 0, -2f, 0, default, 1f);
+                if (Main.rand.NextBool(2))
+                    for (int k = 0; k < 5; k++)
+                        Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.PurpleTorch, 0, -2f, 0, default, 1f);
             }
 
             if (DownedBossSystem.downedCosmicApparition)
             {
                 teleportTimer++;
 
-                if (teleportTimer > 250)
+                if (teleportTimer > 250 && Main.netMode != NetmodeID.MultiplayerClient)
                 {
-                    SoundEngine.PlaySound(SoundID.Item8, NPC.position);
-                    NPC.position.X = targetPosition.X + Main.rand.Next(-400, 400);
-                    NPC.position.Y = targetPosition.Y + Main.rand.Next(-400, 400);
-                    for (int k = 0; k < 10; k++)
+                    if (!Main.dedServ)
+                        SoundEngine.PlaySound(SoundID.Item8, NPC.position);
+
+                    int targetTileX = (int)Main.player[NPC.target].Center.X / 16;
+                    int targetTileY = (int)Main.player[NPC.target].Center.Y / 16;
+                    Vector2 chosenTile = Vector2.Zero;
+                    if (NPC.AI_AttemptToFindTeleportSpot(ref chosenTile, targetTileX, targetTileY))
                     {
-                        Dust.NewDust(NPC.position + NPC.velocity, NPC.width, NPC.height, DustID.DemonTorch, NPC.oldVelocity.X * 0.5f, NPC.oldVelocity.Y * 0.5f);
+                        NPC.ai[2] = chosenTile.X;
+                        NPC.ai[3] = chosenTile.Y;
                     }
+
+                    for (int k = 0; k < 5; k++)
+                        Dust.NewDust(NPC.position + NPC.velocity, NPC.width, NPC.height, DustID.DemonTorch, NPC.oldVelocity.X * 0.5f, NPC.oldVelocity.Y * 0.5f);
+
                     teleportTimer = 0;
+
+                    NPC.netUpdate = true;
                 }
             }
 
@@ -291,24 +302,35 @@ namespace Eternal.Content.NPCs.Comet
 
             if (EventSystem.isRiftOpen)
             {
-                for (int k = 0; k < 5; k++)
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.PurpleTorch, 0, -2f, 0, default, 1f);
+                if (Main.rand.NextBool(2))
+                    for (int k = 0; k < 5; k++)
+                        Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.PurpleTorch, 0, -2f, 0, default, 1f);
             }
 
             if (DownedBossSystem.downedCosmicApparition)
             {
                 teleportTimer++;
 
-                if (teleportTimer > 250)
+                if (teleportTimer > 250 && Main.netMode != NetmodeID.MultiplayerClient)
                 {
-                    SoundEngine.PlaySound(SoundID.Item8, NPC.position);
-                    NPC.position.X = targetPosition.X + Main.rand.Next(-400, 400);
-                    NPC.position.Y = targetPosition.Y + Main.rand.Next(-400, 400);
-                    for (int k = 0; k < 10; k++)
+                    if (!Main.dedServ)
+                        SoundEngine.PlaySound(SoundID.Item8, NPC.position);
+
+                    int targetTileX = (int)Main.player[NPC.target].Center.X / 16;
+                    int targetTileY = (int)Main.player[NPC.target].Center.Y / 16;
+                    Vector2 chosenTile = Vector2.Zero;
+                    if (NPC.AI_AttemptToFindTeleportSpot(ref chosenTile, targetTileX, targetTileY))
                     {
-                        Dust.NewDust(NPC.position + NPC.velocity, NPC.width, NPC.height, DustID.DemonTorch, NPC.oldVelocity.X * 0.5f, NPC.oldVelocity.Y * 0.5f);
+                        NPC.ai[2] = chosenTile.X;
+                        NPC.ai[3] = chosenTile.Y;
                     }
+
+                    for (int k = 0; k < 5; k++)
+                        Dust.NewDust(NPC.position + NPC.velocity, NPC.width, NPC.height, DustID.DemonTorch, NPC.oldVelocity.X * 0.5f, NPC.oldVelocity.Y * 0.5f);
+
                     teleportTimer = 0;
+
+                    NPC.netUpdate = true;
                 }
             }
 

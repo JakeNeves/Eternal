@@ -1,5 +1,4 @@
 ﻿using Eternal.Content.Projectiles.Weapons.Melee;
-using Eternal.Content.Rarities;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using Terraria;
@@ -22,7 +21,7 @@ namespace Eternal.Content.Items.Weapons.Melee
             Item.height = 24;
             Item.DamageType = DamageClass.Melee;
             Item.rare = ItemRarityID.Lime;
-            Item.damage = 50;
+            Item.damage = 30;
             Item.useAnimation = 16;
             Item.useTime = 16;
             Item.useStyle = ItemUseStyleID.Swing;

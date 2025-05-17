@@ -43,9 +43,9 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
             NPC.width = 142;
             NPC.height = 150;
             NPC.aiStyle = -1;
-            NPC.damage = 24;
-            NPC.defense = 30;
-            NPC.lifeMax = 80000;
+            NPC.damage = 0;
+            NPC.defense = 20;
+            NPC.lifeMax = 8000;
             NPC.buffImmune[BuffID.OnFire] = true;
             NPC.buffImmune[BuffID.Poisoned] = true;
             NPC.buffImmune[BuffID.Venom] = true;

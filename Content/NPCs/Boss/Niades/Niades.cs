@@ -40,6 +40,7 @@ namespace Eternal.Content.NPCs.Boss.Niades
             Main.npcFrameCount[NPC.type] = 8;
 
             NPCID.Sets.ShouldBeCountedAsBoss[Type] = true;
+            NPCID.Sets.ImmuneToAllBuffs[Type] = true;
         }
 
         ref float AttackTimer => ref NPC.ai[1];
@@ -54,8 +55,8 @@ namespace Eternal.Content.NPCs.Boss.Niades
             NPC.width = 134;
             NPC.height = 134;
             NPC.aiStyle = -1;
-            NPC.damage = 18;
-            NPC.defense = 60;
+            NPC.damage = 25;
+            NPC.defense = 30;
             NPC.lifeMax = 120000;
             NPC.buffImmune[BuffID.OnFire] = true;
             NPC.buffImmune[BuffID.Poisoned] = true;
@@ -71,6 +72,7 @@ namespace Eternal.Content.NPCs.Boss.Niades
             NPC.npcSlots = 6;
             if (!Main.dedServ)
                 Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/Tenebricide");
+            SpawnModBiomes = [ModContent.GetInstance<Biomes.DarkMoon>().Type];
         }
 
         public override void OnKill()
@@ -95,7 +97,6 @@ namespace Eternal.Content.NPCs.Boss.Niades
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
             bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
 
                 new FlavorTextBestiaryInfoElement("A psychic construct brought to life by twisted occultism, presumably it's somewhat unstable!")
             });
@@ -492,6 +493,8 @@ namespace Eternal.Content.NPCs.Boss.Niades
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<NiadesBag>()));
 
             npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<OrbofTheOccult>(), 4));
+
+            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<SactothsConquest>(), 12));
         }
 
         public override void BossLoot(ref string name, ref int potionType)

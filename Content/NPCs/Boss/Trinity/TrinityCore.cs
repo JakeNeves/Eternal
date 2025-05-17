@@ -1,6 +1,8 @@
 ﻿using Eternal.Common.Systems;
 using Eternal.Content.Items.BossBags;
 using Eternal.Content.Items.Potions;
+using Eternal.Content.Projectiles.Boss;
+using Eternal.Content.Projectiles.Enemy;
 using Eternal.Content.Projectiles.Explosion;
 using Microsoft.Xna.Framework;
 using System;
@@ -22,7 +24,7 @@ namespace Eternal.Content.NPCs.Boss.Trinity
         const float Speed = 25f;
         const float Acceleration = 0.15f;
         
-        ref float timer => ref NPC.ai[1];
+        ref float AttackTimer => ref NPC.ai[1];
 
         bool justSpawned = false;
 
@@ -33,11 +35,16 @@ namespace Eternal.Content.NPCs.Boss.Trinity
         bool justSpawnedBodyEffigy = false;
         bool justSpawnedSoulEffigy = false;
 
+        static int aiTrinityShotRateMax = 24;
+        int aiTrinityShotRate = aiTrinityShotRateMax;
+
         public override void SetStaticDefaults()
         {
             TrinityDefeated = Mod.GetLocalization($"BossDefeatedEvent.{nameof(TrinityDefeated)}");
 
             Main.npcFrameCount[NPC.type] = 4;
+
+            NPCID.Sets.ImmuneToAllBuffs[Type] = true;
         }
 
         public override void SetDefaults()
@@ -61,7 +68,6 @@ namespace Eternal.Content.NPCs.Boss.Trinity
             NPC.boss = true;
             if (!Main.dedServ)
                 Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/TrinitalRetribution");
-            NPC.BossBar = ModContent.GetInstance<BossBars.Trinity>();
             NPC.npcSlots = 6;
         }
 
@@ -192,8 +198,8 @@ namespace Eternal.Content.NPCs.Boss.Trinity
                 NPC.active = false;
             }
 
-            timer++;
-            if (timer >= 0)
+            AttackTimer++;
+            if (AttackTimer >= 0)
             {
                 Vector2 StartPosition = new Vector2(NPC.position.X + NPC.width * 0.5f, NPC.position.Y + NPC.height * 0.5f);
                 float DirectionX = Main.player[NPC.target].position.X + Main.player[NPC.target].width / 2 - StartPosition.X;
@@ -233,10 +239,6 @@ namespace Eternal.Content.NPCs.Boss.Trinity
 
         public override void AI()
         {
-            Vector2 circDir = new Vector2(0f, 45f);
-
-            timer++;
-
             var entitySource = NPC.GetSource_FromAI();
 
             Vector2 direction = Main.player[NPC.target].Center - NPC.Center;
@@ -250,23 +252,23 @@ namespace Eternal.Content.NPCs.Boss.Trinity
             if (!Main.dedServ)
                 Lighting.AddLight(NPC.position, 0.5f, 1.06f, 2.55f);
 
-            if (NPC.life < NPC.lifeMax / 2)
+            if (!(NPC.AnyNPCs(ModContent.NPCType<MindEffigy>()) || NPC.AnyNPCs(ModContent.NPCType<BodyEffigy>()) || NPC.AnyNPCs(ModContent.NPCType<SoulEffigy>())))
             {
-                if (!(NPC.AnyNPCs(ModContent.NPCType<MindEffigy>()) || NPC.AnyNPCs(ModContent.NPCType<BodyEffigy>()) || NPC.AnyNPCs(ModContent.NPCType<SoulEffigy>())))
+                if (NPC.life < NPC.lifeMax / 2)
                     AI_Trinity_Attacks_Phase2();
-            }
-            else
-            {
-                AI_Trinity_Attacks_Phase1();
+                else
+                    AI_Trinity_Attacks_Phase1();
             }
 
             if (NPC.ai[3] > 0f)
             {
+                entitySource = NPC.GetSource_Death();
+
                 NPC.ai[3] += 1f;
                 NPC.dontTakeDamage = true;
                 deathExplosionTimer++;
 
-                if (deathExplosionTimer > 3)
+                if (deathExplosionTimer > 4)
                 {
                     Projectile.NewProjectile(entitySource, NPC.Center.X + Main.rand.Next(-20, 20), NPC.Center.Y + Main.rand.Next(-20, 20), 0, 0, ModContent.ProjectileType<TrinityBurst>(), 0, 0);
                     deathExplosionTimer = 0;
@@ -308,12 +310,148 @@ namespace Eternal.Content.NPCs.Boss.Trinity
 
         private void AI_Trinity_Attacks_Phase1()
         {
+            Vector2 circDir = new Vector2(0f, 45f);
 
+            AttackTimer++;
+
+            var entitySource = NPC.GetSource_FromAI();
+
+            Vector2 direction = Main.player[NPC.target].Center - NPC.Center;
+            direction.Normalize();
+            direction.X *= 8.5f;
+            direction.Y *= 8.5f;
+
+            float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+            float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+
+            if (AttackTimer >= 100 && AttackTimer < 200)
+            {
+                aiTrinityShotRate--;
+
+                if (aiTrinityShotRate <= 0)
+                {
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    {
+                        int proj = Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<Psyfireball>(), NPC.damage / 2, 1, Main.myPlayer, 0, 0);
+
+                        Main.projectile[proj].tileCollide = false;
+                    }
+                }
+            }
+
+            if (AttackTimer >= 300 && AttackTimer < 600)
+            {
+                if (Main.rand.NextBool(6))
+                {
+                    for (int i = 0; i < 2; i++)
+                    {
+                        var shootPos = Main.player[NPC.target].position + new Vector2(Main.rand.Next(-1000, 1000), -1000);
+                        var shootVel = new Vector2(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(15f, 20f));
+                        int j = Projectile.NewProjectile(entitySource, shootPos, shootVel, ModContent.ProjectileType<CryotasWisp>(), NPC.damage / 4, 1f);
+                        Main.projectile[j].hostile = true;
+                        Main.projectile[j].tileCollide = true;
+                        Main.projectile[j].friendly = false;
+                    }
+                }
+            }
+
+            if (AttackTimer >= 750 && AttackTimer < 800)
+            {
+                NPC.velocity = new Vector2(0f, 0f);
+                NPC.rotation = 0;
+
+                aiTrinityShotRate--;
+
+                if (aiTrinityShotRate <= 0)
+                {
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    {
+                        SoundEngine.PlaySound(SoundID.Item167, NPC.Center);
+                        SoundEngine.PlaySound(SoundID.NPCDeath22, NPC.Center);
+
+                        int proj = Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<Sanguinebeam>(), NPC.damage, 1, Main.myPlayer, 0, 0);
+
+                        Main.projectile[proj].tileCollide = false;
+                        Main.projectile[proj].timeLeft = 90;
+                    }
+
+                    aiTrinityShotRate = aiTrinityShotRateMax;
+                }
+            }
+
+            if (AttackTimer > 900)
+            {
+                AttackTimer = 0;
+            }
         }
 
         private void AI_Trinity_Attacks_Phase2()
         {
+            Vector2 circDir = new Vector2(0f, 45f);
 
+            AttackTimer++;
+
+            var entitySource = NPC.GetSource_FromAI();
+
+            Vector2 direction = Main.player[NPC.target].Center - NPC.Center;
+            direction.Normalize();
+            direction.X *= 8.5f;
+            direction.Y *= 8.5f;
+
+            float A = (float)Main.rand.Next(-200, 200) * 0.01f;
+            float B = (float)Main.rand.Next(-200, 200) * 0.01f;
+
+            if (AttackTimer >= 100 && AttackTimer < 250)
+            {
+                NPC.velocity = new Vector2(0f, 0f);
+
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    int proj = Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<Psyfireball>(), NPC.damage / 2, 1, Main.myPlayer, 0, 0);
+
+                    Main.projectile[proj].timeLeft = 100;
+                }
+            }
+
+            if (AttackTimer >= 300 && AttackTimer < 325)
+            {
+                NPC.velocity = new Vector2(0f, 0f);
+                NPC.rotation = 0;
+
+                aiTrinityShotRate--;
+
+                if (aiTrinityShotRate <= 0)
+                {
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    {
+                        int proj = Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ProjectileID.DeathLaser, NPC.damage, 1, Main.myPlayer, 0, 0);
+
+                        Main.projectile[proj].tileCollide = false;
+                    }
+
+                    aiTrinityShotRate = aiTrinityShotRateMax;
+                }
+            }
+
+            if (AttackTimer >= 400 && AttackTimer < 550)
+            {
+                aiTrinityShotRate--;
+
+                if (aiTrinityShotRate <= 0)
+                {
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    {
+                        int proj = Projectile.NewProjectile(entitySource, NPC.position, new Vector2(Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-1f, 1f)), ModContent.ProjectileType<Psyfireball>(), NPC.damage / 2, 0f);
+
+                        Main.projectile[proj].timeLeft = 100;
+                    }
+                }
+            }
+
+            if (AttackTimer > 610)
+            {
+                AttackTimer = 0;
+            }
         }
 
         public override void FindFrame(int frameHeight)

@@ -84,9 +84,9 @@ namespace Eternal.Content.NPCs.Boss.TheGlare
             NPC.width = 134;
             NPC.height = 134;
             NPC.aiStyle = -1;
-            NPC.damage = 36;
-            NPC.defense = 60;
-            NPC.lifeMax = 120000;
+            NPC.damage = 24;
+            NPC.defense = 30;
+            NPC.lifeMax = 12000;
             NPC.lavaImmune = true;
             NPC.knockBackResist = -1f;
             NPC.noGravity = true;

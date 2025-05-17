@@ -46,9 +46,7 @@ namespace Eternal.Content.NPCs.DarkMoon
         public override void AI()
         {
             if (!Main.dedServ)
-            {
                 Lighting.AddLight(NPC.Center, 1.50f, 0.25f, 1.50f);
-            }
 
             player = Main.player[NPC.target];
 

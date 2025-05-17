@@ -225,7 +225,7 @@ namespace Eternal.Content.NPCs.Boss.Igneopede
 			NPC.damage = 25;
 		}
 
-		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
+		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
 		{
             NPC.lifeMax = (int)(NPC.lifeMax * balance * bossAdjustment);
             NPC.damage = (int)(NPC.damage * balance * bossAdjustment);
@@ -273,7 +273,7 @@ namespace Eternal.Content.NPCs.Boss.Igneopede
 			NPC.damage = 15;
 		}
 
-		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
+		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
 		{
             NPC.lifeMax = (int)(NPC.lifeMax * balance * bossAdjustment);
             NPC.damage = (int)(NPC.damage * balance * bossAdjustment);

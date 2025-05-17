@@ -32,6 +32,7 @@ namespace Eternal.Content.Items.Weapons.Hell
             Item.autoReuse = true;
             Item.UseSound = SoundID.Item39;
             Item.noUseGraphic = true;
+            Item.noMelee = true;
             Item.shoot = ModContent.ProjectileType<PsionicKnivesProjectile>();
             Item.shootSpeed = 12f;
             Item.channel = true;

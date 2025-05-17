@@ -1,5 +1,6 @@
 ﻿using Eternal.Common.Systems;
 using Eternal.Content.Items.Potions;
+using Eternal.Content.Projectiles.Boss;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -16,7 +17,28 @@ namespace Eternal.Content.NPCs.Boss.Trinity
     {
         bool justSpawned = false;
 
-        int attackTimer = 0;
+        Vector2 CircleDirc = new Vector2(0.0f, 15f);
+
+        ref float AttackTimer => ref NPC.ai[1];
+
+        float aiCryotaProjectileRotation = MathHelper.PiOver2;
+
+        static int aiCryotaShotRateMax = 12;
+        int aiCryotaShotRate = aiCryotaShotRateMax;
+        int aiCryotaShootTime = 4;
+        int AiCryotaShootRate()
+        {
+            int rate;
+
+            if (DifficultySystem.hellMode)
+                rate = 12;
+            else if (Main.expertMode)
+                rate = 24;
+            else
+                rate = 36;
+
+            return rate;
+        }
 
         public override void SetStaticDefaults()
         {
@@ -50,7 +72,7 @@ namespace Eternal.Content.NPCs.Boss.Trinity
             NPC.noTileCollide = true;
         }
 
-        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
         {
             NPC.lifeMax = (int)(NPC.lifeMax * balance * bossAdjustment);
             NPC.damage = (int)(NPC.damage * balance * bossAdjustment);
@@ -140,7 +162,7 @@ namespace Eternal.Content.NPCs.Boss.Trinity
             if(!Main.dedServ)
                 Lighting.AddLight(NPC.position, 1.64f, 2.36f, 2.55f);
 
-            attackTimer++;
+            AttackTimer++;
 
             Vector2 direction = Main.player[NPC.target].Center - NPC.Center;
             direction.Normalize();
@@ -161,12 +183,212 @@ namespace Eternal.Content.NPCs.Boss.Trinity
 
         private void AI_Cryota_Attacks_Phase1()
         {
+            AttackTimer++;
 
+            var entitySource = NPC.GetSource_FromAI();
+
+            Vector2 direction = Main.player[NPC.target].Center - NPC.Center;
+            direction.Normalize();
+            direction.X *= 8.5f;
+            direction.Y *= 8.5f;
+
+            float A = (float)Main.rand.Next(-150, 150) * 0.01f;
+            float B = (float)Main.rand.Next(-150, 150) * 0.01f;
+
+            if (AttackTimer >= 150 && AttackTimer < 200)
+            {
+                aiCryotaShotRate--;
+
+                if (aiCryotaShotRate <= 0)
+                {
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    {
+                        CircleDirc = Utils.RotatedBy(CircleDirc, 0.10000000149011612, new Vector2());
+                        int index5 = Projectile.NewProjectile(entitySource, NPC.Center, CircleDirc, ModContent.ProjectileType<CryotasWisp2>(), NPC.damage, 0.0f, Main.myPlayer, 0.0f, 0.0f);
+                        int index6 = Projectile.NewProjectile(entitySource, NPC.Center, Utils.RotatedBy(CircleDirc, Math.PI, new Vector2()), ModContent.ProjectileType<CryotasWisp2>(), NPC.damage, 0.0f, Main.myPlayer, 0.0f, 0.0f);
+                        Main.projectile[index5].timeLeft = 100;
+                        Main.projectile[index6].timeLeft = 100;
+                    }
+                }
+            }
+
+            if (AttackTimer == 300)
+            {
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    int proj = Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<CryotasWisp>(), NPC.damage / 2, 1, Main.myPlayer, 0, 0);
+
+                    Main.projectile[proj].friendly = false;
+                    Main.projectile[proj].hostile = true;
+                    Main.projectile[proj].tileCollide = false;
+                }
+            }
+
+            if (AttackTimer >= 350 && AttackTimer < 400)
+            {
+                aiCryotaShotRate--;
+
+                if (aiCryotaShotRate <= 0)
+                {
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    {
+                        SoundEngine.PlaySound(SoundID.Item84, NPC.position);
+
+                        int proj = Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<CryotasWisp2>(), NPC.damage / 2, 1, Main.myPlayer, 0, 0);
+
+                        Main.projectile[proj].tileCollide = false;
+                    }
+                }
+            }
+
+            if (AttackTimer >= 450 && AttackTimer < 600)
+            {
+                NPC.velocity = new Vector2(0f, 0f);
+
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    aiCryotaProjectileRotation += 0.01f;
+                    if (--aiCryotaShootTime <= 0)
+                    {
+                        aiCryotaShootTime = AiCryotaShootRate();
+                        var shootPos = NPC.Center;
+                        var shootVel = new Vector2(0, 5).RotatedBy(aiCryotaProjectileRotation);
+                        int[] i = [
+                            Projectile.NewProjectile(entitySource, shootPos, shootVel, ModContent.ProjectileType<CryotasWisp2>(), NPC.damage, 1f),
+                            Projectile.NewProjectile(entitySource, shootPos, shootVel.RotatedBy(MathHelper.PiOver2), ModContent.ProjectileType<CryotasWisp2>(), NPC.damage, 1f),
+                            Projectile.NewProjectile(entitySource, shootPos, shootVel.RotatedBy(MathHelper.Pi), ModContent.ProjectileType<CryotasWisp2>(), NPC.damage, 1f),
+                            Projectile.NewProjectile(entitySource, shootPos, shootVel.RotatedBy(-MathHelper.PiOver2), ModContent.ProjectileType<CryotasWisp2>(), NPC.damage, 1f)
+                        ];
+                        for (int l = 0; l < i.Length; l++)
+                        {
+                            Main.projectile[i[l]].tileCollide = false;
+                            Main.projectile[i[l]].timeLeft = 150;
+                        }
+                    }
+                }
+            }
+
+            if (AttackTimer == 650)
+            {
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    int proj = Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<CryotasWisp>(), NPC.damage / 2, 1, Main.myPlayer, 0, 0);
+
+                    Main.projectile[proj].friendly = false;
+                    Main.projectile[proj].hostile = true;
+                    Main.projectile[proj].tileCollide = false;
+                }
+            }
+
+            if (AttackTimer > 660)
+                AttackTimer = 0;
         }
 
         private void AI_Cryota_Attacks_Phase2()
         {
+            AttackTimer++;
 
+            var entitySource = NPC.GetSource_FromAI();
+
+            Vector2 direction = Main.player[NPC.target].Center - NPC.Center;
+            direction.Normalize();
+            direction.X *= 8.5f;
+            direction.Y *= 8.5f;
+
+            float A = (float)Main.rand.Next(-150, 150) * 0.01f;
+            float B = (float)Main.rand.Next(-150, 150) * 0.01f;
+
+            if (AttackTimer == 100)
+            {
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    int proj = Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<CryotasWisp>(), NPC.damage / 2, 1, Main.myPlayer, 0, 0);
+
+                    Main.projectile[proj].friendly = false;
+                    Main.projectile[proj].hostile = true;
+                    Main.projectile[proj].tileCollide = false;
+                }
+            }
+
+            if (AttackTimer >= 150 && AttackTimer < 200)
+            {
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    aiCryotaProjectileRotation += 0.01f;
+                    if (--aiCryotaShootTime <= 0)
+                    {
+                        aiCryotaShootTime = AiCryotaShootRate();
+                        var shootPos = NPC.Center;
+                        var shootVel = new Vector2(0, 5).RotatedBy(aiCryotaProjectileRotation);
+                        int[] i = [
+                            Projectile.NewProjectile(entitySource, shootPos, shootVel, ModContent.ProjectileType<CryotasWisp>(), NPC.damage, 1f),
+                            Projectile.NewProjectile(entitySource, shootPos, shootVel.RotatedBy(MathHelper.PiOver2), ModContent.ProjectileType<CryotasWisp>(), NPC.damage, 1f),
+                            Projectile.NewProjectile(entitySource, shootPos, shootVel.RotatedBy(MathHelper.Pi), ModContent.ProjectileType<CryotasWisp>(), NPC.damage, 1f),
+                            Projectile.NewProjectile(entitySource, shootPos, shootVel.RotatedBy(-MathHelper.PiOver2), ModContent.ProjectileType<CryotasWisp>(), NPC.damage, 1f)
+                        ];
+                        for (int l = 0; l < i.Length; l++)
+                        {
+                            Main.projectile[i[l]].tileCollide = false;
+                            Main.projectile[i[l]].timeLeft = 150;
+                        }
+                    }
+                }
+            }
+
+            if (AttackTimer >= 200 && AttackTimer < 400)
+            {
+                if (Main.rand.NextBool(6))
+                {
+                    for (int i = 0; i < 2; i++)
+                    {
+                        var shootPos = Main.player[NPC.target].position + new Vector2(Main.rand.Next(-1000, 1000), -1000);
+                        var shootVel = new Vector2(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(15f, 20f));
+                        int j = Projectile.NewProjectile(entitySource, shootPos, shootVel, ModContent.ProjectileType<CryotasWisp2>(), NPC.damage / 4, 1f);
+                        Main.projectile[j].hostile = true;
+                        Main.projectile[j].tileCollide = true;
+                        Main.projectile[j].friendly = false;
+                    }
+                }
+            }
+
+            if (AttackTimer >= 450 && AttackTimer < 500)
+            {
+                aiCryotaShotRate--;
+
+                if (aiCryotaShotRate <= 0)
+                {
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    {
+                        CircleDirc = Utils.RotatedBy(CircleDirc, 0.10000000149011612, new Vector2());
+                        int index5 = Projectile.NewProjectile(entitySource, NPC.Center, CircleDirc, ModContent.ProjectileType<CryotasWisp2>(), NPC.damage, 0.0f, Main.myPlayer, 0.0f, 0.0f);
+                        int index6 = Projectile.NewProjectile(entitySource, NPC.Center, Utils.RotatedBy(CircleDirc, Math.PI, new Vector2()), ModContent.ProjectileType<CryotasWisp2>(), NPC.damage, 0.0f, Main.myPlayer, 0.0f, 0.0f);
+                        Main.projectile[index5].timeLeft = 100;
+                        Main.projectile[index6].timeLeft = 100;
+                    }
+                }
+            }
+
+            if (AttackTimer == 550 && Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                if (DifficultySystem.hellMode)
+                {
+                    Projectile.NewProjectile(entitySource, NPC.Center, new Vector2(8f, 8f), ModContent.ProjectileType<SpiritBomb>(), NPC.damage / 4, 0f);
+                    Projectile.NewProjectile(entitySource, NPC.Center, new Vector2(-8f, 8f), ModContent.ProjectileType<SpiritBomb>(), NPC.damage / 4, 0f);
+                    Projectile.NewProjectile(entitySource, NPC.Center, new Vector2(8f, -8f), ModContent.ProjectileType<SpiritBomb>(), NPC.damage / 4, 0f);
+                    Projectile.NewProjectile(entitySource, NPC.Center, new Vector2(-8f, -8f), ModContent.ProjectileType<SpiritBomb>(), NPC.damage / 4, 0f);
+                }
+                else
+                {
+                    Projectile.NewProjectile(entitySource, NPC.Center, new Vector2(8f, 8f), ModContent.ProjectileType<SpiritBomb2>(), NPC.damage / 4, 0f);
+                    Projectile.NewProjectile(entitySource, NPC.Center, new Vector2(-8f, 8f), ModContent.ProjectileType<SpiritBomb2>(), NPC.damage / 4, 0f);
+                    Projectile.NewProjectile(entitySource, NPC.Center, new Vector2(8f, -8f), ModContent.ProjectileType<SpiritBomb2>(), NPC.damage / 4, 0f);
+                    Projectile.NewProjectile(entitySource, NPC.Center, new Vector2(-8f, -8f), ModContent.ProjectileType<SpiritBomb2>(), NPC.damage / 4, 0f);
+
+                }
+            }
+
+            if (AttackTimer > 600)
+                AttackTimer = 0;
         }
 
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)

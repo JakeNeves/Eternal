@@ -1,8 +1,5 @@
-﻿using Eternal.Common.Systems;
-using Eternal.Content.Items.Accessories.Expert;
-using Eternal.Content.Items.Materials;
-using Eternal.Content.Items.Weapons.Hell;
-using Eternal.Content.NPCs.Boss.DuneGolem;
+﻿using Eternal.Content.Items.Accessories.Expert;
+using Eternal.Content.Items.Weapons.Melee;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.GameContent.ItemDropRules;
@@ -38,6 +35,8 @@ namespace Eternal.Content.Items.BossBags
         public override void ModifyItemLoot(ItemLoot itemLoot)
         {
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Rosary>()));
+
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<SactothsConquest>(), 12));
         }
     }
 }

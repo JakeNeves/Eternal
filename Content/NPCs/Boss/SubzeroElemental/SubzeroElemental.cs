@@ -39,8 +39,8 @@ namespace Eternal.Content.NPCs.Boss.SubzeroElemental
         {
             NPC.width = 52;
             NPC.height = 82;
-            NPC.lifeMax = 48000;
-            NPC.damage = 50;
+            NPC.lifeMax = 36000;
+            NPC.damage = 20;
             NPC.boss = true;
             NPC.HitSound = SoundID.NPCHit5;
             NPC.DeathSound = SoundID.NPCDeath44;
@@ -57,28 +57,10 @@ namespace Eternal.Content.NPCs.Boss.SubzeroElemental
             NPC.npcSlots = 6;
         }
 
-        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
         {
-            if (Main.masterMode)
-            {
-                NPC.lifeMax = 52000;
-                NPC.damage = 70;
-            }
-            else if (DifficultySystem.hellMode)
-            {
-                NPC.lifeMax = 54000;
-                NPC.damage = 80;
-            }
-            else if (DifficultySystem.sinstormMode)
-            {
-                NPC.lifeMax = 58000;
-                NPC.damage = 90;
-            }
-            else
-            {
-                NPC.lifeMax = 50000;
-                NPC.damage = 60;
-            }
+            NPC.lifeMax = (int)(NPC.lifeMax * balance * bossAdjustment);
+            NPC.damage = (int)(NPC.damage * balance * bossAdjustment);
         }
 
         public override void HitEffect(NPC.HitInfo hit)

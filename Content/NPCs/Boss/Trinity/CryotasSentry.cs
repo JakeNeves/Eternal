@@ -92,10 +92,6 @@ namespace Eternal.Content.NPCs.Boss.Trinity
 
                 if (iceBombTimer > 10)
                 {
-                    float A = (float)Main.rand.Next(-200, 200) * 0.01f;
-                    float B = (float)Main.rand.Next(-200, 200) * 0.01f;
-                    if (Main.netMode != NetmodeID.MultiplayerClient)
-                        Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<DetonatingIceBomb>(), NPC.damage / 2, 1, Main.myPlayer, 0, 0);
 
                     iceBombTimer = 0;
                 }

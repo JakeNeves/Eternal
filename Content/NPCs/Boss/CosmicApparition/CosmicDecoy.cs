@@ -21,6 +21,15 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
             NPCID.Sets.TrailCacheLength[NPC.type] = 14;
             NPCID.Sets.TrailingMode[NPC.type] = 0;
 
+            #region debuff immunity
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Poisoned] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.DryadsWardDebuff] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.CursedInferno] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.BetsysCurse] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true;
+            #endregion
+
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
                 Hide = true
@@ -54,24 +63,16 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
 
         public override void SetDefaults()
         {
-            NPC.width = 28;
-            NPC.height = 46;
+            NPC.width = 26;
+            NPC.height = 56;
             NPC.lifeMax = 3600;
-            NPC.damage = 100;
-            NPC.defense = 18;
+            NPC.damage = 30;
+            NPC.defense = 40;
             NPC.knockBackResist = 0f;
             NPC.HitSound = SoundID.NPCHit52;
             NPC.DeathSound = SoundID.NPCDeath55;
             NPC.noTileCollide = true;
             NPC.noGravity = true;
-            NPC.buffImmune[BuffID.Poisoned] = true;
-            NPC.buffImmune[BuffID.OnFire] = true;
-            NPC.buffImmune[BuffID.Venom] = true;
-            NPC.buffImmune[BuffID.ShadowFlame] = true;
-            NPC.buffImmune[BuffID.CursedInferno] = true;
-            NPC.buffImmune[BuffID.Frostburn] = true;
-            NPC.buffImmune[BuffID.Frozen] = true;
-            NPC.buffImmune[BuffID.Chilled] = true;
             NPC.BossBar = Main.BigBossProgressBar.NeverValid;
         }
 

@@ -14,6 +14,7 @@ using Terraria.ModLoader;
 using Eternal.Common.Configurations;
 using Eternal.Common.Misc;
 using Microsoft.Xna.Framework.Graphics;
+using Terraria.DataStructures;
 
 namespace Eternal.Content.NPCs.Boss.DuneGolem
 {
@@ -23,7 +24,8 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
         private Player player;
 
         #region Fundimentals
-        int attackTimer;
+        ref float AttackTimer => ref NPC.ai[1];
+
         int Phase;
         int Timer;
         int frameNum;
@@ -68,6 +70,16 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
 
         public override void OnKill()
         {
+            int gore1 = Mod.Find<ModGore>("DuneGolem1").Type;
+            int gore2 = Mod.Find<ModGore>("DuneGolem2").Type;
+            int gore3 = Mod.Find<ModGore>("DuneGolem3").Type;
+            int gore4 = Mod.Find<ModGore>("DuneGolem4").Type;
+
+            Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-4, 4), Main.rand.Next(-4, 4)), gore1);
+            Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-4, 4), Main.rand.Next(-4, 4)), gore2);
+            Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-4, 4), Main.rand.Next(-4, 4)), gore3);
+            Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-4, 4), Main.rand.Next(-4, 4)), gore4);
+
             NPC.SetEventFlagCleared(ref DownedBossSystem.downedDuneGolem, -1);
         }
 
@@ -82,12 +94,8 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
 
         public override void HitEffect(NPC.HitInfo hit)
         {
-            var entitySource = NPC.GetSource_Death();
-
             if (Main.netMode == NetmodeID.Server)
-            {
                 return;
-            }
 
             if (!dontKillyet)
             {
@@ -98,23 +106,8 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
                 }
             }
 
-            if (NPC.life <= 0)
-            {
-                int gore1 = Mod.Find<ModGore>("DuneGolem1").Type;
-                int gore2 = Mod.Find<ModGore>("DuneGolem2").Type;
-                int gore3 = Mod.Find<ModGore>("DuneGolem3").Type;
-                int gore4 = Mod.Find<ModGore>("DuneGolem4").Type;
-
-                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-4, 4), Main.rand.Next(-4, 4)), gore1);
-                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-4, 4), Main.rand.Next(-4, 4)), gore2);
-                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-4, 4), Main.rand.Next(-4, 4)), gore3);
-                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-4, 4), Main.rand.Next(-4, 4)), gore4);
-            }
-
             for (int k = 0; k < 5; k++)
-            {
                 Dust.NewDust(NPC.position + NPC.velocity, NPC.width, NPC.height, DustID.DesertTorch, NPC.oldVelocity.X * 0.5f, NPC.oldVelocity.Y * 0.5f);
-            }
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
@@ -126,7 +119,7 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<MalachiteShard>(), minimumDropped: 30, maximumDropped: 60));
         }
 
-        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
         {
             NPC.lifeMax = (int)(NPC.lifeMax * balance * bossAdjustment);
             NPC.damage = (int)(NPC.damage * balance * bossAdjustment);
@@ -156,7 +149,6 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
                 Timer++;
                 if (Timer >= 0)
                 {
-                    
                     Vector2 StartPosition = new Vector2(NPC.position.X + NPC.width * 0.5f, NPC.position.Y + NPC.height * 0.5f);
                     float DirectionX = Main.player[NPC.target].position.X + Main.player[NPC.target].width / 2 - StartPosition.X;
                     float DirectionY = Main.player[NPC.target].position.Y + (Main.player[NPC.target].height / 2) - 120 - StartPosition.Y;
@@ -300,7 +292,7 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
             }
 
             #region attacks
-            attackTimer++;
+            AttackTimer++;
 
             if (NPC.life < NPC.lifeMax / 2)
             {
@@ -316,7 +308,7 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
             if (Phase == 1)
             {
 
-                if (attackTimer == 100 || attackTimer == 105 || attackTimer == 110 || attackTimer == 115 || attackTimer == 120 || attackTimer == 125 || attackTimer == 130 || attackTimer == 135 || attackTimer == 140 || attackTimer == 145 || attackTimer == 150)
+                if (AttackTimer == 100 || AttackTimer == 105 || AttackTimer == 110 || AttackTimer == 115 || AttackTimer == 120 || AttackTimer == 125 || AttackTimer == 130 || AttackTimer == 135 || AttackTimer == 140 || AttackTimer == 145 || AttackTimer == 150)
                 {
                     for (int i = 0; i < 2; ++i)
                     {
@@ -329,14 +321,14 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
                             Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<DuneSpike>(), NPC.damage, 1, Main.myPlayer, 0, 0);
                     }
                 }
-                if (attackTimer == 200 || attackTimer == 205 || attackTimer == 210 || attackTimer == 215 || attackTimer == 220 || attackTimer == 225 || attackTimer == 230 || attackTimer == 235 || attackTimer == 240 || attackTimer == 245 || attackTimer == 250 || attackTimer == 260 || attackTimer == 265 || attackTimer == 270 || attackTimer == 275 || attackTimer == 280 || attackTimer == 285 || attackTimer == 290 || attackTimer == 295 || attackTimer == 300)
+                if (AttackTimer == 200 || AttackTimer == 205 || AttackTimer == 210 || AttackTimer == 215 || AttackTimer == 220 || AttackTimer == 225 || AttackTimer == 230 || AttackTimer == 235 || AttackTimer == 240 || AttackTimer == 245 || AttackTimer == 250 || AttackTimer == 260 || AttackTimer == 265 || AttackTimer == 270 || AttackTimer == 275 || AttackTimer == 280 || AttackTimer == 285 || AttackTimer == 290 || AttackTimer == 295 || AttackTimer == 300)
                 {
                     if (!Main.dedServ)
                         SoundEngine.PlaySound(SoundID.DD2_LightningAuraZap, NPC.Center);
 
                     Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<DuneSpark>(), NPC.damage, 0f, Main.myPlayer);
                 }
-                if (attackTimer == 300)
+                if (AttackTimer == 300)
                 {
                     if (!NPC.AnyNPCs(ModContent.NPCType<DunePylon>()))
                     {
@@ -358,15 +350,15 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
                         }
                     }
                 }
-                if (attackTimer == 500)
+                if (AttackTimer == 500)
                 {
-                    attackTimer = 0;
+                    AttackTimer = 0;
                 }
             }
             else
             {
 
-                if (attackTimer == 100 || attackTimer == 105 || attackTimer == 110 || attackTimer == 115 || attackTimer == 120 || attackTimer == 125)
+                if (AttackTimer == 100 || AttackTimer == 105 || AttackTimer == 110 || AttackTimer == 115 || AttackTimer == 120 || AttackTimer == 125)
                 {
                     for (int i = 0; i < 1; ++i)
                     {
@@ -379,14 +371,14 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
                             Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<DuneSpike>(), NPC.damage, 1, Main.myPlayer, 0, 0);
                     }
                 }
-                if (attackTimer == 200 || attackTimer == 205 || attackTimer == 210 || attackTimer == 215 || attackTimer == 220 || attackTimer == 225 || attackTimer == 230 || attackTimer == 235 || attackTimer == 240 || attackTimer == 245 || attackTimer == 250)
+                if (AttackTimer == 200 || AttackTimer == 205 || AttackTimer == 210 || AttackTimer == 215 || AttackTimer == 220 || AttackTimer == 225 || AttackTimer == 230 || AttackTimer == 235 || AttackTimer == 240 || AttackTimer == 245 || AttackTimer == 250)
                 {
                     float A = (float)Main.rand.Next(-200, 200) * 0.01f;
                     float B = (float)Main.rand.Next(-200, 200) * 0.01f;
                     if (Main.netMode != NetmodeID.MultiplayerClient)
                         Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<DuneSpark>(), NPC.damage, 1, Main.myPlayer, 0, 0);
                 }
-                if (attackTimer == 300)
+                if (AttackTimer == 300)
                 {
                     if (!NPC.AnyNPCs(ModContent.NPCType<DunePylon>()))
                         {
@@ -408,9 +400,9 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
                         }
                     }
                 }
-                if (attackTimer == 500)
+                if (AttackTimer == 500)
                 {
-                    attackTimer = 0;
+                    AttackTimer = 0;
                 }
             }
             #endregion

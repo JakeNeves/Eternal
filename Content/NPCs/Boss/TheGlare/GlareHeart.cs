@@ -25,9 +25,9 @@ namespace Eternal.Content.NPCs.Boss.TheGlare
 
         public override void SetDefaults()
         {
-            NPC.lifeMax = 100000;
+            NPC.lifeMax = 10000;
             NPC.damage = 30;
-            NPC.defense = 50;
+            NPC.defense = 20;
             NPC.knockBackResist = 0f;
             NPC.width = 84;
             NPC.height = 72;
@@ -86,7 +86,7 @@ namespace Eternal.Content.NPCs.Boss.TheGlare
             } 
         }
 
-        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
         {
             NPC.lifeMax = (int)(NPC.lifeMax * balance * bossAdjustment);
             NPC.damage = (int)(NPC.damage * balance * bossAdjustment);

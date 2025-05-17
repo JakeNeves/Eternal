@@ -1,5 +1,4 @@
-﻿using CalamityMod.Projectiles.Rogue;
-using Eternal.Content.Items.Summon;
+﻿using Eternal.Content.Items.Summon;
 using Eternal.Content.NPCs.Boss.AoI;
 using Eternal.Content.NPCs.Boss.CarminiteAmalgamation;
 using Eternal.Content.NPCs.Boss.CosmicApparition;
@@ -9,6 +8,7 @@ using Eternal.Content.NPCs.Boss.Duneworm;
 using Eternal.Content.NPCs.Boss.Igneopede;
 using Eternal.Content.NPCs.Boss.Incinerius;
 using Eternal.Content.NPCs.Boss.Niades;
+using Eternal.Content.NPCs.Boss.TheGlare;
 using Eternal.Content.NPCs.Boss.Trinity;
 using Eternal.Content.NPCs.DarkMoon;
 using Eternal.Content.NPCs.Miniboss;
@@ -101,6 +101,27 @@ namespace Eternal.Common.Systems
             ); */
             #endregion
 
+            #region The Glare
+            bossChecklistMod.Call(
+                "LogBoss",
+                Mod,
+                nameof(TheGlare),
+                12.15f,
+                () => DownedBossSystem.downedGlare,
+                ModContent.NPCType<TheGlare>(),
+                new Dictionary<string, object>()
+                {
+                    ["spawnItems"] = ModContent.ItemType<SuspiciousLookingMask>(),
+                    ["displayName"] = Language.GetText("Mods.Eternal.NPCs.TheGlare.DisplayName"),
+                    ["despawnMessage"] = Language.GetText("Mods.Eternal.NPCs.TheGlare.BossChecklistIntegration.DespawnMessage"),
+                    ["collectables"] = new List<int>()
+                    {
+
+                    }
+                }
+            );
+            #endregion
+
             #region Incinerius
             bossChecklistMod.Call(
                 "LogBoss",
@@ -152,7 +173,7 @@ namespace Eternal.Common.Systems
                 "LogEvent",
                 Mod,
                 "DarkMoon",
-                12.25f,
+                13.14f,
                 () => EventSystem.downedDarkMoon,
                 new List<int>()
                 {
@@ -162,13 +183,14 @@ namespace Eternal.Common.Systems
                     ModContent.NPCType<Pseyeche>(),
                     ModContent.NPCType<PsycheSkull>(),
                     ModContent.NPCType<PsycheSlime>(),
-                    ModContent.NPCType<PsycheZombie>(),
+                    ModContent.NPCType<PsychoZombie>(),
                     ModContent.NPCType<TwistedPsycheSlime>()
                 },
                 new Dictionary<string, object>()
                 {
                     ["spawnItems"] = ModContent.ItemType<Animanomicon>(),
                     ["displayName"] = Language.GetText("Mods.Eternal.Events.DarkMoon.DisplayName"),
+                    ["spawnInfo"] = Language.GetText("Mods.Eternal.Events.DarkMoon.BossChecklistIntegration.SpawnInfo")
                 }
             );
             #endregion
@@ -185,10 +207,11 @@ namespace Eternal.Common.Systems
                 {
                     ["spawnItems"] = ModContent.ItemType<BloodstainedJudgement>(),
                     ["displayName"] = Language.GetText("Mods.Eternal.NPCs.Niades.DisplayName"),
+                    ["despawnMessage"] = Language.GetText("Mods.Eternal.NPCs.Niades.BossChecklistIntegration.DespawnMessage"),
                     ["collectables"] = new List<int>()
                     {
                         ModContent.ItemType<Content.Items.Accessories.Expert.Rosary>(),
-                        ModContent.ItemType<Content.Items.Materials.CursedAshes>()
+                        ModContent.ItemType<Content.Items.Weapons.Melee.SactothsConquest>()
                     }
                 }
             );
@@ -286,6 +309,7 @@ namespace Eternal.Common.Systems
                 {
                     ["spawnItems"] = ModContent.ItemType<PrimordialRelic>(),
                     ["displayName"] = Language.GetText("Mods.Eternal.NPCs.TrinityCore.DisplayName"),
+                    ["spawnInfo"] = Language.GetText("Mods.Eternal.NPCs.TrinityCore.BossChecklistIntegration.SpawnInfo"),
                     ["collectables"] = new List<int>()
                     {
 
@@ -311,6 +335,7 @@ namespace Eternal.Common.Systems
                 {
                     ["spawnItems"] = ModContent.ItemType<Animanomicon>(),
                     ["displayName"] = Language.GetText("Mods.Eternal.Events.DarkMoon2.DisplayName"),
+                    ["spawnInfo"] = Language.GetText("Mods.Eternal.Events.DarkMoon2.BossChecklistIntegration.SpawnInfo")
                 }
             );
             #endregion

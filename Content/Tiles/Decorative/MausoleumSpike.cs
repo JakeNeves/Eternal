@@ -13,6 +13,7 @@ namespace Eternal.Content.Tiles.Decorative
             Main.tileMergeDirt[Type] = false;
             Main.tileBlockLight[Type] = true;
             TileID.Sets.TouchDamageBleeding[Type] = true;
+            TileID.Sets.TouchDamageImmediate[Type] = 20;
             DustType = DustID.Stone;
             AddMapEntry(new Color(10, 5, 10));
             HitSound = SoundID.Tink;

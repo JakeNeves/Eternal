@@ -52,11 +52,14 @@ namespace Eternal.Content.Items.Armor
 
             Lighting.AddLight(player.Center, 0.75f, 0f, 0.75f);
 
-            Dust dust;
-            Vector2 position = Main.LocalPlayer.Center;
-            dust = Main.dust[Dust.NewDust(player.position, (int)player.width, (int)player.height, DustID.Wraith, 0f, 0f, 0, new Color(255, 255, 255), 1f)];
-            dust.fadeIn = 0.3f;
-            dust.noGravity = true;
+            if (Main.rand.NextBool(2))
+            {
+                Dust dust;
+                Vector2 position = Main.LocalPlayer.Center;
+                dust = Main.dust[Dust.NewDust(player.position, (int)player.width, (int)player.height, DustID.Wraith, 0f, 0f, 0, new Color(255, 255, 255), 1f)];
+                dust.fadeIn = 0.3f;
+                dust.noGravity = true;
+            }
         }
 
         public override void ArmorSetShadows(Player player)

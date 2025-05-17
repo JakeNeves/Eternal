@@ -35,14 +35,14 @@ namespace Eternal.Content.Items.Placeable.Decorative
 
         public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
-            Item.color = EternalCommonUtils.MultiLerpColor(Main.LocalPlayer.miscCounter % 100 / 100f, Color.DeepPink, Color.MediumPurple, Color.DeepPink);
+            Item.color = EternalCommonUtils.MultiLerpColor(Main.LocalPlayer.miscCounter % 100 / 100f, [Color.DeepPink, Color.MediumPurple, Color.DeepPink]);
 
             return true;
         }
 
         public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
         {
-            Item.color = EternalCommonUtils.MultiLerpColor(Main.LocalPlayer.miscCounter % 100 / 100f, Color.DeepPink, Color.MediumPurple, Color.DeepPink);
+            Item.color = EternalCommonUtils.MultiLerpColor(Main.LocalPlayer.miscCounter % 100 / 100f, [Color.DeepPink, Color.MediumPurple, Color.DeepPink]);
 
             return true;
         }

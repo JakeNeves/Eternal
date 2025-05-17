@@ -19,8 +19,8 @@ namespace Eternal.Content.Items.Summon
 
         public override void SetDefaults()
         {
-            Item.width = 44;
-            Item.height = 44;
+            Item.width = 42;
+            Item.height = 42;
             Item.rare = ModContent.RarityType<Teal>();
             Item.useAnimation = 15;
             Item.useTime = 15;

@@ -31,6 +31,7 @@ namespace Eternal.Common.Players
         public static bool hasCursorofTheCosmos = false;
         public static bool hasSpiritArkCursor = false;
         public static bool hasTheEternalCursor = false;
+        public static bool hasJakesCursor = false;
 
         public override void ResetEffects()
         {
@@ -53,6 +54,7 @@ namespace Eternal.Common.Players
             hasCursorofTheCosmos = false;
             hasSpiritArkCursor = false;
             hasTheEternalCursor = false;
+            hasJakesCursor = false;
         }
 
         public override void OnHurt(Player.HurtInfo info)
@@ -139,22 +141,27 @@ namespace Eternal.Common.Players
 
             if (hasVoidCursor)
             {
-                Main.cursorColor = EternalCommonUtils.MultiLerpColor(Main.LocalPlayer.miscCounter % 100 / 100f, Color.Black, Color.Red, Color.Black);
+                Main.cursorColor = EternalCommonUtils.MultiLerpColor(Main.LocalPlayer.miscCounter % 100 / 100f, [Color.Black, Color.Red, Color.Black]);
             }
 
             if (hasCursorofTheCosmos)
             {
-                Main.cursorColor = EternalCommonUtils.MultiLerpColor(Main.LocalPlayer.miscCounter % 100 / 100f, Color.Purple, Color.Magenta, Color.Purple);
+                Main.cursorColor = EternalCommonUtils.MultiLerpColor(Main.LocalPlayer.miscCounter % 100 / 100f, [Color.Purple, Color.Magenta, Color.Purple]);
             }
 
             if (hasSpiritArkCursor)
             {
-                Main.cursorColor = EternalCommonUtils.MultiLerpColor(Main.LocalPlayer.miscCounter % 100 / 100f, Color.Teal, Color.Green, Color.Teal);
+                Main.cursorColor = EternalCommonUtils.MultiLerpColor(Main.LocalPlayer.miscCounter % 100 / 100f, [Color.Teal, Color.Green, Color.Teal]);
             }
 
             if (hasTheEternalCursor)
             {
-                Main.cursorColor = EternalCommonUtils.MultiLerpColor(Main.LocalPlayer.miscCounter % 100 / 100f, Color.DarkRed, Color.PaleVioletRed, Color.DarkRed);
+                Main.cursorColor = EternalCommonUtils.MultiLerpColor(Main.LocalPlayer.miscCounter % 100 / 100f, [Color.DarkRed, Color.PaleVioletRed, Color.DarkRed]);
+            }
+
+            if (hasJakesCursor)
+            {
+                Main.cursorColor = EternalCommonUtils.MultiLerpColor(Main.LocalPlayer.miscCounter % 150 / 150f, [Color.HotPink, Color.Yellow, Color.Turquoise, Color.Yellow, Color.HotPink]);
             }
         }
     }

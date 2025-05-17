@@ -70,34 +70,28 @@ namespace Eternal.Content.NPCs.DegradedBoss.CarminiteAmalgamation
             NPC.rarity = 4;
         }
 
+        public override void OnKill()
+        {
+            int gore1 = Mod.Find<ModGore>("CarminiteAmalgamationEye").Type;
+            int gore2 = Mod.Find<ModGore>("CarminiteAmalgamationFang1").Type;
+            int gore3 = Mod.Find<ModGore>("CarminiteAmalgamationFang2").Type;
+            int gore4 = Mod.Find<ModGore>("CarminiteAmalgamationLeftHalf").Type;
+            int gore5 = Mod.Find<ModGore>("CarminiteAmalgamationRightHalf").Type;
+
+            Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore1);
+            Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore2);
+            Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore3);
+            Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore4);
+            Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore5);
+        }
+
         public override void HitEffect(NPC.HitInfo hit)
         {
             if (Main.netMode == NetmodeID.Server)
-            {
                 return;
-            }
-
-            var entitySource = NPC.GetSource_Death();
-
-            if (NPC.life <= 0)
-            {
-                int gore1 = Mod.Find<ModGore>("CarminiteAmalgamationEye").Type;
-                int gore2 = Mod.Find<ModGore>("CarminiteAmalgamationFang1").Type;
-                int gore3 = Mod.Find<ModGore>("CarminiteAmalgamationFang2").Type;
-                int gore4 = Mod.Find<ModGore>("CarminiteAmalgamationLeftHalf").Type;
-                int gore5 = Mod.Find<ModGore>("CarminiteAmalgamationRightHalf").Type;
-
-                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore1);
-                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore2);
-                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore3);
-                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore4);
-                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore5);
-            }
 
             for (int k = 0; k < 15.0; k++)
-            {
                 Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.Blood, 0, 0, 0, default(Color), 1f);
-            }
         }
 
         public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
@@ -108,7 +102,7 @@ namespace Eternal.Content.NPCs.DegradedBoss.CarminiteAmalgamation
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MrFishbone>(), 36));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MrFishbone>(), 24));
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

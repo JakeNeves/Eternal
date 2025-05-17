@@ -8,9 +8,7 @@ using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Eternal.Common.Misc;
 using Eternal.Content.Items.Debug;
-using Eternal.Content.Items.Weapons.Melee;
 
 namespace Eternal.Common.GlobalNPCs
 {
@@ -34,17 +32,17 @@ namespace Eternal.Common.GlobalNPCs
 
         public override void ApplyDifficultyAndPlayerScaling(NPC npc, int numPlayers, float balance, float bossAdjustment)
         {
-            if (DifficultySystem.hellMode && ServerConfig.instance.hellModeVanillaBosses && npc.boss)
+            if (DifficultySystem.hellMode && npc.boss)
             {
-                npc.damage *= 4;
-                npc.lifeMax *= 4;
-                npc.defense *= 3;
+                npc.damage *= 2;
+                npc.lifeMax *= 2;
+                npc.defense *= 2;
             }
-            else if (DifficultySystem.sinstormMode && ServerConfig.instance.hellModeVanillaBosses && npc.boss)
+            else if (DifficultySystem.sinstormMode && npc.boss)
             {
-                npc.damage *= 5;
-                npc.lifeMax *= 4;
-                npc.defense *= 4;
+                npc.damage *= 3;
+                npc.lifeMax *= 3;
+                npc.defense *= 3;
             }
         }
 

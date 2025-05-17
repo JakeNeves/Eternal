@@ -46,10 +46,8 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
             if (!Main.dedServ)
                 SoundEngine.PlaySound(SoundID.NPCDeath22, Projectile.position);
 
-            for (int i = 0; i < 5; i++)
-            {
+            if (Main.rand.NextBool(2))
                 Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<Puss>(), Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);
-            }
         }
 
         public override void ModifyDamageHitbox(ref Rectangle hitbox)

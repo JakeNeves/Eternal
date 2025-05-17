@@ -55,7 +55,7 @@ namespace Eternal.Content.NPCs.DarkMoon
         {
             var entitySource = NPC.GetSource_Death();
 
-            if (!Main.dedServ)
+            if (Main.netMode != NetmodeID.MultiplayerClient)
             {
                 SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/ShademanTrap")
                 {
@@ -76,9 +76,7 @@ namespace Eternal.Content.NPCs.DarkMoon
             Player player = Main.player[NPC.target];
             NPC.TargetClosest(true);
             if (player.dead || !player.active)
-            {
                 NPC.TargetClosest(false);
-            }
         }
 
         public override void HitEffect(NPC.HitInfo hit)
@@ -87,9 +85,7 @@ namespace Eternal.Content.NPCs.DarkMoon
                 return;
 
             for (int k = 0; k < 10.0; k++)
-            {
                 Dust.NewDust(NPC.Center, NPC.width, NPC.height, ModContent.DustType<Shade>(), 0, 0, 0, default(Color), 1f);
-            }
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

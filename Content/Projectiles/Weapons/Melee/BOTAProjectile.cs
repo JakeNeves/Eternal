@@ -58,7 +58,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
             for (int i = 0; i < 6; i++)
             {
-                if (!Main.dedServ)
+                if (Main.netMode != NetmodeID.MultiplayerClient)
                     Projectile.NewProjectile(entitySource, Projectile.Center, new Vector2(Main.rand.Next(-8, 8), Main.rand.Next(-8, 8)), ModContent.ProjectileType<BOTAProjectileTrail>(), Projectile.damage / 2, 0.0f, Main.myPlayer, 0.0f, 0.0f);
             }
 

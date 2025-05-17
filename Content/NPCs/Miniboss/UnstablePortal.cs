@@ -50,14 +50,6 @@ namespace Eternal.Content.NPCs.Miniboss
             NPC.DeathSound = null;
             NPC.noTileCollide = true;
             SpawnModBiomes = [ ModContent.GetInstance<Biomes.Rift>().Type ];
-            NPC.buffImmune[BuffID.Poisoned] = true;
-            NPC.buffImmune[BuffID.OnFire] = true;
-            NPC.buffImmune[BuffID.Venom] = true;
-            NPC.buffImmune[BuffID.ShadowFlame] = true;
-            NPC.buffImmune[BuffID.CursedInferno] = true;
-            NPC.buffImmune[BuffID.Frostburn] = true;
-            NPC.buffImmune[BuffID.Frozen] = true;
-            NPC.buffImmune[BuffID.Chilled] = true;
             NPC.alpha = 0;
         }
 
@@ -78,13 +70,9 @@ namespace Eternal.Content.NPCs.Miniboss
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if (EventSystem.isRiftOpen && !Main.zenithWorld && !NPC.AnyNPCs(ModContent.NPCType<PhantomConstruct>()))
-            {
                 return SpawnCondition.Sky.Chance * 0.4f;
-            }
             else
-            {
                 return SpawnCondition.Sky.Chance * 0f;
-            }
         }
 
         public override bool PreAI()
@@ -200,14 +188,10 @@ namespace Eternal.Content.NPCs.Miniboss
         public override void HitEffect(NPC.HitInfo hit)
         {
             if (NPC.life <= 0)
-            {
                 for (int k = 0; k < 5; k++)
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.PinkTorch, 2.5f, -2.5f, 0, default, 1.7f);
-            }
             else
-            {
                 Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.PinkTorch, 0, -1f, 0, default(Color), 1f);
-            }
         }
 
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)

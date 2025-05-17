@@ -33,6 +33,11 @@ namespace Eternal.Content.Items.Placeable.Decorative
                 .AddIngredient(ModContent.ItemType<GehennaBrickWall>(), 4)
                 .AddTile(TileID.WorkBenches)
                 .Register();
+
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<GehennaPlatform>(), 2)
+                .AddTile(TileID.WorkBenches)
+                .Register();
         }
     }
 }

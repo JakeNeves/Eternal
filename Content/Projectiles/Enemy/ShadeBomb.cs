@@ -4,6 +4,8 @@ using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
+using Terraria.ID;
+using Terraria.Audio;
 
 namespace Eternal.Content.Projectiles.Enemy
 {
@@ -29,8 +31,10 @@ namespace Eternal.Content.Projectiles.Enemy
 
             BombTimer++;
 
-            if (BombTimer >= 15f && !Main.dedServ)
+            if (BombTimer >= 15f && Main.netMode != NetmodeID.MultiplayerClient)
             {
+                SoundEngine.PlaySound(SoundID.Item104, Projectile.position);
+
                 if (Projectile.velocity.X != 0)
                 {
                     Projectile.NewProjectile(entitySource, Projectile.Center, new Vector2(0f, 4f), ModContent.ProjectileType<ShadeBomb2>(), Projectile.damage / 2, 0);
@@ -46,23 +50,23 @@ namespace Eternal.Content.Projectiles.Enemy
                 BombTimer = 0;
             }
 
-            for (int k = 0; k < 5; k++)
-            {
+            if (Main.rand.NextBool(2))
                 Dust.NewDust(Projectile.Center, Projectile.width, Projectile.height, ModContent.DustType<Shade>(), Projectile.oldVelocity.X * 1f, Projectile.oldVelocity.Y * 1f);
-            }
         }
 
         public override void OnKill(int timeLeft)
         {
             var entitySource = Projectile.GetSource_Death();
 
-            for (int k = 0; k < 10; k++)
+            for (int k = 0; k < 5; k++)
             {
                 Dust.NewDust(Projectile.Center, Projectile.width, Projectile.height, ModContent.DustType<Shade>(), Projectile.oldVelocity.X * 1f, Projectile.oldVelocity.Y * 1f);
             }
 
-            if (!Main.dedServ)
+            if (Main.netMode != NetmodeID.MultiplayerClient)
             {
+                SoundEngine.PlaySound(SoundID.Item100, Projectile.position);
+
                 Projectile.NewProjectile(entitySource, Projectile.Center, new Vector2(0f, 4f), ModContent.ProjectileType<ShadeBomb2>(), Projectile.damage / 2, 0);
                 Projectile.NewProjectile(entitySource, Projectile.Center, new Vector2(0f, -4f), ModContent.ProjectileType<ShadeBomb2>(), Projectile.damage / 2, 0);
                 Projectile.NewProjectile(entitySource, Projectile.Center, new Vector2(4f, 0f), ModContent.ProjectileType<ShadeBomb2>(), Projectile.damage / 2, 0);

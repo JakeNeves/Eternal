@@ -36,7 +36,7 @@ namespace Eternal.Content.NPCs.Underworld
             NPC.value = Item.sellPrice(platinum: 1, gold: 2);
             NPC.knockBackResist = 0f;
             NPC.lavaImmune = true;
-            NPC.color = EternalCommonUtils.MultiLerpColor(Main.LocalPlayer.miscCounter % 100 / 100f, Color.Red, Color.Orange, Color.Red);
+            NPC.color = EternalCommonUtils.MultiLerpColor(Main.LocalPlayer.miscCounter % 100 / 100f, [Color.Red, Color.Orange, Color.Red]);
             NPC.buffImmune[BuffID.OnFire] = true;
             NPC.buffImmune[BuffID.Suffocation] = true;
             NPC.buffImmune[BuffID.Poisoned] = true;

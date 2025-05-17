@@ -33,6 +33,11 @@ namespace Eternal.Content.Items.Placeable.Decorative
                 .AddIngredient(ModContent.ItemType<MausoleumBrickWall>(), 4)
                 .AddTile(TileID.WorkBenches)
                 .Register();
+
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<MausoleumPlatform>(), 2)
+                .AddTile(TileID.WorkBenches)
+                .Register();
         }
     }
 }

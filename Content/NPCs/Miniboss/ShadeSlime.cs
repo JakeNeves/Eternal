@@ -58,6 +58,8 @@ namespace Eternal.Content.NPCs.Miniboss
             if (!Main.dedServ)
                 for (int i = 0; i < Main.rand.Next(4, 6); i++)
                     NPC.NewNPC(entitySource, (int)NPC.Center.X + Main.rand.Next(-2, 2), (int)NPC.Center.Y + Main.rand.Next(-2, 2), ModContent.NPCType<Shadeling>(), NPC.whoAmI);
+
+            NPC.SetEventFlagCleared(ref DownedMinibossSystem.downedShadeSlime, -1);
         }
 
         public override void HitEffect(NPC.HitInfo hit)

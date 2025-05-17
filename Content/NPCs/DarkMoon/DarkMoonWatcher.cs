@@ -51,24 +51,10 @@ namespace Eternal.Content.NPCs.DarkMoon
         public override void HitEffect(NPC.HitInfo hit)
         {
             if (Main.netMode == NetmodeID.Server)
-            {
                 return;
-            }
-
-            if (NPC.life <= 0) {
-                var entitySource = NPC.GetSource_Death();
-
-                int gore1 = Mod.Find<ModGore>("CarminiteInfestedEyeFront").Type;
-                int gore2 = Mod.Find<ModGore>("CarminiteInfestedEyeBack").Type;
-
-                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore1);
-                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore2);
-            }
 
             for (int k = 0; k < 5.0; k++)
-            {
                 Dust.NewDust(NPC.Center, NPC.width, NPC.height, ModContent.DustType<Dusts.OcculticMatter>(), 0, 0, 0, default(Color), 1f);
-            }
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -81,14 +67,9 @@ namespace Eternal.Content.NPCs.DarkMoon
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if (EventSystem.darkMoon)
-            {
                 return SpawnCondition.OverworldNightMonster.Chance * 0.05f;
-            }
             else
-            {
                 return SpawnCondition.OverworldNightMonster.Chance * 0f;
-            }
-            
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)

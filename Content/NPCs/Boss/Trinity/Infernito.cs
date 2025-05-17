@@ -42,6 +42,8 @@ namespace Eternal.Content.NPCs.Boss.Trinity
             NPCID.Sets.TrailCacheLength[NPC.type] = 8;
             NPCID.Sets.TrailingMode[NPC.type] = 0;
 
+            NPCID.Sets.ImmuneToAllBuffs[Type] = true;
+
             NPCID.Sets.NPCBestiaryDrawModifiers value = new()
             {
                 Hide = true
@@ -70,7 +72,6 @@ namespace Eternal.Content.NPCs.Boss.Trinity
             NPC.boss = true;
             if (!Main.dedServ)
                 Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/TrinitalEmbodiment");
-            NPC.BossBar = ModContent.GetInstance<BossBars.Infernito>();
             NPC.npcSlots = 6;
         }
 
@@ -396,6 +397,7 @@ namespace Eternal.Content.NPCs.Boss.Trinity
                     aiInfernitoLaserShotRate = aiInfernitoLaserShotRateMax;
                 }
             }
+
             if (AttackTimer > 2000)
             {
                 AttackTimer = 0;

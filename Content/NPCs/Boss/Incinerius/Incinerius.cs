@@ -49,7 +49,7 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
             NPC.aiStyle = -1;
             NPC.damage = 12;
             NPC.defense = 20;
-            NPC.lifeMax = 48000;
+            NPC.lifeMax = 36000;
             NPC.buffImmune[BuffID.OnFire] = true;
             NPC.buffImmune[BuffID.Poisoned] = true;
             NPC.buffImmune[BuffID.Venom] = true;
@@ -206,11 +206,11 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
 
             attackTimer++;
 
-            if (attackTimer == 100 || attackTimer == 175)
+            if (attackTimer == 100 || attackTimer == 175 && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 
             }
-            if (attackTimer > 250 && attackTimer < 275)
+            if (attackTimer > 250 && attackTimer < 275 && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 CircleDirc = Utils.RotatedBy(CircleDirc, 0.10000000149011612, new Vector2());
                 int index5 = Projectile.NewProjectile(entitySource, NPC.Center, CircleDirc, ProjectileID.InfernoHostileBlast, NPC.damage, 0.0f, Main.myPlayer, 0.0f, 0.0f);

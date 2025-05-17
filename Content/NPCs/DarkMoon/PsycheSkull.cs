@@ -61,15 +61,12 @@ namespace Eternal.Content.NPCs.DarkMoon
 
         public override void AI()
         {
-
             Player target = Main.player[NPC.target];
             NPC.TargetClosest(true);
             NPC.spriteDirection = NPC.direction;
 
             if (!Main.dedServ)
-            {
                 Lighting.AddLight(NPC.Center, 1.50f, 0.25f, 1.50f);
-            }
 
             attackTimer++;
             Attack();

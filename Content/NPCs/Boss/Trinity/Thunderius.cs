@@ -72,11 +72,10 @@ namespace Eternal.Content.NPCs.Boss.Trinity
             NPC.boss = true;
             if (!Main.dedServ)
                 Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/TrinitalEmbodiment");
-            NPC.BossBar = ModContent.GetInstance<BossBars.Thunderius>();
             NPC.npcSlots = 6;
         }
 
-        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
         {
             NPC.lifeMax = (int)(NPC.lifeMax * balance * bossAdjustment);
             NPC.damage = (int)(NPC.damage * balance * bossAdjustment);
@@ -148,13 +147,21 @@ namespace Eternal.Content.NPCs.Boss.Trinity
                     if (NPC.velocity.Y > 0 && DirectionY < 0)
                         NPC.velocity.Y = NPC.velocity.Y - Acceleration;
                 }
-                if (Main.rand.NextBool(96))
+                if (Main.rand.NextBool(96) && Main.netMode != NetmodeID.MultiplayerClient)
                 {
-                    NPC.position = new Vector2(player.position.X + Main.rand.NextFloat(-200f, 200f), player.position.Y + Main.rand.NextFloat(-200f, 200f));
-                    NPC.netUpdate = true;
-
                     if (!Main.dedServ)
                         SoundEngine.PlaySound(SoundID.Item8, NPC.position);
+
+                    int targetTileX = (int)Main.player[NPC.target].Center.X / 16;
+                    int targetTileY = (int)Main.player[NPC.target].Center.Y / 16;
+                    Vector2 chosenTile = Vector2.Zero;
+                    if (NPC.AI_AttemptToFindTeleportSpot(ref chosenTile, targetTileX, targetTileY))
+                    {
+                        NPC.ai[2] = chosenTile.X;
+                        NPC.ai[3] = chosenTile.Y;
+                    }
+
+                    NPC.netUpdate = true;
                 }
             }
 

@@ -20,7 +20,7 @@ namespace Eternal.Content.Items.Summon
         {
             Item.width = 20;
             Item.height = 10;
-            Item.rare = ItemRarityID.Pink;
+            Item.rare = ItemRarityID.Yellow;
             Item.useAnimation = 45;
             Item.useTime = 45;
             Item.useStyle = ItemUseStyleID.HoldUp;

@@ -17,13 +17,13 @@ namespace Eternal.Content.Items.Tools
 
         public override void SetDefaults()
         {
-            Item.tileBoost = 16;
+            Item.tileBoost = 5;
             Item.damage = 400;
             Item.DamageType = DamageClass.Melee;
             Item.width = 42;
             Item.height = 40;
-            Item.useTime = 20;
-            Item.useAnimation = 30;
+            Item.useTime = 10;
+            Item.useAnimation = 10;
             Item.axe = 50;
             Item.hammer = 100;
             Item.useStyle = ItemUseStyleID.Swing;
@@ -32,6 +32,7 @@ namespace Eternal.Content.Items.Tools
             Item.rare = ModContent.RarityType<Turquoise>();
             Item.UseSound = SoundID.Item1;
             Item.autoReuse = true;
+            Item.attackSpeedOnlyAffectsWeaponAnimation = true;
         }
 
         public override void AddRecipes()
