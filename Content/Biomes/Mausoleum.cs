@@ -36,6 +36,6 @@ namespace Eternal.Content.Biomes
             return b1;
         }
 
-        public override SceneEffectPriority Priority => SceneEffectPriority.BiomeLow;
+        public override SceneEffectPriority Priority => SceneEffectPriority.BiomeMedium;
     }
 }

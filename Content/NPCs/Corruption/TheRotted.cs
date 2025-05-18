@@ -73,7 +73,7 @@ namespace Eternal.Content.NPCs.Corruption
 
             NPC.spriteDirection = NPC.direction;
 
-            if (Main.rand.NextBool(3))
+            if (Main.rand.NextBool(2))
             {
                 for (int k = 0; k < 5; k++)
                     Dust.NewDust(NPC.position + new Vector2(0f, 8f), NPC.width / 2, 0, DustID.GreenBlood, 1.5f, -1.5f, 0, default, Main.rand.NextFloat(0.75f, 1.25f));

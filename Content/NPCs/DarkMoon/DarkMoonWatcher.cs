@@ -41,10 +41,8 @@ namespace Eternal.Content.NPCs.DarkMoon
             {
                 Lighting.AddLight(NPC.Center, 1.50f, 0.25f, 1.50f);
 
-                for (int k = 0; k < 5.0; k++)
-                {
+                if (Main.rand.NextBool(2))
                     Dust.NewDust(NPC.Center, NPC.width, NPC.height, ModContent.DustType<Dusts.OcculticMatter>(), 0, 0, 0, default(Color), 1f);
-                }
             }
         }
 

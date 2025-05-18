@@ -11,7 +11,8 @@ namespace Eternal.Common.Misc
         {
             int GraniteIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Granite"));
             int DungeonIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Dungeon"));
-            int GehannaIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Gehenna"));
+            int GehennaIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Gehenna"));
+            int MausoleumIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Mausoleum"));
 
             if (GraniteIndex > -1)
                 tasks.Insert(GraniteIndex + 1, new PassLegacy("Beneath", EternalWorldGenerationPass.GenBeneath));
@@ -22,7 +23,7 @@ namespace Eternal.Common.Misc
             if (DungeonIndex > -1)
                 tasks.Insert(DungeonIndex + 1, new PassLegacy("Gehenna", EternalWorldGenerationPass.GenGehenna));
 
-            if (GehannaIndex > -1)
+            if (DungeonIndex > -1)
                 tasks.Insert(DungeonIndex + 1, new PassLegacy("Mausoleum", EternalWorldGenerationPass.GenMausoleum));
         }
     }

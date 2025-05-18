@@ -54,7 +54,7 @@ namespace Eternal.Content.NPCs.Comet
         {
             if (EventSystem.isRiftOpen)
             {
-                for (int k = 0; k < 5; k++)
+                if (Main.rand.NextBool(2))
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.PurpleTorch, 0, -2f, 0, default, 1f);
             }
         }

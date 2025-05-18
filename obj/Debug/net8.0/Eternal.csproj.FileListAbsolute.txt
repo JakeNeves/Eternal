@@ -233,5 +233,3 @@ C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\obj\Deb
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\obj\Debug\net8.0\refint\Eternal.dll
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\obj\Debug\net8.0\Eternal.pdb
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\obj\Debug\net8.0\ref\Eternal.dll
-C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\obj\Debug\net8.0\Eternal.Properties.Resources.resources
-C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\obj\Debug\net8.0\Eternal.csproj.GenerateResource.cache

@@ -15,7 +15,7 @@ using Terraria.ModLoader.Utilities;
 
 namespace Eternal.Content.NPCs.Comet
 {
-	internal class StarboreSnowHead : StarboreSnowSnow
+	internal class StarboreSnowHead : StarboreSnow
 	{
 		public override void SetStaticDefaults()
 		{
@@ -111,7 +111,7 @@ namespace Eternal.Content.NPCs.Comet
 
             if (EventSystem.isRiftOpen)
             {
-                for (int k = 0; k < 5; k++)
+                if (Main.rand.NextBool(2))
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.PurpleTorch, 0, -2f, 0, default, 1f);
             }
         }
@@ -140,7 +140,7 @@ namespace Eternal.Content.NPCs.Comet
 		}
 	}
 
-	internal class StarboreSnowBody : StarboreSnowSnow
+	internal class StarboreSnowBody : StarboreSnow
 	{
 		public override void SetStaticDefaults()
 		{
@@ -188,13 +188,13 @@ namespace Eternal.Content.NPCs.Comet
 
             if (EventSystem.isRiftOpen)
             {
-                for (int k = 0; k < 5; k++)
+                if (Main.rand.NextBool(2))
                     Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.PurpleTorch, 0, -2f, 0, default, 1f);
             }
         }
 	}
 
-	internal class StarboreSnowTail : StarboreSnowSnow
+	internal class StarboreSnowTail : StarboreSnow
 	{
 		public override void SetStaticDefaults()
 		{
@@ -242,7 +242,7 @@ namespace Eternal.Content.NPCs.Comet
 
             if (EventSystem.isRiftOpen)
             {
-                for (int k = 0; k < 5; k++)
+                if (Main.rand.NextBool(2))
                     Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.PurpleTorch, 0, -2f, 0, default, 1f);
             }
         }
@@ -254,7 +254,7 @@ namespace Eternal.Content.NPCs.Comet
 		}
 	}
 
-	public abstract class StarboreSnowSnow : Worm
+	public abstract class StarboreSnow : Worm
     {
 		public override void Init()
 		{

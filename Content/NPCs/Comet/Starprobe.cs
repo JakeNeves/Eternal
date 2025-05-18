@@ -92,8 +92,7 @@ namespace Eternal.Content.NPCs.Comet
             if (EventSystem.isRiftOpen)
             {
                 if (Main.rand.NextBool(2))
-                    for (int k = 0; k < 5; k++)
-                        Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.PurpleTorch, 0, -2f, 0, default, 1f);
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.PurpleTorch, 0, -2f, 0, default, 1f);
             }
 
             if (DownedBossSystem.downedCosmicApparition)
@@ -303,8 +302,7 @@ namespace Eternal.Content.NPCs.Comet
             if (EventSystem.isRiftOpen)
             {
                 if (Main.rand.NextBool(2))
-                    for (int k = 0; k < 5; k++)
-                        Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.PurpleTorch, 0, -2f, 0, default, 1f);
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.PurpleTorch, 0, -2f, 0, default, 1f);
             }
 
             if (DownedBossSystem.downedCosmicApparition)

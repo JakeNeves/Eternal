@@ -81,6 +81,7 @@ namespace Eternal.Content.Tiles
             });
         }
 
+        /*
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight)
         {
             int ShiniesIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Shinies"));
@@ -90,6 +91,7 @@ namespace Eternal.Content.Tiles
                 tasks.Insert(ShiniesIndex + 1, new IesniumOrePass("Iesnium Ore", 237.4298f));
             }
         }
+        */
     }
 
     public class IesniumOrePass : GenPass
