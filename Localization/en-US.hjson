@@ -2321,7 +2321,7 @@ Mods: {
 				Tooltip:
 					'''
 					[c/ff8045:Legendary Weapon]
-					Damage scales by 25% of a combined total of your Defense and Damage Reduction
+					Damage scales by 50% of your current Damage Reduction
 					You have a chance to break enemy armor by ~2/3 of their defense
 					'Blood, blood, blood! Make them bleed, Slaughter in the name of tartarus!'
 					'''

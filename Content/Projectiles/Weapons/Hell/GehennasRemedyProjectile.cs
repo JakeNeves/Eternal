@@ -41,13 +41,13 @@ namespace Eternal.Content.Projectiles.Weapons.Hell
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            if (Main.rand.NextBool(36))
+            if (Main.rand.NextBool(12))
                 target.AddBuff(ModContent.BuffType<ImmenseArmorFracture>(), 10 * 60);
         }
 
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            if (Main.rand.NextBool(36))
+            if (Main.rand.NextBool(12))
                 target.AddBuff(ModContent.BuffType<ImmenseArmorFracture>(), 10 * 60);
         }
 

@@ -128,22 +128,6 @@ namespace Eternal.Content.NPCs.Mausoleum
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Animanomicon>(), 12));
         }
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color lightColor)
-        {
-            Main.instance.LoadNPC(NPC.type);
-            Texture2D texture = ModContent.Request<Texture2D>("Eternal/Content/NPCs/Mausoleum/PsyRunner_Shadow").Value;
-
-            Vector2 drawOrigin = new Vector2(texture.Width, NPC.height);
-            for (int k = 0; k < NPC.oldPos.Length; k++)
-            {
-                Vector2 drawPos = (NPC.oldPos[k] - Main.screenPosition) + drawOrigin + new Vector2(0f, NPC.gfxOffY);
-                Color color = NPC.GetAlpha(lightColor) * ((NPC.oldPos.Length - k) / (float)NPC.oldPos.Length);
-                Main.EntitySpriteDraw(texture, drawPos, null, color, NPC.rotation, drawOrigin, NPC.scale, SpriteEffects.None, 0);
-            }
-
-            return true;
-        }
-
         public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
             => GlowMaskUtils.DrawNPCGlowMask(spriteBatch, NPC, ModContent.Request<Texture2D>("Eternal/Content/NPCs/Mausoleum/PsyRunner_Glow").Value);
     }

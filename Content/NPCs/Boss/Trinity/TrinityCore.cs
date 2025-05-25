@@ -252,14 +252,6 @@ namespace Eternal.Content.NPCs.Boss.Trinity
             if (!Main.dedServ)
                 Lighting.AddLight(NPC.position, 0.5f, 1.06f, 2.55f);
 
-            if (!(NPC.AnyNPCs(ModContent.NPCType<MindEffigy>()) || NPC.AnyNPCs(ModContent.NPCType<BodyEffigy>()) || NPC.AnyNPCs(ModContent.NPCType<SoulEffigy>())))
-            {
-                if (NPC.life < NPC.lifeMax / 2)
-                    AI_Trinity_Attacks_Phase2();
-                else
-                    AI_Trinity_Attacks_Phase1();
-            }
-
             if (NPC.ai[3] > 0f)
             {
                 entitySource = NPC.GetSource_Death();
@@ -292,15 +284,20 @@ namespace Eternal.Content.NPCs.Boss.Trinity
                     if (Main.rand.NextBool(36))
                     {
                         if (!Main.dedServ)
-                            Projectile.NewProjectile(entitySource, NPC.Center, new Vector2(Main.rand.Next(-4, 4), Main.rand.Next(-4, 4)), ProjectileID.HallowBossRainbowStreak, NPC.damage / 2, 0.0f, Main.myPlayer, 0.0f, 0.0f);
+                            Projectile.NewProjectile(entitySource, NPC.Center, new Vector2(Main.rand.Next(-4, 4), Main.rand.Next(-4, 4)), ModContent.ProjectileType<SpiritBomb>(), NPC.damage / 2, 0.0f, Main.myPlayer, 0.0f, 0.0f);
                     }
+
+                    if (NPC.life < NPC.lifeMax / 2)
+                        AI_Trinity_Attacks_Phase2();
+                    else
+                        AI_Trinity_Attacks_Phase1();
                 }
 
                 if (Main.rand.NextBool(48))
                 {
                     if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
-                        int proj = Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ProjectileID.MoonlordTurretLaser, NPC.damage / 2, 1, Main.myPlayer, 0, 0);
+                        int proj = Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<CryotasWisp>(), NPC.damage / 2, 1, Main.myPlayer, 0, 0);
                         Main.projectile[proj].friendly = false;
                         Main.projectile[proj].hostile = true;
                     }

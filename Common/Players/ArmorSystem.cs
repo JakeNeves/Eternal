@@ -153,7 +153,17 @@ namespace Eternal.Common.Players
             {
                 if (Player.statLifeMax < Player.statLifeMax2 / 2)
                 {
-                    Player.HealEffect(15, false);
+                    Player.HealEffect(25, false);
+                }
+            }
+            #endregion
+
+            #region Iesnium Armor Set Bonus
+            if (IesniumArmor)
+            {
+                if (target.life < target.lifeMax / 2)
+                {
+                    Player.HealEffect(20, false);
                 }
             }
             #endregion
@@ -197,7 +207,7 @@ namespace Eternal.Common.Players
                     if (Main.netMode != NetmodeID.MultiplayerClient)
                         Projectile.NewProjectile(Player.GetSource_OnHurt(npc, "SetBonus_NaquadahArmor"), Player.position, new Vector2(0, 0), ModContent.ProjectileType<NaquadahSpikeBombAOE>(), 0, 0, Player.whoAmI);
 
-                    for (int j = 0; j < Main.rand.Next(2, 4); j++)
+                    for (int j = 0; j < Main.rand.Next(1, 2); j++)
                     {
                         if (Main.netMode != NetmodeID.MultiplayerClient)
                             Projectile.NewProjectile(Player.GetSource_OnHurt(npc, "SetBonus_NaquadahArmor"), Player.position, new Vector2(Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-8f, 8f)), ModContent.ProjectileType<NaquadahSpikeBomb>(), info.Damage * 2, 0, Player.whoAmI);

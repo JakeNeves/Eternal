@@ -22,7 +22,7 @@ namespace Eternal.Content.Items.Weapons.Hell
             Item.height = 72;
             Item.DamageType = DamageClass.Melee;
             Item.rare = ModContent.RarityType<HellMode>();
-            Item.damage = 50;
+            Item.damage = 200;
             Item.useAnimation = 12;
             Item.useTime = 12;
             Item.useStyle = ItemUseStyleID.Swing;
@@ -37,7 +37,7 @@ namespace Eternal.Content.Items.Weapons.Hell
 
         public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
         {
-            damage += (player.statDefense + player.endurance) / 4f;
+            damage += player.endurance / 2f;
         }
 
         public override void AddRecipes()

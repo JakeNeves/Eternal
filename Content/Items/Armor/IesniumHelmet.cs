@@ -34,7 +34,7 @@ namespace Eternal.Content.Items.Armor
         public override void UpdateArmorSet(Player player)
         {
             player.setBonus = "20% increased damage" +
-                            "\nHeals the player upon striking an enemy when below health";
+                            "\nHeals the player upon striking an enemy that is below half health";
 
             player.GetDamage(DamageClass.Generic) += 0.20f;
 
