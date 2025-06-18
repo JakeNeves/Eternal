@@ -52,7 +52,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
                 }, Projectile.position);
             }
 
-            if (!Main.dedServ)
+            if (Main.netMode != NetmodeID.MultiplayerClient)
                 Projectile.NewProjectile(entitySource, Projectile.Center, new Vector2(0, 0), ModContent.ProjectileType<ArkiumDiskProjectileAOE>(), Projectile.damage / 2, Projectile.knockBack / 0.5f);
         }
 

@@ -30,7 +30,7 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
 
         public override void AI()
         {
-            for (int k = 0; k < 2; k++)
+            if (Main.rand.NextBool(2))
             {
                 Dust dust = Dust.NewDustPerfect(Projectile.Center, DustID.Wraith);
                 dust.noGravity = true;

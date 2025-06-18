@@ -24,7 +24,6 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
             Projectile.friendly = true;
             Projectile.penetrate = -1;
             Projectile.DamageType = DamageClass.Melee;
-            Projectile.tileCollide = false;
         }
 
         public override void AI()

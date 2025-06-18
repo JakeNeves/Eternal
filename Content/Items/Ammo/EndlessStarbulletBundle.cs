@@ -22,8 +22,8 @@ namespace Eternal.Content.Items.Ammo
         {
             Item.damage = 100;
             Item.DamageType = DamageClass.Ranged;
-            Item.width = 12;
-            Item.height = 21;
+            Item.width = 18;
+            Item.height = 22;
             Item.knockBack = 2f;
             Item.rare = ItemRarityID.Red;
             Item.shoot = ModContent.ProjectileType<StarbulletProjectile>();

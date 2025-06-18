@@ -17,6 +17,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
         {
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 8;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
+            ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
         }
 
         public override void SetDefaults()
@@ -27,7 +28,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
             Projectile.friendly = true;
             Projectile.hostile = false;
             Projectile.penetrate = 1;
-            Projectile.timeLeft = 100;
+            Projectile.timeLeft = 200;
             Projectile.alpha = 255;
             Projectile.DamageType = DamageClass.Melee;
             Projectile.ignoreWater = true;
@@ -40,7 +41,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
                 Lighting.AddLight(Projectile.Center, 0.36f, 2.03f, 2.09f);
 
             if (Projectile.alpha > 0)
-                Projectile.alpha -= 15;
+                Projectile.alpha -= 5;
 
             for (int k = 0; k < Main.rand.Next(2, 4); k++)
             {
@@ -54,6 +55,8 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
             if (Projectile.ai[0] == 0f && Main.netMode != NetmodeID.MultiplayerClient)
             {
+                Projectile.rotation = Main.rand.NextFloat(15f, 45f);
+
                 if (Main.rand.NextBool(2))
                     Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<Exosiiva>(), Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f, 0, Color.White, Main.rand.NextFloat(0.5f, 1f));
 
@@ -70,16 +73,19 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
                 Projectile.ai[0] = 1f;
             }
 
-            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(45f);
+            if (Projectile.timeLeft < 190)
+            {
+                Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(45f);
 
-            float maxDetectRadius = 250f;
-            float projSpeed = 24f;
+                float maxDetectRadius = 250f;
+                float projSpeed = 24f;
 
-            NPC closestNPC = FindClosestNPC(maxDetectRadius);
-            if (closestNPC == null)
-                return;
+                NPC closestNPC = FindClosestNPC(maxDetectRadius);
+                if (closestNPC == null)
+                    return;
 
-            Projectile.velocity = (closestNPC.Center - Projectile.Center).SafeNormalize(Vector2.Zero) * projSpeed;
+                Projectile.velocity = (closestNPC.Center - Projectile.Center).SafeNormalize(Vector2.Zero) * projSpeed;
+            }
 
             if (Main.rand.NextBool(2))
                 Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<Exosiiva>(), Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);

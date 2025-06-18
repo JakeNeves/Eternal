@@ -1,4 +1,6 @@
-﻿using Eternal.Content.NPCs.Boss.Trinity;
+﻿using Eternal.Content.Items.Materials;
+using Eternal.Content.NPCs.Boss.Trinity;
+using Eternal.Content.Tiles.CraftingStations;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Creative;
@@ -48,6 +50,21 @@ namespace Eternal.Content.Items.Summon
             }
 
             return true;
+        }
+
+
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<ElectriteBar>(), 20)
+                .AddIngredient(ModContent.ItemType<IgniumBar>(), 20)
+                .AddIngredient(ModContent.ItemType<GalaciteBar>(), 20)
+                .AddIngredient(ModContent.ItemType<ArkaniumAlloy>(), 40)
+                .AddIngredient(ModContent.ItemType<CrystallizedOminite>(), 40)
+                .AddIngredient(ModContent.ItemType<NaquadahBar>(), 40)
+                .AddTile(ModContent.TileType<AncientFoundry>())
+                .Register();
         }
     }
 }

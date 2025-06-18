@@ -33,7 +33,8 @@ namespace Eternal.Content.Items.Misc
             {
                 for (int i = 0; i < Main.maxNPCs; i++)
                 {
-                    Main.npc[i].AddBuff(ModContent.BuffType<Buffs.Error>(), 4500);
+                    if (Main.npc[i].active)
+                        Main.npc[i].AddBuff(ModContent.BuffType<Buffs.Error>(), 4500);
                 }
             }
 

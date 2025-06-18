@@ -33,13 +33,13 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
         {
             Projectile.rotation += Projectile.velocity.X * 0.1f;
 
-            for (int k = 0; k < 2; k++)
+            if (Main.rand.NextBool(2))
             {
                 int dust = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Electric, Projectile.oldVelocity.X * 1f, Projectile.oldVelocity.Y * 1f);
                 Main.dust[dust].noGravity = true;
             }
 
-            float maxDetectRadius = 800f;
+            float maxDetectRadius = 200f;
             float projSpeed = 18f;
 
             NPC closestNPC = FindClosestNPC(maxDetectRadius);
@@ -77,9 +77,7 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
         public override void OnKill(int timeLeft)
         {
             for (int k = 0; k < 5; k++)
-            {
                 Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, DustID.Electric, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);
-            }
 
             Collision.HitTiles(Projectile.position + Projectile.velocity, Projectile.velocity, Projectile.width, Projectile.height);
 

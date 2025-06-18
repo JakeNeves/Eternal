@@ -46,7 +46,7 @@ namespace Eternal.Content.NPCs.Gehenna
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
             bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
-                new FlavorTextBestiaryInfoElement("Normally you wouldn't find these elsewhere except fot the Gehenna, where they are just made up of a bunch of blood!")
+                new FlavorTextBestiaryInfoElement("Normally you wouldn't find these elsewhere except for the Gehenna, where they are just made up of a bunch of blood!")
             });
         }
 
@@ -58,9 +58,9 @@ namespace Eternal.Content.NPCs.Gehenna
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if (ModContent.GetInstance<ZoneSystem>().zoneGehenna && Main.hardMode)
-                return SpawnCondition.Underground.Chance * 0.5f;
+                return SpawnCondition.Underworld.Chance * 0.5f;
             else
-                return SpawnCondition.Underground.Chance * 0f;
+                return SpawnCondition.Underworld.Chance * 0f;
         }
     }
 }

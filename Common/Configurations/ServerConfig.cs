@@ -40,10 +40,19 @@ namespace Eternal.Common.Configurations
         public bool brutalHellMode = false;
 
         /// <summary>
-        /// EXPERIMENTAL: Adds Life Motes to the game (WIP)
+        /// EXPERIMENTAL: Adds upcoming content from 1.5 to the game
         /// </summary>
         [SeparatePage]
         [Header("ExperimentalFeatures")]
+        [DefaultValue(false)]
+        [LabelKey("$Mods.Eternal.Server.Configurations.ServerConfig.update15.DisplayName")]
+        [TooltipKey("$Mods.Eternal.Server.Configurations.ServerConfig.update15.Tooltip")]
+        [ReloadRequired]
+        public bool update15 = false;
+
+        /// <summary>
+        /// EXPERIMENTAL: Adds Life Motes to the game
+        /// </summary>
         [DefaultValue(false)]
         [LabelKey("$Mods.Eternal.Server.Configurations.ServerConfig.lifeMotes.DisplayName")]
         [TooltipKey("$Mods.Eternal.Server.Configurations.ServerConfig.lifeMotes.Tooltip")]
@@ -51,7 +60,7 @@ namespace Eternal.Common.Configurations
         public bool lifeMotes = false;
 
         /// <summary>
-        /// EXPERIMENTAL: Adds the Purified Beneath biome (WIP)
+        /// EXPERIMENTAL: Adds the Purified Beneath biome
         /// </summary>
         [DefaultValue(false)]
         [LabelKey("$Mods.Eternal.Server.Configurations.ServerConfig.purifiedBeneath.DisplayName")]

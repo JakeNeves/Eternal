@@ -1,6 +1,7 @@
 ﻿using Eternal.Common.Systems;
 using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Summon;
+using Eternal.Content.Items.Weapons.Throwing;
 using Eternal.Content.Projectiles.Enemy;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -60,7 +61,7 @@ namespace Eternal.Content.NPCs.Mausoleum
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (!ModContent.GetInstance<ZoneSystem>().zoneMausoleum)
+            if (!ModContent.GetInstance<ZoneSystem>().zoneMausoleum && Main.hardMode)
                 return SpawnCondition.Cavern.Chance * 0f;
             else
                 return SpawnCondition.Cavern.Chance * 0.32f;
@@ -200,6 +201,7 @@ namespace Eternal.Content.NPCs.Mausoleum
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Animanomicon>(), 4));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PsyblightEssence>(), 4, 2, 6));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MausoleumKeyFragment2>(), 12));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CombatGavel>(), 24));
         }
 
         public override void HitEffect(NPC.HitInfo hit)

@@ -365,6 +365,15 @@ Mods: {
 				DisplayName: Holy Card
 			}
 
+			ReverseHolyCard: {
+				Tooltip:
+					'''
+					???
+					Hell Mode drop
+					'''
+				DisplayName: Holy Card?
+			}
+
 			GobletofSinfulBlood: {
 				Tooltip:
 					'''
@@ -2735,6 +2744,97 @@ Mods: {
 				DisplayName: Sactoth's Conquest
 				Tooltip: ""
 			}
+
+			RottenstoneBlock: {
+				DisplayName: Rottenstone Block
+				Tooltip: ""
+			}
+
+			CombatGavel: {
+				DisplayName: Combat Gavel
+				Tooltip:
+					'''
+					[c/ff8045:Legendary Weapon]
+					When hitting an enemy, additional ghost gavels will spawn and target the closest enemies
+					'''
+			}
+
+			RottingFleshBlock: {
+				DisplayName: Rotting Flesh Block
+				Tooltip: ""
+			}
+
+			ArcaneShell: {
+				DisplayName: Arcane Shell
+				Tooltip: Can be shot through tiles
+			}
+
+			EndlessArcaneShellBundle: {
+				DisplayName: Endless Arcane Shell Bundle
+				Tooltip:
+					'''
+					Unlimited Ammo
+					Can be shot through tiles
+					'''
+			}
+
+			CarminacVirus: {
+				DisplayName: Carminac Virus
+				Tooltip:
+					'''
+					[c/ff8045:Legendary Weapon]
+					Inflicts a massive defense reduction to enemies
+					Players will recieve both halved defense and a massive damage reduction
+					'This is a very harmful kind of treatment...'
+					'''
+			}
+
+			BladeofEternalDivinity: {
+				DisplayName: Blade of Eternal Divinity
+				Tooltip: ""
+			}
+
+			SpindownD10: {
+				DisplayName: Spindown D10
+				Tooltip:
+					'''
+					Decreases the internal ID values of all NPCs by 1
+					[c/ff0000:---WARNING---]
+					This item can break all NPCs and even your world,
+					make sure you have a backup ready to go!
+					'-1 NPC ID'
+					'''
+			}
+
+			ProviditeBar: {
+				DisplayName: Providite Bar
+				Tooltip: ""
+			}
+
+			MindCrystalCluster: {
+				DisplayName: Mind Crystal Cluster
+				Tooltip: "'I know all...'"
+			}
+
+			BodyCrystalCluster: {
+				DisplayName: Body Crystal Cluster
+				Tooltip: "'I feel all...'"
+			}
+
+			SoulCrystalCluster: {
+				DisplayName: Soul Crystal Cluster
+				Tooltip: "'I am all...'"
+			}
+
+			EternalQuartz: {
+				DisplayName: Eternal Quartz
+				Tooltip: ""
+			}
+
+			EternalDeadEye: {
+				DisplayName: Eternal Dead Eye
+				Tooltip: ""
+			}
 		}
 
 		Buffs: {
@@ -2771,6 +2871,11 @@ Mods: {
 			HolyMantleCooldown: {
 				Description: The Holy Mantle is replenishing it's power...
 				DisplayName: Holy Mantle Cooldown
+			}
+
+			ReverseHolyCardCooldown: {
+				Description: The Holy Card? is replenishing it's power...
+				DisplayName: Holy Card? Cooldown
 			}
 
 			Froststruck: {
@@ -2842,6 +2947,11 @@ Mods: {
 				DisplayName: Occultic Construct
 				Description: Niades is following you...
 			}
+
+			CarminacInjection: {
+				DisplayName: Carminac Injection
+				Description: Thin blooded with a masive damage reduction decrase!
+			}
 		}
 
 		Tiles: {
@@ -2893,6 +3003,21 @@ Mods: {
 			PurifiedBeneath: {
 				DisplayName: The Purified Beneath
 				TownNPCDialogueName: the shining cave
+			}
+
+			CarrionSurface: {
+				DisplayName: The Carrion
+				TownNPCDialogueName: this dead place
+			}
+
+			CarrionDesert: {
+				DisplayName: The Carrion
+				TownNPCDialogueName: this dead place
+			}
+
+			UndergroundCarrion: {
+				DisplayName: Underground Carrion
+				TownNPCDialogueName: this dead cavern
 			}
 
 			Rift: {
@@ -3205,6 +3330,21 @@ Mods: {
 			ArcaneWisp.DisplayName: Arcane Wisp
 			PsyRunner.DisplayName: Psy Runner
 			PsychoZombie.DisplayName: Psycho Zombie
+			GiantLeechBody.DisplayName: Giant Leech
+			GiantLeechHead.DisplayName: Giant Leech
+			GiantLeechTail.DisplayName: Giant Leech
+			Level2DiggerBody.DisplayName: Level 2 Digger
+			Level2DiggerHead.DisplayName: Level 2 Digger
+			Level2DiggerTail.DisplayName: Level 2 Digger
+			Level2DemonEye.DisplayName: Level 2 Demon Eye
+			FesteringCarcass.DisplayName: Festering Carcass
+			Cadaver.DisplayName: Cadaver
+			CadaverHead.DisplayName: Cadaver Head
+			FrayedEye.DisplayName: Frayed Eye
+			FrayedStalk.DisplayName: Frayed Stalk
+			Clot.DisplayName: Clot
+			PustuleSlime.DisplayName: Pustule Slime
+			Level2CarminiteInfestedEye.DisplayName: Level 2 Carminite-Infested Eye
 		}
 
 		Prefixes: {
@@ -3386,26 +3526,33 @@ Mods: {
 			StrangeMask.DisplayName: Strange Mask
 			OcculticConstruct.DisplayName: Occultic Construct
 			RiftsDivinityProjectile.DisplayName: Rift's Divinity
-			ArcaneKnivesProjectile.DisplayName: Arcane Knives Projectile
-			PsydiskProjectile.DisplayName: Psydisk Projectile
-			SactothsConquestProjectile.DisplayName: Sactoth's Conquest Projectile
+			ArcaneKnivesProjectile.DisplayName: Arcane Knives
+			PsydiskProjectile.DisplayName: Psydisk
+			SactothsConquestProjectile.DisplayName: Sactoth's Conquest
 			CryotasWisp.DisplayName: Cryota's Wisp
 			CryotasWisp2.DisplayName: Cryota's Wisp
 			SpiritBomb.DisplayName: Spirit Bomb
-			SpiritBomb2.DisplayName: Spirit Bomb2
+			SpiritBomb2.DisplayName: Spirit Bomb
+			CombatGavelProjectile.DisplayName: Combat Gavel
+			CombatGavelProjectile2.DisplayName: Combat Gavel
+			ArcaneShellProjectile.DisplayName: Arcane Shell
+			CarminacVirusProjectile.DisplayName: Carminac Virus
+			BladeofEternalDivinityProjectile.DisplayName: Bladeof Eternal Divinity Projectile
+			BladeofEternalDivinityProjectile2.DisplayName: Bladeof Eternal Divinity Projectile2
+			BladeofEternalDivinityProjectileHelper.DisplayName: Bladeof Eternal Divinity Projectile Helper
 		}
 
 		WorldGen: {
 			IesniumOrePassMessage: Iesnium Ore
 			BlessedWithIesniumOreMessage: The ground has been smothered with luminous energy...
 			DropFallenComet: A comet has fallen and struck the world!
-			CosmicApparitionDefeated: Mods.Eternal.WorldGen.CosmicApparitionDefeated
+			CosmicApparitionDefeated: The seal of the cosmic entities has been broken, newfound materials can be gathered from them...
 		}
 
 		BossDefeatedEvent: {
 			NiadesDefeated: The cursed moon darkens...
 			CosmicApparitionDefeated: The seal of the cosmic entities has been broken, newfound materials can be gathered from them...
-			CosmicApparitionDefeated1: The tundra freezes restlessly...
+			CosmicApparitionDefeated1: The tundra crackles restlessly...
 			CosmicApparitionDefeated2: You hear lightning strike the sands across the dunes...
 			CosmicApparitionDefeated3: Spirits of the Underworld are blazing furiously...
 			CosmicApparitionDefeated4: An etherial hum is echoing from the shrine...
@@ -3497,6 +3644,17 @@ Mods: {
 						Tooltip:
 							'''
 							Makes Hell Mode a little more punishing
+							(Default: [c/008080:OFF])
+							'''
+					}
+
+					update15: {
+						DisplayName: 1.5 Update Content
+						Tooltip:
+							'''
+							Adds content from the upcoming 1.5, Advent of Epiphany+ update
+							Content includes:
+							* The Carrion
 							(Default: [c/008080:OFF])
 							'''
 					}

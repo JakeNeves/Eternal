@@ -21,7 +21,7 @@ namespace Eternal.Content.Biomes
 
         public override int GetDropletGore()
         {
-            return ModContent.Find<ModGore>("Eternal/RiftAnomalyShard").Type;
+            return ModContent.GoreType<RiftWaterDroplet>();
         }
 
         public override void LightColorMultiplier(ref float r, ref float g, ref float b)

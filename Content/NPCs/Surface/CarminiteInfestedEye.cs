@@ -32,22 +32,21 @@ namespace Eternal.Content.NPCs.Surface
             AnimationType = NPCID.DemonEye;
         }
 
+        public override void OnKill()
+        {
+            var entitySource = NPC.GetSource_Death();
+
+            int gore1 = Mod.Find<ModGore>("CarminiteInfestedEyeFront").Type;
+            int gore2 = Mod.Find<ModGore>("CarminiteInfestedEyeBack").Type;
+
+            Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore1);
+            Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore2);
+        }
+
         public override void HitEffect(NPC.HitInfo hit)
         {
             if (Main.netMode == NetmodeID.Server)
-            {
                 return;
-            }
-
-            if (NPC.life <= 0) {
-                var entitySource = NPC.GetSource_Death();
-
-                int gore1 = Mod.Find<ModGore>("CarminiteInfestedEyeFront").Type;
-                int gore2 = Mod.Find<ModGore>("CarminiteInfestedEyeBack").Type;
-
-                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore1);
-                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore2);
-            }
 
             for (int k = 0; k < 5.0; k++)
             {

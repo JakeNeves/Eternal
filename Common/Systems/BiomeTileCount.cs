@@ -15,6 +15,7 @@ namespace Eternal.Common.Systems
         public int shrineBrickCount;
         public int redBasaltCount;
         public int hexedBasaltCount;
+        public int carrionBlockCount;
 
         public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts)
         {
@@ -24,6 +25,7 @@ namespace Eternal.Common.Systems
             shrineBrickCount = tileCounts[ModContent.TileType<ShrineBrick>()];
             redBasaltCount = tileCounts[ModContent.TileType<RedBasaltBlock>()];
             hexedBasaltCount = tileCounts[ModContent.TileType<HexedBasaltBlock>()];
+            carrionBlockCount = tileCounts[ModContent.TileType<RottenstoneBlock>()];
         }
     }
 }

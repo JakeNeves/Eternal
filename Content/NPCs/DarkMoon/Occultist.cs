@@ -57,7 +57,7 @@ namespace Eternal.Content.NPCs.DarkMoon
         {
             if (EventSystem.darkMoon)
                 return SpawnCondition.OverworldNightMonster.Chance * 0.5f + SpawnCondition.Underground.Chance * 0f;
-            else if (ModContent.GetInstance<ZoneSystem>().zoneMausoleum)
+            else if (ModContent.GetInstance<ZoneSystem>().zoneMausoleum && Main.hardMode)
                 return SpawnCondition.OverworldNightMonster.Chance * 0f + SpawnCondition.Underground.Chance * 0.25f;
             else
                 return SpawnCondition.OverworldNightMonster.Chance * 0f + SpawnCondition.Underground.Chance * 0f;

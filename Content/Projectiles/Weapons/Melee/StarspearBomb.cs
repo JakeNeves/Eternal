@@ -16,6 +16,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
             Projectile.penetrate = -1;
             Projectile.timeLeft = 250;
             Projectile.aiStyle = 1;
+            Projectile.DamageType = DamageClass.Melee;
         }
 
         public override void AI()

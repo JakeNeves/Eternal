@@ -17,6 +17,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
             Projectile.ignoreWater = true;
             Projectile.penetrate = -1;
             Projectile.timeLeft = 200;
+            Projectile.DamageType = DamageClass.Melee;
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)

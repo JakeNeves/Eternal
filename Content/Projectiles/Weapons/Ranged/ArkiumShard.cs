@@ -43,10 +43,9 @@ namespace Eternal.Content.Projectiles.Weapons.Ranged
                 SoundEngine.PlaySound(SoundID.Tink, Projectile.position);
             }
 
-            for (int k = 0; k < 10; k++)
-            {
+            for (int k = 0; k < 5; k++)
                 Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, DustID.GreenTorch, Projectile.oldVelocity.X * 1f, Projectile.oldVelocity.Y * 1f);
-            }
+
             Collision.HitTiles(Projectile.position + Projectile.velocity, Projectile.velocity, Projectile.width, Projectile.height);
         }
 

@@ -21,8 +21,8 @@ namespace Eternal.Content.Items.Ammo
         {
             Item.damage = 100;
             Item.DamageType = DamageClass.Ranged;
-            Item.width = 14;
-            Item.height = 28;
+            Item.width = 10;
+            Item.height = 22;
             Item.maxStack = 9999;
             Item.consumable = true;
             Item.knockBack = 2f;

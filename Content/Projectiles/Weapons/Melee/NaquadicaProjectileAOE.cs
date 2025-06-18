@@ -22,6 +22,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
             Projectile.timeLeft = 100;
             Projectile.alpha = 0;
             Projectile.scale = 1;
+            Projectile.DamageType = DamageClass.Melee;
         }
 
         public override bool PreAI()

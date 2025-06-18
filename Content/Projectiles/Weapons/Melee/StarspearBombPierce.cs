@@ -17,6 +17,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
             Projectile.aiStyle = -1;
             Projectile.penetrate = 1;
             Projectile.timeLeft = 300;
+            Projectile.DamageType = DamageClass.Melee;
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)

@@ -35,14 +35,14 @@ namespace Eternal.Common.GlobalNPCs
             if (DifficultySystem.hellMode && npc.boss)
             {
                 npc.damage *= 2;
-                npc.lifeMax *= 2;
-                npc.defense *= 2;
+                npc.lifeMax *= 2 + (int)(npc.lifeMax * balance * bossAdjustment);
+                npc.defense *= 2 + (int)(npc.defense * numPlayers * bossAdjustment);
             }
             else if (DifficultySystem.sinstormMode && npc.boss)
             {
                 npc.damage *= 3;
-                npc.lifeMax *= 3;
-                npc.defense *= 3;
+                npc.lifeMax *= 3 + (int)(npc.lifeMax * balance * bossAdjustment);
+                npc.defense *= 3 + (int)(npc.defense * numPlayers * bossAdjustment);
             }
         }
 

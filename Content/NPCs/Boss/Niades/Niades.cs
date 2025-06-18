@@ -5,6 +5,7 @@ using Eternal.Common.Systems;
 using Eternal.Content.Items.Accessories.Hell;
 using Eternal.Content.Items.BossBags;
 using Eternal.Content.Items.Materials;
+using Eternal.Content.Items.Misc;
 using Eternal.Content.Items.Pets;
 using Eternal.Content.Items.Weapons.Melee;
 using Eternal.Content.Items.Weapons.Ranged;
@@ -491,6 +492,8 @@ namespace Eternal.Content.NPCs.Boss.Niades
             HellModeDropCondition hellModeDrop = new HellModeDropCondition();
 
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<NiadesBag>()));
+
+            npcLoot.Add(ItemDropRule.ByCondition(hellModeDrop, ModContent.ItemType<ReverseHolyCard>(), 1));
 
             npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<OrbofTheOccult>(), 4));
 

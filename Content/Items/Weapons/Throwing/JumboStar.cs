@@ -27,6 +27,7 @@ namespace Eternal.Content.Items.Weapons.Throwing
             Item.autoReuse = true;
             Item.UseSound = SoundID.Item1;
             Item.noUseGraphic = true;
+            Item.noMelee = true;
             Item.shoot = ModContent.ProjectileType<JumboStarProjectile>();
             Item.shootSpeed = 12f;
         }
