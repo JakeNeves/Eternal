@@ -37,8 +37,10 @@ namespace Eternal.Content.Items.BossBags
 
         public override void ModifyItemLoot(ItemLoot itemLoot)
         {
-            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<MalachiteShard>(), minimumDropped: 16, maximumDropped: 20));
-            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<DuneCore>()));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<ProviditeBar>(), 1, 16, 22));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<MindCrystalCluster>(), 1, 12, 20));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<BodyCrystalCluster>(), 1, 12, 20));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<SoulCrystalCluster>(), 1, 12, 20));
         }
     }
 }

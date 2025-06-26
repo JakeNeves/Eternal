@@ -12,6 +12,7 @@ using Eternal.Content.Items.Summon;
 using Eternal.Common.Misc;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent.ItemDropRules;
+using Eternal.Content.Items.Misc;
 
 namespace Eternal.Content.NPCs.Mausoleum
 {
@@ -126,6 +127,7 @@ namespace Eternal.Content.NPCs.Mausoleum
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Animanomicon>(), 12));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Poutine>(), 12));
         }
 
         public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)

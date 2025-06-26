@@ -2737,7 +2737,11 @@ Mods: {
 
 			Psydisk: {
 				DisplayName: Psydisk
-				Tooltip: ""
+				Tooltip:
+					'''
+					Throws a controllable disk that homes in on enemies
+					'A telekenetically operated weapon? How original...'
+					'''
 			}
 
 			SactothsConquest: {
@@ -2756,6 +2760,7 @@ Mods: {
 					'''
 					[c/ff8045:Legendary Weapon]
 					When hitting an enemy, additional ghost gavels will spawn and target the closest enemies
+					'Justice will be served...'
 					'''
 			}
 
@@ -2808,7 +2813,7 @@ Mods: {
 
 			ProviditeBar: {
 				DisplayName: Providite Bar
-				Tooltip: ""
+				Tooltip: "'A mere catalyst of all things eternal...'"
 			}
 
 			MindCrystalCluster: {
@@ -2828,12 +2833,21 @@ Mods: {
 
 			EternalQuartz: {
 				DisplayName: Eternal Quartz
-				Tooltip: ""
+				Tooltip: "'Crystallized essence of all things eternal...'"
 			}
 
 			EternalDeadEye: {
 				DisplayName: Eternal Dead Eye
 				Tooltip: ""
+			}
+
+			Poutine: {
+				DisplayName: Poutine
+				Tooltip:
+					'''
+					Major improvements to all stats
+					'Tabarnak!'
+					'''
 			}
 		}
 

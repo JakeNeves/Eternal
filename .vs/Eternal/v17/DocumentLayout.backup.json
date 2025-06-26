@@ -3,18 +3,6 @@
   "WorkspaceRootPath": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|c:\\users\\jaken\\documents\\my games\\terraria\\tmodloader\\modsources\\eternal\\content\\projectiles\\weapons\\melee\\bladeofeternaldivinityprojectile2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|solutionrelative:content\\projectiles\\weapons\\melee\\bladeofeternaldivinityprojectile2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|c:\\users\\jaken\\documents\\my games\\terraria\\tmodloader\\modsources\\eternal\\content\\items\\weapons\\melee\\bladeofeternaldivinity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|solutionrelative:content\\items\\weapons\\melee\\bladeofeternaldivinity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|c:\\users\\jaken\\documents\\my games\\terraria\\tmodloader\\modsources\\eternal\\content\\projectiles\\weapons\\melee\\bladeofeternaldivinityprojectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|solutionrelative:content\\projectiles\\weapons\\melee\\bladeofeternaldivinityprojectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|c:\\users\\jaken\\documents\\my games\\terraria\\tmodloader\\modsources\\eternal\\localization\\en-us.hjson||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|solutionrelative:localization\\en-us.hjson||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
@@ -26,57 +14,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BladeofEternalDivinityProjectile.cs",
-              "DocumentMoniker": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Content\\Projectiles\\Weapons\\Melee\\BladeofEternalDivinityProjectile.cs",
-              "RelativeDocumentMoniker": "Content\\Projectiles\\Weapons\\Melee\\BladeofEternalDivinityProjectile.cs",
-              "ToolTip": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Content\\Projectiles\\Weapons\\Melee\\BladeofEternalDivinityProjectile.cs",
-              "RelativeToolTip": "Content\\Projectiles\\Weapons\\Melee\\BladeofEternalDivinityProjectile.cs",
-              "ViewState": "AgIAADsAAAAAAAAAAAAwwA4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-14T18:54:56.206Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "BladeofEternalDivinityProjectile2.cs",
-              "DocumentMoniker": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Content\\Projectiles\\Weapons\\Melee\\BladeofEternalDivinityProjectile2.cs",
-              "RelativeDocumentMoniker": "Content\\Projectiles\\Weapons\\Melee\\BladeofEternalDivinityProjectile2.cs",
-              "ToolTip": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Content\\Projectiles\\Weapons\\Melee\\BladeofEternalDivinityProjectile2.cs",
-              "RelativeToolTip": "Content\\Projectiles\\Weapons\\Melee\\BladeofEternalDivinityProjectile2.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABkAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-14T18:54:11.268Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "en-US.hjson",
               "DocumentMoniker": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Localization\\en-US.hjson",
               "RelativeDocumentMoniker": "Localization\\en-US.hjson",
               "ToolTip": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Localization\\en-US.hjson",
               "RelativeToolTip": "Localization\\en-US.hjson",
-              "ViewState": "AgIAACULAAAAAAAAAAAAADcLAAA+AAAAAAAAAA==",
+              "ViewState": "AgIAAM8KAAAAAAAAAAAIwL0KAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-06-09T23:43:29.245Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "BladeofEternalDivinity.cs",
-              "DocumentMoniker": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Content\\Items\\Weapons\\Melee\\BladeofEternalDivinity.cs",
-              "RelativeDocumentMoniker": "Content\\Items\\Weapons\\Melee\\BladeofEternalDivinity.cs",
-              "ToolTip": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Content\\Items\\Weapons\\Melee\\BladeofEternalDivinity.cs",
-              "RelativeToolTip": "Content\\Items\\Weapons\\Melee\\BladeofEternalDivinity.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAgwCMAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-09T23:26:02.748Z",
+              "WhenOpened": "2025-06-18T16:25:02.108Z",
               "EditorCaption": ""
             }
           ]

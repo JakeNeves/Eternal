@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.Personalities;
 using Terraria.ID;
 using Terraria.Localization;
@@ -389,6 +390,11 @@ namespace Eternal.Content.NPCs.Town
         {
             multiplier = 6.75f;
             randomOffset = 1.5f;
+        }
+
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Poutine>()));
         }
     }
 }

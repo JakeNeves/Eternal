@@ -1,4 +1,5 @@
 ﻿using Eternal.Content.Items.Materials;
+using Eternal.Content.Items.Misc;
 using Eternal.Content.Items.Weapons.Throwing;
 using Eternal.Content.Projectiles.Boss;
 using Microsoft.Xna.Framework;
@@ -38,6 +39,7 @@ namespace Eternal.Content.NPCs.Surface
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.value = Item.sellPrice(silver: 15);
+            NPC.rarity = 4;
         }
 
         public override void OnKill()
@@ -166,6 +168,7 @@ namespace Eternal.Content.NPCs.Surface
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CarminacVirus>(), 24));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Carminite>(), minimumDropped: 1, maximumDropped: 3));
             npcLoot.Add(ItemDropRule.Common(ItemID.Lens, minimumDropped: 0, maximumDropped: 1));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Poutine>(), 12));
         }
     }
 }

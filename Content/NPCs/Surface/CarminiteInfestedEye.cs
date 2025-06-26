@@ -1,4 +1,5 @@
 ﻿using Eternal.Content.Items.Materials;
+using Eternal.Content.Items.Misc;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -65,13 +66,14 @@ namespace Eternal.Content.NPCs.Surface
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return SpawnCondition.OverworldNightMonster.Chance * 0.05f;
+            return SpawnCondition.OverworldNightMonster.Chance * 0.1f;
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Carminite>(), minimumDropped: 1, maximumDropped: 3));
             npcLoot.Add(ItemDropRule.Common(ItemID.Lens, minimumDropped: 0, maximumDropped: 1));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Poutine>(), 12));
         }
     }
 }

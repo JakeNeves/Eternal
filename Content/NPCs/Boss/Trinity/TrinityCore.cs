@@ -1,5 +1,6 @@
 ﻿using Eternal.Common.Systems;
 using Eternal.Content.Items.BossBags;
+using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Potions;
 using Eternal.Content.Projectiles.Boss;
 using Eternal.Content.Projectiles.Enemy;
@@ -118,6 +119,11 @@ namespace Eternal.Content.NPCs.Boss.Trinity
             LeadingConditionRule notExpertRule = new(new Conditions.NotExpert());
 
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<TrinityBag>()));
+
+            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<ProviditeBar>(), 1, 12, 18));
+            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<MindCrystalCluster>(), 1, 8, 16));
+            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<BodyCrystalCluster>(), 1, 8, 16));
+            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<SoulCrystalCluster>(), 1, 8, 16));
         }
 
         public override bool PreAI()

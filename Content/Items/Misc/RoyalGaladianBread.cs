@@ -25,10 +25,10 @@ namespace Eternal.Content.Items.Misc
             Item.useAnimation = 17;
             Item.useTime = 17;
             Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
+            Item.UseSound = SoundID.Item2;
             Item.maxStack = 9999;
             Item.consumable = true;
-            Item.rare = ItemRarityID.White;
+            Item.rare = ItemRarityID.Orange;
             Item.value = Item.sellPrice(gold: 12);
             Item.buffType = ModContent.BuffType<Buffs.EmperorsPower>();
             Item.buffTime = 57600;
@@ -36,7 +36,7 @@ namespace Eternal.Content.Items.Misc
 
         public override void OnConsumeItem(Player player)
         {
-            player.AddBuff(BuffID.WellFed3, 57600);
+            player.AddBuff(BuffID.WellFed2, 57600);
         }
     }
 }
