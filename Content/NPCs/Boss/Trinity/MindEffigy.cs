@@ -54,7 +54,7 @@ namespace Eternal.Content.NPCs.Boss.Trinity
         {
             NPC.width = 84;
             NPC.height = 84;
-            NPC.lifeMax = 250000;
+            NPC.lifeMax = 100000;
             NPC.defense = 70;
             NPC.damage = 30;
             NPC.aiStyle = -1;

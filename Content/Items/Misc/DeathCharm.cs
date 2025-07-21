@@ -57,7 +57,6 @@ namespace Eternal.Content.Items.Misc
                         {
                             SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/DifficultyDeactivate"), player.position);
                             DifficultySystem.hellMode = false;
-                            DifficultySystem.sinstormMode = false;
                             Main.NewText("Hell Mode is no longer Active, breathe easy...", 236, 0, 100);
                             //Main.NewText("Hell Mode is no longer Active, not enough fun for you!", 210, 0, 220);
                         }

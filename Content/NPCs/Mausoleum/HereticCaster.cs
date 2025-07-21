@@ -19,7 +19,7 @@ namespace Eternal.Content.NPCs.Mausoleum
         int attackTimer = 0;
         int frameNum;
 
-        static int attackDelayMax = 12;
+        static readonly int attackDelayMax = 12;
         int attackDelay = attackDelayMax;
 
         public override void SetStaticDefaults()
@@ -64,7 +64,7 @@ namespace Eternal.Content.NPCs.Mausoleum
             if (!ModContent.GetInstance<ZoneSystem>().zoneMausoleum && Main.hardMode)
                 return SpawnCondition.Cavern.Chance * 0f;
             else
-                return SpawnCondition.Cavern.Chance * 0.32f;
+                return SpawnCondition.Cavern.Chance * 0.03f;
         }
 
         public override void AI()
@@ -126,12 +126,12 @@ namespace Eternal.Content.NPCs.Mausoleum
                     if (!Main.dedServ)
                     {
                         int[] i =
-                        {
-                            Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, 12f, 12f, ModContent.ProjectileType<Psyfireball>(), NPC.damage, 0),
-                            Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, -12f, 12f, ModContent.ProjectileType<Psyfireball>(), NPC.damage, 0),
-                            Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, 12f, -12f, ModContent.ProjectileType<Psyfireball>(), NPC.damage, 0),
-                            Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, -12f, -12f, ModContent.ProjectileType<Psyfireball>(), NPC.damage, 0)
-                        };
+                        [
+                            Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, 4f, 4f, ModContent.ProjectileType<Psyfireball>(), NPC.damage, 0),
+                            Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, -4f, 4f, ModContent.ProjectileType<Psyfireball>(), NPC.damage, 0),
+                            Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, 4f, -4f, ModContent.ProjectileType<Psyfireball>(), NPC.damage, 0),
+                            Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, -4f, -4f, ModContent.ProjectileType<Psyfireball>(), NPC.damage, 0)
+                        ];
 
                         for (int j = 0; j < i.Length; j++)
                         {
@@ -216,7 +216,7 @@ namespace Eternal.Content.NPCs.Mausoleum
             }
             else
             {
-                Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.PurpleTorch, 0, -1f, 0, default(Color), 1f);
+                Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.PurpleTorch, 0, -1f, 0, default, 1f);
             }
         }
     }

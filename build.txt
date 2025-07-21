@@ -1,6 +1,6 @@
 displayName = [c/d62828:Eternal]
 author = JakeTEM
-version = 1.4.1
+version = 1.4.2
 homepage = https://discord.gg/HUJ8KUSAjC
 hideCode = false
 hideResources = false

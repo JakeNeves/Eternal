@@ -102,8 +102,8 @@ namespace Eternal.Content.NPCs.Comet
 
             float speed = 12.5f;
             float acceleration = 0.10f;
-            Vector2 vector2 = new Vector2(NPC.position.X + (float)NPC.width * 0.5f, NPC.position.Y + (float)NPC.height * 0.5f);
-            float xDir = Main.player[NPC.target].position.X + (float)(Main.player[NPC.target].width / 2) - vector2.X;
+            Vector2 vector2 = new Vector2(NPC.position.X + NPC.width * 0.5f, NPC.position.Y + NPC.height * 0.5f);
+            float xDir = Main.player[NPC.target].position.X + (Main.player[NPC.target].width / 2) - vector2.X;
             float yDir = (float)(Main.player[NPC.target].position.Y + (Main.player[NPC.target].height / 2) - 120) - vector2.Y;
             float length = (float)Math.Sqrt(xDir * xDir + yDir * yDir);
             if (length > 400 && Main.expertMode)
@@ -179,7 +179,7 @@ namespace Eternal.Content.NPCs.Comet
                 for (int i = 0; i < 2; i++)
                     Gore.NewGore(entitySource, NPC.Center, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore3);
 
-                Dust.NewDust(NPC.Center, NPC.width, NPC.height, ModContent.DustType<CosmicSpirit>(), 0, -1f, 0, default(Color), 1f);
+                Dust.NewDust(NPC.Center, NPC.width, NPC.height, ModContent.DustType<CosmicSpirit>(), 0, -1f, 0, default, 1f);
             }
             else
             {

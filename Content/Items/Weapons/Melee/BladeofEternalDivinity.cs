@@ -23,7 +23,7 @@ namespace Eternal.Content.Items.Weapons.Melee
             Item.useStyle = ItemUseStyleID.Swing;
             Item.useAnimation = 24;
             Item.useTime = 24;
-            Item.damage = 310;
+            Item.damage = 325;
             Item.knockBack = 2f;
             Item.width = 56;
             Item.height = 56;

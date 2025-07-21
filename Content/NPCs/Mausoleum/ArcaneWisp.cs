@@ -1,5 +1,6 @@
 ﻿using Eternal.Common.Systems;
 using Eternal.Content.Items.Materials;
+using Eternal.Content.Projectiles.Enemy;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
@@ -41,9 +42,9 @@ namespace Eternal.Content.NPCs.Mausoleum
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+            bestiaryEntry.Info.AddRange([
                 new FlavorTextBestiaryInfoElement("Spirits of the dungeon fear this blazing spiritual hellspawn of an amalgamation.")
-            });
+            ]);
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
@@ -57,7 +58,7 @@ namespace Eternal.Content.NPCs.Mausoleum
             if (!ModContent.GetInstance<ZoneSystem>().zoneMausoleum && Main.hardMode)
                 return SpawnCondition.Cavern.Chance * 0f;
             else
-                return SpawnCondition.Cavern.Chance * 1f;
+                return SpawnCondition.Cavern.Chance * 0.09f;
         }
 
         public override void AI()
@@ -88,7 +89,7 @@ namespace Eternal.Content.NPCs.Mausoleum
                 float A = (float)Main.rand.Next(-200, 200) * 0.01f;
                 float B = (float)Main.rand.Next(-200, 200) * 0.01f;
                 if (Main.netMode != NetmodeID.MultiplayerClient)
-                    Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ProjectileID.Shadowflames, NPC.damage, 1, Main.myPlayer, 0, 0);
+                    Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<Psyfireball>(), NPC.damage, 1, Main.myPlayer, 0, 0);
             }
 
             if (attackTimer > 320)
@@ -109,7 +110,7 @@ namespace Eternal.Content.NPCs.Mausoleum
                 if (!Main.dedServ)
                     SoundEngine.PlaySound(SoundID.NPCDeath14, NPC.position);
 
-                Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.PurpleTorch, 0, -1f, 0, default(Color), 1f);
+                Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.PurpleTorch, 0, -1f, 0, default, 1f);
             }
         }
 

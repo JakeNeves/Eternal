@@ -26,10 +26,6 @@ there is no harm in cheating in anything from the mod via HERO's, Cheat Sheet an
 Hell Mode is a new difficulty that can be toggled in Expert/Master Mode, you can get
 special drops from bosses! (not all hell-mode drops and content are fully fleshed out or available yet...)
 
----Sinstorm Mode (WIP)---
-Sinstorm Mode is a new difficulty that is harder than Hell Mode, can be toggled only when
-Hell Mode is Active. (no sinstorm exclusive drops have been added yet...)
-
 ---The Rift---
 The Rift is a dangerous post-Cosmic Apparition event that can be toggled with the Star Spiral. Upon
 using it, you open The Rift and deadly enemies start spawning as well as a new miniboss, by defeating

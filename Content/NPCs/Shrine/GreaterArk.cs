@@ -128,18 +128,10 @@ namespace Eternal.Content.NPCs.Shrine
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            int[] shrineTileArray = { ModContent.TileType<ShrineBrick>(), TileID.Grass, TileID.Sand, TileID.Stone, TileID.SnowBlock, TileID.IceBlock, TileID.Dirt };
-
-            float baseChance = SpawnCondition.Overworld.Chance;
-            float multiplier = shrineTileArray.Contains(Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY].TileType) ? 0.5f : 1f;
             if (NPC.downedMoonlord && ModContent.GetInstance<ZoneSystem>().zoneShrine)
-            {
-                return baseChance * multiplier;
-            }
+                return SpawnCondition.Overworld.Chance * 0.5f;
             else
-            {
                 return SpawnCondition.Overworld.Chance * 0f;
-            }
         }
     }
 }

@@ -374,21 +374,6 @@ Mods: {
 				DisplayName: Holy Card?
 			}
 
-			GobletofSinfulBlood: {
-				Tooltip:
-					'''
-					Activates Sinstorm Mode
-					[c/ED0249:This difficulty may require some experience in expert/master mode]
-					Can be toggled on and off
-					Can only be used in Hell mode
-					Cannot be used when a Boss is Alive
-					Gives Bosses Increaced Health and Damage
-					Bosses will drop unique Items exclusive to this difficulty
-					'You have raised the bar far enough...'
-					'''
-				DisplayName: Goblet of Sinful Blood
-			}
-
 			EmperorsTrust: {
 				Tooltip:
 					'''

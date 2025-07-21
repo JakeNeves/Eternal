@@ -1,8 +1,6 @@
 ﻿using Eternal.Common.Systems;
-using Eternal.Content.Tiles;
 using Microsoft.Xna.Framework;
 using System;
-using System.Linq;
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
@@ -20,9 +18,9 @@ namespace Eternal.Content.NPCs.Shrine
         public override void SetDefaults()
         {
             NPC.aiStyle = -1;
-            NPC.lifeMax = 150;
-            NPC.damage = 20;
-            NPC.defense = 10;
+            NPC.lifeMax = 50;
+            NPC.damage = 5;
+            NPC.defense = 8;
             NPC.knockBackResist = 0f;
             NPC.width = 38;
             NPC.height = 70;
@@ -37,11 +35,9 @@ namespace Eternal.Content.NPCs.Shrine
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-
+            bestiaryEntry.Info.AddRange([
                 new FlavorTextBestiaryInfoElement("A weak ark that will attempt to slowly impale anyone who dare to approach them.")
-            });
+            ]);
         }
 
         public override void HitEffect(NPC.HitInfo hit)
@@ -115,18 +111,10 @@ namespace Eternal.Content.NPCs.Shrine
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            int[] shrineTileArray = { ModContent.TileType<ShrineBrick>(), TileID.Grass, TileID.Sand, TileID.Stone, TileID.SnowBlock, TileID.IceBlock, TileID.Dirt };
-
-            float baseChance = SpawnCondition.Overworld.Chance;
-            float multiplier = shrineTileArray.Contains(Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY].TileType) ? 0.5f : 1f;
             if (!NPC.downedMoonlord && ModContent.GetInstance<ZoneSystem>().zoneShrine)
-            {
-                return baseChance * multiplier;
-            }
+                return SpawnCondition.Overworld.Chance * 0.05f;
             else
-            {
                 return SpawnCondition.Overworld.Chance * 0f;
-            }
         }
     }
 }

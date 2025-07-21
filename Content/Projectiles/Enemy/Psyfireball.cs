@@ -49,7 +49,7 @@ namespace Eternal.Content.Projectiles.Enemy
                 Projectile.ai[1] = 1f;
                 SoundEngine.PlaySound(in SoundID.DD2_BetsyFireballShot, Projectile.position);
             }
-            else if (Projectile.ai[1] == 1f && Main.netMode != 1)
+            else if (Projectile.ai[1] == 1f && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 int num2 = -1;
                 float num3 = 1500f;
@@ -164,7 +164,7 @@ namespace Eternal.Content.Projectiles.Enemy
                 for (int n = 0; n < 1; n++)
                 {
                     Vector2 vector3 = -Vector2.UnitX.RotatedByRandom(0.39269909262657166).RotatedBy(Projectile.velocity.ToRotation());
-                    int num10 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Shadowflame, 0f, 0f, 155, default(Color), 0.8f);
+                    int num10 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Shadowflame, 0f, 0f, 155, default, 0.8f);
                     Main.dust[num10].velocity *= 0.3f;
                     Main.dust[num10].position = Projectile.Center + vector3 * Projectile.width / 2f;
                     if (Main.rand.NextBool(2))
@@ -178,7 +178,7 @@ namespace Eternal.Content.Projectiles.Enemy
                 for (int num11 = 0; num11 < 2; num11++)
                 {
                     Vector2 vector4 = -Vector2.UnitX.RotatedByRandom(0.7853981852531433).RotatedBy(Projectile.velocity.ToRotation());
-                    int num12 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.PurpleTorch, 0f, 0f, 0, default(Color), 1.2f);
+                    int num12 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.PurpleTorch, 0f, 0f, 0, default, 1.2f);
                     Main.dust[num12].velocity *= 0.3f;
                     Main.dust[num12].noGravity = true;
                     Main.dust[num12].position = Projectile.Center + vector4 * Projectile.width / 2f;
@@ -196,15 +196,15 @@ namespace Eternal.Content.Projectiles.Enemy
 
             for (int i = 0; i < 5; i++)
             {
-                int dustIndex = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.PurpleTorch, 0f, 0f, 100, default(Color), 2f);
+                int dustIndex = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.PurpleTorch, 0f, 0f, 100, default, 2f);
                 Main.dust[dustIndex].velocity *= 1.4f;
             }
             for (int i = 0; i < 5; i++)
             {
-                int dustIndex = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.DemonTorch, 0f, 0f, 100, default(Color), 3f);
+                int dustIndex = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.DemonTorch, 0f, 0f, 100, default, 3f);
                 Main.dust[dustIndex].noGravity = true;
                 Main.dust[dustIndex].velocity *= 5f;
-                dustIndex = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.PinkTorch, 0f, 0f, 100, default(Color), 2f);
+                dustIndex = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.PinkTorch, 0f, 0f, 100, default, 2f);
                 Main.dust[dustIndex].velocity *= 3f;
             }
 

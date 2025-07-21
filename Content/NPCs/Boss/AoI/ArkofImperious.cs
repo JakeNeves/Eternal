@@ -184,10 +184,6 @@ namespace Eternal.Content.NPCs.Boss.AoI
         {
             target.AddBuff(BuffID.Bleeding, 180, false);
             target.AddBuff(BuffID.BrokenArmor, 180, false);
-            if (DifficultySystem.hellMode && ServerConfig.instance.brutalHellMode)
-            {
-                target.AddBuff(BuffID.Cursed, 180, false);
-            }
         }
 
         public override void BossLoot(ref string name, ref int potionType)
