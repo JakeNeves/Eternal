@@ -35,6 +35,7 @@ namespace Eternal.Content.NPCs.Surface
             NPC.width = 36;
             NPC.height = 22;
             NPC.aiStyle = 2;
+            AIType = NPCID.DemonEye;
             NPC.noGravity = true;
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
@@ -58,7 +59,7 @@ namespace Eternal.Content.NPCs.Surface
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
             bestiaryEntry.Info.AddRange([
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime,
 
                 new FlavorTextBestiaryInfoElement("A much more infected variant of the Carminite-Infested Eye, they've adopted some unusual traits...")
             ]);

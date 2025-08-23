@@ -73,12 +73,12 @@ namespace Eternal.Content.NPCs.Carrion
 				return SpawnCondition.Overworld.Chance * 0f;
 		}
 
-		public override void ModifyNPCLoot(NPCLoot npcLoot)
-		{
-			
-		}
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<NecroticTissue>(), 1, 2, 3));
+        }
 
-		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
 		{
 			bestiaryEntry.Info.AddRange([
 				new FlavorTextBestiaryInfoElement("These leeches somehow evolved and adapted to the dead climate of the Carrion...")

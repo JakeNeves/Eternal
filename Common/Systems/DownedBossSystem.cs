@@ -16,7 +16,6 @@ namespace Eternal.Common.Systems
 		public static bool downedIncinerius = false;
 		public static bool downedSubzeroElemental = false;
 		public static bool downedDuneworm = false;
-		public static bool downedDroxOverlord = false;
 		public static bool downedNiades = false;
 		public static bool downedGlare = false;
 
@@ -24,8 +23,8 @@ namespace Eternal.Common.Systems
 		public static bool downedCosmicApparition = false;
         public static bool downedFrostKing = false;
         public static bool downedArkofImperious = false;
-		public static bool downedCosmicEmperor = false;
-		public static bool downedTrinity = false;
+        public static bool downedTrinity = false;
+        public static bool downedCosmicEmperor = false;
 
         public override void OnWorldLoad()
 		{
@@ -38,7 +37,6 @@ namespace Eternal.Common.Systems
 			downedIncinerius = false;
 			downedSubzeroElemental = false;
 			downedDuneworm = false;
-			downedDroxOverlord = false;
 			downedNiades = false;
 			downedGlare = false;
 
@@ -61,7 +59,6 @@ namespace Eternal.Common.Systems
 			downedIncinerius = false;
 			downedSubzeroElemental = false;
 			downedDuneworm = false;
-			downedDroxOverlord = false;
 			downedNiades = false;
 			downedGlare = false;
 

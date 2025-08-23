@@ -44,6 +44,11 @@ namespace Eternal.Content.NPCs.Carrion
             ]);
         }
 
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<NecroticTissue>(), 1, 2, 3));
+        }
+
         public override void OnKill()
         {
             var entitySource = NPC.GetSource_Death();

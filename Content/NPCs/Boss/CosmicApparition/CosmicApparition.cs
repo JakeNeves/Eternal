@@ -270,8 +270,6 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
 
             Player player = Main.player[NPC.target];
 
-            Vector2 playerPosition = Main.player[NPC.target].position;
-
             NPC.spriteDirection = NPC.direction = NPC.Center.X < player.Center.X ? -1 : 1;
 
             if (!player.active || player.dead)
@@ -346,26 +344,50 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
 
             if (Main.expertMode)
             {
-                if (teleportTimer == 200)
+                if (teleportTimer == 300)
                 {
                     if (canTeleport)
                     {
-                        SoundEngine.PlaySound(SoundID.Item8, NPC.position);
-                        NPC.position.X = playerPosition.X + Main.rand.Next(-600, 600);
-                        NPC.position.Y = playerPosition.Y + Main.rand.Next(-600, 600);
+                        for (int k = 0; k < 5; k++)
+                            Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.PurpleTorch, 0f, -2.5f, 0, default, 1.7f);
+
+                        if (!Main.dedServ)
+                            SoundEngine.PlaySound(SoundID.Item8, NPC.position);
+
+                        int targetTileX = (int)Main.player[NPC.target].Center.X / 16;
+                        int targetTileY = (int)Main.player[NPC.target].Center.Y / 16;
+                        Vector2 chosenTile = Vector2.Zero;
+                        if (NPC.AI_AttemptToFindTeleportSpot(ref chosenTile, targetTileX, targetTileY))
+                        {
+                            NPC.ai[2] = chosenTile.X;
+                            NPC.ai[3] = chosenTile.Y;
+                        }
+                        NPC.netUpdate = true;
                     }
                     teleportTimer = 0;
                 }
             }
             else if (DifficultySystem.hellMode)
             {
-                if (teleportTimer == 150)
+                if (teleportTimer == 200)
                 {
                     if (canTeleport)
                     {
-                        SoundEngine.PlaySound(SoundID.Item8, NPC.position);
-                        NPC.position.X = playerPosition.X + Main.rand.Next(-600, 600);
-                        NPC.position.Y = playerPosition.Y + Main.rand.Next(-600, 600);
+                        for (int k = 0; k < 5; k++)
+                            Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.PurpleTorch, 0f, -2.5f, 0, default, 1.7f);
+
+                        if (!Main.dedServ)
+                            SoundEngine.PlaySound(SoundID.Item8, NPC.position);
+
+                        int targetTileX = (int)Main.player[NPC.target].Center.X / 16;
+                        int targetTileY = (int)Main.player[NPC.target].Center.Y / 16;
+                        Vector2 chosenTile = Vector2.Zero;
+                        if (NPC.AI_AttemptToFindTeleportSpot(ref chosenTile, targetTileX, targetTileY))
+                        {
+                            NPC.ai[2] = chosenTile.X;
+                            NPC.ai[3] = chosenTile.Y;
+                        }
+                        NPC.netUpdate = true;
                     }
                     teleportTimer = 0;
                 }
@@ -376,9 +398,21 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
                 {
                     if (canTeleport)
                     {
-                        SoundEngine.PlaySound(SoundID.Item8, NPC.position);
-                        NPC.position.X = playerPosition.X + Main.rand.Next(-600, 600);
-                        NPC.position.Y = playerPosition.Y + Main.rand.Next(-600, 600);
+                        for (int k = 0; k < 5; k++)
+                            Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.PurpleTorch, 0f, -2.5f, 0, default, 1.7f);
+
+                        if (!Main.dedServ)
+                            SoundEngine.PlaySound(SoundID.Item8, NPC.position);
+
+                        int targetTileX = (int)Main.player[NPC.target].Center.X / 16;
+                        int targetTileY = (int)Main.player[NPC.target].Center.Y / 16;
+                        Vector2 chosenTile = Vector2.Zero;
+                        if (NPC.AI_AttemptToFindTeleportSpot(ref chosenTile, targetTileX, targetTileY))
+                        {
+                            NPC.ai[2] = chosenTile.X;
+                            NPC.ai[3] = chosenTile.Y;
+                        }
+                        NPC.netUpdate = true;
                     }
                     teleportTimer = 0;
                 }

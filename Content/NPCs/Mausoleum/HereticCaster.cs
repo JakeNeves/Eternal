@@ -83,7 +83,6 @@ namespace Eternal.Content.NPCs.Mausoleum
         {
             var entitySource = NPC.GetSource_FromAI();
 
-            Vector2 targetPosition = Main.player[NPC.target].position;
             Vector2 direction = Main.player[NPC.target].Center - NPC.Center;
 
             direction.Normalize();
@@ -146,7 +145,7 @@ namespace Eternal.Content.NPCs.Mausoleum
             if (attackTimer == 400)
                 frameNum = 0;
 
-            if (attackTimer == 500)
+            if (attackTimer == 500 && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 for (int k = 0; k < 5; k++)
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.PurpleTorch, 0f, -2.5f, 0, default, 1.7f);
@@ -154,11 +153,15 @@ namespace Eternal.Content.NPCs.Mausoleum
                 if (!Main.dedServ)
                     SoundEngine.PlaySound(SoundID.Item8, NPC.position);
 
-                NPC.position.X = targetPosition.X + Main.rand.Next(-400, 400);
-                NPC.position.Y = targetPosition.Y + Main.rand.Next(-400, 400);
-
-                for (int k = 0; k < 5; k++)
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.PurpleTorch, 0f, -2.5f, 0, default, 1.7f);
+                int targetTileX = (int)Main.player[NPC.target].Center.X / 16;
+                int targetTileY = (int)Main.player[NPC.target].Center.Y / 16;
+                Vector2 chosenTile = Vector2.Zero;
+                if (NPC.AI_AttemptToFindTeleportSpot(ref chosenTile, targetTileX, targetTileY))
+                {
+                    NPC.ai[2] = chosenTile.X;
+                    NPC.ai[3] = chosenTile.Y;
+                }
+                NPC.netUpdate = true;
             }
 
             if (attackTimer >= 600 && attackTimer < 800)

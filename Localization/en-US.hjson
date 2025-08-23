@@ -347,6 +347,11 @@ Mods: {
 				DisplayName: Mysterious Note
 			}
 
+			CapriciousNote: {
+				Tooltip: "'Every read is always something different...'"
+				DisplayName: Capricious Note
+			}
+
 			LetterofRecommendation: {
 				Tooltip:
 					'''
@@ -2834,6 +2839,36 @@ Mods: {
 					'Tabarnak!'
 					'''
 			}
+
+			SolStone: {
+				DisplayName: Sol Stone
+				Tooltip:
+					'''
+					Skips the Night and directly makes it Day time
+					'The morning sun has risen to vanquish the horrible night.'
+					'''
+			}
+
+			NecroticTissue: {
+				DisplayName: Necrotic Tissue
+				Tooltip: "'A dead tissue sample'"
+			}
+
+			PolypChunk: {
+				DisplayName: Polyp Chunk
+				Tooltip: "'Gross...'"
+			}
+
+			UmbralArcanis: {
+				DisplayName: Umbral Arcanis
+				Tooltip:
+					'''
+					Casts Benighted Wisps
+					Wisps can sometimes persist after being casted
+					<right> to explode persisting wisps and 
+					fire projectiles in four directions
+					'''
+			}
 		}
 
 		Buffs: {
@@ -3136,7 +3171,6 @@ Mods: {
 			StarbornSludgeSmall.DisplayName: Starborn Sludge
 			Starprobe.DisplayName: Starprobe
 			StarprobeDesert.DisplayName: Starprobe
-			TarnishedGhoul.DisplayName: Tarnished Ghoul
 			TarnishedSkeleton.DisplayName: Tarnished Skeleton
 			TarnishedZombie.DisplayName: Tarnished Zombie
 			TarnishedZombieAlt.DisplayName: Tarnished Zombie
@@ -3339,11 +3373,13 @@ Mods: {
 			FesteringCarcass.DisplayName: Festering Carcass
 			Cadaver.DisplayName: Cadaver
 			CadaverHead.DisplayName: Cadaver Head
-			FrayedEye.DisplayName: Frayed Eye
-			FrayedStalk.DisplayName: Frayed Stalk
 			Clot.DisplayName: Clot
 			PustuleSlime.DisplayName: Pustule Slime
 			Level2CarminiteInfestedEye.DisplayName: Level 2 Carminite-Infested Eye
+			Polyp.DisplayName: Polyp
+			RottenMind.DisplayName: Rotten Mind
+			BenightedWisp.DisplayName: Benighted Wisp
+			Level2Ghoul.DisplayName: Level 2 Goul
 		}
 
 		Prefixes: {
@@ -3536,9 +3572,10 @@ Mods: {
 			CombatGavelProjectile2.DisplayName: Combat Gavel
 			ArcaneShellProjectile.DisplayName: Arcane Shell
 			CarminacVirusProjectile.DisplayName: Carminac Virus
-			BladeofEternalDivinityProjectile.DisplayName: Bladeof Eternal Divinity Projectile
-			BladeofEternalDivinityProjectile2.DisplayName: Bladeof Eternal Divinity Projectile2
-			BladeofEternalDivinityProjectileHelper.DisplayName: Bladeof Eternal Divinity Projectile Helper
+			BladeofEternalDivinityProjectile.DisplayName: Bladeof Eternal Divinity
+			BladeofEternalDivinityProjectile2.DisplayName: Bladeof Eternal Divinity
+			BenightedWispProjectile.DisplayName: Benighted Wisp Projectile
+			UmbralArcanisProjectile.DisplayName: Umbral Arcanis Projectile
 		}
 
 		WorldGen: {
@@ -3694,8 +3731,18 @@ Mods: {
 		Death.ApparitionalWither: "{0}'s body withered away..."
 
 		Conditions: {
+			CarminiteAmalgamationDefeated: When the Carminite Amalgamation has been defeated
+			DuneGolemDefeated: When the Dune Golem has been defeated
+			IgneopedeDefeated: When the Igneopede has been defeated
+			IncineriusDefeated: When Incinerius has been defeated
+			SubzeroElementalDefeated: When the Subzero Elemental has been defeated
+			DunewormDefeated: When the Duneworm has been defeated
+			NiadesDefeated: When Niades has been defeated
+			GlareDefeated: When the Glare has been defeated
 			CosmicApparitionDefeated: When the Cosmic Apparition has been defeated
+			ArkofImperiousDefeated: When the Ark of Imperious has been defeated
 			TrinityDefeated: When the Trinity has been defeated
+			CosmicEmperorDefeated: When the Cosmic Emperor has been defeated
 			isZenithWorld: Exclusively to the Zenith seed
 			IsNamedJake: When the player is named after the Empreror or the mod's creator
 			50ReputationPoints: When the player has a Reputation quota of 50

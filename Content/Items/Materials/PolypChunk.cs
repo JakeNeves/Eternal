@@ -1,0 +1,30 @@
+﻿using Eternal.Common.Configurations;
+using Eternal.Content.Rarities;
+using Eternal.Content.Tiles.CraftingStations;
+using Terraria;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
+
+namespace Eternal.Content.Items.Materials
+{
+    public class PolypChunk : ModItem
+    {
+        public override bool IsLoadingEnabled(Mod mod) => ServerConfig.instance.update15;
+
+        public override void SetStaticDefaults()
+        {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
+        }
+
+        public override void SetDefaults()
+        {
+            Item.width = 22;
+            Item.height = 22;
+            Item.rare = ItemRarityID.Pink;
+            Item.value = Item.sellPrice(copper: 20);
+            Item.maxStack = 9999;
+        }
+    }
+}

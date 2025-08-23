@@ -2,6 +2,8 @@
 using Eternal.Content.Items.Accessories.Expert;
 using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Weapons.Hell;
+using Eternal.Content.Items.Weapons.Magic;
+using Eternal.Content.Items.Weapons.Melee;
 using Eternal.Content.NPCs.Boss.TheGlare;
 using Terraria;
 using Terraria.GameContent.Creative;
@@ -37,7 +39,9 @@ namespace Eternal.Content.Items.BossBags
 
         public override void ModifyItemLoot(ItemLoot itemLoot)
         {
-            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Rosary>()));
+            // itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Rosary>()));
+
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<UmbralArcanis>(), 12));
         }
     }
 }

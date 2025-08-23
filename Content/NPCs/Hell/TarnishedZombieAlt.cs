@@ -37,7 +37,7 @@ namespace Eternal.Content.NPCs.Hell
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
             bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime,
 
                 new FlavorTextBestiaryInfoElement("They were once innocent beings, now they have been brutally tarnished... However, these beings are much more menacing than usual.")
             });
@@ -47,7 +47,7 @@ namespace Eternal.Content.NPCs.Hell
         {
             // Making sure that the Tarnished Zombie ONLY spawn in Hell Mode
             if (DifficultySystem.hellMode)
-                return SpawnCondition.OverworldNightMonster.Chance * 0.5f;
+                return SpawnCondition.OverworldNightMonster.Chance * 0.2f;
             else
                 return SpawnCondition.OverworldNightMonster.Chance * 0f;
         }

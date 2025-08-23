@@ -58,7 +58,7 @@ namespace Eternal.Content.NPCs.Surface
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
             bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime,
 
                 new FlavorTextBestiaryInfoElement("A Demon Eye that unfortunatey got infected by a cometite sample along with a large chunk of flesh, overtime the eye itself is now completely infested.")
             });

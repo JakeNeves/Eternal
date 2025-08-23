@@ -1,6 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Eternal.Content.Items.Misc;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
@@ -47,6 +49,11 @@ namespace Eternal.Content.NPCs.Joke
                 return SpawnCondition.Underworld.Chance * 1f;
             else
                 return SpawnCondition.Underworld.Chance * 0f;
+        }
+
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CapriciousNote>(), 12));
         }
     }
 }

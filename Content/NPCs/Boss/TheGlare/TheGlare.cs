@@ -2,6 +2,8 @@
 using Eternal.Common.Systems;
 using Eternal.Content.Items.BossBags;
 using Eternal.Content.Items.Pets;
+using Eternal.Content.Items.Weapons.Magic;
+using Eternal.Content.Items.Weapons.Melee;
 using Eternal.Content.Projectiles.Enemy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -739,6 +741,8 @@ namespace Eternal.Content.NPCs.Boss.TheGlare
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<TheGlareBag>()));
 
             npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<HauntedVisage>(), 4));
+
+            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<UmbralArcanis>(), 12));
         }
 
         public override void BossLoot(ref string name, ref int potionType)

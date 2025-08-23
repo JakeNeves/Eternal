@@ -27,7 +27,7 @@ namespace Eternal.Content.Items.Armor
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<IesniumBar>(), 6)
+                .AddIngredient(ModContent.ItemType<Carminite>(), 6)
                 .AddIngredient(ItemID.Bone, 12)
                 .AddTile(TileID.Anvils)
                 .Register();
