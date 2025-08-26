@@ -2459,7 +2459,7 @@ Mods: {
 				Tooltip:
 					'''
 					You fire Shade Bombs in a cross pattern when hit
-					While wearing this, the Dark Arts cost zero mana
+					While wearing this, the Dark Arts cost zero mana (WIP)
 					'''
 			}
 
