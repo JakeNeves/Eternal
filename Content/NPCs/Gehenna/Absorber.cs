@@ -88,10 +88,10 @@ namespace Eternal.Content.NPCs.Gehenna
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (!DownedBossSystem.downedIncinerius && !ModContent.GetInstance<ZoneSystem>().zoneGehenna)
-                return SpawnCondition.Underworld.Chance * 0f;
-            else
+            if (DownedBossSystem.downedIncinerius && ModContent.GetInstance<ZoneSystem>().zoneGehenna)
                 return SpawnCondition.Underworld.Chance * 0.01f;
+            else
+                return SpawnCondition.Underworld.Chance * 0f;
         }
     }
 }

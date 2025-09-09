@@ -10,8 +10,6 @@ namespace Eternal.Content.Biomes
 {
     public class CarrionSurface : ModBiome
     {
-        public override bool IsLoadingEnabled(Mod mod) => ServerConfig.instance.update15;
-
         public override int Music => MusicLoader.GetMusicSlot(Mod, "Assets/Music/NecroticFissure");
         public override CaptureBiome.TileColorStyle TileColorStyle => CaptureBiome.TileColorStyle.Corrupt;
 
@@ -32,17 +30,22 @@ namespace Eternal.Content.Biomes
             ModContent.GetInstance<ZoneSystem>().zoneCarrion = false;
         }
 
+        public override void OnInBiome(Player player)
+        {
+            player.ManageSpecialBiomeVisuals("Eternal:Carrion", true);
+        }
+
         public override bool IsBiomeActive(Player player)
         {
-            bool b1 = ModContent.GetInstance<BiomeTileCount>().carrionBlockCount >= 45;
+            bool b1 = ModContent.GetInstance<BiomeTileCount>().carrionBlockCount >= 96;
 
             bool b2 = Math.Abs(player.position.ToTileCoordinates().X - Main.maxTilesX / 2) < Main.maxTilesX / 6;
 
-	    bool b3 = player.ZoneSkyHeight || player.ZoneOverworldHeight;
+	        bool b3 = player.ZoneSkyHeight || player.ZoneOverworldHeight;
 
-	    return b1 && b2 && b3;
+	        return b1 && b2 && b3;
         }
 
-        public override SceneEffectPriority Priority => SceneEffectPriority.BiomeMedium;
+        public override SceneEffectPriority Priority => SceneEffectPriority.BiomeHigh;
     }
 }

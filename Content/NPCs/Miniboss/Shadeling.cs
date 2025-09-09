@@ -1,9 +1,13 @@
 ﻿using Eternal.Common.Misc;
+using Eternal.Content.Items.Accessories;
+using Eternal.Content.Items.Materials;
+using Eternal.Content.Items.Weapons.Magic;
 using Eternal.Content.Projectiles.Enemy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Audio;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -72,6 +76,11 @@ namespace Eternal.Content.NPCs.Miniboss
                 Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, -12f, 0f, ModContent.ProjectileType<ShadeBomb>(), NPC.damage, 0);
                 Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, 0f, -12f, ModContent.ProjectileType<ShadeBomb>(), NPC.damage, 0);
             }
+        }
+
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ShadeMatter>(), 1, 2, 3));
         }
 
         public override void HitEffect(NPC.HitInfo hit)

@@ -37,6 +37,8 @@ namespace Eternal.Content.Items.Weapons.Melee
             Item.knockBack = 3f;
         }
 
+        public override bool MeleePrefix() => true;
+
         public override void AddRecipes()
         {
             CreateRecipe()

@@ -8,7 +8,7 @@ namespace Eternal.Content.Biomes
 {
     public class Comet : ModBiome
     {
-        public override int Music => MusicLoader.GetMusicSlot(Mod, "Assets/Music/AstralDiscovery");
+        public override int Music => MusicLoader.GetMusicSlot(Mod, "Assets/Music/AstralDiscoveryRetake");
         public override CaptureBiome.TileColorStyle TileColorStyle => CaptureBiome.TileColorStyle.Normal;
 
         public override string BestiaryIcon => base.BestiaryIcon;
@@ -28,7 +28,7 @@ namespace Eternal.Content.Biomes
 
         public override bool IsBiomeActive(Player player)
         {
-            bool b1 = ModContent.GetInstance<BiomeTileCount>().cometCount >= 30;
+            bool b1 = ModContent.GetInstance<BiomeTileCount>().cometCount >= 60;
 
             return b1;
         }

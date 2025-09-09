@@ -35,6 +35,8 @@ namespace Eternal.Content.Items.Weapons.Hell
             Item.noMelee = true;
         }
 
+        public override bool MeleePrefix() => true;
+
         public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
         {
             damage += player.endurance / 2f;

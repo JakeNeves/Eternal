@@ -39,7 +39,7 @@ namespace Eternal.Content.Tiles.MusicBox
             Player player = Main.LocalPlayer;
             player.noThrow = 2;
             player.cursorItemIconEnabled = true;
-            player.cursorItemIconID = ModContent.ItemType<Items.Placeable.MusicBox.AoIMusicBox>();
+            player.cursorItemIconID = ModContent.ItemType<Items.Placeable.MusicBox.CometMusicBox>();
         }
 
         public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings)

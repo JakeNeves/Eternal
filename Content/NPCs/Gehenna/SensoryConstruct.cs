@@ -95,10 +95,10 @@ namespace Eternal.Content.NPCs.Gehenna
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (!DownedBossSystem.downedCosmicApparition && !ModContent.GetInstance<ZoneSystem>().zoneGehenna)
-                return SpawnCondition.Underworld.Chance * 0f;
-            else
+            if (DownedBossSystem.downedCosmicApparition && ModContent.GetInstance<ZoneSystem>().zoneGehenna)
                 return SpawnCondition.Underworld.Chance * 0.6f;
+            else
+                return SpawnCondition.Underworld.Chance * 0f;
         }
     }
 }

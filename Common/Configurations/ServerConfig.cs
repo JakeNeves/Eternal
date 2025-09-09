@@ -40,17 +40,6 @@ namespace Eternal.Common.Configurations
         public bool brutalHellMode = false;
 
         /// <summary>
-        /// EXPERIMENTAL: Adds upcoming content from 1.5 to the game
-        /// </summary>
-        [SeparatePage]
-        [Header("ExperimentalFeatures")]
-        [DefaultValue(false)]
-        [LabelKey("$Mods.Eternal.Server.Configurations.ServerConfig.update15.DisplayName")]
-        [TooltipKey("$Mods.Eternal.Server.Configurations.ServerConfig.update15.Tooltip")]
-        [ReloadRequired]
-        public bool update15 = false;
-
-        /// <summary>
         /// EXPERIMENTAL: Adds Life Motes to the game
         /// </summary>
         [DefaultValue(false)]

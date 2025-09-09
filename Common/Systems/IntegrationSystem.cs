@@ -8,6 +8,7 @@ using Eternal.Content.NPCs.Boss.Duneworm;
 using Eternal.Content.NPCs.Boss.Igneopede;
 using Eternal.Content.NPCs.Boss.Incinerius;
 using Eternal.Content.NPCs.Boss.Niades;
+using Eternal.Content.NPCs.Boss.TheChimera;
 using Eternal.Content.NPCs.Boss.TheGlare;
 using Eternal.Content.NPCs.Boss.Trinity;
 using Eternal.Content.NPCs.DarkMoon;
@@ -101,27 +102,6 @@ namespace Eternal.Common.Systems
             ); */
             #endregion
 
-            #region The Glare
-            bossChecklistMod.Call(
-                "LogBoss",
-                Mod,
-                nameof(TheGlare),
-                12.15f,
-                () => DownedBossSystem.downedGlare,
-                ModContent.NPCType<TheGlare>(),
-                new Dictionary<string, object>()
-                {
-                    ["spawnItems"] = ModContent.ItemType<SuspiciousLookingMask>(),
-                    ["displayName"] = Language.GetText("Mods.Eternal.NPCs.TheGlare.DisplayName"),
-                    ["despawnMessage"] = Language.GetText("Mods.Eternal.NPCs.TheGlare.BossChecklistIntegration.DespawnMessage"),
-                    ["collectables"] = new List<int>()
-                    {
-
-                    }
-                }
-            );
-            #endregion
-
             #region Incinerius
             bossChecklistMod.Call(
                 "LogBoss",
@@ -200,7 +180,7 @@ namespace Eternal.Common.Systems
                 "LogBoss",
                 Mod,
                 nameof(Niades),
-                13.15f,
+                12.15f,
                 () => DownedBossSystem.downedNiades,
                 ModContent.NPCType<Niades>(),
                 new Dictionary<string, object>()
@@ -212,6 +192,50 @@ namespace Eternal.Common.Systems
                     {
                         ModContent.ItemType<Content.Items.Accessories.Expert.Rosary>(),
                         ModContent.ItemType<Content.Items.Weapons.Melee.SactothsConquest>()
+                    }
+                }
+            );
+            #endregion
+
+            #region The Chimera
+            bossChecklistMod.Call(
+                "LogBoss",
+                Mod,
+                nameof(TheChimera),
+                12.25f,
+                () => DownedBossSystem.downedChimera,
+                ModContent.NPCType<TheChimera>(),
+                new Dictionary<string, object>()
+                {
+                    ["spawnItems"] = ModContent.ItemType<RottenMeat>(),
+                    ["displayName"] = Language.GetText("Mods.Eternal.NPCs.TheChimera.DisplayName"),
+                    ["collectables"] = new List<int>()
+                    {
+                        ModContent.ItemType<Content.Items.Accessories.Expert.GasBag>(),
+                        ModContent.ItemType<Content.Items.Weapons.Melee.RottenFangspear>(),
+                        ModContent.ItemType<Content.Items.Weapons.Melee.RottenMeathook>(),
+                        ModContent.ItemType<Content.Items.Weapons.Ranged.Necrobow>()
+                    }
+                }
+            );
+            #endregion
+
+            #region The Glare
+            bossChecklistMod.Call(
+                "LogBoss",
+                Mod,
+                nameof(TheGlare),
+                13.15f,
+                () => DownedBossSystem.downedGlare,
+                ModContent.NPCType<TheGlare>(),
+                new Dictionary<string, object>()
+                {
+                    ["spawnItems"] = ModContent.ItemType<SuspiciousLookingMask>(),
+                    ["displayName"] = Language.GetText("Mods.Eternal.NPCs.TheGlare.DisplayName"),
+                    ["despawnMessage"] = Language.GetText("Mods.Eternal.NPCs.TheGlare.BossChecklistIntegration.DespawnMessage"),
+                    ["collectables"] = new List<int>()
+                    {
+                        ModContent.ItemType<Content.Items.Weapons.Magic.UmbralArcanis>()
                     }
                 }
             );
@@ -312,7 +336,10 @@ namespace Eternal.Common.Systems
                     ["spawnInfo"] = Language.GetText("Mods.Eternal.NPCs.TrinityCore.BossChecklistIntegration.SpawnInfo"),
                     ["collectables"] = new List<int>()
                     {
-
+                        ModContent.ItemType<Content.Items.Materials.ProviditeBar>(),
+                        ModContent.ItemType<Content.Items.Materials.MindCrystalCluster>(),
+                        ModContent.ItemType<Content.Items.Materials.BodyCrystalCluster>(),
+                        ModContent.ItemType<Content.Items.Materials.SoulCrystalCluster>()
                     }
                 }
             );

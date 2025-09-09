@@ -38,6 +38,8 @@ namespace Eternal.Content.Items.Weapons.Hell
             Item.channel = true;
         }
 
+        public override bool MeleePrefix() => true;
+
         public override void AddRecipes()
         {
             CreateRecipe()

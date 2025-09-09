@@ -19,8 +19,6 @@ namespace Eternal.Content.NPCs.Carrion
 {
 	internal class Level2DiggerHead : Level2Digger
 	{
-        public override bool IsLoadingEnabled(Mod mod) => ServerConfig.instance.update15;
-
         public override void SetStaticDefaults()
 		{
 			var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers()
@@ -44,7 +42,7 @@ namespace Eternal.Content.NPCs.Carrion
 			NPC.defense = 16;
 			NPC.damage = 25;
 			NPC.value = Item.sellPrice(gold: 6, silver: 10);
-			SpawnModBiomes = [ ModContent.GetInstance<Biomes.CarrionSurface>().Type ];
+			SpawnModBiomes = [ ModContent.GetInstance<Biomes.UndergroundCarrion>().Type ];
 		}
 
         public override void HitEffect(NPC.HitInfo hit)
@@ -63,14 +61,22 @@ namespace Eternal.Content.NPCs.Carrion
             int gore1 = Mod.Find<ModGore>("Level2DiggerGore1").Type;
 
             Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-2, 2), Main.rand.Next(-2, 2)), gore1);
+
+            if (Main.rand.NextBool(2) && Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                for (int i = 0; i < Main.rand.Next(1, 3); i++)
+                {
+                    NPC.NewNPC(entitySource, (int)NPC.position.X, (int)NPC.position.Y, NPCID.Maggot);
+                }
+            }
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
-			if (ModContent.GetInstance<ZoneSystem>().zoneCarrion)
-                return SpawnCondition.Overworld.Chance * 0.75f;
+			if (ModContent.GetInstance<ZoneSystem>().zoneUndergroundCarrion)
+                return SpawnCondition.Underground.Chance * 0.75f;
 			else
-				return SpawnCondition.Overworld.Chance * 0f;
+				return SpawnCondition.Underground.Chance * 0f;
 		}
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
@@ -118,7 +124,6 @@ namespace Eternal.Content.NPCs.Carrion
 
 	internal class Level2DiggerBody : Level2Digger
 	{
-        public override bool IsLoadingEnabled(Mod mod) => ServerConfig.instance.update15;
 		public override void SetStaticDefaults()
 		{
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
@@ -155,7 +160,15 @@ namespace Eternal.Content.NPCs.Carrion
 				int gore1 = Mod.Find<ModGore>("Level2DiggerGore2").Type;
 
 				Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-2, 2), Main.rand.Next(-2, 2)), gore1);
-			}
+
+                if (Main.rand.NextBool(2) && Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    for (int i = 0; i < Main.rand.Next(1, 3); i++)
+                    {
+                        NPC.NewNPC(entitySource, (int)NPC.position.X, (int)NPC.position.Y, NPCID.Maggot);
+                    }
+                }
+            }
         }
 
         public override void CustomBehavior()
@@ -165,8 +178,6 @@ namespace Eternal.Content.NPCs.Carrion
 
 	internal class Level2DiggerTail : Level2Digger
 	{
-        public override bool IsLoadingEnabled(Mod mod) => ServerConfig.instance.update15;
-
         public override void SetStaticDefaults()
 		{
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
@@ -203,6 +214,14 @@ namespace Eternal.Content.NPCs.Carrion
                 int gore1 = Mod.Find<ModGore>("Level2DiggerGore3").Type;
 
                 Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-2, 2), Main.rand.Next(-2, 2)), gore1);
+
+                if (Main.rand.NextBool(2) && Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    for (int i = 0; i < Main.rand.Next(1, 3); i++)
+                    {
+                        NPC.NewNPC(entitySource, (int)NPC.position.X, (int)NPC.position.Y, NPCID.Maggot);
+                    }
+                }
             }
         }
 

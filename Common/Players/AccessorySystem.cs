@@ -1,7 +1,9 @@
 ﻿using Eternal.Common.Systems;
 using Eternal.Content.Items.Accessories;
 using Eternal.Content.Items.Accessories.Expert;
+using Eternal.Content.Items.Ammo;
 using Eternal.Content.Projectiles.Accessories;
+using Eternal.Content.Projectiles.Armor;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
@@ -19,6 +21,7 @@ namespace Eternal.Common.Players
         // expert mode
         public static bool Bloodtooth = false;
         public static bool DuneCore = false;
+        public static bool GasBag = false;
         public static bool GiftofTheSwordGod = false;
         public static bool Godhead = false;
 
@@ -42,6 +45,7 @@ namespace Eternal.Common.Players
             // expert mode
             Bloodtooth = false;
             DuneCore = false;
+            GasBag = false;
             GiftofTheSwordGod = false;
             Godhead = false;
 
@@ -74,12 +78,28 @@ namespace Eternal.Common.Players
                     var npc = Main.npc[i];
                     if (!npc.active)
                         continue;
+                }
 
-                    for (int j = 0; j < Main.rand.Next(4, 8); j++)
-                    {
-                        if (Main.netMode != NetmodeID.MultiplayerClient)
-                            Projectile.NewProjectile(Player.GetSource_Accessory_OnHurt(Main.item[ModContent.ItemType<Bloodtooth>()], npc), Player.Center.X, Player.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<BloodtoothProjectile>(), 24, 0f, Main.myPlayer);
-                    }
+                for (int j = 0; j < Main.rand.Next(2, 4); j++)
+                {
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                        Projectile.NewProjectile(Player.GetSource_FromThis("Accessory_Bloodtooth") /*Player.GetSource_Accessory_OnHurt(Main.item[ModContent.ItemType<ShadeLocket>()], npc)*/, Player.Center.X, Player.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<BloodtoothProjectile>(), info.Damage, 0f);
+                }
+            }
+
+            if (GasBag)
+            {
+                for (int i = 0; i < Main.maxNPCs; i++)
+                {
+                    var npc = Main.npc[i];
+                    if (!npc.active)
+                        continue;
+                }
+
+                for (int j = 0; j < Main.rand.Next(4, 8); j++)
+                {
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                        Projectile.NewProjectile(Player.GetSource_FromThis("Accessory_GasBag") /*Player.GetSource_Accessory_OnHurt(Main.item[ModContent.ItemType<ShadeLocket>()], npc)*/, Player.Center.X, Player.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<GasCloudFriendly>(), 0, 0f);
                 }
             }
 
@@ -90,21 +110,21 @@ namespace Eternal.Common.Players
                     var npc = Main.npc[i];
                     if (!npc.active)
                         continue;
+                }
 
-                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/ShademanTrap")
                     {
-                        SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/ShademanTrap")
-                        {
-                            Volume = 0.8f,
-                            PitchVariance = Main.rand.NextFloat(0.2f, 0.9f),
-                            MaxInstances = 0
-                        });
+                        Volume = 0.8f,
+                        PitchVariance = Main.rand.NextFloat(0.2f, 0.9f),
+                        MaxInstances = 0
+                    });
 
-                        Projectile.NewProjectile(Player.GetSource_Accessory_OnHurt(Main.item[ModContent.ItemType<ShadeLocket>()], npc), Player.Center.X, Player.Center.Y, 12f, 0f, ModContent.ProjectileType<ShadeBombFriendly>(), info.Damage, 0f, Main.myPlayer);
-                        Projectile.NewProjectile(Player.GetSource_Accessory_OnHurt(Main.item[ModContent.ItemType<ShadeLocket>()], npc), Player.Center.X, Player.Center.Y, 0f, 12f, ModContent.ProjectileType<ShadeBombFriendly>(), info.Damage, 0f, Main.myPlayer);
-                        Projectile.NewProjectile(Player.GetSource_Accessory_OnHurt(Main.item[ModContent.ItemType<ShadeLocket>()], npc), Player.Center.X, Player.Center.Y, -12f, 0f, ModContent.ProjectileType<ShadeBombFriendly>(), info.Damage, 0f, Main.myPlayer);
-                        Projectile.NewProjectile(Player.GetSource_Accessory_OnHurt(Main.item[ModContent.ItemType<ShadeLocket>()], npc), Player.Center.X, Player.Center.Y, 0f, -12f, ModContent.ProjectileType<ShadeBombFriendly>(), info.Damage, 0f, Main.myPlayer);
-                    }
+                    Projectile.NewProjectile(Player.GetSource_FromThis("Accessory_ShadeLocket") /*Player.GetSource_Accessory_OnHurt(Main.item[ModContent.ItemType<ShadeLocket>()], npc)*/, Player.Center.X, Player.Center.Y, 12f, 0f, ModContent.ProjectileType<ShadeBombFriendly>(), info.Damage, 0f);
+                    Projectile.NewProjectile(Player.GetSource_FromThis("Accessory_ShadeLocket") /*Player.GetSource_Accessory_OnHurt(Main.item[ModContent.ItemType<ShadeLocket>()], npc)*/, Player.Center.X, Player.Center.Y, 0f, 12f, ModContent.ProjectileType<ShadeBombFriendly>(), info.Damage, 0f);
+                    Projectile.NewProjectile(Player.GetSource_FromThis("Accessory_ShadeLocket") /*Player.GetSource_Accessory_OnHurt(Main.item[ModContent.ItemType<ShadeLocket>()], npc)*/, Player.Center.X, Player.Center.Y, -12f, 0f, ModContent.ProjectileType<ShadeBombFriendly>(), info.Damage, 0f);
+                    Projectile.NewProjectile(Player.GetSource_FromThis("Accessory_ShadeLocket") /*Player.GetSource_Accessory_OnHurt(Main.item[ModContent.ItemType<ShadeLocket>()], npc)*/, Player.Center.X, Player.Center.Y, 0f, -12f, ModContent.ProjectileType<ShadeBombFriendly>(), info.Damage, 0f);
                 }
             }
 
@@ -119,8 +139,20 @@ namespace Eternal.Common.Players
                     for (int j = 0; j < Main.rand.Next(8, 16); j++)
                     {
                         if (Main.netMode != NetmodeID.MultiplayerClient)
-                            Projectile.NewProjectile(Player.GetSource_Accessory_OnHurt(Main.item[ModContent.ItemType<DuneCore>()], npc), Player.Center.X, Player.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<DuneSparkFriendly>(), 24, 0f, Main.myPlayer);
+                            Projectile.NewProjectile(Player.GetSource_FromThis("Accessory_DuneCore") /*Player.GetSource_Accessory_OnHurt(Main.item[ModContent.ItemType<ShadeLocket>()], npc)*/, Player.Center.X, Player.Center.Y, Main.rand.Next(-8, 8), Main.rand.Next(-8, 8), ModContent.ProjectileType<DuneSparkFriendly>(), 24, 0f);
                     }
+                }
+            }
+        }
+
+        public override void PreUpdate()
+        {
+            if (GasBag)
+            {
+                if (Main.rand.NextBool(24) && Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                        Projectile.NewProjectile(Player.GetSource_FromThis("Accessory_GasBag") /*Player.GetSource_Accessory_OnHurt(Main.item[ModContent.ItemType<ShadeLocket>()], npc)*/, Player.Center.X, Player.Center.Y, Main.rand.Next(-2, 2), -4, ModContent.ProjectileType<GasCloudFriendly>(), 0, 0f);
                 }
             }
         }

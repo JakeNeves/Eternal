@@ -55,9 +55,9 @@ namespace Eternal.Content.NPCs.Gehenna
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if (ModContent.GetInstance<ZoneSystem>().zoneGehenna)
-                return SpawnCondition.Underworld.Chance * 0f;
-            else
                 return SpawnCondition.Underworld.Chance * 0.5f;
+            else
+                return SpawnCondition.Underworld.Chance * 0f;
         }
 
         public override void AI()

@@ -52,9 +52,9 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
             NPC.damage = 8;
             NPC.defense = 20;
             NPC.knockBackResist = 0f;
-            NPC.width = 80;
-            NPC.height = 84;
-            NPC.value = Item.buyPrice(gold: 30);
+            NPC.width = 98;
+            NPC.height = 100;
+            NPC.value = Item.buyPrice(gold: 15);
             NPC.lavaImmune = true;
             NPC.boss = true;
             NPC.noGravity = true;

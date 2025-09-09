@@ -1,6 +1,6 @@
 [c/d62828:Eternal] - By [c/008CFF:Jake][c/0204CFF:TEM]!
 
-1.4 - Advent of Epiphany
+1.5 - Advent of Epiphany+
 
 [c/ED0249:---WARNING---]
 This is a public [c/009933:beta] build of Eternal, bugs and other sketchy things may arise!
@@ -15,7 +15,7 @@ From what we expect, this mod is not fully finished yet so
 there is no harm in cheating in anything from the mod via HERO's, Cheat Sheet and/or DragonLens...
 
 [c/009933:--CONTENT BREAKDOWN--]
-8/32 Bosses (some bosses are in the game, however they may not be finished, but could be in the future)
+12/32 Bosses (some bosses are in the game, however they may not be finished, but could be in the future)
 400+ new Items, materials, tools, weapons and armor
 2 new Biomes
 3 new Structures

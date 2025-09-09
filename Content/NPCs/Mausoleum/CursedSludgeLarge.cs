@@ -101,7 +101,7 @@ namespace Eternal.Content.NPCs.Mausoleum
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (DownedBossSystem.downedNiades && Main.hardMode)
+            if (DownedBossSystem.downedNiades && Main.hardMode && ModContent.GetInstance<ZoneSystem>().zoneMausoleum)
                 return SpawnCondition.Cavern.Chance * 0.09f;
             else
                 return SpawnCondition.Cavern.Chance * 0f;

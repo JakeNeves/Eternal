@@ -11,8 +11,6 @@ namespace Eternal.Content.NPCs.Carrion
 {
     public class Level2Ghoul : ModNPC
     {
-        public override bool IsLoadingEnabled(Mod mod) => ServerConfig.instance.update15;
-
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.DesertGhoul];
@@ -32,6 +30,7 @@ namespace Eternal.Content.NPCs.Carrion
             AnimationType = NPCID.DesertGhoul;
             Banner = Item.NPCtoBanner(NPCID.DesertGhoul);
             BannerItem = Item.BannerToItem(Banner);
+            SpawnModBiomes = [ ModContent.GetInstance<Biomes.CarrionDesertSurface>().Type, ModContent.GetInstance<Biomes.UndergroundCarrion>().Type ];
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -41,15 +40,14 @@ namespace Eternal.Content.NPCs.Carrion
             });
         }
 
-        /*
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (DifficultySystem.hellMode)
-                return SpawnCondition.OverworldDayDesert.Chance * 0.5f;
+            if (ModContent.GetInstance<ZoneSystem>().zoneCarrion)
+                return SpawnCondition.OverworldDayDesert.Chance * 0.5f + SpawnCondition.DesertCave.Chance * 0f;
+            else if (ModContent.GetInstance<ZoneSystem>().zoneUndergroundCarrion)
+                return SpawnCondition.OverworldDayDesert.Chance * 0f + SpawnCondition.DesertCave.Chance * 0.5f;
             else
-                return SpawnCondition.OverworldDayDesert.Chance * 0f;
+                return SpawnCondition.OverworldDayDesert.Chance * 0f + SpawnCondition.DesertCave.Chance * 0f;
         }
-        */
-
     }
 }

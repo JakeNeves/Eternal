@@ -11,9 +11,11 @@ namespace Eternal.Content.Items.Placeable.MusicBox
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<AncientCometMusicBox>();
+
             ItemID.Sets.CanGetPrefixes[Type] = false;
 
-            MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Assets/Music/AstralDiscovery"), ModContent.ItemType<CometMusicBox>(), ModContent.TileType<Tiles.MusicBox.CometMusicBox>());
+            MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Assets/Music/AstralDiscoveryRetake"), ModContent.ItemType<CometMusicBox>(), ModContent.TileType<Tiles.MusicBox.CometMusicBox>());
         }
 
         public override void SetDefaults()

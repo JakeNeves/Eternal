@@ -1,17 +1,18 @@
-﻿using Eternal.Common.Systems;
+﻿using Eternal.Common.Misc;
+using Eternal.Common.Systems;
 using Eternal.Content.Items.Accessories;
+using Eternal.Content.Items.Materials;
+using Eternal.Content.Items.Weapons.Magic;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
-using Eternal.Common.Misc;
-using Microsoft.Xna.Framework.Graphics;
-using Eternal.Content.Items.Weapons.Magic;
-using Terraria.Audio;
 
 namespace Eternal.Content.NPCs.Miniboss
 {
@@ -112,6 +113,8 @@ namespace Eternal.Content.NPCs.Miniboss
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ShadeMatter>(), 1, 2, 6));
+
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ShadeLocket>(), 24));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<DarkArts>(), 8));
         }

@@ -15,8 +15,6 @@ namespace Eternal.Content.NPCs.Carrion
 {
     public class FesteringCarcass : ModNPC
     {
-        public override bool IsLoadingEnabled(Mod mod) => ServerConfig.instance.update15;
-
         public override void SetDefaults()
         {
             NPC.width = 24;
@@ -34,7 +32,7 @@ namespace Eternal.Content.NPCs.Carrion
                 Volume = 0.4f,
                 Pitch = -0.5f
             };
-            SpawnModBiomes = [ ModContent.GetInstance<Biomes.CarrionSurface>().Type ];
+            SpawnModBiomes = [ModContent.GetInstance<Biomes.CarrionSurface>().Type, ModContent.GetInstance<Biomes.UndergroundCarrion>().Type];
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -60,6 +58,14 @@ namespace Eternal.Content.NPCs.Carrion
                 Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-2, 2), Main.rand.Next(-2, 2)), gore1);
 
             Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-2, 2), Main.rand.Next(-2, 2)), gore2);
+
+            if (Main.rand.NextBool(2) && Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                for (int i = 0; i < Main.rand.Next(1, 6); i++)
+                {
+                    NPC.NewNPC(entitySource, (int)NPC.position.X, (int)NPC.position.Y, NPCID.Maggot);
+                }
+            }
         }
 
         public override void HitEffect(NPC.HitInfo hit)
@@ -73,9 +79,11 @@ namespace Eternal.Content.NPCs.Carrion
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if (ModContent.GetInstance<ZoneSystem>().zoneCarrion)
-                return SpawnCondition.Overworld.Chance * 1.5f;
-	        else
-		        return SpawnCondition.Overworld.Chance * 0f;
+                return SpawnCondition.OverworldDay.Chance * 0.5f + SpawnCondition.Underground.Chance * 0f;
+            else if (ModContent.GetInstance<ZoneSystem>().zoneUndergroundCarrion)
+                return SpawnCondition.OverworldDay.Chance * 0f + SpawnCondition.Underground.Chance * 0.5f;
+            else
+                return SpawnCondition.OverworldDay.Chance * 0f + SpawnCondition.Underground.Chance * 0f;
         }
 
         public override void AI()

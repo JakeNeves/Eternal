@@ -844,6 +844,11 @@ Mods: {
 				DisplayName: Treasure Bag (Niades)
 			}
 
+			TheChimeraBag: {
+				Tooltip: <right> to Open
+				DisplayName: Treasure Bag (The Chimera)
+			}
+
 			UltimusPlateMail: {
 				Tooltip: +200 max life
 				DisplayName: Ultimus Plate Mail
@@ -1154,19 +1159,19 @@ Mods: {
 				DisplayName: Black Candle
 			}
 
-			FiercePunisherEmblem: {
+			DeceptionalSealofOnslaught: {
 				Tooltip: 45% increased damage
-				DisplayName: Fierce Punisher Emblem
+				DisplayName: Deceptional Seal of Onslaught
 			}
 
-			FierceDruidEmblem: {
+			DeceptionalSealofVis: {
 				Tooltip: 45% increased radiant damage
-				DisplayName: Fierce Druid Emblem
+				DisplayName: Deceptional Seal of Vis
 			}
 
-			FierceDominatorEmblem: {
+			DeceptionalSealofSlaughter: {
 				Tooltip: 45% increased melee damage
-				DisplayName: Fierce Dominator Emblem
+				DisplayName: Deceptional Seal of Slaughter
 			}
 
 			FierceDeityEmblem: {
@@ -1181,19 +1186,19 @@ Mods: {
 				DisplayName: Fierce Deity Emblem
 			}
 
-			FierceCommanderEmblem: {
+			DeceptionalSealofDescent: {
 				Tooltip: 45% increased summon damage
-				DisplayName: Fierce Commander Emblem
+				DisplayName: Deceptional Seal of Descent
 			}
 
-			FierceArchmageEmblem: {
+			DeceptionalSealofDarkArts: {
 				Tooltip: 45% increased magic damage
-				DisplayName: Fierce Archmage Emblem
+				DisplayName: Deceptional Seal of Dark Arts
 			}
 
-			FierceArcherEmblem: {
+			DeceptionalSealofImpact: {
 				Tooltip: 45% increased ranged damage
-				DisplayName: Fierce Archer Emblem
+				DisplayName: Deceptional Seal of Impact
 			}
 
 			GiftofTheSwordGod: {
@@ -1302,7 +1307,20 @@ Mods: {
 
 			SuspiciousLookingDroplet: {
 				DisplayName: Suspicious Looking Droplet
-				Tooltip: Summons the Carminite Amalgamation
+				Tooltip:
+					'''
+					Summons a Carminite Amalgamation
+					'It's suspicious...'
+					'''
+			}
+
+			CursedDroplet: {
+				DisplayName: Cursed Droplet
+				Tooltip:
+					'''
+					Summons a stronger Carminite Amalgamation
+					'It's cursed...'
+					'''
 			}
 
 			ArkaniumHamaxe: {
@@ -2189,7 +2207,22 @@ Mods: {
 
 			CometMusicBox: {
 				DisplayName: Music Box (Fallen Comet)
+				Tooltip: JakeTEM - Astral Discovery Retake
+			}
+
+			CometNightMusicBox: {
+				DisplayName: Music Box (Fallen Comet)
+				Tooltip: JakeTEM - Astral Discovery Retake (Night)
+			}
+
+			AncientCometMusicBox: {
+				DisplayName: Ancient Music Box (Fallen Comet)
 				Tooltip: JakeTEM - Astral Discovery
+			}
+
+			ForgottenCometMusicBox: {
+				DisplayName: Forgotten Music Box (Fallen Comet)
+				Tooltip: JakeTEM - Shattered Star
 			}
 
 			AoIMusicBox: {
@@ -2277,6 +2310,16 @@ Mods: {
 				Tooltip: JakeTEM - Infamy
 			}
 
+			CarrionMusicBox: {
+				DisplayName: Music Box (Carrion)
+				Tooltip: JakeTEM - Necrotic Fissure
+			}
+
+			TheChimeraMusicBox: {
+				DisplayName: Music Box (The Chimera)
+				Tooltip: JakeTEM - Amalgamated Horror
+			}
+
 			ArkiumManbow: {
 				DisplayName: Arkium Manbow
 				Tooltip:
@@ -2298,6 +2341,11 @@ Mods: {
 			OcculticMatter: {
 				DisplayName: Occultic Matter
 				Tooltip: "'Psycic energy pulses deep within...'"
+			}
+
+			ShadeMatter: {
+				DisplayName: Shade Matter
+				Tooltip: "'The essence of deception...'"
 			}
 
 			PsyblightEssence: {
@@ -2869,6 +2917,78 @@ Mods: {
 					fire projectiles in four directions
 					'''
 			}
+
+			CarrionGrassSeeds: {
+				DisplayName: Carrion Grass Seeds
+				Tooltip: Can be placed
+			}
+
+			Rottenwood: {
+				DisplayName: Rottenwood
+				Tooltip: ""
+			}
+
+			RottensandBlock: {
+				DisplayName: Rottensand Block
+				Tooltip: ""
+			}
+
+			RottenstoneWall: {
+				DisplayName: Rottenstone Wall
+				Tooltip: ""
+			}
+
+			CarrionGreenSolution: {
+				DisplayName: Carrion Green Solution
+				Tooltip:
+					'''
+					Use by the Clentaminator
+					Spreads the Carrion
+					'''
+			}
+
+			RottenMeat: {
+				DisplayName: Rotten Meat
+				Tooltip:
+					'''
+					Summons the Chimera
+					'I wouldn't eat that if I were you...'
+					'''
+			}
+
+			GasBag: {
+				DisplayName: Gas Bag
+				Tooltip:
+					'''
+					Occasionally releases a poisonous Gas Cloud into the air
+					Getting hit causes multiple Gas Clouds to be released by the player
+					'''
+			}
+
+			RottenFangspear: {
+				DisplayName: Rotten Fangspear
+				Tooltip: <right> to throw
+			}
+
+			RottenMeathook: {
+				DisplayName: Rotten Meathook
+				Tooltip: ""
+			}
+
+			Necrobow: {
+				DisplayName: Necrobow
+				Tooltip: ""
+			}
+
+			RottenStave: {
+				DisplayName: Rotten Stave
+				Tooltip: ""
+			}
+
+			UndergroundCarrionMusicBox: {
+				DisplayName: Underground Carrion Music Box
+				Tooltip: ""
+			}
 		}
 
 		Buffs: {
@@ -3073,6 +3193,11 @@ Mods: {
 				DisplayName: Mausoleum
 				TownNPCDialogueName: this cursed place
 			}
+
+			CarrionDesertSurface: {
+				DisplayName: Carrion Desert Surface
+				TownNPCDialogueName: the Carrion Desert Surface
+			}
 		}
 
 		NPCs: {
@@ -3088,7 +3213,12 @@ Mods: {
 
 			CarminiteAmalgamation: {
 				DisplayName: Carminite Amalgamation
-				BossChecklistIntegration.SpawnInfo: Spawn by using a [i:Eternal/SuspiciousLookingDroplet].
+				BossChecklistIntegration.SpawnInfo: Spawn by using a [i:Eternal/SuspiciousLookingDroplet]. Can also spawn by using a [i:Eternal/CursedDroplet] in either the Corruption or the Crimson. (Note: The one spawned with the [i:Eternal/CursedDroplet] is a stronger version of the boss, intended for hardmode.)
+			}
+
+			CarminiteAmalgamation2: {
+				DisplayName: Carminite Amalgamation
+				BossChecklistIntegration.SpawnInfo: Spawn by using a [i:Eternal/CursedDroplet] in the Corruption/Crimson.
 			}
 
 			DegradedCarminiteAmalgamation.DisplayName: Carminite Amalgamation
@@ -3380,6 +3510,19 @@ Mods: {
 			RottenMind.DisplayName: Rotten Mind
 			BenightedWisp.DisplayName: Benighted Wisp
 			Level2Ghoul.DisplayName: Level 2 Goul
+			CarminiteParasite.DisplayName: Carminite Parasite
+			CarminiteToothBall.DisplayName: Carminite Tooth Ball
+			DeadCarminiteAmalgamation.DisplayName: Carminite Amalgamation
+
+			TheChimera: {
+				DisplayName: The Chimera
+				BossChecklistIntegration.SpawnInfo: Spawn by using [i:Eternal/RottenMeat] in the Carrion.
+			}
+
+			TheFammish.DisplayName: The Fammish
+			TheHeap.DisplayName: The Heap
+			TheHive.DisplayName: The Hive
+			TomaBall.DisplayName: Toma Ball
 		}
 
 		Prefixes: {
@@ -3576,6 +3719,21 @@ Mods: {
 			BladeofEternalDivinityProjectile2.DisplayName: Bladeof Eternal Divinity
 			BenightedWispProjectile.DisplayName: Benighted Wisp Projectile
 			UmbralArcanisProjectile.DisplayName: Umbral Arcanis Projectile
+			CarminiteSludge2.DisplayName: Carminite Sludge2
+			CarrionGreenSolutionProjectile.DisplayName: Carrion Green Solution Projectile
+			RottensandBallFallingProjectile.DisplayName: Rottensand Ball Falling Projectile
+			RottensandBallGunProjectile.DisplayName: Rottensand Ball Gun Projectile
+			Droplet2.DisplayName: Droplet
+			BloodClot.DisplayName: Blood Clot
+			BallofPussHostile.DisplayName: Ball of Puss
+			GasCloud.DisplayName: Gas Cloud
+			GasCloudFriendly.DisplayName: Gas Cloud
+			RottenFangspearProjectile.DisplayName: Rotten Fangspear
+			RottenFangspearProjectileThrown.DisplayName: Rotten Fangspear
+			PussBurst.DisplayName: Puss Burst
+			BasaltKatarProjectile.DisplayName: Basalt Katar
+			RottenMindSentry.DisplayName: Rotten Mind
+			RottenMindTomaBall.DisplayName: Toma Ball
 		}
 
 		WorldGen: {
@@ -3680,17 +3838,6 @@ Mods: {
 						Tooltip:
 							'''
 							Makes Hell Mode a little more punishing
-							(Default: [c/008080:OFF])
-							'''
-					}
-
-					update15: {
-						DisplayName: 1.5 Update Content
-						Tooltip:
-							'''
-							Adds content from the upcoming 1.5, Advent of Epiphany+ update
-							Content includes:
-							* The Carrion
 							(Default: [c/008080:OFF])
 							'''
 					}

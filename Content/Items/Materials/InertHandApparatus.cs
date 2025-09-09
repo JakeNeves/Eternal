@@ -16,7 +16,7 @@ namespace Eternal.Content.Items.Materials
         public override void SetDefaults()
         {
             Item.width = 22;
-            Item.height = 40;
+            Item.height = 28;
             Item.rare = ItemRarityID.Gray;
             Item.value = Item.sellPrice(gold: 60);
         }

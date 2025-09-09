@@ -31,7 +31,7 @@ namespace Eternal.Content.Items.Weapons.Melee
             Item.useAnimation = 24;
             Item.useTime = 24;
             Item.shoot = ModContent.ProjectileType<EdgeofTheInfernoProjectile>();
-            Item.shootSpeed = 30f;
+            Item.shootSpeed = 15f;
             Item.UseSound = SoundID.Item1;
             Item.rare = ModContent.RarityType<Magenta>();
             Item.autoReuse = true;

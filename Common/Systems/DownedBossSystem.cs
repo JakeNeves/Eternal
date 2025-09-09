@@ -17,7 +17,8 @@ namespace Eternal.Common.Systems
 		public static bool downedSubzeroElemental = false;
 		public static bool downedDuneworm = false;
 		public static bool downedNiades = false;
-		public static bool downedGlare = false;
+        public static bool downedChimera = false;
+        public static bool downedGlare = false;
 
 		// post-moon lord bosses
 		public static bool downedCosmicApparition = false;
@@ -38,6 +39,7 @@ namespace Eternal.Common.Systems
 			downedSubzeroElemental = false;
 			downedDuneworm = false;
 			downedNiades = false;
+			downedChimera = false;
 			downedGlare = false;
 
 			// post-moon lord bosses
@@ -60,6 +62,7 @@ namespace Eternal.Common.Systems
 			downedSubzeroElemental = false;
 			downedDuneworm = false;
 			downedNiades = false;
+			downedChimera = false;
 			downedGlare = false;
 
 			// post-moon lord bosses
@@ -102,6 +105,10 @@ namespace Eternal.Common.Systems
             {
                 tag["downedNiades"] = true;
             }
+            if (downedChimera)
+            {
+                tag["downedChimera"] = true;
+            }
             if (downedGlare)
             {
                 tag["downedGlare"] = true;
@@ -138,6 +145,7 @@ namespace Eternal.Common.Systems
             downedSubzeroElemental = tag.ContainsKey("downedSubzeroElemental");
             downedDuneworm = tag.ContainsKey("downedDuneworm");
             downedNiades = tag.ContainsKey("downedNiades");
+            downedChimera = tag.ContainsKey("downedChimera");
             downedGlare = tag.ContainsKey("downedGlare");
 
             // post-moon lord bosses
@@ -160,7 +168,8 @@ namespace Eternal.Common.Systems
             flags[4] = downedSubzeroElemental;
             flags[5] = downedDuneworm;
             flags[6] = downedNiades;
-            flags[7] = downedGlare;
+            flags[7] = downedChimera;
+            flags[8] = downedGlare;
 
             // post-moon lord bosses
             flags[9] = downedCosmicApparition;
@@ -184,7 +193,8 @@ namespace Eternal.Common.Systems
             downedSubzeroElemental = flags[4];
             downedDuneworm = flags[5];
             downedNiades = flags[6];
-            downedGlare = flags[7];
+            downedChimera = flags[7];
+            downedGlare = flags[8];
 
             // post-moon lord bosses
             downedCosmicApparition = flags[9];

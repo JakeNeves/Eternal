@@ -34,6 +34,9 @@ namespace Eternal
                 Filters.Scene["Eternal:PurifiedBeneath"] = new Filter(new ScreenShaderData("FilterMiniTower").UseColor(1f, 1f, 1f).UseOpacity(0.75f), EffectPriority.High);
                 SkyManager.Instance["Eternal:PurifiedBeneath"] = new PurifiedBeneathSky();
 
+                Filters.Scene["Eternal:Carrion"] = new Filter(new ScreenShaderData("FilterMiniTower").UseColor(0.53f, 0.71f, 0.53f).UseOpacity(0.3f), EffectPriority.High);
+                SkyManager.Instance["Eternal:Carrion"] = new CarrionSky();
+
                 Filters.Scene["Eternal:RiftUnderworldEffect"] = new Filter((new BlizzardShaderData("FilterBlizzardForeground")).UseColor(0.5f, 0.0f, 0.5f).UseSecondaryColor(0.25f, 0.0f, 0.25f).UseImage("Images/Misc/Perlin", 0, null).UseOpacity(0.030f).UseImageScale(new Vector2(3f, 0.75f), 0), EffectPriority.High);
                 Filters.Scene["Eternal:RiftUnderworldEffect2"] = new Filter((new SandstormShaderData("FilterSandstormForeground")).UseColor(0.5f, 0.0f, 0.5f).UseSecondaryColor(0.25f, 0.0f, 0.25f).UseImage("Images/Misc/noise", 0, null).UseOpacity(0.15f).UseImageScale(new Vector2(-3f, -0.75f), 0), EffectPriority.High);
 

@@ -11,8 +11,6 @@ namespace Eternal.Content.Items.Materials
 {
     public class PolypChunk : ModItem
     {
-        public override bool IsLoadingEnabled(Mod mod) => ServerConfig.instance.update15;
-
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
@@ -22,7 +20,7 @@ namespace Eternal.Content.Items.Materials
         {
             Item.width = 22;
             Item.height = 22;
-            Item.rare = ItemRarityID.Pink;
+            Item.rare = ItemRarityID.Lime;
             Item.value = Item.sellPrice(copper: 20);
             Item.maxStack = 9999;
         }

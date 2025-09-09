@@ -18,8 +18,6 @@ namespace Eternal.Content.NPCs.Carrion
 {
 	internal class GiantLeechHead : GiantLeech
     {
-        public override bool IsLoadingEnabled(Mod mod) => ServerConfig.instance.update15;
-
         public override void SetStaticDefaults()
 		{
             var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers()
@@ -108,8 +106,6 @@ namespace Eternal.Content.NPCs.Carrion
 
 	internal class GiantLeechBody : GiantLeech
     {
-        public override bool IsLoadingEnabled(Mod mod) => ServerConfig.instance.update15;
-
         public override void SetStaticDefaults()
 		{
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
@@ -147,8 +143,6 @@ namespace Eternal.Content.NPCs.Carrion
 
 	internal class GiantLeechTail : GiantLeech
     {
-        public override bool IsLoadingEnabled(Mod mod) => ServerConfig.instance.update15;
-
         public override void SetStaticDefaults()
 		{
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()

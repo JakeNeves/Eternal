@@ -1,3 +1,9 @@
+C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\obj\Debug\net8.0\Eternal.csproj.AssemblyReference.cache
+C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\obj\Debug\net8.0\Eternal.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\obj\Debug\net8.0\Eternal.AssemblyInfoInputs.cache
+C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\obj\Debug\net8.0\Eternal.AssemblyInfo.cs
+C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\obj\Debug\net8.0\Eternal.csproj.CoreCompileInputs.cache
+C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\obj\Debug\net8.0\Eternal.pdb
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Debug\net8.0\Eternal.deps.json
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Debug\net8.0\Eternal.dll
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Debug\net8.0\Eternal.pdb
@@ -223,13 +229,7 @@ C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Deb
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
-C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\obj\Debug\net8.0\Eternal.csproj.AssemblyReference.cache
-C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\obj\Debug\net8.0\Eternal.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\obj\Debug\net8.0\Eternal.AssemblyInfoInputs.cache
-C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\obj\Debug\net8.0\Eternal.AssemblyInfo.cs
-C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\obj\Debug\net8.0\Eternal.csproj.CoreCompileInputs.cache
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\obj\Debug\net8.0\Eternal.csproj.Up2Date
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\obj\Debug\net8.0\Eternal.dll
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\obj\Debug\net8.0\refint\Eternal.dll
-C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\obj\Debug\net8.0\Eternal.pdb
 C:\Users\jaken\Documents\My Games\Terraria\tModLoader\ModSources\Eternal\obj\Debug\net8.0\ref\Eternal.dll

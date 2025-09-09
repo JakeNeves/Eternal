@@ -17,8 +17,6 @@ namespace Eternal.Content.NPCs.Carrion
 {
     public class Clot : ModNPC
     {
-        public override bool IsLoadingEnabled(Mod mod) => ServerConfig.instance.update15;
-
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.BlueSlime];

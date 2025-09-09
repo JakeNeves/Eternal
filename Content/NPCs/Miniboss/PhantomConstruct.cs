@@ -298,6 +298,7 @@ namespace Eternal.Content.NPCs.Miniboss
             npcLoot.Add(ItemDropRule.ByCondition(postAoIDrop, ModContent.ItemType<RawOminaquadite>(), 2, 6, 12));
             npcLoot.Add(ItemDropRule.ByCondition(lifeMote, ModContent.ItemType<LifeMote>(), 6));
 
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<InertHandApparatus>(), 12));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AspectofTheShiftedWarlock>(), 1));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RiftedBlade>(), 2));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Shiftstorm>(), 3));

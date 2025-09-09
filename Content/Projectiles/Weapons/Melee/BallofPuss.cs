@@ -25,7 +25,6 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
             Projectile.ignoreWater = false;
             Projectile.tileCollide = true;
             Projectile.DamageType = DamageClass.Melee;
-            Projectile.extraUpdates = 2;
         }
 
         public override void AI()

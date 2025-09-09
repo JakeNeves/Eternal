@@ -9,8 +9,6 @@ namespace Eternal.Content.Tiles
 {
     public class RottingFleshBlock : ModTile
     {
-        public override bool IsLoadingEnabled(Mod mod) => ServerConfig.instance.update15;
-
         public override void SetStaticDefaults()
         {
             Main.tileSolid[Type] = true;

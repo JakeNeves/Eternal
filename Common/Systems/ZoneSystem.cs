@@ -8,6 +8,7 @@ namespace Eternal.Common.Systems
         public bool zoneBeneath = false;
         public bool zonePurifiedBeneath = false;
         public bool zoneCarrion = false;
+        public bool zoneUndergroundCarrion = false;
         public bool zoneShrine = false;
         public bool zoneGehenna = false;
         public bool zoneMausoleum = false;
@@ -18,6 +19,7 @@ namespace Eternal.Common.Systems
             zoneBeneath = false;
             zonePurifiedBeneath = false;
             zoneCarrion = false;
+            zoneUndergroundCarrion = false;
             zoneShrine = false;
             zoneGehenna = false;
             zoneMausoleum = false;

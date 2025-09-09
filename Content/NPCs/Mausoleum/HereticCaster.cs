@@ -61,10 +61,10 @@ namespace Eternal.Content.NPCs.Mausoleum
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (!ModContent.GetInstance<ZoneSystem>().zoneMausoleum && Main.hardMode)
-                return SpawnCondition.Cavern.Chance * 0f;
-            else
+            if (ModContent.GetInstance<ZoneSystem>().zoneMausoleum && Main.hardMode)
                 return SpawnCondition.Cavern.Chance * 0.03f;
+            else
+                return SpawnCondition.Cavern.Chance * 0f;
         }
 
         public override void AI()

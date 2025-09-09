@@ -52,10 +52,10 @@ namespace Eternal.Content.NPCs.Mausoleum
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (!DownedBossSystem.downedIncinerius && !ModContent.GetInstance<ZoneSystem>().zoneMausoleum)
-                return SpawnCondition.Cavern.Chance * 0f;
-            else
+            if (DownedBossSystem.downedIncinerius && ModContent.GetInstance<ZoneSystem>().zoneMausoleum)
                 return SpawnCondition.Cavern.Chance * 0.5f;
+            else
+                return SpawnCondition.Cavern.Chance * 0f;
         }
 
         public override void HitEffect(NPC.HitInfo hit)

@@ -11,7 +11,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 16;
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 8;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }
 
@@ -21,7 +21,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
             Projectile.height = 54;
             Projectile.friendly = true;
             Projectile.ignoreWater = true;
-            Projectile.penetrate = -1;
+            Projectile.penetrate = 1;
             Projectile.timeLeft = 200;
             Projectile.alpha = 0;
             Projectile.DamageType = DamageClass.Melee;

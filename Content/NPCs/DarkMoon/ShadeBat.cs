@@ -2,6 +2,7 @@
 using Eternal.Common.Systems;
 using Eternal.Content.Dusts;
 using Eternal.Content.Items.Accessories;
+using Eternal.Content.Items.Materials;
 using Eternal.Content.Projectiles.Enemy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -89,6 +90,8 @@ namespace Eternal.Content.NPCs.DarkMoon
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ShadeMatter>(), 1, 1, 4));
+
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ShadeLocket>(), 36));
         }
 

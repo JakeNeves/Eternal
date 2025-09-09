@@ -19,8 +19,6 @@ namespace Eternal.Content.NPCs.Carrion
     {
         int expTimer = 0;
 
-        public override bool IsLoadingEnabled(Mod mod) => ServerConfig.instance.update15;
-
         ref float AttackTimer => ref NPC.ai[1];
 
         public override void SetStaticDefaults()
@@ -49,6 +47,7 @@ namespace Eternal.Content.NPCs.Carrion
             NPC.HitSound = SoundID.NPCDeath22;
             NPC.DeathSound = SoundID.NPCDeath12;
             NPC.rarity = 4;
+            SpawnModBiomes = [ModContent.GetInstance<Biomes.CarrionSurface>().Type];
         }
 
         public override void OnKill()
@@ -86,13 +85,13 @@ namespace Eternal.Content.NPCs.Carrion
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<NecroticTissue>(), 1, 2, 6));
         }
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        /*public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if (ModContent.GetInstance<ZoneSystem>().zoneCarrion)
                 return SpawnCondition.Overworld.Chance * 0.02f;
             else
                 return SpawnCondition.Overworld.Chance * 0f;
-        }
+        }*/
 
         public override bool CheckDead()
         {

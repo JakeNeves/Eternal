@@ -79,6 +79,8 @@ namespace Eternal.Content.NPCs.Surface
             NPC.TargetClosest(true);
             NPC.spriteDirection = NPC.direction;
 
+            NPC.rotation = NPC.velocity.ToRotation() + MathHelper.ToRadians(90f);
+
             attackTimer++;
             Attack();
         }

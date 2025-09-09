@@ -7,8 +7,6 @@ namespace Eternal.Content.Items.Placeable
 {
     public class RottenstoneBlock : ModItem
     {
-        public override bool IsLoadingEnabled(Mod mod) => ServerConfig.instance.update15;
-
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;

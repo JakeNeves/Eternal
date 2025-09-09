@@ -17,7 +17,7 @@ namespace Eternal.Content.Items.Accessories
         public override void SetDefaults()
         {
             Item.width = 22;
-            Item.height = 32;
+            Item.height = 28;
             Item.accessory = true;
             Item.value = Item.sellPrice(gold: 60);
             Item.rare = ModContent.RarityType<Turquoise>();
