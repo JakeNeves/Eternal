@@ -3,6 +3,7 @@ using Eternal.Content.Rarities;
 using Eternal.Content.Tiles.CraftingStations;
 using Terraria;
 using Terraria.GameContent.Creative;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Summon
@@ -30,6 +31,11 @@ namespace Eternal.Content.Items.Summon
                 .AddIngredient(ModContent.ItemType<StarpowerCrystal>(), 20)
                 .AddTile(ModContent.TileType<RotaryHearthForge>())
                 .Register();
+        }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.BossSpawners;
         }
     }
 }

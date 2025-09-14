@@ -1,4 +1,5 @@
 ﻿using Eternal.Common.Systems;
+using Eternal.Content.Dusts;
 using Eternal.Content.Items.Accessories;
 using Eternal.Content.Items.Accessories.Expert;
 using Eternal.Content.Items.Ammo;
@@ -7,6 +8,7 @@ using Eternal.Content.Projectiles.Armor;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
+using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -36,6 +38,10 @@ namespace Eternal.Common.Players
         public static bool hasTheEternalCursor = false;
         public static bool hasJakesCursor = false;
 
+        // wings
+        public static bool CosmicStarstryderTreads = false;
+        public static bool RoyalKeepersTreads = false;
+
         public override void ResetEffects()
         {
             // hell mode
@@ -59,6 +65,10 @@ namespace Eternal.Common.Players
             hasSpiritArkCursor = false;
             hasTheEternalCursor = false;
             hasJakesCursor = false;
+
+            // wings
+            CosmicStarstryderTreads = false;
+            RoyalKeepersTreads = false;
         }
 
         public override void OnHurt(Player.HurtInfo info)
@@ -170,6 +180,24 @@ namespace Eternal.Common.Players
                     Player.buffImmune[BuffID.Blackout] = true;
                     Player.buffImmune[BuffID.Darkness] = true;
                 }
+
+            if (CosmicStarstryderTreads)
+            {
+                Dust dust;
+                Vector2 position = Main.LocalPlayer.Center;
+                dust = Main.dust[Dust.NewDust(Player.position, (int)Player.width, (int)Player.height, DustID.PurpleTorch, 0f, 0f, 0, new Color(255, 255, 255), 0.75f)];
+                dust.fadeIn = 0.4f;
+                dust.noGravity = true;
+            }
+
+            if (RoyalKeepersTreads)
+            {
+                Dust dust;
+                Vector2 position = Main.LocalPlayer.Center;
+                dust = Main.dust[Dust.NewDust(Player.position, (int)Player.width, (int)Player.height, ModContent.DustType<PsycheFire>(), 0f, 0f, 0, new Color(255, 255, 255), 0.75f)];
+                dust.fadeIn = 0.4f;
+                dust.noGravity = true;
+            }
 
             if (hasVoidCursor)
             {

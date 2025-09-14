@@ -39,5 +39,10 @@ namespace Eternal.Content.Items.Ammo
                 .AddIngredient(ModContent.ItemType<CometiteBar>())
                 .Register();
         }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.Ammo;
+        }
     }
 }

@@ -43,5 +43,10 @@ namespace Eternal.Content.Items.Summon
                 .AddIngredient(ModContent.ItemType<WeatheredPlating>(), 3)
                 .Register();
         }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.BossSpawners;
+        }
     }
 }

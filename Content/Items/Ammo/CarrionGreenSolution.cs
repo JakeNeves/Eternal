@@ -10,6 +10,7 @@ namespace Eternal.Content.Items.Ammo
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            ItemID.Sets.SortingPriorityTerraforming[Type] = 101;
         }
 
         public override void SetDefaults()

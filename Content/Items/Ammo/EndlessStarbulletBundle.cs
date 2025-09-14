@@ -38,5 +38,10 @@ namespace Eternal.Content.Items.Ammo
                 .AddIngredient(ModContent.ItemType<Starbullet>(), 3996)
                 .Register();
         }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.Ammo;
+        }
     }
 }

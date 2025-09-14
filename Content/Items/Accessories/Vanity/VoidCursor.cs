@@ -40,5 +40,10 @@ namespace Eternal.Content.Items.Accessories.Vanity
                 .AddTile(ModContent.TileType<Starforge>())
                 .Register();
         }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.Accessories;
+        }
     }
 }

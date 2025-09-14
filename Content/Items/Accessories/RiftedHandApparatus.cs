@@ -3,6 +3,7 @@ using Eternal.Content.Rarities;
 using Eternal.Content.Tiles.CraftingStations;
 using Terraria;
 using Terraria.GameContent.Creative;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Accessories
@@ -39,6 +40,11 @@ namespace Eternal.Content.Items.Accessories
                 .AddIngredient(ModContent.ItemType<WeaponsGradeNaquadahAlloy>(), 20)
                 .AddIngredient(ModContent.ItemType<ShiftblightAmethyst>(), 10)
                 .Register();
+        }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.Accessories;
         }
     }
 }

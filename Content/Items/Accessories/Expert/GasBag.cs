@@ -27,5 +27,10 @@ namespace Eternal.Content.Items.Accessories.Expert
         {
             AccessorySystem.GasBag = true;
         }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.Accessories;
+        }
     }
 }

@@ -30,5 +30,10 @@ namespace Eternal.Content.Items.Accessories.Expert
 			if (!player.HasBuff(ModContent.BuffType<HolyMantleCooldown>()))
                 player.AddBuff(Item.buffType, 2);
         }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.Accessories;
+        }
     }
 }

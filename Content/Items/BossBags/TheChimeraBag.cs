@@ -45,5 +45,10 @@ namespace Eternal.Content.Items.BossBags
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<RottenMeathook>(), 2));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Necrobow>(), 3));
         }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.BossBags;
+        }
     }
 }

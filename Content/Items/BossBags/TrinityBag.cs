@@ -42,5 +42,10 @@ namespace Eternal.Content.Items.BossBags
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<BodyCrystalCluster>(), 1, 12, 20));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<SoulCrystalCluster>(), 1, 12, 20));
         }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.BossBags;
+        }
     }
 }

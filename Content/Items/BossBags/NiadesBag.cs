@@ -38,5 +38,10 @@ namespace Eternal.Content.Items.BossBags
 
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<SactothsConquest>(), 12));
         }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.BossBags;
+        }
     }
 }

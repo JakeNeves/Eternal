@@ -41,5 +41,10 @@ namespace Eternal.Content.Items.Ammo
                 .AddIngredient(ModContent.ItemType<GalaxianPlating>(), 12)
                 .Register();
         }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.Ammo;
+        }
     }
 }

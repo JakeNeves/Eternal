@@ -2,6 +2,7 @@
 using Eternal.Content.Rarities;
 using Terraria;
 using Terraria.GameContent.Creative;
+using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
@@ -30,6 +31,11 @@ namespace Eternal.Content.Items.Accessories.Vanity
         public override void UpdateVanity(Player player)
         {
             AccessorySystem.hasCursorofTheCosmos = true;
+        }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.Accessories;
         }
     }
 }

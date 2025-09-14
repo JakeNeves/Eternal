@@ -37,5 +37,10 @@ namespace Eternal.Content.Items.Ammo
                 .AddIngredient(ModContent.ItemType<BasaltShell>(), 3996)
                 .Register();
         }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.Ammo;
+        }
     }
 }

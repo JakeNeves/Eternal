@@ -170,13 +170,14 @@ namespace Eternal.Content.Projectiles.Misc
                 {
 
                     Tile topTile = Main.tile[x, treeTop];
-                    if (!topTile.HasTile)
+                    if (!topTile.HasTile || !TileID.Sets.CountsAsGemTree[topTile.TileType])
                         continue;
 
                     treeFrameX = topTile.TileFrameX / 22;
                     treeFrameY = topTile.TileFrameY / 22;
                     isTreeTrunk = (treeFrameX != 1 && treeFrameX != 2) || treeFrameY < 6;
 
+                    // We found our tree trunk center
                     if (isTreeTrunk)
                     {
                         treeCenterX = x;
@@ -185,7 +186,7 @@ namespace Eternal.Content.Projectiles.Misc
                 }
             }
 
-            while (treeTop >= 0 && Main.tile[treeCenterX, treeTop].HasTile)
+            while (treeTop >= 0 && Main.tile[treeCenterX, treeTop].HasTile && TileID.Sets.CountsAsGemTree[Main.tile[treeCenterX, treeTop].TileType])
                 treeTop--;
 
             for (int x = treeCenterX - 1; x < treeCenterX + 2; x++)
@@ -193,7 +194,7 @@ namespace Eternal.Content.Projectiles.Misc
                 for (int y = treeTop; y < treeBottom; y++)
                 {
                     Tile t = Main.tile[x, y];
-                    if (t.HasTile)
+                    if (t.HasTile && TileID.Sets.CountsAsGemTree[t.TileType])
                         t.TileType = TileID.Trees;
                 }
             }
@@ -201,8 +202,8 @@ namespace Eternal.Content.Projectiles.Misc
             for (int x = treeCenterX - 1; x < treeCenterX + 2; x++)
             {
                 Tile t = Main.tile[x, treeBottom];
-                if (t.HasTile && t.TileType == TileID.Grass)
-                    t.TileType = (ushort)GrassType;
+                if (t.HasTile && t.TileType == TileID.Stone)
+                    t.TileType = (ushort)StoneType;
             }
         }
     }

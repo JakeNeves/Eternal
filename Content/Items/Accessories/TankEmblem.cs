@@ -28,5 +28,10 @@ namespace Eternal.Content.Items.Accessories
         {
             player.statLifeMax2 += 15;
         }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.Accessories;
+        }
     }
 }

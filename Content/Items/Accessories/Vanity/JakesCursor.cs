@@ -30,5 +30,10 @@ namespace Eternal.Content.Items.Accessories.Vanity
         {
             AccessorySystem.hasJakesCursor = true;
         }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.Accessories;
+        }
     }
 }

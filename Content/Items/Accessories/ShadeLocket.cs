@@ -2,6 +2,7 @@
 using Eternal.Content.Rarities;
 using Terraria;
 using Terraria.GameContent.Creative;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Accessories
@@ -25,6 +26,11 @@ namespace Eternal.Content.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             AccessorySystem.ShadeLocket = true;
+        }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.Accessories;
         }
     }
 }

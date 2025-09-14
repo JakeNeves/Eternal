@@ -32,5 +32,10 @@ namespace Eternal.Content.Items.Accessories.Expert
         {
             AccessorySystem.GiftofTheSwordGod = true;
         }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.Accessories;
+        }
     }
 }

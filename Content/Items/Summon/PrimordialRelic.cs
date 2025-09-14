@@ -52,8 +52,6 @@ namespace Eternal.Content.Items.Summon
             return true;
         }
 
-
-
         public override void AddRecipes()
         {
             CreateRecipe()
@@ -65,6 +63,11 @@ namespace Eternal.Content.Items.Summon
                 .AddIngredient(ModContent.ItemType<NaquadahBar>(), 40)
                 .AddTile(ModContent.TileType<AncientFoundry>())
                 .Register();
+        }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.BossSpawners;
         }
     }
 }

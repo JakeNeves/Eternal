@@ -1,9 +1,10 @@
-﻿using Terraria;
-using Terraria.ModLoader;
+﻿using Eternal.Content.Items.Materials;
 using Eternal.Content.Rarities;
-using Eternal.Content.Items.Materials;
 using Eternal.Content.Tiles.CraftingStations;
+using Terraria;
 using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Accessories
 {
@@ -33,6 +34,11 @@ namespace Eternal.Content.Items.Accessories
                 .AddIngredient(ModContent.ItemType<NaquadahBar>(), 8)
                 .AddIngredient(ModContent.ItemType<WeatheredPlating>(), 16)
                 .Register();
+        }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.Accessories;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Eternal.Common.Systems;
+using Eternal.Content.Items.Placeable;
 using System;
 using Terraria;
 using Terraria.Graphics.Capture;
@@ -10,6 +11,7 @@ namespace Eternal.Content.Biomes
     {
         public override int Music => MusicLoader.GetMusicSlot(Mod, "Assets/Music/NecroventricHeap");
         public override CaptureBiome.TileColorStyle TileColorStyle => CaptureBiome.TileColorStyle.Corrupt;
+        public override int BiomeTorchItemType => ModContent.ItemType<CarrionTorch>();
 
         public override ModWaterStyle WaterStyle => ModContent.GetInstance<CarrionWaterStyle>();
         public override ModUndergroundBackgroundStyle UndergroundBackgroundStyle => ModContent.GetInstance<UndergroundCarrionBackgroundStyle>();

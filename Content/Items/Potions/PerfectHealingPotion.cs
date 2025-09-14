@@ -40,5 +40,10 @@ namespace Eternal.Content.Items.Potions
                 .AddTile(ModContent.TileType<AncientFoundry>())
                 .Register();
         }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.LifePotions;
+        }
     }
 }

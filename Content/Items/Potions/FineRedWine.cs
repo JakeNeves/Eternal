@@ -38,5 +38,10 @@ namespace Eternal.Content.Items.Potions
         {
             player.AddBuff(BuffID.Tipsy, 510);
         }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.BuffPotion;
+        }
     }
 }

@@ -40,6 +40,11 @@ namespace Eternal.Content.Items.Pets
 			{
 				player.AddBuff(Item.buffType, 3600);
 			}
-		}
-	}
+        }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.VanityPet;
+        }
+    }
 }

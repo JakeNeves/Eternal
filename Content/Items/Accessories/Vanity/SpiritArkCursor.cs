@@ -1,11 +1,12 @@
 ﻿using Eternal.Common.Players;
-using Eternal.Content.Rarities;
 using Eternal.Content.Items.Materials;
+using Eternal.Content.Rarities;
 using Eternal.Content.Tiles.CraftingStations;
 using Terraria;
 using Terraria.GameContent.Creative;
-using Terraria.ModLoader;
+using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Accessories.Vanity
 {
@@ -40,6 +41,11 @@ namespace Eternal.Content.Items.Accessories.Vanity
                 .AddIngredient(ModContent.ItemType<ArkiumQuartzPlating>())
                 .AddTile(ModContent.TileType<AncientFoundry>())
                 .Register();
+        }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.Accessories;
         }
     }
 }

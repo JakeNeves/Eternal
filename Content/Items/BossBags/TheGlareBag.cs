@@ -43,5 +43,10 @@ namespace Eternal.Content.Items.BossBags
 
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<UmbralArcanis>(), 12));
         }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.BossBags;
+        }
     }
 }

@@ -45,5 +45,10 @@ namespace Eternal.Content.Items.Summon
                 .Register();
         }
 
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.BossSpawners;
+        }
+
     }
 }

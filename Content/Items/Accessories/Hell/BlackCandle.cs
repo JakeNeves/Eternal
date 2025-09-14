@@ -45,5 +45,10 @@ namespace Eternal.Content.Items.Accessories.Hell
                 .AddIngredient(ItemID.Candle)
                 .Register();
         }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.Accessories;
+        }
     }
 }

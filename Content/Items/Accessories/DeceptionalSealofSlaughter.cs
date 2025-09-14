@@ -38,5 +38,10 @@ namespace Eternal.Content.Items.Accessories
                 .AddIngredient(ModContent.ItemType<ShadeMatter>(), 16)
                 .Register();
         }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.Accessories;
+        }
     }
 }

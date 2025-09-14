@@ -1110,11 +1110,12 @@ Mods: {
 					Counts as Wings
 					Allows flight and slow fall
 					Double tap a direction to dash
-					Allows the wearer to run at crazy speed!
+					Allows the wearer to run at ludicrous speed!
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed}
 					Provides mobility on ice
-					Lava Waders effects
+					Provides the ability walk on water, honey & lava
 					Master Ninja Gear effects
-					Immunity to lava
+					Grants {1} seconds of immunity to lava
 					'The Cosmic Emperor's Reward for finding such incredibly rare alloy'
 					'''
 				DisplayName: Royal Keepers' Treads
@@ -1231,11 +1232,13 @@ Mods: {
 					Counts as Wings
 					Allows flight and slow fall
 					Double tap a direction to dash
-					Allows the wearer to run at ludicrous speed!
+					Allows the wearer to run at extreme speed!
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed}
 					Provides mobility on ice
-					Lava Waders effects
+					Provides the ability walk on water, honey & lava
+					Grants immunity to to fire blocks
 					Master Ninja Gear effects
-					Immunity to lava
+					Grants {1} seconds of immunity to lava
 					'Ascendance beyond your comprehension!'
 					'''
 				DisplayName: Cosmic Starstryder Treads
@@ -2987,6 +2990,11 @@ Mods: {
 
 			UndergroundCarrionMusicBox: {
 				DisplayName: Underground Carrion Music Box
+				Tooltip: ""
+			}
+
+			CarrionTorch: {
+				DisplayName: Carrion Torch
 				Tooltip: ""
 			}
 		}

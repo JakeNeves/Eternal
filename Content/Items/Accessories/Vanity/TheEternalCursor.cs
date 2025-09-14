@@ -4,6 +4,7 @@ using Eternal.Content.Rarities;
 using Eternal.Content.Tiles.CraftingStations;
 using Terraria;
 using Terraria.GameContent.Creative;
+using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
@@ -40,6 +41,11 @@ namespace Eternal.Content.Items.Accessories.Vanity
                 .AddIngredient(ModContent.ItemType<CoreofExodus>())
                 .AddTile(ModContent.TileType<Nanoforge>())
                 .Register();
+        }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.Accessories;
         }
     }
 }

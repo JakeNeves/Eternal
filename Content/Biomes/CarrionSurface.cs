@@ -1,5 +1,6 @@
 ﻿using Eternal.Common.Configurations;
 using Eternal.Common.Systems;
+using Eternal.Content.Items.Placeable;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -12,6 +13,7 @@ namespace Eternal.Content.Biomes
     {
         public override int Music => MusicLoader.GetMusicSlot(Mod, "Assets/Music/NecroticFissure");
         public override CaptureBiome.TileColorStyle TileColorStyle => CaptureBiome.TileColorStyle.Corrupt;
+        public override int BiomeTorchItemType => ModContent.ItemType<CarrionTorch>();
 
         public override ModWaterStyle WaterStyle => ModContent.GetInstance<CarrionWaterStyle>();
         public override ModSurfaceBackgroundStyle SurfaceBackgroundStyle => ModContent.GetInstance<CarrionSurfaceBackgroundStyle>();

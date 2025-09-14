@@ -49,5 +49,10 @@ namespace Eternal.Content.Items.Accessories
                 .AddIngredient(ItemID.FireGauntlet)
                 .Register();
         }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.Accessories;
+        }
     }
 }

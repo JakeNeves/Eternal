@@ -37,5 +37,10 @@ namespace Eternal.Content.Items.Misc
         {
             player.AddBuff(BuffID.WellFed3, 57600);
         }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.Food;
+        }
     }
 }

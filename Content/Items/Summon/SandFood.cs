@@ -56,5 +56,10 @@ namespace Eternal.Content.Items.Summon
                 .AddTile(TileID.DemonAltar)
                 .Register();
         }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.BossSpawners;
+        }
     }
 }

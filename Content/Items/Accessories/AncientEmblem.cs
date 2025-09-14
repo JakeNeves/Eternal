@@ -35,5 +35,10 @@ namespace Eternal.Content.Items.Accessories
                 .AddIngredient(ItemID.Lens, 3)
                 .Register();
         }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.Accessories;
+        }
     }
 }

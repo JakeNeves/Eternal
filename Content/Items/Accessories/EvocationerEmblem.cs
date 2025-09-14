@@ -27,5 +27,10 @@ namespace Eternal.Content.Items.Accessories
         {
             player.GetDamage<Radiant>() *= 1.15f;
         }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.Accessories;
+        }
     }
 }

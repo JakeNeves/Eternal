@@ -48,5 +48,10 @@ namespace Eternal.Content.Items.BossBags
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<CarminiteRipperClaws>(), 3));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<CarminiteShortbow>(), 3));
         }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.BossBags;
+        }
     }
 }

@@ -42,5 +42,10 @@ namespace Eternal.Content.Items.BossBags
 
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<UnrefinedHeroSword>(), 10));
         }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.BossBags;
+        }
     }
 }

@@ -53,5 +53,10 @@ namespace Eternal.Content.Items.Accessories.Hell
                 .AddTile(ModContent.TileType<Starforge>())
                 .Register();
         }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.Accessories;
+        }
     }
 }

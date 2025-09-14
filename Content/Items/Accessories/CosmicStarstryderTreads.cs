@@ -1,4 +1,5 @@
-﻿using Eternal.Common.Systems;
+﻿using Eternal.Common.Players;
+using Eternal.Common.Systems;
 using Eternal.Content.Items.Materials;
 using Eternal.Content.Rarities;
 using Eternal.Content.Tiles.CraftingStations;
@@ -6,6 +7,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Accessories
@@ -13,6 +15,11 @@ namespace Eternal.Content.Items.Accessories
     [AutoloadEquip(EquipType.Wings)]
     public class CosmicStarstryderTreads : ModItem
     {
+        public static readonly int LavaImmunityTime = 15;
+        public static readonly int MoveSpeedBonus = 12;
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MoveSpeedBonus, LavaImmunityTime);
+
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -22,8 +29,8 @@ namespace Eternal.Content.Items.Accessories
 
         public override void SetDefaults()
         {
-            Item.width = 70;
-            Item.height = 46;
+            Item.width = 38;
+            Item.height = 26;
             Item.value = Item.sellPrice(platinum: 5);
             Item.rare = ModContent.RarityType<Teal>();
             Item.accessory = true;
@@ -58,9 +65,9 @@ namespace Eternal.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.accRunSpeed = 9f;
+            player.accRunSpeed = 8f;
             player.rocketBoots = player.vanityRocketBoots = ArmorIDs.RocketBoots.SpectreBoots;
-            player.moveSpeed += 0.20f;
+            player.moveSpeed += MoveSpeedBonus / 100f;
             player.iceSkate = true;
             player.desertBoots = true;
 
@@ -68,8 +75,9 @@ namespace Eternal.Content.Items.Accessories
             player.noFallDmg = true;
 
             player.waterWalk = true;
+            player.waterWalk2 = true;
             player.fireWalk = true;
-            player.lavaImmune = true;
+            player.lavaMax += LavaImmunityTime * 60;
 
             player.blackBelt = true;
             player.spikedBoots = 1;
@@ -77,8 +85,21 @@ namespace Eternal.Content.Items.Accessories
 
             player.wingTimeMax = 300;
 
-            player.GetModPlayer<DashSystem>().DashAccessoryEquipped = true;
+            player.buffImmune[BuffID.Burning] = true;
+            
+            if (!hideVisual)
+            {
+                player.CancelAllBootRunVisualEffects();
 
+                AccessorySystem.CosmicStarstryderTreads = true;
+            }
+        }
+
+        public override void UpdateVanity(Player player)
+        {
+            player.CancelAllBootRunVisualEffects();
+
+            AccessorySystem.CosmicStarstryderTreads = true;
         }
 
         public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising, ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)
@@ -106,6 +127,11 @@ namespace Eternal.Content.Items.Accessories
                 .AddIngredient(ModContent.ItemType<GalaxianPlating>(), 40)
                 .AddTile(ModContent.TileType<Starforge>())
                 .Register();
+        }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.Accessories;
         }
     }
 }

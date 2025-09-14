@@ -5,6 +5,7 @@ using Eternal.Content.Rarities;
 using Eternal.Content.Tiles.CraftingStations;
 using Eternal.Content.Items.Materials;
 using Terraria.Localization;
+using Terraria.ID;
 
 namespace Eternal.Content.Items.Accessories
 {
@@ -25,8 +26,8 @@ namespace Eternal.Content.Items.Accessories
 
         public override void SetDefaults()
         {
-            Item.width = 34;
-            Item.height = 38;
+            Item.width = 24;
+            Item.height = 30;
             Item.value = Item.sellPrice(gold: 13, silver: 70);
             Item.rare = ModContent.RarityType<Teal>();
             Item.accessory = true;
@@ -45,6 +46,11 @@ namespace Eternal.Content.Items.Accessories
                 .AddIngredient(ModContent.ItemType<FierceDeityEmblem>())
                 .AddIngredient(ModContent.ItemType<ApparitionalMatter>(), 16)
                 .Register();
+        }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.Accessories;
         }
     }
 }
