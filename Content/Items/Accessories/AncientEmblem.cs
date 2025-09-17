@@ -1,12 +1,16 @@
 ﻿using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Accessories
 {
     public class AncientEmblem : ModItem
     {
+        public static readonly int MeleeDamageBonus = 5;
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MeleeDamageBonus);
 
         public override void SetStaticDefaults()
         {
@@ -25,7 +29,7 @@ namespace Eternal.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Melee) += 0.05f;
+            player.GetDamage(DamageClass.Melee) += MeleeDamageBonus / 100f;
         }
 
         public override void AddRecipes()

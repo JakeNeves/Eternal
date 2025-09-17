@@ -9,7 +9,9 @@ namespace Eternal.Content.Items.Accessories
 {
     public class EvocationerEmblem : ModItem
     {
-        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("15% increased radiant damage");
+        public static readonly int RadiantDamageBonus = 15;
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(RadiantDamageBonus);
 
         public override void SetStaticDefaults()
         {
@@ -25,7 +27,7 @@ namespace Eternal.Content.Items.Accessories
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage<Radiant>() *= 1.15f;
+            player.GetDamage<Radiant>() *= RadiantDamageBonus / 100f;
         }
 
         public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)

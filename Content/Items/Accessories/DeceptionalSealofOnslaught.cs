@@ -11,7 +11,9 @@ namespace Eternal.Content.Items.Accessories
 {
     public class DeceptionalSealofOnslaught : ModItem
     {
-        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("45% increased damage");
+        public static readonly int DamageBonus = 30;
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageBonus);
 
         public override void SetStaticDefaults()
         {
@@ -27,7 +29,7 @@ namespace Eternal.Content.Items.Accessories
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Generic) *= 1.45f;
+            player.GetDamage(DamageClass.Generic) += DamageBonus / 100f;
         }
 
         public override void AddRecipes()

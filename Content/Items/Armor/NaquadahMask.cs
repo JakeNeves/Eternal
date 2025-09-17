@@ -14,11 +14,19 @@ namespace Eternal.Content.Items.Armor
     [AutoloadEquip(EquipType.Head)]
     public class NaquadahMask : ModItem
     {
-        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("20% increased melee damage");
+        public static readonly int MeleeDamageBonus = 20;
+        public static readonly int MeleeDamageSetBonus = 30;
+        public static readonly int MeleeSpeedBonus = 25;
+
+        public static LocalizedText SetBonusText { get; private set; }
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MeleeDamageBonus);
 
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
+            SetBonusText = this.GetLocalization("SetBonus").WithFormatArgs(MeleeDamageSetBonus, MeleeSpeedBonus);
         }
 
         public override void SetDefaults()
@@ -37,15 +45,10 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "30% increased melee damage and 25% increased melee speed" +
-                            "\nSome weapons receive special abilities" +
-                            "\nYou release spike bombs upon getting hit" +
-                            "\n[c/FCA5033:Rift Bonus]" +
-                            "\nImmunity to Rift Withering" +
-                            "\nProtection against the Rod of Distortion's unstability";
+            player.setBonus = SetBonusText.Value;
 
-            player.GetDamage(DamageClass.Melee) += 0.30f;
-            player.GetAttackSpeed(DamageClass.Melee) += 0.25f;
+            player.GetDamage(DamageClass.Melee) += MeleeDamageSetBonus / 100f;
+            player.GetAttackSpeed(DamageClass.Melee) += MeleeSpeedBonus / 100f;
 
             ArmorSystem.NaquadahArmor = true;
             ArmorSystem.NaquadahArmorMeleeBonus = true;
@@ -69,7 +72,7 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.GetDamage(DamageClass.Melee) += 0.20f;
+            player.GetDamage(DamageClass.Melee) += MeleeDamageBonus / 100f;
         }
 
         public override void AddRecipes()

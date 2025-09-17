@@ -9,11 +9,10 @@ namespace Eternal.Content.Items.Accessories
 {
     public class FierceDeityEmblem : ModItem
     {
-        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("20% increased damage" +
-                                                                            "\n10% critical strike chance" +
-                                                                            "\n[c/008060:Ancient Artifact]" +
-                                                                            "\nAn emblem empowered with a godly radiance" +
-                                                                            "\nLegends say this was used to empower the guardians of the dunes, aiding them in combat and allowing them to become reststant to any weakness they had");
+        public static readonly int DamageBonus = 20;
+        public static readonly int CritBonus = 10;
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageBonus, CritBonus);
 
         public override void SetStaticDefaults()
         {
@@ -31,8 +30,8 @@ namespace Eternal.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Generic) += 0.20f;
-            player.GetCritChance(DamageClass.Generic) += 0.10f;
+            player.GetDamage(DamageClass.Generic) +=  DamageBonus / 100f;
+            player.GetCritChance(DamageClass.Generic) += CritBonus / 100f;
         }
 
         public override void AddRecipes()

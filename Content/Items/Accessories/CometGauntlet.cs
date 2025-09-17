@@ -11,10 +11,10 @@ namespace Eternal.Content.Items.Accessories
 {
     public class CometGauntlet : ModItem
     {
-        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("35% increased melee damage" +
-                                                                            "\n17% increased melee speed" +
-                                                                            "\nEnables auto swing for melee weapons" +
-                                                                            "\n'The comets are now in the palm of your hand'");
+        public static readonly int MeleeDamageBonus = 30;
+        public static readonly int MeleeSpeedBonus = 20;
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MeleeDamageBonus, MeleeSpeedBonus);
 
         public override void SetStaticDefaults()
         {
@@ -34,8 +34,8 @@ namespace Eternal.Content.Items.Accessories
         {
             //EternalGlobalProjectile.cometGauntlet = true;
 
-            player.GetDamage(DamageClass.Melee) += 0.35f;
-            player.GetAttackSpeed(DamageClass.Melee) += 0.17f;
+            player.GetDamage(DamageClass.Melee) += MeleeDamageBonus / 100f;
+            player.GetAttackSpeed(DamageClass.Melee) += MeleeSpeedBonus / 100f;
             player.autoReuseGlove = true;
         }
 

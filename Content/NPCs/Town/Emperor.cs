@@ -7,6 +7,7 @@ using Eternal.Content.Items.Summon;
 using Eternal.Content.Items.Vanity;
 using Eternal.Content.Items.Weapons.Throwing;
 using Eternal.Content.Projectiles.Weapons.Ranged;
+using Eternal.Content.EmoteBubbles;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -14,6 +15,7 @@ using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.Personalities;
+using Terraria.GameContent.UI;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -395,6 +397,23 @@ namespace Eternal.Content.NPCs.Town
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Poutine>()));
+        }
+
+        public override int? PickEmote(Player closestPlayer, List<int> emoteList, WorldUIAnchor otherAnchor)
+        {
+            int type = ModContent.EmoteBubbleType<CosmicApparitionEmote>();
+
+            if (otherAnchor.entity is NPC { type: NPCID.Angler })
+            {
+                type = EmoteID.EmoteScowl;
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                emoteList.Add(type);
+            }
+
+            return base.PickEmote(closestPlayer, emoteList, otherAnchor);
         }
     }
 }

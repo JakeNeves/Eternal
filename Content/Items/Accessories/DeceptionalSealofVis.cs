@@ -12,7 +12,9 @@ namespace Eternal.Content.Items.Accessories
 {
     public class DeceptionalSealofVis : ModItem
     {
-        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("45% increased radiant damage");
+        public static readonly int RadiantDamageBonus = 30;
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(RadiantDamageBonus);
 
         public override void SetStaticDefaults()
         {
@@ -28,7 +30,7 @@ namespace Eternal.Content.Items.Accessories
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage<Radiant>() *= 1.45f;
+            player.GetDamage<Radiant>() += RadiantDamageBonus / 100f;
         }
 
         public override void AddRecipes()

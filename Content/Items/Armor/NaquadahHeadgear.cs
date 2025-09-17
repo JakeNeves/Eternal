@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Armor
@@ -13,9 +14,18 @@ namespace Eternal.Content.Items.Armor
     [AutoloadEquip(EquipType.Head)]
     public class NaquadahHeadgear : ModItem
     {
+        public static readonly int RangedDamageBonus = 20;
+        public static readonly int RangedDamageSetBonus = 30;
+
+        public static LocalizedText SetBonusText { get; private set; }
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(RangedDamageBonus);
+
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
+            SetBonusText = this.GetLocalization("SetBonus").WithFormatArgs(RangedDamageSetBonus);
         }
 
         public override void SetDefaults()
@@ -34,14 +44,9 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "30% increased ranged damage" +
-                            "\nYou emit a source of light" +
-                            "\nYou release spike bombs upon getting hit" +
-                            "\n[c/FCA5033:Rift Bonus]" +
-                            "\nImmunity to Rift Withering" +
-                            "\nProtection against the Rod of Distortion's unstability";
+            player.setBonus = SetBonusText.Value;
 
-            player.GetDamage(DamageClass.Ranged) += 0.30f;
+            player.GetDamage(DamageClass.Ranged) += RangedDamageSetBonus / 100f;
 
             Lighting.AddLight(player.Center, 0.75f, 0f, 0.75f);
 
@@ -67,7 +72,7 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.GetDamage(DamageClass.Ranged) += 0.20f;
+            player.GetDamage(DamageClass.Ranged) += RangedDamageBonus / 100f;
         }
 
         public override void AddRecipes()

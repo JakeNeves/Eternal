@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Armor
@@ -13,9 +14,18 @@ namespace Eternal.Content.Items.Armor
     [AutoloadEquip(EquipType.Head)]
     public class NaquadahHelmet : ModItem
     {
+        public static readonly int MagicDamageBonus = 20;
+        public static readonly int MagicDamageSetBonus = 30;
+
+        public static LocalizedText SetBonusText { get; private set; }
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MagicDamageBonus);
+
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
+            SetBonusText = this.GetLocalization("SetBonus").WithFormatArgs(MagicDamageSetBonus);
         }
 
         public override void SetDefaults()
@@ -34,14 +44,9 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "30% increased magic damage" +
-                            "\nSome weapons receive special abilities" +
-                            "\nYou release spike bombs upon getting hit" +
-                            "\n[c/FCA5033:Rift Bonus]" +
-                            "\nImmunity to Rift Withering" +
-                            "\nProtection against the Rod of Distortion's unstability";
+            player.setBonus = SetBonusText.Value;
 
-            player.GetDamage(DamageClass.Magic) += 0.30f;
+            player.GetDamage(DamageClass.Magic) += MagicDamageSetBonus / 100f;
             
             ArmorSystem.NaquadahArmor = true;
             ArmorSystem.NaquadahArmorMagicBonus = true;
@@ -67,7 +72,7 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.GetDamage(DamageClass.Magic) += 0.20f;
+            player.GetDamage(DamageClass.Magic) += MagicDamageBonus / 100f;
         }
 
         public override void AddRecipes()

@@ -11,7 +11,9 @@ namespace Eternal.Content.Items.Accessories
 {
     public class DeceptionalSealofSlaughter : ModItem
     {
-        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("45% increased melee damage");
+        public static readonly int MeleeDamageBonus = 30;
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MeleeDamageBonus);
 
         public override void SetStaticDefaults()
         {
@@ -27,7 +29,7 @@ namespace Eternal.Content.Items.Accessories
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Melee) *= 1.45f;
+            player.GetDamage(DamageClass.Melee) += MeleeDamageBonus / 100f;
         }
 
         public override void AddRecipes()

@@ -4,12 +4,18 @@ using Eternal.Content.Tiles.CraftingStations;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Accessories
 {
     public class RiftedHandApparatus : ModItem
     {
+        public static readonly int MeleeDamageBonus = 45;
+        public static readonly int MeleeSpeedBonus = 25;
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MeleeDamageBonus, MeleeSpeedBonus);
+
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -26,8 +32,8 @@ namespace Eternal.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Melee) += 0.40f;
-            player.GetAttackSpeed(DamageClass.Melee) += 0.20f;
+            player.GetDamage(DamageClass.Melee) +=  MeleeDamageBonus / 100f;
+            player.GetAttackSpeed(DamageClass.Melee) += MeleeSpeedBonus / 100f;
             player.autoReuseGlove = true;
         }
 

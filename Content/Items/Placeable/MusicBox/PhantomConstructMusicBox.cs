@@ -13,7 +13,7 @@ namespace Eternal.Content.Items.Placeable.MusicBox
 
             ItemID.Sets.CanGetPrefixes[Type] = false;
 
-            MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Assets/Music/ConstructedByUnstability"), ModContent.ItemType<PhantomConstructMusicBox>(), ModContent.TileType<Tiles.MusicBox.PhantomConstructMusicBox>());
+            MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Assets/Music/ConstructedByInstability"), ModContent.ItemType<PhantomConstructMusicBox>(), ModContent.TileType<Tiles.MusicBox.PhantomConstructMusicBox>());
         }
 
         public override void SetDefaults()

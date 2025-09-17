@@ -1,5 +1,14 @@
 Mods: {
 	Eternal: {
+		CommonItemTooltip.PercentIncreasedRadiantDamage: "{0}% increased radiant damage"
+
+		Emotes: {
+			CosmicApparitionEmote.Command: cosmicapparition
+			HeriticEmote.Command: heritic
+			DarkMoonEmote.Command: darkmoon
+			RiftEmote.Command: rift
+		}
+
 		GameTips: {
 			HellMode: Wish to ramp up the difficulty a bit? Try Hell Mode, works in both Expert and Master mode.
 			EmperorNPC: The Emperor will move upon defeating the moon lord, he sells the Emperor's Trust which allows the Emissary to move in.
@@ -14,6 +23,9 @@ Mods: {
 			TheShrine: Who knows what lies around the Shrine, other than magical flying swords of course...
 			DarkMoon: The Dark Moon can make the night, somewhat cursed... It gets a bit devistating after you defeat the Trinity!
 			ExperimentalFeatures: Wanna take a look at some future content? head on over to the Eternal mod's configs and toggle them to try them out, although be warned that those features are a work in progress and can be very buggy!
+			CarrionBiome: The Carrion is a biome filled with dead things, try not to lose your appetite...
+			CursedDropletRecipe: If you made a trip to the Mausoleum and Gehenna, you may find materials that can be used to make a Cursed Droplet, from a regular Suspicious Looking Droplet...
+			StrongerCarminiteAmalgamation: With a Cursed Droplet, you can potentally fight a stronger version of the Carminite Amalgamation, you may even end up in some dead place afterwards...
 		}
 
 		DamageClasses.Radiant.DisplayName: radiant damage
@@ -910,17 +922,27 @@ Mods: {
 			}
 
 			NaquadahMask: {
-				Tooltip: 20% increased melee damage
 				DisplayName: Naquadah Mask
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMeleeDamage}"
+				SetBonus:
+					'''
+					{$CommonItemTooltip.PercentIncreasedMeleeDamage}
+					{1}% increased melee speed
+					Some weapons receive special abilities
+					You release spike bombs upon getting hit
+					[c/FCA5033:Rift Bonus]
+					Immunity to Rift Withering
+					Protection against the Rod of Distortion's instability
+					'''
 			}
 
 			NaquadahGreaves: {
-				Tooltip: +25% increased movement speed
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
 				DisplayName: Naquadah Greaves
 			}
 
 			NaquadahChestplate: {
-				Tooltip: +200 increased max life
+				Tooltip: +{0} increased max life
 				DisplayName: Naquadah Chestplate
 			}
 
@@ -955,32 +977,55 @@ Mods: {
 			}
 
 			ArkaniumMask: {
-				Tooltip: 20% increased melee damage
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMeleeDamage}"
 				DisplayName: Arkanium Mask
+				SetBonus:
+					'''
+					{$CommonItemTooltip.PercentIncreasedMeleeDamage}
+					{1}% increased melee speed
+					Swords rain down on you upon getting hit
+					'''
 			}
 
 			ArkaniumHood: {
-				Tooltip: 20% increased ranged damage
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedRangedDamage}"
 				DisplayName: Arkanium Hood
+				SetBonus:
+					'''
+					{$CommonItemTooltip.PercentIncreasedRangedDamage}
+					Swords rain down on you upon getting hit
+					'''
 			}
 
 			ArkaniumHelmet: {
-				Tooltip: 20% increased minion damage
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMeleeDamage}"
 				DisplayName: Arkanium Helmet
+				SetBonus:
+					'''
+					{$CommonItemTooltip.PercentIncreasedSummonDamage}
+					+{1} minion slots
+					Swords rain down on you upon getting hit
+					'''
 			}
 
 			ArkaniumGreaves: {
-				Tooltip: +27% increased movement speed
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
 				DisplayName: Arkanium Greaves
 			}
 
 			ArkaniumCowl: {
-				Tooltip: 20% increased magic damage
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMagicDamage}"
 				DisplayName: Arkanium Cowl
+				SetBonus:
+					'''
+					{$CommonItemTooltip.PercentIncreasedMagicDamage}
+					{1}% reduced mana cost
+					               Swords rain down on you upon getting hit
+					'''
 			}
 
 			ArkaniumChestplate: {
-				Tooltip: +160 max life
+				Tooltip: +{0} max life
 				DisplayName: Arkanium Chestplate
 			}
 
@@ -1161,45 +1206,45 @@ Mods: {
 			}
 
 			DeceptionalSealofOnslaught: {
-				Tooltip: 45% increased damage
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedDamage}"
 				DisplayName: Deceptional Seal of Onslaught
 			}
 
 			DeceptionalSealofVis: {
-				Tooltip: 45% increased radiant damage
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedRadiantDamage}"
 				DisplayName: Deceptional Seal of Vis
 			}
 
 			DeceptionalSealofSlaughter: {
-				Tooltip: 45% increased melee damage
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMeleeDamage}"
 				DisplayName: Deceptional Seal of Slaughter
+			}
+
+			DeceptionalSealofDescent: {
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedSummonDamage}"
+				DisplayName: Deceptional Seal of Descent
+			}
+
+			DeceptionalSealofDarkArts: {
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMagicDamage}"
+				DisplayName: Deceptional Seal of Dark Arts
+			}
+
+			DeceptionalSealofImpact: {
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedRangedDamage}"
+				DisplayName: Deceptional Seal of Impact
 			}
 
 			FierceDeityEmblem: {
 				Tooltip:
 					'''
-					20% increased damage
-					10% critical strike chance
+					{0}% increased damage
+					{1}% critical strike chance
 					[c/008060:Ancient Artifact]
 					An emblem empowered with a godly radiance
 					Legends say this was used to empower the guardians of the dunes, aiding them in combat and allowing them to become reststant to any weakness they had
 					'''
 				DisplayName: Fierce Deity Emblem
-			}
-
-			DeceptionalSealofDescent: {
-				Tooltip: 45% increased summon damage
-				DisplayName: Deceptional Seal of Descent
-			}
-
-			DeceptionalSealofDarkArts: {
-				Tooltip: 45% increased magic damage
-				DisplayName: Deceptional Seal of Dark Arts
-			}
-
-			DeceptionalSealofImpact: {
-				Tooltip: 45% increased ranged damage
-				DisplayName: Deceptional Seal of Impact
 			}
 
 			GiftofTheSwordGod: {
@@ -1222,7 +1267,7 @@ Mods: {
 			}
 
 			EvocationerEmblem: {
-				Tooltip: 15% increased radiant damage
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedRadiantDamage}"
 				DisplayName: Evocationer Emblem
 			}
 
@@ -1247,8 +1292,8 @@ Mods: {
 			CosmicEmperorsCombatTassel: {
 				Tooltip:
 					'''
-					40% increased damage
-					20% critical strike chance
+					{0}% increased damage
+					{1}% critical strike chance
 					[c/008060:Ancient Artifact]
 					This relic of the Cosmic Emperor was weaved with the stardust of comets and moonlight
 					With such power harvested to create such tassel will empower whoever wears this to honor and prase the Cosmic Emperor
@@ -1259,8 +1304,8 @@ Mods: {
 			CometGauntlet: {
 				Tooltip:
 					'''
-					35% increased melee damage
-					17% increased melee speed
+					{0}% increased melee damage
+					{1}% increased melee speed
 					Enables auto swing for melee weapons
 					'The comets are now in the palm of your hand'
 					'''
@@ -1284,7 +1329,7 @@ Mods: {
 			AncientEmblem: {
 				Tooltip:
 					'''
-					Grants 5% increased melee damage
+					{0}% increased melee damage
 					[c/008060:Ancient Artifact] 
 					A mysterious emblem, you have never seen this before...
 					Rumors believed that it was passed down from leader to leader of an unknown group...
@@ -1780,9 +1825,19 @@ Mods: {
 					'''
 			}
 
-			NaquadahHelmet: {
-				DisplayName: Naquadah Helmet
-				Tooltip: 20% increased summon damage
+			NaquadahCowl: {
+				DisplayName: Naquadah Cowl
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedSummonDamage}"
+				SetBonus:
+					'''
+					{$CommonItemTooltip.PercentIncreasedSummonDamage}
+					+{1} minion slots
+					You emit a source of light
+					You release spike bombs upon getting hit
+					[c/FCA5033:Rift Bonus]
+					Immunity to Rift Withering
+					Protection against the Rod of Distortion's instability
+					'''
 			}
 
 			RotaryHearthForge: {
@@ -1847,19 +1902,37 @@ Mods: {
 					'The book of Emperors' law!'
 					[c/C42996:Rift Artifact]
 					While this tome is used to summon spiritual weaponry at the user's will,
-					the unstability of the materials that the tome itself is made out of can
+					the instability of the materials that the tome itself is made out of can
 					fluxuate between varying consiquences!
 					'''
 			}
 
-			NaquadahCowl: {
-				DisplayName: Naquadah Cowl
-				Tooltip: +20% increased magic damage
+			NaquadahHelmet: {
+				DisplayName: Naquadah Helmet
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMagicDamage}"
+				SetBonus:
+					'''
+					{$CommonItemTooltip.PercentIncreasedMagicDamage}
+					Some weapons receive special abilities
+					You release spike bombs upon getting hit
+					[c/FCA5033:Rift Bonus]
+					Immunity to Rift Withering
+					Protection against the Rod of Distortion's instability
+					'''
 			}
 
 			NaquadahHeadgear: {
 				DisplayName: Naquadah Headgear
-				Tooltip: +20% increased ranged damage
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedRangedDamage}"
+				SetBonus:
+					'''
+					{$CommonItemTooltip.PercentIncreasedRangedDamage}
+					You emit a source of light
+					You release spike bombs upon getting hit
+					[c/FCA5033:Rift Bonus]
+					Immunity to Rift Withering
+					Protection against the Rod of Distortion's instability
+					'''
 			}
 
 			Unstabow: {
@@ -1869,7 +1942,7 @@ Mods: {
 					Fires an unstable projectile that rapid teleports to the player
 					'Is this even stable at all?'
 					[c/C42996:Rift Artifact]
-					Upon firing, the projectile's unstability chases it's target and constantly teleports
+					Upon firing, the projectile's instability chases it's target and constantly teleports
 					to the original shooter causing partial confusion to the target.
 					'''
 			}
@@ -2265,7 +2338,7 @@ Mods: {
 
 			PhantomConstructMusicBox: {
 				DisplayName: Music Box (Phantom Construct)
-				Tooltip: JakeTEM - Constructed by Unstability
+				Tooltip: JakeTEM - Constructed by instability
 			}
 
 			ShrineMusicBox: {
@@ -3061,7 +3134,7 @@ Mods: {
 			}
 
 			UnstableState: {
-				Description: The Rod of Distortion has inflicted you with unstability!
+				Description: The Rod of Distortion has inflicted you with instability!
 				DisplayName: Unstable State
 			}
 
@@ -3369,6 +3442,7 @@ Mods: {
 				}
 
 				Census.SpawnCondition: Defeat the Cosmic Apparition or create a world with one of the secret seeds
+				DeathMessage: "{0} has returned to his world..."
 			}
 
 			GlacerWalker.DisplayName: Glacer Walker

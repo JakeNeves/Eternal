@@ -11,7 +11,9 @@ namespace Eternal.Content.Items.Accessories
 {
     public class DeceptionalSealofImpact : ModItem
     {
-        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("45% increased ranged damage");
+        public static readonly int RangedDamageBonus = 30;
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(RangedDamageBonus);
 
         public override void SetStaticDefaults()
         {
@@ -27,7 +29,7 @@ namespace Eternal.Content.Items.Accessories
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Ranged) *= 1.45f;
+            player.GetDamage(DamageClass.Ranged) += RangedDamageBonus / 100f;
         }
 
         public override void AddRecipes()

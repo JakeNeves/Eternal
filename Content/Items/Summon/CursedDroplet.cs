@@ -49,6 +49,5 @@ namespace Eternal.Content.Items.Summon
         {
             itemGroup = ContentSamples.CreativeHelper.ItemGroup.BossSpawners;
         }
-
     }
 }

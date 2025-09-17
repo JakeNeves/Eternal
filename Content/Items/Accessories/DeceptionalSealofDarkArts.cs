@@ -11,7 +11,9 @@ namespace Eternal.Content.Items.Accessories
 {
     public class DeceptionalSealofDarkArts : ModItem
     {
-        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("45% increased magic damage");
+        public static readonly int MagicDamageBonus = 30;
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MagicDamageBonus);
 
         public override void SetStaticDefaults()
         {
@@ -27,7 +29,7 @@ namespace Eternal.Content.Items.Accessories
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Magic) *= 1.45f;
+            player.GetDamage(DamageClass.Magic) += MagicDamageBonus / 100f;
         }
 
         public override void AddRecipes()

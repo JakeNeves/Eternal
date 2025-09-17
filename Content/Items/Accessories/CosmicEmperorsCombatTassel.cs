@@ -11,13 +11,10 @@ namespace Eternal.Content.Items.Accessories
 {
     public class CosmicEmperorsCombatTassel : ModItem
     {
-        public override LocalizedText DisplayName => base.DisplayName.WithFormatArgs("Cosmic Emperor's Combat Tassle");
+        public static readonly int DamageBonus = 40;
+        public static readonly int CritBonus = 50;
 
-        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("40% increased damage" +
-                                                                            "\n20% critical strike chance" +
-                                                                            "\n[c/008060:Ancient Artifact]" +
-                                                                            "\nThis relic of the Cosmic Emperor was weaved with the stardust of comets and moonlight" +
-                                                                            "\nWith such power harvested to create such tassle will empower whoever wears this to honor and prase the Cosmic Emperor");
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageBonus, CritBonus);
 
         public override void SetStaticDefaults()
         {
@@ -35,8 +32,8 @@ namespace Eternal.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Generic) += 0.50f;
-            player.GetCritChance(DamageClass.Generic) += 1.05f;
+            player.GetDamage(DamageClass.Generic) += DamageBonus / 100f;
+            player.GetCritChance(DamageClass.Generic) += CritBonus / 100f;
         }
 
         public override void AddRecipes()

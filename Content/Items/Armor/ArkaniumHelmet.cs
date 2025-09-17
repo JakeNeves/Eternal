@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Armor
@@ -13,12 +14,19 @@ namespace Eternal.Content.Items.Armor
     [AutoloadEquip(EquipType.Head)]
     public class ArkaniumHelmet : ModItem
     {
+        public static readonly int SummonDamageBonus = 20;
+        public static readonly int SummonDamageSetBonus = 30;
+        public static readonly int MinionSlotSetBonus = 16;
+
+        public static LocalizedText SetBonusText { get; private set; }
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(SummonDamageBonus);
 
         public override void SetStaticDefaults()
         {
-            // Tooltip.SetDefault("20% increased minion damage");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
+            SetBonusText = this.GetLocalization("SetBonus").WithFormatArgs(SummonDamageSetBonus, MinionSlotSetBonus);
         }
 
         public override void SetDefaults()
@@ -37,11 +45,9 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "30% increased minion damage, 25% decreased mana cost and +16 minion slots" +
-                            "\nSwords rain down on you upon getting hit";
+            player.setBonus = SetBonusText.Value;
 
-            player.GetDamage(DamageClass.Summon) += 1.30f;
-            player.manaCost -= 1.25f;
+            player.GetDamage(DamageClass.Summon) += SummonDamageSetBonus / 100f;
             player.maxMinions += 16;
 
             Dust dust;
@@ -61,7 +67,7 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.GetDamage(DamageClass.Summon) += 1.20f;
+            player.GetDamage(DamageClass.Summon) += SummonDamageBonus / 100f;
         }
 
         public override void AddRecipes()

@@ -11,7 +11,9 @@ namespace Eternal.Content.Items.Accessories
 {
     public class DeceptionalSealofDescent : ModItem
     {
-        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("45% increased summon damage");
+        public static readonly int SummonDamageBonus = 30;
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(SummonDamageBonus);
 
         public override void SetStaticDefaults()
         {
@@ -27,7 +29,7 @@ namespace Eternal.Content.Items.Accessories
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Summon) *= 1.45f;
+            player.GetDamage(DamageClass.Summon) += SummonDamageBonus / 100f;
         }
 
         public override void AddRecipes()

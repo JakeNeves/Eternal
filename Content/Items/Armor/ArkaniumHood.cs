@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Armor
@@ -13,12 +14,18 @@ namespace Eternal.Content.Items.Armor
     [AutoloadEquip(EquipType.Head)]
     public class ArkaniumHood : ModItem
     {
+        public static readonly int RangedDamageBonus = 20;
+        public static readonly int RangedDamageSetBonus = 30;
+
+        public static LocalizedText SetBonusText { get; private set; }
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(RangedDamageBonus, RangedDamageSetBonus);
 
         public override void SetStaticDefaults()
         {
-            // Tooltip.SetDefault("20% increased ranged damage");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
+            SetBonusText = this.GetLocalization("SetBonus").WithFormatArgs(RangedDamageSetBonus);
         }
 
         public override void SetDefaults()
@@ -37,10 +44,9 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "30% increased ranged damage" +
-                            "\nSwords rain down on you upon getting hit";
+            player.setBonus = SetBonusText.Value;
 
-            player.GetDamage(DamageClass.Ranged) += 1.30f;
+            player.GetDamage(DamageClass.Ranged) += RangedDamageSetBonus / 100f;
 
             Dust dust;
             Vector2 position = Main.LocalPlayer.Center;
@@ -59,7 +65,7 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.GetDamage(DamageClass.Ranged) += 1.20f;
+            player.GetDamage(DamageClass.Ranged) += RangedDamageBonus / 100f;
         }
 
         public override void AddRecipes()

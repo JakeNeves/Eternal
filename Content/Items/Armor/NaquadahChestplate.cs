@@ -3,6 +3,7 @@ using Eternal.Content.Rarities;
 using Eternal.Content.Tiles.CraftingStations;
 using Terraria;
 using Terraria.GameContent.Creative;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Armor
@@ -10,6 +11,11 @@ namespace Eternal.Content.Items.Armor
     [AutoloadEquip(EquipType.Body)]
     public class NaquadahChestplate : ModItem
     {
+        public static readonly int MaxHealthBonus = 200;
+
+        public static LocalizedText SetBonusText { get; private set; }
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MaxHealthBonus);
 
         public override void SetStaticDefaults()
         {
@@ -27,7 +33,7 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.statLifeMax2 += 200;
+            player.statLifeMax2 += MaxHealthBonus;
         }
 
         public override void AddRecipes()
