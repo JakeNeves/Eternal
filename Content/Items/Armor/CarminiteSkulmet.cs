@@ -32,7 +32,7 @@ namespace Eternal.Content.Items.Armor
         {
             player.setBonus = "Increased melee damage based on your maximum HP";
 
-            player.GetDamage(DamageClass.Melee) += ((float)player.statLifeMax2 / 20f) / 100f;
+            player.GetDamage(DamageClass.Melee) += ((float)player.statLifeMax2 / 0.25f) / 100f;
         }
 
         public override void AddRecipes()

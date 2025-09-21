@@ -5,22 +5,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|c:\\users\\jaken\\documents\\my games\\terraria\\tmodloader\\modsources\\eternal\\localization\\en-us.hjson||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|solutionrelative:localization\\en-us.hjson||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|c:\\users\\jaken\\documents\\my games\\terraria\\tmodloader\\modsources\\eternal\\content\\items\\armor\\naquadahcowl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|solutionrelative:content\\items\\armor\\naquadahcowl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|c:\\users\\jaken\\documents\\my games\\terraria\\tmodloader\\modsources\\eternal\\content\\items\\armor\\naquadahmask.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|solutionrelative:content\\items\\armor\\naquadahmask.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|c:\\users\\jaken\\documents\\my games\\terraria\\tmodloader\\modsources\\eternal\\content\\items\\armor\\naquadahheadgear.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|solutionrelative:content\\items\\armor\\naquadahheadgear.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|c:\\users\\jaken\\documents\\my games\\terraria\\tmodloader\\modsources\\eternal\\content\\items\\armor\\naquadahhelmet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{89CE4515-6DF2-4CEA-833E-8839C3E704A9}|Eternal.csproj|solutionrelative:content\\items\\armor\\naquadahhelmet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,60 +14,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "NaquadahHelmet.cs",
-              "DocumentMoniker": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Content\\Items\\Armor\\NaquadahHelmet.cs",
-              "RelativeDocumentMoniker": "Content\\Items\\Armor\\NaquadahHelmet.cs",
-              "ToolTip": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Content\\Items\\Armor\\NaquadahHelmet.cs",
-              "RelativeToolTip": "Content\\Items\\Armor\\NaquadahHelmet.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAABfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-17T16:52:27.609Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "NaquadahHeadgear.cs",
-              "DocumentMoniker": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Content\\Items\\Armor\\NaquadahHeadgear.cs",
-              "RelativeDocumentMoniker": "Content\\Items\\Armor\\NaquadahHeadgear.cs",
-              "ToolTip": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Content\\Items\\Armor\\NaquadahHeadgear.cs",
-              "RelativeToolTip": "Content\\Items\\Armor\\NaquadahHeadgear.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAQwBUAAABeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-17T16:52:27.494Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "NaquadahMask.cs",
-              "DocumentMoniker": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Content\\Items\\Armor\\NaquadahMask.cs",
-              "RelativeDocumentMoniker": "Content\\Items\\Armor\\NaquadahMask.cs",
-              "ToolTip": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Content\\Items\\Armor\\NaquadahMask.cs",
-              "RelativeToolTip": "Content\\Items\\Armor\\NaquadahMask.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABkAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-17T16:52:27.271Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "NaquadahCowl.cs",
-              "DocumentMoniker": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Content\\Items\\Armor\\NaquadahCowl.cs",
-              "RelativeDocumentMoniker": "Content\\Items\\Armor\\NaquadahCowl.cs",
-              "ToolTip": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Content\\Items\\Armor\\NaquadahCowl.cs",
-              "RelativeToolTip": "Content\\Items\\Armor\\NaquadahCowl.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAiwBsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-16T23:52:26.625Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -92,7 +24,7 @@
               "RelativeDocumentMoniker": "Localization\\en-US.hjson",
               "ToolTip": "C:\\Users\\jaken\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Eternal\\Localization\\en-US.hjson",
               "RelativeToolTip": "Localization\\en-US.hjson",
-              "ViewState": "AgIAABAHAAAAAAAAAAAkwBsHAABAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2025-09-08T16:38:27.343Z",
               "EditorCaption": ""

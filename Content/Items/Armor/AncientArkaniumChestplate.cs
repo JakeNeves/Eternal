@@ -1,20 +1,22 @@
-﻿using Eternal.Content.Rarities;
-using Eternal.Content.Items.Materials;
+﻿using Eternal.Content.Items.Materials;
+using Eternal.Content.Rarities;
 using Eternal.Content.Tiles.CraftingStations;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
+using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Armor
 {
     [AutoloadEquip(EquipType.Body)]
     public class AncientArkaniumChestplate : ModItem
     {
+        public static readonly int MaxHealthBonus = 80;
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MaxHealthBonus);
 
         public override void SetStaticDefaults()
         {
-            // Tooltip.SetDefault("+160 max life");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -29,7 +31,7 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.statLifeMax2 += 80;
+            player.statLifeMax2 += MaxHealthBonus;
         }
     }
 }

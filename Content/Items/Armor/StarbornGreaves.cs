@@ -3,6 +3,7 @@ using Eternal.Content.Rarities;
 using Eternal.Content.Tiles.CraftingStations;
 using Terraria;
 using Terraria.GameContent.Creative;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Armor
@@ -11,10 +12,12 @@ namespace Eternal.Content.Items.Armor
     public class StarbornGreaves : ModItem
     {
 
+        public static readonly int MoveSpeedBonus = 18;
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MoveSpeedBonus);
+
         public override void SetStaticDefaults()
         {
-            // Tooltip.SetDefault("+18% increased movement speed");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -29,19 +32,9 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.moveSpeed += 0.18f;
+            player.moveSpeed += MoveSpeedBonus / 100f;
         }
 
-        /*public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddTile(ModContent.TileType<Starforge>());
-            recipe.AddIngredient(ModContent.ItemType<StarmetalBar>(), 8);
-            recipe.AddIngredient(ModContent.ItemType<CometiteBar>(), 12);
-            recipe.AddIngredient(ModContent.ItemType<GalaxianPlating>(), 8);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }*/
         public override void AddRecipes()
         {
             CreateRecipe()

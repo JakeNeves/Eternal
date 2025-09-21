@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Armor
@@ -13,11 +14,19 @@ namespace Eternal.Content.Items.Armor
     [AutoloadEquip(EquipType.Head)]
     public class StarbornMask : ModItem
     {
+        public static readonly int MeleeDamageBonus = 17;
+        public static readonly int MeleeDamageSetBonus = 20;
+        public static readonly int MeleeSpeedBonus = 17;
+
+        public static LocalizedText SetBonusText { get; private set; }
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MeleeDamageBonus);
+
         public override void SetStaticDefaults()
         {
-            // Tooltip.SetDefault("17% increased melee damage");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
+            SetBonusText = this.GetLocalization("SetBonus").WithFormatArgs(MeleeDamageSetBonus, MeleeSpeedBonus);
         }
 
         public override void SetDefaults()
@@ -36,14 +45,9 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "20% increased melee damage and 17% increased melee speed" +
-                            "\nSome weapons receive special abilities" +
-                            "\nWeapon projectiles heal the player by 15 HP when below half healt upon hitting any enemy" +
-                            "\n15% increased damage when below half health" +
-                            "\n[c/FCA5033:Starborn Mask Bonus]" +
-                            "\nSome melee weapons recieve special modifiers";
-            player.GetDamage(DamageClass.Melee) += 0.20f;
-            player.GetAttackSpeed(DamageClass.Melee) += 0.17f;
+            player.setBonus = SetBonusText.Value;
+            player.GetDamage(DamageClass.Melee) += MeleeDamageSetBonus / 100f;
+            player.GetAttackSpeed(DamageClass.Melee) += MeleeSpeedBonus / 100f;
             ArmorSystem.StarbornArmor = true;
 
             Dust dust;
@@ -60,7 +64,7 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.GetDamage(DamageClass.Melee) += 0.17f;
+            player.GetDamage(DamageClass.Melee) += MeleeDamageBonus / 100f;
         }
 
         public override void AddRecipes()

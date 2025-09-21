@@ -14,9 +14,19 @@ namespace Eternal.Content.Items.Armor
     [AutoloadEquip(EquipType.Head)]
     public class SanguineMask : ModItem
     {
+        public static readonly int MeleeDamageBonus = 12;
+        public static readonly int MeleeDamageSetBonus = 15;
+        public static readonly int MeleeSpeedBonus = 5;
+
+        public static LocalizedText SetBonusText { get; private set; }
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MeleeDamageBonus);
+
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
+            SetBonusText = this.GetLocalization("SetBonus").WithFormatArgs(MeleeDamageSetBonus, MeleeSpeedBonus);
         }
 
         public override void SetDefaults()
@@ -35,11 +45,10 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "15% increased melee damage and 5% increased melee speed" +
-                            "\nSome weapons receive special abilities";
+            player.setBonus = SetBonusText.Value;
 
-            player.GetDamage(DamageClass.Melee) += 0.15f;
-            player.GetAttackSpeed(DamageClass.Melee) += 0.05f;
+            player.GetDamage(DamageClass.Melee) += MeleeDamageSetBonus / 100f;
+            player.GetAttackSpeed(DamageClass.Melee) += MeleeSpeedBonus / 100f;
 
             ArmorSystem.SanguineArmor = true;
             ArmorSystem.SanguineArmorMeleeBonus = true;
@@ -58,7 +67,7 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.GetDamage(DamageClass.Melee) += 0.12f;
+            player.GetDamage(DamageClass.Melee) += MeleeDamageBonus / 100f;
         }
 
         public override void AddRecipes()

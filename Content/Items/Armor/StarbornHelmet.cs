@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Armor
@@ -13,11 +14,19 @@ namespace Eternal.Content.Items.Armor
     [AutoloadEquip(EquipType.Head)]
     public class StarbornHelmet : ModItem
     {
+        public static readonly int SummonDamageBonus = 17;
+        public static readonly int SummonDamageSetBonus = 20;
+        public static readonly int MinionSlotBonus = 8;
+
+        public static LocalizedText SetBonusText { get; private set; }
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(SummonDamageBonus);
+
         public override void SetStaticDefaults()
         {
-            // Tooltip.SetDefault("17% increased minion damage");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
+            SetBonusText = this.GetLocalization("SetBonus").WithFormatArgs(SummonDamageSetBonus, MinionSlotBonus);
         }
 
         public override void SetDefaults()
@@ -36,12 +45,9 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "+8 minion slots and 20% increased minion damage" +
-                            "\nSome weapons receive special abilities" +
-                            "\nWeapon projectiles heal the player by 15 HP when below half health upon hitting any enemy" +
-                            "\n15% increased damage when below half health";
-            player.GetDamage(DamageClass.Summon) += 0.20f;
-            player.maxMinions += 8;
+            player.setBonus = SetBonusText.Value;
+            player.GetDamage(DamageClass.Summon) += SummonDamageSetBonus / 100f;
+            player.maxMinions += MinionSlotBonus;
             ArmorSystem.StarbornArmor = true;
 
             Dust dust;
@@ -58,7 +64,7 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.GetDamage(DamageClass.Summon) += 0.17f;
+            player.GetDamage(DamageClass.Summon) += SummonDamageBonus / 100f;
         }
 
         public override void AddRecipes()

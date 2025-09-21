@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Armor
@@ -12,9 +13,15 @@ namespace Eternal.Content.Items.Armor
     [AutoloadEquip(EquipType.Head)]
     public class IesniumHelmet : ModItem
     {
+        public static readonly int DamageSetBonus = 20;
+
+        public static LocalizedText SetBonusText { get; private set; }
+
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
+            SetBonusText = this.GetLocalization("SetBonus").WithFormatArgs(DamageSetBonus);
         }
 
         public override void SetDefaults()
@@ -33,10 +40,9 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "20% increased damage" +
-                            "\nHeals the player upon striking an enemy that is below half health";
+            player.setBonus = SetBonusText.Value;
 
-            player.GetDamage(DamageClass.Generic) += 0.20f;
+            player.GetDamage(DamageClass.Generic) += DamageSetBonus / 100f;
 
             ArmorSystem.IesniumArmor = true;
 

@@ -2,6 +2,8 @@
 using Eternal.Content.Rarities;
 using Eternal.Content.Tiles.CraftingStations;
 using Terraria;
+using Terraria.GameContent.Creative;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Armor
@@ -10,9 +12,13 @@ namespace Eternal.Content.Items.Armor
     public class UltimusLeggings : ModItem
     {
 
+        public static readonly int MoveSpeedBonus = 40;
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MoveSpeedBonus);
+
         public override void SetStaticDefaults()
         {
-            // Tooltip.SetDefault("+40% increased movement speed");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()
@@ -26,7 +32,7 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.moveSpeed += 1.40f;
+            player.moveSpeed += MoveSpeedBonus / 100f;
         }
 
         public override void AddRecipes()

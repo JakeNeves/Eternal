@@ -3,6 +3,7 @@ using Eternal.Content.Rarities;
 using Eternal.Content.Tiles.CraftingStations;
 using Terraria;
 using Terraria.GameContent.Creative;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Armor
@@ -10,13 +11,11 @@ namespace Eternal.Content.Items.Armor
     [AutoloadEquip(EquipType.Body)]
     public class StarbornScalePlate : ModItem
     {
+        public static readonly int MaxHealthBonus = 25;
 
-        public override void SetStaticDefaults()
-        {
-            // Tooltip.SetDefault("+25 increased max life");
+        public static LocalizedText SetBonusText { get; private set; }
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MaxHealthBonus);
 
         public override void SetDefaults()
         {
@@ -29,7 +28,7 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.statLifeMax2 += 50;
+            player.statLifeMax2 += MaxHealthBonus;
         }
 
         public override void AddRecipes()

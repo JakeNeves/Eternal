@@ -19,7 +19,7 @@ namespace Eternal.Content.Items.Armor
 
         public static LocalizedText SetBonusText { get; private set; }
 
-        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(RangedDamageBonus, RangedDamageSetBonus);
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(RangedDamageBonus);
 
         public override void SetStaticDefaults()
         {

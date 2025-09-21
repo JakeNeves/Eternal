@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Armor
@@ -13,11 +14,20 @@ namespace Eternal.Content.Items.Armor
     [AutoloadEquip(EquipType.Head)]
     public class AncientStarbornHat : ModItem
     {
+        public static readonly int MagicDamageBonus = 7;
+        public static readonly int MagicDamageSetBonus = 10;
+        public static readonly int ManaReductionBonus = 10;
+        public static readonly int ManaBonus = 30;
+
+        public static LocalizedText SetBonusText { get; private set; }
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MagicDamageBonus);
+
         public override void SetStaticDefaults()
         {
-            // Tooltip.SetDefault("7% increased magic damage");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
+            SetBonusText = this.GetLocalization("SetBonus").WithFormatArgs(MagicDamageSetBonus, ManaBonus, ManaReductionBonus);
         }
 
         public override void SetDefaults()
@@ -36,16 +46,11 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "+30 mana, 10% decreased mana cost and 10% increased magic damage" +
-                            "\nSome weapons receive special abilities" +
-                            "\nWeapon projectiles heal the player by 15 HP when below half health upon hitting any enemy" +
-                            "\n15% increased damage when below half health" +
-                            "\n[c/FCA5033:Starborn Hat Bonus]" +
-                            "\nYou sometimes fire a projectile that homes in on enemies, damage is based on how much mana you have in total";
-            player.GetDamage(DamageClass.Magic) += 0.20f;
+            player.setBonus = SetBonusText.Value;
+            player.GetDamage(DamageClass.Magic) += MagicDamageSetBonus / 100f;
 
-            player.statManaMax2 += 30;
-            player.manaCost -= 0.1f;
+            player.statManaMax2 += ManaBonus;
+            player.manaCost -= ManaReductionBonus / 100f;
             ArmorSystem.StarbornArmor = true;
             ArmorSystem.StarbornArmorMagicBonus = true;
 
@@ -57,7 +62,7 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.GetDamage(DamageClass.Magic) += 0.07f;
+            player.GetDamage(DamageClass.Magic) += MagicDamageBonus / 100f;
         }
     }
 }

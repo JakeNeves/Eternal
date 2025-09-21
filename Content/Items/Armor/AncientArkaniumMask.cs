@@ -1,24 +1,32 @@
 ﻿using Eternal.Common.Players;
-using Eternal.Content.Rarities;
 using Eternal.Content.Items.Materials;
+using Eternal.Content.Rarities;
 using Eternal.Content.Tiles.CraftingStations;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Armor
 {
     [AutoloadEquip(EquipType.Head)]
     public class AncientArkaniumMask : ModItem
     {
+        public static readonly int MeleeDamageBonus = 10;
+        public static readonly int MeleeDamageSetBonus = 15;
+        public static readonly int MeleeSpeedBonus = 10;
+
+        public static LocalizedText SetBonusText { get; private set; }
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MeleeDamageBonus);
 
         public override void SetStaticDefaults()
         {
-            // Tooltip.SetDefault("20% increased melee damage");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
+            SetBonusText = this.GetLocalization("SetBonus").WithFormatArgs(MeleeDamageSetBonus, MeleeSpeedBonus);
         }
 
         public override void SetDefaults()
@@ -37,11 +45,10 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "15% increased melee damage and 10% increased melee speed" +
-                            "\nSwords rain down on you upon getting hit";
+            player.setBonus = SetBonusText.Value;
 
-            player.GetDamage(DamageClass.Melee) += 1.15f;
-            player.GetAttackSpeed(DamageClass.Melee) += 1.10f;
+            player.GetDamage(DamageClass.Melee) += MeleeDamageSetBonus / 100f;
+            player.GetAttackSpeed(DamageClass.Melee) += MeleeSpeedBonus / 100f;
 
             Dust dust;
             Vector2 position = Main.LocalPlayer.Center;
@@ -60,7 +67,7 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.GetDamage(DamageClass.Melee) += 1.10f;
+            player.GetDamage(DamageClass.Melee) += MeleeDamageBonus / 100f;
         }
     }
 }

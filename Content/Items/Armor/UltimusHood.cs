@@ -3,6 +3,8 @@ using Eternal.Content.Items.Materials;
 using Eternal.Content.Rarities;
 using Eternal.Content.Tiles.CraftingStations;
 using Terraria;
+using Terraria.GameContent.Creative;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Armor
@@ -10,10 +12,18 @@ namespace Eternal.Content.Items.Armor
     [AutoloadEquip(EquipType.Head)]
     public class UltimusHood : ModItem
     {
+        public static readonly int RangedDamageBonus = 30;
+        public static readonly int RangedDamageSetBonus = 42;
+
+        public static LocalizedText SetBonusText { get; private set; }
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(RangedDamageBonus);
 
         public override void SetStaticDefaults()
         {
-            // Tooltip.SetDefault("30% increased ranged damage");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
+            SetBonusText = this.GetLocalization("SetBonus").WithFormatArgs(RangedDamageSetBonus);
         }
 
         public override void SetDefaults()
@@ -32,12 +42,9 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "42% increased ranged damage" +
-                            "\nYou emit a source of light" +
-                            "\nStarborn weapons cost 0 mana" +
-                            "\nStarborn and Arkanium Armor Effects";
+            player.setBonus = SetBonusText.Value;
 
-            player.GetDamage(DamageClass.Ranged) += 0.42f;
+            player.GetDamage(DamageClass.Ranged) += RangedDamageSetBonus / 100f;
 
             Lighting.AddLight(player.Center, 1.14f, 0.22f, 1.43f);
 
@@ -54,7 +61,7 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.GetDamage(DamageClass.Ranged) += 0.30f;
+            player.GetDamage(DamageClass.Ranged) += RangedDamageBonus / 100f;
         }
 
         public override void AddRecipes()

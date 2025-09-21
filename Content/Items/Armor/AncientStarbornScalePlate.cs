@@ -1,6 +1,7 @@
 ﻿using Eternal.Content.Rarities;
 using Terraria;
 using Terraria.GameContent.Creative;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Armor
@@ -8,11 +9,12 @@ namespace Eternal.Content.Items.Armor
     [AutoloadEquip(EquipType.Body)]
     public class AncientStarbornScalePlate : ModItem
     {
+        public static readonly int MaxHealthBonus = 10;
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MaxHealthBonus);
 
         public override void SetStaticDefaults()
         {
-            // Tooltip.SetDefault("+10 increased max life");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -27,7 +29,7 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.statLifeMax2 += 10;
+            player.statLifeMax2 += MaxHealthBonus;
         }
     }
 }

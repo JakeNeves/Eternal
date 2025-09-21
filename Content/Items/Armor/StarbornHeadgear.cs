@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Armor
@@ -13,9 +14,18 @@ namespace Eternal.Content.Items.Armor
     [AutoloadEquip(EquipType.Head)]
     public class StarbornHeadgear : ModItem
     {
+        public static readonly int RangedDamageBonus = 17;
+        public static readonly int RangedDamageSetBonus = 20;
+
+        public static LocalizedText SetBonusText { get; private set; }
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(RangedDamageBonus);
+
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
+            SetBonusText = this.GetLocalization("SetBonus").WithFormatArgs(RangedDamageSetBonus);
         }
 
         public override void SetDefaults()
@@ -34,15 +44,10 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "20% increased ranged damage" +
-                            "\nSome weapons receive special abilities" +
-                            "\nWeapon projectiles heal the player by 15 HP when below half healt upon hitting any enemy" +
-                            "\n15% increased damage when below half health" +
-                            "\n[c/FCA5033:Starborn Headgear Bonus]" +
-                            "\nGrants the stealth effect of the Shroomite Armor";
-            player.GetDamage(DamageClass.Ranged) += 0.20f;
-            player.arrowDamage += 0.20f;
-            player.bulletDamage += 0.20f;
+            player.setBonus = SetBonusText.Value;
+            player.GetDamage(DamageClass.Ranged) += RangedDamageSetBonus / 100f;
+            player.arrowDamage += RangedDamageSetBonus / 100f;
+            player.bulletDamage += RangedDamageSetBonus / 100f;
             ArmorSystem.StarbornArmor = true;
 
             player.shroomiteStealth = true;
@@ -61,7 +66,7 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.GetDamage(DamageClass.Ranged) += 0.17f;
+            player.GetDamage(DamageClass.Ranged) += RangedDamageBonus / 100f;
         }
 
         public override void AddRecipes()

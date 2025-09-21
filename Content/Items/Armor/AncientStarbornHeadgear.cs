@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Armor
@@ -13,11 +14,18 @@ namespace Eternal.Content.Items.Armor
     [AutoloadEquip(EquipType.Head)]
     public class AncientStarbornHeadgear : ModItem
     {
+        public static readonly int RangedDamageBonus = 7;
+        public static readonly int RangedDamageSetBonus = 10;
+
+        public static LocalizedText SetBonusText { get; private set; }
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(RangedDamageBonus);
+
         public override void SetStaticDefaults()
         {
-            // Tooltip.SetDefault("7% increased ranged damage");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
+            SetBonusText = this.GetLocalization("SetBonus").WithFormatArgs(RangedDamageSetBonus);
         }
 
         public override void SetDefaults()
@@ -36,13 +44,8 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "10% increased ranged damage" +
-                            "\nSome weapons receive special abilities" +
-                            "\nWeapon projectiles heal the player by 15 HP when below half healt upon hitting any enemy" +
-                            "\n15% increased damage when below half health" +
-                            "\n[c/FCA5033:Starborn Headgear Bonus]" +
-                            "\nGrants the stealth effect of the Shroomite Armor";
-            player.GetDamage(DamageClass.Ranged) += 0.10f;
+            player.setBonus = SetBonusText.Value;
+            player.GetDamage(DamageClass.Ranged) += RangedDamageSetBonus / 100f;
             ArmorSystem.StarbornArmor = true;
 
             player.shroomiteStealth = true;
@@ -55,7 +58,7 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.GetDamage(DamageClass.Ranged) += 0.07f;
+            player.GetDamage(DamageClass.Ranged) += RangedDamageBonus / 100f;
         }
     }
 }

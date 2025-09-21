@@ -862,62 +862,129 @@ Mods: {
 			}
 
 			UltimusPlateMail: {
-				Tooltip: +200 max life
+				Tooltip: +{0} max life
 				DisplayName: Ultimus Plate Mail
 			}
 
 			UltimusMask: {
-				Tooltip: 30% increased melee damage
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMeleeDamage}"
 				DisplayName: Ultimus Mask
+				SetBonus:
+					'''
+					{$CommonItemTooltip.PercentIncreasedMeleeDamage}
+					{1}% increased melee speed
+					               Some melee weapons recieve special modifiers
+					               You emit a source of light
+					               Starborn and Arkanium Armor Effects
+					'''
 			}
 
 			UltimusLeggings: {
-				Tooltip: +40% increased movement speed
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
 				DisplayName: Ultimus Leggings
 			}
 
 			UltimusHood: {
-				Tooltip: 30% increased ranged damage
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedRangedDamage}"
 				DisplayName: Ultimus Hood
+				SetBonus:
+					'''
+					{$CommonItemTooltip.PercentIncreasedRangedDamage}
+					               You emit a source of light
+					               Starborn and Arkanium Armor Effects
+					'''
 			}
 
 			UltimusHelmet: {
-				Tooltip: 30% increased minion damage
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedSummonDamage}"
 				DisplayName: Ultimus Helmet
+				SetBonus:
+					'''
+					{$CommonItemTooltip.PercentIncreasedSummonDamage}
+					+{1} minion slots
+					               You emit a source of light
+					               Starborn and Arkanium Armor Effects
+					'''
 			}
 
 			UltimusHeadgear: {
-				Tooltip: 30% increased magic damage
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMagicDamage}"
 				DisplayName: Ultimus Headgear
+				SetBonus:
+					'''
+					{$CommonItemTooltip.PercentIncreasedMagicDamage}
+					{1}% decreased mana cost
+					               You emit a source of light
+					               +{2} Mana
+					               Starborn and Arkanium Armor Effects
+					'''
 			}
 
 			StarbornScalePlate: {
-				Tooltip: +25 increased max life
+				Tooltip: +{0} increased max life
 				DisplayName: Starborn Scale Plate
 			}
 
 			StarbornMask: {
 				Tooltip: 17% increased melee damage
 				DisplayName: Starborn Mask
+				SetBonus:
+					'''
+					{$CommonItemTooltip.PercentIncreasedMeleeDamage}
+					{1}% increased melee speed
+					               Some weapons receive special abilities
+					               Weapon projectiles heal the player by 15 HP when below half healt upon hitting any enemy
+					               15% increased damage when below half health
+					               [c/FCA5033:Starborn Mask Bonus]
+					               Some melee weapons recieve special modifiers
+					'''
 			}
 
 			StarbornHood: {
-				Tooltip: 17% increased magic damage
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMagicDamage}"
 				DisplayName: Starborn Hood
+				SetBonus:
+					'''
+					{$CommonItemTooltip.PercentIncreasedMagicDamage}
+					{1}% decreased mana cost
+					+{2} mana
+					                  Some weapons receive special abilities
+					                  Weapon projectiles heal the player by 15 HP when below half health upon hitting any enemy
+					                  15% increased damage when below half health
+					                  [c/FCA5033:Starborn Hood Bonus]
+					                  You sometimes fire an unstable wisp that homes in on enemies, damage is based on how much mana you have in total
+					'''
 			}
 
 			StarbornHelmet: {
-				Tooltip: 17% increased minion damage
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedSummonDamage}"
 				DisplayName: Starborn Helmet
+				SetBonus:
+					'''
+					{$CommonItemTooltip.PercentIncreasedSummonDamage}
+					+{1} minion slots
+					               Some weapons receive special abilities" +
+					               Weapon projectiles heal the player by 15 HP when below half health upon hitting any enemy" +
+					               15% increased damage when below half health"
+					'''
 			}
 
 			StarbornHeadgear: {
-				Tooltip: 17% increased ranged damage
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedRangedDamage}"
 				DisplayName: Starborn Headgear
+				SetBonus:
+					'''
+					{$CommonItemTooltip.PercentIncreasedRangedDamage}
+					               Some weapons receive special abilities
+					               Weapon projectiles heal the player by 15 HP when below half healt upon hitting any enemy
+					               15% increased damage when below half health
+					               [c/FCA5033:Starborn Headgear Bonus]
+					               Grants the stealth effect of the Shroomite Armor
+					'''
 			}
 
 			StarbornGreaves: {
-				Tooltip: +18% increased movement speed
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
 				DisplayName: Starborn Greaves
 			}
 
@@ -954,21 +1021,27 @@ Mods: {
 			InfernomancerHood: {
 				Tooltip: ""
 				DisplayName: Infernomancer Hood
+				SetBonus: "{$CommonItemTooltip.PercentIncreasedRadiantDamage}"
 			}
 
 			InfernomancerGreaves: {
-				Tooltip: +10% increased movement speed
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
 				DisplayName: Infernomancer Greaves
 			}
 
 			IesniumLeggings: {
-				Tooltip: +20% increased movement speed
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
 				DisplayName: Iesnium Leggings
 			}
 
 			IesniumHelmet: {
 				Tooltip: ""
 				DisplayName: Iesnium Helmet
+				SetBonus:
+					'''
+					{$CommonItemTooltip.PercentIncreasedDamage}
+					Heals the player upon striking an enemy that is below half health
+					'''
 			}
 
 			IesniumChestplate: {
@@ -1030,32 +1103,69 @@ Mods: {
 			}
 
 			AncientStarbornScalePlate: {
-				Tooltip: +10 increased max life
+				Tooltip: +{0} increased max life
 				DisplayName: Ancient Starborn Scale Plate
 			}
 
 			AncientStarbornMask: {
-				Tooltip: 7% increased melee damage
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMeleeGamade}"
 				DisplayName: Ancient Starborn Mask
+				SetBonus:
+					'''
+					{$CommonItemTooltip.PercentIncreasedMeleeDamage}
+					{1}% increased melee speed
+					               Some weapons receive special abilities
+					               Weapon projectiles heal the player by 15 HP when below half healt upon hitting any enemy
+					               15% increased damage when below half health
+					               [c/FCA5033:Starborn Mask Bonus]
+					               Some melee weapons recieve special modifiers
+					'''
 			}
 
 			AncientStarbornHelmet: {
-				Tooltip: 7% increased minion damage
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedSummonDamage}"
 				DisplayName: Ancient Starborn Helmet
+				SetBonus:
+					'''
+					{$CommonItemTooltip.PercentIncreasedSummonDamage}
+					+{1} minion slots
+					Weapon projectiles heal you by 15 HP when below half health upon hitting an enemy
+					15% increased damage when below half health
+					'''
 			}
 
 			AncientStarbornHeadgear: {
-				Tooltip: 7% increased ranged damage
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedRanged}"
 				DisplayName: Ancient Starborn Headgear
+				SetBonus:
+					'''
+					{$CommonItemTooltip.PercentIncreasedRangedDamage}
+					               Some weapons receive special abilities
+					               Weapon projectiles heal the player by 15 HP when below half healt upon hitting any enemy
+					               15% increased damage when below half health
+					               [c/FCA5033:Starborn Headgear Bonus]
+					               Grants the stealth effect of the Shroomite Armor
+					'''
 			}
 
 			AncientStarbornHat: {
-				Tooltip: 7% increased magic damage
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMagicDamage}"
 				DisplayName: Ancient Starborn Hat
+				SetBonus:
+					'''
+					{$CommonItemTooltip.PercentIncreasedMagicDamage}
+					+{1} mana, 
+					{2}% decreased mana cost
+					               Some weapons receive special abilities
+					               Weapon projectiles heal the player by 15 HP when below half health upon hitting any enemy
+					               15% increased damage when below half health
+					               [c/FCA5033:Starborn Hat Bonus]
+					               You sometimes fire a projectile that homes in on enemies, damage is based on how much mana you have in total
+					'''
 			}
 
 			AncientStarbornGreaves: {
-				Tooltip: +9% increased movement speed
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
 				DisplayName: Ancient Starborn Greaves
 			}
 
@@ -1238,7 +1348,7 @@ Mods: {
 			FierceDeityEmblem: {
 				Tooltip:
 					'''
-					{0}% increased damage
+					{$CommonItemTooltip.PercentIncreasedDamage}
 					{1}% critical strike chance
 					[c/008060:Ancient Artifact]
 					An emblem empowered with a godly radiance
@@ -2088,6 +2198,7 @@ Mods: {
 			CarminiteSkulmet: {
 				DisplayName: Carminite Skulmet
 				Tooltip: ""
+				SetBonus: Increased melee damagem based on your current max life
 			}
 
 			CarminiteBroadsword: {
@@ -2117,32 +2228,55 @@ Mods: {
 
 			AncientArkaniumChestplate: {
 				DisplayName: Ancient Arkanium Chestplate
-				Tooltip: ""
+				Tooltip: +{0} max life
 			}
 
 			AncientArkaniumCowl: {
 				DisplayName: Ancient Arkanium Cowl
-				Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMagicDamage}"
+				SetBonus:
+					'''
+					{$CommonItemTooltip.PercentIncreasedMagicDamage}
+					{1}% decreased mana cost
+					               Swords rain down on you upon getting hit
+					'''
 			}
 
 			AncientArkaniumGreaves: {
 				DisplayName: Ancient Arkanium Greaves
-				Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
 			}
 
 			AncientArkaniumHeadgear: {
 				DisplayName: Ancient Arkanium Headgear
-				Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedRangedDamage}"
+				SetBonus:
+					'''
+					{$CommonItemTooltip.PercentIncreasedRangedDamage}
+					               Swords rain down on you upon getting hit
+					'''
 			}
 
 			AncientArkaniumHelmet: {
 				DisplayName: Ancient Arkanium Helmet
-				Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedSummonDamage}"
+				SetBonus:
+					'''
+					{$CommonItemTooltip.PercentIncreasedSummonDamage}
+					+{1} minion slots
+					               Swords rain down on you upon getting hit
+					'''
 			}
 
 			AncientArkaniumMask: {
 				DisplayName: Ancient Arkanium Mask
-				Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMeleeDamage}"
+				SetBonus:
+					'''
+					{$CommonItemTooltip.PercentIncreasedMeleeDamage}
+					{1}% increased melee speed
+					               Swords rain down on you upon getting hit
+					'''
 			}
 
 			ExathiumSlag: {
@@ -2671,12 +2805,28 @@ Mods: {
 
 			SanguineGreaves: {
 				DisplayName: Sanguine Greaves
-				Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
 			}
 
 			SanguineMask: {
 				DisplayName: Sanguine Mask
-				Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMeleeDamage}"
+				SetBonus:
+					'''
+					{$CommonItemTooltip.PercentIncreasedMeleeDamage}
+					{1}% increased melee speed
+					Some weapons receive special abilities
+					'''
+			}
+
+			SanguineHood: {
+				DisplayName: Sanguine Hood
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedRangedDamage}"
+				SetBonus:
+					'''
+					{$CommonItemTooltip.PercentIncreasedRangedDamage}
+					Some weapons receive special abilities
+					'''
 			}
 
 			CoagulatedBlood: {

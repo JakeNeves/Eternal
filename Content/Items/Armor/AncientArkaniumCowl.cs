@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Armor
@@ -13,12 +14,19 @@ namespace Eternal.Content.Items.Armor
     [AutoloadEquip(EquipType.Head)]
     public class AncientArkaniumCowl : ModItem
     {
+        public static readonly int MagicDamageBonus = 10;
+        public static readonly int MagicDamageSetBonus = 15;
+        public static readonly int ManaReductionBonus = 15;
+
+        public static LocalizedText SetBonusText { get; private set; }
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MagicDamageBonus);
 
         public override void SetStaticDefaults()
         {
-            // Tooltip.SetDefault("20% increased magic damage");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
+            SetBonusText = this.GetLocalization("SetBonus").WithFormatArgs(MagicDamageSetBonus, ManaReductionBonus);
         }
 
         public override void SetDefaults()
@@ -37,11 +45,10 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "15% increased magic damage and 15% decreased mana cost" +
-                            "\nSwords rain down on you upon getting hit";
+            player.setBonus = SetBonusText.Value;
 
-            player.GetDamage(DamageClass.Magic) += 1.15f;
-            player.manaCost -= 1.15f;
+            player.GetDamage(DamageClass.Magic) += MagicDamageSetBonus / 100f;
+            player.manaCost -= ManaReductionBonus / 100f;
 
             Dust dust;
             Vector2 position = Main.LocalPlayer.Center;
@@ -60,7 +67,7 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.GetDamage(DamageClass.Magic) += 1.10f;
+            player.GetDamage(DamageClass.Magic) += MagicDamageBonus / 100f;
         }
     }
 }

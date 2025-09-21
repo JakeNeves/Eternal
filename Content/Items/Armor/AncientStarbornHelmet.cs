@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Armor
@@ -13,11 +14,19 @@ namespace Eternal.Content.Items.Armor
     [AutoloadEquip(EquipType.Head)]
     public class AncientStarbornHelmet : ModItem
     {
+        public static readonly int SummonDamageBonus = 7;
+        public static readonly int SummonDamageSetBonus = 10;
+        public static readonly int MinionSlotSetBonus = 8;
+
+        public static LocalizedText SetBonusText { get; private set; }
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(SummonDamageBonus);
+
         public override void SetStaticDefaults()
         {
-            // Tooltip.SetDefault("7% increased minion damage");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
+            SetBonusText = this.GetLocalization("SetBonus").WithFormatArgs(SummonDamageSetBonus, MinionSlotSetBonus);
         }
 
         public override void SetDefaults()
@@ -36,12 +45,10 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "+8 minion slots and 10% increased minion damage" +
-                            "\nSome weapons receive special abilities" +
-                            "\nWeapon projectiles heal the player by 15 HP when below half healt upon hitting any enemy" +
-                            "\n15% increased damage when below half health";
-            player.GetDamage(DamageClass.Summon) += 0.10f;
-            player.maxMinions += 8;
+            player.setBonus = SetBonusText.Value;
+
+            player.GetDamage(DamageClass.Summon) += SummonDamageSetBonus / 100f;
+            player.maxMinions += MinionSlotSetBonus;
             ArmorSystem.StarbornArmor = true;
 
             Dust dust;
@@ -52,7 +59,7 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.GetDamage(DamageClass.Summon) += 0.07f;
+            player.GetDamage(DamageClass.Summon) += SummonDamageBonus / 100f;
         }
     }
 }

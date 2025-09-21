@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Armor
@@ -12,9 +13,15 @@ namespace Eternal.Content.Items.Armor
     [AutoloadEquip(EquipType.Head)]
     public class InfernomancerHood : ModItem
     {
+        public static readonly int RadiantDamageSetBonus = 30;
+
+        public static LocalizedText SetBonusText { get; private set; }
+
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
+            SetBonusText = this.GetLocalization("SetBonus").WithFormatArgs(RadiantDamageSetBonus);
         }
 
         public override void SetDefaults()
@@ -35,7 +42,7 @@ namespace Eternal.Content.Items.Armor
         {
             player.setBonus = "30% increased radiant damage";
 
-            player.GetDamage(ModContent.GetInstance<DamageClasses.Radiant>()) += 0.20f;
+            player.GetDamage(ModContent.GetInstance<DamageClasses.Radiant>()) += RadiantDamageSetBonus / 100f;
 
             Dust dust;
             Vector2 position = Main.LocalPlayer.Center;

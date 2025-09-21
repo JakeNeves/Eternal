@@ -1,20 +1,22 @@
-﻿using Eternal.Content.Rarities;
-using Eternal.Content.Items.Materials;
+﻿using Eternal.Content.Items.Materials;
+using Eternal.Content.Rarities;
 using Eternal.Content.Tiles.CraftingStations;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
+using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Armor
 {
     [AutoloadEquip(EquipType.Legs)]
     public class AncientArkaniumGreaves : ModItem
     {
+        public static readonly int MoveSpeedBonus = 18;
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MoveSpeedBonus);
 
         public override void SetStaticDefaults()
         {
-            // Tooltip.SetDefault("+27% increased movement speed");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -29,7 +31,7 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.moveSpeed += 0.18f;
+            player.moveSpeed += MoveSpeedBonus / 100f;
         }
     }
 }

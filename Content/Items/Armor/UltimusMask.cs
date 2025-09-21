@@ -3,6 +3,8 @@ using Eternal.Content.Items.Materials;
 using Eternal.Content.Rarities;
 using Eternal.Content.Tiles.CraftingStations;
 using Terraria;
+using Terraria.GameContent.Creative;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Armor
@@ -10,10 +12,19 @@ namespace Eternal.Content.Items.Armor
     [AutoloadEquip(EquipType.Head)]
     public class UltimusMask : ModItem
     {
+        public static readonly int MeleeDamageBonus = 30;
+        public static readonly int MeleeDamageSetBonus = 42;
+        public static readonly int MeleeSpeedBonus = 25;
+
+        public static LocalizedText SetBonusText { get; private set; }
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MeleeDamageBonus);
 
         public override void SetStaticDefaults()
         {
-            // Tooltip.SetDefault("30% increased melee damage");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
+            SetBonusText = this.GetLocalization("SetBonus").WithFormatArgs(MeleeDamageSetBonus, MeleeSpeedBonus);
         }
 
         public override void SetDefaults()
@@ -32,13 +43,10 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "42% increased melee damage and 25% increased melee speed" +
-                            "\nSome melee weapons recieve special modifiers" +
-                            "\nYou emit a source of light" +
-                            "\nStarborn and Arkanium Armor Effects";
+            player.setBonus = SetBonusText.Value;
 
-            player.GetDamage(DamageClass.Melee) += 1.42f;
-            player.GetAttackSpeed(DamageClass.Melee) += 0.25f;
+            player.GetDamage(DamageClass.Melee) += MeleeDamageSetBonus / 100f;
+            player.GetAttackSpeed(DamageClass.Melee) += MeleeSpeedBonus / 100f;
 
             Lighting.AddLight(player.Center, 1.14f, 0.22f, 1.43f);
 
@@ -55,7 +63,7 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.GetDamage(DamageClass.Melee) += 1.30f;
+            player.GetDamage(DamageClass.Melee) += MeleeDamageBonus / 100f;
         }
 
         public override void AddRecipes()

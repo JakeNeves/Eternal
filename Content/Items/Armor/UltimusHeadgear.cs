@@ -3,6 +3,8 @@ using Eternal.Content.Items.Materials;
 using Eternal.Content.Rarities;
 using Eternal.Content.Tiles.CraftingStations;
 using Terraria;
+using Terraria.GameContent.Creative;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Armor
@@ -10,10 +12,20 @@ namespace Eternal.Content.Items.Armor
     [AutoloadEquip(EquipType.Head)]
     public class UltimusHeadgear : ModItem
     {
+        public static readonly int MagicDamageBonus = 30;
+        public static readonly int MagicDamageSetBonus = 42;
+        public static readonly int ManaReductionBonus = 64;
+        public static readonly int ManaBonus = 300;
+
+        public static LocalizedText SetBonusText { get; private set; }
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MagicDamageBonus);
 
         public override void SetStaticDefaults()
         {
-            // Tooltip.SetDefault("30% increased magic damage");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
+            SetBonusText = this.GetLocalization("SetBonus").WithFormatArgs(MagicDamageSetBonus, ManaReductionBonus, ManaBonus);
         }
 
         public override void SetDefaults()
@@ -32,16 +44,13 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "42% increased magic damage and 64% decreased mana cost" +
-                            "\nYou emit a source of light" +
-                            "\n+300 Mana" +
-                            "\nStarborn and Arkanium Armor Effects";
+            player.setBonus = SetBonusText.Value;
 
-            player.statManaMax2 = 300;
+            player.statManaMax2 = ManaBonus; ;
 
-            player.manaCost -= 1.64f;
+            player.manaCost -= ManaReductionBonus / 100f;
 
-            player.GetDamage(DamageClass.Magic) += 0.42f;
+            player.GetDamage(DamageClass.Magic) += MagicDamageSetBonus / 100f;
 
             Lighting.AddLight(player.Center, 1.14f, 0.22f, 1.43f);
 
@@ -58,7 +67,7 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.GetDamage(DamageClass.Magic) += 0.30f;
+            player.GetDamage(DamageClass.Magic) += MagicDamageBonus / 100f;
         }
 
         public override void AddRecipes()
