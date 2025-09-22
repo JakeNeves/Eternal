@@ -74,9 +74,9 @@ namespace Eternal.Content.NPCs.Carrion
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
 			if (ModContent.GetInstance<ZoneSystem>().zoneUndergroundCarrion)
-                return SpawnCondition.Underground.Chance * 0.75f;
+                return SpawnCondition.Cavern.Chance * 0.75f;
 			else
-				return SpawnCondition.Underground.Chance * 0f;
+				return SpawnCondition.Cavern.Chance * 0f;
 		}
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
@@ -87,7 +87,7 @@ namespace Eternal.Content.NPCs.Carrion
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
 		{
 			bestiaryEntry.Info.AddRange([
-				new FlavorTextBestiaryInfoElement("These leeches somehow evolved and adapted to the dead climate of the Carrion...")
+				new FlavorTextBestiaryInfoElement("A Posthumous Digger that has adapted to the dead climate of the Carrion...")
 			]);
 		}
 

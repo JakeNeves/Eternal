@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Eternal.Content.Biomes;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -28,6 +29,11 @@ namespace Eternal.Content.Tiles
             TileID.Sets.ChecksForMerge[Type] = true;
         }
 
+        public override void ChangeWaterfallStyle(ref int style)
+        {
+            style = ModContent.GetInstance<CarrionWaterfallStyle>().Slot;
+        }
+
         public override void RandomUpdate(int i, int j)
         {
             List<Point> adjacents = OpenAdjacents(i, j, TileID.Stone);
@@ -40,6 +46,16 @@ namespace Eternal.Content.Tiles
                     if (Main.netMode == NetmodeID.Server)
                         NetMessage.SendTileSquare(-1, p.X, p.Y, 1, TileChangeType.None);
                 }
+            }
+        }
+        
+        public override void Convert(int i, int j, int conversionType)
+        {
+            switch (conversionType)
+            {
+                case BiomeConversionID.Purity:
+                    WorldGen.ConvertTile(i, j, TileID.Stone);
+                    return;
             }
         }
 
@@ -60,15 +76,6 @@ namespace Eternal.Content.Tiles
                     if (!Framing.GetTileSafely(i + k, j + l).HasTile)
                         return true;
             return false;
-        }
-
-        public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
-        {
-            if (!fail)
-            {
-                fail = true;
-                Framing.GetTileSafely(i, j).TileType = TileID.Stone;
-            }
         }
     }
 }

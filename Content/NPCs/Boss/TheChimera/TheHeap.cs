@@ -280,10 +280,8 @@ namespace Eternal.Content.NPCs.Boss.TheChimera
                         int[] i = [
                             Projectile.NewProjectile(entitySource, shootPos, shootVel, ModContent.ProjectileType<BloodClot>(), (int)(NPC.damage * 0.25f), 1f),
                             Projectile.NewProjectile(entitySource, shootPos, shootVel.RotatedBy(MathHelper.PiOver2), ModContent.ProjectileType<BloodClot>(), (int)(NPC.damage * 0.25f), 1f),
-                            Projectile.NewProjectile(entitySource, shootPos, shootVel.RotatedBy(MathHelper.PiOver4), ModContent.ProjectileType<BloodClot>(), (int)(NPC.damage * 0.25f), 1f),
                             Projectile.NewProjectile(entitySource, shootPos, shootVel.RotatedBy(MathHelper.Pi), ModContent.ProjectileType <BloodClot>(), (int)(NPC.damage * 0.25f), 1f),
-                            Projectile.NewProjectile(entitySource, shootPos, shootVel.RotatedBy(-MathHelper.PiOver2), ModContent.ProjectileType <BloodClot>(), (int)(NPC.damage * 0.25f), 1f),
-                            Projectile.NewProjectile(entitySource, shootPos, shootVel.RotatedBy(-MathHelper.PiOver4), ModContent.ProjectileType <BloodClot>(), (int)(NPC.damage * 0.25f), 1f)
+                            Projectile.NewProjectile(entitySource, shootPos, shootVel.RotatedBy(-MathHelper.PiOver2), ModContent.ProjectileType <BloodClot>(), (int)(NPC.damage * 0.25f), 1f)
                         ];
                         for (int l = 0; l < i.Length; l++)
                         {
@@ -302,7 +300,7 @@ namespace Eternal.Content.NPCs.Boss.TheChimera
                     CircleDirc = Utils.RotatedBy(CircleDirc, 0.10000000149011612, new Vector2());
                     int index5 = Projectile.NewProjectile(entitySource, NPC.Center, CircleDirc, ModContent.ProjectileType<BallofPussHostile>(), NPC.damage, 0.0f, Main.myPlayer, 0.0f, 0.0f);
                     Main.projectile[index5].tileCollide = false;
-                    Main.projectile[index5].timeLeft = 50;
+                    Main.projectile[index5].timeLeft = 25;
                 }
             }
 
@@ -347,16 +345,13 @@ namespace Eternal.Content.NPCs.Boss.TheChimera
             {
                 NPC.velocity = new Vector2(0f, 0f);
 
-                if (--aiHeapShootTime <= 0)
+                if (Main.rand.NextBool(3))
                 {
-                    aiHeapShootTime = aiHeapShootRate;
-                    if (Main.netMode != NetmodeID.MultiplayerClient)
-                    {
-                        CircleDirc = Utils.RotatedBy(CircleDirc, 0.10000000149011612, new Vector2());
-                        int index5 = Projectile.NewProjectile(entitySource, NPC.Center, CircleDirc, ModContent.ProjectileType<BloodClot>(), NPC.damage, 0.0f, Main.myPlayer, 0.0f, 0.0f);
-                        Main.projectile[index5].tileCollide = false;
-                        Main.projectile[index5].timeLeft = 50;
-                    }
+                    if (!Main.dedServ)
+                        SoundEngine.PlaySound(SoundID.Item167, NPC.Center);
+
+                    for (int i = 0; i < 1 + Main.rand.Next(5); i++)
+                        Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, Main.rand.Next(-8, 8), -8, ModContent.ProjectileType<BallofPussHostile>(), NPC.damage, 0f);
                 }
             }
 
@@ -366,7 +361,7 @@ namespace Eternal.Content.NPCs.Boss.TheChimera
                 {
                     tomaBallFireTime = tomaBallFireRate;
 
-                    NPC.NewNPC(entitySource, (int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<TomaBall>());
+                    NPC.NewNPC(entitySource, (int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<TheFammish>());
                 }
             }
 

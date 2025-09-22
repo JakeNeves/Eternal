@@ -25,14 +25,13 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
             Projectile.penetrate = -1;
             Projectile.timeLeft = 200;
             Projectile.alpha = 0;
+            Projectile.extraUpdates = 2;
             Projectile.DamageType = DamageClass.Melee;
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(BuffID.OnFire, 1 * 60 * 30, false);
-
-            Projectile.Kill();
         }
 
         public override void AI()

@@ -320,10 +320,7 @@ namespace Eternal.Content.NPCs.Boss.TheChimera
                     if (!Main.dedServ)
                         SoundEngine.PlaySound(SoundID.Item167, NPC.Center);
 
-                    var shootPos = Main.player[NPC.target].position + new Vector2(Main.rand.Next(-1000, 1000), -1000);
-                    var shootVel = new Vector2(Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(-20f, -15f));
-                    int i = Projectile.NewProjectile(entitySource, shootPos, shootVel, ModContent.ProjectileType<BallofPussHostile>(), NPC.damage / 2 * ((Main.expertMode) ? 3 : 2), 1f);
-                    Main.projectile[i].tileCollide = false;
+                    Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, Main.rand.Next(-4, 4), -8, ModContent.ProjectileType<BallofPussHostile>(), NPC.damage, 0f);
                 }
             }
 
@@ -334,8 +331,8 @@ namespace Eternal.Content.NPCs.Boss.TheChimera
                 if (!Main.dedServ)
                     SoundEngine.PlaySound(SoundID.NPCHit1, NPC.Center);
 
-                Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, 8, Main.rand.Next(-2, 2), ModContent.ProjectileType<GasCloud>(), 0, 0f);
-                Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, -8, Main.rand.Next(-2, 2), ModContent.ProjectileType<GasCloud>(), 0, 0f);
+                Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, 8, Main.rand.Next(-2, 2), ModContent.ProjectileType<BloodClot>(), NPC.damage, 0f);
+                Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, -8, Main.rand.Next(-2, 2), ModContent.ProjectileType<BloodClot>(), NPC.damage, 0f);
             }
 
             if (AttackTimer > 1200)

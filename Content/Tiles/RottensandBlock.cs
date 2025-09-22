@@ -1,4 +1,5 @@
 ﻿using Eternal.Common.Configurations;
+using Eternal.Content.Biomes;
 using Eternal.Content.Projectiles.Misc;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -38,6 +39,21 @@ namespace Eternal.Content.Tiles
             MineResist = 0.5f;
         }
 
+        public override void ChangeWaterfallStyle(ref int style)
+        {
+            style = ModContent.GetInstance<CarrionWaterfallStyle>().Slot;
+        }
+
+        public override void Convert(int i, int j, int conversionType)
+        {
+            switch (conversionType)
+            {
+                case BiomeConversionID.Sand:
+                    WorldGen.ConvertTile(i, j, TileID.Sand);
+                    return;
+            }
+        }
+
         public override void RandomUpdate(int i, int j)
         {
             List<Point> adjacents = OpenAdjacents(i, j, TileID.Sand);
@@ -70,15 +86,6 @@ namespace Eternal.Content.Tiles
                     if (!Framing.GetTileSafely(i + k, j + l).HasTile)
                         return true;
             return false;
-        }
-
-        public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
-        {
-            if (!fail)
-            {
-                fail = true;
-                Framing.GetTileSafely(i, j).TileType = TileID.Sand;
-            }
         }
 
         public override bool HasWalkDust()

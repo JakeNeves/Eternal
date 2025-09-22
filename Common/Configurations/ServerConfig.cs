@@ -43,6 +43,7 @@ namespace Eternal.Common.Configurations
         /// EXPERIMENTAL: Adds Life Motes to the game
         /// </summary>
         [DefaultValue(false)]
+        [Header("ExperimentalFeatures")]
         [LabelKey("$Mods.Eternal.Server.Configurations.ServerConfig.lifeMotes.DisplayName")]
         [TooltipKey("$Mods.Eternal.Server.Configurations.ServerConfig.lifeMotes.Tooltip")]
         [ReloadRequired]

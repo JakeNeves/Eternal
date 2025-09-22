@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -39,9 +40,30 @@ namespace Eternal.Content.Projectiles.Explosion
 
         public override void OnKill(int timeLeft)
         {
+            _ = Projectile.Center;
+            for (int num120 = 0; num120 < 60; num120++)
+            {
+                int num121 = 25;
+                _ = ((float)Main.rand.NextDouble() * ((float)Math.PI * 2f)).ToRotationVector2() * Main.rand.Next(24, 41) / 8f;
+                int num122 = Dust.NewDust(Projectile.Center - Vector2.One * num121, num121 * 2, num121 * 2, DustID.Clentaminator_Purple);
+                Dust dust154 = Main.dust[num122];
+                Vector2 vector7 = Vector2.Normalize(dust154.position - Projectile.Center);
+                dust154.position = Projectile.Center + vector7 * 25f * Projectile.scale;
+                if (num120 < 30)
+                {
+                    dust154.velocity = vector7 * dust154.velocity.Length();
+                }
+                else
+                {
+                    dust154.velocity = vector7 * Main.rand.Next(45, 91) / 10f;
+                }
+                dust154.noGravity = true;
+                dust154.scale = 0.7f;
+            }
+
             for (int k = 0; k < 5; k++)
             {
-                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.PurpleCrystalShard, Projectile.oldVelocity.X * 1f, Projectile.oldVelocity.Y * 1f);
+                Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, DustID.Clentaminator_Purple, Projectile.oldVelocity.X * 0.25f, Projectile.oldVelocity.Y * 0.25f);
             }
 
             SoundEngine.PlaySound(SoundID.NPCDeath14, Projectile.Center);
