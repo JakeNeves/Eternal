@@ -19,7 +19,7 @@ namespace Eternal.Content.Items.Weapons.Magic
         {
             Item.width = 46;
             Item.height = 46;
-            Item.damage = 90;
+            Item.damage = 10;
             Item.DamageType = DamageClass.Magic;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.mana = 4;
@@ -29,7 +29,7 @@ namespace Eternal.Content.Items.Weapons.Magic
             Item.shoot = ModContent.ProjectileType<SanguinebeamFriendly>();
             Item.shootSpeed = 10f;
             Item.UseSound = SoundID.Item100;
-            Item.rare = ItemRarityID.Pink;
+            Item.rare = ItemRarityID.Green;
             Item.autoReuse = true;
             Item.noMelee = true;
         }

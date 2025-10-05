@@ -24,9 +24,9 @@ namespace Eternal.Content.NPCs.Gehenna
         {
             NPC.width = 36;
             NPC.height = 54;
-            NPC.damage = 10;
-            NPC.defense = 30;
-            NPC.lifeMax = 1500;
+            NPC.damage = 25;
+            NPC.defense = 40;
+            NPC.lifeMax = 1000;
             NPC.value = Item.sellPrice(gold: 15);
             NPC.knockBackResist = -1f;
             NPC.aiStyle = 3;
@@ -80,7 +80,7 @@ namespace Eternal.Content.NPCs.Gehenna
 
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
-                    if (Main.rand.NextBool(8))
+                    if (Main.rand.NextBool(12))
                     {
                         SoundEngine.PlaySound(SoundID.Item91, NPC.Center);
 

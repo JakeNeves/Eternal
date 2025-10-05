@@ -28,9 +28,18 @@ namespace Eternal.Content.NPCs.Gehenna
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
             AIType = NPCID.BlueSlime;
-            NPC.damage = 16;
-            NPC.defense = 12;
-            NPC.lifeMax = 300;
+            if (Main.hardMode)
+            {
+                NPC.damage = 10;
+                NPC.defense = 15;
+                NPC.lifeMax = 100;
+            }
+            else
+            {
+                NPC.damage = 20;
+                NPC.defense = 30;
+                NPC.lifeMax = 250;
+            }
             AnimationType = NPCID.BlueSlime;
             SpawnModBiomes = [ ModContent.GetInstance<Biomes.Gehenna>().Type ];
         }
@@ -52,7 +61,9 @@ namespace Eternal.Content.NPCs.Gehenna
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CoagulatedBlood>(), 1, 4, 6));
+            LeadingConditionRule isHardmodeRule = new(new Conditions.IsHardmode());
+
+            isHardmodeRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<CoagulatedBlood>(), 1, 4, 6));
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

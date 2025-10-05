@@ -64,7 +64,10 @@ namespace Eternal.Content.NPCs.Gehenna
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HellHacker>(), 36));
+            LeadingConditionRule isHardmodeRule = new(new Conditions.IsHardmode());
+
+            isHardmodeRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<HellHacker>(), 24));
+
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GehennaKeyFragment2>(), 12));
         }
 

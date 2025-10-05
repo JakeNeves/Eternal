@@ -19,7 +19,7 @@ namespace Eternal.Content.Items.Accessories
             Item.width = 20;
             Item.height = 30;
             Item.value = Item.sellPrice(platinum: 3);
-            Item.rare = ModContent.RarityType<Turquoise>();
+            Item.rare = ModContent.RarityType<Azure>();
             Item.accessory = true;
         }
 

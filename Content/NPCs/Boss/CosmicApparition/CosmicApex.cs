@@ -83,8 +83,8 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
 
         public override void AI()
         {
-
-            Lighting.AddLight(NPC.position, 0.75f, 0f, 0.75f);
+            if (!Main.dedServ)
+                Lighting.AddLight(NPC.position, 0.75f, 0f, 0.75f);
 
             var entitySource = NPC.GetSource_FromAI();
 

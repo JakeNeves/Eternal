@@ -33,7 +33,7 @@ namespace Eternal.Content.Items.Weapons.Radiant
             Item.knockBack = 4f;
             Item.crit = 100;
             Item.value = Item.sellPrice(platinum: 5);
-            Item.rare = ModContent.RarityType<Turquoise>();
+            Item.rare = ModContent.RarityType<Maroon>();
             Item.shootSpeed = 0f;
             Item.shoot = ModContent.ProjectileType<ExocosmicBombProjectile>();
         }

@@ -28,14 +28,15 @@ namespace Eternal.Content.Items.Weapons.Melee
             Item.useTime = 20;
             Item.shootSpeed = 8f;
             Item.UseSound = SoundID.Item71;
-            Item.rare = ModContent.RarityType<Turquoise>();
+            Item.rare = ModContent.RarityType<Aquamarine>();
             Item.shoot = ModContent.ProjectileType<ExosiivaGladiusBladeProjectile>();
         }
 
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<CosmoniumFragment>())
+                .AddIngredient(ModContent.ItemType<CosmoniumFragment>(), 4)
+                .AddIngredient(ModContent.ItemType<InterstellarMetal>(), 6)
                 .AddIngredient(ModContent.ItemType<AwakenedCometiteBar>(), 24)
                 .AddIngredient(ModContent.ItemType<ArkiumQuartzPlating>(), 16)
                 .AddIngredient(ModContent.ItemType<ApparitionalMatter>(), 16)

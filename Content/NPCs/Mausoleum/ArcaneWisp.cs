@@ -1,5 +1,6 @@
 ﻿using Eternal.Common.Systems;
 using Eternal.Content.Items.Materials;
+using Eternal.Content.Items.Weapons.Melee;
 using Eternal.Content.Projectiles.Enemy;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -14,7 +15,7 @@ namespace Eternal.Content.NPCs.Mausoleum
 {
     public class ArcaneWisp : ModNPC
     {
-        int attackTimer = 0;
+        ref float AttackTimer => ref NPC.ai[1];
 
         public override void SetStaticDefaults()
         {
@@ -25,9 +26,18 @@ namespace Eternal.Content.NPCs.Mausoleum
 
         public override void SetDefaults()
         {
-            NPC.lifeMax = 200;
-            NPC.damage = 10;
-            NPC.defense = 20;
+            if (Main.hardMode)
+            {
+                NPC.lifeMax = 250;
+                NPC.damage = 20;
+                NPC.defense = 30;
+            }
+            else
+            {
+                NPC.lifeMax = 25;
+                NPC.damage = 5;
+                NPC.defense = 10;
+            }
             NPC.knockBackResist = -1f;
             NPC.width = 18;
             NPC.height = 28;
@@ -49,7 +59,10 @@ namespace Eternal.Content.NPCs.Mausoleum
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PsyblightEssence>(), 2, 2, 4));
+            LeadingConditionRule isHardmodeRule = new(new Conditions.IsHardmode());
+
+            isHardmodeRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<PsyblightEssence>(), 2, 2, 4));
+
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MausoleumKeyFragment1>(), 12));
         }
 
@@ -68,7 +81,7 @@ namespace Eternal.Content.NPCs.Mausoleum
 
             NPC.rotation = NPC.velocity.X * -0.03f;
 
-            attackTimer++;
+            AttackTimer++;
             Attack();
         }
 
@@ -81,7 +94,7 @@ namespace Eternal.Content.NPCs.Mausoleum
             direction.X *= 8.5f;
             direction.Y *= 8.5f;
 
-            if (attackTimer == 200 || attackTimer == 240 || attackTimer == 280)
+            if (AttackTimer == 200 || AttackTimer == 240 || AttackTimer == 280)
             {
                 if (!Main.dedServ)
                     SoundEngine.PlaySound(SoundID.DD2_FlameburstTowerShot, NPC.position);
@@ -92,9 +105,9 @@ namespace Eternal.Content.NPCs.Mausoleum
                     Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, direction.X + A, direction.Y + B, ModContent.ProjectileType<Psyfireball>(), NPC.damage, 1, Main.myPlayer, 0, 0);
             }
 
-            if (attackTimer > 320)
+            if (AttackTimer > 320)
             {
-                attackTimer = 0;
+                AttackTimer = 0;
             }
         }
 

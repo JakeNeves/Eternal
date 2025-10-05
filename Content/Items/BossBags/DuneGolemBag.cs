@@ -1,8 +1,5 @@
-﻿using Eternal.Common.Systems;
-using Eternal.Content.Items.Accessories.Expert;
+﻿using Eternal.Content.Items.Accessories.Expert;
 using Eternal.Content.Items.Materials;
-using Eternal.Content.Items.Weapons.Hell;
-using Eternal.Content.NPCs.Boss.DuneGolem;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.GameContent.ItemDropRules;
@@ -30,7 +27,7 @@ namespace Eternal.Content.Items.BossBags
             Item.consumable = true;
             Item.width = 32;
             Item.height = 32;
-            Item.rare = -12;
+            Item.rare = ItemRarityID.Expert;
             Item.expert = true;
         }
 

@@ -1,4 +1,5 @@
 ﻿using Eternal.Common.Players;
+using Eternal.Content.Rarities;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -18,7 +19,7 @@ namespace Eternal.Content.Items.Accessories.Expert
             Item.width = 34;
             Item.height = 36;
             Item.value = Item.sellPrice(gold: 3, platinum: 1);
-            Item.rare = ItemRarityID.Expert;
+            Item.rare = ModContent.RarityType<Azure>();
             Item.accessory = true;
             Item.expert = true;
         }

@@ -36,7 +36,7 @@ namespace Eternal.Content.Items.Weapons.Ranged
             Item.shootSpeed = 5f;
             Item.shoot = ModContent.ProjectileType<OminiteNaniteProjectile>();
             Item.useAmmo = ModContent.ItemType<OminiteNanites>();
-            Item.rare = ModContent.RarityType<Turquoise>();
+            Item.rare = ModContent.RarityType<Maroon>();
             Item.knockBack = 2f;
         }
 

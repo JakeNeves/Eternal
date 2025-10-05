@@ -10,7 +10,6 @@ namespace Eternal.Content.Items.Summon
 {
     public class CosmicTablet : ModItem
     {
-
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -20,15 +19,18 @@ namespace Eternal.Content.Items.Summon
         {
             Item.width = 22;
             Item.height = 30;
-            Item.rare = ModContent.RarityType<Turquoise>();
+            Item.rare = ModContent.RarityType<Ultramarine>();
         }
 
         public override void AddRecipes()
         {
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<CoreofExodus>(), 12)
-                .AddIngredient(ModContent.ItemType<CometiteBar>(), 16)
-                .AddIngredient(ModContent.ItemType<StarpowerCrystal>(), 20)
+                .AddIngredient(ModContent.ItemType<AwakenedCometiteBar>(), 16)
+                .AddIngredient(ModContent.ItemType<ProviditeBar>(), 4)
+                .AddIngredient(ModContent.ItemType<MindCrystalCluster>(), 4)
+                .AddIngredient(ModContent.ItemType<BodyCrystalCluster>(), 4)
+                .AddIngredient(ModContent.ItemType<SoulCrystalCluster>(), 4)
                 .AddTile(ModContent.TileType<RotaryHearthForge>())
                 .Register();
         }

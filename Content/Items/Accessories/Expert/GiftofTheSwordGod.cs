@@ -1,4 +1,5 @@
 ﻿using Eternal.Common.Players;
+using Eternal.Content.Rarities;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -22,7 +23,7 @@ namespace Eternal.Content.Items.Accessories.Expert
         {
             Item.width = 30;
             Item.height = 38;
-            Item.rare = ItemRarityID.Expert;
+            Item.rare = ModContent.RarityType<Maroon>();
             Item.expert = true;
             Item.value = Item.sellPrice(gold: 12);
             Item.accessory = true;

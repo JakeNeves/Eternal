@@ -23,7 +23,7 @@ namespace Eternal.Content.Items.Materials
             Item.width = 48;
             Item.height = 30;
             Item.value = Item.buyPrice(platinum: 25);
-            Item.rare = ModContent.RarityType<Turquoise>();
+            Item.rare = ModContent.RarityType<Maroon>();
         }
 
         public override void AddRecipes()

@@ -22,7 +22,7 @@ namespace Eternal.Content.Items.Weapons.Magic
             Item.height = 24;
             Item.DamageType = DamageClass.Magic;
             Item.rare = ItemRarityID.Orange;
-            Item.damage = 30;
+            Item.damage = 10;
             Item.useAnimation = 12;
             Item.useTime = 12;
             Item.useStyle = ItemUseStyleID.Swing;

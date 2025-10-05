@@ -1,18 +1,19 @@
-﻿using Eternal.Common.Systems;
+﻿using Eternal.Common.Misc;
+using Eternal.Common.Systems;
 using Eternal.Content.Dusts;
+using Eternal.Content.Items.Materials;
+using Eternal.Content.Items.Misc;
+using Eternal.Content.Items.Summon;
+using Eternal.Content.Projectiles.Enemy;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
-using Terraria.Audio;
-using Eternal.Content.Projectiles.Enemy;
-using Eternal.Content.Items.Summon;
-using Eternal.Common.Misc;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria.GameContent.ItemDropRules;
-using Eternal.Content.Items.Misc;
 
 namespace Eternal.Content.NPCs.Mausoleum
 {
@@ -34,9 +35,18 @@ namespace Eternal.Content.NPCs.Mausoleum
         {
             NPC.width = 28;
             NPC.height = 42;
-            NPC.damage = 20;
-            NPC.defense = 25;
-            NPC.lifeMax = 250;
+            if (Main.hardMode)
+            {
+                NPC.damage = 20;
+                NPC.defense = 30;
+                NPC.lifeMax = 300;
+            }
+            else
+            {
+                NPC.damage = 15;
+                NPC.defense = 10;
+                NPC.lifeMax = 100;
+            }
             NPC.value = Item.sellPrice(silver: 60);
             NPC.knockBackResist = -1f;
             NPC.aiStyle = 3;
@@ -126,7 +136,10 @@ namespace Eternal.Content.NPCs.Mausoleum
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Animanomicon>(), 12));
+            LeadingConditionRule isHardmodeRule = new(new Conditions.IsHardmode());
+
+            isHardmodeRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Animanomicon>(), 12));
+
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Poutine>(), 12));
         }
 

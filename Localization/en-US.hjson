@@ -7,6 +7,7 @@ Mods: {
 			HeriticEmote.Command: heritic
 			DarkMoonEmote.Command: darkmoon
 			RiftEmote.Command: rift
+			CosmicEmperorEmote.Command: cosmicemperoremote
 		}
 
 		GameTips: {
@@ -2440,9 +2441,29 @@ Mods: {
 				Tooltip: JakeTEM - Imperious Strike
 			}
 
+			AoIRiftMusicBox: {
+				DisplayName: Music Box (Ark of Imperious (Rift))
+				Tooltip: JakeTEM - Sword God's Ballad of the Rift
+			}
+
 			CosmicApparitionMusicBox: {
 				DisplayName: Music Box (Cosmic Apparition)
 				Tooltip: JakeTEM - Apparitional Accumulation
+			}
+
+			CosmicApparitionRiftMusicBox: {
+				DisplayName: Music Box (Cosmic Apparition (Rift))
+				Tooltip: JakeTEM - Ghost From Another World
+			}
+
+			CosmicEmperorMusicBox: {
+				DisplayName: Music Box (Cosmic Emperor)
+				Tooltip: JakeTEM - A Point of No Return
+			}
+
+			CosmicEmperorP2MusicBox: {
+				DisplayName: Music Box (Cosmic Emperor (Phase 2))
+				Tooltip: JakeTEM - Tyranicide
 			}
 
 			RiftMusicBox: {
@@ -2523,6 +2544,11 @@ Mods: {
 			CarrionMusicBox: {
 				DisplayName: Music Box (Carrion)
 				Tooltip: JakeTEM - Necrotic Fissure
+			}
+
+			UndergroundCarrionMusicBox: {
+				DisplayName: Music Box (Underground Carrion)
+				Tooltip: JakeTEM - Necroventric Heap
 			}
 
 			TheChimeraMusicBox: {
@@ -3211,14 +3237,32 @@ Mods: {
 				Tooltip: ""
 			}
 
-			UndergroundCarrionMusicBox: {
-				DisplayName: Underground Carrion Music Box
-				Tooltip: ""
-			}
-
 			CarrionTorch: {
 				DisplayName: Carrion Torch
 				Tooltip: ""
+			}
+
+			MagmaniacHeart: {
+				DisplayName: Magmaniac Heart
+				Tooltip:
+					'''
+					Grants full immunity to fire and lava
+					'It burns, so good...'
+					'''
+			}
+
+			AstralCompensator: {
+				DisplayName: Astral Compensator
+				Tooltip:
+					'''
+					Occasionally spawns an Astral Wisp that explodes into homing projectiles on enemy contact
+					<right> with the Umbral Arcanis to explode the Astral Wisps on command with the Benighted Wisps
+					'''
+			}
+
+			NeptunesFloodgate: {
+				DisplayName: Neptune's Floodgate
+				Tooltip: Open the Floodgates
 			}
 		}
 
@@ -3755,6 +3799,8 @@ Mods: {
 			TheHeap.DisplayName: The Heap
 			TheHive.DisplayName: The Hive
 			TomaBall.DisplayName: Toma Ball
+			GalaxiaWisp.DisplayName: Galaxia Wisp
+			AstralWisp.DisplayName: Astral Wisp
 		}
 
 		Prefixes: {
@@ -3966,6 +4012,9 @@ Mods: {
 			BasaltKatarProjectile.DisplayName: Basalt Katar
 			RottenMindSentry.DisplayName: Rotten Mind
 			RottenMindTomaBall.DisplayName: Toma Ball
+			NeptunesFloodgateProjectile.DisplayName: Neptune's Floodgate
+			NeptunesFloodgateProjectile2.DisplayName: Neptune's Floodgate
+			FloodgateDroplet.DisplayName: Floodgate Droplet
 		}
 
 		WorldGen: {
@@ -4107,7 +4156,10 @@ Mods: {
 			}
 		}
 
-		Death.ApparitionalWither: "{0}'s body withered away..."
+		Death: {
+			CosmicTabletDeny: "{0}'s heart disintegrated into stardust..."
+			ApparitionalWither: "{0}'s body withered away..."
+		}
 
 		Conditions: {
 			CarminiteAmalgamationDefeated: When the Carminite Amalgamation has been defeated
@@ -4117,6 +4169,7 @@ Mods: {
 			SubzeroElementalDefeated: When the Subzero Elemental has been defeated
 			DunewormDefeated: When the Duneworm has been defeated
 			NiadesDefeated: When Niades has been defeated
+			ChimeraDefeated: When the Chimera has been defeated
 			GlareDefeated: When the Glare has been defeated
 			CosmicApparitionDefeated: When the Cosmic Apparition has been defeated
 			ArkofImperiousDefeated: When the Ark of Imperious has been defeated
@@ -4124,16 +4177,6 @@ Mods: {
 			CosmicEmperorDefeated: When the Cosmic Emperor has been defeated
 			isZenithWorld: Exclusively to the Zenith seed
 			IsNamedJake: When the player is named after the Empreror or the mod's creator
-			50ReputationPoints: When the player has a Reputation quota of 50
-			100ReputationPoints: When the player has a Reputation quota of 100
-			150ReputationPoints: When the player has a Reputation quota of 150
-			500ReputationPoints: When the player has a Reputation quota of 500
-			1000ReputationPoints: When the player has a Reputation quota of 1000
-			1050ReputationPoints: When the player has a Reputation quota of 1050
-			1100ReputationPoints: When the player has a Reputation quota of 1100
-			1150ReputationPoints: When the player has a Reputation quota of 1150
-			1500ReputationPoints: When the player has a Reputation quota of 1500
-			5000ReputationPoints: When the player has the maximum Reputation Quota
 			HellMode: Exclusively in Hell Mode
 			InRift: In the Rift
 			DarkMoon: During the Dark Moon
@@ -4141,6 +4184,9 @@ Mods: {
 			InGehenna: In the Gehenna
 			InFallenComet: At the Fallen Comet
 			InTheBeneath: In the Beneath
+			InTheCarrion: In the Carrion
+			InTheCarrionDesert: In the Carrion Desert
+			InUndergroundCarrion: In the Underground Carrion
 		}
 	}
 }

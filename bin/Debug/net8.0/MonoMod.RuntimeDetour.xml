@@ -1389,6 +1389,23 @@
             <param name="config">The <see cref="T:MonoMod.RuntimeDetour.DetourConfig"/> to use for this detour.</param>
             <param name="applyByDefault">Whether or not this hook should be applied when the constructor finishes.</param>
         </member>
+        <member name="P:MonoMod.RuntimeDetour.NativeHook.CanCallOriginal">
+            <summary>
+            Gets whether or not a <see cref="T:MonoMod.RuntimeDetour.NativeHook"/> created in this context can call the original method from within
+            the hook.
+            </summary>
+            <remarks>
+            <para>
+            Even when this returns <see langword="false"/>, users should accept an <c>orig</c> delegate and call it, but they
+            should make sure it's not <see langword="null"/> before doing so. This allows hooks to coexist even when the original
+            cannot be called.
+            </para>
+            <para>
+            This is equivalent to <see cref="P:MonoMod.Core.IDetourFactory.SupportsNativeDetourOrigEntrypoint"/> on the <see cref="T:MonoMod.Core.IDetourFactory"/>
+            which is ambient on the current thread. That property should be checked directly if manually passing an <see cref="T:MonoMod.Core.IDetourFactory"/>.
+            </para>
+            </remarks>
+        </member>
         <member name="P:MonoMod.RuntimeDetour.NativeHook.Config">
             <summary>
             Gets the <see cref="T:MonoMod.RuntimeDetour.DetourConfig"/> associated with this <see cref="T:MonoMod.RuntimeDetour.NativeHook"/>, if any.

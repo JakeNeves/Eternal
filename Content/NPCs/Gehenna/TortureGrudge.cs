@@ -48,7 +48,9 @@ namespace Eternal.Content.NPCs.Gehenna
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ValtoricKnives>(), 48));
+            LeadingConditionRule isHardmodeRule = new(new Conditions.IsHardmode());
+
+            isHardmodeRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<ValtoricKnives>(), 24));
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

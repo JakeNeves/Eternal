@@ -1,10 +1,7 @@
-﻿using Eternal.Common.ItemDropRules.Conditions;
-using Eternal.Content.Items.Accessories;
-using Eternal.Content.Items.Materials;
+﻿using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Weapons.Melee;
 using Eternal.Content.Items.Weapons.Ranged;
 using Terraria;
-using Terraria.Audio;
 using Terraria.GameContent.Creative;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -30,7 +27,7 @@ namespace Eternal.Content.Items.BossBags
             Item.consumable = true;
             Item.width = 32;
             Item.height = 32;
-            Item.rare = -12;
+            Item.rare = ItemRarityID.Expert;
             Item.expert = true;
         }
 

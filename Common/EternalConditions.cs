@@ -1,8 +1,6 @@
 ﻿using Eternal.Common.Systems;
 using Eternal.Content.Biomes;
 using Terraria;
-using Terraria.ModLoader;
-using Terraria.ModLoader.Utilities;
 
 namespace Eternal.Common
 {
@@ -17,6 +15,9 @@ namespace Eternal.Common
         public static Condition InGehenna = new("Mods.Eternal.Conditions.InGehenna", () => Main.LocalPlayer.InModBiome<Gehenna>());
         public static Condition InFallenComet = new("Mods.Eternal.Conditions.InFallenComet", () => Main.LocalPlayer.InModBiome<Comet>());
         public static Condition InTheBeneath = new("Mods.Eternal.Conditions.InTheBeneath", () => Main.LocalPlayer.InModBiome<Beneath>());
+        public static Condition InTheCarrion = new("Mods.Eternal.Conditions.InTheCarrion", () => Main.LocalPlayer.InModBiome<CarrionSurface>());
+        public static Condition InTheCarrionDesert = new("Mods.Eternal.Conditions.InTheCarrionDesert", () => Main.LocalPlayer.InModBiome<CarrionDesertSurface>());
+        public static Condition InUndergroundCarrion = new("Mods.Eternal.Conditions.InUndergroundCarrion", () => Main.LocalPlayer.InModBiome<UndergroundCarrion>());
 
         // Bosses
         public static Condition IsCarminiteAmalgamationDefeated = new("Mods.Eternal.Conditions.CarmniteAmalgamationDefeated", () => DownedBossSystem.downedCarminiteAmalgamation);
@@ -26,6 +27,7 @@ namespace Eternal.Common
         public static Condition IsIncineriusDefeated = new("Mods.Eternal.Conditions.IncineriusDefeated", () => DownedBossSystem.downedIncinerius);
         public static Condition IsSubzeroElementalDefeated = new("Mods.Eternal.Conditions.SubzeroElementalDefeated", () => DownedBossSystem.downedSubzeroElemental);
         public static Condition IsNiadesDefeated = new("Mods.Eternal.Conditions.NiadesDefeated", () => DownedBossSystem.downedNiades);
+        public static Condition IsChimeraDefeated = new("Mods.Eternal.Conditions.ChimeraDefeated", () => DownedBossSystem.downedChimera);
         public static Condition IsGlareDefeated = new("Mods.Eternal.Conditions.GlareDefeated", () => DownedBossSystem.downedGlare);
 
         public static Condition IsCosmicApparitionDefeated = new("Mods.Eternal.Conditions.CosmicApparitionDefeated", () => DownedBossSystem.downedCosmicApparition);

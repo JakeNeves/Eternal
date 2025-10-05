@@ -22,7 +22,7 @@ namespace Eternal.Content.Items.Weapons.Ranged
         {
             Item.width = 64;
             Item.height = 96;
-            Item.damage = 660;
+            Item.damage = 600;
             Item.knockBack = 4f;
             Item.noMelee = true;
             Item.DamageType = DamageClass.Ranged;

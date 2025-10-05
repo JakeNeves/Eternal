@@ -34,7 +34,7 @@ namespace Eternal.Content.Items.Weapons.Magic
             Item.shoot = ModContent.ProjectileType<StarstaveProjectileVier>();
             Item.shootSpeed = 12f;
             Item.UseSound = SoundID.Item8;
-            Item.rare = ModContent.RarityType<Turquoise>();
+            Item.rare = ModContent.RarityType<Maroon>();
             Item.noMelee = true;
         }
 

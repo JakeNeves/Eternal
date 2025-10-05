@@ -32,7 +32,7 @@ namespace Eternal.Content.Items.Weapons.Magic
             Item.shoot = ModContent.ProjectileType<NuclearKamikazeProjectile>();
             Item.shootSpeed = 24f;
             Item.UseSound = SoundID.Item84;
-            Item.rare = ModContent.RarityType<Teal>();
+            Item.rare = ModContent.RarityType<Magenta>();
             Item.autoReuse = true;
             Item.noMelee = true;
         }
@@ -40,7 +40,7 @@ namespace Eternal.Content.Items.Weapons.Magic
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddTile(ModContent.TileType<Starforge>())
+                .AddTile(ModContent.TileType<AncientFoundry>())
                 .AddIngredient(ItemID.RazorbladeTyphoon)
                 .AddIngredient(ItemID.LunarBar, 12)
                 .AddIngredient(ModContent.ItemType<ApparitionalMatter>(), 20)

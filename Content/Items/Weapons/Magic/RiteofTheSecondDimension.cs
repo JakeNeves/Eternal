@@ -38,7 +38,7 @@ namespace Eternal.Content.Items.Weapons.Magic
                 PitchVariance = Main.rand.NextFloat(0.2f, 0.9f),
                 MaxInstances = 0,
             };
-            Item.rare = ModContent.RarityType<Turquoise>();
+            Item.rare = ModContent.RarityType<Maroon>();
             Item.autoReuse = true;
             Item.noMelee = true;
         }

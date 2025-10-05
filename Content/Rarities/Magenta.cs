@@ -16,7 +16,7 @@ namespace Eternal.Content.Rarities
 
             if (offset > 0)
             {
-                return ModContent.RarityType<Turquoise>();
+                return ModContent.RarityType<Maroon>();
             }
 
             return Type;

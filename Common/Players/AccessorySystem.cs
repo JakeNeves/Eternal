@@ -3,6 +3,7 @@ using Eternal.Content.Dusts;
 using Eternal.Content.Items.Accessories;
 using Eternal.Content.Items.Accessories.Expert;
 using Eternal.Content.Items.Ammo;
+using Eternal.Content.NPCs.Misc;
 using Eternal.Content.Projectiles.Accessories;
 using Eternal.Content.Projectiles.Armor;
 using Microsoft.Xna.Framework;
@@ -24,6 +25,7 @@ namespace Eternal.Common.Players
         public static bool Bloodtooth = false;
         public static bool DuneCore = false;
         public static bool GasBag = false;
+        public static bool AstralCompensator = false;
         public static bool GiftofTheSwordGod = false;
         public static bool Godhead = false;
 
@@ -52,6 +54,7 @@ namespace Eternal.Common.Players
             Bloodtooth = false;
             DuneCore = false;
             GasBag = false;
+            AstralCompensator = false;
             GiftofTheSwordGod = false;
             Godhead = false;
 
@@ -163,6 +166,15 @@ namespace Eternal.Common.Players
                 {
                     if (Main.netMode != NetmodeID.MultiplayerClient)
                         Projectile.NewProjectile(Player.GetSource_FromThis("Accessory_GasBag") /*Player.GetSource_Accessory_OnHurt(Main.item[ModContent.ItemType<ShadeLocket>()], npc)*/, Player.Center.X, Player.Center.Y, Main.rand.Next(-2, 2), -4, ModContent.ProjectileType<GasCloudFriendly>(), 0, 0f);
+                }
+            }
+
+            if (AstralCompensator)
+            {
+                if (Main.rand.NextBool(48) && Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                        NPC.NewNPC(Player.GetSource_FromThis("Accessory_GasBag"), (int)Player.Center.X + Main.rand.Next(-100, 100), (int)Player.Center.Y + Main.rand.Next(-100, 100), ModContent.NPCType<AstralWisp>());
                 }
             }
         }

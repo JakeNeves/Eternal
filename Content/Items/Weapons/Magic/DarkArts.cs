@@ -32,7 +32,7 @@ namespace Eternal.Content.Items.Weapons.Magic
             Item.shoot = ModContent.ProjectileType<DarkArtsProjectile>();
             Item.shootSpeed = 8f;
             Item.UseSound = SoundID.Item45;
-            Item.rare = ModContent.RarityType<Turquoise>();
+            Item.rare = ModContent.RarityType<Maroon>();
             Item.autoReuse = true;
             Item.noMelee = true;
         }

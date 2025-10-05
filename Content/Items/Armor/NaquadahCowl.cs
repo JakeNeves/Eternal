@@ -34,7 +34,7 @@ namespace Eternal.Content.Items.Armor
             Item.width = 24;
             Item.height = 20;
             Item.value = Item.sellPrice(platinum: 15);
-            Item.rare = ModContent.RarityType<Turquoise>();
+            Item.rare = ModContent.RarityType<Maroon>();
             Item.defense = 40;
         }
 

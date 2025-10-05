@@ -44,7 +44,7 @@ namespace Eternal.Content.NPCs.Boss.Niades
             NPCID.Sets.ImmuneToAllBuffs[Type] = true;
         }
 
-        ref float AttackTimer => ref NPC.ai[1];
+        ref float AttackTimer => ref NPC.localAI[1];
 
         int aiNiadesShootTime = 6;
         int aiNiadesShootRate = 12;
@@ -221,7 +221,15 @@ namespace Eternal.Content.NPCs.Boss.Niades
             {
                 if (teleportTimer >= 300)
                 {
-                    NPC.position = new Vector2(player.position.X + Main.rand.NextFloat(-200f, 200f), player.position.Y + Main.rand.NextFloat(-200f, 200f));
+                    int targetTileX = (int)Main.player[NPC.target].Center.X / 16;
+                    int targetTileY = (int)Main.player[NPC.target].Center.Y / 16;
+                    Vector2 chosenTile = Vector2.Zero;
+                    if (NPC.AI_AttemptToFindTeleportSpot(ref chosenTile, targetTileX, targetTileY))
+                    {
+                        NPC.ai[2] = chosenTile.X;
+                        NPC.ai[3] = chosenTile.Y;
+                    }
+                    NPC.netUpdate = true;
 
                     for (int i = 0; i < 15; i++) {
                         circDir = Utils.RotatedBy(circDir, 0.45, new Vector2());
@@ -238,7 +246,15 @@ namespace Eternal.Content.NPCs.Boss.Niades
             {
                 if (teleportTimer >= 450)
                 {
-                    NPC.position = new Vector2(player.position.X + Main.rand.NextFloat(-200f, 200f), player.position.Y + Main.rand.NextFloat(-200f, 200f));
+                    int targetTileX = (int)Main.player[NPC.target].Center.X / 16;
+                    int targetTileY = (int)Main.player[NPC.target].Center.Y / 16;
+                    Vector2 chosenTile = Vector2.Zero;
+                    if (NPC.AI_AttemptToFindTeleportSpot(ref chosenTile, targetTileX, targetTileY))
+                    {
+                        NPC.ai[2] = chosenTile.X;
+                        NPC.ai[3] = chosenTile.Y;
+                    }
+                    NPC.netUpdate = true;
 
                     if (!Main.dedServ)
                         SoundEngine.PlaySound(SoundID.Item8, NPC.position);
@@ -250,8 +266,16 @@ namespace Eternal.Content.NPCs.Boss.Niades
             {
                 if (teleportTimer >= 600)
                 {
-                    NPC.position = new Vector2(player.position.X + Main.rand.NextFloat(-200f, 200f), player.position.Y + Main.rand.NextFloat(-200f, 200f));
-
+                    int targetTileX = (int)Main.player[NPC.target].Center.X / 16;
+                    int targetTileY = (int)Main.player[NPC.target].Center.Y / 16;
+                    Vector2 chosenTile = Vector2.Zero;
+                    if (NPC.AI_AttemptToFindTeleportSpot(ref chosenTile, targetTileX, targetTileY))
+                    {
+                        NPC.ai[2] = chosenTile.X;
+                        NPC.ai[3] = chosenTile.Y;
+                    }
+                    NPC.netUpdate = true;
+                    
                     if (!Main.dedServ)
                         SoundEngine.PlaySound(SoundID.Item8, NPC.position);
 

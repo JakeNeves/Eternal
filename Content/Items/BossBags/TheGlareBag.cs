@@ -1,10 +1,5 @@
-﻿using Eternal.Common.Systems;
-using Eternal.Content.Items.Accessories.Expert;
-using Eternal.Content.Items.Materials;
-using Eternal.Content.Items.Weapons.Hell;
+﻿using Eternal.Content.Items.Accessories.Expert;
 using Eternal.Content.Items.Weapons.Magic;
-using Eternal.Content.Items.Weapons.Melee;
-using Eternal.Content.NPCs.Boss.TheGlare;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.GameContent.ItemDropRules;
@@ -28,7 +23,7 @@ namespace Eternal.Content.Items.BossBags
             Item.consumable = true;
             Item.width = 32;
             Item.height = 32;
-            Item.rare = -12;
+            Item.rare = ItemRarityID.Expert;
             Item.expert = true;
         }
 
@@ -39,7 +34,7 @@ namespace Eternal.Content.Items.BossBags
 
         public override void ModifyItemLoot(ItemLoot itemLoot)
         {
-            // itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Rosary>()));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<AstralCompensator>()));
 
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<UmbralArcanis>(), 12));
         }

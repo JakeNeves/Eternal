@@ -140,6 +140,15 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
                 Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, 0, 0, ModContent.ProjectileType<CosmicApparitionSoul>(), 0, 0f, Main.myPlayer);
             }
 
+            int gore1 = Mod.Find<ModGore>("CosmicApparitionHead").Type;
+            int gore2 = Mod.Find<ModGore>("CosmicApparitionBody").Type;
+            int gore3 = Mod.Find<ModGore>("CosmicApparitionArm").Type;
+
+            Gore.NewGore(entitySource, NPC.Center, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore1);
+            Gore.NewGore(entitySource, NPC.Center, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore2);
+            for (int i = 0; i < 2; i++)
+                Gore.NewGore(entitySource, NPC.Center, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore3);
+
             NPC.SetEventFlagCleared(ref DownedBossSystem.downedCosmicApparition, -1);
         }
 
@@ -354,6 +363,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
                         if (!Main.dedServ)
                             SoundEngine.PlaySound(SoundID.Item8, NPC.position);
 
+                        /*
                         int targetTileX = (int)Main.player[NPC.target].Center.X / 16;
                         int targetTileY = (int)Main.player[NPC.target].Center.Y / 16;
                         Vector2 chosenTile = Vector2.Zero;
@@ -363,6 +373,10 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
                             NPC.ai[3] = chosenTile.Y;
                         }
                         NPC.netUpdate = true;
+                        */
+
+                        NPC.position.X = (int)Main.player[NPC.target].position.X + Main.rand.Next(-300, 300);
+                        NPC.position.Y = (int)Main.player[NPC.target].position.Y + Main.rand.Next(-300, 300);
                     }
                     teleportTimer = 0;
                 }
@@ -551,23 +565,9 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
 
             var entitySource = NPC.GetSource_Death();
 
-            if (NPC.life <= 0)
+            for (int k = 0; k < 10.0; k++)
             {
-                int gore1 = Mod.Find<ModGore>("CosmicApparitionHead").Type;
-                int gore2 = Mod.Find<ModGore>("CosmicApparitionBody").Type;
-                int gore3 = Mod.Find<ModGore>("CosmicApparitionArm").Type;
-
-                Gore.NewGore(entitySource, NPC.Center, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore1);
-                Gore.NewGore(entitySource, NPC.Center, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore2);
-                for (int i = 0; i < 2; i++)
-                    Gore.NewGore(entitySource, NPC.Center, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore3);
-            }
-            else
-            {
-                for (int k = 0; k < 10.0; k++)
-                {
-                    Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.Shadowflame, 0, -1f, 0, default(Color), 1f);
-                }
+                Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.Shadowflame, 0, -1f, 0, default(Color), 1f);
             }
         }
 

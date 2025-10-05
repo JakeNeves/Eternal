@@ -1,4 +1,6 @@
-﻿using Eternal.Content.Rarities;
+﻿using Eternal.Content.Items.Materials;
+using Eternal.Content.Rarities;
+using Eternal.Content.Tiles.CraftingStations;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
@@ -35,7 +37,7 @@ namespace Eternal.Content.Items.Weapons.Ranged
             Item.shootSpeed = 24f;
             Item.shoot = AmmoID.Bullet;
             Item.useAmmo = AmmoID.Bullet;
-            Item.rare = ModContent.RarityType<Turquoise>();
+            Item.rare = ModContent.RarityType<Aquamarine>();
         }
 
         public override Vector2? HoldoutOffset()
@@ -71,6 +73,19 @@ namespace Eternal.Content.Items.Weapons.Ranged
             }
 
             return false;
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<EternalDeadEye>())
+                .AddIngredient(ModContent.ItemType<SebastionsCyberChassis>())
+                .AddIngredient(ModContent.ItemType<CosmoniumFragment>(), 6)
+                .AddIngredient(ModContent.ItemType<InterstellarMetal>(), 12)
+                .AddIngredient(ModContent.ItemType<AwakenedCometiteBar>(), 20)
+                .AddIngredient(ModContent.ItemType<WeaponsGradeNaquadahAlloy>(), 20)
+                .AddTile(ModContent.TileType<Nanoforge>())
+                .Register();
         }
     }
 }

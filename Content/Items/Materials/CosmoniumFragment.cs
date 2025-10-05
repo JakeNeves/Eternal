@@ -24,7 +24,7 @@ namespace Eternal.Content.Items.Materials
             Item.width = 24;
             Item.height = 20;
             Item.value = Item.buyPrice(platinum: 1, gold: 25, silver: 50);
-            Item.rare = ModContent.RarityType<Turquoise>();
+            Item.rare = ModContent.RarityType<Aquamarine>();
             Item.maxStack = 9999;
         }
     }

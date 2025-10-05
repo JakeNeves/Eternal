@@ -367,7 +367,7 @@ namespace Eternal.Content.NPCs.Town
 
         public override void TownNPCAttackStrength(ref int damage, ref float knockback)
         {
-            damage = 2000;
+            damage = 1000;
             knockback = 6.2f;
         }
 

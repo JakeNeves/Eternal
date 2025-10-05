@@ -29,7 +29,7 @@ namespace Eternal.Content.Items.Weapons.Melee
             Item.height = 56;
             Item.scale = 1f;
             Item.UseSound = SoundID.Item1;
-            Item.rare = ModContent.RarityType<Turquoise>();
+            Item.rare = ModContent.RarityType<Azure>();
             Item.value = Item.buyPrice(platinum: 2, gold: 90);
             Item.DamageType = DamageClass.Melee;
             Item.shoot = ModContent.ProjectileType<BladeofEternalDivinityProjectile2>();

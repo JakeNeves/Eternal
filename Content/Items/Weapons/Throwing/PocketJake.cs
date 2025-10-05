@@ -22,7 +22,7 @@ namespace Eternal.Content.Items.Weapons.Throwing
             Item.width = 32;
             Item.height = 32;
             Item.DamageType = DamageClass.Ranged;
-            Item.rare = ModContent.RarityType<Turquoise>();
+            Item.rare = ModContent.RarityType<Maroon>();
             Item.damage = 800;
             Item.useAnimation = 16;
             Item.useTime = 16;

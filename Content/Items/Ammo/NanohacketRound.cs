@@ -24,7 +24,7 @@ namespace Eternal.Content.Items.Ammo
             Item.maxStack = 9999;
             Item.consumable = true;
             Item.knockBack = 2f;
-            Item.rare = ModContent.RarityType<Turquoise>();
+            Item.rare = ModContent.RarityType<Maroon>();
             Item.shoot = ModContent.ProjectileType<NanohacketRoundProjectile>();
             Item.shootSpeed = 24f;
             Item.ammo = AmmoID.Bullet;

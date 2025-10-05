@@ -27,7 +27,7 @@ namespace Eternal.Content.Items.Ammo
             Item.width = 26;
             Item.height = 22;
             Item.knockBack = 2f;
-            Item.rare = ModContent.RarityType<Turquoise>();
+            Item.rare = ModContent.RarityType<Maroon>();
             Item.shoot = ModContent.ProjectileType<NanohacketRoundProjectile>();
             Item.shootSpeed = 24f;
             Item.ammo = AmmoID.Bullet;

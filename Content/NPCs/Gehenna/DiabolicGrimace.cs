@@ -24,9 +24,18 @@ namespace Eternal.Content.NPCs.Gehenna
 
         public override void SetDefaults()
         {
-            NPC.lifeMax = 400;
-            NPC.damage = 12;
-            NPC.defense = 18;
+            if (Main.hardMode)
+            {
+                NPC.lifeMax = 200;
+                NPC.damage = 20;
+                NPC.defense = 30;
+            }
+            else
+            {
+                NPC.lifeMax = 50;
+                NPC.damage = 12;
+                NPC.defense = 10;
+            }
             NPC.knockBackResist = 0f;
             NPC.width = 22;
             NPC.height = 32;

@@ -29,9 +29,18 @@ namespace Eternal.Content.NPCs.Mausoleum
 
         public override void SetDefaults()
         {
-            NPC.lifeMax = 300;
-            NPC.damage = 10;
-            NPC.defense = 60;
+            if (Main.hardMode)
+            {
+                NPC.lifeMax = 100;
+                NPC.damage = 10;
+                NPC.defense = 15;
+            }
+            else
+            {
+                NPC.lifeMax = 250;
+                NPC.damage = 20;
+                NPC.defense = 30;
+            }
             NPC.knockBackResist = -1f;
             NPC.width = 28;
             NPC.height = 46;
@@ -201,10 +210,13 @@ namespace Eternal.Content.NPCs.Mausoleum
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Animanomicon>(), 4));
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PsyblightEssence>(), 4, 2, 6));
+            LeadingConditionRule isHardmodeRule = new(new Conditions.IsHardmode());
+
+            isHardmodeRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Animanomicon>(), 4));
+            isHardmodeRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<PsyblightEssence>(), 4, 2, 6));
+            isHardmodeRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<CombatGavel>(), 24));
+
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MausoleumKeyFragment2>(), 12));
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CombatGavel>(), 24));
         }
 
         public override void HitEffect(NPC.HitInfo hit)

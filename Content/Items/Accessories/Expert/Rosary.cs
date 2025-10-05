@@ -18,7 +18,7 @@ namespace Eternal.Content.Items.Accessories.Expert
 		{
 			Item.width = 36;
 			Item.height = 38;
-			Item.rare = ItemRarityID.Expert;
+			Item.rare = ItemRarityID.Pink;
 			Item.expert = true;
             Item.accessory = true;
             Item.value = Item.sellPrice(silver: 13, gold: 2);

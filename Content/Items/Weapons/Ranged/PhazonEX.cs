@@ -15,8 +15,6 @@ namespace Eternal.Content.Items.Weapons.Ranged
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Phazon EX");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -36,7 +34,7 @@ namespace Eternal.Content.Items.Weapons.Ranged
             Item.shootSpeed = 20f;
             Item.shoot = AmmoID.Arrow;
             Item.useAmmo = AmmoID.Arrow;
-            Item.rare = ModContent.RarityType<Turquoise>();
+            Item.rare = ModContent.RarityType<Aquamarine>();
         }
 
         public override void AddRecipes()
@@ -46,7 +44,7 @@ namespace Eternal.Content.Items.Weapons.Ranged
                 .AddIngredient(ModContent.ItemType<InterstellarMetal>(), 26)
                 .AddIngredient(ModContent.ItemType<CoreofExodus>(), 30)
                 .AddIngredient(ModContent.ItemType<CosmoniumFragment>())
-                .AddTile(ModContent.TileType<AncientFoundry>())
+                .AddTile(ModContent.TileType<Nanoforge>())
                 .Register();
         }
 

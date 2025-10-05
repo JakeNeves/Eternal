@@ -27,7 +27,7 @@ namespace Eternal.Content.Items.Weapons.Magic
             Item.shoot = ModContent.ProjectileType<Sanguinebeam2Friendly>();
             Item.shootSpeed = 10f;
             Item.UseSound = SoundID.Item111;
-            Item.rare = ItemRarityID.Lime;
+            Item.rare = ItemRarityID.Green;
             Item.autoReuse = true;
             Item.noMelee = true;
         }

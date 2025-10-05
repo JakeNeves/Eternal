@@ -111,22 +111,6 @@ namespace Eternal.Content.NPCs.Town
             else if (Main.LocalPlayer.HasItem(ModContent.ItemType<EmperorsTrust>()))
             {
                 Player player = Main.player[Main.myPlayer];
-                if (ReputationSystem.ReputationPoints > 100)
-                {
-                    Main.npcChatText = $"Based on your current reputation, our highness has trusted you in our eyes {player.name}.";
-                }
-                else if (ReputationSystem.ReputationPoints > 500)
-                {
-                    Main.npcChatText = $"Based on your current reputation, our highness would like to honor you based on how you have left an impact in our hearts {player.name}.";
-                }
-                else if (ReputationSystem.ReputationPoints > 1000)
-                {
-                    Main.npcChatText = $"Based on your current reputation, our highness would see you as a hero to us and to our people, please do one day, visit our empire {player.name}.";
-                }
-                else if (ReputationSystem.ReputationPoints >= 5000)
-                {
-                    Main.npcChatText = $"Based on your current reputation, our highness shall declare you a saviour to our people. Congratulations {player.name}, you've shown your excellence before our very eyes!";
-                }
             }
         }
 
@@ -201,15 +185,9 @@ namespace Eternal.Content.NPCs.Town
                 case 9:
                     return "Trying to face great colossal enemies right before you should, what kind of tomfoolery do you even deal with...";
                 case 10:
-                    if (ReputationSystem.ReputationPoints > 25)
-                        return "How can I help you at this time my friend.";
-                    else
-                        return "Make this quick, I have some erands from our emperor to finish...";
+                    return "Make this quick, I have some erands from our emperor to finish...";
                 default:
-                    if (ReputationSystem.ReputationPoints > 100)
-                        return $"Hello {player.name}, how is business going?";
-                    else
-                        return "I am a little busy right now, but I don't mind visitors.";
+                    return "I am a little busy right now, but I don't mind visitors.";
             }
         }
 
@@ -218,10 +196,6 @@ namespace Eternal.Content.NPCs.Town
             Player player = Main.player[Main.myPlayer];
 
             var emissaryShop = new NPCShop(Type, ShopName);
-
-            emissaryShop.Add<PristineHealingPotion>(new Condition("Mods.Eternal.Conditions.50ReputationPoints", () => ReputationSystem.ReputationPoints == 50));
-
-            emissaryShop.Add<PerfectHealingPotion>(new Condition("Mods.Eternal.Conditions.100ReputationPoints", () => ReputationSystem.ReputationPoints == 100));
 
             emissaryShop.Register();
         }
@@ -250,7 +224,7 @@ namespace Eternal.Content.NPCs.Town
 
         public override void TownNPCAttackStrength(ref int damage, ref float knockback)
         {
-            damage = 2000;
+            damage = 500;
             knockback = 6.2f;
         }
 

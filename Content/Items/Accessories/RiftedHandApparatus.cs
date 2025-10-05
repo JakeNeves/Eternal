@@ -27,7 +27,7 @@ namespace Eternal.Content.Items.Accessories
             Item.height = 28;
             Item.accessory = true;
             Item.value = Item.sellPrice(gold: 60);
-            Item.rare = ModContent.RarityType<Turquoise>();
+            Item.rare = ModContent.RarityType<Maroon>();
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

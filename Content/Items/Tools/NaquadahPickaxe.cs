@@ -28,7 +28,7 @@ namespace Eternal.Content.Items.Tools
             Item.useStyle = ItemUseStyleID.Swing;
             Item.knockBack = 6;
             Item.value = Item.sellPrice(gold: 60);
-            Item.rare = ModContent.RarityType<Turquoise>();
+            Item.rare = ModContent.RarityType<Maroon>();
             Item.UseSound = SoundID.Item1;
             Item.autoReuse = true;
             Item.attackSpeedOnlyAffectsWeaponAnimation = true;

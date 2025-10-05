@@ -35,7 +35,7 @@ namespace Eternal.Content.Items.Weapons.Ranged
             Item.shootSpeed = 9.5f;
             Item.shoot = AmmoID.Arrow;
             Item.useAmmo = AmmoID.Arrow;
-            Item.rare = ModContent.RarityType<Turquoise>();
+            Item.rare = ModContent.RarityType<Aquamarine>();
         }
 
         public override Vector2? HoldoutOffset()

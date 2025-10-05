@@ -388,7 +388,7 @@ namespace Eternal.Common.Systems
             #endregion
 
             #region Cosmic Emperor
-            /*bossChecklistMod.Call(
+            bossChecklistMod.Call(
 				"LogBoss",
 				Mod,
 				nameof(CosmicEmperor),
@@ -406,7 +406,7 @@ namespace Eternal.Common.Systems
                         ModContent.ItemType<Content.Items.Materials.CosmoniumFragment>(),
                     }
                 }
-            );*/
+            );
             #endregion
             #endregion
         }

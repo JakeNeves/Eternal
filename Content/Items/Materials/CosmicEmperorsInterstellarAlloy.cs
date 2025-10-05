@@ -15,7 +15,7 @@ namespace Eternal.Content.Items.Materials
         {
             Item.width = 11;
             Item.height = 28;
-            Item.rare = ModContent.RarityType<Turquoise>();
+            Item.rare = ModContent.RarityType<Aquamarine>();
         }
     }
 }

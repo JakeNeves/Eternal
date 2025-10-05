@@ -25,7 +25,7 @@ namespace Eternal.Content.Items.BossBags
             Item.consumable = true;
             Item.width = 32;
             Item.height = 32;
-            Item.rare = -12;
+            Item.rare = ItemRarityID.Expert;
             Item.expert = true;
         }
 

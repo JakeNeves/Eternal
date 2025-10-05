@@ -32,9 +32,18 @@ namespace Eternal.Content.NPCs.Mausoleum
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
             AIType = NPCID.BlueSlime;
-            NPC.damage = 60;
-            NPC.defense = 10;
-            NPC.lifeMax = 500;
+            if (Main.hardMode)
+            {
+                NPC.damage = 20;
+                NPC.defense = 30;
+                NPC.lifeMax = 500;
+            }
+            else
+            {
+                NPC.damage = 15;
+                NPC.defense = 10;
+                NPC.lifeMax = 100;
+            }
             AnimationType = NPCID.BlueSlime;
             NPC.knockBackResist = 0f;
             NPC.lavaImmune = true;

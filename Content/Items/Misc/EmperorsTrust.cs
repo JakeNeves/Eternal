@@ -31,15 +31,5 @@ namespace Eternal.Content.Items.Misc
             Item.useAnimation = 5;
             Item.useTime = 5;
         }
-
-        public override bool? UseItem(Player player)
-        {
-            if (ReputationSystem.ReputationPoints == 5000)
-                CombatText.NewText(player.Hitbox, Color.Gold, $"You have max Reputation!", dramatic: true);
-            else
-                CombatText.NewText(player.Hitbox, Color.Gold, $"You have {ReputationSystem.ReputationPoints} Reputation!", dramatic: true);
-
-            return true;
-        }
     }
 }

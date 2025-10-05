@@ -19,7 +19,7 @@ namespace Eternal.Content.NPCs.Carrion
     {
         int expTimer = 0;
 
-        ref float AttackTimer => ref NPC.ai[1];
+        ref float AttackTimer => ref NPC.localAI[1];
 
         public override void SetStaticDefaults()
         {

@@ -17,7 +17,7 @@ namespace Eternal.Content.Items.Materials
         {
             Item.width = 16;
             Item.height = 26;
-            Item.rare = ModContent.RarityType<Turquoise>();
+            Item.rare = ModContent.RarityType<Maroon>();
             Item.value = Item.sellPrice(gold: 20);
             Item.maxStack = 9999;
         }

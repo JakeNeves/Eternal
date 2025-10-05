@@ -20,7 +20,7 @@ namespace Eternal.Content.Items.Misc
         {
             Item.width = 26;
             Item.height = 40;
-            Item.rare = ModContent.RarityType<FlamingBlue>();
+            Item.rare = ModContent.RarityType<PulsatingPurple>();
             Item.value = 0;
             Item.useStyle = ItemUseStyleID.HoldUp;
             Item.useAnimation = 10;

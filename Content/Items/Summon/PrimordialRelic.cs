@@ -1,5 +1,6 @@
 ﻿using Eternal.Content.Items.Materials;
 using Eternal.Content.NPCs.Boss.Trinity;
+using Eternal.Content.Rarities;
 using Eternal.Content.Tiles.CraftingStations;
 using Terraria;
 using Terraria.Audio;
@@ -21,13 +22,13 @@ namespace Eternal.Content.Items.Summon
         {
             Item.width = 28;
             Item.height = 22;
-            Item.rare = ItemRarityID.Red;
+            Item.rare = ModContent.RarityType<Maroon>();
             Item.useAnimation = 45;
             Item.useTime = 45;
             Item.useStyle = ItemUseStyleID.HoldUp;
         }
 
-       public override bool CanUseItem(Player player)
+        public override bool CanUseItem(Player player)
         {
             return !NPC.AnyNPCs(ModContent.NPCType<Thunderius>()) && !NPC.AnyNPCs(ModContent.NPCType<Infernito>()) && !NPC.AnyNPCs(ModContent.NPCType<Cryota>());
         }

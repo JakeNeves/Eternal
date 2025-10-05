@@ -131,6 +131,11 @@
             <param name="request">The <see cref="T:MonoMod.Core.CreateNativeDetourRequest"/> containing detour creation options.</param>
             <returns>The created <see cref="T:MonoMod.Core.ICoreNativeDetour"/>.</returns>
         </member>
+        <member name="P:MonoMod.Core.IDetourFactory.SupportsNativeDetourOrigEntrypoint">
+            <summary>
+            Gets whether this <see cref="T:MonoMod.Core.IDetourFactory"/> can create <see cref="T:MonoMod.Core.ICoreNativeDetour"/>s with an <see cref="P:MonoMod.Core.ICoreNativeDetour.OrigEntrypoint"/>.
+            </summary>
+        </member>
         <member name="T:MonoMod.Core.CreateDetourRequest">
             <summary>
             A request to create an <see cref="T:MonoMod.Core.ICoreDetour"/>.
@@ -1104,6 +1109,13 @@
             <param name="data">The data to write into <paramref name="patchTarget"/>.</param>
             <param name="backup">A span to fill will the data which was already present, or an empty span.</param>
         </member>
+        <member name="M:MonoMod.Core.Platforms.ISystem.GetNativeJitHookConfig(System.Int32)">
+            <summary>
+            Gets the pointer to the native jit hook configuration struct which can vary by both runtime and arch.
+            </summary>
+            <param name="runtimeMajMin">Runtime major and minor version.</param>
+            <returns>A pointer to the requested jit hook configuration struct.</returns>
+        </member>
         <member name="T:MonoMod.Core.Platforms.PatchTargetKind">
             <summary>
             The kind of data which exists at a location to be patched.
@@ -1542,6 +1554,10 @@
             Creates a <see cref="T:MonoMod.Core.Platforms.PlatformTriple.NativeDetour"/>. This is basically identical to <see cref="M:MonoMod.Core.Platforms.PlatformTriple.CreateSimpleDetour(System.IntPtr,System.IntPtr,System.Int32,System.IntPtr)"/>,
             except that it generates an alternate entrypoint for <paramref name="from"/>.
             </summary>
+            <remarks>
+            This method will always create an alternate entrypoint in <see cref="P:MonoMod.Core.Platforms.PlatformTriple.NativeDetour.AltEntry"/> when <see cref="F:MonoMod.Core.Platforms.ArchitectureFeature.CreateAltEntryPoint"/>
+            is available.
+            </remarks>
             <param name="from">The address to detour.</param>
             <param name="to">The target of the detour.</param>
             <param name="detourMaxSize">The maximum size available for the detour.</param>
@@ -1739,6 +1755,48 @@
             This system allows for pages which are protected Read/Execute.
             </summary>
         </member>
+        <member name="F:MonoMod.Core.Platforms.SystemFeature.MayUseNativeJitHooks">
+            <summary>
+            This system may make use of native jit hooks.
+            </summary>
+        </member>
+        <member name="M:MonoMod.Core.Platforms.Systems.MacOSSystem.JitMemcpyHelper.JitMemCpy(System.IntPtr,System.IntPtr,System.UInt64)">
+            <summary>
+            JIT_MAP (RWX) safe memory copy
+            </summary>
+            <param name="dst">Destination</param>
+            <param name="src">Source</param>
+            <param name="size">Size of memory that should be copied from dst to src</param>
+        </member>
+        <member name="M:MonoMod.Core.Platforms.Systems.MacOSSystem.JitMemcpyHelper.GetJitHookConfig(System.Int32)">
+            <summary>
+            Gets the pointer to the native jit hook configuration struct which can vary by both runtime and arch.
+            </summary>
+            <param name="runtimeMajMin">Runtime major and minor version.</param>
+            <returns>A pointer to the requested jit hook configuration struct.</returns>
+        </member>
+        <member name="M:MonoMod.Core.Platforms.Systems.PosixNativeLibraryDrop.Mkstemp(System.Span{System.Byte})">
+            <summary>
+            Follows POSIX <c>mkstemp(3)</c> rules.
+            </summary>
+            <param name="template">The UTF-8 template buffer to fill. This buffer is guaranteed to have at least 1 trailing null byte.</param>
+            <returns>A file descriptor.</returns>
+        </member>
+        <member name="M:MonoMod.Core.Platforms.Systems.PosixNativeLibraryDrop.CloseFileDescriptor(System.IntPtr)">
+            <summary>
+            Follows POSIX <c>close(2)</c> rules. Closes the provided OS file descriptor.
+            </summary>
+            <param name="fd">The file descriptor to close. Recieved from <see cref="M:MonoMod.Core.Platforms.Systems.PosixNativeLibraryDrop.Mkstemp(System.Span{System.Byte})"/>.</param>
+        </member>
+        <member name="M:MonoMod.Core.Platforms.Systems.PosixNativeLibraryDrop.DropLibrary(System.IO.Stream,System.ReadOnlySpan{System.Byte})">
+            <summary>
+            Drops the library contained in <paramref name="sourceStream"/> to disk at a unique path to be loaded.
+            </summary>
+            <param name="sourceStream">The source data to drop.</param>
+            <param name="defaultTemplate">The <c>mkstemp(3)</c> template to use by default. If the user overrides the drop path,
+            everything after the final <c>/</c> will be appended to the user-provided drop path.</param>
+            <returns>The full final path of the dropped binary.</returns>
+        </member>
         <member name="T:MonoMod.Core.Utils.AddressKind">
             <summary>
             The kind of an address in a <see cref="T:MonoMod.Core.Utils.BytePattern"/>.
@@ -1790,6 +1848,12 @@
             to a word-sized indirection cell which contains the actual target.
             </summary>
         </member>
+        <member name="F:MonoMod.Core.Utils.AddressKind.ConstantAddr">
+            <summary>
+            A constant address. This must be combined with one of the other address kinds. The address value is always
+            a constant.
+            </summary>
+        </member>
         <member name="T:MonoMod.Core.Utils.AddressKindExtensions">
             <summary>
             Extensions to <see cref="T:MonoMod.Core.Utils.AddressKind"/>.
@@ -1813,6 +1877,11 @@
         <member name="F:MonoMod.Core.Utils.AddressKindExtensions.IsIndirectField">
             <summary>
             The <see cref="T:MonoMod.Core.Utils.AddressKind"/> flag indicating that the kind is indirect.
+            </summary>
+        </member>
+        <member name="F:MonoMod.Core.Utils.AddressKindExtensions.IsConstantField">
+            <summary>
+            The <see cref="T:MonoMod.Core.Utils.AddressKind"/> flag indicating that the kind is constant.
             </summary>
         </member>
         <member name="M:MonoMod.Core.Utils.AddressKindExtensions.IsRelative(MonoMod.Core.Utils.AddressKind)">
@@ -1857,6 +1926,13 @@
             <param name="value">The <see cref="T:MonoMod.Core.Utils.AddressKind"/> to check.</param>
             <returns><see langword="true"/> if <paramref name="value"/> is indirect; <see langword="false"/> otherwise.</returns>
         </member>
+        <member name="M:MonoMod.Core.Utils.AddressKindExtensions.IsConstant(MonoMod.Core.Utils.AddressKind)">
+            <summary>
+            Gets whether or not this <see cref="T:MonoMod.Core.Utils.AddressKind"/> is constant.
+            </summary>
+            <param name="value">The <see cref="T:MonoMod.Core.Utils.AddressKind"/> to check.</param>
+            <returns><see langword="true"/> if <paramref name="value"/> is constant; <see langword="false"/> otherwise.</returns>
+        </member>
         <member name="M:MonoMod.Core.Utils.AddressKindExtensions.Validate(MonoMod.Core.Utils.AddressKind,System.String)">
             <summary>
             Validates <paramref name="value"/>, ensuring that it is a valid <see cref="T:MonoMod.Core.Utils.AddressKind"/>.
@@ -1887,6 +1963,11 @@
             Gets the offset from the match start that an address is relative to, if it is relative.
             </summary>
         </member>
+        <member name="P:MonoMod.Core.Utils.AddressMeaning.ConstantValue">
+            <summary>
+            Gets the constant value of the address, if it is constant.
+            </summary>
+        </member>
         <member name="M:MonoMod.Core.Utils.AddressMeaning.#ctor(MonoMod.Core.Utils.AddressKind)">
             <summary>
             Constructs an <see cref="T:MonoMod.Core.Utils.AddressMeaning"/> for the specified <see cref="T:MonoMod.Core.Utils.AddressKind"/>.
@@ -1900,6 +1981,17 @@
             </summary>
             <param name="kind">The <see cref="T:MonoMod.Core.Utils.AddressKind"/>.</param>
             <param name="relativeOffset">The offset relative to the match start.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown if <paramref name="kind"/> is invalid
+            -OR- <paramref name="kind"/> is absolute
+            -OR- <paramref name="relativeOffset"/> is less than zero.</exception>
+        </member>
+        <member name="M:MonoMod.Core.Utils.AddressMeaning.#ctor(MonoMod.Core.Utils.AddressKind,System.Int32,System.UInt64)">
+            <summary>
+            Constructs an <see cref="T:MonoMod.Core.Utils.AddressMeaning"/> for the specified <see cref="T:MonoMod.Core.Utils.AddressKind"/>, relative offset and shift amount.
+            </summary>
+            <param name="kind">The <see cref="T:MonoMod.Core.Utils.AddressKind"/>.</param>
+            <param name="relativeOffset">The offset relative to the match start.</param>
+            <param name="constantValue">The constant value of the address if kind is <see cref="F:MonoMod.Core.Utils.AddressKind.ConstantAddr"/>.</param>
             <exception cref="T:System.ArgumentOutOfRangeException">Thrown if <paramref name="kind"/> is invalid
             -OR- <paramref name="kind"/> is absolute
             -OR- <paramref name="relativeOffset"/> is less than zero.</exception>

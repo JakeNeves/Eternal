@@ -33,14 +33,16 @@ namespace Eternal.Content.Items.Weapons.Melee
             Item.shoot = ModContent.ProjectileType<TheBigOneProjectile>();
             Item.shootSpeed = 6f;
             Item.UseSound = SoundID.Item71;
-            Item.rare = ModContent.RarityType<Turquoise>();
+            Item.rare = ModContent.RarityType<Maroon>();
             Item.noUseGraphic = true;
+            Item.noMelee = true;
         }
 
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<CosmoniumFragment>())
+                .AddIngredient(ModContent.ItemType<CosmoniumFragment>(), 6)
+                .AddIngredient(ModContent.ItemType<InterstellarMetal>(), 12)
                 .AddIngredient(ModContent.ItemType<AwakenedCometiteBar>(), 24)
                 .AddIngredient(ModContent.ItemType<ApparitionalMatter>(), 16)
                 .AddTile(ModContent.TileType<Nanoforge>())

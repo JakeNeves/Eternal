@@ -24,7 +24,7 @@ namespace Eternal.Content.Items.Accessories.Vanity
             Item.width = 20;
             Item.height = 20;
             Item.value = Item.sellPrice(gold: 60);
-            Item.rare = ModContent.RarityType<Turquoise>();
+            Item.rare = ModContent.RarityType<Azure>();
             Item.accessory = true;
             Item.vanity = true;
         }

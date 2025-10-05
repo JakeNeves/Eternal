@@ -1,5 +1,6 @@
 ﻿using Eternal.Common.Systems;
 using Eternal.Content.Biomes;
+using Eternal.Content.Items.Summon;
 using Eternal.Content.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -16,9 +17,18 @@ namespace Eternal.Content.NPCs.Mausoleum
     {
         public override void SetDefaults()
         {
-            NPC.lifeMax = 2000;
-            NPC.damage = 20;
-            NPC.defense = 30;
+            if (Main.hardMode)
+            {
+                NPC.lifeMax = 1000;
+                NPC.damage = 25;
+                NPC.defense = 30;
+            }
+            else
+            {
+                NPC.lifeMax = 100;
+                NPC.damage = 10;
+                NPC.defense = 10;
+            }
             NPC.knockBackResist = 0f;
             NPC.width = 28;
             NPC.height = 46;
@@ -47,7 +57,9 @@ namespace Eternal.Content.NPCs.Mausoleum
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ValtoricKnives>(), 48));
+            LeadingConditionRule isHardmodeRule = new(new Conditions.IsHardmode());
+
+            isHardmodeRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<ValtoricKnives>(), 24));
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

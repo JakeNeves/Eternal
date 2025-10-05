@@ -1,9 +1,11 @@
 ﻿using Eternal.Common.Systems;
 using Eternal.Content.Dusts;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.Audio;
+using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -13,13 +15,21 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
 {
     public class CosmicEmperorClone : ModNPC
     {
+
+        public override void SetStaticDefaults()
+        {
+            Main.npcFrameCount[NPC.type] = 4;
+
+            NPCID.Sets.ImmuneToAllBuffs[Type] = true;
+        }
+
         public override void SetDefaults()
         {
-            NPC.lifeMax = 100000;
-            NPC.damage = 110;
-            NPC.defense = 45;
+            NPC.lifeMax = 5000;
+            NPC.damage = 40;
+            NPC.defense = 30;
             NPC.knockBackResist = 0f;
-            NPC.width = 26;
+            NPC.width = 62;
             NPC.height = 56;
             NPC.aiStyle = -1;
             NPC.noGravity = true;
@@ -33,15 +43,6 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
             //NPC.HitSound = SoundID.NPCHit52;
             NPC.DeathSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCDeath/ApparitionalReminantDeath");
             //NPC.DeathSound = SoundID.NPCDeath55;
-            NPC.value = Item.sellPrice(gold: 26, silver: 15);
-            NPC.buffImmune[BuffID.Poisoned] = true;
-            NPC.buffImmune[BuffID.OnFire] = true;
-            NPC.buffImmune[BuffID.Venom] = true;
-            NPC.buffImmune[BuffID.ShadowFlame] = true;
-            NPC.buffImmune[BuffID.CursedInferno] = true;
-            NPC.buffImmune[BuffID.Frostburn] = true;
-            NPC.buffImmune[BuffID.Frozen] = true;
-            NPC.buffImmune[BuffID.Chilled] = true;
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -141,6 +142,14 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
                 for (int k = 0; k < 25; k++)
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.PurpleTorch, 2.5f, -2.5f, 0, default, 1.7f);
             }
+        }
+
+        public override void FindFrame(int frameHeight)
+        {
+            NPC.frameCounter += 0.15f;
+            NPC.frameCounter %= Main.npcFrameCount[NPC.type];
+            int Frame = (int)NPC.frameCounter;
+            NPC.frame.Y = Frame * frameHeight;
         }
     }
 }

@@ -33,7 +33,7 @@ namespace Eternal.Content.Items.Weapons.Ranged
             Item.shootSpeed = 12f;
             Item.shoot = AmmoID.Bullet;
             Item.useAmmo = AmmoID.Bullet;
-            Item.rare = ModContent.RarityType<Magenta>();
+            Item.rare = ModContent.RarityType<Azure>();
             Item.knockBack = 2f;
         }
 

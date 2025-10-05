@@ -23,7 +23,7 @@ namespace Eternal.Content.Items.Weapons.Melee
             Item.width = 50;
             Item.height = 50;
             Item.DamageType = DamageClass.Melee;
-            Item.rare = ModContent.RarityType<Turquoise>();
+            Item.rare = ModContent.RarityType<Aquamarine>();
             Item.noMelee = true;
             Item.damage = 1000;
             Item.useAnimation = 16;
@@ -34,6 +34,7 @@ namespace Eternal.Content.Items.Weapons.Melee
             Item.shoot = ModContent.ProjectileType<StarcrescentMoondiskProjectile>();
             Item.shootSpeed = 8.2f;
             Item.noUseGraphic = true;
+            Item.noMelee = true;
             Item.knockBack = 3f;
         }
 
@@ -42,7 +43,8 @@ namespace Eternal.Content.Items.Weapons.Melee
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<CosmoniumFragment>())
+                .AddIngredient(ModContent.ItemType<CosmoniumFragment>(), 3)
+                .AddIngredient(ModContent.ItemType<InterstellarMetal>(), 6)
                 .AddIngredient(ModContent.ItemType<AwakenedCometiteBar>(), 30)
                 .AddIngredient(ModContent.ItemType<ApparitionalDisk>())
                 .AddTile(ModContent.TileType<Nanoforge>())

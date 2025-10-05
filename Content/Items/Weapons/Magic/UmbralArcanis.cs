@@ -49,7 +49,7 @@ namespace Eternal.Content.Items.Weapons.Magic
                     {
                         for (int i = 0; i < Main.maxNPCs; i++)
                         {
-                            if (Main.npc[i].active && Main.npc[i].type == ModContent.NPCType<NPCs.Misc.BenightedWisp>())
+                            if (Main.npc[i].active && Main.npc[i].type == ModContent.NPCType<NPCs.Misc.BenightedWisp>() || Main.npc[i].type == ModContent.NPCType<NPCs.Misc.AstralWisp>())
                             {
                                 NPC npc = Main.npc[i];
                                 if (Main.netMode != NetmodeID.MultiplayerClient)

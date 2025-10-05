@@ -1,10 +1,5 @@
-﻿using Eternal.Common.ItemDropRules.Conditions;
-using Eternal.Content.Items.Accessories;
-using Eternal.Content.Items.Materials;
-using Eternal.Content.Items.Weapons.Melee;
-using Eternal.Content.Items.Weapons.Ranged;
+﻿using Eternal.Content.Items.Materials;
 using Terraria;
-using Terraria.Audio;
 using Terraria.GameContent.Creative;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -16,9 +11,6 @@ namespace Eternal.Content.Items.BossBags
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Treasure Capsule (Cosmic Emperor)");
-            // Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
-
             ItemID.Sets.BossBag[Type] = true;
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
@@ -28,9 +20,9 @@ namespace Eternal.Content.Items.BossBags
         {
             Item.maxStack = 9999;
             Item.consumable = true;
-            Item.width = 32;
-            Item.height = 32;
-            Item.rare = -12;
+            Item.width = 30;
+            Item.height = 34;
+            Item.rare = ItemRarityID.Expert;
             Item.expert = true;
         }
 
@@ -41,12 +33,10 @@ namespace Eternal.Content.Items.BossBags
 
         public override void ModifyItemLoot(ItemLoot itemLoot)
         {
-            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<ApparitionalMatter>(), minimumDropped: 30, maximumDropped: 60));
-            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<InterstellarScrapMetal>(), minimumDropped: 30, maximumDropped: 60));
-            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<StarmetalBar>(), minimumDropped: 30, maximumDropped: 60));
-            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Vexation>(), 1));
-            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Starfall>(), 2));
-            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<ApparitionalDisk>(), 3));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<InterstellarMetal>(), 1, 8, 24));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<CosmoniumFragment>(), 1, 6, 18));
+
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<CosmicEmperorsInterstellarAlloy>(), 18));
         }
 
         public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
