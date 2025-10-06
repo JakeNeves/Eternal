@@ -371,14 +371,15 @@ namespace Eternal.Content.NPCs.Boss.TheChimera
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            ChimeraHeapDropCondition heapDropCondition = new ChimeraHeapDropCondition();
-            ExpertChimeraHeapDropCondition expertHeapDropCondition = new ExpertChimeraHeapDropCondition();
+            LeadingConditionRule notExpertRule = new(new Conditions.NotExpert());
+            ChimeraDropCondition chimeraDropCondition = new ChimeraDropCondition();
+            HellModeDropCondition hellModeDrop = new HellModeDropCondition();
 
-            npcLoot.Add(ItemDropRule.ByCondition(expertHeapDropCondition, ModContent.ItemType<TheChimeraBag>()));
+            npcLoot.Add(ItemDropRule.BossBagByCondition(chimeraDropCondition, ModContent.ItemType<TheChimeraBag>()));
 
-            npcLoot.Add(ItemDropRule.ByCondition(heapDropCondition, ModContent.ItemType<RottenFangspear>(), 1));
-            npcLoot.Add(ItemDropRule.ByCondition(heapDropCondition, ModContent.ItemType<RottenMeathook>(), 2));
-            npcLoot.Add(ItemDropRule.ByCondition(heapDropCondition, ModContent.ItemType<Necrobow>(), 3));
+            notExpertRule.OnSuccess(ItemDropRule.ByCondition(chimeraDropCondition, ModContent.ItemType<RottenFangspear>(), 1));
+            notExpertRule.OnSuccess(ItemDropRule.ByCondition(chimeraDropCondition, ModContent.ItemType<RottenMeathook>(), 2));
+            notExpertRule.OnSuccess(ItemDropRule.ByCondition(chimeraDropCondition, ModContent.ItemType<Necrobow>(), 3));
         }
 
         public override void FindFrame(int frameHeight)

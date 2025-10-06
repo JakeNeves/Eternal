@@ -1884,11 +1884,6 @@ Mods: {
 				Tooltip: "'Okay so basically, Daedalus Stormbow...'"
 			}
 
-			SWMG: {
-				DisplayName: S.W.M.G
-				Tooltip: "'It came from The Edge of Tremor'"
-			}
-
 			TotalStarstorm: {
 				DisplayName: Total Starstorm
 				Tooltip: ""
