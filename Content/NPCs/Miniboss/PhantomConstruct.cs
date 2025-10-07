@@ -65,12 +65,17 @@ namespace Eternal.Content.NPCs.Miniboss
             int gore1 = Mod.Find<ModGore>("PhantomConstructHead").Type;
             int gore2 = Mod.Find<ModGore>("PhantomConstructBody").Type;
             int gore3 = Mod.Find<ModGore>("PhantomConstructArm").Type;
+            int gore4 = Mod.Find<ModGore>("PhantomConstructLeg").Type;
+
 
             Gore.NewGore(NPC.GetSource_Death(), NPC.Center, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore1);
             Gore.NewGore(NPC.GetSource_Death(), NPC.Center, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore2);
 
             for (int i = 0; i < 2; i++)
+            {
                 Gore.NewGore(NPC.GetSource_Death(), NPC.Center, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore3);
+                Gore.NewGore(NPC.GetSource_Death(), NPC.Center, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), gore4);
+            }
 
             for (int k = 0; k < 5; k++)
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.PinkTorch, 2.5f, -2.5f, 0, default, 1.7f);
