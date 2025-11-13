@@ -17,9 +17,9 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
             Projectile.aiStyle = 3;
             Projectile.friendly = true;
             Projectile.DamageType = DamageClass.Melee;
-            Projectile.penetrate = 8;
-            Projectile.timeLeft = 600;
-            Projectile.extraUpdates = 1;
+            Projectile.penetrate = -1;
+            Projectile.timeLeft = 300;
+            Projectile.extraUpdates = 2;
             Projectile.ignoreWater = true;
         }
 

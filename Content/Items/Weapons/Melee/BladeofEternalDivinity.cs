@@ -44,6 +44,7 @@ namespace Eternal.Content.Items.Weapons.Melee
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<ProviditeBar>(), 16)
                 .AddIngredient(ModContent.ItemType<CoreofExodus>(), 6)
+                .AddIngredient(ModContent.ItemType<EternalQuartz>(), 12)
                 .AddIngredient(ModContent.ItemType<MindCrystalCluster>())
                 .AddIngredient(ModContent.ItemType<BodyCrystalCluster>())
                 .AddIngredient(ModContent.ItemType<SoulCrystalCluster>())

@@ -2,6 +2,7 @@
 using Eternal.Content.Items.Accessories.Expert;
 using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Weapons.Hell;
+using Eternal.Content.Items.Weapons.Melee;
 using Eternal.Content.NPCs.Boss.DuneGolem;
 using Eternal.Content.Rarities;
 using Terraria;
@@ -39,9 +40,11 @@ namespace Eternal.Content.Items.BossBags
         public override void ModifyItemLoot(ItemLoot itemLoot)
         {
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<ProviditeBar>(), 1, 16, 22));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<EternalQuartz>(), 1, 6, 24));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<MindCrystalCluster>(), 1, 12, 20));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<BodyCrystalCluster>(), 1, 12, 20));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<SoulCrystalCluster>(), 1, 12, 20));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Trinitalas>(), 4));
         }
 
         public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)

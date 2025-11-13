@@ -33,7 +33,7 @@ namespace Eternal.Content.Items.Weapons.Melee
             Item.shoot = ModContent.ProjectileType<TheBigOneProjectile>();
             Item.shootSpeed = 6f;
             Item.UseSound = SoundID.Item71;
-            Item.rare = ModContent.RarityType<Maroon>();
+            Item.rare = ModContent.RarityType<Aquamarine>();
             Item.noUseGraphic = true;
             Item.noMelee = true;
         }

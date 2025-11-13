@@ -19,6 +19,7 @@ using Terraria.GameContent.UI;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Eternal.Content.Items.Weapons.Misc;
 
 namespace Eternal.Content.NPCs.Town
 {
@@ -335,7 +336,9 @@ namespace Eternal.Content.NPCs.Town
                 .Add<EmperorsTrust>(new Condition("Mods.Eternal.Conditions.CosmicApparitionDefeated", () => DownedBossSystem.downedCosmicApparition))
                 .Add<JakeTEMnomicon>(new Condition("Mods.Eternal.Conditions.isZenithWorld", () => Main.zenithWorld))
                 .Add<ItemNotFound>(new Condition("Mods.Eternal.Conditions.isZenithWorld", () => Main.zenithWorld))
+                .Add<ReallyLongBread>(new Condition("Mods.Eternal.Conditions.isZenithWorld", () => Main.zenithWorld))
                 .Add<PocketJake>(new Condition("Mods.Eternal.Conditions.IsNamedJake", () => player.name == "Jake" || player.name == "JakeTEM"))
+                .Add<PoopFly>(new Condition("Mods.Eternal.Conditions.isZenithWorld", () => Main.zenithWorld), new Condition("Mods.Eternal.Conditions.CosmicEmperorDefeated", () => DownedBossSystem.downedCosmicEmperor))
                 .Add<JakesHat>()
                 .Add<JakesTunic>()
                 .Add<JakesPants>();

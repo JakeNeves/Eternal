@@ -1,10 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.PlayerDrawLayer;
 
 namespace Eternal.Content.Projectiles.Weapons.Melee
 {
@@ -12,20 +10,20 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 10;
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 5;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }
 
         public override void SetDefaults()
         {
-            Projectile.width = 50;
-            Projectile.height = 50;
+            Projectile.width = 42;
+            Projectile.height = 42;
             Projectile.aiStyle = 3;
             Projectile.friendly = true;
             Projectile.DamageType = DamageClass.Melee;
             Projectile.penetrate = -1;
-            Projectile.timeLeft = 600;
-            Projectile.extraUpdates = 1;
+            Projectile.timeLeft = 300;
+            Projectile.extraUpdates = 4;
             Projectile.tileCollide = false;
         }
 
@@ -53,7 +51,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
         public override bool PreDraw(ref Color lightColor)
         {
             Main.instance.LoadProjectile(Projectile.type);
-            Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
+            Texture2D texture = ModContent.Request<Texture2D>("Eternal/Content/Projectiles/Weapons/Melee/StarcrescentMoondiskProjectile_Shadow").Value;
 
             Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, Projectile.height * 0.5f);
             for (int k = 0; k < Projectile.oldPos.Length; k++)

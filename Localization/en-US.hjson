@@ -335,6 +335,16 @@ Mods: {
 				DisplayName: Royal Galadian Bread
 			}
 
+			ReallyLongBread: {
+				Tooltip:
+					'''
+					Major improvements to all stats
+					Seriously? THAT is a lot of bread, that can't be healthy for you!
+					'Technically it's a baguette, right?'
+					'''
+				DisplayName: Really Long Bread
+			}
+
 			Portadummy: {
 				Tooltip:
 					'''
@@ -3257,7 +3267,45 @@ Mods: {
 
 			NeptunesFloodgate: {
 				DisplayName: Neptune's Floodgate
-				Tooltip: Open the Floodgates
+				Tooltip: "'Open the Floodgates'"
+			}
+
+			PureGavel: {
+				DisplayName: Pure Gavel
+				Tooltip: ""
+			}
+
+			Justifier: {
+				DisplayName: Justifier
+				Tooltip:
+					'''
+					Has a chance to unleash additional projectiles
+					'The Gamer Gavel!'
+					'''
+			}
+
+			ShadeGavel: {
+				DisplayName: Shade Gavel
+				Tooltip: ""
+			}
+
+			ShadyKunai: {
+				DisplayName: Shady Kunai
+				Tooltip: ""
+			}
+
+			Trinitalas: {
+				DisplayName: Trinitalas
+				Tooltip:
+					'''
+					Throws four different yoyos
+					'How many yoyos in one?'
+					'''
+			}
+
+			PoopFly: {
+				DisplayName: Poop Fly
+				Tooltip: "'Better than the Universe Destroyer!'"
 			}
 		}
 
@@ -3990,12 +4038,12 @@ Mods: {
 			CarminacVirusProjectile.DisplayName: Carminac Virus
 			BladeofEternalDivinityProjectile.DisplayName: Bladeof Eternal Divinity
 			BladeofEternalDivinityProjectile2.DisplayName: Bladeof Eternal Divinity
-			BenightedWispProjectile.DisplayName: Benighted Wisp Projectile
-			UmbralArcanisProjectile.DisplayName: Umbral Arcanis Projectile
+			BenightedWispProjectile.DisplayName: Benighted Wisp
+			UmbralArcanisProjectile.DisplayName: Umbral Arcanis
 			CarminiteSludge2.DisplayName: Carminite Sludge2
-			CarrionGreenSolutionProjectile.DisplayName: Carrion Green Solution Projectile
-			RottensandBallFallingProjectile.DisplayName: Rottensand Ball Falling Projectile
-			RottensandBallGunProjectile.DisplayName: Rottensand Ball Gun Projectile
+			CarrionGreenSolutionProjectile.DisplayName: Carrion Green Solution
+			RottensandBallFallingProjectile.DisplayName: Rottensand Ball Falling
+			RottensandBallGunProjectile.DisplayName: Rottensand Ball Gun
 			Droplet2.DisplayName: Droplet
 			BloodClot.DisplayName: Blood Clot
 			BallofPussHostile.DisplayName: Ball of Puss
@@ -4010,6 +4058,17 @@ Mods: {
 			NeptunesFloodgateProjectile.DisplayName: Neptune's Floodgate
 			NeptunesFloodgateProjectile2.DisplayName: Neptune's Floodgate
 			FloodgateDroplet.DisplayName: Floodgate Droplet
+			PureGavelProjectile.DisplayName: Pure Gavel
+			JustifierProjectile.DisplayName: Justifier
+			JustifierProjectile2.DisplayName: Justifier
+			ShadeGavelProjectile.DisplayName: Shade Gavel
+			ShadyKunaiProjectile.DisplayName: Shady Kunai
+			TrinitalasProjectile.DisplayName: Trinitalas
+			TrinitalasMindProjectile.DisplayName: Trinitalas
+			TrinitalasBodyProjectile.DisplayName: Trinitalas
+			TrinitalasSoulProjectile.DisplayName: Trinitalas
+			TrinitalasShotProjectile.DisplayName: Trinitalas
+			PoopFlyProjectile.DisplayName: Poop Fly
 		}
 
 		WorldGen: {

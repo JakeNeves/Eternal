@@ -43,7 +43,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
         {
             var entitySource = Projectile.GetSource_FromAI();
 
-            if (!Main.dedServ)
+            if (Main.netMode != NetmodeID.MultiplayerClient)
             {
                 for (int i = 0; i < 12; i++)
                 {

@@ -195,7 +195,10 @@ namespace Eternal.Content.NPCs.Town
         {
             Player player = Main.player[Main.myPlayer];
 
-            var emissaryShop = new NPCShop(Type, ShopName);
+            var emissaryShop = new NPCShop(Type, ShopName)
+                .Add<RoyalGaladianBread>(new Condition("Mods.Eternal.Conditions.TrinityDefeated", () => DownedBossSystem.downedTrinity))
+                .Add<FineRedWine>()
+                .Add<ReallyLongBread>(new Condition("Mods.Eternal.Conditions.isZenithWorld", () => Main.zenithWorld));
 
             emissaryShop.Register();
         }

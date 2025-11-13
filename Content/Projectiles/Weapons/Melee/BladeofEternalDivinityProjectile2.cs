@@ -23,8 +23,8 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
             Projectile.tileCollide = true;
             Projectile.ignoreWater = true;
             Projectile.alpha = 255;
-            Projectile.timeLeft = 100;
-            Projectile.extraUpdates = 2;
+            Projectile.timeLeft = 200;
+            Projectile.extraUpdates = 8;
         }
 
         public override void AI()

@@ -66,6 +66,7 @@ namespace Eternal.Content.Items.Weapons.Ranged
                 .AddIngredient(ModContent.ItemType<TotalStarstorm>())
                 .AddIngredient(ModContent.ItemType<ProviditeBar>(), 12)
                 .AddIngredient(ModContent.ItemType<CoreofExodus>(), 6)
+                .AddIngredient(ModContent.ItemType<EternalQuartz>(), 12)
                 .AddIngredient(ModContent.ItemType<MindCrystalCluster>())
                 .AddIngredient(ModContent.ItemType<BodyCrystalCluster>())
                 .AddIngredient(ModContent.ItemType<SoulCrystalCluster>())

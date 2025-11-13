@@ -2,6 +2,7 @@
 using Eternal.Content.Items.BossBags;
 using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Potions;
+using Eternal.Content.Items.Weapons.Melee;
 using Eternal.Content.Projectiles.Boss;
 using Eternal.Content.Projectiles.Enemy;
 using Eternal.Content.Projectiles.Explosion;
@@ -14,6 +15,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.UI;
 
 namespace Eternal.Content.NPCs.Boss.Trinity
 {
@@ -121,9 +123,11 @@ namespace Eternal.Content.NPCs.Boss.Trinity
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<TrinityBag>()));
 
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<ProviditeBar>(), 1, 12, 18));
+            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<EternalQuartz>(), 1, 6, 9));
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<MindCrystalCluster>(), 1, 8, 16));
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<BodyCrystalCluster>(), 1, 8, 16));
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<SoulCrystalCluster>(), 1, 8, 16));
+            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Trinitalas>(), 4));
         }
 
         public override bool PreAI()

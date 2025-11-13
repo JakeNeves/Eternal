@@ -13,15 +13,13 @@ namespace Eternal.Content.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            // Tooltip.SetDefault("'Free the moonlight!'");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()
         {
-            Item.width = 50;
-            Item.height = 50;
+            Item.width = 42;
+            Item.height = 42;
             Item.DamageType = DamageClass.Melee;
             Item.rare = ModContent.RarityType<Aquamarine>();
             Item.noMelee = true;
@@ -32,10 +30,10 @@ namespace Eternal.Content.Items.Weapons.Melee
             Item.autoReuse = true;
             Item.UseSound = SoundID.Item1;
             Item.shoot = ModContent.ProjectileType<StarcrescentMoondiskProjectile>();
-            Item.shootSpeed = 8.2f;
+            Item.shootSpeed = 6f;
             Item.noUseGraphic = true;
             Item.noMelee = true;
-            Item.knockBack = 3f;
+            Item.knockBack = 2f;
         }
 
         public override bool MeleePrefix() => true;

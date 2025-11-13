@@ -644,6 +644,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
 
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<InterstellarMetal>(), 1, 4, 12));
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<CosmoniumFragment>(), 1, 3, 9));
+            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<CosmicEmperorsInterstellarAlloy>(), 18));
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color lightColor)
