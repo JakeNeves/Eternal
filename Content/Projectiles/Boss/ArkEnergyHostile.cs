@@ -29,10 +29,8 @@ namespace Eternal.Content.Projectiles.Boss
 
         public override void AI()
         {
-            for (int k = 0; k < 5; k++)
-            {
-                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.GreenTorch, Projectile.oldVelocity.X * 1f, Projectile.oldVelocity.Y * 1f);
-            }
+            if (Main.rand.NextBool(2))
+                Dust.NewDust(Projectile.Center, Projectile.width, Projectile.height, DustID.GreenTorch, Projectile.oldVelocity.X * 1f, Projectile.oldVelocity.Y * 1f);
         }
 
         public override void OnKill(int timeLeft)

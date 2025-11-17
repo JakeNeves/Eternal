@@ -22,8 +22,8 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
         public override void SetDefaults()
         {
-            Projectile.width = 76;
-            Projectile.height = 76;
+            Projectile.width = 88;
+            Projectile.height = 88;
             Projectile.aiStyle = -1;
             Projectile.friendly = true;
             Projectile.hostile = false;

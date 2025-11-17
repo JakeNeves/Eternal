@@ -35,10 +35,8 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
         public override void AI()
         {
-            for (int k = 0; k < 5; k++)
-            {
+            if (Main.rand.NextBool(2))
                 Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, DustID.DemonTorch, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);
-            }
         }
 
         public override bool PreDraw(ref Color lightColor)

@@ -44,10 +44,8 @@ namespace Eternal.Content.Projectiles.Boss
 
             Lighting.AddLight(Projectile.position, 1.98f, 0.49f, 2.47f);
 
-            for (int k = 0; k < 5; k++)
-            {
-                Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, DustID.Shadowflame, Projectile.oldVelocity.X * 0.25f, Projectile.oldVelocity.Y * 0.25f);
-            }
+            if (Main.rand.NextBool(2))
+                Dust.NewDust(Projectile.Center, Projectile.width, Projectile.height, DustID.PinkTorch, Projectile.oldVelocity.X * 1f, Projectile.oldVelocity.Y * 1f);
 
             if (Projectile.localAI[0] == 0f)
             {

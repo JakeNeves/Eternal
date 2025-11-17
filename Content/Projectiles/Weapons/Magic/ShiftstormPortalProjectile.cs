@@ -9,6 +9,8 @@ namespace Eternal.Content.Projectiles.Weapons.Magic
     {
         public override void SetStaticDefaults()
         {
+            Main.projFrames[Projectile.type] = 3;
+
             ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
         }
 
@@ -16,8 +18,8 @@ namespace Eternal.Content.Projectiles.Weapons.Magic
 
         public override void SetDefaults()
         {
-            Projectile.width = 92;
-            Projectile.height = 92;
+            Projectile.width = 54;
+            Projectile.height = 54;
             Projectile.friendly = true;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = false;
@@ -43,6 +45,15 @@ namespace Eternal.Content.Projectiles.Weapons.Magic
         public override void AI()
         {
             var entitySource = Projectile.GetSource_FromAI();
+
+            if (++Projectile.frameCounter >= 4)
+            {
+                Projectile.frameCounter = 0;
+                if (++Projectile.frame >= Main.projFrames[Projectile.type])
+                {
+                    Projectile.frame = 0;
+                }
+            }
 
             if (!Main.dedServ)
                 Lighting.AddLight(Projectile.Center, 0.75f, 0f, 0.75f);

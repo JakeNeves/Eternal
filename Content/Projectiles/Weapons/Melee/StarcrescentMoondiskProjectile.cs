@@ -23,7 +23,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
             Projectile.DamageType = DamageClass.Melee;
             Projectile.penetrate = -1;
             Projectile.timeLeft = 300;
-            Projectile.extraUpdates = 4;
+            Projectile.extraUpdates = 2;
             Projectile.tileCollide = false;
         }
 

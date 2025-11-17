@@ -46,17 +46,13 @@ namespace Eternal.Content.Projectiles.Boss
 
             if (Projectile.ai[0] == 0f && Main.netMode != NetmodeID.MultiplayerClient)
             {
-                for (int i = 0; i < 5; i++)
-                {
-                    Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.PurpleTorch);
-                }
+                if (Main.rand.NextBool(2))
+                    Dust.NewDust(Projectile.Center, Projectile.width, Projectile.height, DustID.PurpleTorch, Projectile.oldVelocity.X * 1f, Projectile.oldVelocity.Y * 1f);
+
+                if (Main.rand.NextBool(4))
+                    Dust.NewDust(Projectile.Center, Projectile.width, Projectile.height, DustID.Shadowflame, Projectile.oldVelocity.X * 1f, Projectile.oldVelocity.Y * 1f);
 
                 Projectile.ai[0] = 1f;
-            }
-
-            for (int i = 0; i < 5; i++)
-            {
-                Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.PinkTorch);
             }
 
             if (++Projectile.frameCounter >= 5)

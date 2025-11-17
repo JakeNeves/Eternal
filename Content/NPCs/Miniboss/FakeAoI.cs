@@ -24,7 +24,7 @@ namespace Eternal.Content.NPCs.Miniboss
         public override void SetDefaults()
         {
             NPC.width = 86;
-            NPC.height = 184;
+            NPC.height = 182;
             NPC.aiStyle = -1;
             NPC.defense = 10;
             NPC.lifeMax = 100000;

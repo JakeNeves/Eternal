@@ -44,7 +44,7 @@ namespace Eternal.Content.Items.Weapons.Misc
         {
             int dmg = tooltips.FindIndex(x => x.Name == "Damage");
             tooltips.RemoveAt(dmg);
-            tooltips.Insert(dmg, new TooltipLine(Mod, "Damage", "10000 poop destructing damage"));
+            tooltips.Insert(dmg, new TooltipLine(Mod, "Damage", "10000 poop decimating damage"));
         }
     }
 }

@@ -29,10 +29,8 @@ namespace Eternal.Content.Projectiles.Armor
 
         public override void AI()
         {
-            for (int k = 0; k < 10; k++)
-            {
-                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.DemonTorch, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);
-            }
+            if (Main.rand.NextBool(2))
+                Dust.NewDust(Projectile.Center, Projectile.width, Projectile.height, DustID.DemonTorch, Projectile.oldVelocity.X * 1f, Projectile.oldVelocity.Y * 1f);
 
             Lighting.AddLight(Projectile.position, 0.24f, 0.22f, 1.90f);
 

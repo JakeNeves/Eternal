@@ -77,10 +77,9 @@ namespace Eternal.Content.Projectiles.Boss
 
         public override void OnKill(int timeLeft)
         {
-            for (int k = 0; k < 5; k++)
-            {
-                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Blood, Projectile.oldVelocity.X * 1f, Projectile.oldVelocity.Y * 1f);
-            }
+            if (Main.rand.NextBool(2))
+                Dust.NewDust(Projectile.Center, Projectile.width, Projectile.height, DustID.Blood, Projectile.oldVelocity.X * 1f, Projectile.oldVelocity.Y * 1f);
+
             SoundEngine.PlaySound(SoundID.Item111, Projectile.Center);
         }
 

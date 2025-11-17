@@ -18,8 +18,8 @@ namespace Eternal.Content.Projectiles.Weapons.Magic
 
         public override void SetDefaults()
         {
-            Projectile.width = 30;
-            Projectile.height = 30;
+            Projectile.width = 38;
+            Projectile.height = 70;
             Projectile.friendly = true;
             Projectile.tileCollide = false;
             Projectile.ignoreWater = true;

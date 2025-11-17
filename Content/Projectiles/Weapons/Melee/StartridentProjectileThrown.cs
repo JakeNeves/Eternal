@@ -47,10 +47,8 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
                 bombTimer = 0;
             }
 
-            for (int k = 0; k < 5; k++)
-            {
-                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.PurpleTorch, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);
-            }
+            if (Main.rand.NextBool(2))
+                Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, DustID.PurpleTorch, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);
         }
 
         public override bool PreDraw(ref Color lightColor)

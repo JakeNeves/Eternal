@@ -21,10 +21,8 @@ namespace Eternal.Content.Projectiles.Boss
 
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            for (int k = 0; k < 5; k++)
-            {
-                Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, DustID.PurpleTorch, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);
-            }
+            if (Main.rand.NextBool(2))
+                Dust.NewDust(Projectile.Center, Projectile.width, Projectile.height, DustID.PurpleTorch, Projectile.oldVelocity.X * 1f, Projectile.oldVelocity.Y * 1f);
 
             Projectile.timeLeft = 0;
             Projectile.Kill();

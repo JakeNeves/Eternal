@@ -58,10 +58,8 @@ namespace Eternal.Content.Projectiles.Boss
         {
             var entitySource = Projectile.GetSource_Death();
 
-            for (int k = 0; k < 5; k++)
-            {
+            if (Main.rand.NextBool(2))
                 Dust.NewDust(Projectile.Center, Projectile.width, Projectile.height, DustID.UltraBrightTorch, Projectile.oldVelocity.X * 1f, Projectile.oldVelocity.Y * 1f);
-            }
 
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {

@@ -29,10 +29,8 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
         public override void AI()
         {
-            for (int k = 0; k < 15; k++)
-            {
-                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Torch, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);
-            }
+            if (Main.rand.NextBool(2))
+                Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, DustID.Torch, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);
 
             if (!Main.dedServ)
                 Lighting.AddLight(Projectile.position, 0.24f, 0.22f, 1.90f);

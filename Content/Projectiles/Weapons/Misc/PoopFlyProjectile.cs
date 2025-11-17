@@ -28,8 +28,6 @@ namespace Eternal.Content.Projectiles.Weapons.Misc
 
         public override void AI()
         {
-            Projectile.rotation += Projectile.velocity.X * 0.1f;
-
             if (++Projectile.frameCounter >= 3)
             {
                 Projectile.frameCounter = 0;
