@@ -49,10 +49,8 @@ namespace Eternal.Content.Projectiles.Minions
 
         public override void AI()
         {
-            for (int k = 0; k < 5; k++)
-            {
+            if (Main.rand.NextBool(2))
                 Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.DemonTorch, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);
-            }
 
             Projectile.rotation = Projectile.velocity.X * 0.06f;
             Projectile.spriteDirection = Projectile.direction;

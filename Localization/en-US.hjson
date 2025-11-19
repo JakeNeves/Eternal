@@ -1914,11 +1914,6 @@ Mods: {
 				Tooltip: ""
 			}
 
-			CosmicNinjaStar: {
-				DisplayName: Cosmic Ninja Star
-				Tooltip: ""
-			}
-
 			MalachiteDagger: {
 				DisplayName: Malachite Dagger
 				Tooltip: ""
@@ -3307,6 +3302,15 @@ Mods: {
 				DisplayName: Poop Fly
 				Tooltip: "'Better than the Universe Destroyer!'"
 			}
+
+			PustuleWand: {
+				DisplayName: Pustule Wand
+				Tooltip:
+					'''
+					Creates a pustule that explodes upon impact
+					'Maggots not included...'
+					'''
+			}
 		}
 
 		Buffs: {
@@ -3943,7 +3947,6 @@ Mods: {
 			Pebble.DisplayName: Pebble
 			PebbleShoot.DisplayName: Pebble
 			BasaltShellProjectile.DisplayName: Basalt Shell
-			CosmicNinjaStarProjectile.DisplayName: Cosmic Ninja Star
 			EmpoweredSwiftShotStarbuster.DisplayName: Empowered Swift Shot Starbuster
 			MachaliteDaggerProjectile.DisplayName: Machalite Dagger
 			MoonstabKunaiProjectile.DisplayName: Moonstab Kunai
@@ -4069,6 +4072,7 @@ Mods: {
 			TrinitalasSoulProjectile.DisplayName: Trinitalas
 			TrinitalasShotProjectile.DisplayName: Trinitalas
 			PoopFlyProjectile.DisplayName: Poop Fly
+			PustuleWandProjectile.DisplayName: Pustule
 		}
 
 		WorldGen: {

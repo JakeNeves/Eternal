@@ -1,8 +1,10 @@
 ﻿using Eternal.Common.ItemDropRules.Conditions;
 using Eternal.Common.Systems;
 using Eternal.Content.Items.BossBags;
+using Eternal.Content.Items.Weapons.Magic;
 using Eternal.Content.Items.Weapons.Melee;
 using Eternal.Content.Items.Weapons.Ranged;
+using Eternal.Content.Items.Weapons.Summon;
 using Eternal.Content.Projectiles.Boss;
 using Eternal.Content.Projectiles.Enemy;
 using Eternal.Content.Projectiles.Explosion;
@@ -365,6 +367,8 @@ namespace Eternal.Content.NPCs.Boss.TheChimera
             notExpertRule.OnSuccess(ItemDropRule.ByCondition(chimeraDropCondition, ModContent.ItemType<RottenFangspear>(), 1));
             notExpertRule.OnSuccess(ItemDropRule.ByCondition(chimeraDropCondition, ModContent.ItemType<RottenMeathook>(), 2));
             notExpertRule.OnSuccess(ItemDropRule.ByCondition(chimeraDropCondition, ModContent.ItemType<Necrobow>(), 3));
+            notExpertRule.OnSuccess(ItemDropRule.ByCondition(chimeraDropCondition, ModContent.ItemType<PustuleWand>(), 4));
+            notExpertRule.OnSuccess(ItemDropRule.ByCondition(chimeraDropCondition, ModContent.ItemType<RottenStave>(), 5));
         }
 
         public override void FindFrame(int frameHeight)

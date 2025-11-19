@@ -1,5 +1,4 @@
-﻿using Eternal.Content.Buffs.Minions;
-using Eternal.Content.Projectiles.Weapons.Minions;
+﻿using Eternal.Content.Projectiles.Weapons.Minions;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
@@ -58,7 +57,16 @@ namespace Eternal.Content.Projectiles.Minions
         {
             const int ShootFrequency = 15;
             const int TargetingRange = 50 * 16;
-            const float FireVelocity = 10f;
+            const float FireVelocity = 6f;
+
+            if (++Projectile.frameCounter >= 5)
+            {
+                Projectile.frameCounter = 0;
+                if (++Projectile.frame >= 4)
+                {
+                    Projectile.frame = 0;
+                }
+            }
 
             if (JustSpawned)
             {
@@ -121,23 +129,6 @@ namespace Eternal.Content.Projectiles.Minions
             }
 
             ShootTimer--;
-
-            if (ShootTimer > ShootFrequency)
-            {
-                Projectile.frame = 0;
-            }
-            else if (targetNPC == null)
-            {
-                if (++Projectile.frameCounter >= 60)
-                {
-                    Projectile.frameCounter = 0;
-                }
-                Projectile.frame = Projectile.frameCounter < 30 ? 1 : 2;
-            }
-            else
-            {
-                Projectile.frame = 3;
-            }
         }
 
         private void TryTargeting(NPC npc, ref float closestTargetDistance, ref NPC targetNPC)

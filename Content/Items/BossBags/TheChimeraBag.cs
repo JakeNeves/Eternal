@@ -5,6 +5,7 @@ using Eternal.Content.Items.Weapons.Hell;
 using Eternal.Content.Items.Weapons.Magic;
 using Eternal.Content.Items.Weapons.Melee;
 using Eternal.Content.Items.Weapons.Ranged;
+using Eternal.Content.Items.Weapons.Summon;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.GameContent.ItemDropRules;
@@ -44,6 +45,8 @@ namespace Eternal.Content.Items.BossBags
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<RottenFangspear>(), 1));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<RottenMeathook>(), 2));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Necrobow>(), 3));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<PustuleWand>(), 4));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<RottenStave>(), 5));
         }
 
         public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)

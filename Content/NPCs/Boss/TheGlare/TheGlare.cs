@@ -300,7 +300,7 @@ namespace Eternal.Content.NPCs.Boss.TheGlare
 
                 if (AttackTimer == 350)
                 {
-                    if (!Main.dedServ)
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
                         SoundEngine.PlaySound(SoundID.DD2_BetsyFireballShot);
 
@@ -313,14 +313,14 @@ namespace Eternal.Content.NPCs.Boss.TheGlare
 
                 if (AttackTimer == 400)
                 {
-                    if (!Main.dedServ)
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
                         SoundEngine.PlaySound(SoundID.DD2_BetsyFireballShot);
 
-                        Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y,-12f, -12f, ProjectileID.InfernoHostileBolt, NPC.damage, 0);
-                        Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, 12f, -12f, ProjectileID.InfernoHostileBolt, NPC.damage, 0);
-                        Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, -12f, 12f, ProjectileID.InfernoHostileBolt, NPC.damage, 0);
-                        Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, 12f, 12f, ProjectileID.InfernoHostileBolt, NPC.damage, 0);
+                        Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y,-12f, -12f, ModContent.ProjectileType<GehennicDoom>(), NPC.damage, 0);
+                        Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, 12f, -12f, ModContent.ProjectileType<GehennicDoom>(), NPC.damage, 0);
+                        Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, -12f, 12f, ModContent.ProjectileType<GehennicDoom>(), NPC.damage, 0);
+                        Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, 12f, 12f, ModContent.ProjectileType<GehennicDoom>(), NPC.damage, 0);
                     }
                 }
 
@@ -345,7 +345,7 @@ namespace Eternal.Content.NPCs.Boss.TheGlare
 
                 if (AttackTimer == 500)
                 {
-                    if (!Main.dedServ)
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
                         Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, 12f, 0f, ProjectileID.DeathLaser, NPC.damage / 4, 0);
                         Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, 0f, 12f, ProjectileID.DeathLaser, NPC.damage / 4, 0);
@@ -356,7 +356,7 @@ namespace Eternal.Content.NPCs.Boss.TheGlare
 
                 if (AttackTimer == 550)
                 {
-                    if (!Main.dedServ)
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
                         Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, -12f, -12f, ProjectileID.DeathLaser, NPC.damage / 4, 0);
                         Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, 12f, -12f, ProjectileID.DeathLaser, NPC.damage / 4, 0);
@@ -367,7 +367,7 @@ namespace Eternal.Content.NPCs.Boss.TheGlare
 
                 if (AttackTimer == 650)
                 {
-                    if (!Main.dedServ)
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
                         Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, 12f, 0f, ModContent.ProjectileType<Sanguinebeam>(), NPC.damage / 2, 0);
                         Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, 0f, 12f, ModContent.ProjectileType<Sanguinebeam>(), NPC.damage / 2, 0);
@@ -396,7 +396,7 @@ namespace Eternal.Content.NPCs.Boss.TheGlare
 
                 if (AttackTimer == 400)
                 {
-                    if (!Main.dedServ)
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
                         SoundEngine.PlaySound(SoundID.DD2_BetsyFireballShot);
 
@@ -409,7 +409,7 @@ namespace Eternal.Content.NPCs.Boss.TheGlare
 
                 if (AttackTimer == 450)
                 {
-                    if (!Main.dedServ)
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
                         SoundEngine.PlaySound(SoundID.DD2_BetsyFireballShot);
 
@@ -441,7 +441,7 @@ namespace Eternal.Content.NPCs.Boss.TheGlare
 
                 if (AttackTimer == 600)
                 {
-                    if (!Main.dedServ)
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
                         Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, 12f, 0f, ProjectileID.EyeLaser, NPC.damage / 4, 0);
                         Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, 0f, 12f, ProjectileID.EyeLaser, NPC.damage / 4, 0);
@@ -452,7 +452,7 @@ namespace Eternal.Content.NPCs.Boss.TheGlare
 
                 if (AttackTimer == 650)
                 {
-                    if (!Main.dedServ)
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
                         Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, -12f, 0f, ProjectileID.ShadowBeamHostile, NPC.damage / 2, 0);
                         Projectile.NewProjectile(entitySource, NPC.Center.X, NPC.Center.Y, 0f, -12f, ProjectileID.ShadowBeamHostile, NPC.damage / 2, 0);
