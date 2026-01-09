@@ -158,7 +158,7 @@ namespace Eternal.Content.NPCs.Comet
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            PostCosmicApparitionDropCondition postCosmicApparitionDrop = new PostCosmicApparitionDropCondition();
+            PostCosmicApparitionDrop postCosmicApparitionDrop = new PostCosmicApparitionDrop();
 
             npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<ApparitionalMatter>(), 3, 6, 12));
             npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<Astragel>(), 3, 6, 12));
@@ -350,7 +350,7 @@ namespace Eternal.Content.NPCs.Comet
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            PostCosmicApparitionDropCondition postCosmicApparitionDrop = new PostCosmicApparitionDropCondition();
+            PostCosmicApparitionDrop postCosmicApparitionDrop = new PostCosmicApparitionDrop();
 
             npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<ApparitionalMatter>(), 3, 6, 12));
             npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<Astragel>(), 3, 6, 12));

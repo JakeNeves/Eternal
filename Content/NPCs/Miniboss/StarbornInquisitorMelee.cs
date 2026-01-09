@@ -110,7 +110,7 @@ namespace Eternal.Content.NPCs.Miniboss
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            EmperorNPCDropCondition emperorNPCDropCondition = new EmperorNPCDropCondition();
+            EmperorNPCDrop emperorNPCDropCondition = new EmperorNPCDrop();
             npcLoot.Add(ItemDropRule.ByCondition(emperorNPCDropCondition, ModContent.ItemType<MysteriousNote>(), 1));
 
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Placeable.CometiteOre>(), 6, 4, 8));

@@ -72,7 +72,7 @@ namespace Eternal.Content.NPCs.Comet
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            PostCosmicApparitionDropCondition postCosmicApparitionDrop = new PostCosmicApparitionDropCondition();
+            PostCosmicApparitionDrop postCosmicApparitionDrop = new PostCosmicApparitionDrop();
 
             npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<StarmetalBar>(), 3, 6, 8));
             npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<GalaxianPlating>(), 3, 6, 8));

@@ -68,7 +68,7 @@ namespace Eternal.Content.NPCs.Corruption
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            PostCosmicApparitionDropCondition postCosmicApparitionDrop = new PostCosmicApparitionDropCondition();
+            PostCosmicApparitionDrop postCosmicApparitionDrop = new PostCosmicApparitionDrop();
 
             npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<DeadMeat>(), 4, 2, 6));
         }

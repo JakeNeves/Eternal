@@ -18,6 +18,7 @@ using Eternal.Common.ItemDropRules.Conditions;
 using Eternal.Content.Items.Accessories.Hell;
 using Eternal.Content.Items.Weapons.Ranged;
 using Terraria.DataStructures;
+using Eternal.Content.Items.Placeable.Relics;
 
 namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
 {
@@ -126,9 +127,10 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             LeadingConditionRule notExpertRule = new(new Conditions.NotExpert());
-            HellModeDropCondition hellModeDrop = new HellModeDropCondition();
+            HellModeCommonDrop hellModeDrop = new HellModeCommonDrop();
 
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<CarminiteAmalgamationBag>()));
+            npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<CarminiteAmalgamationRelic>()));
 
             npcLoot.Add(ItemDropRule.ByCondition(hellModeDrop, ModContent.ItemType<CarminiteHeart>(), 1));
 

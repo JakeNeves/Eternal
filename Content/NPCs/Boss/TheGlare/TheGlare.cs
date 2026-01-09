@@ -1,6 +1,7 @@
 ﻿using Eternal.Common.ItemDropRules.Conditions;
 using Eternal.Common.Systems;
 using Eternal.Content.Items.BossBags;
+using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Pets;
 using Eternal.Content.Items.Weapons.Magic;
 using Eternal.Content.Items.Weapons.Melee;
@@ -736,13 +737,14 @@ namespace Eternal.Content.NPCs.Boss.TheGlare
             // TODO: Glare Loot Table
 
             LeadingConditionRule notExpertRule = new(new Conditions.NotExpert());
-            HellModeDropCondition hellModeDrop = new HellModeDropCondition();
+            HellModeCommonDrop hellModeDrop = new HellModeCommonDrop();
 
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<TheGlareBag>()));
 
             npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<HauntedVisage>(), 4));
 
-            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<UmbralArcanis>(), 12));
+            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<SterlingSilverBar>(), 1, 8, 16));
+            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<UmbralArcanis>(), 6));
         }
 
         public override void BossLoot(ref string name, ref int potionType)

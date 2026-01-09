@@ -210,14 +210,14 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
                 {
                     if (!ModContent.GetInstance<ZoneSystem>().zoneCarrion && Main.netMode != NetmodeID.MultiplayerClient)
                     {
-                        Projectile.NewProjectile(NPC.GetSource_Death(), NPC.Center.X, NPC.Center.Y, 8f, 0f, ModContent.ProjectileType<CarrionGreenSolutionProjectile>(), 0, 0);
-                        Projectile.NewProjectile(NPC.GetSource_Death(), NPC.Center.X, NPC.Center.Y, 0f, 8f, ModContent.ProjectileType<CarrionGreenSolutionProjectile>(), 0, 0);
-                        Projectile.NewProjectile(NPC.GetSource_Death(), NPC.Center.X, NPC.Center.Y, -8f, 0f, ModContent.ProjectileType<CarrionGreenSolutionProjectile>(), 0, 0);
-                        Projectile.NewProjectile(NPC.GetSource_Death(), NPC.Center.X, NPC.Center.Y, 0f, -8f, ModContent.ProjectileType<CarrionGreenSolutionProjectile>(), 0, 0);
-                        Projectile.NewProjectile(NPC.GetSource_Death(), NPC.Center.X, NPC.Center.Y, 8f, 8f, ModContent.ProjectileType<CarrionGreenSolutionProjectile>(), 0, 0);
-                        Projectile.NewProjectile(NPC.GetSource_Death(), NPC.Center.X, NPC.Center.Y, 8f, -8f, ModContent.ProjectileType<CarrionGreenSolutionProjectile>(), 0, 0);
-                        Projectile.NewProjectile(NPC.GetSource_Death(), NPC.Center.X, NPC.Center.Y, -8f, 8f, ModContent.ProjectileType<CarrionGreenSolutionProjectile>(), 0, 0);
-                        Projectile.NewProjectile(NPC.GetSource_Death(), NPC.Center.X, NPC.Center.Y, -8f, -8f, ModContent.ProjectileType<CarrionGreenSolutionProjectile>(), 0, 0);
+                        for (int i = 0; i < 48; i++)
+                        {
+                            CircleDirc = Utils.RotatedBy(CircleDirc, 0.10000000149011612f, new Vector2());
+                            int index5 = Projectile.NewProjectile(NPC.GetSource_Death(), NPC.Center, CircleDirc, ModContent.ProjectileType<CarrionGreenSolutionProjectile>(), 0, 0.0f, Main.myPlayer, 0.0f, 0.0f);
+                            int index6 = Projectile.NewProjectile(NPC.GetSource_Death(), NPC.Center, Utils.RotatedBy(CircleDirc, Math.PI, new Vector2()), ModContent.ProjectileType<CarrionGreenSolutionProjectile>(), 0, 0.0f, Main.myPlayer, 0.0f, 0.0f);
+                            Main.projectile[index5].timeLeft = 300;
+                            Main.projectile[index6].timeLeft = 300;
+                        }
                     }
 
                     NPC.life = 0;

@@ -19,7 +19,7 @@ namespace Eternal.Content.Items.Materials
         public override void SetDefaults()
         {
             Item.width = 34;
-            Item.height = 32;
+            Item.height = 36;
             Item.rare = ModContent.RarityType<Magenta>();
             Item.value = Item.sellPrice(platinum: 6);
             Item.maxStack = 9999;

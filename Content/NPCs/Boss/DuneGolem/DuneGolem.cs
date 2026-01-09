@@ -15,6 +15,7 @@ using Eternal.Common.Configurations;
 using Eternal.Common.Misc;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.DataStructures;
+using Eternal.Content.Items.Placeable.Relics;
 
 namespace Eternal.Content.NPCs.Boss.DuneGolem
 {
@@ -115,6 +116,7 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
             LeadingConditionRule notExpertRule = new(new Conditions.NotExpert());
 
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<DuneGolemBag>()));
+            npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<DuneGolemRelic>()));
 
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<MalachiteShard>(), minimumDropped: 30, maximumDropped: 60));
         }

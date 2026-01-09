@@ -123,7 +123,7 @@ namespace Eternal.Content.NPCs.Town
                 "Maddox",
                 "Corleone",
                 "Ivor",
-                "Samual",
+                "Samuel",
                 "Drew",
                 "Dale",
                 "Emmanuel",

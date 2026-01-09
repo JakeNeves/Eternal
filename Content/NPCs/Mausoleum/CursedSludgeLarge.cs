@@ -103,7 +103,7 @@ namespace Eternal.Content.NPCs.Mausoleum
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            PostNiadesDropCondition postNiadesDrop = new PostNiadesDropCondition();
+            PostNiadesDrop postNiadesDrop = new PostNiadesDrop();
 
             npcLoot.Add(ItemDropRule.ByCondition(postNiadesDrop, ModContent.ItemType<CursedAshes>(), 1, 2, 4));
         }

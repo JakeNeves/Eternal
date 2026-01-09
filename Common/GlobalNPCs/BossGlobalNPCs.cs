@@ -43,7 +43,7 @@ namespace Eternal.Common.GlobalNPCs
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
             LeadingConditionRule notExpertRule = new(new Conditions.NotExpert());
-            HellModeDropCondition hellModeDrop = new HellModeDropCondition();
+            HellModeCommonDrop hellModeDrop = new HellModeCommonDrop();
 
             switch (npc.type)
             {

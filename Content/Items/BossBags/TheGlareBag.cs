@@ -1,4 +1,5 @@
 ﻿using Eternal.Content.Items.Accessories.Expert;
+using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Weapons.Magic;
 using Terraria;
 using Terraria.GameContent.Creative;
@@ -36,7 +37,8 @@ namespace Eternal.Content.Items.BossBags
         {
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<AstralCompensator>()));
 
-            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<UmbralArcanis>(), 12));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<SterlingSilverBar>(), 1, 12, 24));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<UmbralArcanis>(), 6));
         }
 
         public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)

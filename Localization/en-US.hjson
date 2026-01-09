@@ -3311,6 +3311,72 @@ Mods: {
 					'Maggots not included...'
 					'''
 			}
+
+			SoulofBlight: {
+				DisplayName: Soul of Blight
+				Tooltip: "'The essence of decaying creatures'"
+			}
+
+			EssenceofBlight: {
+				DisplayName: Essence of Blight
+				Tooltip: "'It emmits withering energy...'"
+			}
+
+			EssenceofFlight: {
+				DisplayName: Essence of Flight
+				Tooltip: "'It emmits gustful energy...'"
+			}
+
+			EssenceofLight: {
+				DisplayName: Essence of Light
+				Tooltip: "'It emmits radiant energy...'"
+			}
+
+			EssenceofNight: {
+				DisplayName: Essence of Night
+				Tooltip: "'It emmits dark energy...'"
+			}
+
+			CarminiteAmalgamationRelic: {
+				DisplayName: Carminite Amalgamation Relic
+				Tooltip: ""
+			}
+
+			DuneGolemRelic: {
+				DisplayName: Dune Golem Relic
+				Tooltip: ""
+			}
+
+			MorbusLeggings: {
+				DisplayName: Morbus Leggings
+				Tooltip: ""
+			}
+
+			MorbusRibPlate: {
+				DisplayName: Morbus Rib Plate
+				Tooltip: ""
+			}
+
+			MorbusHelmet: {
+				DisplayName: Morbus Helmet
+				Tooltip: ""
+				SetBonus: Killing enemies have a 25% chance to temporarly increases your defense, damage and attack speed
+			}
+
+			BlightedFarrago: {
+				DisplayName: Blighted Farrago
+				Tooltip: "'It smells foul...'"
+			}
+
+			BlightScythe: {
+				DisplayName: Blight Scythe
+				Tooltip: ""
+			}
+
+			SterlingSilverBar: {
+				DisplayName: Sterling Silver Bar
+				Tooltip: ""
+			}
 		}
 
 		Buffs: {
@@ -3427,6 +3493,11 @@ Mods: {
 			CarminacInjection: {
 				DisplayName: Carminac Injection
 				Description: Thin blooded with a masive damage reduction decrase!
+			}
+
+			BlightPower: {
+				DisplayName: Blight Power
+				Description: Minor improvements to some stats
 			}
 		}
 
@@ -3639,6 +3710,21 @@ Mods: {
 			Emissary: {
 				DisplayName: Emissary
 
+				EmissaryNames: {
+					Name_1: Sirus,
+					Name_2: Alastor,
+					Name_3: Rupert,
+					Name_4: Maddox,
+					Name_5: Corleone,
+					Name_6: Ivor,
+					Name_7: Samuel,
+					Name_8: Drew,
+					Name_9: Dale,
+					Name_10: Emmanuel,
+					Name_11: Julian,
+					Name_12: Roslyn
+				}
+
 				TownNPCMood: {
 					Content: I am very well settled in this town, I might as well socialize with some new faces around here!
 					NoHome: I would like to settle on this land, however I feel a sudden urge to find some sort of shelter.
@@ -3663,6 +3749,7 @@ Mods: {
 
 			Emperor: {
 				DisplayName: Emperor
+				EmperorNames.Name_1: Jake
 
 				TownNPCMood: {
 					Content: It feels just like home, it's just so right! Like the snowy highlands back in the Gallahard Empire...
@@ -3673,7 +3760,7 @@ Mods: {
 					HateCrowded: All of these people around here... Don't they know I'm claustrophobic!
 					LikeBiome: This place is nice and all, but I feel like there is a better place that I know of...
 					LoveBiome: Isn't this place great, I could live here for days!
-					DislikeBiome: I am sweating here, I'd hate to inclimatize myself to places like these...
+					DislikeBiome: I am sweating here, I'd hate to inclimatize myself to places like this...
 					HateBiome: I could sense some sort of tremor any moment now...
 					LoveNPC: Emissary {NPCName} has to be one of my most favorite ones, despite the fact I sometimes ignore them, but everyone knows that in Gallahard, the emissaries represent me.
 					DislikeNPC: I know what I am doing, I've been through situations like this before...
@@ -3795,6 +3882,19 @@ Mods: {
 
 			Heretic: {
 				DisplayName: Heretic
+
+				HereticNames: {
+					Name_1: Judas,
+					Name_2: Slade,
+					Name_3: Lambada,
+					Name_4: Etehyn,
+					Name_5: Abbos,
+					Name_6: Sactoth,
+					Name_7: Ozim,
+					Name_8: Hennomit,
+					Name_9: Onan,
+					Name_10: Zamott
+				}
 
 				TownNPCMood: {
 					Content: I am content.
@@ -4073,6 +4173,7 @@ Mods: {
 			TrinitalasShotProjectile.DisplayName: Trinitalas
 			PoopFlyProjectile.DisplayName: Poop Fly
 			PustuleWandProjectile.DisplayName: Pustule
+			BlightScytheProjectile.DisplayName: Blight Scythe Projectile
 		}
 
 		WorldGen: {

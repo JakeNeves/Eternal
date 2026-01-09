@@ -52,8 +52,11 @@ namespace Eternal.Common.Systems
 					    ModContent.ItemType<Content.Items.Weapons.Melee.CarminiteBroadsword>(),
 					    ModContent.ItemType<Content.Items.Weapons.Melee.CarminiteRipperClaws>(),
 						ModContent.ItemType<Content.Items.Weapons.Melee.CarminiteShortsword>(),
-						ModContent.ItemType<Content.Items.Weapons.Ranged.CarminiteShortbow>()
-					}
+						ModContent.ItemType<Content.Items.Weapons.Ranged.CarminiteShortbow>(),
+                        ModContent.ItemType<Content.Items.Accessories.Expert.Bloodtooth>(),
+                        ModContent.ItemType<Content.Items.Placeable.Relics.CarminiteAmalgamationRelic>(),
+                        ModContent.ItemType<Content.Items.Vanity.CarminiteAmalgamationMask>()
+                    }
                 }
 			);
             #endregion
@@ -72,8 +75,11 @@ namespace Eternal.Common.Systems
                     ["displayName"] = Language.GetText("Mods.Eternal.NPCs.DuneGolem.DisplayName"),
                     ["collectables"] = new List<int>()
 					{
-						ModContent.ItemType<Content.Items.Materials.MalachiteShard>()
-					}
+						ModContent.ItemType<Content.Items.Materials.MalachiteShard>(),
+                        ModContent.ItemType<Content.Items.Accessories.Expert.DuneCore>(),
+                        ModContent.ItemType<Content.Items.Placeable.Relics.DuneGolemRelic>(),
+                        ModContent.ItemType<Content.Items.Vanity.DuneMask>()
+                    }
                 }
 			);
             #endregion
@@ -191,7 +197,8 @@ namespace Eternal.Common.Systems
                     ["collectables"] = new List<int>()
                     {
                         ModContent.ItemType<Content.Items.Accessories.Expert.Rosary>(),
-                        ModContent.ItemType<Content.Items.Weapons.Melee.SactothsConquest>()
+                        ModContent.ItemType<Content.Items.Weapons.Melee.SactothsConquest>(),
+                        ModContent.ItemType<Content.Items.Pets.OrbofTheOccult>()
                     }
                 }
             );
@@ -204,7 +211,12 @@ namespace Eternal.Common.Systems
                 nameof(TheChimera),
                 12.25f,
                 () => DownedBossSystem.downedChimera,
-                ModContent.NPCType<TheChimera>(),
+                new List<int>()
+                {
+                    ModContent.NPCType<TheChimera>(),
+                    ModContent.NPCType<TheHeap>(),
+                    ModContent.NPCType<TheHive>()
+                },
                 new Dictionary<string, object>()
                 {
                     ["spawnItems"] = ModContent.ItemType<RottenMeat>(),
@@ -212,6 +224,7 @@ namespace Eternal.Common.Systems
                     ["collectables"] = new List<int>()
                     {
                         ModContent.ItemType<Content.Items.Accessories.Expert.GasBag>(),
+                        ModContent.ItemType<Content.Items.Materials.BlightedFarrago>(),
                         ModContent.ItemType<Content.Items.Weapons.Melee.RottenFangspear>(),
                         ModContent.ItemType<Content.Items.Weapons.Melee.RottenMeathook>(),
                         ModContent.ItemType<Content.Items.Weapons.Ranged.Necrobow>()
@@ -235,7 +248,10 @@ namespace Eternal.Common.Systems
                     ["despawnMessage"] = Language.GetText("Mods.Eternal.NPCs.TheGlare.BossChecklistIntegration.DespawnMessage"),
                     ["collectables"] = new List<int>()
                     {
-                        ModContent.ItemType<Content.Items.Weapons.Magic.UmbralArcanis>()
+                        ModContent.ItemType<Content.Items.Materials.SterlingSilverBar>(),
+                        ModContent.ItemType<Content.Items.Weapons.Magic.UmbralArcanis>(),
+                        ModContent.ItemType<Content.Items.Accessories.Expert.AstralCompensator>(),
+						ModContent.ItemType<Content.Items.Pets.HauntedVisage>()
                     }
                 }
             );
@@ -264,8 +280,9 @@ namespace Eternal.Common.Systems
 						ModContent.ItemType<Content.Items.Weapons.Melee.Vexation>(),
 						ModContent.ItemType<Content.Items.Weapons.Melee.ApparitionalDisk>(),
 						ModContent.ItemType<Content.Items.Weapons.Ranged.Starfall>(),
-						ModContent.ItemType<Content.Items.Pets.ReminantHead>()
-					}
+						ModContent.ItemType<Content.Items.Pets.ReminantHead>(),
+                        ModContent.ItemType<Content.Items.Vanity.CosmicApparitionMask>()
+                    }
 				}
             );
             #endregion

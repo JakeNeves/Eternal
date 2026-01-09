@@ -119,7 +119,7 @@ namespace Eternal.Content.NPCs.Miniboss
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            PostArkofImperiousDropCondition postArkDrop = new PostArkofImperiousDropCondition();
+            PostArkofImperiousDrop postArkDrop = new PostArkofImperiousDrop();
 
             npcLoot.Add(ItemDropRule.ByCondition(postArkDrop, ModContent.ItemType<ArkiumQuartzCrystalCluster>(), 1, 2, 4));
 

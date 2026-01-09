@@ -39,10 +39,10 @@ namespace Eternal.Content.NPCs.Carrion
 
         public override void HitEffect(NPC.HitInfo hit)
         {
-            for (int k = 0; k < 10.0; k++)
-            {
-                Dust.NewDust(NPC.Center, NPC.width, NPC.height, ModContent.DustType<Puss>(), 0, 0, 0, default(Color), 1f);
-            }
+            if (Main.netMode == NetmodeID.Server)
+                return;
+
+            Dust.NewDust(new Vector2(NPC.position.X, NPC.position.Y), NPC.width, NPC.height, DustID.Blood);
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -52,19 +52,14 @@ namespace Eternal.Content.NPCs.Carrion
             ]);
         }
 
-        public override void ModifyNPCLoot(NPCLoot npcLoot)
-        {
-
-        }
-
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if (ModContent.GetInstance<ZoneSystem>().zoneCarrion)
-                return SpawnCondition.OverworldDay.Chance * 0.5f + SpawnCondition.Cavern.Chance * 0f;
+                return SpawnCondition.OverworldDay.Chance * 0.5f + SpawnCondition.Cavern.Chance * 0f + SpawnCondition.Underground.Chance * 0f;
             else if (ModContent.GetInstance<ZoneSystem>().zoneUndergroundCarrion)
-                return SpawnCondition.OverworldDay.Chance * 0f + SpawnCondition.Cavern.Chance * 0.5f;
+                return SpawnCondition.OverworldDay.Chance * 0f + SpawnCondition.Cavern.Chance * 0.5f + SpawnCondition.Underground.Chance * 0.5f;
             else
-                return SpawnCondition.OverworldDay.Chance * 0f + SpawnCondition.Cavern.Chance * 0f;
+                return SpawnCondition.OverworldDay.Chance * 0f + SpawnCondition.Cavern.Chance * 0f + SpawnCondition.Underground.Chance * 0f;
         }
     }
 }

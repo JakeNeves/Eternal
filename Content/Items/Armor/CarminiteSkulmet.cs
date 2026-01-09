@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Armor
@@ -9,9 +10,13 @@ namespace Eternal.Content.Items.Armor
     [AutoloadEquip(EquipType.Head)]
     public class CarminiteSkulmet : ModItem
     {
+        public static LocalizedText SetBonusText { get; private set; }
+
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
+            SetBonusText = this.GetLocalization("SetBonus");
         }
 
         public override void SetDefaults()
@@ -30,7 +35,7 @@ namespace Eternal.Content.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "Increased melee damage based on your maximum HP";
+            player.setBonus = SetBonusText.Value;
 
             player.GetDamage(DamageClass.Melee) += ((float)player.statLifeMax2 / 0.25f) / 100f;
         }

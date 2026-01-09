@@ -1,4 +1,5 @@
-﻿using Eternal.Content.Projectiles.Weapons.Magic;
+﻿using Eternal.Content.Items.Materials;
+using Eternal.Content.Projectiles.Weapons.Magic;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -19,7 +20,7 @@ namespace Eternal.Content.Items.Weapons.Magic
         {
             Item.width = 32;
             Item.height = 32;
-            Item.damage = 80;
+            Item.damage = 100;
             Item.DamageType = DamageClass.Magic;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.mana = 12;
@@ -29,7 +30,7 @@ namespace Eternal.Content.Items.Weapons.Magic
             Item.shoot = ModContent.ProjectileType<BallofSewage>();
             Item.shootSpeed = 10f;
             Item.UseSound = SoundID.Item111;
-            Item.rare = ItemRarityID.Lime;
+            Item.rare = ItemRarityID.Yellow;
             Item.autoReuse = true;
             Item.noMelee = true;
         }
@@ -41,6 +42,7 @@ namespace Eternal.Content.Items.Weapons.Magic
                 .AddIngredient(ItemID.ChlorophyteBar, 20)
                 .AddIngredient(ItemID.MudBlock, 16)
                 .AddIngredient(ItemID.Vine, 12)
+                .AddIngredient(ModContent.ItemType<SoulofBlight>(), 6)
                 .Register();
         }
     }

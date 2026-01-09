@@ -297,8 +297,8 @@ namespace Eternal.Content.NPCs.Miniboss
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            PostArkofImperiousDropCondition postAoIDrop = new PostArkofImperiousDropCondition();
-            LifeMoteExperimentalFeatureCondition lifeMote = new LifeMoteExperimentalFeatureCondition();
+            PostArkofImperiousDrop postAoIDrop = new PostArkofImperiousDrop();
+            LifeMoteExperimentalFeature lifeMote = new LifeMoteExperimentalFeature();
 
             npcLoot.Add(ItemDropRule.ByCondition(postAoIDrop, ModContent.ItemType<RawOminaquadite>(), 2, 6, 12));
             npcLoot.Add(ItemDropRule.ByCondition(lifeMote, ModContent.ItemType<LifeMote>(), 6));

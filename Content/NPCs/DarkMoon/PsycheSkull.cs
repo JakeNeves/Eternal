@@ -169,7 +169,7 @@ namespace Eternal.Content.NPCs.DarkMoon
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            PostNiadesDropCondition postNiadesDrop = new PostNiadesDropCondition();
+            PostNiadesDrop postNiadesDrop = new PostNiadesDrop();
 
             npcLoot.Add(ItemDropRule.ByCondition(postNiadesDrop, ModContent.ItemType<CursedAshes>(), 3, 2, 4));
 

@@ -162,7 +162,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             LeadingConditionRule notExpertRule = new(new Conditions.NotExpert());
-            HellModeDropCondition hellModeDrop = new HellModeDropCondition();
+            HellModeCommonDrop hellModeDrop = new HellModeCommonDrop();
 
             npcLoot.Add(ItemDropRule.ByCondition(hellModeDrop, ModContent.ItemType<SpiritRites>(), 4));
 

@@ -95,7 +95,7 @@ namespace Eternal.Content.NPCs.Tundra
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            PostCosmicApparitionDropCondition postCosmicApparitionDrop = new PostCosmicApparitionDropCondition();
+            PostCosmicApparitionDrop postCosmicApparitionDrop = new PostCosmicApparitionDrop();
 
             npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<Items.Placeable.GalaciteOre>(), 1, 6, 8));
         }

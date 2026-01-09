@@ -79,11 +79,11 @@ namespace Eternal.Content.NPCs.Carrion
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if (ModContent.GetInstance<ZoneSystem>().zoneCarrion)
-                return SpawnCondition.OverworldDay.Chance * 0.5f + SpawnCondition.Cavern.Chance * 0f;
+                return SpawnCondition.OverworldDay.Chance * 0.5f + SpawnCondition.Cavern.Chance * 0f + SpawnCondition.Underground.Chance * 0.5f;
             else if (ModContent.GetInstance<ZoneSystem>().zoneUndergroundCarrion)
-                return SpawnCondition.OverworldDay.Chance * 0f + SpawnCondition.Cavern.Chance * 0.5f;
+                return SpawnCondition.OverworldDay.Chance * 0f + SpawnCondition.Cavern.Chance * 0.5f + SpawnCondition.Underground.Chance * 0f;
             else
-                return SpawnCondition.OverworldDay.Chance * 0f + SpawnCondition.Cavern.Chance * 0f;
+                return SpawnCondition.OverworldDay.Chance * 0f + SpawnCondition.Cavern.Chance * 0f + SpawnCondition.Underground.Chance * 0f;
         }
 
         public override void AI()

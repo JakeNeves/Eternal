@@ -8,9 +8,11 @@ using Eternal.Content.Projectiles.Enemy;
 using Eternal.Content.Projectiles.Explosion;
 using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
 using Terraria.Chat;
+using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.Localization;
@@ -95,6 +97,15 @@ namespace Eternal.Content.NPCs.Boss.Trinity
         {
             NPC.lifeMax = (int)(NPC.lifeMax * balance * bossAdjustment);
             NPC.damage = (int)(NPC.damage * balance * bossAdjustment);
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Visuals.Sun,
+
+                new FlavorTextBestiaryInfoElement("The embodiment of godhood, taking form of the Eye of Providence...")
+            });
         }
 
         public override void BossLoot(ref string name, ref int potionType)

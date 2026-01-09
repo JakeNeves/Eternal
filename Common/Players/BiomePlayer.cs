@@ -1,4 +1,5 @@
 ﻿using Eternal.Common.Systems;
+using Eternal.Content.Biomes;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -9,7 +10,7 @@ namespace Eternal.Common.Players
     {
         public override void PostUpdate()
         {
-            if (ModContent.GetInstance<ZoneSystem>().zoneBeneath && !Player.ZoneUnderworldHeight)
+            if (Player.InModBiome<Beneath>() && !Player.ZoneUnderworldHeight)
             {
                 Player.AddBuff(BuffID.Obstructed, 1, true);
 

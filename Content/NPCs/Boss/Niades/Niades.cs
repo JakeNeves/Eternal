@@ -513,7 +513,7 @@ namespace Eternal.Content.NPCs.Boss.Niades
             // TODO: Niades Loot Table
 
             LeadingConditionRule notExpertRule = new(new Conditions.NotExpert());
-            HellModeDropCondition hellModeDrop = new HellModeDropCondition();
+            HellModeCommonDrop hellModeDrop = new HellModeCommonDrop();
 
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<NiadesBag>()));
 

@@ -42,6 +42,8 @@ namespace Eternal.Content.Items.BossBags
         {
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<GasBag>()));
 
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<BlightedFarrago>(), 1, 12, 24));
+
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<RottenFangspear>(), 1));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<RottenMeathook>(), 2));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Necrobow>(), 3));

@@ -1,4 +1,5 @@
 ﻿using Eternal.Common.Configurations;
+using Eternal.Common.ItemDropRules.Conditions;
 using Eternal.Common.Systems;
 using Eternal.Content.Items.Materials;
 using Eternal.Content.Projectiles.Enemy;
@@ -53,7 +54,7 @@ namespace Eternal.Content.NPCs.Carrion
             if (Main.netMode != NetmodeID.MultiplayerClient)
                 NPC.NewNPC(entitySource, (int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<CadaverHead>());
 
-            if (Main.rand.NextBool(2) && Main.netMode != NetmodeID.MultiplayerClient)
+            if (Main.rand.NextBool(4) && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 for (int i = 0; i < Main.rand.Next(3, 12); i++)
                 {
@@ -102,11 +103,11 @@ namespace Eternal.Content.NPCs.Carrion
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if (ModContent.GetInstance<ZoneSystem>().zoneCarrion)
-                return SpawnCondition.OverworldDay.Chance * 0.5f + SpawnCondition.Cavern.Chance * 0f;
+                return SpawnCondition.OverworldDay.Chance * 0.5f + SpawnCondition.Cavern.Chance * 0f + SpawnCondition.Underground.Chance * 0.5f;
             else if (ModContent.GetInstance<ZoneSystem>().zoneUndergroundCarrion)
-                return SpawnCondition.OverworldDay.Chance * 0f + SpawnCondition.Cavern.Chance * 0.5f;
+                return SpawnCondition.OverworldDay.Chance * 0f + SpawnCondition.Cavern.Chance * 0.5f + SpawnCondition.Underground.Chance * 0f;
             else
-                return SpawnCondition.OverworldDay.Chance * 0f + SpawnCondition.Cavern.Chance * 0f;
+                return SpawnCondition.OverworldDay.Chance * 0f + SpawnCondition.Cavern.Chance * 0f + SpawnCondition.Underground.Chance * 0f;
         }
     }
 }

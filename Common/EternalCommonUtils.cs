@@ -1,9 +1,15 @@
 ﻿using Microsoft.Xna.Framework;
+using Terraria.ID;
 
 namespace Eternal.Common
 {
     public class EternalCommonUtils
     {
+        /// <summary>
+        /// Determines if a given NPC is excluded from dropping Essences (Essence of Light/Night/Blight)
+        /// <br/>This works similarly to <see cref="NPCID.Sets.CannotDropSouls"/>
+        /// </summary>
+        public static bool[] CannotDropEssences = NPCID.Sets.Factory.CreateBoolSet(NPCID.BlueSlime, NPCID.EaterofWorldsHead, NPCID.EaterofWorldsBody, NPCID.EaterofWorldsTail, NPCID.Slimer, NPCID.SlimeSpiked);
 
         /// <summary>
         /// Allows you to do some pretty cool things with lerping the color values.

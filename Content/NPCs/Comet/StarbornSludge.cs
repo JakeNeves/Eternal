@@ -70,7 +70,7 @@ namespace Eternal.Content.NPCs.Comet
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            PostCosmicApparitionDropCondition postCosmicApparitionDrop = new PostCosmicApparitionDropCondition();
+            PostCosmicApparitionDrop postCosmicApparitionDrop = new PostCosmicApparitionDrop();
 
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<StarquartzCrystalCluster>(), 6, 4, 8));
 

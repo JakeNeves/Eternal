@@ -638,7 +638,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             LeadingConditionRule notExpertRule = new(new Conditions.NotExpert());
-            HellModeDropCondition hellModeDrop = new HellModeDropCondition();
+            HellModeCommonDrop hellModeDrop = new HellModeCommonDrop();
 
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<CosmicEmperorCapsule>()));
 

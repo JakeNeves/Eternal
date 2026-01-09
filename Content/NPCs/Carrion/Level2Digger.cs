@@ -50,8 +50,7 @@ namespace Eternal.Content.NPCs.Carrion
             if (Main.netMode == NetmodeID.Server)
                 return;
 
-            for (int k = 0; k < 5.0; k++)
-                Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.GreenBlood, 0, 0, 0, default(Color), 1f);
+			Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.GreenBlood, 0, 0, 0, default(Color), 1f);
         }
 
         public override void OnKill()
@@ -62,7 +61,7 @@ namespace Eternal.Content.NPCs.Carrion
 
             Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-2, 2), Main.rand.Next(-2, 2)), gore1);
 
-            if (Main.rand.NextBool(2) && Main.netMode != NetmodeID.MultiplayerClient)
+            if (Main.rand.NextBool(4) && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 for (int i = 0; i < Main.rand.Next(1, 3); i++)
                 {
@@ -74,9 +73,9 @@ namespace Eternal.Content.NPCs.Carrion
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
 			if (ModContent.GetInstance<ZoneSystem>().zoneUndergroundCarrion)
-                return SpawnCondition.Cavern.Chance * 0.75f;
+                return SpawnCondition.Cavern.Chance * 0.75f + SpawnCondition.Underground.Chance * 0.75f;
 			else
-				return SpawnCondition.Cavern.Chance * 0f;
+				return SpawnCondition.Cavern.Chance * 0f + SpawnCondition.Underground.Chance * 0f;
 		}
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
@@ -152,8 +151,7 @@ namespace Eternal.Content.NPCs.Carrion
 
             var entitySource = NPC.GetSource_Death();
 
-            for (int k = 0; k < 5.0; k++)
-                Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.GreenBlood, 0, 0, 0, default(Color), 1f);
+            Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.GreenBlood, 0, 0, 0, default(Color), 1f);
 
 			if (NPC.life <= 0)
 			{
@@ -206,8 +204,7 @@ namespace Eternal.Content.NPCs.Carrion
 
             var entitySource = NPC.GetSource_Death();
 
-            for (int k = 0; k < 5.0; k++)
-                Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.GreenBlood, 0, 0, 0, default(Color), 1f);
+            Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.GreenBlood, 0, 0, 0, default(Color), 1f);
 
 			if (NPC.life <= 0)
 			{

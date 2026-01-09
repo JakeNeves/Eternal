@@ -1,4 +1,6 @@
-﻿using Eternal.Content.Projectiles.Armor;
+﻿using Eternal.Content.Buffs.Accessories;
+using Eternal.Content.Buffs.Armor;
+using Eternal.Content.Projectiles.Armor;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
@@ -14,6 +16,7 @@ namespace Eternal.Common.Players
         public static bool DuneshockArmor = false;
         public static bool CosmicKeeperArmor = false;
         public static bool IesniumArmor = false;
+        public static bool MorbusArmor = false;
 
         #region Occulist Armor
         public static bool OcculistArmor = false;
@@ -110,6 +113,7 @@ namespace Eternal.Common.Players
             DuneshockArmor = false;
             CosmicKeeperArmor = false;
             IesniumArmor = false;
+            MorbusArmor = false;
         }
 
         public override void PreUpdate()
@@ -167,6 +171,12 @@ namespace Eternal.Common.Players
                 }
             }
             #endregion
+
+            if (MorbusArmor)
+            {
+                if (Main.rand.NextBool(4))
+                    Player.AddBuff(ModContent.BuffType<BlightPower>(), 3000);
+            }
         }
 
         public override void OnHurt(Player.HurtInfo info)
@@ -197,18 +207,18 @@ namespace Eternal.Common.Players
                 if (!Main.dedServ)
                     SoundEngine.PlaySound(SoundID.DD2_KoboldExplosion, Player.position);
 
-
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                     Projectile.NewProjectile(Player.GetSource_FromThis("SetBonus_NaquadahArmor"), Player.position, new Vector2(0, 0), ModContent.ProjectileType<NaquadahSpikeBombAOE>(), 0, 0, Player.whoAmI);
+
+                for (int i = 0; i < Main.rand.Next(2, 6); i++)
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                        Projectile.NewProjectile(Player.GetSource_FromThis("SetBonus_NaquadahArmor"), Player.position, new Vector2(Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-8f, 8f)), ModContent.ProjectileType<NaquadahSpikeBomb>(), 100, 0, Player.whoAmI);
 
                 for (int i = 0; i < Main.maxNPCs; i++)
                 {
                     var npc = Main.npc[i];
                     if (!npc.active)
                         continue;
-
-                    if (Main.netMode != NetmodeID.MultiplayerClient)
-                        Projectile.NewProjectile(Player.GetSource_OnHurt(npc, "SetBonus_NaquadahArmor"), Player.position, new Vector2(Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-8f, 8f)), ModContent.ProjectileType<NaquadahSpikeBomb>(), info.Damage * 2, 0, Player.whoAmI);
                 }
             }
             #endregion

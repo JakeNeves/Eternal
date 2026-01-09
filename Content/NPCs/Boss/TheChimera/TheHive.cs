@@ -1,6 +1,7 @@
 ﻿using Eternal.Common.ItemDropRules.Conditions;
 using Eternal.Common.Systems;
 using Eternal.Content.Items.BossBags;
+using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Weapons.Magic;
 using Eternal.Content.Items.Weapons.Melee;
 using Eternal.Content.Items.Weapons.Ranged;
@@ -359,10 +360,12 @@ namespace Eternal.Content.NPCs.Boss.TheChimera
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             LeadingConditionRule notExpertRule = new(new Conditions.NotExpert());
-            ChimeraDropCondition chimeraDropCondition = new ChimeraDropCondition();
-            HellModeDropCondition hellModeDrop = new HellModeDropCondition();
+            ChimeraBossDrop chimeraDropCondition = new ChimeraBossDrop();
+            HellModeCommonDrop hellModeDrop = new HellModeCommonDrop();
 
             npcLoot.Add(ItemDropRule.BossBagByCondition(chimeraDropCondition, ModContent.ItemType<TheChimeraBag>()));
+
+            notExpertRule.OnSuccess(ItemDropRule.ByCondition(chimeraDropCondition, ModContent.ItemType<BlightedFarrago>(), 1, 6, 12));
 
             notExpertRule.OnSuccess(ItemDropRule.ByCondition(chimeraDropCondition, ModContent.ItemType<RottenFangspear>(), 1));
             notExpertRule.OnSuccess(ItemDropRule.ByCondition(chimeraDropCondition, ModContent.ItemType<RottenMeathook>(), 2));
