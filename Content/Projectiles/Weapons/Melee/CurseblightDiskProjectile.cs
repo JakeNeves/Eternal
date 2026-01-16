@@ -1,30 +1,31 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Projectiles.Weapons.Melee
 {
-    public class GiantFireChakramProjectile : ModProjectile
+    public class CurseblightDiskProjectile : ModProjectile
     {
         public override void SetStaticDefaults()
         {
-            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 6;
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 8;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }
 
         public override void SetDefaults()
         {
-            Projectile.width = 54;
-            Projectile.height = 54;
+            Projectile.width = 50;
+            Projectile.height = 50;
             Projectile.aiStyle = 3;
             Projectile.friendly = true;
             Projectile.DamageType = DamageClass.Melee;
             Projectile.penetrate = -1;
             Projectile.timeLeft = 600;
-            Projectile.extraUpdates = 1;
+            Projectile.extraUpdates = 4;
             Projectile.tileCollide = false;
         }
 
@@ -36,10 +37,29 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
             Projectile.rotation += Projectile.velocity.X * 0.1f;
         }
 
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            if (!Main.dedServ)
+            {
+                SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/ExosiivaGladiusBlade")
+                {
+                    Volume = 0.4f,
+                    Pitch = Main.rand.NextFloat(-1f, -0.25f),
+                    MaxInstances = 0,
+                }, Projectile.position);
+            }
+
+            if (Main.rand.NextBool(3))
+                target.AddBuff(BuffID.ShadowFlame, 6000);
+
+            if (Main.rand.NextBool(2))
+                Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, DustID.Shadowflame, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);
+        }
+
         public override bool PreDraw(ref Color lightColor)
         {
             Main.instance.LoadProjectile(Projectile.type);
-            Texture2D texture = ModContent.Request<Texture2D>("Eternal/Content/Projectiles/Weapons/Melee/GiantFireChakramProjectile_Shadow").Value;
+            Texture2D texture = ModContent.Request<Texture2D>("Eternal/Content/Projectiles/Weapons/Melee/CurseblightDiskProjectile_Shadow").Value;
 
             Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, Projectile.height * 0.5f);
             for (int k = 0; k < Projectile.oldPos.Length; k++)

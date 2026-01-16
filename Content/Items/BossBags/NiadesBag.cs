@@ -1,4 +1,5 @@
 ﻿using Eternal.Content.Items.Accessories.Expert;
+using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Weapons.Melee;
 using Terraria;
 using Terraria.GameContent.Creative;
@@ -36,7 +37,8 @@ namespace Eternal.Content.Items.BossBags
         {
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Rosary>()));
 
-            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<SactothsConquest>(), 12));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<HexititeBar>(), 1, 8, 12));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<SactothsConquest>(), 5));
         }
 
         public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)

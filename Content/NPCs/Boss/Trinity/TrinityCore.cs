@@ -1,6 +1,7 @@
 ﻿using Eternal.Common.Systems;
 using Eternal.Content.Items.BossBags;
 using Eternal.Content.Items.Materials;
+using Eternal.Content.Items.Placeable.Relics;
 using Eternal.Content.Items.Potions;
 using Eternal.Content.Items.Weapons.Melee;
 using Eternal.Content.Projectiles.Boss;
@@ -132,6 +133,7 @@ namespace Eternal.Content.NPCs.Boss.Trinity
             LeadingConditionRule notExpertRule = new(new Conditions.NotExpert());
 
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<TrinityBag>()));
+            npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<TheTrinityRelic>()));
 
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<ProviditeBar>(), 1, 12, 18));
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<EternalQuartz>(), 1, 6, 9));

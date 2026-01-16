@@ -5,15 +5,28 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Misc
 {
     public class DeathCharm : ModItem
     {
+        public static LocalizedText DeathCharmDenyText { get; private set; }
+        public static LocalizedText HellModeActivateText { get; private set; }
+        public static LocalizedText HellModeDeactivateText { get; private set; }
+        public static LocalizedText HellModeFailText { get; private set; }
+        public static LocalizedText HellModeFail2Text { get; private set; }
 
         public override void SetStaticDefaults()
         {
+            DeathCharmDenyText = this.GetLocalization("DeathCharmDeny").WithFormatArgs(Main.player[Main.myPlayer].name);
+
+            HellModeActivateText = this.GetLocalization("HellModeActivate");
+            HellModeDeactivateText = this.GetLocalization("HellModeDeactivate");
+            HellModeFailText = this.GetLocalization("HellModeFail");
+            HellModeFail2Text = this.GetLocalization("HellModeFail2");
+
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -50,15 +63,15 @@ namespace Eternal.Content.Items.Misc
                         {
                             SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/DifficultyActivate"), player.position);
                             DifficultySystem.hellMode = true;
-                            Main.NewText("Hell Mode is Active, witness the unspeakable menace!", 236, 0, 100);
-                            //Main.NewText("Hell Mode is Active, enjoy the fun!", 210, 0, 220);
+                            Main.NewText(HellModeActivateText.Value, 236, 0, 100);
+                            // Main.NewText("Hell Mode is Active, enjoy the fun!", 210, 0, 220);
                         }
                         else if (DifficultySystem.hellMode)
                         {
                             SoundEngine.PlaySound(new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/Custom/DifficultyDeactivate"), player.position);
                             DifficultySystem.hellMode = false;
-                            Main.NewText("Hell Mode is no longer Active, breathe easy...", 236, 0, 100);
-                            //Main.NewText("Hell Mode is no longer Active, not enough fun for you!", 210, 0, 220);
+                            Main.NewText(HellModeDeactivateText.Value, 236, 0, 100);
+                            // Main.NewText("Hell Mode is no longer Active, not enough fun for you!", 210, 0, 220);
                         }
 
                         if (Main.netMode == NetmodeID.Server)
@@ -66,15 +79,17 @@ namespace Eternal.Content.Items.Misc
                     }
                     else
                     {
-                        Main.NewText("Hell Mode can't be toggled at this time!", 236, 0, 100);
-                        //Main.NewText("Hell Mode can't be toggled at this time!", 210, 0, 220);
-                        player.KillMe(PlayerDeathReason.ByCustomReason(player.name + " tried to change the rules"), 10000, 1, false);
+                        Main.NewText(HellModeFailText.Value, 236, 0, 100);
+                        player.KillMe(PlayerDeathReason.ByCustomReason(DeathCharmDenyText.ToNetworkText()), 10000, 1, false);
+                        // Main.NewText("Hell Mode can't be toggled at this time!", 210, 0, 220);
+                        // player.KillMe(PlayerDeathReason.ByCustomReason(player.name + " tried to change the rules"), 10000, 1, false);
                     }
                 }
                 else
                 {
-                    Main.NewText("Hell Mode can't be toggled on an easier difficulty", 236, 0, 100);
-                    player.KillMe(PlayerDeathReason.ByCustomReason(player.name + " tried to change the rules"), 10000, 1, false);
+                    Main.NewText(HellModeFail2Text.Value, 236, 0, 100);
+                    player.KillMe(PlayerDeathReason.ByCustomReason(DeathCharmDenyText.ToNetworkText()), 10000, 1, false);
+                    // player.KillMe(PlayerDeathReason.ByCustomReason(player.name + " tried to change the rules"), 10000, 1, false);
                 }
             }
 

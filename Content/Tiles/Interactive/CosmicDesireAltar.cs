@@ -1,5 +1,7 @@
 ﻿using Eternal.Common.Systems;
 using Eternal.Content.Items.Summon;
+using Eternal.Content.NPCs.Boss.CosmicEmperor;
+using Eternal.Content.NPCs.Boss.Trinity;
 using Eternal.Content.Projectiles.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -16,8 +18,12 @@ namespace Eternal.Content.Tiles.Interactive
 {
     public class CosmicDesireAltar : ModTile
     {
+        public static LocalizedText AltarDenyText { get; private set; }
+
         public override void SetStaticDefaults()
         {
+            AltarDenyText = this.GetLocalization("AltarDeny").WithFormatArgs(Main.player[Main.myPlayer].name);
+
             Main.tileFrameImportant[Type] = true;
             Main.tileNoAttach[Type] = true;
             Main.tileLavaDeath[Type] = false;
@@ -64,17 +70,24 @@ namespace Eternal.Content.Tiles.Interactive
                 if (!DownedBossSystem.downedArkofImperious)
                 {
                     Main.NewText("Proove that you can challenge me first...", 150, 36, 120);
-                    player.KillMe(PlayerDeathReason.ByCustomReason(player.name + "'s heart disintegrated into stardust"), 10000, 1, false);
+                    player.KillMe(PlayerDeathReason.ByCustomReason(AltarDenyText.ToNetworkText()), 10000, 1, false);
+                    // player.KillMe(PlayerDeathReason.ByCustomReason(player.name + "'s heart disintegrated into stardust"), 10000, 1, false);
                 }
                 else
                 {
-                    Projectile.NewProjectile(entitySource, player.Center.X, player.position.Y - 150, 0, 0, ModContent.ProjectileType<CosmicEmperorSummon>(), 0, 0, Main.myPlayer, 0f, 0f);
+                    if (!NPC.AnyNPCs(ModContent.NPCType<CosmicEmperor>()) || !NPC.AnyNPCs(ModContent.NPCType<CosmicEmperorP2>()) && Main.netMode != NetmodeID.MultiplayerClient)
+                        Projectile.NewProjectile(entitySource, player.Center.X, player.position.Y - 150, 0, 0, ModContent.ProjectileType<CosmicEmperorSummon>(), 0, 0, Main.myPlayer, 0f, 0f);
                 }
             }
-            else
+            else if (Main.LocalPlayer.HasItem(ModContent.ItemType<Cosmonomicon>()) && !NPC.AnyNPCs(ModContent.NPCType<CosmicEmperor>()) || !NPC.AnyNPCs(ModContent.NPCType<CosmicEmperorP2>()) && Main.netMode != NetmodeID.MultiplayerClient)
             {
-                Main.NewText("The shrine appears to desire an inscribed tablet...", 100, 24, 60);
+                int boss = NPC.NewNPC(entitySource, (int)player.Center.X, (int)player.Center.Y - 300, ModContent.NPCType<CosmicEmperorP2>());
+
+                CombatText.NewText(Main.npc[boss].Hitbox, new Color(150, 36, 120), "Let's get this over with!", dramatic: true);
+                Main.NewText("Let's get this over with!", 150, 36, 120);
             }
+            else
+                Main.NewText("The shrine appears to desire an inscribed tablet...", 100, 24, 60);
 
             return true;
         }

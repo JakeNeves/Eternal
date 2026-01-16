@@ -26,5 +26,10 @@ namespace Eternal.Content.Items.Materials
             Item.rare = ItemRarityID.Pink;
             Item.maxStack = 9999;
         }
+
+        public override void PostUpdate()
+        {
+            Lighting.AddLight(Item.Center, 0.5f, 0.05f, 0.5f);
+        }
     }
 }

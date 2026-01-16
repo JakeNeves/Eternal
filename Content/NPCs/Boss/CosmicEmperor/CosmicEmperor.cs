@@ -1,12 +1,14 @@
 ﻿using Eternal.Common.Systems;
+using Eternal.Content.Items.Misc;
+using Eternal.Content.Items.Summon;
+using Eternal.Content.Projectiles.Boss;
+using Eternal.Content.Projectiles.Enemy;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Eternal.Content.Projectiles.Boss;
-using Eternal.Content.Projectiles.Enemy;
 
 namespace Eternal.Content.NPCs.Boss.CosmicEmperor
 {
@@ -71,7 +73,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
             NPC.width = 54;
             NPC.height = 56;
             NPC.lifeMax = 600000;
-            NPC.defense = 75;
+            NPC.defense = 60;
             NPC.damage = 30;
             NPC.lavaImmune = true;
             NPC.HitSound = SoundID.NPCHit1;
@@ -255,6 +257,9 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
 
                 if (NPC.ai[3] >= 1000f && !NPC.AnyNPCs(ModContent.NPCType<CosmicEmperorClone>()))
                 {
+                    if (!Main.LocalPlayer.HasItem(ModContent.ItemType<Cosmonomicon>()))
+                        Main.LocalPlayer.QuickSpawnItem(NPC.GetSource_GiftOrReward(), ModContent.ItemType<Cosmonomicon>());
+
                     NPC.life = 0;
                     NPC.checkDead();
                 }

@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
+using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -100,8 +101,8 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
             NPC.lifeMax = 800000;
             NPC.width = 62;
             NPC.height = 56;
-            NPC.damage = 50;
-            NPC.defense = 90;
+            NPC.damage = 40;
+            NPC.defense = 60;
             NPC.knockBackResist = 0f;
             NPC.boss = true;
             NPC.noTileCollide = true;
@@ -111,7 +112,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
             NPC.lavaImmune = true;
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCDeath/CosmicEmperorDeath");
-            NPC.npcSlots = 6;
+            NPC.npcSlots = 6f;
         }
 
         public override void OnKill()
@@ -194,7 +195,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
             if (NPC.ai[0] == 0)
             {
                 #region Flying Movement
-                float speed = 60f;
+                float speed = 40f;
                 float acceleration = 0.15f;
                 Vector2 vector2 = new Vector2(NPC.position.X + (float)NPC.width * 0.5f, NPC.position.Y + (float)NPC.height * 0.5f);
                 float xDir = Main.player[NPC.target].position.X + (float)(Main.player[NPC.target].width / 2) - vector2.X;
@@ -650,7 +651,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color lightColor)
         {
             Main.instance.LoadNPC(NPC.type);
-            Texture2D texture = ModContent.Request<Texture2D>("Eternal/Content/NPCs/Boss/CosmicEmperor/CosmicEmperorP2_Shadow").Value;
+            Texture2D texture = TextureAssets.Npc[NPC.type].Value;
 
             Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, NPC.height * 0.5f);
             for (int k = 0; k < NPC.oldPos.Length; k++)

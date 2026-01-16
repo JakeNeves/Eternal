@@ -510,8 +510,6 @@ namespace Eternal.Content.NPCs.Boss.Niades
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            // TODO: Niades Loot Table
-
             LeadingConditionRule notExpertRule = new(new Conditions.NotExpert());
             HellModeCommonDrop hellModeDrop = new HellModeCommonDrop();
 
@@ -521,7 +519,8 @@ namespace Eternal.Content.NPCs.Boss.Niades
 
             npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<OrbofTheOccult>(), 4));
 
-            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<SactothsConquest>(), 12));
+            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<HexititeBar>(), 1, 8, 12));
+            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<SactothsConquest>(), 5));
         }
 
         public override void BossLoot(ref string name, ref int potionType)

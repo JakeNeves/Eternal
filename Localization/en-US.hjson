@@ -87,6 +87,16 @@ Mods: {
 				DisplayName: Cosmic Tablet
 			}
 
+			Cosmonomicon: {
+				Tooltip:
+					'''
+					Used at the Altar of Cosmic Desire
+					Summons the Cosmic Emperor, directly skipping his fist phase
+					'Used to worship the emperor, many times to your heart's desire!
+					'''
+				DisplayName: Cosmonomicon
+			}
+
 			TheShrine: {
 				Tooltip:
 					'''
@@ -427,6 +437,11 @@ Mods: {
 					Bosses will drop unique Items, accesories, and weapons exclusive to this difficulty
 					'You're playing with chaos'
 					'''
+				HellModeActivate: Hell Mode is Active, witness the unspeakable menace!
+				HellModeDeactivate: Hell Mode is no longer Active, breathe easy...
+				HellModeFail: Hell Mode can't be toggled at this time!
+				HellModeFail2: Hell Mode can't be toggled on an easier difficulty!
+				DeathCharmDeny: "{0}% tried to change the rules"
 			}
 
 			YoggieSpotch: {
@@ -1731,8 +1746,8 @@ Mods: {
 					'''
 			}
 
-			GiantFireChakram: {
-				DisplayName: Giant Fire Chakram
+			CurseblightDisk: {
+				DisplayName: Curseblight Disk
 				Tooltip: ""
 			}
 
@@ -3347,6 +3362,16 @@ Mods: {
 				Tooltip: ""
 			}
 
+			TheTrinityRelic: {
+				DisplayName: The Trinity Relic
+				Tooltip: ""
+			}
+
+			TheGlareRelic: {
+				DisplayName: The Glare Relic
+				Tooltip: ""
+			}
+
 			MorbusLeggings: {
 				DisplayName: Morbus Leggings
 				Tooltip: ""
@@ -3375,6 +3400,39 @@ Mods: {
 
 			SterlingSilverBar: {
 				DisplayName: Sterling Silver Bar
+				Tooltip: ""
+			}
+
+			Meatsaw: {
+				DisplayName: Meatsaw
+				Tooltip:
+					'''
+					Has a chance to break enemy defense
+					'I will bleed you dry!'
+					'''
+			}
+
+			Hexthrower: {
+				DisplayName: Hexthrower
+				Tooltip:
+					'''
+					Burns enemies with shadowflames
+					'What if the flames were purple?'
+					'''
+			}
+
+			HexititeBar: {
+				DisplayName: Hexitite Bar
+				Tooltip: "'An alloy infused with some cursed properties...'"
+			}
+
+			CurseblightedPickaxe: {
+				DisplayName: Curseblighted Pickaxe
+				Tooltip: ""
+			}
+
+			CurseblightedHamaxe: {
+				DisplayName: Curseblighted Hamaxe
 				Tooltip: ""
 			}
 		}
@@ -3502,7 +3560,11 @@ Mods: {
 		}
 
 		Tiles: {
-			CosmicDesireAltar.MapEntry: Altar of Cosmic Desire
+			CosmicDesireAltar: {
+				MapEntry: Altar of Cosmic Desire
+				AltarDeny: "{0}%'s heart disintegrated into stardust"
+			}
+
 			IgniumOre.MapEntry: Ignium
 			IesniumOre.MapEntry: Iesnium
 			GalaciteOre.MapEntry: Galacite
@@ -3628,14 +3690,22 @@ Mods: {
 
 			CosmicEmperor: {
 				DisplayName: Cosmic Emperor
-				BossChecklistIntegration.SpawnInfo: Spawn by using a [i:Eternal/CosmicTablet] at an [i:Eternal/CosmicDesireAltar].
+				BossChecklistIntegration.SpawnInfo:
+					'''
+					Spawn by using a [i:Eternal/CosmicTablet] at an [i:Eternal/CosmicDesireAltar].
+					Alternatively, using the [i:Eternal/Cosmonominon] at an [i:Eternal/CosmicDesireAltar] will skip directly to the Cosmic Emperor's second phase.
+					'''
 			}
 
 			CosmicEmperorClone.DisplayName: Cosmic Emperor's Shadow Clone
 
 			CosmicEmperorP2: {
 				DisplayName: Cosmic Emperor
-				BossChecklistIntegration.SpawnInfo: Spawn by using a [i:Eternal/CosmicTablet] at an [i:Eternal/CosmicDesireAltar].
+				BossChecklistIntegration.SpawnInfo:
+					'''
+					Spawn by using a [i:Eternal/CosmicTablet] at an [i:Eternal/CosmicDesireAltar].
+					Alternatively, using the [i:Eternal/Cosmonominon] at an [i:Eternal/CosmicDesireAltar] will skip directly to the Cosmic Emperor's second phase.
+					'''
 			}
 
 			GalaxiaStarwisp.DisplayName: Galaxia Starwisp
@@ -4020,7 +4090,7 @@ Mods: {
 			EmpoweredApparitionalDiskProjectile.DisplayName: Empowered Apparitional Disk
 			EmpoweredApparitionalDiskProjectileMini.DisplayName: Empowered Apparitional Disk
 			EmpoweredMachaliteEdgeProjectile.DisplayName: Empowered Machalite Edge
-			GiantFireChakramProjectile.DisplayName: Giant Fire Chakram
+			CurseblightDiskProjectile.DisplayName: Curseblight Disk
 			MachaliteChakramProjectile.DisplayName: Machalite Chakram
 			NekodiskProjectile.DisplayName: Nekodisk
 			NyanarangProjectile.DisplayName: Nyanarang
@@ -4174,6 +4244,8 @@ Mods: {
 			PoopFlyProjectile.DisplayName: Poop Fly
 			PustuleWandProjectile.DisplayName: Pustule
 			BlightScytheProjectile.DisplayName: Blight Scythe Projectile
+			MeatsawProjectile.DisplayName: Meatsaw Projectile
+			HexthrowerFlame.DisplayName: Hexthrower Flame
 		}
 
 		WorldGen: {

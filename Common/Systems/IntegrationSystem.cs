@@ -196,6 +196,7 @@ namespace Eternal.Common.Systems
                     ["despawnMessage"] = Language.GetText("Mods.Eternal.NPCs.Niades.BossChecklistIntegration.DespawnMessage"),
                     ["collectables"] = new List<int>()
                     {
+                        ModContent.ItemType<Content.Items.Materials.HexititeBar>(),
                         ModContent.ItemType<Content.Items.Accessories.Expert.Rosary>(),
                         ModContent.ItemType<Content.Items.Weapons.Melee.SactothsConquest>(),
                         ModContent.ItemType<Content.Items.Pets.OrbofTheOccult>()
@@ -249,9 +250,12 @@ namespace Eternal.Common.Systems
                     ["collectables"] = new List<int>()
                     {
                         ModContent.ItemType<Content.Items.Materials.SterlingSilverBar>(),
+                        ModContent.ItemType<Content.Items.Weapons.Melee.Meatsaw>(),
+                        ModContent.ItemType<Content.Items.Weapons.Ranged.Hexthrower>(),
                         ModContent.ItemType<Content.Items.Weapons.Magic.UmbralArcanis>(),
                         ModContent.ItemType<Content.Items.Accessories.Expert.AstralCompensator>(),
-						ModContent.ItemType<Content.Items.Pets.HauntedVisage>()
+						ModContent.ItemType<Content.Items.Pets.HauntedVisage>(),
+                        ModContent.ItemType<Content.Items.Placeable.Relics.TheGlareRelic>()
                     }
                 }
             );
@@ -356,7 +360,8 @@ namespace Eternal.Common.Systems
                         ModContent.ItemType<Content.Items.Materials.ProviditeBar>(),
                         ModContent.ItemType<Content.Items.Materials.MindCrystalCluster>(),
                         ModContent.ItemType<Content.Items.Materials.BodyCrystalCluster>(),
-                        ModContent.ItemType<Content.Items.Materials.SoulCrystalCluster>()
+                        ModContent.ItemType<Content.Items.Materials.SoulCrystalCluster>(),
+                        ModContent.ItemType<Content.Items.Placeable.Relics.TheTrinityRelic>()
                     }
                 }
             );

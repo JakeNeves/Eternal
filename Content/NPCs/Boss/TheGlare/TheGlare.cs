@@ -3,8 +3,10 @@ using Eternal.Common.Systems;
 using Eternal.Content.Items.BossBags;
 using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Pets;
+using Eternal.Content.Items.Placeable.Relics;
 using Eternal.Content.Items.Weapons.Magic;
 using Eternal.Content.Items.Weapons.Melee;
+using Eternal.Content.Items.Weapons.Ranged;
 using Eternal.Content.Projectiles.Enemy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -734,7 +736,8 @@ namespace Eternal.Content.NPCs.Boss.TheGlare
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            // TODO: Glare Loot Table
+            GehennaGlareBossDrop gehennaGlareBossDrop = new GehennaGlareBossDrop();
+            MausoleumGlareBossDrop mausoleumGlareBossDrop = new MausoleumGlareBossDrop();
 
             LeadingConditionRule notExpertRule = new(new Conditions.NotExpert());
             HellModeCommonDrop hellModeDrop = new HellModeCommonDrop();
@@ -742,6 +745,10 @@ namespace Eternal.Content.NPCs.Boss.TheGlare
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<TheGlareBag>()));
 
             npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<HauntedVisage>(), 4));
+            npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<TheGlareRelic>()));
+
+            npcLoot.Add(ItemDropRule.ByCondition(gehennaGlareBossDrop, ModContent.ItemType<Meatsaw>(), 1));
+            npcLoot.Add(ItemDropRule.ByCondition(mausoleumGlareBossDrop, ModContent.ItemType<Hexthrower>(), 1));
 
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<SterlingSilverBar>(), 1, 8, 16));
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<UmbralArcanis>(), 6));
