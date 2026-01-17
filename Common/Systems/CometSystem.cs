@@ -72,7 +72,7 @@ namespace Eternal.Common.Systems
                                 if (WorldGen.SolidTile(l, m))
                                 {
                                     num8++;
-                                    if (Main.tile[l, m].TileType == 189 || Main.tile[l, m].TileType == 202)
+                                    if (Main.tile[l, m].TileType == TileID.Cloud || Main.tile[l, m].TileType == TileID.Sunplate)
                                     {
                                         num8 -= 100;
                                     }
@@ -142,7 +142,7 @@ namespace Eternal.Common.Systems
             {
                 for (int n = j - num; n < j + num; n++)
                 {
-                    if (Main.tile[m, n].HasTile && Main.tile[m, n].TileType == 21)
+                    if (Main.tile[m, n].HasTile && Main.tile[m, n].TileType == TileID.Containers)
                     {
                         return false;
                     }
@@ -200,7 +200,7 @@ namespace Eternal.Common.Systems
                     float num16 = (float)Math.Sqrt(num14 * num14 + num15 * num15);
                     if (num16 < num * 0.7)
                     {
-                        if (Main.tile[num12, num13].TileType == 5 || Main.tile[num12, num13].TileType == 32 || Main.tile[num12, num13].TileType == 352)
+                        if (Main.tile[num12, num13].TileType == TileID.Trees || Main.tile[num12, num13].TileType == TileID.CorruptThorns || Main.tile[num12, num13].TileType == TileID.CrimsonThorns)
                         {
                             WorldGen.KillTile(num12, num13, false, false, false);
                         }
@@ -233,7 +233,7 @@ namespace Eternal.Common.Systems
                         float num21 = (float)Math.Sqrt(num19 * num19 + num20 * num20);
                         if (num21 < num * 0.8)
                         {
-                            if (Main.tile[num17, num18].TileType == 5 || Main.tile[num17, num18].TileType == 32 || Main.tile[num17, num18].TileType == 352)
+                            if (Main.tile[num17, num18].TileType == TileID.Trees || Main.tile[num17, num18].TileType == TileID.CorruptThorns || Main.tile[num17, num18].TileType == TileID.CrimsonThorns)
                             {
                                 WorldGen.KillTile(num17, num18, false, false, false);
                             }
@@ -255,7 +255,7 @@ namespace Eternal.Common.Systems
                         float num26 = (float)Math.Sqrt(num24 * num24 + num25 * num25);
                         if (num26 < num * 0.85)
                         {
-                            if (Main.tile[num22, num23].TileType == 5 || Main.tile[num22, num23].TileType == 32 || Main.tile[num22, num23].TileType == 352)
+                            if (Main.tile[num22, num23].TileType == TileID.Trees || Main.tile[num22, num23].TileType == TileID.CorruptThorns || Main.tile[num22, num23].TileType == TileID.CrimsonThorns)
                             {
                                 WorldGen.KillTile(num22, num23, false, false, false);
                             }

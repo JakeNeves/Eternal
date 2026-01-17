@@ -1,4 +1,5 @@
 ﻿using Eternal.Common.Systems;
+using Eternal.Content.Biomes;
 using Eternal.Content.Projectiles.Boss;
 using Eternal.Content.Projectiles.Enemy;
 using Eternal.Content.Projectiles.Explosion;
@@ -172,7 +173,7 @@ namespace Eternal.Content.NPCs.Boss.TheChimera
         {
             Player player = Main.player[NPC.target];
 
-            NPC.dontTakeDamage = !ModContent.GetInstance<ZoneSystem>().zoneCarrion;
+            NPC.dontTakeDamage = !player.InModBiome<CarrionSurface>() || !player.InModBiome<CarrionSurface>();
 
             if (NPC.ai[3] > 0f)
             {

@@ -2,6 +2,8 @@
 using Terraria.ModLoader;
 using Eternal.Common.Systems;
 using Eternal.Content.NPCs.Boss.Trinity;
+using Eternal.Content.Biomes;
+using Eternal.Common.Configurations;
 
 namespace Eternal.Common.Players
 {
@@ -13,8 +15,8 @@ namespace Eternal.Common.Players
 
             Player.ManageSpecialBiomeVisuals("Eternal:Rift", EventSystem.isRiftOpen);
             Player.ManageSpecialBiomeVisuals("Eternal:DarkMoon", EventSystem.darkMoon);
-            Player.ManageSpecialBiomeVisuals("Eternal:PurifiedBeneath", ModContent.GetInstance<ZoneSystem>().zonePurifiedBeneath);
-            Player.ManageSpecialBiomeVisuals("Eternal:Carrion", ModContent.GetInstance<ZoneSystem>().zoneCarrion || ModContent.GetInstance<ZoneSystem>().zoneUndergroundCarrion);
+            Player.ManageSpecialBiomeVisuals("Eternal:PurifiedBeneath", ModContent.GetInstance<ServerConfig>().purifiedBeneath && Player.InModBiome<PurifiedBeneath>());
+            Player.ManageSpecialBiomeVisuals("Eternal:Carrion", Player.InModBiome<CarrionSurface>() || Player.InModBiome<UndergroundCarrion>() || Player.InModBiome<CarrionDesertSurface>());
 
             // Underworld soul "fog" rift effect
             Player.ManageSpecialBiomeVisuals("Eternal:RiftUnderworldEffect", EventSystem.isRiftOpen && Player.ZoneUnderworldHeight, Player.Center);
