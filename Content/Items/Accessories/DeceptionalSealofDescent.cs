@@ -11,7 +11,7 @@ namespace Eternal.Content.Items.Accessories
 {
     public class DeceptionalSealofDescent : ModItem
     {
-        public static readonly int SummonDamageBonus = 30;
+        public static readonly int SummonDamageBonus = 15;
 
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(SummonDamageBonus);
 

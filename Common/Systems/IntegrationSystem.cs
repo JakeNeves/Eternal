@@ -29,9 +29,7 @@ namespace Eternal.Common.Systems
         private void BossChecklistIntegration()
         {
 			if (!ModLoader.TryGetMod("BossChecklist", out Mod bossChecklistMod))
-			{
 				return;
-			}
 
             #region Pre-Hardmode
             #region Carminite Amalgamation
@@ -39,7 +37,7 @@ namespace Eternal.Common.Systems
 				"LogBoss",
 				Mod,
 				nameof(CarminiteAmalgamation),
-				4.5f,
+				4.8f,
 				() => DownedBossSystem.downedCarminiteAmalgamation,
 				ModContent.NPCType<CarminiteAmalgamation>(),
 				new Dictionary<string, object>()
@@ -66,7 +64,7 @@ namespace Eternal.Common.Systems
 				"LogBoss",
 				Mod,
 				nameof(DuneGolem),
-				5.6f,
+				5f,
 				() => DownedBossSystem.downedDuneGolem,
 				ModContent.NPCType<DuneGolem>(),
 				new Dictionary<string, object>()
@@ -108,27 +106,6 @@ namespace Eternal.Common.Systems
             ); */
             #endregion
 
-            #region Incinerius
-            bossChecklistMod.Call(
-                "LogBoss",
-                Mod,
-                nameof(Incinerius),
-                12.25f,
-                () => DownedBossSystem.downedIncinerius,
-                ModContent.NPCType<Incinerius>(),
-                new Dictionary<string, object>()
-                {
-                    ["spawnItems"] = ModContent.ItemType<ObsidianLantern>(),
-                    ["displayName"] = Language.GetText("Mods.Eternal.NPCs.Incinerius.DisplayName"),
-                    ["collectables"] = new List<int>()
-					{
-						ModContent.ItemType<Content.Items.Materials.MagmaticAlloy>(),
-						ModContent.ItemType<Content.Items.Materials.InfernalAshes>()
-					}
-                }
-            );
-            #endregion
-
             #region Subzero Elemental
             #endregion
 
@@ -137,7 +114,7 @@ namespace Eternal.Common.Systems
                 "LogBoss",
                 Mod,
                 nameof(DunewormHead),
-                13f,
+                12.05f,
                 () => DownedBossSystem.downedDuneworm,
                 ModContent.NPCType<DunewormHead>(),
                 new Dictionary<string, object>()
@@ -159,7 +136,7 @@ namespace Eternal.Common.Systems
                 "LogEvent",
                 Mod,
                 "DarkMoon",
-                13.14f,
+                12.14f,
                 () => EventSystem.downedDarkMoon,
                 new List<int>()
                 {
@@ -181,25 +158,25 @@ namespace Eternal.Common.Systems
             );
             #endregion
 
-            #region Niades
+            #region Incinerius
             bossChecklistMod.Call(
                 "LogBoss",
                 Mod,
-                nameof(Niades),
-                12.15f,
-                () => DownedBossSystem.downedNiades,
-                ModContent.NPCType<Niades>(),
+                nameof(Incinerius),
+                12.25f,
+                () => DownedBossSystem.downedIncinerius,
+                ModContent.NPCType<Incinerius>(),
                 new Dictionary<string, object>()
                 {
-                    ["spawnItems"] = ModContent.ItemType<BloodstainedJudgement>(),
-                    ["displayName"] = Language.GetText("Mods.Eternal.NPCs.Niades.DisplayName"),
-                    ["despawnMessage"] = Language.GetText("Mods.Eternal.NPCs.Niades.BossChecklistIntegration.DespawnMessage"),
+                    ["spawnItems"] = ModContent.ItemType<ObsidianLantern>(),
+                    ["displayName"] = Language.GetText("Mods.Eternal.NPCs.Incinerius.DisplayName"),
                     ["collectables"] = new List<int>()
                     {
-                        ModContent.ItemType<Content.Items.Materials.HexititeBar>(),
-                        ModContent.ItemType<Content.Items.Accessories.Expert.Rosary>(),
-                        ModContent.ItemType<Content.Items.Weapons.Melee.SactothsConquest>(),
-                        ModContent.ItemType<Content.Items.Pets.OrbofTheOccult>()
+                        ModContent.ItemType<Content.Items.Materials.MagmaticAlloy>(),
+                        ModContent.ItemType<Content.Items.Materials.InfernalAshes>(),
+                        ModContent.ItemType<Content.Items.Weapons.Melee.IgneoforgedEdge>(),
+                        ModContent.ItemType<Content.Items.Weapons.Magic.Incinerator>(),
+                        ModContent.ItemType<Content.Items.Accessories.Expert.MagmaniacHeart>()
                     }
                 }
             );
@@ -210,7 +187,7 @@ namespace Eternal.Common.Systems
                 "LogBoss",
                 Mod,
                 nameof(TheChimera),
-                12.25f,
+                13f,
                 () => DownedBossSystem.downedChimera,
                 new List<int>()
                 {
@@ -256,6 +233,30 @@ namespace Eternal.Common.Systems
                         ModContent.ItemType<Content.Items.Accessories.Expert.AstralCompensator>(),
 						ModContent.ItemType<Content.Items.Pets.HauntedVisage>(),
                         ModContent.ItemType<Content.Items.Placeable.Relics.TheGlareRelic>()
+                    }
+                }
+            );
+            #endregion
+
+            #region Niades
+            bossChecklistMod.Call(
+                "LogBoss",
+                Mod,
+                nameof(Niades),
+                13.16f,
+                () => DownedBossSystem.downedNiades,
+                ModContent.NPCType<Niades>(),
+                new Dictionary<string, object>()
+                {
+                    ["spawnItems"] = ModContent.ItemType<BloodstainedJudgement>(),
+                    ["displayName"] = Language.GetText("Mods.Eternal.NPCs.Niades.DisplayName"),
+                    ["despawnMessage"] = Language.GetText("Mods.Eternal.NPCs.Niades.BossChecklistIntegration.DespawnMessage"),
+                    ["collectables"] = new List<int>()
+                    {
+                        ModContent.ItemType<Content.Items.Materials.HexititeBar>(),
+                        ModContent.ItemType<Content.Items.Accessories.Expert.Rosary>(),
+                        ModContent.ItemType<Content.Items.Weapons.Melee.SactothsConquest>(),
+                        ModContent.ItemType<Content.Items.Pets.OrbofTheOccult>()
                     }
                 }
             );

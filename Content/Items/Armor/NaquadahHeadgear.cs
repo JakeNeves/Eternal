@@ -14,8 +14,8 @@ namespace Eternal.Content.Items.Armor
     [AutoloadEquip(EquipType.Head)]
     public class NaquadahHeadgear : ModItem
     {
-        public static readonly int RangedDamageBonus = 20;
-        public static readonly int RangedDamageSetBonus = 30;
+        public static readonly int RangedDamageBonus = 15;
+        public static readonly int RangedDamageSetBonus = 20;
 
         public static LocalizedText SetBonusText { get; private set; }
 

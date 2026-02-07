@@ -14,8 +14,8 @@ namespace Eternal.Content.Items.Armor
     [AutoloadEquip(EquipType.Head)]
     public class StarbornMask : ModItem
     {
-        public static readonly int MeleeDamageBonus = 17;
-        public static readonly int MeleeDamageSetBonus = 20;
+        public static readonly int MeleeDamageBonus = 11;
+        public static readonly int MeleeDamageSetBonus = 12;
         public static readonly int MeleeSpeedBonus = 17;
 
         public static LocalizedText SetBonusText { get; private set; }

@@ -1,6 +1,7 @@
 ﻿using Eternal.Common.Configurations;
 using Eternal.Common.Misc;
 using Eternal.Common.Systems;
+using Eternal.Content.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;
@@ -62,6 +63,8 @@ namespace Eternal.Content.NPCs.Boss.Igneopede
 		public override void OnKill()
 		{
 			NPC.SetEventFlagCleared(ref DownedBossSystem.downedIgneopede, -1);
+
+			CreateBrickBoxForTheIgneopede();
 		}
 
 		public override void BossLoot(ref string name, ref int potionType)
@@ -149,7 +152,41 @@ namespace Eternal.Content.NPCs.Boss.Igneopede
 			}
 		}
 
-		public override bool CheckActive()
+        // taken from the vanilla source code!
+        private void CreateBrickBoxForTheIgneopede()
+        {
+            int num = (int)(NPC.position.X + (float)(NPC.width / 2)) / 16;
+            int num2 = (int)(NPC.position.Y + (float)(NPC.height / 2)) / 16;
+            int num3 = NPC.width / 2 / 16 + 1;
+            for (int i = num - num3; i <= num + num3; i++)
+            {
+                for (int j = num2 - num3; j <= num2 + num3; j++)
+                {
+                    Tile tile;
+                    if (i == num - num3 || i == num + num3 || j == num2 - num3 || j == num2 + num3)
+                    {
+                        tile = Main.tile[i, j];
+                        if (!tile.HasTile)
+                        {
+                            tile = Main.tile[i, j];
+                            tile.TileType = (ushort)ModContent.TileType<ScorchingBrick>();
+                            tile = Main.tile[i, j];
+                            tile.HasTile = true;
+                        }
+                    }
+                    tile = Main.tile[i, j];
+                    tile.LiquidType = LiquidID.Lava;
+                    tile = Main.tile[i, j];
+                    tile.LiquidAmount = 0;
+                    if (Main.netMode == NetmodeID.Server)
+                        NetMessage.SendTileSquare(-1, i, j);
+                    else
+                        WorldGen.SquareTileFrame(i, j);
+                }
+            }
+        }
+
+        public override bool CheckActive()
 		{
 			Player player = Main.player[NPC.target];
 			return !player.active || player.dead;

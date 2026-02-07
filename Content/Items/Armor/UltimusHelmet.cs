@@ -12,9 +12,9 @@ namespace Eternal.Content.Items.Armor
     [AutoloadEquip(EquipType.Head)]
     public class UltimusHelmet : ModItem
     {
-        public static readonly int SummonDamageBonus = 30;
-        public static readonly int SummonDamageSetBonus = 42;
-        public static readonly int MinionSlotBonus = 24;
+        public static readonly int SummonDamageBonus = 12;
+        public static readonly int SummonDamageSetBonus = 16;
+        public static readonly int MinionSlotBonus = 4;
 
         public static LocalizedText SetBonusText { get; private set; }
 

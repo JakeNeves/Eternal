@@ -97,7 +97,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicApparition
         {
             NPC.width = 26;
             NPC.height = 56;
-            NPC.lifeMax = 120000;
+            NPC.lifeMax = 100000;
             NPC.damage = 30;
             NPC.defense = 40;
             NPC.knockBackResist = 0f;

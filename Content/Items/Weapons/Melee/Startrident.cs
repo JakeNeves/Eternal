@@ -21,7 +21,7 @@ namespace Eternal.Content.Items.Weapons.Melee
 
         public override void SetDefaults()
         {
-            Item.damage = 200;
+            Item.damage = 90;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.useAnimation = 18;
             Item.useTime = 24;

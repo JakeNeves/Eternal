@@ -12,8 +12,6 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
     {
         ref float AttackTimer => ref NPC.localAI[1];
 
-        Vector2 CircleDirc = new Vector2(0.0f, 16f);
-
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 4;
@@ -29,18 +27,20 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
 
         public override void SetDefaults()
         {
-            NPC.lifeMax = 2000;
-            NPC.damage = 25;
+            NPC.lifeMax = 1500;
+            NPC.damage = 10;
             NPC.defense = 30;
             NPC.knockBackResist = 0f;
             NPC.width = 18;
             NPC.height = 28;
-            NPC.aiStyle = 14;
+            NPC.aiStyle = NPCAIStyleID.Bat;
             NPC.noGravity = true;
             NPC.noTileCollide = true;
             NPC.HitSound = SoundID.NPCHit3;
             NPC.DeathSound = SoundID.NPCDeath52;
         }
+
+        public override Color? GetAlpha(Color lightColor) => new Color(255, 255, 255, 50);
 
         public override void AI()
         {

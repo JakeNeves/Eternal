@@ -11,12 +11,13 @@ namespace Eternal.Content.Projectiles.Accessories
         {
             Projectile.width = 34;
             Projectile.height = 28;
-            Projectile.alpha = 100;
             Projectile.friendly = true;
             Projectile.timeLeft = 300;
             Projectile.ignoreWater = false;
             Projectile.tileCollide = false;
         }
+
+        public override Color? GetAlpha(Color lightColor) => new Color(255, 255, 255, 50);
 
         public override void AI()
         {

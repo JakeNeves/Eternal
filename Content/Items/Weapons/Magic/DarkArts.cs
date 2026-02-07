@@ -19,13 +19,10 @@ namespace Eternal.Content.Items.Weapons.Magic
         {
             Item.width = 26;
             Item.height = 28;
-            Item.damage = 300;
+            Item.damage = 150;
             Item.DamageType = DamageClass.Magic;
             Item.useStyle = ItemUseStyleID.Shoot;
-            if (AccessorySystem.ShadeLocket)
-                Item.mana = 0;
-            else
-                Item.mana = 8;
+            Item.mana = 8;
             Item.knockBack = 0f;
             Item.useAnimation = 16;
             Item.useTime = 16;
@@ -37,11 +34,10 @@ namespace Eternal.Content.Items.Weapons.Magic
             Item.noMelee = true;
         }
 
-        /*
-        public override bool CanUseItem(Player player)
+        public override void ModifyManaCost(Player player, ref float reduce, ref float mult)
         {
-            return player.ownedProjectileCounts[Item.shoot] < 4;
+            if (AccessorySystem.ShadeLocket)
+                mult *= 0f;
         }
-        */
     }
 }

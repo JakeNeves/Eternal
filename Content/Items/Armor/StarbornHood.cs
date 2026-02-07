@@ -14,9 +14,9 @@ namespace Eternal.Content.Items.Armor
     [AutoloadEquip(EquipType.Head)]
     public class StarbornHood : ModItem
     {
-        public static readonly int MagicDamageBonus = 17;
-        public static readonly int MagicDamageSetBonus = 20;
-        public static readonly int ManaReductionBonus = 25;
+        public static readonly int MagicDamageBonus = 11;
+        public static readonly int MagicDamageSetBonus = 12;
+        public static readonly int ManaReductionBonus = 10;
         public static readonly int ManaBonus = 60;
 
         public static LocalizedText SetBonusText { get; private set; }

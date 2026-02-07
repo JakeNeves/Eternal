@@ -12,8 +12,8 @@ namespace Eternal.Content.Items.Armor
     [AutoloadEquip(EquipType.Head)]
     public class UltimusMask : ModItem
     {
-        public static readonly int MeleeDamageBonus = 30;
-        public static readonly int MeleeDamageSetBonus = 42;
+        public static readonly int MeleeDamageBonus = 12;
+        public static readonly int MeleeDamageSetBonus = 16;
         public static readonly int MeleeSpeedBonus = 25;
 
         public static LocalizedText SetBonusText { get; private set; }

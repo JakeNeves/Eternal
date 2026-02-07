@@ -1,6 +1,6 @@
 [c/d62828:Eternal] - By [c/008CFF:Jake][c/0204CFF:TEM]!
 
-1.5 - Advent of Epiphany+
+1.6 - Flames of Resonance
 
 [c/ED0249:---WARNING---]
 This is a public [c/009933:beta] build of Eternal, bugs and other sketchy things may arise!

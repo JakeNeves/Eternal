@@ -6,7 +6,7 @@ namespace Eternal.Common.SceneEffects.Miniboss
 {
     public class PhantomConstructSceneEffect : ModSceneEffect
     {
-        public override int Music => MusicLoader.GetMusicSlot(Mod, "Assets/Music/ConstructedByUnstability");
+        public override int Music => MusicLoader.GetMusicSlot(Mod, "Assets/Music/ConstructedByInstability");
 
         public override bool IsSceneEffectActive(Player player) => NPC.AnyNPCs(ModContent.NPCType<PhantomConstruct>()) && !Main.zenithWorld;
 

@@ -212,7 +212,7 @@ namespace Eternal.Content.NPCs.Mausoleum
         {
             LeadingConditionRule isHardmodeRule = new(new Conditions.IsHardmode());
 
-            isHardmodeRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Animanomicon>(), 4));
+            isHardmodeRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Animanomicon>(), 1));
             isHardmodeRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<PsyblightEssence>(), 4, 2, 6));
             isHardmodeRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<CombatGavel>(), 24));
 

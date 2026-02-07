@@ -21,7 +21,7 @@ namespace Eternal.Content.Items.Weapons.Melee
             Item.DamageType = DamageClass.Melee;
             Item.rare = ModContent.RarityType<Teal>();
             Item.noMelee = true;
-            Item.damage = 100;
+            Item.damage = 90;
             Item.useAnimation = 16;
             Item.useTime = 16;
             Item.useStyle = ItemUseStyleID.Swing;

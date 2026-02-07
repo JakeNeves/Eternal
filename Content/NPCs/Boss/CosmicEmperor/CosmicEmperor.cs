@@ -1,5 +1,4 @@
 ﻿using Eternal.Common.Systems;
-using Eternal.Content.Items.Misc;
 using Eternal.Content.Items.Summon;
 using Eternal.Content.Projectiles.Boss;
 using Eternal.Content.Projectiles.Enemy;
@@ -22,7 +21,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
 
         bool canAttack = false;
 
-        int AICosmicEmperorShootTime = 4;
+        int AICosmicEmperorShootTime = 8;
         int AICosmicEmperorShootRate()
         {
             int rate;
@@ -30,9 +29,9 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
             if (DifficultySystem.hellMode)
                 rate = 6;
             else if (Main.expertMode)
-                rate = 8;
+                rate = 12;
             else
-                rate = 10;
+                rate = 18;
 
             return rate;
         }
@@ -42,11 +41,11 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
             int rate;
 
             if (DifficultySystem.hellMode)
-                rate = 4;
+                rate = 8;
             else if (Main.expertMode)
-                rate = 5;
+                rate = 12;
             else
-                rate = 6;
+                rate = 16;
 
             return rate;
         }

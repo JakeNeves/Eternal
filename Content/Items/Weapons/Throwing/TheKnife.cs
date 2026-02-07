@@ -1,4 +1,5 @@
 ﻿using Eternal.Common.Configurations;
+using Eternal.Common.Systems;
 using Eternal.Content.Items.Materials;
 using Eternal.Content.Projectiles.Weapons.Ranged;
 using Terraria;
@@ -26,6 +27,16 @@ namespace Eternal.Content.Items.Weapons.Throwing
             Item.shoot = ModContent.ProjectileType<TheKnifeProjectile>();
             Item.shootSpeed = 20f;
             Item.autoReuse = true;
+        }
+
+        public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
+        {
+            if (DownedBossSystem.downedNiades)
+                damage += 0.25f;
+            if (DownedBossSystem.downedIncinerius)
+                damage += 0.5f;
+            if (NPC.downedGolemBoss)
+                damage += 0.75f;
         }
 
         public override void AddRecipes()

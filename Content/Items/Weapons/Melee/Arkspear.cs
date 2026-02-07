@@ -22,7 +22,7 @@ namespace Eternal.Content.Items.Weapons.Melee
 
         public override void SetDefaults()
         {
-            Item.damage = 400;
+            Item.damage = 100;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.useAnimation = 18;
             Item.useTime = 24;

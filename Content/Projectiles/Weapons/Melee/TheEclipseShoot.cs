@@ -17,7 +17,6 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
         {
             Projectile.width = 6;
             Projectile.height = 6;
-            Projectile.alpha = 255;
             Projectile.friendly = true;
             Projectile.penetrate = 1;
             Projectile.timeLeft = 300;
@@ -26,6 +25,8 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
             Projectile.DamageType = DamageClass.Melee;
             Projectile.extraUpdates = 2;
         }
+
+        public override Color? GetAlpha(Color lightColor) => new Color(255, 255, 255, 50);
 
         public override void AI()
         {

@@ -1,4 +1,5 @@
-﻿using Eternal.Content.Items.Materials;
+﻿using Eternal.Common.Systems;
+using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Weapons.Throwing;
 using Eternal.Content.Projectiles.Weapons.Hell;
 using Eternal.Content.Rarities;
@@ -18,7 +19,7 @@ namespace Eternal.Content.Items.Weapons.Hell
 
         public override void SetDefaults()
         {
-            Item.damage = 200;
+            Item.damage = 125;
             Item.DamageType = DamageClass.Ranged;
             Item.noUseGraphic = true;
             Item.noMelee = true;
@@ -33,6 +34,14 @@ namespace Eternal.Content.Items.Weapons.Hell
             Item.shoot = ModContent.ProjectileType<TrueKnifeProjectile>();
             Item.shootSpeed = 20f;
             Item.autoReuse = true;
+        }
+
+        public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
+        {
+            if (DownedBossSystem.downedArkofImperious)
+                damage += 0.25f;
+            if (DownedBossSystem.downedTrinity)
+                damage += 0.5f;
         }
 
         public override void AddRecipes()

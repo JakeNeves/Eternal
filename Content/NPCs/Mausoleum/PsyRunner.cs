@@ -138,7 +138,7 @@ namespace Eternal.Content.NPCs.Mausoleum
         {
             LeadingConditionRule isHardmodeRule = new(new Conditions.IsHardmode());
 
-            isHardmodeRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Animanomicon>(), 12));
+            isHardmodeRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Animanomicon>(), 4));
 
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Poutine>(), 12));
         }

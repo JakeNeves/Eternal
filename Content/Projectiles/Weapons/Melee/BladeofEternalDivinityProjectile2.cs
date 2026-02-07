@@ -29,6 +29,8 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
         public override void AI()
         {
+            Player player = Main.player[Projectile.owner];
+
             if (Projectile.ai[0] == 0)
             {
                 SoundEngine.PlaySound(SoundID.Item132, Projectile.position);

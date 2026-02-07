@@ -14,8 +14,8 @@ namespace Eternal.Content.Items.Armor
     [AutoloadEquip(EquipType.Head)]
     public class StarbornHeadgear : ModItem
     {
-        public static readonly int RangedDamageBonus = 17;
-        public static readonly int RangedDamageSetBonus = 20;
+        public static readonly int RangedDamageBonus = 11;
+        public static readonly int RangedDamageSetBonus = 12;
 
         public static LocalizedText SetBonusText { get; private set; }
 

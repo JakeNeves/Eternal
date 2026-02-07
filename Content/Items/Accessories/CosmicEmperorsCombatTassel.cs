@@ -11,8 +11,8 @@ namespace Eternal.Content.Items.Accessories
 {
     public class CosmicEmperorsCombatTassel : ModItem
     {
-        public static readonly int DamageBonus = 40;
-        public static readonly int CritBonus = 50;
+        public static readonly int DamageBonus = 10;
+        public static readonly int CritBonus = 25;
 
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageBonus, CritBonus);
 

@@ -30,21 +30,15 @@ namespace Eternal.Content.NPCs.Underworld
             NPC.knockBackResist = 0f;
             NPC.width = 18;
             NPC.height = 28;
-            NPC.aiStyle = 14;
+            NPC.aiStyle = NPCAIStyleID.Bat;
             NPC.noGravity = true;
             NPC.noTileCollide = true;
             NPC.HitSound = SoundID.NPCHit3;
             NPC.DeathSound = SoundID.NPCDeath52;
             NPC.value = Item.sellPrice(gold: 30);
-            NPC.buffImmune[BuffID.Poisoned] = true;
-            NPC.buffImmune[BuffID.OnFire] = true;
-            NPC.buffImmune[BuffID.Venom] = true;
-            NPC.buffImmune[BuffID.ShadowFlame] = true;
-            NPC.buffImmune[BuffID.CursedInferno] = true;
-            NPC.buffImmune[BuffID.Frostburn] = true;
-            NPC.buffImmune[BuffID.Frozen] = true;
-            NPC.buffImmune[BuffID.Chilled] = true;
         }
+
+        public override Color? GetAlpha(Color lightColor) => new Color(255, 255, 255, 50);
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
@@ -74,6 +68,8 @@ namespace Eternal.Content.NPCs.Underworld
             NPC.TargetClosest(true);
 
             NPC.rotation = NPC.velocity.X * -0.03f;
+
+            Lighting.AddLight(NPC.position, 2.15f, 0.95f, 0f);
 
             attackTimer++;
             Attack();

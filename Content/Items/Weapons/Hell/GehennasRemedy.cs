@@ -1,4 +1,5 @@
-﻿using Eternal.Content.Items.Materials;
+﻿using Eternal.Common.Systems;
+using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Weapons.Melee;
 using Eternal.Content.Projectiles.Weapons.Hell;
 using Eternal.Content.Rarities;
@@ -22,7 +23,7 @@ namespace Eternal.Content.Items.Weapons.Hell
             Item.height = 72;
             Item.DamageType = DamageClass.Melee;
             Item.rare = ModContent.RarityType<HellMode>();
-            Item.damage = 200;
+            Item.damage = 150;
             Item.useAnimation = 12;
             Item.useTime = 12;
             Item.useStyle = ItemUseStyleID.Swing;
@@ -40,6 +41,11 @@ namespace Eternal.Content.Items.Weapons.Hell
         public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
         {
             damage += player.endurance / 2f;
+
+            if (DownedBossSystem.downedArkofImperious)
+                damage += 0.25f;
+            if (DownedBossSystem.downedTrinity)
+                damage += 0.5f;
         }
 
         public override void AddRecipes()

@@ -1,4 +1,5 @@
-﻿using Eternal.Content.Items.Materials;
+﻿using Eternal.Common.Systems;
+using Eternal.Content.Items.Materials;
 using Eternal.Content.Items.Weapons.Magic;
 using Eternal.Content.Projectiles.Weapons.Hell;
 using Eternal.Content.Rarities;
@@ -23,7 +24,7 @@ namespace Eternal.Content.Items.Weapons.Hell
             Item.width = 30;
             Item.height = 34;
             Item.UseSound = SoundID.Item46;
-            Item.damage = 150;
+            Item.damage = 100;
             Item.mana = 4;
             Item.shoot = ModContent.ProjectileType<NiadesRevengeHoldout>();
             Item.shootSpeed = 30f;
@@ -33,6 +34,14 @@ namespace Eternal.Content.Items.Weapons.Hell
         public override bool CanUseItem(Player player)
         {
             return player.ownedProjectileCounts[ModContent.ProjectileType<NiadesRevengeHoldout>()] <= 0;
+        }
+
+        public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
+        {
+            if (DownedBossSystem.downedArkofImperious)
+                damage += 0.25f;
+            if (DownedBossSystem.downedTrinity)
+                damage += 0.5f;
         }
 
         public override void AddRecipes()

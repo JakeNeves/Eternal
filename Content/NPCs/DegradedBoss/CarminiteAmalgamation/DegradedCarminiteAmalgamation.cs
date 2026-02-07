@@ -68,6 +68,7 @@ namespace Eternal.Content.NPCs.DegradedBoss.CarminiteAmalgamation
             else
                 NPC.scale = 1f;
             NPC.rarity = 4;
+            NPC.npcSlots = 6;
         }
 
         public override void OnKill()
@@ -102,19 +103,15 @@ namespace Eternal.Content.NPCs.DegradedBoss.CarminiteAmalgamation
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MrFishbone>(), 24));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MrFishbone>(), 12));
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (Main.hardMode && DownedBossSystem.downedCarminiteAmalgamation && Main.bloodMoon && !NPC.AnyNPCs(ModContent.NPCType<NPCs.Boss.CarminiteAmalgamation.CarminiteAmalgamation>()))
-            {
+            if (Main.hardMode && DownedBossSystem.downedCarminiteAmalgamation && Main.bloodMoon && !NPC.AnyNPCs(ModContent.NPCType<Boss.CarminiteAmalgamation.CarminiteAmalgamation>()))
                 return SpawnCondition.OverworldNightMonster.Chance * 0.02f;
-            }
             else
-            {
                 return SpawnCondition.OverworldNightMonster.Chance * 0f;
-            }
         }
 
         public override bool CheckDead()

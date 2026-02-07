@@ -19,7 +19,7 @@ namespace Eternal.Content.Items.Weapons.Melee
         {
             Item.width = 42;
             Item.height = 42;
-            Item.damage = 200;
+            Item.damage = 90;
             Item.DamageType = DamageClass.Melee;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.knockBack = 3.5f;

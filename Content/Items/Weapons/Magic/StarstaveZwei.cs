@@ -25,7 +25,7 @@ namespace Eternal.Content.Items.Weapons.Magic
         {
             Item.width = 42;
             Item.height = 42;
-            Item.damage = 300;
+            Item.damage = 95;
             Item.DamageType = DamageClass.Magic;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.mana = 12;

@@ -173,7 +173,7 @@ namespace Eternal.Content.NPCs.Boss.TheChimera
         {
             Player player = Main.player[NPC.target];
 
-            NPC.dontTakeDamage = !player.InModBiome<CarrionSurface>() || !player.InModBiome<CarrionSurface>();
+            NPC.dontTakeDamage = !player.InModBiome<CarrionSurface>() || !player.InModBiome<CarrionDesertSurface>();
 
             if (NPC.ai[3] > 0f)
             {

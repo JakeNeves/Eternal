@@ -14,8 +14,8 @@ namespace Eternal.Content.Items.Armor
     [AutoloadEquip(EquipType.Head)]
     public class NaquadahMask : ModItem
     {
-        public static readonly int MeleeDamageBonus = 20;
-        public static readonly int MeleeDamageSetBonus = 30;
+        public static readonly int MeleeDamageBonus = 15;
+        public static readonly int MeleeDamageSetBonus = 20;
         public static readonly int MeleeSpeedBonus = 25;
 
         public static LocalizedText SetBonusText { get; private set; }

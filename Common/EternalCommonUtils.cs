@@ -1,15 +1,24 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Eternal.Content.DamageClasses;
+using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 
 namespace Eternal.Common
 {
     public class EternalCommonUtils
     {
+        public Item item;
+
         /// <summary>
         /// Determines if a given NPC is excluded from dropping Essences (Essence of Light/Night/Blight)
         /// <br/>This works similarly to <see cref="NPCID.Sets.CannotDropSouls"/>
         /// </summary>
         public static bool[] CannotDropEssences = NPCID.Sets.Factory.CreateBoolSet(NPCID.BlueSlime, NPCID.EaterofWorldsHead, NPCID.EaterofWorldsBody, NPCID.EaterofWorldsTail, NPCID.Slimer, NPCID.SlimeSpiked);
+       
+        /// <summary>
+        /// Allows you to change whether or not a weapon receives radiant prefixes. Return true if the item should receive radiant prefixes and false if it should not.
+        /// </summary>
+        public bool RadiantPrefix() => item.DamageType.GetsPrefixesFor<Radiant>();
 
         /// <summary>
         /// Allows you to do some pretty cool things with lerping the color values.

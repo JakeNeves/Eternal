@@ -48,9 +48,9 @@ namespace Eternal.Content.NPCs.Boss.DuneGolem
 
         public override void SetDefaults()
         {
-            NPC.lifeMax = 6000;
+            NPC.lifeMax = 2000;
             NPC.damage = 6;
-            NPC.defense = 30;
+            NPC.defense = 15;
             NPC.knockBackResist = 0f;
             NPC.width = 106;
             NPC.height = 106;

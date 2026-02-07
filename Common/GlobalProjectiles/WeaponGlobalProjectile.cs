@@ -1,4 +1,5 @@
 ﻿using Eternal.Common.Players;
+using Eternal.Content.Buffs.Armor;
 using Eternal.Content.Projectiles.Accessories;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -30,6 +31,12 @@ namespace Eternal.Common.GlobalProjectiles
                 {
                     Player.HealEffect(Main.rand.Next(20, 40), false);
                 }
+            }
+
+            if (ArmorSystem.MorbusArmor)
+            {
+                if (Main.rand.NextBool(4))
+                    Player.AddBuff(ModContent.BuffType<BlightPower>(), 2000);
             }
         }
 

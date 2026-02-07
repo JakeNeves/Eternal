@@ -12,7 +12,7 @@ namespace Eternal.Content.Items.Accessories
 {
     public class DeceptionalSealofVis : ModItem
     {
-        public static readonly int RadiantDamageBonus = 30;
+        public static readonly int RadiantDamageBonus = 15;
 
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(RadiantDamageBonus);
 

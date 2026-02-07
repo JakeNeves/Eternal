@@ -24,6 +24,8 @@ namespace Eternal.Content.Projectiles.Boss
             Projectile.tileCollide = false;
         }
 
+        public override Color? GetAlpha(Color lightColor) => new Color(255, 255, 255, 50);
+
         public override void AI()
         {
             if (Main.rand.NextBool(2))

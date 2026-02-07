@@ -87,7 +87,7 @@ namespace Eternal.Content.NPCs.Boss.AoI
             NPC.aiStyle = -1;
             NPC.width = 170;
             NPC.height = 418;
-            NPC.lifeMax = 360000;
+            NPC.lifeMax = 300000;
             NPC.HitSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCHit/AoIHit")
             {
                 Volume = 0.8f,

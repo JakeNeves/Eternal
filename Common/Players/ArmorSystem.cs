@@ -175,7 +175,7 @@ namespace Eternal.Common.Players
             if (MorbusArmor)
             {
                 if (Main.rand.NextBool(4))
-                    Player.AddBuff(ModContent.BuffType<BlightPower>(), 3000);
+                    Player.AddBuff(ModContent.BuffType<BlightPower>(), 2000);
             }
         }
 

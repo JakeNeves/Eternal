@@ -14,9 +14,9 @@ namespace Eternal.Content.Items.Armor
     [AutoloadEquip(EquipType.Head)]
     public class NaquadahCowl : ModItem
     {
-        public static readonly int SummonDamageBonus = 30;
+        public static readonly int SummonDamageBonus = 15;
         public static readonly int SummonDamageSetBonus = 20;
-        public static readonly int MinionSlotBonus = 20;
+        public static readonly int MinionSlotBonus = 6;
 
         public static LocalizedText SetBonusText { get; private set; }
 

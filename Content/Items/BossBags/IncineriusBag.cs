@@ -1,5 +1,8 @@
 ﻿using Eternal.Content.Items.Accessories.Expert;
 using Eternal.Content.Items.Materials;
+using Eternal.Content.Items.Weapons.Magic;
+using Eternal.Content.Items.Weapons.Melee;
+using Eternal.Content.Items.Weapons.Ranged;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.GameContent.ItemDropRules;
@@ -35,6 +38,10 @@ namespace Eternal.Content.Items.BossBags
         public override void ModifyItemLoot(ItemLoot itemLoot)
         {
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<MagmaniacHeart>()));
+
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<IgneoforgedEdge>(), 2));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Incinerator>(), 3));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<CanadianResistance>(), 10));
 
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<MagmaticAlloy>(), minimumDropped: 12, maximumDropped: 16));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<InfernalAshes>(), minimumDropped: 24, maximumDropped: 32));

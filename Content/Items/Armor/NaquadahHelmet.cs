@@ -14,8 +14,8 @@ namespace Eternal.Content.Items.Armor
     [AutoloadEquip(EquipType.Head)]
     public class NaquadahHelmet : ModItem
     {
-        public static readonly int MagicDamageBonus = 20;
-        public static readonly int MagicDamageSetBonus = 30;
+        public static readonly int MagicDamageBonus = 15;
+        public static readonly int MagicDamageSetBonus = 20;
 
         public static LocalizedText SetBonusText { get; private set; }
 

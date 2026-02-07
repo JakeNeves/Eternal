@@ -14,9 +14,9 @@ namespace Eternal.Content.Items.Armor
     [AutoloadEquip(EquipType.Head)]
     public class StarbornHelmet : ModItem
     {
-        public static readonly int SummonDamageBonus = 17;
-        public static readonly int SummonDamageSetBonus = 20;
-        public static readonly int MinionSlotBonus = 8;
+        public static readonly int SummonDamageBonus = 11;
+        public static readonly int SummonDamageSetBonus = 12;
+        public static readonly int MinionSlotBonus = 4;
 
         public static LocalizedText SetBonusText { get; private set; }
 

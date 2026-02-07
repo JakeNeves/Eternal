@@ -5,6 +5,7 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Eternal.Common.Systems;
 
 namespace Eternal.Content.Items.Weapons.Melee
 {
@@ -32,6 +33,16 @@ namespace Eternal.Content.Items.Weapons.Melee
             Item.noMelee = true;
             Item.shoot = ModContent.ProjectileType<ValtoricKnivesProjectile>();
             Item.shootSpeed = 12f;
+        }
+
+        public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
+        {
+            if (DownedBossSystem.downedIncinerius)
+                damage += 0.25f;
+            if (DownedBossSystem.downedChimera)
+                damage += 0.5f;
+            if (DownedBossSystem.downedCosmicApparition)
+                damage += 0.75f;
         }
 
         public override bool MeleePrefix() => true;

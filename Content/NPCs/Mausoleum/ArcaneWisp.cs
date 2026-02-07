@@ -50,6 +50,8 @@ namespace Eternal.Content.NPCs.Mausoleum
             SpawnModBiomes = [ ModContent.GetInstance<Biomes.Mausoleum>().Type ];
         }
 
+        public override Color? GetAlpha(Color lightColor) => new Color(255, 255, 255, 50);
+
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
             bestiaryEntry.Info.AddRange([

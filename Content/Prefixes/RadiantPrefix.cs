@@ -25,7 +25,7 @@ namespace Eternal.Content.Prefixes
 
         public override bool CanRoll(Item item)
         {
-            if (item.CountsAsClass<Content.DamageClasses.Radiant>() && (item.stack == 1 || item.AllowReforgeForStackableItem))
+            if (item.CountsAsClass<DamageClasses.Radiant>() && (item.stack == 1 || item.AllowReforgeForStackableItem))
                 return GetType() != typeof(RadiantPrefix);
 
             return false;

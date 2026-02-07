@@ -66,7 +66,7 @@ namespace Eternal.Content.NPCs.Gehenna
         {
             LeadingConditionRule isHardmodeRule = new(new Conditions.IsHardmode());
 
-            isHardmodeRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<HellHacker>(), 24));
+            isHardmodeRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<HellHacker>(), 12));
 
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GehennaKeyFragment2>(), 12));
         }

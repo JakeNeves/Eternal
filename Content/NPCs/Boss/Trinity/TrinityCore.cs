@@ -41,7 +41,7 @@ namespace Eternal.Content.NPCs.Boss.Trinity
         bool justSpawnedBodyEffigy = false;
         bool justSpawnedSoulEffigy = false;
 
-        static int aiTrinityShotRateMax = 24;
+        static int aiTrinityShotRateMax = 48;
         int aiTrinityShotRate = aiTrinityShotRateMax;
 
         public override void SetStaticDefaults()
@@ -57,9 +57,9 @@ namespace Eternal.Content.NPCs.Boss.Trinity
         {
             NPC.width = 62;
             NPC.height = 64;
-            NPC.lifeMax = 180000;
-            NPC.defense = 80;
-            NPC.damage = 70;
+            NPC.lifeMax = 100000;
+            NPC.defense = 40;
+            NPC.damage = 24;
             NPC.aiStyle = -1;
             NPC.knockBackResist = 0f;
             NPC.HitSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCHit/TrinityHit")

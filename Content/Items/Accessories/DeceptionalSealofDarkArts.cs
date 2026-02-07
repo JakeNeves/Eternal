@@ -11,7 +11,7 @@ namespace Eternal.Content.Items.Accessories
 {
     public class DeceptionalSealofDarkArts : ModItem
     {
-        public static readonly int MagicDamageBonus = 30;
+        public static readonly int MagicDamageBonus = 15;
 
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MagicDamageBonus);
 

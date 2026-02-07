@@ -17,13 +17,14 @@ namespace Eternal.Content.Projectiles.Boss
         {
             Projectile.width = 6;
             Projectile.height = 6;
-            Projectile.alpha = 255;
             Projectile.friendly = false;
             Projectile.hostile = true;
             Projectile.timeLeft = 300;
             Projectile.ignoreWater = false;
             Projectile.tileCollide = true;
         }
+
+        public override Color? GetAlpha(Color lightColor) => new Color(255, 255, 255, 50);
 
         public override void AI()
         {

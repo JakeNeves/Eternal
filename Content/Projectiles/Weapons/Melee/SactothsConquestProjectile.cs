@@ -69,7 +69,7 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
 
             if (Main.rand.NextFloat() * 1.5f < Projectile.Opacity)
             {
-                Dust.NewDustPerfect(dustPosition, DustID.TintableDustLighted, dustVelocity, 100, Color.SkyBlue * Projectile.Opacity, 1.2f * Projectile.Opacity);
+                Dust.NewDustPerfect(dustPosition, DustID.TintableDustLighted, dustVelocity, 100, Color.Pink * Projectile.Opacity, 1.2f * Projectile.Opacity);
             }
 
             Projectile.scale *= Projectile.ai[2];

@@ -11,7 +11,7 @@ namespace Eternal.Content.Items.Accessories
 {
     public class RiftedHandApparatus : ModItem
     {
-        public static readonly int MeleeDamageBonus = 45;
+        public static readonly int MeleeDamageBonus = 20;
         public static readonly int MeleeSpeedBonus = 25;
 
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MeleeDamageBonus, MeleeSpeedBonus);

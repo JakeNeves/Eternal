@@ -11,7 +11,7 @@ namespace Eternal.Content.Items.Accessories
 {
     public class DeceptionalSealofImpact : ModItem
     {
-        public static readonly int RangedDamageBonus = 30;
+        public static readonly int RangedDamageBonus = 15;
 
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(RangedDamageBonus);
 

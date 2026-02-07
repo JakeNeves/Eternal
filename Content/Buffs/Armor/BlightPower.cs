@@ -13,8 +13,8 @@ namespace Eternal.Content.Buffs.Armor
         public override void Update(Player player, ref int buffIndex)
         {
             player.statDefense += 6;
-            player.GetDamage(DamageClass.Generic) *= 0.1f;
-            player.GetAttackSpeed(DamageClass.Generic) *= 0.05f;
+            player.GetDamage(DamageClass.Generic) *= 0.2f;
+            player.GetAttackSpeed(DamageClass.Generic) += 0.05f;
         }
     }
 }

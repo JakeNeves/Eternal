@@ -25,6 +25,8 @@ namespace Eternal.Content.Projectiles.Boss
             Projectile.tileCollide = true;
         }
 
+        public override Color? GetAlpha(Color lightColor) => new Color(255, 255, 255, 50);
+
         public override void AI()
         {
             var entitySource = Projectile.GetSource_FromAI();

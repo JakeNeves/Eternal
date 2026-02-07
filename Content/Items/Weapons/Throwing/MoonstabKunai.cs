@@ -18,7 +18,7 @@ namespace Eternal.Content.Items.Weapons.Throwing
             Item.height = 24;
             Item.DamageType = DamageClass.Ranged;
             Item.rare = ItemRarityID.Red;
-            Item.damage = 210;
+            Item.damage = 90;
             Item.useAnimation = 12;
             Item.useTime = 12;
             Item.useStyle = ItemUseStyleID.Swing;

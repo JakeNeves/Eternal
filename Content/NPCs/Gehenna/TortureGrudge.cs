@@ -50,7 +50,7 @@ namespace Eternal.Content.NPCs.Gehenna
         {
             LeadingConditionRule isHardmodeRule = new(new Conditions.IsHardmode());
 
-            isHardmodeRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<ValtoricKnives>(), 24));
+            isHardmodeRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<ValtoricKnives>(), 12));
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

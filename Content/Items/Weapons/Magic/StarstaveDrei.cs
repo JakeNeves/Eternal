@@ -22,7 +22,7 @@ namespace Eternal.Content.Items.Weapons.Magic
         {
             Item.width = 48;
             Item.height = 48;
-            Item.damage = 600;
+            Item.damage = 95;
             Item.DamageType = DamageClass.Magic;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.mana = 14;

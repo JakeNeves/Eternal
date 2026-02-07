@@ -15,7 +15,7 @@ namespace Eternal.Content.Buffs
         public override void Update(Player player, ref int buffIndex)
         {
             player.statDefense += 12;
-            player.endurance += 0.3f;
+            player.endurance += 0.02f;
             player.moveSpeed += 1.05f;
         }
     }

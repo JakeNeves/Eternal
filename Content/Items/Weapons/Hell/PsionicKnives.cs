@@ -8,6 +8,7 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Eternal.Common.Systems;
 
 namespace Eternal.Content.Items.Weapons.Hell
 {
@@ -24,7 +25,7 @@ namespace Eternal.Content.Items.Weapons.Hell
             Item.height = 28;
             Item.DamageType = DamageClass.Melee;
             Item.rare = ModContent.RarityType<HellMode>();
-            Item.damage = 250;
+            Item.damage = 90;
             Item.useAnimation = 12;
             Item.useTime = 12;
             Item.useStyle = ItemUseStyleID.Swing;
@@ -36,6 +37,14 @@ namespace Eternal.Content.Items.Weapons.Hell
             Item.shoot = ModContent.ProjectileType<PsionicKnivesProjectile>();
             Item.shootSpeed = 12f;
             Item.channel = true;
+        }
+
+        public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
+        {
+            if (DownedBossSystem.downedArkofImperious)
+                damage += 0.25f;
+            if (DownedBossSystem.downedTrinity)
+                damage += 0.5f;
         }
 
         public override bool MeleePrefix() => true;

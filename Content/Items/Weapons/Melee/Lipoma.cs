@@ -26,7 +26,7 @@ namespace Eternal.Content.Items.Weapons.Melee
             Item.useTime = 25;
             Item.shootSpeed = 30f;
             Item.knockBack = 6f;
-            Item.damage = 200;
+            Item.damage = 150;
             Item.rare = ModContent.RarityType<Teal>();
 
             Item.DamageType = DamageClass.Melee;

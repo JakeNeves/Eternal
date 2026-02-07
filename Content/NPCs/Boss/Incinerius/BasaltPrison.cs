@@ -7,12 +7,9 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
 {
     public class BasaltPrison : ModNPC
     {
-        bool isDead = false;
-        bool dontKillyet = false;
         bool justSpawned = false;
 
         int frameNum;
-        int DeathTimer;
 
         public bool SpawnedHeads
         {
@@ -36,6 +33,8 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
                 Hide = true
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
+
+            NPCID.Sets.ImmuneToAllBuffs[Type] = true;
         }
 
         public override void SetDefaults()
@@ -45,11 +44,7 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
             NPC.aiStyle = -1;
             NPC.damage = 0;
             NPC.defense = 20;
-            NPC.lifeMax = 8000;
-            NPC.buffImmune[BuffID.OnFire] = true;
-            NPC.buffImmune[BuffID.Poisoned] = true;
-            NPC.buffImmune[BuffID.Venom] = true;
-            NPC.buffImmune[BuffID.Electrified] = true;
+            NPC.lifeMax = 12000;
             NPC.lavaImmune = true;
             NPC.knockBackResist = 0f;
             NPC.noGravity = true;
@@ -99,6 +94,20 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
             }
         }
 
+        public override bool CheckDead()
+        {
+            if (NPC.ai[3] == 0f)
+            {
+                NPC.ai[3] = 1f;
+                NPC.damage = 0;
+                NPC.life = NPC.lifeMax;
+                NPC.dontTakeDamage = true;
+                NPC.netUpdate = true;
+                return false;
+            }
+            return true;
+        }
+
         public override void BossLoot(ref string name, ref int potionType)
         {
             potionType = ItemID.GreaterHealingPotion;
@@ -107,18 +116,7 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
         public override void HitEffect(NPC.HitInfo hit)
         {
             if (Main.netMode == NetmodeID.Server)
-            {
                 return;
-            }
-
-            if (!dontKillyet)
-            {
-                if (NPC.life < 0)
-                {
-                    NPC.life = 1;
-                    isDead = true;
-                }
-            }
         }
 
         public override bool PreAI()
@@ -171,28 +169,24 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
             SpawnHeads();
 
             if (NPC.AnyNPCs(ModContent.NPCType<BasaltHead>()))
-            {
                 NPC.dontTakeDamage = true;
-            }
             else
-            {
                 NPC.dontTakeDamage = false;
-            }
 
-            if (isDead)
+            if (NPC.ai[3] > 0f)
             {
                 var entitySource = NPC.GetSource_Death();
 
-                DeathTimer++;
-                if (DeathTimer > 5)
+                NPC.ai[3] += 1f;
+
+                if (NPC.ai[3] > 5f)
                 {
                     NPC.velocity = new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 2f));
                     NPC.dontTakeDamage = true;
                 }
-                if (DeathTimer >= 200)
+                if (NPC.ai[3] >= 200f)
                 {
                     NPC.dontTakeDamage = false;
-                    dontKillyet = true;
 
                     int gore1 = Mod.Find<ModGore>("BasaltPrisonTop").Type;
                     int gore2 = Mod.Find<ModGore>("BasaltPrisonBottom").Type;
@@ -203,8 +197,12 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
                     Main.NewText("The Basalt Prison has been destroyed!", 175, 75, 255);
                     NPC.NewNPC(entitySource, (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<Incinerius>());
 
-                    player.ApplyDamageToNPC(NPC, 9999, 0, 0, false);
+                    NPC.life = 0;
+                    NPC.HitEffect(0, 0);
+                    NPC.checkDead();
                 }
+
+                return;
             }
         }
 

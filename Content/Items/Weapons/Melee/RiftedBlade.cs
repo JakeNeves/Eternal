@@ -20,7 +20,7 @@ namespace Eternal.Content.Items.Weapons.Melee
             Item.height = 36;
             Item.DamageType = DamageClass.Melee;
             Item.rare = ModContent.RarityType<Teal>();
-            Item.damage = 100;
+            Item.damage = 95;
             Item.useAnimation = 16;
             Item.useTime = 16;
             Item.useStyle = ItemUseStyleID.Swing;

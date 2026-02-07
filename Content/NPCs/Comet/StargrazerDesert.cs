@@ -78,7 +78,7 @@ namespace Eternal.Content.NPCs.Comet
             npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<GalaxianPlating>(), 3, 6, 8));
             npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<Astragel>(), 3, 6, 8));
             npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<InterstellarScrapMetal>(), 3, 6, 8));
-            npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<JumboStar>(), 36));
+            npcLoot.Add(ItemDropRule.ByCondition(postCosmicApparitionDrop, ModContent.ItemType<JumboStar>(), 18));
 
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MoonstabKunai>(), 4));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientStarbornMask>(), 25));

@@ -56,9 +56,9 @@ namespace Eternal.Content.NPCs.Boss.Trinity
         {
             NPC.width = 94;
             NPC.height = 94;
-            NPC.lifeMax = 100000;
-            NPC.defense = 70;
-            NPC.damage = 60;
+            NPC.lifeMax = 20000;
+            NPC.defense = 40;
+            NPC.damage = 20;
             NPC.aiStyle = -1;
             NPC.knockBackResist = 0f;
             NPC.HitSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCHit/TrinitySpiritHit")

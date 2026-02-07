@@ -12,8 +12,8 @@ namespace Eternal.Content.Items.Armor
     [AutoloadEquip(EquipType.Head)]
     public class UltimusHeadgear : ModItem
     {
-        public static readonly int MagicDamageBonus = 30;
-        public static readonly int MagicDamageSetBonus = 42;
+        public static readonly int MagicDamageBonus = 12;
+        public static readonly int MagicDamageSetBonus = 16;
         public static readonly int ManaReductionBonus = 64;
         public static readonly int ManaBonus = 300;
 

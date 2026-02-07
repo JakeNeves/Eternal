@@ -34,9 +34,8 @@ namespace Eternal.Common.GlobalNPCs
         {
             if (DifficultySystem.hellMode && npc.boss)
             {
-                npc.damage *= 2;
-                npc.lifeMax *= 2; // + (int)(npc.lifeMax * balance * bossAdjustment);
-                npc.defense *= 2; // + (int)(npc.defense * numPlayers * bossAdjustment);
+                npc.damage = (int)(npc.damage * (balance * 1.05f) * bossAdjustment);
+                npc.lifeMax = (int)(npc.lifeMax * (balance * 1.05f) * bossAdjustment);
             }
         }
 
@@ -48,7 +47,7 @@ namespace Eternal.Common.GlobalNPCs
             switch (npc.type)
             {
                 case NPCID.EyeofCthulhu:
-                    notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<KnifeHandle>(), 24));
+                    notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<KnifeHandle>(), 12));
                     break;
 
                 case NPCID.WallofFlesh:
@@ -60,7 +59,7 @@ namespace Eternal.Common.GlobalNPCs
                     break;
 
                 case NPCID.Plantera:
-                    notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<KnifeBlade>(), 24));
+                    notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<KnifeBlade>(), 12));
                     break;
 
                 case NPCID.MoonLordCore:

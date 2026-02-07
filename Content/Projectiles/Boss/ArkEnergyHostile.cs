@@ -17,7 +17,6 @@ namespace Eternal.Content.Projectiles.Boss
         {
             Projectile.width = 6;
             Projectile.height = 6;
-            Projectile.alpha = 255;
             Projectile.friendly = false;
             Projectile.hostile = true;
             Projectile.penetrate = 1;
@@ -26,6 +25,8 @@ namespace Eternal.Content.Projectiles.Boss
             Projectile.tileCollide = true;
             Projectile.extraUpdates = 2;
         }
+
+        public override Color? GetAlpha(Color lightColor) => new Color(255, 255, 255, 50);
 
         public override void AI()
         {

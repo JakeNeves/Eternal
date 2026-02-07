@@ -1572,9 +1572,12 @@ Mods: {
 				DisplayName: The Knife
 				Tooltip:
 					'''
-					[c/ff8045:Legendary Weapon]
 					Breaks enemy armor
 					Upon first striking an enemy, the user can temporarly deal additonal damage
+					[c/ff8045:Legendary Weapon]
+					0.25x damage multiplier after defeating Niades
+					0.5x damage multiplier after defeating Incinerius
+					0.75x damage multiplier after defeating the Moon Lord
 					'Stab stab stab!'
 					'''
 			}
@@ -1634,15 +1637,6 @@ Mods: {
 				Tooltip: ""
 			}
 
-			Arkleavage: {
-				DisplayName: Arkleavage (WIP)
-				Tooltip:
-					'''
-					Calls the Ark of Imperious to strike enemies from above
-					'There's a sword...'
-					'''
-			}
-
 			BoonOfTheArks: {
 				DisplayName: Boon of the Arks
 				Tooltip:
@@ -1684,15 +1678,6 @@ Mods: {
 					'''
 					Inflicts confusion upon striking an enemy
 					'The power of Jake is within you!'
-					'''
-			}
-
-			Astraea: {
-				DisplayName: Astraea (WIP)
-				Tooltip:
-					'''
-					[c/008060:Ancient Artifact]
-					This sword was weilded by the unknown warriors of the shrine
 					'''
 			}
 
@@ -1873,11 +1858,6 @@ Mods: {
 			DX7060: {
 				DisplayName: DX-7060
 				Tooltip: "'You have no ideas what it does!'"
-			}
-
-			EmpoweredCosmicSwiftShot: {
-				DisplayName: Empowered Cosmic Swift Shot
-				Tooltip: "'How empowered can it be?'"
 			}
 
 			Meganovae: {
@@ -2387,8 +2367,8 @@ Mods: {
 				DisplayName: Rifted Hand Apparatus
 				Tooltip:
 					'''
-					40% increased melee damage
-					20% increased melee speed
+					{0}% increased melee damage
+					{1}% increased melee speed
 					Enables auto swing for melee weapons
 					'The true potential of this hand device!'
 					[c/C42996:Rift Artifact]
@@ -2571,6 +2551,11 @@ Mods: {
 				Tooltip: JakeTEM - Amalgamated Horror
 			}
 
+			IncineriusMusicBox: {
+				DisplayName: Music Box (Incinerius)
+				Tooltip: JakeTEM - Flames of Resonance
+			}
+
 			ArkiumManbow: {
 				DisplayName: Arkium Manbow
 				Tooltip:
@@ -2609,6 +2594,10 @@ Mods: {
 				Tooltip:
 					'''
 					[c/ff8045:Legendary Weapon]
+					Damage scales via a multiplier for every major boss progression point hit
+					0.25x damage multiplier after defeating Incinerius
+					0.5x damage multiplier after defeating the Chimera
+					0.75x damage multiplier after defeating the Cosmic Apparition
 					Ignites enemies on fire, with a chance of inflicting shadowflames instead!
 					'Forged in the foundries of the Gehenna, hexed in the flames of occultism!'
 					'''
@@ -2618,9 +2607,12 @@ Mods: {
 				DisplayName: Gehenna's Remedy
 				Tooltip:
 					'''
-					[c/ff8045:Legendary Weapon]
 					Damage scales by 50% of your current Damage Reduction
 					You have a chance to break enemy armor by ~2/3 of their defense
+					[c/ff8045:Legendary Weapon]
+					Damage scales via a multiplier for every major boss progression point hit
+					0.25x damage multiplier after defeating the Ark of Imperious
+					0.5x damage multiplier after defeating the Trinity
 					'Blood, blood, blood! Make them bleed, Slaughter in the name of tartarus!'
 					'''
 			}
@@ -2629,9 +2621,13 @@ Mods: {
 				DisplayName: Mr. Fishbone
 				Tooltip:
 					'''
-					[c/ff8045:Legendary Weapon]
 					You have a chance of getting a buff from attacking an enemy as long as you're over half of your maximum HP
 					Upon <right>, you can throw Mr. Fishbone and have pieces of him explode off his body, the bone shrapnels deal half of your current damage
+					[c/ff8045:Legendary Weapon]
+					Damage scales via a multiplier for every major boss progression point hit
+					0.25x damage multiplier after defeating Incinerius
+					0.5x damage multiplier after defeating Niades
+					0.75x damage multiplier after defeating the Glare
 					'When this thing bites, it bites... PAINFULLY!'
 					'''
 			}
@@ -2766,8 +2762,11 @@ Mods: {
 				DisplayName: Psionic Knives
 				Tooltip:
 					'''
-					[c/ff8045:Legendary Weapon]
 					Throws controllable knives that follow your cursor
+					[c/ff8045:Legendary Weapon]
+					Damage scales via a multiplier for every major boss progression point hit
+					0.25x damage multiplier after defeating the Ark of Imperious
+					0.5x damage multiplier after defeating the Trinity
 					'Telepathic knives, cursed by the Psion...'
 					'''
 			}
@@ -2777,6 +2776,10 @@ Mods: {
 				Tooltip:
 					'''
 					[c/ff8045:Legendary Weapon]
+					Damage scales via a multiplier for every major boss progression point hit
+					0.25x damage multiplier after defeating Incinerius
+					0.5x damage multiplier after defeating the Chimera
+					0.75x damage multiplier after defeating the Cosmic Apparition
 					'Wait, these aren't Vampire Knives!'
 					'''
 			}
@@ -2811,6 +2814,9 @@ Mods: {
 				Tooltip:
 					'''
 					[c/ff8045:Legendary Weapon]
+					Damage scales via a multiplier for every major boss progression point hit
+					0.25x damage multiplier after defeating the Ark of Imperious
+					0.5x damage multiplier after defeating the Trinity
 					'This is really cursed!'
 					'''
 			}
@@ -2911,9 +2917,12 @@ Mods: {
 				DisplayName: Jumbo Star
 				Tooltip:
 					'''
-					[c/ff8045:Legendary Weapon]
 					Upon hitting the ground, the weapon will split
 					into four projectiles facing four different directions
+					[c/ff8045:Legendary Weapon]
+					Damage scales via a multiplier for every major boss progression point hit
+					0.25x damage multiplier after defeating the Ark of Imperious
+					0.5x damage multiplier after defeating the Trinity
 					'Not as big as it originally was...'
 					'''
 			}
@@ -3063,8 +3072,12 @@ Mods: {
 				DisplayName: Combat Gavel
 				Tooltip:
 					'''
-					[c/ff8045:Legendary Weapon]
 					When hitting an enemy, additional ghost gavels will spawn and target the closest enemies
+					[c/ff8045:Legendary Weapon]
+					Damage scales via a multiplier for every major boss progression point hit
+					0.25x damage multiplier after defeating the Twins, the Destroyer or Skeletron Prime
+					0.5x damage multiplier after defeating Incinerius
+					0.75x damage multiplier after defeating Golem
 					'Justice will be served...'
 					'''
 			}
@@ -3092,9 +3105,13 @@ Mods: {
 				DisplayName: Carminac Virus
 				Tooltip:
 					'''
-					[c/ff8045:Legendary Weapon]
 					Inflicts a massive defense reduction to enemies
 					Players will recieve both halved defense and a massive damage reduction
+					[c/ff8045:Legendary Weapon]
+					Damage scales via a multiplier for every major boss progression point hit
+					0.25x damage multiplier after defeating Niades
+					0.5x damage multiplier after defeating Golem
+					0.75x damage multiplier after defeating the Chimera
 					'This is a very harmful kind of treatment...'
 					'''
 			}
@@ -3434,6 +3451,35 @@ Mods: {
 			CurseblightedHamaxe: {
 				DisplayName: Curseblighted Hamaxe
 				Tooltip: ""
+			}
+
+			IgneoforgedEdge: {
+				DisplayName: Igneoforged Edge
+				Tooltip: ""
+			}
+
+			TrueIgneoforgedEdge: {
+				DisplayName: True Igneoforged Edge
+				Tooltip: ""
+			}
+
+			Incinerator: {
+				DisplayName: Incinerator
+				Tooltip: "'The ground is on fire!'"
+			}
+
+			CanadianResistance: {
+				DisplayName: Canadian Resistance
+				Tooltip:
+					'''
+					Fires a barrage of bullets
+					[c/ff8045:Legendary Weapon]
+					Damage scales via a multiplier for every major boss progression point hit
+					0.25x damage multiplier after defeating the Glare
+					0.5x damage multiplier after defeating the Moon Lord
+					0.75x damage multiplier after defeating the Ark of Imperious
+					'Originally manufactured on July 1st 1867'
+					'''
 			}
 		}
 
@@ -4243,9 +4289,14 @@ Mods: {
 			TrinitalasShotProjectile.DisplayName: Trinitalas
 			PoopFlyProjectile.DisplayName: Poop Fly
 			PustuleWandProjectile.DisplayName: Pustule
-			BlightScytheProjectile.DisplayName: Blight Scythe Projectile
-			MeatsawProjectile.DisplayName: Meatsaw Projectile
+			BlightScytheProjectile.DisplayName: Blight Scythe
+			MeatsawProjectile.DisplayName: Meatsaw
 			HexthrowerFlame.DisplayName: Hexthrower Flame
+			IgneoforgedEdgeProjectile.DisplayName: Igneoforged Edge
+			TrueIgneoforgedEdgeProjectile.DisplayName: True Igneoforged Edge
+			IncineratorProjectile.DisplayName: Incinerator
+			IncineratorProjectileShoot.DisplayName: Incinerator
+			IncineratorProjectileShoot2.DisplayName: Incinerator
 		}
 
 		WorldGen: {

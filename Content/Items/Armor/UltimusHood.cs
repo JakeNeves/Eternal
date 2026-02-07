@@ -12,8 +12,8 @@ namespace Eternal.Content.Items.Armor
     [AutoloadEquip(EquipType.Head)]
     public class UltimusHood : ModItem
     {
-        public static readonly int RangedDamageBonus = 30;
-        public static readonly int RangedDamageSetBonus = 42;
+        public static readonly int RangedDamageBonus = 12;
+        public static readonly int RangedDamageSetBonus = 16;
 
         public static LocalizedText SetBonusText { get; private set; }
 

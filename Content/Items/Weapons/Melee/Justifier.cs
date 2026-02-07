@@ -23,7 +23,7 @@ namespace Eternal.Content.Items.Weapons.Melee
             Item.DamageType = DamageClass.Melee;
             Item.rare = ModContent.RarityType<Aquamarine>();
             Item.noMelee = true;
-            Item.damage = 1000;
+            Item.damage = 500;
             Item.useAnimation = 12;
             Item.useTime = 12;
             Item.useStyle = ItemUseStyleID.Swing;

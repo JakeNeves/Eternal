@@ -49,9 +49,9 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
         public override void SetDefaults()
         {
             NPC.aiStyle = -1;
-            NPC.lifeMax = 3000;
+            NPC.lifeMax = 1500;
             NPC.damage = 8;
-            NPC.defense = 20;
+            NPC.defense = 15;
             NPC.knockBackResist = 0f;
             NPC.width = 98;
             NPC.height = 100;

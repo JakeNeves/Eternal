@@ -1,4 +1,5 @@
-﻿using Eternal.Content.Buffs.Weapons;
+﻿using Eternal.Common.Systems;
+using Eternal.Content.Buffs.Weapons;
 using Eternal.Content.Projectiles.Weapons.Melee;
 using Terraria;
 using Terraria.Audio;
@@ -29,6 +30,16 @@ namespace Eternal.Content.Items.Weapons.Melee
             Item.useStyle = ItemUseStyleID.Swing;
             Item.knockBack = 2f;
             Item.UseSound = SoundID.Item1;
+        }
+
+        public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
+        {
+            if (DownedBossSystem.downedIncinerius)
+                damage += 0.25f;
+            if (DownedBossSystem.downedNiades)
+                damage += 0.5f;
+            if (DownedBossSystem.downedGlare)
+                damage += 0.75f;
         }
 
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)

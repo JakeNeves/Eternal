@@ -7,12 +7,10 @@ using Eternal.Content.Projectiles.Boss;
 using Eternal.Content.Projectiles.Enemy;
 using Eternal.Content.Projectiles.Explosion;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
-using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -28,36 +26,20 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
         int DialogueDeathTimer = 0;
         int deathExplosionTimer = 0;
 
-        int AICosmicEmperorShootTime = 4;
+        int AICosmicEmperorShootTime = 8;
         int AICosmicEmperorShootRate()
         {
             int rate;
 
             if (DifficultySystem.hellMode)
-                rate = 6;
+                rate = 12;
             else if (Main.expertMode)
-                rate = 8;
+                rate = 16;
             else
-                rate = 10;
+                rate = 20;
 
             return rate;
         }
-
-        static int AICosmicEmperorLaserShotRateMax()
-        {
-            int rate;
-
-            if (DifficultySystem.hellMode)
-                rate = 4;
-            else if (Main.expertMode)
-                rate = 5;
-            else
-                rate = 6;
-
-            return rate;
-        }
-
-        int AICosmicEmperorLaserShotRate = AICosmicEmperorLaserShotRateMax();
 
         float AICosmicEmperorProjectileRotation = MathHelper.PiOver2;
 
@@ -74,9 +56,6 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
             NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, drawModifier);
 
             NPCID.Sets.BossBestiaryPriority.Add(Type);
-
-            NPCID.Sets.TrailCacheLength[NPC.type] = 10;
-            NPCID.Sets.TrailingMode[NPC.type] = 0;
 
             NPCID.Sets.ShouldBeCountedAsBoss[Type] = true;
         }
@@ -101,7 +80,7 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
             NPC.lifeMax = 800000;
             NPC.width = 62;
             NPC.height = 56;
-            NPC.damage = 40;
+            NPC.damage = 30;
             NPC.defense = 60;
             NPC.knockBackResist = 0f;
             NPC.boss = true;
@@ -646,22 +625,6 @@ namespace Eternal.Content.NPCs.Boss.CosmicEmperor
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<InterstellarMetal>(), 1, 4, 12));
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<CosmoniumFragment>(), 1, 3, 9));
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<CosmicEmperorsInterstellarAlloy>(), 18));
-        }
-
-        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color lightColor)
-        {
-            Main.instance.LoadNPC(NPC.type);
-            Texture2D texture = TextureAssets.Npc[NPC.type].Value;
-
-            Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, NPC.height * 0.5f);
-            for (int k = 0; k < NPC.oldPos.Length; k++)
-            {
-                Vector2 drawPos = (NPC.oldPos[k] - Main.screenPosition) + drawOrigin + new Vector2(0f, NPC.gfxOffY);
-                Color color = NPC.GetAlpha(lightColor) * ((NPC.oldPos.Length - k) / (float)NPC.oldPos.Length);
-                Main.EntitySpriteDraw(texture, drawPos, null, color, NPC.rotation, drawOrigin, NPC.scale, SpriteEffects.None, 0);
-            }
-
-            return true;
         }
 
         public override void FindFrame(int frameHeight)

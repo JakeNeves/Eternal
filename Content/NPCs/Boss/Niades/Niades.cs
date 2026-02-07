@@ -46,8 +46,8 @@ namespace Eternal.Content.NPCs.Boss.Niades
 
         ref float AttackTimer => ref NPC.localAI[1];
 
-        int aiNiadesShootTime = 6;
-        int aiNiadesShootRate = 12;
+        int aiNiadesShootTime = 12;
+        int aiNiadesShootRate = 24;
 
         float aiNiadesProjectileRotation = MathHelper.PiOver2;
 
@@ -56,9 +56,9 @@ namespace Eternal.Content.NPCs.Boss.Niades
             NPC.width = 134;
             NPC.height = 134;
             NPC.aiStyle = -1;
-            NPC.damage = 25;
+            NPC.damage = 15;
             NPC.defense = 30;
-            NPC.lifeMax = 120000;
+            NPC.lifeMax = 80000;
             NPC.buffImmune[BuffID.OnFire] = true;
             NPC.buffImmune[BuffID.Poisoned] = true;
             NPC.buffImmune[BuffID.Venom] = true;
@@ -87,6 +87,19 @@ namespace Eternal.Content.NPCs.Boss.Niades
                 else if (Main.netMode == NetmodeID.Server)
                     ChatHelper.BroadcastChatMessage(NiadesDefeated.ToNetworkText(), new Color(200, 50, 200));
             }
+
+            var entitySource = NPC.GetSource_Death();
+
+            if (NPC.life <= 0)
+            {
+                int gore1 = Mod.Find<ModGore>("NiadesOuter").Type;
+                int gore2 = Mod.Find<ModGore>("NiadesRing").Type;
+
+                for (int i = 0; i < 4; i++)
+                    Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-2, 2), Main.rand.Next(-2, 2)), gore1);
+
+                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-2, 2), Main.rand.Next(-2, 2)), gore2);
+            }
         }
 
         public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
@@ -108,23 +121,8 @@ namespace Eternal.Content.NPCs.Boss.Niades
             if (Main.netMode == NetmodeID.Server)
                 return;
 
-            var entitySource = NPC.GetSource_Death();
-
-            if (NPC.life <= 0)
-            {
-                int gore1 = Mod.Find<ModGore>("NiadesOuter").Type;
-                int gore2 = Mod.Find<ModGore>("NiadesRing").Type;
-
-                for (int i = 0; i < 4; i++)
-                    Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-2, 2), Main.rand.Next(-2, 2)), gore1);
-
-                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-2, 2), Main.rand.Next(-2, 2)), gore2);
-            }
-
-            for (int k = 0; k < 15.0; k++)
-            {
+            if (Main.rand.NextBool(2))
                 Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.Shadowflame, 0, 0, 0, default(Color), 1f);
-            }
         }
 
         public override bool PreAI()
@@ -361,7 +359,7 @@ namespace Eternal.Content.NPCs.Boss.Niades
 
             if (AttackTimer >= 900 && AttackTimer < 1200)
             {
-                if (Main.rand.NextBool(3))
+                if (Main.rand.NextBool(6))
                 {
                     var shootPos = Main.player[NPC.target].position + new Vector2(Main.rand.Next(-1000, 1000), 1000);
                     var shootVel = new Vector2(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-20f, -15f));
@@ -435,7 +433,7 @@ namespace Eternal.Content.NPCs.Boss.Niades
                 }
             }
 
-            if (AttackTimer >= 1600 && AttackTimer < 1900)
+            if (AttackTimer >= 1600 && AttackTimer < 1800)
             {
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
@@ -446,7 +444,7 @@ namespace Eternal.Content.NPCs.Boss.Niades
 
                     if (DifficultySystem.hellMode)
                     {
-                        if (Main.rand.NextBool(6))
+                        if (Main.rand.NextBool(8))
                         {
                             var shootPos = Main.player[NPC.target].position + new Vector2(Main.rand.Next(-1000, 1000), 1000);
                             var shootVel = new Vector2(Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-30f, -45f));
@@ -455,7 +453,7 @@ namespace Eternal.Content.NPCs.Boss.Niades
                             Main.projectile[i].friendly = false;
                         }
 
-                        if (Main.rand.NextBool(9))
+                        if (Main.rand.NextBool(12))
                         {
                             var shootPos = Main.player[NPC.target].position + new Vector2(Main.rand.Next(-1000, 1000), -1000);
                             var shootVel = new Vector2(Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(30f, 45f));
@@ -469,7 +467,7 @@ namespace Eternal.Content.NPCs.Boss.Niades
 
             if (AttackTimer >= 2000 && AttackTimer < 2300)
             {
-                if (Main.netMode != NetmodeID.MultiplayerClient)
+                if (Main.rand.NextBool(4) && Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     Projectile.NewProjectile(entitySource, NPC.Center, new Vector2(Main.rand.NextFloat(-8, 8), Main.rand.NextFloat(-8, 8)), ProjectileID.EyeLaser, (int)(NPC.damage * 0.5f), 0f, Main.myPlayer);
                 }

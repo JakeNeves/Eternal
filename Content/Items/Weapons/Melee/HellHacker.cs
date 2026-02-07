@@ -1,4 +1,5 @@
 ﻿using Eternal.Common.Configurations;
+using Eternal.Common.Systems;
 using Eternal.Content.Projectiles.Weapons.Melee;
 using Terraria;
 using Terraria.GameContent.Creative;
@@ -31,6 +32,16 @@ namespace Eternal.Content.Items.Weapons.Melee
             Item.shootSpeed = 8f;
             Item.noUseGraphic = true;
             Item.noMelee = true;
+        }
+
+        public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
+        {
+            if (DownedBossSystem.downedIncinerius)
+                damage += 0.25f;
+            if (DownedBossSystem.downedChimera)
+                damage += 0.5f;
+            if (DownedBossSystem.downedCosmicApparition)
+                damage += 0.75f;
         }
 
         public override bool CanUseItem(Player player)

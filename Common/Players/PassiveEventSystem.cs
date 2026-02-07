@@ -4,7 +4,6 @@ using Eternal.Content.Items.Accessories;
 using Eternal.Content.Items.Misc;
 using Eternal.Content.Items.Weapons.Melee;
 using Eternal.Content.NPCs.Boss.CosmicApparition;
-using Eternal.Content.NPCs.Boss.Igneopede;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
@@ -37,14 +36,28 @@ namespace Eternal.Common.Players
         {
             if (ClientConfig.instance.showWelcomeMessage)
             {
-                Main.NewText("Thanks for playing the Eternal " + Eternal.Instance.Version.ToString() + "!" +
+                if (ServerConfig.instance.purifiedBeneath)
+                {
+                    Main.NewText("Thanks for playing Eternal " + Eternal.Instance.Version.ToString() + "!" +
                         "\nFor updates, join the Jake's Lounge discord server.", 235, 40, 170);
-                Main.NewText("https://discord.gg/HUJ8KUSAjC", 8, 147, 207);
-                Main.NewText("Be sure to check out the Eternal mod wiki (WIP) too!", 235, 40, 170);
-                Main.NewText("https://terrariamods.wiki.gg/wiki/Eternal", 8, 147, 207);
-                Main.NewText("Please note that this mod is a work in progress, so bugs may occur!" + 
-                        "\nMake sure you backup your world every now and then, especially when using the mod's experimental features." +
-                        "\nThese messages can be disabled in the mod's configs.", 255, 223, 64);
+                    Main.NewText("https://discord.gg/HUJ8KUSAjC", 8, 147, 207);
+                    Main.NewText("Be sure to check out the Eternal mod wiki (WIP) too!", 235, 40, 170);
+                    Main.NewText("https://terrariamods.wiki.gg/wiki/Eternal", 8, 147, 207);
+                    Main.NewText("Please note that this mod is a work in progress, so bugs may occur!" +
+                            "\nMake sure you backup your world every now and then, especially when using the mod's experimental features." +
+                            "\nThese messages can be disabled in the mod's configs.", 255, 223, 64);
+                }
+                else
+                {
+                    Main.NewText("Thanks for playing Eternal " + Eternal.Instance.Version.ToString() + "!" +
+                        "\nFor updates, join the Jake's Lounge discord server.", 235, 40, 170);
+                    Main.NewText("https://discord.gg/HUJ8KUSAjC", 8, 147, 207);
+                    Main.NewText("Be sure to check out the Eternal mod wiki (WIP) too!", 235, 40, 170);
+                    Main.NewText("https://terrariamods.wiki.gg/wiki/Eternal", 8, 147, 207);
+                    Main.NewText("Please note that this mod is a work in progress, so bugs may occur!" +
+                            "\nMake sure you backup your world every now and then." +
+                            "\nThese messages can be disabled in the mod's configs.", 255, 223, 64);
+                }
             }
         }
 

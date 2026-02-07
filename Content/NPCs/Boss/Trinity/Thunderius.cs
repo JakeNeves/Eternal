@@ -21,11 +21,11 @@ namespace Eternal.Content.NPCs.Boss.Trinity
             int rate = 16;
 
             if (DifficultySystem.hellMode)
-                rate = 8;
-            else if (Main.expertMode)
                 rate = 12;
+            else if (Main.expertMode)
+                rate = 18;
             else
-                rate = 16;
+                rate = 24;
 
             return rate;
         }
@@ -55,9 +55,9 @@ namespace Eternal.Content.NPCs.Boss.Trinity
         {
             NPC.width = 84;
             NPC.height = 84;
-            NPC.lifeMax = 150000;
-            NPC.defense = 60;
-            NPC.damage = 30;
+            NPC.lifeMax = 20000;
+            NPC.defense = 40;
+            NPC.damage = 20;
             NPC.aiStyle = -1;
             NPC.knockBackResist = 0f;
             NPC.HitSound = new SoundStyle($"{nameof(Eternal)}/Assets/Sounds/NPCHit/TrinityHit")

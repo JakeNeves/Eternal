@@ -18,7 +18,7 @@ namespace Eternal.Content.Items.Weapons.Radiant
 
         public override void SetDefaults()
         {
-            Item.damage = 600;
+            Item.damage = 90;
             Item.DamageType = ModContent.GetInstance<DamageClasses.Radiant>();
             Item.width = 64;
             Item.height = 64;
