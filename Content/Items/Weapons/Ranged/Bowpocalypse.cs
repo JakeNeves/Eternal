@@ -1,6 +1,9 @@
-﻿using Eternal.Content.Projectiles.Weapons.Ranged;
+﻿using Eternal.Content.Items.Materials;
+using Eternal.Content.Projectiles.Weapons.Ranged;
 using Eternal.Content.Rarities;
+using Eternal.Content.Tiles.CraftingStations;
 using Microsoft.Xna.Framework;
+using System.IO;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
@@ -11,11 +14,38 @@ namespace Eternal.Content.Items.Weapons.Ranged
 {
     public class Bowpocalypse : ModItem
     {
+        private int arrowTypeIndex;
+
+        private static readonly int[] possibleArrows =
+        {
+            ProjectileID.WoodenArrowFriendly,
+            ProjectileID.BeeArrow,
+            ProjectileID.BloodArrow,
+            ProjectileID.BoneArrow,
+            ProjectileID.ChlorophyteArrow,
+            ProjectileID.CursedArrow,
+            ProjectileID.DD2BetsyArrow,
+            ProjectileID.FireArrow,
+            ProjectileID.FrostArrow,
+            ProjectileID.FrostburnArrow,
+            ProjectileID.HellfireArrow,
+            ProjectileID.HolyArrow,
+            ProjectileID.IchorArrow,
+            ProjectileID.JestersArrow,
+            ProjectileID.MoonlordArrow,
+            ProjectileID.PhantasmArrow,
+            ProjectileID.ShadowFlameArrow,
+            ProjectileID.ShimmerArrow,
+            ProjectileID.UnholyArrow,
+            ProjectileID.VenomArrow,
+            ModContent.ProjectileType<EmberArrowProjectile>(),
+            ModContent.ProjectileType<StarbornArrowProjectile>(),
+            ModContent.ProjectileType<ArkiumShard>(),
+            ModContent.ProjectileType<UnstabowProjectile>()
+        };
 
         public override void SetStaticDefaults()
         {
-            // Tooltip.SetDefault("Shoots a random assortment of arrows");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -23,7 +53,7 @@ namespace Eternal.Content.Items.Weapons.Ranged
         {
             Item.width = 24;
             Item.height = 78;
-            Item.damage = 1000;
+            Item.damage = 250;
             Item.knockBack = 2.6f;
             Item.noMelee = true;
             Item.DamageType = DamageClass.Ranged;
@@ -38,61 +68,46 @@ namespace Eternal.Content.Items.Weapons.Ranged
             Item.rare = ModContent.RarityType<Aquamarine>();
         }
 
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<CosmoniumFragment>(), 4)
+                .AddIngredient(ModContent.ItemType<InterstellarMetal>(), 6)
+                .AddIngredient(ModContent.ItemType<ArkiumManbow>())
+                .AddIngredient(ModContent.ItemType<CosmicSwiftShot>())
+                .AddIngredient(ModContent.ItemType<Unstabow>())
+                .AddTile(ModContent.TileType<Nanoforge>())
+                .Register();
+        }
+
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(1, 0);
         }
 
+        public override void NetSend(BinaryWriter writer)
+        {
+            writer.Write((byte)arrowTypeIndex);
+        }
+
+        public override void NetReceive(BinaryReader reader)
+        {
+            arrowTypeIndex = reader.ReadByte();
+        }
+
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            float numberProjectiles = 2 + Main.rand.Next(2);
-            float rotation = MathHelper.ToRadians(30);
+            arrowTypeIndex = Main.rand.Next(possibleArrows.Length);
 
-            position += Vector2.Normalize(velocity) * 15f;
-            
-            for (int i = 0; i < numberProjectiles; i++)
+            int spread = 15;
+            float spreadMult = 0.5f;
+
+            for (int i = 0; i < 5; i++)
             {
+                float vX = velocity.X + Main.rand.Next(-spread, spread + 1) * spreadMult;
+                float vY = velocity.Y + Main.rand.Next(-spread, spread + 1) * spreadMult;
 
-                if (Main.rand.NextBool(2))
-                {
-                    Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, ProjectileID.IchorArrow, damage, knockback, player.whoAmI);
-                }
-                if (Main.rand.NextBool(3))
-                {
-                    Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, ProjectileID.BeeArrow, damage, knockback, player.whoAmI);
-                }
-                if (Main.rand.NextBool(4))
-                {
-                    Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, ProjectileID.CursedArrow, damage, knockback, player.whoAmI);
-                }
-                if (Main.rand.NextBool(5))
-                {
-                    Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, ProjectileID.HellfireArrow, damage, knockback, player.whoAmI);
-                }
-                if (Main.rand.NextBool(6))
-                {
-                    Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, ProjectileID.MoonlordArrow, damage, knockback, player.whoAmI);
-                }
-                if (Main.rand.NextBool(7))
-                {
-                    Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, ProjectileID.ShadowFlameArrow, damage, knockback, player.whoAmI);
-                }
-                if (Main.rand.NextBool(8))
-                {
-                    Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, ProjectileID.JestersArrow, damage, knockback, player.whoAmI);
-                }
-                if (Main.rand.NextBool(9))
-                {
-                    Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, ModContent.ProjectileType<SwiftShotStarbuster>(), damage, knockback, player.whoAmI);
-                }
-                if (Main.rand.NextBool(9))
-                {
-                    Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, ModContent.ProjectileType<StarbornArrowProjectile>(), damage, knockback, player.whoAmI);
-                }
-                else
-                {
-                    Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, ProjectileID.WoodenArrowFriendly, damage, knockback, player.whoAmI);
-                }
+                Projectile.NewProjectile(source, position, new Vector2(vX, vY), possibleArrows[arrowTypeIndex], damage, knockback);
             }
 
             return false;

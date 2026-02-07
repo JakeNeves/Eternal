@@ -1,17 +1,13 @@
 ﻿using Eternal.Content.Items.Materials;
 using Eternal.Content.Projectiles.Weapons.Ranged;
-using Eternal.Content.Tiles.CraftingStations;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eternal.Content.Items.Ammo
 {
-    public class Starbullet : ModItem
+    public class EmberArrow : ModItem
     {
-        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs("'Let's hope that these would work against anything...'");
-
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
@@ -19,24 +15,25 @@ namespace Eternal.Content.Items.Ammo
 
         public override void SetDefaults()
         {
-            Item.damage = 85;
+            Item.damage = 76;
             Item.DamageType = DamageClass.Ranged;
-            Item.width = 10;
-            Item.height = 22;
+            Item.width = 14;
+            Item.height = 34;
             Item.maxStack = 9999;
             Item.consumable = true;
-            Item.knockBack = 2f;
-            Item.rare = ItemRarityID.Red;
-            Item.shoot = ModContent.ProjectileType<StarbulletProjectile>();
-            Item.shootSpeed = 18f;
-            Item.ammo = AmmoID.Bullet;
+            Item.knockBack = 4f;
+            Item.rare = ItemRarityID.Lime;
+            Item.shoot = ModContent.ProjectileType<EmberArrowProjectile>();
+            Item.shootSpeed = 20.5f;
+            Item.ammo = AmmoID.Arrow;
         }
 
         public override void AddRecipes()
         {
             CreateRecipe(333)
-                .AddTile(ModContent.TileType<Starforge>())
-                .AddIngredient(ModContent.ItemType<CometiteBar>())
+                .AddTile(TileID.MythrilAnvil)
+                .AddIngredient(ModContent.ItemType<MagmaticAlloy>(), 6)
+                .AddIngredient(ModContent.ItemType<InfernalAshes>(), 3)
                 .Register();
         }
 

@@ -54,15 +54,15 @@ namespace Eternal.Content.Items.Weapons.Melee
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            float numberProjectiles = 2 + Main.rand.Next(2);
-            float rotation = MathHelper.ToRadians(15);
+            int spread = 25;
+            float spreadMult = 0.15f;
 
-            position += Vector2.Normalize(velocity) * 15f;
-
-            for (int i = 0; i < numberProjectiles; i++)
+            for (int i = 0; i < Main.rand.Next(3, 9); i++)
             {
-                Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f;
-                Projectile.NewProjectile(source, position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, type, damage, knockback, player.whoAmI);
+                float vX = velocity.X + Main.rand.Next(-spread, spread + 1) * spreadMult;
+                float vY = velocity.Y + Main.rand.Next(-spread, spread + 1) * spreadMult;
+
+                Projectile.NewProjectile(source, position, new Vector2(vX, vY), type, damage, knockback);
             }
 
             float adjustedItemScale = player.GetAdjustedItemScale(Item);

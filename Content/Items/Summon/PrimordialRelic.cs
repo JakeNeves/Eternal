@@ -62,6 +62,10 @@ namespace Eternal.Content.Items.Summon
                 .AddIngredient(ModContent.ItemType<ArkaniumAlloy>(), 40)
                 .AddIngredient(ModContent.ItemType<CrystallizedOminite>(), 40)
                 .AddIngredient(ModContent.ItemType<NaquadahBar>(), 40)
+                .AddIngredient(ModContent.ItemType<EssenceofLight>(), 10)
+                .AddIngredient(ModContent.ItemType<EssenceofNight>(), 10)
+                .AddIngredient(ModContent.ItemType<EssenceofFlight>(), 10)
+                .AddIngredient(ModContent.ItemType<EssenceofBlight>(), 10)
                 .AddTile(ModContent.TileType<AncientFoundry>())
                 .Register();
         }

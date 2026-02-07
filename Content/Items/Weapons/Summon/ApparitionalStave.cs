@@ -25,7 +25,7 @@ namespace Eternal.Content.Items.Weapons.Summon
         {
             Item.width = 32;
             Item.height = 32;
-            Item.damage = 400;
+            Item.damage = 95;
             Item.mana = 60;
             Item.knockBack = 9.5f;
             Item.DamageType = DamageClass.Summon;

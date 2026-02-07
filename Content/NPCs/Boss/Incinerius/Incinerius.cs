@@ -47,9 +47,6 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
 
             NPCID.Sets.ShouldBeCountedAsBoss[Type] = true;
             NPCID.Sets.ImmuneToAllBuffs[Type] = true;
-
-            NPCID.Sets.TrailCacheLength[NPC.type] = 10;
-            NPCID.Sets.TrailingMode[NPC.type] = 0;
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -71,7 +68,7 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
             NPC.aiStyle = -1;
             NPC.damage = 10;
             NPC.defense = 12;
-            NPC.lifeMax = 96000;
+            NPC.lifeMax = 40000;
             NPC.lavaImmune = true;
             NPC.knockBackResist = 0f;
             NPC.noGravity = true;
@@ -271,9 +268,11 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
             if (AttackTimer > 200 && AttackTimer < 300 && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 CircleDirc = Utils.RotatedBy(CircleDirc, 0.10000000149011612, new Vector2());
-                int index5 = Projectile.NewProjectile(entitySource, NPC.Center, CircleDirc, ProjectileID.InfernoHostileBolt, NPC.damage, 0.0f, Main.myPlayer, 0.0f, 0.0f);
+                int index5 = Projectile.NewProjectile(entitySource, NPC.Center, CircleDirc, ProjectileID.BallofFire, NPC.damage, 0.0f, Main.myPlayer, 0.0f, 0.0f);
+                Main.projectile[index5].friendly = false;
+                Main.projectile[index5].hostile = true;
                 Main.projectile[index5].tileCollide = false;
-                Main.projectile[index5].timeLeft = 300;
+                Main.projectile[index5].timeLeft = 100;
             }
 
             if (AttackTimer > 450 && AttackTimer < 500 && Main.netMode != NetmodeID.MultiplayerClient)
@@ -451,7 +450,7 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
                             for (int j = 0; j < i.Length; j++)
                             {
                                 Main.projectile[i[j]].extraUpdates = 2;
-                                Main.projectile[i[j]].timeLeft = 100;
+                                Main.projectile[i[j]].timeLeft = 150;
                             }
                         }
 
@@ -476,7 +475,7 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
                         int i = Projectile.NewProjectile(entitySource, shootPos, shootVel, ProjectileID.BallofFire, NPC.damage / 4 * ((Main.expertMode) ? 3 : 2), 1f);
                         Main.projectile[i].friendly = false;
                         Main.projectile[i].hostile = true;
-                        Main.projectile[i].timeLeft = 200;
+                        Main.projectile[i].timeLeft = 150;
                         Main.projectile[i].extraUpdates = 2;
                     }
                 }
@@ -493,7 +492,7 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
                         Main.projectile[i].friendly = false;
                         Main.projectile[i].hostile = true;
                         Main.projectile[i].tileCollide = false;
-                        Main.projectile[i].timeLeft = 200;
+                        Main.projectile[i].timeLeft = 150;
                         Main.projectile[i].extraUpdates = 2;
                     }
                 }
@@ -510,7 +509,7 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
                         Main.projectile[i].friendly = false;
                         Main.projectile[i].hostile = true;
                         Main.projectile[i].tileCollide = false;
-                        Main.projectile[i].timeLeft = 200;
+                        Main.projectile[i].timeLeft = 150;
                         Main.projectile[i].extraUpdates = 2;
                     }
                 }
@@ -530,6 +529,7 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
 
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<IgneoforgedEdge>(), 2));
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Incinerator>(), 3));
+            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<InfernalDuplex>(), 4));
 
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<CanadianResistance>(), 12));
 
@@ -543,22 +543,6 @@ namespace Eternal.Content.NPCs.Boss.Incinerius
             NPC.frameCounter %= Main.npcFrameCount[NPC.type];
             int Frame = (int)NPC.frameCounter;
             NPC.frame.Y = Frame * frameHeight;
-        }
-
-        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color lightColor)
-        {
-            Main.instance.LoadNPC(NPC.type);
-            Texture2D texture = ModContent.Request<Texture2D>("Eternal/Content/NPCs/Boss/Incinerius/Incinerius_Shadow").Value;
-
-            Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, NPC.height * 0.5f);
-            for (int k = 0; k < NPC.oldPos.Length; k++)
-            {
-                Vector2 drawPos = (NPC.oldPos[k] - Main.screenPosition) + drawOrigin + new Vector2(0f, NPC.gfxOffY);
-                Color color = NPC.GetAlpha(lightColor) * ((NPC.oldPos.Length - k) / (float)NPC.oldPos.Length);
-                Main.EntitySpriteDraw(texture, drawPos, null, color, NPC.rotation, drawOrigin, NPC.scale, SpriteEffects.None, 0);
-            }
-
-            return true;
         }
 
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)

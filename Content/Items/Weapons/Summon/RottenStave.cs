@@ -19,7 +19,7 @@ namespace Eternal.Content.Items.Weapons.Summon
 
         public override void SetDefaults()
         {
-            Item.damage = 100;
+            Item.damage = 85;
             Item.DamageType = DamageClass.Summon;
             Item.sentry = true;
             Item.mana = 10;

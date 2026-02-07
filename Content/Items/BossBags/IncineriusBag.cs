@@ -41,6 +41,8 @@ namespace Eternal.Content.Items.BossBags
 
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<IgneoforgedEdge>(), 2));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Incinerator>(), 3));
+            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<InfernalDuplex>(), 4));
+
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<CanadianResistance>(), 10));
 
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<MagmaticAlloy>(), minimumDropped: 12, maximumDropped: 16));

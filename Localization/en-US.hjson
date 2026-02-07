@@ -1266,7 +1266,7 @@ Mods: {
 				Tooltip:
 					'''
 					Causes your cursor to shift between pink, yellow and blue
-					'Great for impersonating Eternal's devs!'
+					'Great for impersonating former Eternal devs!'
 					'''
 				DisplayName: Jake's Cursor
 			}
@@ -2143,17 +2143,17 @@ Mods: {
 
 			JakesPants: {
 				DisplayName: Jake's Pants
-				Tooltip: "'Great for impersonating Eternal's devs!'"
+				Tooltip: "'Great for impersonating former Eternal devs!'"
 			}
 
 			JakesTunic: {
 				DisplayName: Jake's Tunic
-				Tooltip: "'Great for impersonating Eternal's devs!'"
+				Tooltip: "'Great for impersonating former Eternal devs!'"
 			}
 
 			JakesHat: {
 				DisplayName: Jake's Hat
-				Tooltip: "'Great for impersonating Eternal's devs!'"
+				Tooltip: "'Great for impersonating former Eternal devs!'"
 			}
 
 			Ichorate: {
@@ -3481,6 +3481,40 @@ Mods: {
 					'Originally manufactured on July 1st 1867'
 					'''
 			}
+
+			JakeTEMMemorial: {
+				DisplayName: JakeTEM Memorial
+				Tooltip:
+					'''
+					A tribute to a retired creator
+					'Great for honoring former Eternal devs!'
+					'''
+			}
+
+			EmberArrow: {
+				DisplayName: Ember Arrow
+				Tooltip: ""
+			}
+
+			InfernalDuplex: {
+				DisplayName: Infernal Duplex
+				Tooltip: ""
+			}
+
+			ShadyLeggings: {
+				DisplayName: Shady Leggings
+				Tooltip: "'Great for impersonating shadows in your closet!'"
+			}
+
+			ShadyJacket: {
+				DisplayName: Shady Jacket
+				Tooltip: "'Great for impersonating shadows in your closet!'"
+			}
+
+			ShadyMask: {
+				DisplayName: Shady Mask
+				Tooltip: "'Great for impersonating shadows in your closet!'"
+			}
 		}
 
 		Buffs: {
@@ -3625,6 +3659,7 @@ Mods: {
 			TheSonofTheArsGaladia.MapEntry: Painting
 			CometiteOre.MapEntry: Cometite
 			ShiftingEerieMonolith.MapEntry: Shifting Eerie Monolith
+			JakeTEMMemorial.MapEntry: JakeTEM Memorial
 
 			GehennaChest: {
 				MapEntry0: Gehenna Chest
@@ -4297,6 +4332,7 @@ Mods: {
 			IncineratorProjectile.DisplayName: Incinerator
 			IncineratorProjectileShoot.DisplayName: Incinerator
 			IncineratorProjectileShoot2.DisplayName: Incinerator
+			EmberArrowProjectile.DisplayName: Ember Arrow Projectile
 		}
 
 		WorldGen: {

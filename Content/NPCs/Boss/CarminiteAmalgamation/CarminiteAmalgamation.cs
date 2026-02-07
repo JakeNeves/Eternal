@@ -32,11 +32,7 @@ namespace Eternal.Content.NPCs.Boss.CarminiteAmalgamation
 
         ref float AttackTimer => ref NPC.ai[1];
 
-        int DeathTimer;
         int deathExplosionTimer = 0;
-
-        bool isDead = false;
-        bool dontKillyet = false;
         bool phase2Init = false;
 
         public override void SetStaticDefaults()

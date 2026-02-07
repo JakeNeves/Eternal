@@ -2,6 +2,7 @@
 using Eternal.Common.Systems;
 using Eternal.Content.Items.Accessories;
 using Eternal.Content.Items.Materials;
+using Eternal.Content.Items.Vanity;
 using Eternal.Content.Items.Weapons.Magic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -115,8 +116,12 @@ namespace Eternal.Content.NPCs.Miniboss
         {
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ShadeMatter>(), 1, 2, 6));
 
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ShadeLocket>(), 24));
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<DarkArts>(), 8));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ShadeLocket>(), 8));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<DarkArts>(), 6));
+
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ShadyMask>(), 4));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ShadyJacket>(), 4));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ShadyLeggings>(), 4));
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

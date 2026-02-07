@@ -1,5 +1,7 @@
 ﻿using Eternal.Content.Projectiles.Weapons.Magic;
+using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -30,6 +32,22 @@ namespace Eternal.Content.Items.Weapons.Magic
             Item.rare = ItemRarityID.Orange;
             Item.autoReuse = true;
             Item.noMelee = true;
+        }
+
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            int spread = 15;
+            float spreadMult = 0.05f;
+
+            for (int i = 0; i < Main.rand.Next(4, 6); i++)
+            {
+                float vX = velocity.X + Main.rand.Next(-spread, spread + 1) * spreadMult;
+                float vY = velocity.Y + Main.rand.Next(-spread, spread + 1) * spreadMult;
+
+                Projectile.NewProjectile(source, position, new Vector2(vX, vY), type, damage, knockback);
+            }
+
+            return true;
         }
     }
 }

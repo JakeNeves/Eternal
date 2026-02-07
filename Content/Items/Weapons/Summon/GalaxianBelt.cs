@@ -19,7 +19,7 @@ namespace Eternal.Content.Items.Weapons.Summon
         {
             Item.width = 22;
             Item.height = 44;
-            Item.damage = 220;
+            Item.damage = 90;
             Item.DamageType = DamageClass.SummonMeleeSpeed;
             Item.useAnimation = 24;
             Item.useTime = 24;

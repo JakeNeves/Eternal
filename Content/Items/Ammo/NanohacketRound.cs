@@ -17,7 +17,7 @@ namespace Eternal.Content.Items.Ammo
 
         public override void SetDefaults()
         {
-            Item.damage = 500;
+            Item.damage = 90;
             Item.DamageType = DamageClass.Ranged;
             Item.width = 18;
             Item.height = 18;

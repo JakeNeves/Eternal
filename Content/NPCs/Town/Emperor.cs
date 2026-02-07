@@ -20,6 +20,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Eternal.Content.Items.Weapons.Misc;
+using Eternal.Content.Items.Placeable.Decorative;
 
 namespace Eternal.Content.NPCs.Town
 {
@@ -333,6 +334,7 @@ namespace Eternal.Content.NPCs.Town
                 .Add<FineRedWine>()
                 .Add<TheCherishedKinofGallahard>()
                 .Add<TheSonofTheArsGaladia>(Condition.IsNpcShimmered)
+                .Add<JakeTEMMemorial>()
                 .Add<EmperorsTrust>(new Condition("Mods.Eternal.Conditions.CosmicApparitionDefeated", () => DownedBossSystem.downedCosmicApparition))
                 .Add<JakeTEMnomicon>(new Condition("Mods.Eternal.Conditions.isZenithWorld", () => Main.zenithWorld))
                 .Add<ItemNotFound>(new Condition("Mods.Eternal.Conditions.isZenithWorld", () => Main.zenithWorld))

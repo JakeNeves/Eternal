@@ -176,6 +176,7 @@ namespace Eternal.Common.Systems
                         ModContent.ItemType<Content.Items.Materials.InfernalAshes>(),
                         ModContent.ItemType<Content.Items.Weapons.Melee.IgneoforgedEdge>(),
                         ModContent.ItemType<Content.Items.Weapons.Magic.Incinerator>(),
+                        ModContent.ItemType<Content.Items.Weapons.Ranged.InfernalDuplex>(),
                         ModContent.ItemType<Content.Items.Accessories.Expert.MagmaniacHeart>()
                     }
                 }

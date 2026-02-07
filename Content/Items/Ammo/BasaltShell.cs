@@ -35,7 +35,7 @@ namespace Eternal.Content.Items.Ammo
         {
             CreateRecipe(333)
                 .AddTile(TileID.MythrilAnvil)
-                .AddIngredient(ModContent.ItemType<MagmaticAlloy>())
+                .AddIngredient(ModContent.ItemType<MagmaticAlloy>(), 6)
                 .Register();
         }
 
