@@ -20,9 +20,9 @@ namespace Eternal.Content.Items.Weapons.Melee
 
         public override void SetDefaults()
         {
-            Item.width = 76;
-            Item.height = 76;
-            Item.damage = 100;
+            Item.width = 52;
+            Item.height = 58;
+            Item.damage = 70;
             Item.DamageType = DamageClass.Melee;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.knockBack = 3.5f;

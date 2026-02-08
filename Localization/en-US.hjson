@@ -3515,6 +3515,11 @@ Mods: {
 				DisplayName: Shady Mask
 				Tooltip: "'Great for impersonating shadows in your closet!'"
 			}
+
+			Machinegunpocalypse: {
+				DisplayName: Machinegunpocalypse
+				Tooltip: ""
+			}
 		}
 
 		Buffs: {

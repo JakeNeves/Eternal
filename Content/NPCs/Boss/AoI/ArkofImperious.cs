@@ -336,8 +336,6 @@ namespace Eternal.Content.NPCs.Boss.AoI
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<WeatheredPlating>(), minimumDropped: 6, maximumDropped: 8));
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<ArkaniumScrap>(), minimumDropped: 10, maximumDropped: 20));
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<ArkiumQuartzCrystalCluster>(), minimumDropped: 10, maximumDropped: 20));
-
-            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<UnrefinedHeroSword>(), 20));
         }
 
         public override bool CheckDead()

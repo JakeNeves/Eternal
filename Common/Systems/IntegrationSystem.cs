@@ -308,9 +308,7 @@ namespace Eternal.Common.Systems
                     ["collectables"] = new List<int>()
 					{
 						ModContent.ItemType<Content.Items.Materials.ArkiumQuartzCrystalCluster>(),
-						ModContent.ItemType<Content.Items.Materials.ArkaniumScrap>(),
-						ModContent.ItemType<Content.Items.Materials.WeatheredPlating>(),
-						ModContent.ItemType<Content.Items.Materials.UnrefinedHeroSword>(),
+						ModContent.ItemType<Content.Items.Materials.ArkaniumScrap>()
 					}
 				}
             );

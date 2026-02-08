@@ -7,8 +7,8 @@ namespace Eternal.Content.Projectiles.Weapons.Melee
     {
         public override void SetDefaults()
         {
-            Projectile.width = 34;
-            Projectile.height = 34;
+            Projectile.width = 40;
+            Projectile.height = 46;
             Projectile.aiStyle = 3;
             Projectile.friendly = true;
             Projectile.DamageType = DamageClass.Melee;

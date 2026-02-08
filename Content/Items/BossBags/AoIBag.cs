@@ -39,8 +39,6 @@ namespace Eternal.Content.Items.BossBags
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<WeatheredPlating>(), minimumDropped: 12, maximumDropped: 16));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<ArkaniumScrap>(), minimumDropped: 20, maximumDropped: 40));
             itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<ArkiumQuartzCrystalCluster>(), minimumDropped: 20, maximumDropped: 40));
-
-            itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<UnrefinedHeroSword>(), 10));
         }
 
         public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
