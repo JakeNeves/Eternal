@@ -444,30 +444,14 @@ Mods: {
 				DeathCharmDeny: "{0}% tried to change the rules"
 			}
 
-			YoggieSpotch: {
-				Tooltip: "'Holding it in your hands for too long could burn your flesh off'"
-				DisplayName: Yoggie Spotch
-			}
-
 			Yoggie: {
 				DisplayName: Yoggie
-				Tooltip: ""
+				Tooltip: "'Holding it in your hands for too long could burn your flesh off'"
 			}
 
 			WeatheredPlating: {
 				Tooltip: "'It's weathered, yet still durable'"
 				DisplayName: Weathered Plating
-			}
-
-			UnrefinedHeroSword: {
-				Tooltip:
-					'''
-					[c/F72F9A:Guaranteed Rare Boss Drop]
-					'It looks rather rough, yet it's valuable, however something seems to be missing here'
-					[c/008060:Ancient Artifact]
-					Whatever this is, it remains unknown...
-					'''
-				DisplayName: Unrefined Hero Sword
 			}
 
 			ThunderblightShard: {
@@ -561,16 +545,6 @@ Mods: {
 			}
 
 			KnifeBlade: {
-				Tooltip: ???
-				DisplayName: Knife Blade
-			}
-
-			KnifeHandle14: {
-				Tooltip: ???
-				DisplayName: Knife Handle
-			}
-
-			KnifeBlade14: {
 				Tooltip: ???
 				DisplayName: Knife Blade
 			}
@@ -1703,11 +1677,6 @@ Mods: {
 
 			CarminiteRipperClaws: {
 				DisplayName: Carminite Ripper Claws
-				Tooltip: ""
-			}
-
-			EdgeofTheInferno: {
-				DisplayName: Edge of The Inferno
 				Tooltip: ""
 			}
 
@@ -4170,9 +4139,6 @@ Mods: {
 			ArkiumDisk.DisplayName: Arkium Disk
 			ArkspearProjectile.DisplayName: Arkspear
 			ArkspearProjectileThrown.DisplayName: Arkspear
-			AstraeaProjectile.DisplayName: Astraea
-			BifrostPrisimdiskProjectile.DisplayName: Bifrost Prisimdisk
-			EdgeofTheInfernoProjectile.DisplayName: Edge of The Inferno
 			EmpoweredApparitionalDiskProjectile.DisplayName: Empowered Apparitional Disk
 			EmpoweredApparitionalDiskProjectileMini.DisplayName: Empowered Apparitional Disk
 			EmpoweredMachaliteEdgeProjectile.DisplayName: Empowered Machalite Edge

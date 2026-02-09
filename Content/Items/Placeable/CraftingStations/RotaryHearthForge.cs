@@ -23,7 +23,7 @@ namespace Eternal.Content.Items.Placeable.CraftingStations
             Item.autoReuse = true;
             Item.useAnimation = 15;
             Item.useTime = 10;
-            Item.rare = ModContent.RarityType<Magenta>();
+            Item.rare = ModContent.RarityType<Teal>();
             Item.useStyle = ItemUseStyleID.Swing;
             Item.consumable = true;
             Item.value = Item.buyPrice(gold: 90);
@@ -34,7 +34,7 @@ namespace Eternal.Content.Items.Placeable.CraftingStations
         {
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<CometiteBar>(), 12)
-                .AddIngredient(ModContent.ItemType<CrystallizedOminite>(), 20)
+                .AddIngredient(ModContent.ItemType<MoteofOminite>(), 20)
                 .AddIngredient(ModContent.ItemType<WeatheredPlating>(), 16)
                 .AddTile(ModContent.TileType<Tiles.CraftingStations.Starforge>())
                 .Register();
