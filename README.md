@@ -13,6 +13,8 @@ from each boss (not all rewards are available yet...), and even some post-Moon L
 content to make things a bit more fun with a chance of sudden randomness from out of
 complete nowhere!
 
+Do note, there is no harm in cheating in items, enemies, etc.
+
 ## Code Usage in Other Mods
 
 All code here is licensed under the GPL v3 license. To keep it simple, it is similar to the MIT license, but using the code in this repository by any means necessary requires you to open-source your code under the same license.
@@ -29,4 +31,4 @@ and file cleanup. Otherwise, feel free to browse the Eternal mod's code.
 
 ## Developers
 
-[JakeTEM](https://www.youtube.com/channel/UCaPYj8aYX30iDGOP7B9HUIQ) - Creator
+[JakeTEM](https://www.youtube.com/channel/UCaPYj8aYX30iDGOP7B9HUIQ) - Creator and Former Developer
